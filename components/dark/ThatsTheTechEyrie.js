@@ -29,14 +29,14 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
   const bgStyle =
     theme === "dark"
       ? {
-          backgroundColor: "#2b2b2b",
-          backgroundImage: `
+        backgroundColor: "#2b2b2b",
+        backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
           radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
           radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%)
         `,
-          backgroundBlendMode: "overlay, normal, normal",
-        }
+        backgroundBlendMode: "overlay, normal, normal",
+      }
       : { backgroundColor: lightColors.background };
 
 
@@ -97,14 +97,14 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
       // Wait for entrance animation
       setTimeout(() => {
         const targetTE = document.querySelector(".target-te-position");
-        
+
         if (!targetTE) return;
 
 
         // Split the words into characters
         const techWord = techEyrieText.querySelector(".tech-word");
         const eyrieWord = techEyrieText.querySelector(".eyrie-word");
-        
+
         if (!techWord || !eyrieWord) return;
 
 
@@ -114,14 +114,14 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
         // Wrap each character in a span
         techWord.innerHTML = techChars
-          .map((char, i) => 
+          .map((char, i) =>
             `<span class="char-${i}" style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`
           )
           .join("");
 
 
         eyrieWord.innerHTML = eyrieChars
-          .map((char, i) => 
+          .map((char, i) =>
             `<span class="char-${i}" style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`
           )
           .join("");
@@ -151,36 +151,37 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           z-index: 100;
           font-size: ${window.getComputedStyle(techEyrieText.querySelector('h2')).fontSize};
         `;
-        
+
         const tClone = document.createElement("span");
         const eClone = document.createElement("span");
-        
+
         tClone.textContent = "T";
         eClone.textContent = "E";
-        
+
         tClone.className = techEyrieText.querySelector('h2').className;
         eClone.className = techEyrieText.querySelector('h2').className;
-        
+
         tClone.style.cssText = `display: inline-block;`;
         eClone.style.cssText = `display: inline-block;`;
-        
+
         teContainer.appendChild(tClone);
         teContainer.appendChild(eClone);
         document.body.appendChild(teContainer);
 
 
         // Main scroll-based transformation timeline
-        const mainTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: firstPart,
-            start: "top top",
-            end: "+=200%",
-            pin: true,
-            scrub: 2,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+       const mainTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: firstPart,
+    start: "top top",
+    end: "+=100%", // ✅ Reduced from 200% to 150%
+    pin: true,
+    scrub: 2,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    pinSpacing: true, // ✅ Make sure spacing is enabled
+  },
+});
 
 
         // Hide target TE initially
@@ -192,7 +193,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           const targetRect = targetTE.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
           const viewportWidth = window.innerWidth;
-          
+
           return {
             x: (targetRect.left + targetRect.width / 2) - (viewportWidth / 2),
             y: targetRect.top - (viewportHeight * 0.5)
@@ -402,9 +403,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
             {/* "That's the" */}
             <div ref={thatsTheTextRef} className="mb-4 sm:mb-6 md:mb-8">
               <span
-                className={`font-playfair italic font-semibold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
+                className={`font-playfair italic font-semibold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                  }`}
               >
                 That's the
               </span>
@@ -414,9 +414,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
             {/* "Tech Eyrie" */}
             <div ref={techEyrieTextRef} className="relative">
               <h2
-                className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-tight transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
+                className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-tight transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                  }`}
               >
                 <span className="tech-word">Tech</span>{" "}
                 <span className="eyrie-word">Eyrie</span>
@@ -434,27 +433,24 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
             <h2 className="leading-[1.05] tracking-tight">
               <div
-                className={`build-title-line font-italiana font-light text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
+                className={`build-title-line font-italiana font-light text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                  }`}
               >
                 <span className="target-te-position inline-block">TE</span> Build What
               </div>
 
 
               <div
-                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
+                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                  }`}
               >
                 Others Can't
               </div>
 
 
               <div
-                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
+                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                  }`}
               >
                 See Yet
               </div>
@@ -462,22 +458,20 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           </div>
 
 
-          <div className="grid lg:grid-cols-[45%_55%]">
+          <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
             <div></div>
             <div className="space-y-6">
               <p
-                className={`build-description font-merriweather font-light text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] xl:text-[19px] leading-relaxed transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                }`}
+                className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+                  }`}
               >
                 We're a technology studio focused on turning complexity into clarity. From AI-driven automation to high-performance digital platforms, we design systems that help businesses move faster, think smarter, and scale with confidence.
               </p>
 
 
               <p
-                className={`build-description font-merriweather font-light text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] xl:text-[19px] leading-relaxed transition-colors duration-500 ${
-                  theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                }`}
+                className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+                  }`}
               >
                 We don't chase trends — we engineer foundations built to last.
               </p>
@@ -486,7 +480,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
               <div className="build-cta pt-2">
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-4 text-[14px] sm:text-[15px] md:text-[16px] font-semibold text-white bg-[#2D6A5A] hover:bg-[#245548] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  className="inline-flex items-center justify-center px-5 py-2.5 text-[12px] font-light text-white bg-[#2D6A5A] hover:bg-[#245548] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   Learn More About Us
                 </Link>

@@ -20,27 +20,33 @@ if (typeof window !== "undefined") {
 
 export default function HeroSection({ theme = "light" }) {
   // --- Color Palettes (Memoized to prevent re-renders) ---
-  const lightColors = useMemo(() => ({
-    primary: "#013825",
-    secondary: "#9E8F72",
-    tertiary: "#CEC8B0",
-    background: "#F9F7F0",
-    noiseOverlay: "rgba(200, 200, 200, 0.3)",
-    text: "#111111",
-    paginationActive: "#013825",
-    paginationInactive: "black/30",
-  }), []);
+  const lightColors = useMemo(
+    () => ({
+      primary: "#013825",
+      secondary: "#9E8F72",
+      tertiary: "#CEC8B0",
+      background: "#F9F7F0",
+      noiseOverlay: "rgba(200, 200, 200, 0.3)",
+      text: "#111111",
+      paginationActive: "#013825",
+      paginationInactive: "black/30",
+    }),
+    [],
+  );
 
-  const darkColors = useMemo(() => ({
-    primary: "#74F5A1",
-    secondary: "#5FE08D",
-    tertiary: "#3BC972",
-    background: "#2b2b2b",
-    noiseOverlay: "rgba(60, 60, 60, 0.3)",
-    text: "white",
-    paginationActive: "#74F5A1",
-    paginationInactive: "white/30",
-  }), []);
+  const darkColors = useMemo(
+    () => ({
+      primary: "#74F5A1",
+      secondary: "#5FE08D",
+      tertiary: "#3BC972",
+      background: "#2b2b2b",
+      noiseOverlay: "rgba(60, 60, 60, 0.3)",
+      text: "white",
+      paginationActive: "#74F5A1",
+      paginationInactive: "white/30",
+    }),
+    [],
+  );
 
   // --- Refs & State ---
   const containerRef = useRef(null);
@@ -49,17 +55,20 @@ export default function HeroSection({ theme = "light" }) {
   const heroCardsContainerRef = useRef(null);
   const portfolioSectionRef = useRef(null);
   const heroCardsRef = useRef([]);
-  const portfolioImageAreasRef = useRef([]);
+  const portfolioCardPlaceholdersRef = useRef([]);
   const autoRotateIntervalRef = useRef(null);
   const autoTriangleIntervalRef = useRef(null);
+  const portfolioCardTriangleIntervals = useRef({});
 
   // SEPARATE triangle state for each card
   const [cardTriangles, setCardTriangles] = useState({});
   const [portfolioTriangles, setPortfolioTriangles] = useState([]);
+  const [portfolioCardTriangles, setPortfolioCardTriangles] = useState({});
   const triangleIdRef = useRef(0);
   const portfolioTriangleIdRef = useRef(0);
+  const portfolioCardTriangleIdRef = useRef(0);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [screenSize, setScreenSize] = useState('mobile');
+  const [screenSize, setScreenSize] = useState("mobile");
   const [activeCard, setActiveCard] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [hoveredHeroCard, setHoveredHeroCard] = useState(null);
@@ -68,70 +77,109 @@ export default function HeroSection({ theme = "light" }) {
   const [isInHeroSection, setIsInHeroSection] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hoveredPortfolioCard, setHoveredPortfolioCard] = useState(null);
+  const [cardWidth, setCardWidth] = useState(220);
+  const [portfolioCardWidth, setPortfolioCardWidth] = useState(300);
 
   // --- Data (Memoized to prevent re-renders) ---
-  const mediaAssets = useMemo(() => [
-    {
-      type: 'image',
-      src: 'https://www.datocms-assets.com/151374/1741831437-mudwtr.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440',
-      alt: 'MUD\\WTR brand showcase',
-      title: 'MUD\\WTR',
-      subtitle: 'Health & Wellness',
-      metric: '+35% Conversion Rate',
-      buttons: ["Health & Wellness"],
-      link: "/work/mud-wtr",
-    },
-    {
-      type: 'image',
-      src: 'https://www.datocms-assets.com/151374/1741910699-cotopaxi_482x858_alternate.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440',
-      alt: 'Cotopaxi brand showcase',
-      title: 'Cotopaxi',
-      subtitle: 'Outdoor & Lifestyle',
-      metric: '+20% Marketing Efficiency',
-      buttons: ["Outdoor & Active Lifestyle", "Fashion & Apparel"],
-      link: "/work/cotopaxi",
-    },
-    {
-      type: 'video',
-      src: 'https://stream.mux.com/zaOX00ijKS1dZVZGFpLMjhNOIGbKQ8dmO/medium.mp4',
-      alt: 'Digital marketing campaign showcase',
-      title: 'OREO',
-      subtitle: 'Food & Beverage',
-      metric: '+45% Engagement',
-      buttons: ["Food & Beverage", "CPG"],
-      link: "/work/oreo",
-    },
-    {
-      type: 'video',
-      src: 'https://stream.mux.com/s5S6U18mND3t8caFSka7r7Wrulxm4SAb/medium.mp4',
-      alt: 'Brand impact visualization',
-      title: 'Coca-Cola',
-      subtitle: 'Global Campaigns',
-      metric: '+60% Brand Awareness',
-      buttons: ["Food & Beverage", "CPG"],
-      link: "/work/coca-cola",
+  const mediaAssets = useMemo(
+    () => [
+      {
+        type: "image",
+        src: "https://www.datocms-assets.com/151374/1741831437-mudwtr.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
+        alt: "MUD\\WTR brand showcase",
+        title: "MUD\\WTR",
+        subtitle: "Health & Wellness",
+        metric: "+35% Conversion Rate",
+        buttons: ["Health & Wellness"],
+        link: "/work/mud-wtr",
+      },
+      {
+        type: "image",
+        src: "https://www.datocms-assets.com/151374/1741910699-cotopaxi_482x858_alternate.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
+        alt: "Cotopaxi brand showcase",
+        title: "Cotopaxi",
+        subtitle: "Outdoor & Lifestyle",
+        metric: "+20% Marketing Efficiency",
+        buttons: ["Outdoor & Active Lifestyle", "Fashion & Apparel"],
+        link: "/work/cotopaxi",
+      },
+      {
+        type: "video",
+        src: "https://stream.mux.com/zaOX00ijKS1dZVZGFpLMjhNOIGbKQ8dmO/medium.mp4",
+        alt: "Digital marketing campaign showcase",
+        title: "OREO",
+        subtitle: "Food & Beverage",
+        metric: "+45% Engagement",
+        buttons: ["Food & Beverage", "CPG"],
+        link: "/work/oreo",
+      },
+      {
+        type: "video",
+        src: "https://stream.mux.com/s5S6U18mND3t8caFSka7r7Wrulxm4SAb/medium.mp4",
+        alt: "Brand impact visualization",
+        title: "Coca-Cola",
+        subtitle: "Global Campaigns",
+        metric: "+60% Brand Awareness",
+        buttons: ["Food & Beverage", "CPG"],
+        link: "/work/coca-cola",
+      },
+    ],
+    [],
+  );
+
+  // ✅ Calculate card sizes based on screen width
+  const calculateCardSizes = useCallback((width) => {
+    // Hero card sizes (smaller)
+    let heroWidth;
+    if (width >= 1920) {
+      heroWidth = 260; // 2xl+
+    } else if (width >= 1536) {
+      heroWidth = 240; // xl
+    } else if (width >= 1280) {
+      heroWidth = 210; // lg-xl
+    } else if (width >= 1024) {
+      heroWidth = 190; // lg
+    } else {
+      heroWidth = 180; // fallback
     }
-  ], []);
+
+    // Portfolio card sizes (larger - scales up from hero)
+    let portfolioWidth;
+    if (width >= 1920) {
+      portfolioWidth = 360; // 2xl+
+    } else if (width >= 1536) {
+      portfolioWidth = 330; // xl
+    } else if (width >= 1280) {
+      portfolioWidth = 290; // lg-xl
+    } else if (width >= 1024) {
+      portfolioWidth = 260; // lg
+    } else {
+      portfolioWidth = 240; // fallback
+    }
+
+    return { heroWidth, portfolioWidth };
+  }, []);
 
   // --- Track scroll position ---
   useEffect(() => {
     const handleScroll = () => {
       if (heroSectionRef.current) {
-        const heroBottom = heroSectionRef.current.getBoundingClientRect().bottom;
+        const heroBottom =
+          heroSectionRef.current.getBoundingClientRect().bottom;
         const heroTop = heroSectionRef.current.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
+
         const inHero = heroBottom > windowHeight * 0.3;
         setIsInHeroSection(inHero);
-        
+
         const scrollingDown = heroTop < 0;
         setIsScrolling(scrollingDown);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // --- Auto-rotate cards ---
@@ -186,7 +234,7 @@ export default function HeroSection({ theme = "light" }) {
 
         gsap.to(card, {
           x: newIndex * offset,
-          scale: 1 - (newIndex * 0.05),
+          scale: 1 - newIndex * 0.05,
           zIndex: 50 - newIndex,
           duration: 0.5,
           ease: "power2.out",
@@ -195,29 +243,32 @@ export default function HeroSection({ theme = "light" }) {
     });
   }, [activeCard, isDesktop, mediaAssets.length]);
 
-  const handleCardClick = useCallback((clickedIndex) => {
-    if (clickedIndex === activeCard) return;
-    
-    if (autoRotateIntervalRef.current) {
-      clearInterval(autoRotateIntervalRef.current);
-    }
-    
-    setActiveCard(clickedIndex);
-    
-    setTimeout(() => {
-      if (isInHeroSection && !isScrolling) {
-        autoRotateIntervalRef.current = setInterval(() => {
-          setActiveCard((prev) => (prev + 1) % mediaAssets.length);
-        }, 3000);
+  const handleCardClick = useCallback(
+    (clickedIndex) => {
+      if (clickedIndex === activeCard) return;
+
+      if (autoRotateIntervalRef.current) {
+        clearInterval(autoRotateIntervalRef.current);
       }
-    }, 5000);
-  }, [activeCard, mediaAssets.length, isInHeroSection, isScrolling]);
+
+      setActiveCard(clickedIndex);
+
+      setTimeout(() => {
+        if (isInHeroSection && !isScrolling) {
+          autoRotateIntervalRef.current = setInterval(() => {
+            setActiveCard((prev) => (prev + 1) % mediaAssets.length);
+          }, 3000);
+        }
+      }, 5000);
+    },
+    [activeCard, mediaAssets.length, isInHeroSection, isScrolling],
+  );
 
   const scrollToPortfolio = useCallback(() => {
     if (portfolioSectionRef.current) {
       portfolioSectionRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+        behavior: "smooth",
+        block: "start",
       });
     }
   }, []);
@@ -233,6 +284,7 @@ export default function HeroSection({ theme = "light" }) {
     return () => clearInterval(interval);
   }, []);
 
+  // ✅ Update card sizes on resize
   useEffect(() => {
     const checkScreen = () => {
       const width = window.innerWidth;
@@ -240,20 +292,25 @@ export default function HeroSection({ theme = "light" }) {
       setIsDesktop(desktop);
 
       if (width < 640) {
-        setScreenSize('mobile');
+        setScreenSize("mobile");
       } else if (width < 1024) {
-        setScreenSize('tablet');
+        setScreenSize("tablet");
       } else if (width < 1440) {
-        setScreenSize('laptop');
+        setScreenSize("laptop");
       } else {
-        setScreenSize('desktop');
+        setScreenSize("desktop");
       }
+
+      // Calculate responsive card sizes
+      const sizes = calculateCardSizes(width);
+      setCardWidth(sizes.heroWidth);
+      setPortfolioCardWidth(sizes.portfolioWidth);
     };
 
     checkScreen();
-    window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
-  }, []);
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, [calculateCardSizes]);
 
   // --- Electrical Animation (NO INTERVAL - ONLY ON VIEWPORT ENTRY) ---
   const triggerElectricalAnimation = useCallback(() => {
@@ -265,11 +322,15 @@ export default function HeroSection({ theme = "light" }) {
     const tl = gsap.timeline();
 
     titleLines.forEach((line, index) => {
-      tl.to(line, {
-        color: brightElectricColor,
-        duration: 0.1,
-        ease: "power2.out",
-      }, index * 0.2)
+      tl.to(
+        line,
+        {
+          color: brightElectricColor,
+          duration: 0.1,
+          ease: "power2.out",
+        },
+        index * 0.2,
+      )
         .to(line, {
           color: electricColor,
           duration: 0.15,
@@ -285,11 +346,17 @@ export default function HeroSection({ theme = "light" }) {
 
   // --- GSAP Scroll Animation ---
   useLayoutEffect(() => {
-    if (!isDesktop || !heroCardsContainerRef.current || !portfolioSectionRef.current) return;
+    if (
+      !isDesktop ||
+      !heroCardsContainerRef.current ||
+      !portfolioSectionRef.current
+    )
+      return;
 
     const ctx = gsap.context(() => {
       // Title animation with electrical effect on enter/re-enter
-      gsap.fromTo(".hero-main-title-line",
+      gsap.fromTo(
+        ".hero-main-title-line",
         { opacity: 0, y: 60, skewY: 4 },
         {
           opacity: 1,
@@ -298,7 +365,7 @@ export default function HeroSection({ theme = "light" }) {
           duration: 0.8,
           ease: "power3.out",
           stagger: 0.06,
-          transformOrigin: 'top left',
+          transformOrigin: "top left",
           scrollTrigger: {
             trigger: titleContainerRef.current,
             start: "top 85%",
@@ -313,21 +380,33 @@ export default function HeroSection({ theme = "light" }) {
                 triggerElectricalAnimation();
               }, 500);
             },
-          }
-        }
+          },
+        },
       );
 
-      gsap.from(".hero-badge", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out" });
-      gsap.from(".hero-body", { y: 32, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.2, stagger: 0.08 });
+      gsap.from(".hero-badge", {
+        y: 24,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+      gsap.from(".hero-body", {
+        y: 32,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.2,
+        stagger: 0.08,
+      });
 
       setTimeout(() => {
         mediaAssets.forEach((_, index) => {
           const heroCard = heroCardsRef.current[index];
-          const imageArea = portfolioImageAreasRef.current[index];
+          const placeholder = portfolioCardPlaceholdersRef.current[index];
 
-          if (!heroCard || !imageArea) return;
+          if (!heroCard || !placeholder) return;
 
-          const overlay = heroCard.querySelector('.card-overlay');
+          const overlay = heroCard.querySelector(".card-overlay");
 
           ScrollTrigger.create({
             trigger: heroSectionRef.current,
@@ -336,49 +415,43 @@ export default function HeroSection({ theme = "light" }) {
             scrub: 1.5,
             onUpdate: (self) => {
               const progress = self.progress;
-              const heroContainerRect = heroCardsContainerRef.current.getBoundingClientRect();
-              const imageAreaRect = imageArea.getBoundingClientRect();
+              const heroContainerRect =
+                heroCardsContainerRef.current.getBoundingClientRect();
+              const placeholderRect = placeholder.getBoundingClientRect();
 
               const stackOffset = index * 100;
               const heroStartX = heroContainerRect.left + stackOffset;
               const heroStartY = heroContainerRect.top;
-              const width = window.innerWidth;
-              let offsetX, offsetY;
-
-              if (width >= 1375 && width <= 1440) {
-                offsetX = 20;
-                offsetY = 120;
-              } else {
-                switch (screenSize) {
-                  case 'laptop':
-                    offsetX = 20;
-                    offsetY = 160;
-                    break;
-                  default:
-                    offsetX = 50;
-                    offsetY = 60;
-                }
-              }
-
-              const targetX = imageAreaRect.left + offsetX;
-              const targetY = imageAreaRect.top + offsetY;
-              const deltaX = targetX - heroStartX;
-              const deltaY = targetY - heroStartY;
 
               const heroWidth = heroContainerRect.width;
               const heroHeight = heroContainerRect.height;
-              const targetWidth = imageAreaRect.width;
-              const targetHeight = imageAreaRect.height;
+              const targetWidth = placeholderRect.width;
+              const targetHeight = placeholderRect.height;
 
               const scaleX = targetWidth / heroWidth;
               const scaleY = targetHeight / heroHeight;
               const targetScale = Math.min(scaleX, scaleY);
-              const startScale = 1 - (index * 0.05);
-              const currentScale = startScale + ((targetScale - startScale) * progress);
+              const startScale = 1 - index * 0.05;
+              const currentScale =
+                startScale + (targetScale - startScale) * progress;
+
+              // ✅ Calculate scaled dimensions for proper centering
+              const scaledWidth = heroWidth * currentScale;
+              const scaledHeight = heroHeight * currentScale;
+
+              // ✅ Center the card within the placeholder
+              const offsetX = (targetWidth - scaledWidth) / 2;
+              const offsetY = (targetHeight - scaledHeight) / 2;
+
+              const targetX = placeholderRect.left + offsetX;
+              const targetY = placeholderRect.top + offsetY;
+
+              const deltaX = targetX - heroStartX;
+              const deltaY = targetY - heroStartY;
 
               gsap.set(heroCard, {
-                x: stackOffset + (deltaX * progress),
-                y: (deltaY * progress),
+                x: stackOffset + deltaX * progress,
+                y: deltaY * progress,
                 scale: currentScale,
               });
 
@@ -387,15 +460,26 @@ export default function HeroSection({ theme = "light" }) {
                   opacity: 1 - progress,
                 });
               }
-            }
+            },
           });
         });
       }, 500);
-
     }, containerRef.current);
 
     return () => ctx.revert();
   }, [isDesktop, screenSize, mediaAssets, triggerElectricalAnimation]);
+
+
+
+  
+
+
+
+
+
+
+
+
 
   // --- Mobile: Trigger electrical animation once on mount ---
   useEffect(() => {
@@ -409,58 +493,105 @@ export default function HeroSection({ theme = "light" }) {
   }, [triggerElectricalAnimation, isDesktop]);
 
   // --- Create triangle for ACTIVE CARD ONLY ---
-  const createTriangleForCard = useCallback((cardIndex, x, y) => {
-    const id = triangleIdRef.current++;
-    const size = Math.random() * 20 + 30;
-    const rotation = Math.random() * 360;
-    const greenShades = theme === "dark"
-      ? ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"]
-      : [lightColors.primary, lightColors.secondary, lightColors.tertiary];
-    const color = greenShades[Math.floor(Math.random() * greenShades.length)];
-    
-    setCardTriangles((prev) => ({
-      ...prev,
-      [cardIndex]: [...(prev[cardIndex] || []), { id, x, y, size, rotation, color }]
-    }));
-    
-    setTimeout(() => {
+  const createTriangleForCard = useCallback(
+    (cardIndex, x, y) => {
+      const id = triangleIdRef.current++;
+      const size = Math.random() * 20 + 30;
+      const rotation = Math.random() * 360;
+      const greenShades =
+        theme === "dark"
+          ? ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"]
+          : [lightColors.primary, lightColors.secondary, lightColors.tertiary];
+      const color = greenShades[Math.floor(Math.random() * greenShades.length)];
+
       setCardTriangles((prev) => ({
         ...prev,
-        [cardIndex]: (prev[cardIndex] || []).filter((t) => t.id !== id)
+        [cardIndex]: [
+          ...(prev[cardIndex] || []),
+          { id, x, y, size, rotation, color },
+        ],
       }));
-    }, 1050);
-  }, [theme, lightColors]);
 
-  const createPortfolioTriangle = useCallback((x, y) => {
-    const id = portfolioTriangleIdRef.current++;
-    const size = Math.random() * 20 + 30;
-    const rotation = Math.random() * 360;
-    const greenShades = theme === "dark"
-      ? ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"]
-      : [lightColors.primary, lightColors.secondary, lightColors.tertiary];
-    const color = greenShades[Math.floor(Math.random() * greenShades.length)];
-    setPortfolioTriangles((prev) => [...prev, { id, x, y, size, rotation, color }]);
-    setTimeout(() => setPortfolioTriangles((prev) => prev.filter((t) => t.id !== id)), 1050);
-  }, [theme, lightColors]);
+      setTimeout(() => {
+        setCardTriangles((prev) => ({
+          ...prev,
+          [cardIndex]: (prev[cardIndex] || []).filter((t) => t.id !== id),
+        }));
+      }, 1050);
+    },
+    [theme, lightColors],
+  );
 
-  // --- AUTO TRIANGLES for ACTIVE CARD ---
+  // --- Create triangle for PORTFOLIO HERO CARDS (same cards, different section) ---
+  const createTriangleForPortfolioCard = useCallback(
+    (cardIndex, x, y) => {
+      const id = portfolioCardTriangleIdRef.current++;
+      const size = Math.random() * 20 + 30;
+      const rotation = Math.random() * 360;
+      const greenShades =
+        theme === "dark"
+          ? ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"]
+          : [lightColors.primary, lightColors.secondary, lightColors.tertiary];
+      const color = greenShades[Math.floor(Math.random() * greenShades.length)];
+
+      setPortfolioCardTriangles((prev) => ({
+        ...prev,
+        [cardIndex]: [
+          ...(prev[cardIndex] || []),
+          { id, x, y, size, rotation, color },
+        ],
+      }));
+
+      setTimeout(() => {
+        setPortfolioCardTriangles((prev) => ({
+          ...prev,
+          [cardIndex]: (prev[cardIndex] || []).filter((t) => t.id !== id),
+        }));
+      }, 1050);
+    },
+    [theme, lightColors],
+  );
+
+  const createPortfolioTriangle = useCallback(
+    (x, y) => {
+      const id = portfolioTriangleIdRef.current++;
+      const size = Math.random() * 20 + 30;
+      const rotation = Math.random() * 360;
+      const greenShades =
+        theme === "dark"
+          ? ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"]
+          : [lightColors.primary, lightColors.secondary, lightColors.tertiary];
+      const color = greenShades[Math.floor(Math.random() * greenShades.length)];
+      setPortfolioTriangles((prev) => [
+        ...prev,
+        { id, x, y, size, rotation, color },
+      ]);
+      setTimeout(
+        () => setPortfolioTriangles((prev) => prev.filter((t) => t.id !== id)),
+        1050,
+      );
+    },
+    [theme, lightColors],
+  );
+
+  // --- AUTO TRIANGLES for ACTIVE CARD in HERO ---
   useEffect(() => {
     if (autoTriangleIntervalRef.current) {
       clearInterval(autoTriangleIntervalRef.current);
     }
 
     if (!isInHeroSection || isScrolling) return;
-    
+
     const activeCardElement = heroCardsRef.current[activeCard];
     if (!activeCardElement) return;
 
     autoTriangleIntervalRef.current = setInterval(() => {
       const cardRect = activeCardElement.getBoundingClientRect();
-      
+
       if (cardRect.width > 0 && cardRect.height > 0) {
         const randomX = Math.random() * cardRect.width;
         const randomY = Math.random() * cardRect.height;
-        
+
         createTriangleForCard(activeCard, randomX, randomY);
       }
     }, 200);
@@ -472,6 +603,39 @@ export default function HeroSection({ theme = "light" }) {
     };
   }, [createTriangleForCard, isInHeroSection, isScrolling, activeCard]);
 
+  // --- AUTO TRIANGLES for HOVERED HERO CARD when in PORTFOLIO SECTION ---
+  useEffect(() => {
+    // Clear all intervals
+    Object.keys(portfolioCardTriangleIntervals.current).forEach((key) => {
+      clearInterval(portfolioCardTriangleIntervals.current[key]);
+    });
+    portfolioCardTriangleIntervals.current = {};
+
+    // Only when NOT in hero section AND hovering a card
+    if (hoveredPortfolioCard !== null && !isInHeroSection) {
+      const cardElement = heroCardsRef.current[hoveredPortfolioCard];
+      
+      if (!cardElement) return;
+
+      portfolioCardTriangleIntervals.current[hoveredPortfolioCard] = setInterval(() => {
+        const cardRect = cardElement.getBoundingClientRect();
+
+        if (cardRect.width > 0 && cardRect.height > 0) {
+          const randomX = Math.random() * cardRect.width;
+          const randomY = Math.random() * cardRect.height;
+
+          createTriangleForPortfolioCard(hoveredPortfolioCard, randomX, randomY);
+        }
+      }, 200);
+    }
+
+    return () => {
+      Object.keys(portfolioCardTriangleIntervals.current).forEach((key) => {
+        clearInterval(portfolioCardTriangleIntervals.current[key]);
+      });
+    };
+  }, [hoveredPortfolioCard, isInHeroSection, createTriangleForPortfolioCard]);
+
   // --- Portfolio triangles ---
   useEffect(() => {
     const section = portfolioSectionRef.current;
@@ -479,7 +643,7 @@ export default function HeroSection({ theme = "light" }) {
     let lastTime = 0;
     const handleMouseMove = (e) => {
       if (isInHeroSection) return;
-      
+
       const currentTime = Date.now();
       if (currentTime - lastTime < 80) return;
       lastTime = currentTime;
@@ -503,20 +667,24 @@ export default function HeroSection({ theme = "light" }) {
     return () => document.head.removeChild(style);
   }, []);
 
-  const bgStyle = useMemo(() => theme === "dark"
-    ? {
-      backgroundColor: darkColors.background,
-      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
-    }
-    : {
-      backgroundColor: lightColors.background,
-      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
-    }, [theme, darkColors, lightColors]);
+  const bgStyle = useMemo(
+    () =>
+      theme === "dark"
+        ? {
+            backgroundColor: darkColors.background,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
+          }
+        : {
+            backgroundColor: lightColors.background,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
+          },
+    [theme, darkColors, lightColors],
+  );
 
   const getBottomPadding = () => {
-    if (screenSize === 'laptop') return '600px';
-    if (screenSize === 'desktop') return '7rem';
-    return '7rem';
+    if (screenSize === "laptop") return "120px";
+    if (screenSize === "desktop") return "1rem";
+    return "1.5rem";
   };
 
   const TriangleSVG = ({ triangle }) => (
@@ -527,21 +695,21 @@ export default function HeroSection({ theme = "light" }) {
         top: `${triangle.y}px`,
         width: `${triangle.size}px`,
         height: `${triangle.size}px`,
-        '--rotation': `${triangle.rotation}deg`,
+        "--rotation": `${triangle.rotation}deg`,
         opacity: 0.7,
       }}
     >
-      <svg 
-        className="w-full h-full" 
-        viewBox="0 0 152 179" 
-        fill="none" 
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 152 179"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          transform: `translate(-50%, -50%) rotate(${triangle.rotation}deg)`
+          transform: `translate(-50%, -50%) rotate(${triangle.rotation}deg)`,
         }}
       >
-        <path 
-          d="M0.189697 54.4489V124.672C0.189697 131.465 3.62191 137.762 9.18638 141.159L66.6383 176.26C72.2028 179.656 79.0469 179.656 84.6114 176.26L142.063 141.159C147.628 137.762 151.06 131.486 151.06 124.672V54.4489C151.06 47.6566 147.628 41.3586 142.063 37.9625L84.6114 2.86158C79.0469 -0.534589 72.2028 -0.534589 66.6383 2.86158L9.18638 37.9625C3.62191 41.3586 0.189697 47.6351 0.189697 54.4489Z" 
+        <path
+          d="M0.189697 54.4489V124.672C0.189697 131.465 3.62191 137.762 9.18638 141.159L66.6383 176.26C72.2028 179.656 79.0469 179.656 84.6114 176.26L142.063 141.159C147.628 137.762 151.06 131.486 151.06 124.672V54.4489C151.06 47.6566 147.628 41.3586 142.063 37.9625L84.6114 2.86158C79.0469 -0.534589 72.2028 -0.534589 66.6383 2.86158L9.18638 37.9625C3.62191 41.3586 0.189697 47.6351 0.189697 54.4489Z"
           fill={triangle.color}
         />
       </svg>
@@ -555,65 +723,90 @@ export default function HeroSection({ theme = "light" }) {
         className="relative overflow-visible pt-32 md:pt-40 pb-28 min-h-screen"
         style={{
           ...bgStyle,
-          paddingBottom: getBottomPadding()
+          paddingBottom: getBottomPadding(),
         }}
       >
         <div className="relative z-10 mx-auto max-w-[1800px] px-4 md:px-6 lg:px-10 min-h-[calc(100vh-12rem)] flex flex-col justify-between pt-12">
-
           <div className="grid grid-cols-1 lg:grid-cols-[65%_35%] gap-8 lg:gap-12 xl:gap-16 items-start">
-
             <div className="flex flex-col">
-              <div className="max-w-full lg:max-w-[1600px] xl:max-w-[1800px]" ref={titleContainerRef}>
+              <div
+                className="max-w-full lg:max-w-[1600px] xl:max-w-[1800px]"
+                ref={titleContainerRef}
+              >
                 <div className="hero-badge mb-10 flex items-center gap-3 mb-16">
                   <span
                     className="inline-flex h-5 w-5 rounded-sm"
-                    style={{ backgroundColor: theme === "dark" ? darkColors.primary : lightColors.primary }}
+                    style={{
+                      backgroundColor:
+                        theme === "dark"
+                          ? darkColors.primary
+                          : lightColors.primary,
+                    }}
                   />
-                  <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
+                  <span
+                    className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}
+                  >
                     B2B marketing agency
                   </span>
                 </div>
 
                 <h1 className="mb-4 font-italiana tracking-[-0.03em]">
-                  <span 
+                  <span
                     className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] whitespace-nowrap ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}
                   >
                     <span className="font-light">We build </span>
-                    <span className="font-playfair italic text-[0.94em] tracking-[0.03em]">high‑performing</span>
+                    <span className="font-playfair italic text-[0.94em] tracking-[0.03em]">
+                      high‑performing
+                    </span>
                   </span>
 
-                  <span 
+                  <span
                     className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] leading-[1.05] font-light whitespace-nowrap -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}
                   >
                     marketing engines for
                   </span>
-                  
-                  <span 
+
+                  <span
                     className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] leading-[1.05] font-light whitespace-nowrap ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}
                   >
                     B2B brands
                   </span>
                 </h1>
-
               </div>
 
               <div className="hero-body max-w-full lg:max-w-[640px] pt-20">
-                <p className={`mb-9 font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
-                  We build, optimize and scale marketing engines that generate pipeline and improve marketing ROI.
+                <p
+                  className={`mb-9 font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}
+                >
+                  We build, optimize and scale marketing engines that generate
+                  pipeline and improve marketing ROI.
                 </p>
 
-                <Link href="#discover" className="inline-flex items-center gap-3 group">
-                  <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[20px] font-bold tracking-tight ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}>
+                <Link
+                  href="#discover"
+                  className="inline-flex items-center gap-3 group"
+                >
+                  <span
+                    className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[20px] font-bold tracking-tight ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}
+                  >
                     Discover more
                   </span>
                   <span
                     className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-[4px] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]"
                     style={{
-                      backgroundColor: theme === "dark" ? darkColors.primary : lightColors.primary
+                      backgroundColor:
+                        theme === "dark"
+                          ? darkColors.primary
+                          : lightColors.primary,
                     }}
                   >
                     <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:opacity-0">
-                      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        aria-hidden="true"
+                      >
                         <path
                           d="M7 1V13M7 13L3 9M7 13L11 9"
                           fill="none"
@@ -625,11 +818,18 @@ export default function HeroSection({ theme = "light" }) {
                       </svg>
                     </span>
                     <span className="absolute inset-0 flex items-center justify-center translate-y-[-12px] opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-                      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        aria-hidden="true"
+                      >
                         <path
                           d="M7 1V13M7 13L3 9M7 13L11 9"
                           fill="none"
-                          stroke={theme === "dark" ? "#212121" : darkColors.primary}
+                          stroke={
+                            theme === "dark" ? "#212121" : darkColors.primary
+                          }
                           strokeWidth="1.8"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -642,15 +842,26 @@ export default function HeroSection({ theme = "light" }) {
             </div>
           </div>
 
-          {/* CARD SLIDER */}
+          {/* ✅ HERO SECTION CARDS - RESPONSIVE SIZING */}
           {isDesktop ? (
-            <div className="flex justify-end items-end mb-[10vh] pr-32" style={{ transform: 'translateY(-95%)' }}>
-              <div ref={heroCardsContainerRef} className="w-[180px] lg:w-[220px] xl:w-[260px]">
-                <div className="relative w-full aspect-[3/4]" style={{ perspective: '1000px' }}>
+            <div
+              className="flex justify-end items-end mb-[10vh] pr-32"
+              style={{ transform: "translateY(-95%)" }}
+            >
+              <div
+                ref={heroCardsContainerRef}
+                style={{ width: `${cardWidth}px` }}
+              >
+                <div
+                  className="relative w-full aspect-[3/4]"
+                  style={{ perspective: "1000px" }}
+                >
                   {mediaAssets.map((asset, index) => (
                     <div
                       key={index}
-                      ref={(el) => { if (el) heroCardsRef.current[index] = el; }}
+                      ref={(el) => {
+                        if (el) heroCardsRef.current[index] = el;
+                      }}
                       className="absolute w-full h-full cursor-pointer shadow-lg rounded-xl overflow-hidden"
                       style={{
                         zIndex: 50 - index,
@@ -660,34 +871,65 @@ export default function HeroSection({ theme = "light" }) {
                       onMouseEnter={() => setHoveredPortfolioCard(index)}
                       onMouseLeave={() => setHoveredPortfolioCard(null)}
                     >
-                      <div className="relative w-full h-full overflow-hidden rounded-xl">
+                      <div className="card-inner-content relative w-full h-full overflow-hidden rounded-xl">
                         <div className="absolute inset-0 z-10">
-                          {asset.type === 'image' ? (
-                            <Image src={asset.src} alt={asset.alt} fill className="object-cover rounded-xl" />
+                          {asset.type === "image" ? (
+                            <Image
+                              src={asset.src}
+                              alt={asset.alt}
+                              fill
+                              className="object-cover rounded-xl"
+                            />
                           ) : (
-                            <video src={asset.src} muted loop playsInline autoPlay className="w-full h-full object-cover rounded-xl" />
+                            <video
+                              src={asset.src}
+                              muted
+                              loop
+                              playsInline
+                              autoPlay
+                              className="w-full h-full object-cover rounded-xl"
+                            />
                           )}
                         </div>
 
                         <div className="card-overlay absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none">
                           <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="text-white text-sm font-bold mb-1">{asset.title}</h3>
-                            <p className="text-white/80 text-xs">{asset.subtitle}</p>
+                            <h3 className="text-white text-sm font-bold mb-1">
+                              {asset.title}
+                            </h3>
+                            <p className="text-white/80 text-xs">
+                              {asset.subtitle}
+                            </p>
                           </div>
                         </div>
 
-                        {/* TRIANGLES - ONLY FOR ACTIVE CARD */}
-                        {index === activeCard && cardTriangles[index] && (
+                        {/* TRIANGLES - For HERO active card IN HERO SECTION */}
+                        {isInHeroSection && index === activeCard && cardTriangles[index] && (
                           <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-xl">
                             {cardTriangles[index].map((triangle) => (
-                              <TriangleSVG key={triangle.id} triangle={triangle} />
+                              <TriangleSVG
+                                key={triangle.id}
+                                triangle={triangle}
+                              />
+                            ))}
+                          </div>
+                        )}
+
+                        {/* TRIANGLES - For same HERO card when hovered IN PORTFOLIO SECTION */}
+                        {!isInHeroSection && hoveredPortfolioCard === index && portfolioCardTriangles[index] && (
+                          <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-xl">
+                            {portfolioCardTriangles[index].map((triangle) => (
+                              <TriangleSVG
+                                key={triangle.id}
+                                triangle={triangle}
+                              />
                             ))}
                           </div>
                         )}
 
                         <div
-                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-visible ${(!isScrolling && isInHeroSection) || (hoveredPortfolioCard === index && !isInHeroSection) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-                          style={{ height: '22%' }}
+                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-visible ${(!isScrolling && isInHeroSection) || (hoveredPortfolioCard === index && !isInHeroSection) ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+                          style={{ height: "22%" }}
                         >
                           <svg
                             className="absolute bottom-0 left-0 w-full h-full"
@@ -727,9 +969,14 @@ export default function HeroSection({ theme = "light" }) {
                       onClick={() => handleCardClick(index)}
                       className="w-1.5 h-1.5 rounded-full transition-all"
                       style={{
-                        backgroundColor: index === activeCard
-                          ? (theme === "dark" ? darkColors.paginationActive : lightColors.paginationActive)
-                          : (theme === "dark" ? darkColors.paginationInactive : lightColors.paginationInactive)
+                        backgroundColor:
+                          index === activeCard
+                            ? theme === "dark"
+                              ? darkColors.paginationActive
+                              : lightColors.paginationActive
+                            : theme === "dark"
+                              ? darkColors.paginationInactive
+                              : lightColors.paginationInactive,
                       }}
                     />
                   ))}
@@ -738,12 +985,20 @@ export default function HeroSection({ theme = "light" }) {
             </div>
           ) : (
             <div className="flex justify-center items-center mt-16 mb-24">
-              <div ref={heroCardsContainerRef} className="w-[140px] sm:w-[180px]">
-                <div className="relative w-full aspect-[3/4]" style={{ perspective: '1000px' }}>
+              <div
+                ref={heroCardsContainerRef}
+                className="w-[140px] sm:w-[180px]"
+              >
+                <div
+                  className="relative w-full aspect-[3/4]"
+                  style={{ perspective: "1000px" }}
+                >
                   {mediaAssets.map((asset, index) => (
                     <div
                       key={index}
-                      ref={(el) => { if (el) heroCardsRef.current[index] = el; }}
+                      ref={(el) => {
+                        if (el) heroCardsRef.current[index] = el;
+                      }}
                       className="absolute w-full h-full cursor-pointer shadow-lg rounded-xl overflow-hidden"
                       style={{
                         zIndex: 50 - index,
@@ -751,19 +1006,35 @@ export default function HeroSection({ theme = "light" }) {
                       }}
                       onClick={() => handleCardClick(index)}
                     >
-                      <div className="relative w-full h-full overflow-hidden rounded-xl">
+                      <div className="card-inner-content relative w-full h-full overflow-hidden rounded-xl">
                         <div className="absolute inset-0 z-10">
-                          {asset.type === 'image' ? (
-                            <Image src={asset.src} alt={asset.alt} fill className="object-cover rounded-xl" />
+                          {asset.type === "image" ? (
+                            <Image
+                              src={asset.src}
+                              alt={asset.alt}
+                              fill
+                              className="object-cover rounded-xl"
+                            />
                           ) : (
-                            <video src={asset.src} muted loop playsInline autoPlay className="w-full h-full object-cover rounded-xl" />
+                            <video
+                              src={asset.src}
+                              muted
+                              loop
+                              playsInline
+                              autoPlay
+                              className="w-full h-full object-cover rounded-xl"
+                            />
                           )}
                         </div>
 
                         <div className="card-overlay absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none">
                           <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="text-white text-[11px] font-bold mb-1">{asset.title}</h3>
-                            <p className="text-white/80 text-[9px]">{asset.subtitle}</p>
+                            <h3 className="text-white text-[11px] font-bold mb-1">
+                              {asset.title}
+                            </h3>
+                            <p className="text-white/80 text-[9px]">
+                              {asset.subtitle}
+                            </p>
                           </div>
                         </div>
 
@@ -771,14 +1042,17 @@ export default function HeroSection({ theme = "light" }) {
                         {index === activeCard && cardTriangles[index] && (
                           <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-xl">
                             {cardTriangles[index].map((triangle) => (
-                              <TriangleSVG key={triangle.id} triangle={triangle} />
+                              <TriangleSVG
+                                key={triangle.id}
+                                triangle={triangle}
+                              />
                             ))}
                           </div>
                         )}
 
                         <div
-                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-visible ${!isScrolling ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-                          style={{ height: '22%' }}
+                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-visible ${!isScrolling ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+                          style={{ height: "22%" }}
                         >
                           <svg
                             className="absolute bottom-0 left-0 w-full h-full"
@@ -818,9 +1092,14 @@ export default function HeroSection({ theme = "light" }) {
                       onClick={() => handleCardClick(index)}
                       className="w-1.5 h-1.5 rounded-full transition-all"
                       style={{
-                        backgroundColor: index === activeCard
-                          ? (theme === "dark" ? darkColors.paginationActive : lightColors.paginationActive)
-                          : (theme === "dark" ? darkColors.paginationInactive : lightColors.paginationInactive)
+                        backgroundColor:
+                          index === activeCard
+                            ? theme === "dark"
+                              ? darkColors.paginationActive
+                              : lightColors.paginationActive
+                            : theme === "dark"
+                              ? darkColors.paginationInactive
+                              : lightColors.paginationInactive,
                       }}
                     />
                   ))}
@@ -828,17 +1107,18 @@ export default function HeroSection({ theme = "light" }) {
               </div>
             </div>
           )}
-
         </div>
 
-        <div className={`absolute left-1/2 -translate-x-1/2 z-20 ${isDesktop ? 'bottom-[calc(30rem*1.2)]' : 'bottom-8 sm:bottom-12 md:bottom-16'}`}>
+        <div
+          className={`absolute left-1/2 -translate-x-1/2 z-20 ${isDesktop ? "bottom-[calc(25rem*1.2)]" : "bottom-8 sm:bottom-12 md:bottom-4"}`}
+        >
           <button
             onClick={scrollToPortfolio}
             className="flex flex-col gap-[-2px] cursor-pointer group hover:scale-110 transition-transform duration-300"
             aria-label="Scroll to next section"
           >
             {[0, 1, 2, 3].map((index) => {
-              const isActive = (3 - index) < activeArrows;
+              const isActive = 3 - index < activeArrows;
 
               return (
                 <svg
@@ -847,7 +1127,7 @@ export default function HeroSection({ theme = "light" }) {
                   viewBox="0 0 24 24"
                   fill="none"
                   style={{
-                    color: isActive ? "#FCD34D" : "#92400E"
+                    color: isActive ? "#FCD34D" : "#92400E",
                   }}
                 >
                   <path
@@ -862,113 +1142,197 @@ export default function HeroSection({ theme = "light" }) {
             })}
           </button>
         </div>
-
       </section>
 
-      <section ref={portfolioSectionRef} className="w-full min-h-screen py-16 sm:py-20 lg:py-24 relative" style={bgStyle}>
+      <section
+        ref={portfolioSectionRef}
+        className="w-full min-h-screen py-4 sm:py-6 lg:py-8 relative"
+        style={bgStyle}
+      >
         {portfolioTriangles.map((triangle) => (
           <TriangleSVG key={triangle.id} triangle={triangle} />
         ))}
 
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <p className={`font-merriweather text-sm sm:text-base md:text-lg mb-12 ${theme === "dark" ? "text-white/70" : "text-[#111111]/70"}`}>
+            <p
+              className={`font-merriweather text-sm sm:text-base md:text-lg mb-12 ${theme === "dark" ? "text-white/70" : "text-[#111111]/70"}`}
+            >
               Lorem Ipsum
             </p>
 
-            <h2 className={`font-italiana text-3xl sm:text-4xl md:text-5xl lg:text-7xl ${theme === "dark" ? "text-white" : "text-[#111111]"}`}>
+            <h2
+              className={`font-italiana text-3xl sm:text-4xl md:text-5xl lg:text-7xl ${theme === "dark" ? "text-white" : "text-[#111111]"}`}
+            >
               <span className="font-light">Creating impact for </span>
-              <span className="italic bg-black text-white px-3 py-1.5 rounded-xl font-playfair font-semibold">businesses in Qatar</span>
+              <span className="italic bg-black text-white px-3 py-1.5 rounded-xl font-playfair font-semibold">
+                businesses in Qatar
+              </span>
             </h2>
           </div>
 
+          {/* ✅ PORTFOLIO GRID - RESPONSIVE SIZING */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {mediaAssets.map((item, index) => (
-              <div
-                key={index}
-                className="rounded-xl overflow-hidden group"
-              >
-                <Link href={item.link}>
-                  <div className="relative">
-                    <div
-                      ref={(el) => { if (el) portfolioImageAreasRef.current[index] = el; }}
-                      className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] rounded-t-xl overflow-hidden"
-                      onMouseEnter={() => setHoveredCard(index)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                    >
-                      {!isDesktop && (
-                        <>
-                          <div className="absolute inset-0 z-10">
-                            {item.type === 'image' ? (
-                              <Image src={item.src} alt={item.alt} fill className="object-cover rounded-xl" />
-                            ) : (
-                              <video src={item.src} muted loop playsInline autoPlay className="w-full h-full object-cover rounded-xl" />
-                            )}
-                          </div>
+              <div key={index} className="flex flex-col items-center">
+                <div 
+                  className="relative"
+                  style={{
+                    width: isDesktop ? `${portfolioCardWidth}px` : '85%',
+                    
+                  }}
+                >
+                  <div 
+                    className="absolute rounded-xl transition-all duration-300 pointer-events-none"
+                    style={{
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: hoveredBottomSection === index 
+                        ? `calc(${portfolioCardWidth * 1.33}px + 170px)` 
+                        : `${portfolioCardWidth * 1.33}px`,
+                      backgroundColor: '#015b4f',
+                      opacity: hoveredBottomSection === index ? 1 : 0,
+                      zIndex: 0,
+                    }}
+                  />
 
-                          <div
-                            className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-hidden ${hoveredCard === index ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-                            style={{ height: '18%' }}
-                          >
-                            <svg
-                              className="absolute bottom-0 left-0 w-full h-full"
-                              viewBox="0 0 100 100"
-                              preserveAspectRatio="none"
-                            >
-                              <path
-                                d="M 0 100 L 30 35 C 38 25, 44 20, 50 20 C 56 20, 62 25, 70 35 L 100 100 Z"
-                                fill="#74f5a1"
-                              />
-                            </svg>
-                            <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 flex flex-col items-center">
-                              <h3 className="text-[#013825] font-medium text-[10px] sm:text-[11px] mb-0.5">
-                                {item.title}
-                              </h3>
-                              <p className="text-[#013825] text-[9px] sm:text-[10px] font-medium">
-                                {item.metric}
-                              </p>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
+                  {/* ✅ PLACEHOLDER - RESPONSIVE SIZE */}
+                  <div
+  ref={(el) => {
+    if (el) portfolioCardPlaceholdersRef.current[index] = el;
+  }}
+  className={`rounded-xl mb-6 relative ${!isDesktop ? 'cursor-pointer' : ''}`}
+  style={isDesktop ? {
+    width: `${portfolioCardWidth}px`,
+    aspectRatio: '3/4',
+    zIndex: 10,
+    pointerEvents: !isInHeroSection ? 'none' : 'auto',
+    transform: (() => {
+      const width = window.innerWidth;
+      const baseWidth = 1800;
+      const baseOffsetX = 39;
+      const baseOffsetY = 60;
+      
+      // Calculate how many 100px steps we are below 1800px
+      const steps = Math.max(0, Math.floor((baseWidth - width) / 100));
+      
+      // Decrease by 2px for every 100px less
+      const offsetX = Math.max(0, baseOffsetX - (steps * 2));
+      const offsetY = Math.max(0, baseOffsetY - (steps * 3)); // Y decreases by 3px per step
+      
+      return `translate(${offsetX}px, ${offsetY}px)`;
+    })(),
+  } : {
+    width: '100%',
+    aspectRatio: '3/4',
+    zIndex: 10,
+  }}
+  onMouseEnter={() => !isDesktop && setHoveredCard(index)}
+  onMouseLeave={() => !isDesktop && setHoveredCard(null)}
+>
 
-                    <div
-                      className="p-4 sm:p-6 pt-6 sm:pt-8 -mt-4 sm:-mt-6 relative z-10 transition-all duration-300 rounded-b-xl"
-                      onMouseEnter={() => setHoveredBottomSection(index)}
-                      onMouseLeave={() => setHoveredBottomSection(null)}
-                    >
-                      <h3
-                        className="font-bold text-base sm:text-lg mb-2 transition-colors duration-300"
-                        style={{
-                          color: hoveredBottomSection === index
-                            ? '#ffffff'
-                            : (theme === "dark" ? "#ffffff" : "#111111")
-                        }}
-                      >
-                        {item.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {item.buttons.map((button, btnIndex) => (
-                          <span
-                            key={btnIndex}
-                            className="border rounded-full px-3 py-1 text-xs transition-colors duration-300"
-                            style={{
-                              borderColor: hoveredBottomSection === index
-                                ? 'rgba(255, 255, 255, 0.3)'
-                                : (theme === "dark" ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)"),
-                              color: hoveredBottomSection === index
-                                ? 'rgba(255, 255, 255, 0.8)'
-                                : (theme === "dark" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.8)")
-                            }}
+                    {!isDesktop && (
+                      <div className="relative w-full h-full rounded-xl overflow-hidden">
+                        <div className="absolute inset-0 z-10">
+                          {item.type === "image" ? (
+                            <Image
+                              src={item.src}
+                              alt={item.alt}
+                              fill
+                              className="object-cover rounded-xl"
+                            />
+                          ) : (
+                            <video
+                              src={item.src}
+                              muted
+                              loop
+                              playsInline
+                              autoPlay
+                              className="w-full h-full object-cover rounded-xl"
+                            />
+                          )}
+                        </div>
+
+                        {/* ✅ Triangle overlay on hover for mobile */}
+                        <div
+                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-hidden ${hoveredCard === index ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+                          style={{ height: "18%" }}
+                        >
+                          <svg
+                            className="absolute bottom-0 left-0 w-full h-full"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="none"
                           >
-                            {button}
-                          </span>
-                        ))}
+                            <path
+                              d="M 0 100 L 30 35 C 38 25, 44 20, 50 20 C 56 20, 62 25, 70 35 L 100 100 Z"
+                              fill="#74f5a1"
+                            />
+                          </svg>
+                          <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 flex flex-col items-center">
+                            <h3 className="text-[#013825] font-medium text-[10px] sm:text-[11px] mb-0.5">
+                              {item.title}
+                            </h3>
+                            <p className="text-[#013825] text-[9px] sm:text-[10px] font-medium">
+                              {item.metric}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
-                </Link>
+
+                  <div
+                    className="transition-all duration-300 rounded-xl relative z-10"
+                    style={{
+                      width: isDesktop ? `${portfolioCardWidth}px` : '100%',
+                    }}
+                    onMouseEnter={() => setHoveredBottomSection(index)}
+                    onMouseLeave={() => setHoveredBottomSection(null)}
+                  >
+                    <Link href={item.link}>
+                      <div className="px-4 sm:px-6 py-5 sm:py-6">
+                        <h3
+                          className="font-bold text-base sm:text-lg mb-2 transition-colors duration-300"
+                          style={{
+                            color:
+                              hoveredBottomSection === index
+                                ? "#ffffff"
+                                : theme === "dark"
+                                  ? "#ffffff"
+                                  : "#111111",
+                          }}
+                        >
+                          {item.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {item.buttons.map((button, btnIndex) => (
+                            <span
+                              key={btnIndex}
+                              className="border rounded-full px-3 py-1 text-xs transition-colors duration-300"
+                              style={{
+                                borderColor:
+                                  hoveredBottomSection === index
+                                    ? "rgba(255, 255, 255, 0.3)"
+                                    : theme === "dark"
+                                      ? "rgba(255, 255, 255, 0.3)"
+                                      : "rgba(0, 0, 0, 0.2)",
+                                color:
+                                  hoveredBottomSection === index
+                                    ? "rgba(255, 255, 255, 0.8)"
+                                    : theme === "dark"
+                                      ? "rgba(255, 255, 255, 0.8)"
+                                      : "rgba(0, 0, 0, 0.8)",
+                              }}
+                            >
+                              {button}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

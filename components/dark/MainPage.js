@@ -64,10 +64,14 @@ const MainPage = () => {
         <HeroSection theme={theme} />
         <RealProblemSection theme={theme} />
         <NewServicesSection theme={theme} />
-        <ThatsTheTechEyrie theme={theme} />
-        <BuildOthersSection theme={theme} />
-        {/* <DeepJudgeAnimation theme={theme} /> */}
-        <StatsSection theme={theme} />
+      
+        {/* <BuildOthersSection theme={theme} /> */}
+      
+        
+        {/* <StatsSection theme={theme} /> */}
+       
+        <DeepJudgeAnimation theme={theme} />
+          <ThatsTheTechEyrie theme={theme} />
         <ServicesSection theme={theme} />
         <DemandSection theme={theme} />
         {/* <DemandTeamSection theme={theme} /> */}

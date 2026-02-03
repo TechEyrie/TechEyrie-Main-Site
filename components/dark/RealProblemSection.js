@@ -323,7 +323,7 @@ export default function RealProblemSection({ theme = "light" }) {
 
             <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 lg:max-w-[600px] mt-4 sm:mt-6 md:mt-8 lg:mt-16">
               <p
-                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-normal leading-relaxed ${
+                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
                 }`}
               >
@@ -331,7 +331,7 @@ export default function RealProblemSection({ theme = "light" }) {
               </p>
 
               <p
-                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-normal leading-relaxed ${
+                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
                 }`}
               >
