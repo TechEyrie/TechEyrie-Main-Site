@@ -1,17 +1,15 @@
+
 // components/TechEyrieIntroSection.jsx
 "use client";
-
 
 import { useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
 
 export default function TechEyrieIntroSection({ theme = "light" }) {
   const sectionRef = useRef(null);
@@ -20,11 +18,9 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
   const techEyrieTextRef = useRef(null);
   const thatsTheTextRef = useRef(null);
 
-
   const lightColors = {
     background: "#F9F7F0",
   };
-
 
   const bgStyle =
     theme === "dark"
@@ -39,7 +35,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
       }
       : { backgroundColor: lightColors.background };
 
-
   const noiseOverlayStyle = {
     backgroundImage: `
       repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.03) 1px, rgba(0, 0, 0, 0.03) 2px),
@@ -48,7 +43,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
     `,
   };
 
-
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const firstPart = firstPartRef.current;
@@ -56,14 +50,11 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
     const techEyrieText = techEyrieTextRef.current;
     const thatsTheText = thatsTheTextRef.current;
 
-
     if (!section || !firstPart || !secondPart || !techEyrieText || !thatsTheText) return;
-
 
     const ctx = gsap.context(() => {
       // Initial entrance animations
       gsap.set([thatsTheText, techEyrieText], { opacity: 0, y: 30 });
-
 
       const entranceTl = gsap.timeline({
         scrollTrigger: {
@@ -73,7 +64,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           once: true,
         },
       });
-
 
       entranceTl
         .to(thatsTheText, {
@@ -93,13 +83,11 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           "-=0.7"
         );
 
-
       // Wait for entrance animation
       setTimeout(() => {
         const targetTE = document.querySelector(".target-te-position");
 
         if (!targetTE) return;
-
 
         // Split the words into characters
         const techWord = techEyrieText.querySelector(".tech-word");
@@ -107,10 +95,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
         if (!techWord || !eyrieWord) return;
 
-
         const techChars = techWord.textContent.split("");
         const eyrieChars = eyrieWord.textContent.split("");
-
 
         // Wrap each character in a span
         techWord.innerHTML = techChars
@@ -119,22 +105,18 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           )
           .join("");
 
-
         eyrieWord.innerHTML = eyrieChars
           .map((char, i) =>
             `<span class="char-${i}" style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`
           )
           .join("");
 
-
         const techSpans = techWord.querySelectorAll("span");
         const eyrieSpans = eyrieWord.querySelectorAll("span");
-
 
         // Get T and E letters
         const tChar = techSpans[0];
         const eChar = eyrieSpans[0];
-
 
         // Create a fixed container for T and E
         const teContainer = document.createElement("div");
@@ -168,65 +150,31 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         teContainer.appendChild(eClone);
         document.body.appendChild(teContainer);
 
-
-        // Main scroll-based transformation timeline
-       const mainTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: firstPart,
-    start: "top top",
-    end: "+=100%", // ✅ Reduced from 200% to 150%
-    pin: true,
-    scrub: 2,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    pinSpacing: true, // ✅ Make sure spacing is enabled
-  },
-});
-
+        // ✅ LONGER SCROLL - TE moves as second section comes into view
+        const mainTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section, // ✅ Changed from firstPart to section
+            start: "top top",
+            end: "bottom bottom", // ✅ Entire section duration
+            scrub: 1, // ✅ Smooth tracking
+            invalidateOnRefresh: true,
+          },
+        });
 
         // Hide target TE initially
         gsap.set(targetTE, { opacity: 0 });
 
-
-        // Calculate distances
-        const getTargetDistances = () => {
-          const targetRect = targetTE.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          const viewportWidth = window.innerWidth;
-
-          return {
-            x: (targetRect.left + targetRect.width / 2) - (viewportWidth / 2),
-            y: targetRect.top - (viewportHeight * 0.5)
-          };
-        };
-
-
         // Animation sequence
         mainTl
-          // Step 1: Fade out "That's the" (0 - 0.15)
-          .to(
-            thatsTheText,
-            {
-              opacity: 0,
-              y: -20,
-              duration: 0.15,
-              ease: "none",
-            },
-            0
-          )
-          // Step 2: Fade out all characters except T and E (0.1 - 0.3)
+          // Step 1: Fade out "That's the" (0 - 0.05)
+          .to(thatsTheText, { opacity: 0, y: -20, duration: 0.05, ease: "power2.out" }, 0)
+          // Step 2: Fade out other characters (0.03 - 0.1)
           .to(
             [...Array.from(techSpans).slice(1), ...Array.from(eyrieSpans).slice(1)],
-            {
-              opacity: 0,
-              scale: 0.8,
-              duration: 0.2,
-              ease: "none",
-              stagger: 0.01,
-            },
-            0.1
+            { opacity: 0, scale: 0.8, duration: 0.07, ease: "power2.out", stagger: 0.002 },
+            0.03
           )
-          // Step 3: Move T to center (0.25 - 0.45)
+          // Step 3: Move T to center (0.08 - 0.15)
           .to(
             tChar,
             {
@@ -237,12 +185,12 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                 return viewportCenterX - tCenterX - tRect.width / 2;
               },
               y: 0,
-              duration: 0.2,
-              ease: "none",
+              duration: 0.07,
+              ease: "power2.inOut",
             },
-            0.25
+            0.08
           )
-          // Step 4: Move E to center next to T (0.25 - 0.45)
+          // Step 4: Move E to center (0.08 - 0.15)
           .to(
             eChar,
             {
@@ -254,70 +202,73 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                 return viewportCenterX - eCenterX + tRect.width / 2 + 5;
               },
               y: 0,
-              duration: 0.2,
-              ease: "none",
+              duration: 0.07,
+              ease: "power2.inOut",
             },
-            0.25
+            0.08
           )
-          // Step 5: Hold T and E together (0.45 - 0.6)
-          .to({}, { duration: 0.15 }, 0.45)
-          // Step 6: Transition to container (0.6 - 0.65)
-          .to(
-            [tChar, eChar],
-            {
-              opacity: 0,
-              duration: 0.05,
-              ease: "none",
-            },
-            0.6
-          )
+          // Step 5: Hold together (0.15 - 0.2)
+          .to({}, { duration: 0.05 }, 0.15)
+          // Step 6: Switch to container (0.2 - 0.22)
+          .to([tChar, eChar], { opacity: 0, duration: 0.02 }, 0.2)
+          .to(teContainer, { opacity: 1, duration: 0.02 }, 0.2)
+          // ✅ Step 7: SLOWLY move to target position AS USER SCROLLS (0.22 - 1.0)
           .to(
             teContainer,
             {
-              opacity: 1,
-              duration: 0.05,
-              ease: "none",
-            },
-            0.6
-          )
-          // Step 7: Move TE diagonally (LEFT + DOWN) to target position (0.65 - 1.8)
-          .to(
-            teContainer,
-            {
-              x: () => getTargetDistances().x,
-              y: () => getTargetDistances().y,
-              scale: () => {
+              x: () => {
                 const targetRect = targetTE.getBoundingClientRect();
-                const teHeight = parseFloat(window.getComputedStyle(teContainer).fontSize);
-                return (targetRect.height / teHeight) * 0.9;
+                const viewportWidth = window.innerWidth;
+                const targetCenterX = targetRect.left + (targetRect.width / 2);
+                return targetCenterX - (viewportWidth / 2);
               },
-              duration: 1.15,
-              ease: "none",
+              y: () => {
+                const targetRect = targetTE.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const targetCenterY = targetRect.top + (targetRect.height / 2);
+                return targetCenterY - (viewportHeight / 2);
+              },
+              scale: () => {
+                const currentFontSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
+                const targetFontSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
+                return targetFontSize / currentFontSize;
+              },
+              duration: 0.78, // ✅ Most of the timeline
+              ease: "none", // ✅ Linear movement tied to scroll
             },
-            0.65
-          )
-          // Step 8: Fade out and reveal target (1.8 - 1.9)
-          .to(
-            teContainer,
-            {
-              opacity: 0,
-              duration: 0.1,
-              ease: "none",
-            },
-            1.8
-          )
-          .to(
-            targetTE,
-            {
-              opacity: 1,
-              duration: 0.1,
-              ease: "none",
-            },
-            1.8
+            0.22
           );
 
+        // ✅ SEPARATE TRIGGER: Fade transition when target is visible
+        ScrollTrigger.create({
+          trigger: targetTE,
+          start: "top 60%", // When target TE is 60% into viewport
+          onEnter: () => {
+            gsap.to(teContainer, { opacity: 0, duration: 0.3, ease: "power2.out" });
+            gsap.to(targetTE, { opacity: 1, duration: 0.3, ease: "power2.out", delay: 0.1 });
+          },
+          onLeaveBack: () => {
+            gsap.to(teContainer, { opacity: 1, duration: 0.3, ease: "power2.out" });
+            gsap.to(targetTE, { opacity: 0, duration: 0.3, ease: "power2.out" });
+          },
+        });
 
         // Cleanup
+        ScrollTrigger.create({
+          trigger: section,
+          start: "bottom top",
+          onEnter: () => {
+            if (teContainer && teContainer.parentNode) {
+              teContainer.style.display = 'none';
+            }
+          },
+          onLeaveBack: () => {
+            if (teContainer) {
+              teContainer.style.display = 'flex';
+            }
+          },
+        });
+
         return () => {
           if (teContainer && teContainer.parentNode) {
             teContainer.parentNode.removeChild(teContainer);
@@ -325,13 +276,11 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         };
       }, 1500);
 
-
       // Second Part Animation
       gsap.set([".build-title-line", ".build-description", ".build-cta"], {
         opacity: 0,
         y: 40,
       });
-
 
       const buildTl = gsap.timeline({
         scrollTrigger: {
@@ -341,7 +290,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           once: true,
         },
       });
-
 
       buildTl
         .to(".build-title-line", {
@@ -374,10 +322,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         );
     }, section);
 
-
     return () => ctx.revert();
   }, [theme]);
-
 
   return (
     <section
@@ -391,7 +337,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           style={noiseOverlayStyle}
         />
       )}
-
 
       <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8">
         {/* First Part: "That's the Tech Eyrie" */}
@@ -410,7 +355,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
               </span>
             </div>
 
-
             {/* "Tech Eyrie" */}
             <div ref={techEyrieTextRef} className="relative">
               <h2
@@ -423,7 +367,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
             </div>
           </div>
         </div>
-
 
         {/* Second Part */}
         <div
@@ -439,14 +382,12 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                 <span className="target-te-position inline-block">TE</span> Build What
               </div>
 
-
               <div
                 className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                   }`}
               >
                 Others Can't
               </div>
-
 
               <div
                 className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
@@ -456,7 +397,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
               </div>
             </h2>
           </div>
-
 
           <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
             <div></div>
@@ -468,14 +408,12 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                 We're a technology studio focused on turning complexity into clarity. From AI-driven automation to high-performance digital platforms, we design systems that help businesses move faster, think smarter, and scale with confidence.
               </p>
 
-
               <p
                 className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                   }`}
               >
                 We don't chase trends — we engineer foundations built to last.
               </p>
-
 
               <div className="build-cta pt-2">
                 <Link

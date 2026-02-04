@@ -496,7 +496,7 @@ export default function HeroSection({ theme = "light" }) {
   const createTriangleForCard = useCallback(
     (cardIndex, x, y) => {
       const id = triangleIdRef.current++;
-      const size = Math.random() * 20 + 30;
+      const size = Math.random() * 10 + 15; // SMALL triangles: 15-25px
       const rotation = Math.random() * 360;
       const greenShades =
         theme === "dark"
@@ -526,7 +526,7 @@ export default function HeroSection({ theme = "light" }) {
   const createTriangleForPortfolioCard = useCallback(
     (cardIndex, x, y) => {
       const id = portfolioCardTriangleIdRef.current++;
-      const size = Math.random() * 20 + 30;
+      const size = Math.random() * 10 + 15; // SMALL triangles: 15-25px
       const rotation = Math.random() * 360;
       const greenShades =
         theme === "dark"
@@ -555,7 +555,7 @@ export default function HeroSection({ theme = "light" }) {
   const createPortfolioTriangle = useCallback(
     (x, y) => {
       const id = portfolioTriangleIdRef.current++;
-      const size = Math.random() * 20 + 30;
+      const size = Math.random() * 10 + 15; // SMALL triangles: 15-25px
       const rotation = Math.random() * 360;
       const greenShades =
         theme === "dark"
@@ -645,10 +645,10 @@ export default function HeroSection({ theme = "light" }) {
       if (isInHeroSection) return;
 
       const currentTime = Date.now();
-      if (currentTime - lastTime < 80) return;
+      if (currentTime - lastTime < 300) return;
       lastTime = currentTime;
       const rect = section.getBoundingClientRect();
-      createPortfolioTriangle(e.clientX - rect.left, e.clientY - rect.top);
+      // createPortfolioTriangle(e.clientX - rect.left, e.clientY - rect.top);
     };
     section.addEventListener("mousemove", handleMouseMove);
     return () => section.removeEventListener("mousemove", handleMouseMove);
@@ -682,9 +682,9 @@ export default function HeroSection({ theme = "light" }) {
   );
 
   const getBottomPadding = () => {
-    if (screenSize === "laptop") return "120px";
-    if (screenSize === "desktop") return "1rem";
-    return "1.5rem";
+    if (screenSize === "laptop") return "0px";
+    if (screenSize === "desktop") return "0px";
+    return "0px";
   };
 
   const TriangleSVG = ({ triangle }) => (
@@ -701,7 +701,7 @@ export default function HeroSection({ theme = "light" }) {
     >
       <svg
         className="w-full h-full"
-        viewBox="0 0 152 179"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
@@ -709,7 +709,7 @@ export default function HeroSection({ theme = "light" }) {
         }}
       >
         <path
-          d="M0.189697 54.4489V124.672C0.189697 131.465 3.62191 137.762 9.18638 141.159L66.6383 176.26C72.2028 179.656 79.0469 179.656 84.6114 176.26L142.063 141.159C147.628 137.762 151.06 131.486 151.06 124.672V54.4489C151.06 47.6566 147.628 41.3586 142.063 37.9625L84.6114 2.86158C79.0469 -0.534589 72.2028 -0.534589 66.6383 2.86158L9.18638 37.9625C3.62191 41.3586 0.189697 47.6351 0.189697 54.4489Z"
+          d="M50 10 L90 90 L10 90 Z"
           fill={triangle.color}
         />
       </svg>
@@ -720,7 +720,7 @@ export default function HeroSection({ theme = "light" }) {
     <div ref={containerRef} className="w-full">
       <section
         ref={heroSectionRef}
-        className="relative overflow-visible pt-32 md:pt-40 pb-28 min-h-screen"
+        className="relative overflow-visible pt-32 md:pt-40 pb-0 min-h-screen"
         style={{
           ...bgStyle,
           paddingBottom: getBottomPadding(),
@@ -845,7 +845,7 @@ export default function HeroSection({ theme = "light" }) {
           {/* ✅ HERO SECTION CARDS - RESPONSIVE SIZING */}
           {isDesktop ? (
             <div
-              className="flex justify-end items-end mb-[10vh] pr-32"
+              className="flex justify-end items-end mb-0 pr-32"
               style={{ transform: "translateY(-95%)" }}
             >
               <div
@@ -894,7 +894,7 @@ export default function HeroSection({ theme = "light" }) {
 
                         <div className="card-overlay absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none">
                           <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="text-white text-sm font-bold mb-1">
+                            <h3 className="text-white text-sm font-merriweather font-bold mb-1">
                               {asset.title}
                             </h3>
                             <p className="text-white/80 text-xs">
@@ -984,7 +984,7 @@ export default function HeroSection({ theme = "light" }) {
               </div>
             </div>
           ) : (
-            <div className="flex justify-center items-center mt-16 mb-24">
+            <div className="flex justify-center items-center mt-8 mb-0">
               <div
                 ref={heroCardsContainerRef}
                 className="w-[140px] sm:w-[180px]"
@@ -1110,7 +1110,7 @@ export default function HeroSection({ theme = "light" }) {
         </div>
 
         <div
-          className={`absolute left-1/2 -translate-x-1/2 z-20 ${isDesktop ? "bottom-[calc(25rem*1.2)]" : "bottom-8 sm:bottom-12 md:bottom-4"}`}
+          className={`absolute z-20 ${isDesktop ? "left-1/2 -translate-x-1/2 bottom-[calc(20rem*1.2)]" : "left-4 sm:left-6 md:left-8 bottom-8 sm:bottom-12 md:bottom-4"}`}
         >
           <button
             onClick={scrollToPortfolio}
@@ -1146,7 +1146,7 @@ export default function HeroSection({ theme = "light" }) {
 
       <section
         ref={portfolioSectionRef}
-        className="w-full min-h-screen py-4 sm:py-6 lg:py-8 relative"
+        className="w-full min-h-screen py-0 relative"
         style={bgStyle}
       >
         {portfolioTriangles.map((triangle) => (

@@ -172,7 +172,7 @@ export default function RealProblemSection({ theme = "light" }) {
       .char:nth-child(3n+1) { animation-delay: 1s; }
       .char:nth-child(3n+2) { animation-delay: 1.5s; }
       .word { white-space: nowrap; display: inline-block; }
-      
+
       .bg-transition {
         transition: background-color 0.5s ease, border-color 0.5s ease;
       }
@@ -255,7 +255,7 @@ export default function RealProblemSection({ theme = "light" }) {
 
       <section
         ref={containerRef}
-        className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-40 xl:py-48 2xl:py-56 bg-transition"
+        className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 2xl:py-48 bg-transition"
         style={bgStyle}
       >
         {/* Noise texture overlay */}
@@ -285,12 +285,12 @@ export default function RealProblemSection({ theme = "light" }) {
           />
         ))}
 
-        <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-10">
+        <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col justify-center min-h-full">
           {/* Label above everything */}
           <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-10 flex items-center gap-2 sm:gap-3">
             <span className="inline-flex h-4 w-4 sm:h-5 sm:w-5 rounded-sm bg-[#74F5A1]" />
             <span
-              className={`font-italiana text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em] uppercase ${
+              className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em]  ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
@@ -299,7 +299,7 @@ export default function RealProblemSection({ theme = "light" }) {
           </div>
 
           {/* Heading left, copy/CTA right */}
-          <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
             <div ref={titleContainerRef}>
               <h2
                 className={`leading-[1.02] tracking-tight ${

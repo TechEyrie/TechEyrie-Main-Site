@@ -19,6 +19,10 @@ import RealProblemSection from './RealProblemSection';
 import NewServicesSection from './NewServicesSection';
 import ThatsTheTechEyrie from './ThatsTheTechEyrie';
 import BuildOthersSection from './BuildOtherSection';
+import AirvoirSection from './AirvoirSection';
+import CardsServicesSection from './CardsServicesSection';
+import FAQSection from './FAQSection';
+import AirplaneHero from './AirplaneSection';
 
 const MainPage = () => {
   const [theme, setTheme] = useState('light');
@@ -72,13 +76,18 @@ const MainPage = () => {
        
         <DeepJudgeAnimation theme={theme} />
           <ThatsTheTechEyrie theme={theme} />
-        <ServicesSection theme={theme} />
-        <DemandSection theme={theme} />
+          <AirvoirSection theme={theme} />
+                  <TestimonialsSection theme={theme} />
+                  <CardsServicesSection theme={theme} />
+                  <FAQSection theme={theme} />
+                  <AirplaneHero theme={theme} />
+        {/* <ServicesSection theme={theme} /> */}
+        {/* <DemandSection theme={theme} /> */}
         {/* <DemandTeamSection theme={theme} /> */}
-        <ResultsSection theme={theme} />
+        {/* <ResultsSection theme={theme} />
         <CompareSection theme={theme} />
-        <TestimonialsSection theme={theme} />
-        <TalkToExpertSection theme={theme} />
+
+        <TalkToExpertSection theme={theme} /> */}
         <Footer theme={theme} />
       </div>
     </CursorTrail>

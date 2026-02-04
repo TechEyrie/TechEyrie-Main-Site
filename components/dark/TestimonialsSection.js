@@ -97,14 +97,14 @@ export default function TestimonialsSection({ theme }) {
         <div className="relative">
             {/* Sticky Heading Section */}
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center -z-0 overflow-hidden px-4">
-                <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif text-center leading-tight tracking-tight ${headingColor} transition-colors duration-500`}>
+                <h1 className={`text- font-italiana text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] font-serif text-center leading-tight tracking-tight ${headingColor} transition-colors duration-500`}>
                     What people say<br className="hidden sm:block" />
                     <span className="sm:hidden"> </span>about TechEyerie
                 </h1>
             </div>
 
             {/* Scrollable Cards Section */}
-            <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 md:gap-6 pb-16 sm:pb-20 md:pb-24 lg:pb-32 pt-[15vh] sm:pt-[18vh] md:pt-[20vh] px-4 sm:px-6 w-full">
+            <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 md:gap-6 pb-16 sm:pb-20 md:pb-24 lg:pb-32 pt-10 sm:pt-[18vh] md:pt-[20vh] px-4 sm:px-6 w-full">
                 {testimonials.map((t) => (
                     <div 
                         key={t.id} 
@@ -113,11 +113,11 @@ export default function TestimonialsSection({ theme }) {
                     >
                         {/* Company Name */}
                         <div className="mb-4 sm:mb-6 md:mb-8">
-                            <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-gray-600">{t.company}</h4>
+                            <h4 className="text-[10px] sm:text-xs font-light font-merriweather tracking-widest uppercase text-gray-600">{t.company}</h4>
                         </div>
 
                         {/* Quote */}
-                        <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-8 sm:mb-10 md:mb-12 font-light">
+                        <blockquote className="text-base text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12 font- font-playfair">
                             "{t.content}"
                         </blockquote>
 
