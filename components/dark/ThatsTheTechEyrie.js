@@ -1,4 +1,3 @@
-
 // components/TechEyrieIntroSection.jsx
 "use client";
 
@@ -150,13 +149,13 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         teContainer.appendChild(eClone);
         document.body.appendChild(teContainer);
 
-        // ✅ LONGER SCROLL - TE moves as second section comes into view
+        // Main timeline with scroll trigger
         const mainTl = gsap.timeline({
           scrollTrigger: {
-            trigger: section, // ✅ Changed from firstPart to section
+            trigger: section,
             start: "top top",
-            end: "bottom bottom", // ✅ Entire section duration
-            scrub: 1, // ✅ Smooth tracking
+            end: "bottom bottom",
+            scrub: 1,
             invalidateOnRefresh: true,
           },
         });
@@ -212,37 +211,37 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           // Step 6: Switch to container (0.2 - 0.22)
           .to([tChar, eChar], { opacity: 0, duration: 0.02 }, 0.2)
           .to(teContainer, { opacity: 1, duration: 0.02 }, 0.2)
-          // ✅ Step 7: SLOWLY move to target position AS USER SCROLLS (0.22 - 1.0)
+          // Step 7: Move to exact target position (0.22 - 1.0)
           .to(
             teContainer,
             {
               x: () => {
+                const teRect = teContainer.getBoundingClientRect();
                 const targetRect = targetTE.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-                const targetCenterX = targetRect.left + (targetRect.width / 2);
-                return targetCenterX - (viewportWidth / 2);
+                // Direct horizontal position to target
+                return targetRect.left - teRect.left;
               },
               y: () => {
+                const teRect = teContainer.getBoundingClientRect();
                 const targetRect = targetTE.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const targetCenterY = targetRect.top + (targetRect.height / 2);
-                return targetCenterY - (viewportHeight / 2);
+                // Direct vertical position to target
+                return targetRect.top - teRect.top;
               },
               scale: () => {
                 const currentFontSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
                 const targetFontSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
                 return targetFontSize / currentFontSize;
               },
-              duration: 0.78, // ✅ Most of the timeline
-              ease: "none", // ✅ Linear movement tied to scroll
+              duration: 0.78,
+              ease: "none",
             },
             0.22
           );
 
-        // ✅ SEPARATE TRIGGER: Fade transition when target is visible
+        // Separate trigger: Fade transition when target is visible
         ScrollTrigger.create({
           trigger: targetTE,
-          start: "top 60%", // When target TE is 60% into viewport
+          start: "top 60%",
           onEnter: () => {
             gsap.to(teContainer, { opacity: 0, duration: 0.3, ease: "power2.out" });
             gsap.to(targetTE, { opacity: 1, duration: 0.3, ease: "power2.out", delay: 0.1 });
