@@ -1,7 +1,7 @@
 // components/ServicesSection.jsx
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
@@ -64,24 +64,34 @@ export default function ServicesSection({ theme = "light" }) {
     },
   ];
 
+  // Add will-change on mount for better performance
+  useEffect(() => {
+    cardsRef.current.forEach((card) => {
+      if (card) {
+        card.style.willChange = "flex";
+      }
+    });
+
+    return () => {
+      cardsRef.current.forEach((card) => {
+        if (card) {
+          card.style.willChange = "auto";
+        }
+      });
+    };
+  }, []);
+
   const handleCardHover = (index) => {
     setActiveCard(index);
 
     cardsRef.current.forEach((card, i) => {
       if (card) {
-        if (i === index) {
-          gsap.to(card, {
-            flex: 1.5,
-            duration: 0.4,
-            ease: "none",
-          });
-        } else {
-          gsap.to(card, {
-            flex: 0.7,
-            duration: 0.4,
-            ease: "none",
-          });
-        }
+        gsap.to(card, {
+          flex: i === index ? 1.5 : 0.7,
+          duration: 0.6,
+          ease: "power1.out",
+          overwrite: "auto",
+        });
       }
     });
   };
@@ -95,7 +105,7 @@ export default function ServicesSection({ theme = "light" }) {
       ? {
           backgroundColor: "#2b2b2b",
           backgroundImage: `
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulance type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
             radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
             radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%)
           `,
@@ -125,10 +135,11 @@ export default function ServicesSection({ theme = "light" }) {
               key={service.id}
               ref={(el) => (cardsRef.current[index] = el)}
               onMouseEnter={() => handleCardHover(index)}
-              className="relative rounded-[20px] overflow-hidden cursor-pointer transition-all"
+              className="relative rounded-[20px] overflow-hidden cursor-pointer"
               style={{
                 backgroundColor: service.bgColor,
                 flex: index === activeCard ? 1.5 : 0.7,
+                transition: "none",
               }}
             >
               {/* Card Content */}

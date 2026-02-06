@@ -1,8 +1,7 @@
-
 // components/TechEyrieIntroSection.jsx
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,6 +16,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
   const secondPartRef = useRef(null);
   const techEyrieTextRef = useRef(null);
   const thatsTheTextRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const lightColors = {
     background: "#F9F7F0",
@@ -25,14 +25,14 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
   const bgStyle =
     theme === "dark"
       ? {
-        backgroundColor: "#2b2b2b",
-        backgroundImage: `
+          backgroundColor: "#2b2b2b",
+          backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
           radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
           radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%)
         `,
-        backgroundBlendMode: "overlay, normal, normal",
-      }
+          backgroundBlendMode: "overlay, normal, normal",
+        }
       : { backgroundColor: lightColors.background };
 
   const noiseOverlayStyle = {
@@ -43,7 +43,21 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
     `,
   };
 
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const section = sectionRef.current;
     const firstPart = firstPartRef.current;
     const secondPart = secondPartRef.current;
@@ -53,232 +67,269 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
     if (!section || !firstPart || !secondPart || !techEyrieText || !thatsTheText) return;
 
     const ctx = gsap.context(() => {
-      // Initial entrance animations
-      gsap.set([thatsTheText, techEyrieText], { opacity: 0, y: 30 });
+      // Split Tech Eyrie into characters
+      const techWord = techEyrieText.querySelector(".tech-word");
+      const eyrieWord = techEyrieText.querySelector(".eyrie-word");
 
-      const entranceTl = gsap.timeline({
+      if (!techWord || !eyrieWord) return;
+
+      const techChars = techWord.textContent.split("");
+      const eyrieChars = eyrieWord.textContent.split("");
+
+      techWord.innerHTML = techChars
+        .map((char, i) =>
+          `<span class="tech-char-${i}" style="display: inline-block; position: relative;">${char === " " ? "&nbsp;" : char}</span>`
+        )
+        .join("");
+
+      eyrieWord.innerHTML = eyrieChars
+        .map((char, i) =>
+          `<span class="eyrie-char-${i}" style="display: inline-block; position: relative;">${char === " " ? "&nbsp;" : char}</span>`
+        )
+        .join("");
+
+      const techSpans = techWord.querySelectorAll("span");
+      const eyrieSpans = eyrieWord.querySelectorAll("span");
+
+      const tChar = techSpans[0]; // T
+      const eChar = eyrieSpans[0]; // E
+
+      // Create floating TE container - APPEND TO SECTION (not body)
+      const teContainer = document.createElement("div");
+      teContainer.className = "te-floating-container";
+      teContainer.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 0;
+        pointer-events: none;
+        opacity: 0;
+        z-index: 1000;
+        font-size: ${window.getComputedStyle(techEyrieText.querySelector('h2')).fontSize};
+      `;
+
+      const tClone = document.createElement("span");
+      const eClone = document.createElement("span");
+
+      tClone.textContent = "T";
+      eClone.textContent = "E";
+
+      tClone.className = techEyrieText.querySelector('h2').className.replace('text-[56px]', '').replace('sm:text-[72px]', '').replace('md:text-[96px]', '').replace('lg:text-[120px]', '').replace('xl:text-[140px]', '').replace('2xl:text-[160px]', '');
+      eClone.className = tClone.className;
+
+      tClone.style.cssText = `display: inline-block; line-height: 1;`;
+      eClone.style.cssText = `display: inline-block; line-height: 1;`;
+
+      teContainer.appendChild(tClone);
+      teContainer.appendChild(eClone);
+      document.body.appendChild(teContainer);
+
+      // Calculate the gap between T and E to bring them together
+      const getGapToClose = () => {
+        const tRect = tChar.getBoundingClientRect();
+        const eRect = eChar.getBoundingClientRect();
+        const currentGap = eRect.left - tRect.right;
+        const desiredGap = 5;
+        return {
+          tMove: (currentGap - desiredGap) / 2,
+          eMove: -(currentGap - desiredGap) / 2
+        };
+      };
+
+      // Get final position calculations
+      const getFinalPosition = () => {
+        const targetTE = secondPart.querySelector(".target-te-position");
+        if (!targetTE) return null;
+
+        const targetRect = targetTE.getBoundingClientRect();
+        const sectionRect = section.getBoundingClientRect();
+        const currentSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
+        const targetSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
+
+        return {
+          // ✅ Calculate position RELATIVE to section, not viewport
+          top: targetRect.top - sectionRect.top + targetRect.height / 2,
+          left: targetRect.left - sectionRect.left + targetRect.width / 2,
+          scale: targetSize / currentSize
+        };
+      };
+
+      // Main pinned scroll timeline
+      const mainTl = gsap.timeline({
         scrollTrigger: {
-          trigger: firstPart,
+          trigger: section,
+          start: "top top",
+          end: "+=300%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      mainTl
+        // Phase 1: Fade out "That's the" and other letters (0 - 0.15)
+        .to(thatsTheText, {
+          opacity: 0,
+          y: -30,
+          duration: 0.1,
+          ease: "power2.out",
+        }, 0)
+        .to(
+          [...Array.from(techSpans).slice(1), ...Array.from(eyrieSpans).slice(1)],
+          {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.1,
+            ease: "power2.out",
+            stagger: 0.003,
+          },
+          0.05
+        )
+
+        // Phase 2: T and E move TOWARD each other (0.15 - 0.35)
+        .to(tChar, {
+          x: () => getGapToClose().tMove,
+          duration: 0.2,
+          ease: "power2.inOut",
+        }, 0.15)
+        .to(eChar, {
+          x: () => getGapToClose().eMove,
+          duration: 0.2,
+          ease: "power2.inOut",
+        }, 0.15)
+
+        // Phase 3: Pause with combined TE (0.35 - 0.45)
+        .to({}, { duration: 0.1 }, 0.35)
+
+        // Phase 4: Switch to floating container (0.45 - 0.5)
+        .set([tChar, eChar], { opacity: 0 }, 0.45)
+        .set(teContainer, { opacity: 1 }, 0.45)
+
+        // Phase 5: Fade in second section (0.5 - 0.65)
+        .to(secondPart, {
+          opacity: 1,
+          duration: 0.15,
+          ease: "power2.out",
+        }, 0.5)
+        .to(firstPart, {
+          opacity: 0,
+          duration: 0.15,
+          ease: "power2.in",
+        }, 0.5)
+
+        // Phase 6: Move TE to final position (0.65 - 0.85)
+        .to(teContainer, {
+          top: "50%",
+          left: () => {
+            const targetTE = secondPart.querySelector(".target-te-position");
+            if (!targetTE) return "50%";
+            const targetRect = targetTE.getBoundingClientRect();
+            return targetRect.left + targetRect.width / 2;
+          },
+          xPercent: -50,
+          yPercent: -155,
+          scale: () => {
+            const targetTE = secondPart.querySelector(".target-te-position");
+            if (!targetTE) return 1;
+            const currentSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
+            const targetSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
+            return targetSize / currentSize;
+          },
+          duration: 0.2,
+          ease: "power2.inOut",
+        }, 0.65)
+
+        // Phase 7: Fade in second section content (0.85 - 0.95)
+        .to(".build-title-line", {
+          opacity: 1,
+          y: 0,
+          duration: 0.08,
+          ease: "power3.out",
+          stagger: 0.015,
+        }, 0.85)
+        .to(".build-description", {
+          opacity: 1,
+          y: 0,
+          duration: 0.06,
+          ease: "power3.out",
+          stagger: 0.01,
+        }, 0.88)
+        .to(".build-cta", {
+          opacity: 1,
+          y: 0,
+          duration: 0.04,
+          ease: "power3.out",
+        }, 0.91)
+
+        // ✅ Phase 8: Convert TE from fixed to absolute (0.95 - 1.0)
+        .to(teContainer, {
+          onStart: () => {
+            const finalPos = getFinalPosition();
+            if (!finalPos) return;
+
+            // Change from fixed to absolute positioning
+            gsap.set(teContainer, {
+              position: "absolute",
+              top: finalPos.top,
+              left: finalPos.left,
+              xPercent: -50,
+              yPercent: -50,
+              transform: "none",
+              scale: finalPos.scale,
+            });
+
+            // Move from body to section so it scrolls with content
+            section.appendChild(teContainer);
+          },
+          duration: 0.05,
+        }, 0.95);
+
+      return () => {
+        if (teContainer && teContainer.parentNode) {
+          teContainer.parentNode.removeChild(teContainer);
+        }
+      };
+    }, section);
+
+    return () => ctx.revert();
+  }, [theme, isMobile]);
+
+  // Mobile: Simple fade-in animations
+  useLayoutEffect(() => {
+    if (!isMobile) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set([thatsTheTextRef.current, techEyrieTextRef.current], {
+        opacity: 0,
+        y: 30,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: firstPartRef.current,
           start: "top 70%",
-          end: "top 30%",
           once: true,
         },
       });
 
-      entranceTl
-        .to(thatsTheText, {
+      tl.to(thatsTheTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      }).to(
+        techEyrieTextRef.current,
+        {
           opacity: 1,
           y: 0,
           duration: 1,
           ease: "power3.out",
-        })
-        .to(
-          techEyrieText,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "power3.out",
-          },
-          "-=0.7"
-        );
+        },
+        "-=0.5"
+      );
 
-      // Wait for entrance animation
-      setTimeout(() => {
-        const targetTE = document.querySelector(".target-te-position");
-
-        if (!targetTE) return;
-
-        // Split the words into characters
-        const techWord = techEyrieText.querySelector(".tech-word");
-        const eyrieWord = techEyrieText.querySelector(".eyrie-word");
-
-        if (!techWord || !eyrieWord) return;
-
-        const techChars = techWord.textContent.split("");
-        const eyrieChars = eyrieWord.textContent.split("");
-
-        // Wrap each character in a span
-        techWord.innerHTML = techChars
-          .map((char, i) =>
-            `<span class="char-${i}" style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`
-          )
-          .join("");
-
-        eyrieWord.innerHTML = eyrieChars
-          .map((char, i) =>
-            `<span class="char-${i}" style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`
-          )
-          .join("");
-
-        const techSpans = techWord.querySelectorAll("span");
-        const eyrieSpans = eyrieWord.querySelectorAll("span");
-
-        // Get T and E letters
-        const tChar = techSpans[0];
-        const eChar = eyrieSpans[0];
-
-        // Create a fixed container for T and E
-        const teContainer = document.createElement("div");
-        teContainer.className = "te-container";
-        teContainer.style.cssText = `
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          display: flex;
-          gap: 0;
-          pointer-events: none;
-          opacity: 0;
-          z-index: 100;
-          font-size: ${window.getComputedStyle(techEyrieText.querySelector('h2')).fontSize};
-        `;
-
-        const tClone = document.createElement("span");
-        const eClone = document.createElement("span");
-
-        tClone.textContent = "T";
-        eClone.textContent = "E";
-
-        tClone.className = techEyrieText.querySelector('h2').className;
-        eClone.className = techEyrieText.querySelector('h2').className;
-
-        tClone.style.cssText = `display: inline-block;`;
-        eClone.style.cssText = `display: inline-block;`;
-
-        teContainer.appendChild(tClone);
-        teContainer.appendChild(eClone);
-        document.body.appendChild(teContainer);
-
-        // ✅ LONGER SCROLL - TE moves as second section comes into view
-        const mainTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section, // ✅ Changed from firstPart to section
-            start: "top top",
-            end: "bottom bottom", // ✅ Entire section duration
-            scrub: 1, // ✅ Smooth tracking
-            invalidateOnRefresh: true,
-          },
-        });
-
-        // Hide target TE initially
-        gsap.set(targetTE, { opacity: 0 });
-
-        // Animation sequence
-        mainTl
-          // Step 1: Fade out "That's the" (0 - 0.05)
-          .to(thatsTheText, { opacity: 0, y: -20, duration: 0.05, ease: "power2.out" }, 0)
-          // Step 2: Fade out other characters (0.03 - 0.1)
-          .to(
-            [...Array.from(techSpans).slice(1), ...Array.from(eyrieSpans).slice(1)],
-            { opacity: 0, scale: 0.8, duration: 0.07, ease: "power2.out", stagger: 0.002 },
-            0.03
-          )
-          // Step 3: Move T to center (0.08 - 0.15)
-          .to(
-            tChar,
-            {
-              x: () => {
-                const tRect = tChar.getBoundingClientRect();
-                const viewportCenterX = window.innerWidth / 2;
-                const tCenterX = tRect.left + tRect.width / 2;
-                return viewportCenterX - tCenterX - tRect.width / 2;
-              },
-              y: 0,
-              duration: 0.07,
-              ease: "power2.inOut",
-            },
-            0.08
-          )
-          // Step 4: Move E to center (0.08 - 0.15)
-          .to(
-            eChar,
-            {
-              x: () => {
-                const tRect = tChar.getBoundingClientRect();
-                const eRect = eChar.getBoundingClientRect();
-                const viewportCenterX = window.innerWidth / 2;
-                const eCenterX = eRect.left + eRect.width / 2;
-                return viewportCenterX - eCenterX + tRect.width / 2 + 5;
-              },
-              y: 0,
-              duration: 0.07,
-              ease: "power2.inOut",
-            },
-            0.08
-          )
-          // Step 5: Hold together (0.15 - 0.2)
-          .to({}, { duration: 0.05 }, 0.15)
-          // Step 6: Switch to container (0.2 - 0.22)
-          .to([tChar, eChar], { opacity: 0, duration: 0.02 }, 0.2)
-          .to(teContainer, { opacity: 1, duration: 0.02 }, 0.2)
-          // ✅ Step 7: SLOWLY move to target position AS USER SCROLLS (0.22 - 1.0)
-          .to(
-            teContainer,
-            {
-              x: () => {
-                const targetRect = targetTE.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-                const targetCenterX = targetRect.left + (targetRect.width / 2);
-                const zuzu =   targetCenterX - (viewportWidth / 2);
-                return zuzu - 100;
-
-              },
-              y: () => {
-                const targetRect = targetTE.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const targetCenterY = targetRect.top + (targetRect.height / 2);
-                return targetCenterY - (viewportHeight / 2);
-              },
-              scale: () => {
-                const currentFontSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
-                const targetFontSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
-                return targetFontSize / currentFontSize;
-              },
-              duration: 0.78, // ✅ Most of the timeline
-              ease: "none", // ✅ Linear movement tied to scroll
-            },
-            0.22
-          );
-
-        // ✅ SEPARATE TRIGGER: Fade transition when target is visible
-        ScrollTrigger.create({
-          trigger: targetTE,
-          start: "top 70%", // When target TE is 60% into viewport
-          onEnter: () => {
-            gsap.to(teContainer, { opacity: 0, duration: 0.3, ease: "power2.out" });
-            gsap.to(targetTE, { opacity: 1, duration: 0.3, ease: "power2.out", delay: 0.1 });
-          },
-          onLeaveBack: () => {
-            gsap.to(teContainer, { opacity: 1, duration: 0.3, ease: "power2.out" });
-            gsap.to(targetTE, { opacity: 0, duration: 0.3, ease: "power2.out" });
-          },
-        });
-
-        // Cleanup
-        ScrollTrigger.create({
-          trigger: section,
-          start: "bottom top",
-          onEnter: () => {
-            if (teContainer && teContainer.parentNode) {
-              teContainer.style.display = 'none';
-            }
-          },
-          onLeaveBack: () => {
-            if (teContainer) {
-              teContainer.style.display = 'flex';
-            }
-          },
-        });
-
-        return () => {
-          if (teContainer && teContainer.parentNode) {
-            teContainer.parentNode.removeChild(teContainer);
-          }
-        };
-      }, 1500);
-
-      // Second Part Animation
       gsap.set([".build-title-line", ".build-description", ".build-cta"], {
         opacity: 0,
         y: 40,
@@ -286,9 +337,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
       const buildTl = gsap.timeline({
         scrollTrigger: {
-          trigger: secondPart,
+          trigger: secondPartRef.current,
           start: "top 65%",
-          end: "top 25%",
           once: true,
         },
       });
@@ -297,7 +347,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         .to(".build-title-line", {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: 1,
           ease: "power3.out",
           stagger: 0.15,
         })
@@ -306,32 +356,32 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 0.8,
             ease: "power3.out",
             stagger: 0.1,
           },
-          "-=0.6"
+          "-=0.5"
         )
         .to(
           ".build-cta",
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.6,
             ease: "power3.out",
           },
-          "-=0.4"
+          "-=0.3"
         );
-    }, section);
+    });
 
     return () => ctx.revert();
-  }, [theme]);
+  }, [isMobile]);
 
   return (
     <section
       ref={sectionRef}
       className="relative overflow-hidden transition-colors duration-500"
-      style={bgStyle}
+      style={{ ...bgStyle, minHeight: isMobile ? 'auto' : '100vh' }}
     >
       {theme === "dark" && (
         <div
@@ -340,90 +390,104 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         />
       )}
 
-      <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8">
-        {/* First Part: "That's the Tech Eyrie" */}
+      {/* Container for stacked sections */}
+      <div className="relative z-10">
+        {/* First Part - Absolute positioned */}
         <div
           ref={firstPartRef}
-          className="relative py-32 sm:py-40 md:py-48 lg:py-56 xl:py-64 text-center min-h-screen flex items-center justify-center"
+          className="lg:absolute lg:inset-0 lg:w-full lg:h-full"
         >
-          <div>
-            {/* "That's the" */}
-            <div ref={thatsTheTextRef} className="mb-4 sm:mb-6 md:mb-8">
-              <span
-                className={`font-playfair italic font-semibold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                  }`}
-              >
-                That's the
-              </span>
-            </div>
+          <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
+            <div className="py-32 sm:py-40 md:py-48 lg:py-0 text-center min-h-screen flex items-center justify-center">
+              <div>
+                <div ref={thatsTheTextRef} className="mb-4 sm:mb-6 md:mb-8">
+                  <span
+                    className={`font-playfair italic font-semibold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                    }`}
+                  >
+                    That's the
+                  </span>
+                </div>
 
-            {/* "Tech Eyrie" */}
-            <div ref={techEyrieTextRef} className="relative">
-              <h2
-                className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-tight transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                  }`}
-              >
-                <span className="tech-word">Tech</span>{" "}
-                <span className="eyrie-word">Eyrie</span>
-              </h2>
+                <div ref={techEyrieTextRef} className="relative">
+                  <h2
+                    className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-tight transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                    }`}
+                  >
+                    <span className="tech-word">Tech</span>{" "}
+                    <span className="eyrie-word">Eyrie</span>
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Second Part */}
+        {/* Second Part - Absolute positioned, starts hidden */}
         <div
           ref={secondPartRef}
-          className="py-20 sm:py-24 md:py-32 lg:py-40 xl:py-48"
+          className="lg:absolute lg:inset-0 lg:w-full lg:h-full lg:opacity-0"
         >
-          <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-            <h2 className="leading-[1.05] tracking-tight">
-              <div
-                className={`build-title-line font-italiana font-light text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                  }`}
-              >
-                <span className="target-te-position inline-block">TE</span> Build What
+          <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
+            <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+              <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+                <h2 className="leading-[1.05] tracking-tight">
+                  <div
+                    className={`build-title-line font-italiana font-light text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                    }`}
+                  >
+                    <span className="target-te-position inline-block opacity-0">TE</span> Build What
+                  </div>
+
+                  <div
+                    className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                    }`}
+                  >
+                    Others Can't
+                  </div>
+
+                  <div
+                    className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
+                    }`}
+                  >
+                    See Yet
+                  </div>
+                </h2>
               </div>
 
-              <div
-                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                  }`}
-              >
-                Others Can't
-              </div>
+              <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
+                <div></div>
+                <div className="space-y-6 max-w-[600px] lg:opacity-0">
+                  <p
+                    className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+                    }`}
+                  >
+                    We're a technology studio focused on turning complexity into clarity. From AI-driven automation to high-performance digital platforms, we design systems that help businesses move faster, think smarter, and scale with confidence.
+                  </p>
 
-              <div
-                className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                  }`}
-              >
-                See Yet
-              </div>
-            </h2>
-          </div>
+                  <p
+                    className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
+                      theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+                    }`}
+                  >
+                    We don't chase trends — we engineer foundations built to last.
+                  </p>
 
-          <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
-            <div></div>
-            <div className="space-y-6">
-              <p
-                className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                  }`}
-              >
-                We're a technology studio focused on turning complexity into clarity. From AI-driven automation to high-performance digital platforms, we design systems that help businesses move faster, think smarter, and scale with confidence.
-              </p>
-
-              <p
-                className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                  }`}
-              >
-                We don't chase trends — we engineer foundations built to last.
-              </p>
-
-              <div className="build-cta pt-2">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center justify-center px-5 py-2.5 text-[12px] font-light text-white bg-[#2D6A5A] hover:bg-[#245548] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                >
-                  Learn More About Us
-                </Link>
+                  <div className="build-cta pt-2">
+                    <Link
+                      href="/about"
+                      className="inline-flex items-center justify-center px-5 py-2.5 text-[12px] font-light text-white bg-[#2D6A5A] hover:bg-[#245548] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    >
+                      Learn More About Us
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

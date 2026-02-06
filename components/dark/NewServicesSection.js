@@ -672,7 +672,7 @@ export default function NewServicesSection({ theme = "light" }) {
             {/* Right Content: Description + Cards - FULL WIDTH */}
             <div className="flex flex-col w-full">
               {/* Description */}
-              <div className="mb-6 sm:mb-8 space-y-4">
+              <div className="mb-6 sm:mb-8 space-y-4 lg:max-w-[70%]">
                 <p
                   className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
                     theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"

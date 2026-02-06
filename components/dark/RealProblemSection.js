@@ -1,18 +1,22 @@
 // components/RealProblemSection.jsx
 "use client";
 
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+
 
 export default function RealProblemSection({ theme = "light" }) {
   const containerRef = useRef(null);
   const titleContainerRef = useRef(null);
   const hasAnimatedInViewport = useRef(false);
 
+
   // Triangle animation effects
   const [triangles, setTriangles] = useState([]);
   const triangleIdRef = useRef(0);
+
 
   // Color Palettes
   const lightColors = {
@@ -21,6 +25,7 @@ export default function RealProblemSection({ theme = "light" }) {
     tertiary: "#CEC8B0",
     background: "#F9F7F0",
   };
+
 
   // Background styles based on theme
   const bgStyle =
@@ -36,6 +41,7 @@ export default function RealProblemSection({ theme = "light" }) {
         }
       : { backgroundColor: lightColors.background };
 
+
   const noiseOverlayStyle = {
     backgroundImage: `
       repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 255, 255, 0.03) 1px, rgba(255, 255, 255, 0.03) 2px),
@@ -44,14 +50,18 @@ export default function RealProblemSection({ theme = "light" }) {
     `,
   };
 
+
   // --- ELECTRIC ANIMATION LOGIC (ONCE PER VIEWPORT ENTRY) ---
+
 
   const triggerElectricalAnimation = useCallback(() => {
     const titleLines = document.querySelectorAll(".real-problem-title-line");
 
+
     const originalColor = theme === "dark" ? "#f3f3f3" : "#111111";
     const electricColor = theme === "dark" ? "#74F5A1" : "#3BC972";
     const brightElectricColor = theme === "dark" ? "#FFFFFF" : "#FFFFFF";
+
 
     const tl = gsap.timeline({
       defaults: {
@@ -59,10 +69,11 @@ export default function RealProblemSection({ theme = "light" }) {
       },
     });
 
-    titleLines.forEach((line, lineIndex) => {
-      const text = line.textContent;
 
+    titleLines.forEach((line, lineIndex) => {
+      // ✅ Check if THIS LINE already has char elements
       if (!line.querySelector(".char")) {
+        const text = line.textContent;
         const chars = text
           .split("")
           .map(
@@ -74,12 +85,16 @@ export default function RealProblemSection({ theme = "light" }) {
           .join("");
         line.innerHTML = chars;
       }
+    });
 
+    // Now animate the chars
+    titleLines.forEach((line, lineIndex) => {
       const chars = line.querySelectorAll(".char");
       chars.forEach((char, charIndex) => {
         const baseDelay = lineIndex * 0.5 + charIndex * 0.06;
         const randomDelay = Math.random() * 0.1;
         const totalDelay = baseDelay + randomDelay;
+
 
         tl.to(
           char,
@@ -118,33 +133,34 @@ export default function RealProblemSection({ theme = "light" }) {
     });
   }, [theme]);
 
+
   // --- INTERSECTION OBSERVER FOR VIEWPORT DETECTION ---
   useEffect(() => {
     const titleContainer = titleContainerRef.current;
     if (!titleContainer) return;
 
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Trigger animation when entering viewport
+          if (entry.isIntersecting && !hasAnimatedInViewport.current) {
+            // ✅ Trigger animation only once
             setTimeout(() => {
               triggerElectricalAnimation();
             }, 300);
             hasAnimatedInViewport.current = true;
-          } else {
-            // Reset flag when leaving viewport so it can animate again on re-entry
-            hasAnimatedInViewport.current = false;
           }
         });
       },
       {
-        threshold: 0.3, // Trigger when 30% of the element is visible
+        threshold: 0.3,
         rootMargin: "0px",
       }
     );
 
+
     observer.observe(titleContainer);
+
 
     return () => {
       if (titleContainer) {
@@ -153,25 +169,18 @@ export default function RealProblemSection({ theme = "light" }) {
     };
   }, [triggerElectricalAnimation]);
 
+
   useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = `
-      @keyframes subtle-glitch {
-        0%, 100% { transform: translateX(0); }
-        94% { transform: translateX(0); }
-        95% { transform: translateX(1px); }
-        96% { transform: translateX(-1px); }
-        97% { transform: translateX(0); }
-      }
+      /* ✅ REMOVED: subtle-glitch animation that was causing shivering */
       .char {
         transition: color 0.15s ease, transform 0.15s ease;
         will-change: color, transform;
-        animation: subtle-glitch 10s infinite;
+        /* NO animation property - chars stay still after electrical effect */
       }
-      .char:nth-child(3n) { animation-delay: 0.5s; }
-      .char:nth-child(3n+1) { animation-delay: 1s; }
-      .char:nth-child(3n+2) { animation-delay: 1.5s; }
       .word { white-space: nowrap; display: inline-block; }
+
 
       .bg-transition {
         transition: background-color 0.5s ease, border-color 0.5s ease;
@@ -183,7 +192,9 @@ export default function RealProblemSection({ theme = "light" }) {
     };
   }, []);
 
+
   // --- END ELECTRIC ANIMATION LOGIC ---
+
 
   const createTriangle = useCallback((x, y) => {
     const id = triangleIdRef.current++;
@@ -191,6 +202,7 @@ export default function RealProblemSection({ theme = "light" }) {
     const rotation = Math.random() * 360;
     const greenShades = ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"];
     const color = greenShades[Math.floor(Math.random() * greenShades.length)];
+
 
     const newTriangle = {
       id,
@@ -201,38 +213,48 @@ export default function RealProblemSection({ theme = "light" }) {
       color,
     };
 
+
     setTriangles((prev) => [...prev, newTriangle]);
+
 
     setTimeout(() => {
       setTriangles((prev) => prev.filter((t) => t.id !== id));
     }, 1050);
   }, []);
 
+
   useEffect(() => {
     const section = containerRef.current?.closest("section");
     if (!section) return;
 
+
     let lastTime = 0;
     const throttleDelay = 100;
+
 
     const handleMouseMove = (e) => {
       const currentTime = Date.now();
       if (currentTime - lastTime < throttleDelay) return;
       lastTime = currentTime;
 
+
       const rect = section.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
+
       createTriangle(x, y);
     };
 
+
     section.addEventListener("mousemove", handleMouseMove);
+
 
     return () => {
       section.removeEventListener("mousemove", handleMouseMove);
     };
   }, [createTriangle]);
+
 
   return (
     <>
@@ -248,14 +270,16 @@ export default function RealProblemSection({ theme = "light" }) {
           }
         }
 
+
         .animate-triangle-fade {
           animation: triangle-fade 1.05s ease-out forwards;
         }
       `}</style>
 
+
       <section
         ref={containerRef}
-        className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 2xl:py-48 bg-transition"
+        className="relative overflow-hidden py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 2xl:py-24 bg-transition"
         style={bgStyle}
       >
         {/* Noise texture overlay */}
@@ -265,6 +289,7 @@ export default function RealProblemSection({ theme = "light" }) {
             style={noiseOverlayStyle}
           />
         )}
+
 
         {/* CURSOR TRAIL TRIANGLES */}
         {triangles.map((triangle) => (
@@ -285,6 +310,7 @@ export default function RealProblemSection({ theme = "light" }) {
           />
         ))}
 
+
         <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col justify-center min-h-full">
           {/* Label above everything */}
           <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-10 flex items-center gap-2 sm:gap-3">
@@ -297,6 +323,7 @@ export default function RealProblemSection({ theme = "light" }) {
               The real problem is
             </span>
           </div>
+
 
           {/* Heading left, copy/CTA right */}
           <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
@@ -321,6 +348,7 @@ export default function RealProblemSection({ theme = "light" }) {
               </h2>
             </div>
 
+
             <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 lg:max-w-[600px] mt-4 sm:mt-6 md:mt-8 lg:mt-16">
               <p
                 className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
@@ -330,6 +358,7 @@ export default function RealProblemSection({ theme = "light" }) {
                 Too many businesses invest in the latest tools and platforms, expecting them to solve their growth challenges. But without the right systems in place, those tools become expensive distractions rather than drivers of real results.
               </p>
 
+
               <p
                 className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
@@ -337,6 +366,7 @@ export default function RealProblemSection({ theme = "light" }) {
               >
                 We build the frameworks, processes, and workflows that turn your tech stack into a high-performing marketing engine. Strategy comes first, tools follow.
               </p>
+
 
               <Link
                 href="/services"

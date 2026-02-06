@@ -23,6 +23,7 @@ import AirvoirSection from './AirvoirSection';
 import CardsServicesSection from './CardsServicesSection';
 import FAQSection from './FAQSection';
 import AirplaneHero from './AirplaneSection';
+import BlogsSection from './BlogSection';
 
 const MainPage = () => {
   const [theme, setTheme] = useState('light');
@@ -80,6 +81,7 @@ const MainPage = () => {
                   <TestimonialsSection theme={theme} />
                   <CardsServicesSection theme={theme} />
                   <FAQSection theme={theme} />
+                  <BlogsSection theme={theme} />
                   <AirplaneHero theme={theme} />
         {/* <ServicesSection theme={theme} /> */}
         {/* <DemandSection theme={theme} /> */}

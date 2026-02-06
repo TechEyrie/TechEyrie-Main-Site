@@ -76,6 +76,7 @@ export default function HeroSection({ theme = "light" }) {
   const [hoveredBottomSection, setHoveredBottomSection] = useState(null);
   const [isInHeroSection, setIsInHeroSection] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [hoveredPortfolioCard, setHoveredPortfolioCard] = useState(null);
   const [cardWidth, setCardWidth] = useState(220);
   const [portfolioCardWidth, setPortfolioCardWidth] = useState(300);
@@ -415,6 +416,9 @@ export default function HeroSection({ theme = "light" }) {
             scrub: 1.5,
             onUpdate: (self) => {
               const progress = self.progress;
+
+              // Track scroll progress for pagination dots
+              setScrollProgress(progress);
               const heroContainerRect =
                 heroCardsContainerRef.current.getBoundingClientRect();
               const placeholderRect = placeholder.getBoundingClientRect();
@@ -962,7 +966,13 @@ export default function HeroSection({ theme = "light" }) {
                   ))}
                 </div>
 
-                <div className="flex justify-center mt-4 space-x-2">
+                <div 
+                  className="flex justify-center mt-4 space-x-2 transition-opacity duration-300"
+                  style={{
+                    opacity: scrollProgress > 0.05 ? 0 : 1,
+                    pointerEvents: scrollProgress > 0.05 ? 'none' : 'auto'
+                  }}
+                >
                   {mediaAssets.map((_, index) => (
                     <button
                       key={index}
