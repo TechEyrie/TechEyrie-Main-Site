@@ -94,7 +94,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
       const tChar = techSpans[0]; // T
       const eChar = eyrieSpans[0]; // E
 
-      // Create floating TE container - APPEND TO SECTION (not body)
+      // Create floating TE container
       const teContainer = document.createElement("div");
       teContainer.className = "te-floating-container";
       teContainer.style.cssText = `
@@ -138,24 +138,6 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         };
       };
 
-      // Get final position calculations
-      const getFinalPosition = () => {
-        const targetTE = secondPart.querySelector(".target-te-position");
-        if (!targetTE) return null;
-
-        const targetRect = targetTE.getBoundingClientRect();
-        const sectionRect = section.getBoundingClientRect();
-        const currentSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
-        const targetSize = parseFloat(window.getComputedStyle(targetTE).fontSize);
-
-        return {
-          // ✅ Calculate position RELATIVE to section, not viewport
-          top: targetRect.top - sectionRect.top + targetRect.height / 2,
-          left: targetRect.left - sectionRect.left + targetRect.width / 2,
-          scale: targetSize / currentSize
-        };
-      };
-
       // Main pinned scroll timeline
       const mainTl = gsap.timeline({
         scrollTrigger: {
@@ -165,6 +147,58 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           scrub: 1,
           pin: true,
           anticipatePin: 1,
+          onLeave: () => {
+            // ✅ Convert to absolute AFTER pin ends
+            const targetTE = secondPart.querySelector(".target-te-position");
+            if (targetTE) {
+              const targetRect = targetTE.getBoundingClientRect();
+              const sectionRect = section.getBoundingClientRect();
+
+              // Calculate position relative to section
+              const finalTop = targetRect.top - sectionRect.top + targetRect.height / 2;
+              const finalLeft = targetRect.left - sectionRect.left + targetRect.width / 2;
+
+              // Get current scale from transform
+              const currentTransform = window.getComputedStyle(teContainer).transform;
+              let currentScale = 1;
+              if (currentTransform && currentTransform !== 'none') {
+                const matrix = currentTransform.match(/matrix\((.+)\)/);
+                if (matrix) {
+                  const values = matrix[1].split(', ');
+                  currentScale = parseFloat(values[0]);
+                }
+              }
+
+              gsap.set(teContainer, {
+                position: "absolute",
+                top: finalTop,
+                left: finalLeft,
+                xPercent: -50,
+                yPercent: -50,
+                transform: `translate(-50%, -50%) scale(${currentScale})`,
+              });
+
+              // Move to section so it scrolls with content
+              section.appendChild(teContainer);
+            }
+          },
+          onEnterBack: () => {
+            // ✅ Convert back to fixed when scrolling back up
+            const targetTE = secondPart.querySelector(".target-te-position");
+            if (targetTE && teContainer.parentNode === section) {
+              const targetRect = targetTE.getBoundingClientRect();
+
+              gsap.set(teContainer, {
+                position: "fixed",
+                top: "50%",
+                left: targetRect.left + targetRect.width / 2,
+                xPercent: -50,
+                yPercent: -155,
+              });
+
+              document.body.appendChild(teContainer);
+            }
+          },
         },
       });
 
@@ -207,17 +241,17 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         .set([tChar, eChar], { opacity: 0 }, 0.45)
         .set(teContainer, { opacity: 1 }, 0.45)
 
-        // Phase 5: Fade in second section (0.5 - 0.65)
+        // ✅ UPDATED: Phase 5 - Delay second section fade in until TE starts moving (0.6 - 0.75)
         .to(secondPart, {
           opacity: 1,
           duration: 0.15,
           ease: "power2.out",
-        }, 0.5)
+        }, 0.8)  // Changed from 0.5 to 0.6 - starts right before TE moves
         .to(firstPart, {
           opacity: 0,
           duration: 0.15,
           ease: "power2.in",
-        }, 0.5)
+        }, 0.8)  // Changed from 0.5 to 0.6 - synced with second section
 
         // Phase 6: Move TE to final position (0.65 - 0.85)
         .to(teContainer, {
@@ -261,30 +295,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           y: 0,
           duration: 0.04,
           ease: "power3.out",
-        }, 0.91)
-
-        // ✅ Phase 8: Convert TE from fixed to absolute (0.95 - 1.0)
-        .to(teContainer, {
-          onStart: () => {
-            const finalPos = getFinalPosition();
-            if (!finalPos) return;
-
-            // Change from fixed to absolute positioning
-            gsap.set(teContainer, {
-              position: "absolute",
-              top: finalPos.top,
-              left: finalPos.left,
-              xPercent: -50,
-              yPercent: -50,
-              transform: "none",
-              scale: finalPos.scale,
-            });
-
-            // Move from body to section so it scrolls with content
-            section.appendChild(teContainer);
-          },
-          duration: 0.05,
-        }, 0.95);
+        }, 0.91);
 
       return () => {
         if (teContainer && teContainer.parentNode) {
@@ -462,7 +473,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
               <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
                 <div></div>
-                <div className="space-y-6 max-w-[600px] lg:opacity-0">
+                <div className="space-y-6 max-w-[600px]">
                   <p
                     className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
                       theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect } from 'react';
+import { useRef,useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -13,6 +13,7 @@ if (typeof window !== "undefined") {
 const BlogsSection = ({ theme = "light" }) => {
   const titleRef = useRef(null);
   const sectionRef = useRef(null);
+  const [hasAnimated, setHasAnimated] = useState(false); // ✅ Track if animation has played
 
   // Blog posts data with images
   const blogPosts = [
@@ -42,80 +43,200 @@ const BlogsSection = ({ theme = "light" }) => {
     }
   ];
 
-  useLayoutEffect(() => {
-    const title = titleRef.current;
-    const section = sectionRef.current;
+  // ✅ Electrical animation function - character-by-character effect
+  const triggerElectricalAnimation = useCallback(() => {
+    if (hasAnimated) return; // Don't run if already animated
 
-    if (!title || !section) return;
+    const titleElement = titleRef.current;
+    if (!titleElement) return;
 
-    const ctx = gsap.context(() => {
-      // Electrical glitch animation on title
-      const glitchTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: title,
-          start: "top 80%",
-          end: "top 50%",
-          once: true,
-        },
-      });
+    const originalColor = theme === "dark" ? "#f3f3f3" : "#111111";
+    const accentOriginalColor = theme === "dark" ? "#74F5A1" : "#111111";
+    const electricColor = theme === "dark" ? "#74F5A1" : "#3BC972";
+    const brightElectricColor = theme === "dark" ? "#FFFFFF" : "#FFFFFF";
 
-      glitchTl
-        .fromTo(
-          title,
-          {
-            opacity: 0,
-            x: -10,
-            filter: "blur(5px)",
-          },
-          {
-            opacity: 1,
-            x: 0,
-            filter: "blur(0px)",
-            duration: 0.1,
-            ease: "power2.inOut",
-          }
+    // Get the two text parts
+    const insightsBy = titleElement.querySelector(".insights-by-text");
+    const newEngen = titleElement.querySelector(".new-engen-text");
+
+    if (!insightsBy || !newEngen) return;
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "sine.inOut",
+      },
+      onComplete: () => {
+        setHasAnimated(true); // ✅ Mark as animated after completion
+      }
+    });
+
+    // Split "Insights by" into characters
+    const insightsByText = insightsBy.textContent;
+    if (!insightsBy.querySelector(".char")) {
+      const chars = insightsByText
+        .split("")
+        .map(
+          (char, i) =>
+            `<span class="char" style="color: ${originalColor}; display: inline-block; position: relative;" data-index="${i}">${
+              char === " " ? "&nbsp;" : char
+            }</span>`
         )
-        .to(title, {
-          x: 5,
-          duration: 0.05,
-          ease: "power1.inOut",
-        })
-        .to(title, {
-          x: -5,
-          duration: 0.05,
-          ease: "power1.inOut",
-        })
-        .to(title, {
-          x: 3,
-          duration: 0.05,
-          ease: "power1.inOut",
-        })
-        .to(title, {
-          x: 0,
+        .join("");
+      insightsBy.innerHTML = chars;
+    }
+
+    // Split "New Engen" into characters
+    const newEngenText = newEngen.textContent;
+    if (!newEngen.querySelector(".char")) {
+      const chars = newEngenText
+        .split("")
+        .map(
+          (char, i) =>
+            `<span class="char" style="color: ${accentOriginalColor}; display: inline-block; position: relative;" data-index="${i}">${
+              char === " " ? "&nbsp;" : char
+            }</span>`
+        )
+        .join("");
+      newEngen.innerHTML = chars;
+    }
+
+    const insightsByChars = insightsBy.querySelectorAll(".char");
+    const newEngenChars = newEngen.querySelectorAll(".char");
+
+    // Animate "Insights by" characters
+    insightsByChars.forEach((char, charIndex) => {
+      const baseDelay = charIndex * 0.04;
+      const randomDelay = Math.random() * 0.08;
+      const totalDelay = baseDelay + randomDelay;
+
+      tl.to(
+        char,
+        {
           duration: 0.1,
+          color: brightElectricColor,
+          scale: 1.05,
+          delay: totalDelay,
           ease: "power2.out",
-        })
+        },
+        0
+      )
         .to(
-          title,
+          char,
           {
-            textShadow: `
-              0 0 10px ${theme === "dark" ? "rgba(232, 255, 107, 0.8)" : "rgba(17, 17, 17, 0.5)"},
-              0 0 20px ${theme === "dark" ? "rgba(232, 255, 107, 0.6)" : "rgba(17, 17, 17, 0.3)"},
-              0 0 30px ${theme === "dark" ? "rgba(232, 255, 107, 0.4)" : "rgba(17, 17, 17, 0.2)"}
-            `,
             duration: 0.15,
+            color: electricColor,
+            scale: 1.02,
+            delay: totalDelay + 0.1,
+            ease: "sine.inOut",
           },
-          "-=0.1"
+          0
         )
-        .to(title, {
-          textShadow: "0 0 0px transparent",
-          duration: 0.3,
-          ease: "power2.out",
-        });
-    }, section);
+        .to(
+          char,
+          {
+            duration: 0.25,
+            color: originalColor,
+            scale: 1,
+            delay: totalDelay + 0.25,
+            ease: "power2.in",
+          },
+          0
+        );
+    });
 
-    return () => ctx.revert();
-  }, [theme]);
+    // Animate "New Engen" characters with slight offset
+    newEngenChars.forEach((char, charIndex) => {
+      const baseDelay = (insightsByChars.length * 0.04) + (charIndex * 0.04);
+      const randomDelay = Math.random() * 0.08;
+      const totalDelay = baseDelay + randomDelay;
+
+      tl.to(
+        char,
+        {
+          duration: 0.1,
+          color: brightElectricColor,
+          scale: 1.05,
+          delay: totalDelay,
+          ease: "power2.out",
+        },
+        0
+      )
+        .to(
+          char,
+          {
+            duration: 0.15,
+            color: electricColor,
+            scale: 1.02,
+            delay: totalDelay + 0.1,
+            ease: "sine.inOut",
+          },
+          0
+        )
+        .to(
+          char,
+          {
+            duration: 0.25,
+            color: accentOriginalColor,
+            scale: 1,
+            delay: totalDelay + 0.25,
+            ease: "power2.in",
+          },
+          0
+        );
+    });
+  }, [theme, hasAnimated]);
+
+  // ✅ Update colors on theme change (if already animated)
+  useEffect(() => {
+    if (!hasAnimated) return;
+
+    const titleElement = titleRef.current;
+    if (!titleElement) return;
+
+    const originalColor = theme === "dark" ? "#f3f3f3" : "#111111"; // Main text
+    const accentOriginalColor = theme === "dark" ? "#74F5A1" : "#111111"; // Accent text
+
+    const insightsByChars = titleElement.querySelectorAll(".insights-by-text .char");
+    const newEngenChars = titleElement.querySelectorAll(".new-engen-text .char");
+
+    // Force update character colors
+    insightsByChars.forEach(char => {
+      char.style.color = originalColor;
+    });
+
+    newEngenChars.forEach(char => {
+      char.style.color = accentOriginalColor;
+    });
+
+  }, [theme, hasAnimated]);
+
+  // ✅ IntersectionObserver for title - triggers electrical animation once
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined' || hasAnimated) return;
+
+    const titleEl = titleRef.current;
+    if (!titleEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          // Trigger electrical animation after a short delay
+          setTimeout(() => {
+            triggerElectricalAnimation();
+          }, 300);
+
+          observer.unobserve(titleEl); // ✅ Stop observing after first trigger
+        }
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of title is visible
+        rootMargin: '0px 0px -100px 0px',
+      }
+    );
+
+    observer.observe(titleEl);
+    return () => observer.disconnect();
+  }, [triggerElectricalAnimation, hasAnimated]);
 
   const lightColors = {
     background: "#F9F7F0",
@@ -145,7 +266,7 @@ const BlogsSection = ({ theme = "light" }) => {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden transition-colors duration-500"
+      className="relative w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden transition-colors duration-500"
       style={bgStyle}
     >
       {theme === "dark" && (
@@ -155,31 +276,30 @@ const BlogsSection = ({ theme = "light" }) => {
         />
       )}
 
-      <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8">
-        
+      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-6 md:px-8">
+
         {/* Header Section */}
-        <div className="w-full max-w-[1386px] mx-auto mb-12 sm:mb-16 lg:mb-20">
-          
+        <div className="w-full mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24">
+
           {/* Main Title */}
-          <div ref={titleRef} className="mb-8 sm:mb-12 lg:mb-16 text-center">
+          <div ref={titleRef} className="mb-6 sm:mb-8 md:mb-10 text-center">
             <h2
-              className={`font-italiana font-light text-[40px] sm:text-[56px] md:text-[70px] lg:text-[90px] xl:text-[110px] 2xl:text-[130px] leading-[0.9] tracking-tight transition-colors duration-500 ${
+              className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[1.08] tracking-[-0.02em] transition-colors duration-500 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              Insights by
-              <br />
-              <span className={theme === "dark" ? "text-[#E8FF6B]" : "text-[#111111]"}>
+              <span className="insights-by-text block">Insights by</span>
+              <span className={`new-engen-text block ${theme === "dark" ? "text-[#74F5A1]" : "text-[#111111]"}`}>
                 New Engen
               </span>
             </h2>
           </div>
 
           {/* Subtitle */}
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center">
             <p
-              className={`font-merriweather text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-500 ${
-                theme === "dark" ? "text-[#f3f3f3]/90" : "text-[#111111]/80"
+              className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-regular leading-relaxed tracking-tight transition-colors duration-500 ${
+                theme === "dark" ? "text-[#a0a0a0]" : "text-[#444444]"
               }`}
             >
               Insights that drive impact—rooted in research, supported by data, and made to fuel brand growth.
@@ -188,14 +308,14 @@ const BlogsSection = ({ theme = "light" }) => {
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 mb-12 sm:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 mb-10 sm:mb-12 md:mb-14 lg:mb-16">
           {blogPosts.map((post, index) => (
             <article 
               key={post.id}
               className="group cursor-pointer"
             >
               {/* Blog Post Image */}
-              <div className="w-full aspect-[4/3] bg-gray-200 rounded-2xl mb-6 sm:mb-8 overflow-hidden">
+              <div className="w-full aspect-[4/3] bg-gray-200 rounded-lg sm:rounded-xl md:rounded-2xl mb-4 sm:mb-5 md:mb-6 overflow-hidden">
                 <Image
                   src={post.image}
                   alt={post.alt}
@@ -208,13 +328,13 @@ const BlogsSection = ({ theme = "light" }) => {
               </div>
 
               {/* Tags and Date */}
-              <div className="flex flex-wrap items-center gap-3 mb-4 sm:mb-6">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 {post.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className={`inline-flex items-center px-4 py-2 rounded-full border text-sm font-medium leading-none transition-colors duration-300 ${
+                    className={`inline-flex items-center px-3 py-1.5 rounded-full border text-[11px] sm:text-[12px] font-medium leading-none transition-colors duration-300 ${
                       theme === "dark"
-                        ? "border-[#E8FF6B] text-[#E8FF6B]"
+                        ? "border-[#74F5A1] text-[#74F5A1]"
                         : "border-[#111111] text-[#111111]"
                     }`}
                   >
@@ -222,7 +342,7 @@ const BlogsSection = ({ theme = "light" }) => {
                   </span>
                 ))}
                 <span
-                  className={`text-base font-normal leading-snug ml-auto transition-colors duration-500 ${
+                  className={`text-[11px] sm:text-[12px] font-normal leading-snug ml-auto transition-colors duration-500 ${
                     theme === "dark" ? "text-[#f3f3f3]/70" : "text-[#111111]/70"
                   }`}
                 >
@@ -232,17 +352,17 @@ const BlogsSection = ({ theme = "light" }) => {
 
               {/* Title with Background Animation */}
               <h3
-                className={`font-italiana font-light text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight transition-colors duration-500 ${
+                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-snug transition-colors duration-500 ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                 }`}
               >
                 <span
-                  className="relative inline-block px-2 bg-transparent group-hover:bg-[#E8FF6B] transition-all duration-500 ease-out"
+                  className="relative inline-block px-1 bg-transparent group-hover:bg-[#74F5A1] transition-all duration-500 ease-out"
                   style={{
                     backgroundImage: `linear-gradient(to right, ${
-                      theme === "dark" ? "#CCE561" : "#E8FF6B"
+                      theme === "dark" ? "#74F5A1" : "#E8FF6B"
                     } 50%, transparent 50%)`,
-                    backgroundSize: '200% 100%',
+                    backgroundSize: '210% 100%',
                     backgroundPosition: '100% 0',
                     backgroundRepeat: 'no-repeat'
                   }}
@@ -264,7 +384,7 @@ const BlogsSection = ({ theme = "light" }) => {
         <div className="flex justify-center">
           <Link 
             href="/blog"
-            className={`group relative px-8 py-4 rounded-full overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg ${
+            className={`group relative px-5 py-2.5 sm:px-6 sm:py-3 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg ${
               theme === "dark"
                 ? "bg-[#f3f3f3] text-[#111111]"
                 : "bg-[#111111] text-[#f3f3f3]"
@@ -273,19 +393,19 @@ const BlogsSection = ({ theme = "light" }) => {
             {/* Hover Background */}
             <div
               className={`absolute inset-0 rounded-full transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ${
-                theme === "dark" ? "bg-[#E8FF6B]" : "bg-[#CCE561]"
+                theme === "dark" ? "bg-[#74F5A1]" : "bg-[#CCE561]"
               }`}
             />
-            
+
             {/* Button Content */}
             <div className="relative flex items-center justify-center gap-2">
-              <span className="text-base sm:text-lg font-semibold">
+              <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide">
                 View all
               </span>
-              
+
               {/* Arrow Icon */}
               <svg 
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" 
                 viewBox="0 0 20 20" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"

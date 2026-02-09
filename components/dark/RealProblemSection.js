@@ -1,22 +1,18 @@
 // components/RealProblemSection.jsx
 "use client";
 
-
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-
 
 export default function RealProblemSection({ theme = "light" }) {
   const containerRef = useRef(null);
   const titleContainerRef = useRef(null);
   const hasAnimatedInViewport = useRef(false);
 
-
-  // Triangle animation effects
-  const [triangles, setTriangles] = useState([]);
-  const triangleIdRef = useRef(0);
-
+  // Triangle animation effects - COMMENTED OUT
+  // const [triangles, setTriangles] = useState([]);
+  // const triangleIdRef = useRef(0);
 
   // Color Palettes
   const lightColors = {
@@ -26,21 +22,19 @@ export default function RealProblemSection({ theme = "light" }) {
     background: "#F9F7F0",
   };
 
-
   // Background styles based on theme
   const bgStyle =
     theme === "dark"
       ? {
           backgroundColor: "#2b2b2b",
           backgroundImage: `
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulance type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
           radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
           radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%)
         `,
           backgroundBlendMode: "overlay, normal, normal",
         }
       : { backgroundColor: lightColors.background };
-
 
   const noiseOverlayStyle = {
     backgroundImage: `
@@ -50,25 +44,20 @@ export default function RealProblemSection({ theme = "light" }) {
     `,
   };
 
-
   // --- ELECTRIC ANIMATION LOGIC (ONCE PER VIEWPORT ENTRY) ---
-
 
   const triggerElectricalAnimation = useCallback(() => {
     const titleLines = document.querySelectorAll(".real-problem-title-line");
 
-
     const originalColor = theme === "dark" ? "#f3f3f3" : "#111111";
     const electricColor = theme === "dark" ? "#74F5A1" : "#3BC972";
     const brightElectricColor = theme === "dark" ? "#FFFFFF" : "#FFFFFF";
-
 
     const tl = gsap.timeline({
       defaults: {
         ease: "sine.inOut",
       },
     });
-
 
     titleLines.forEach((line, lineIndex) => {
       // ✅ Check if THIS LINE already has char elements
@@ -94,7 +83,6 @@ export default function RealProblemSection({ theme = "light" }) {
         const baseDelay = lineIndex * 0.5 + charIndex * 0.06;
         const randomDelay = Math.random() * 0.1;
         const totalDelay = baseDelay + randomDelay;
-
 
         tl.to(
           char,
@@ -133,12 +121,10 @@ export default function RealProblemSection({ theme = "light" }) {
     });
   }, [theme]);
 
-
   // --- INTERSECTION OBSERVER FOR VIEWPORT DETECTION ---
   useEffect(() => {
     const titleContainer = titleContainerRef.current;
     if (!titleContainer) return;
-
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -158,9 +144,7 @@ export default function RealProblemSection({ theme = "light" }) {
       }
     );
 
-
     observer.observe(titleContainer);
-
 
     return () => {
       if (titleContainer) {
@@ -168,7 +152,6 @@ export default function RealProblemSection({ theme = "light" }) {
       }
     };
   }, [triggerElectricalAnimation]);
-
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -181,7 +164,6 @@ export default function RealProblemSection({ theme = "light" }) {
       }
       .word { white-space: nowrap; display: inline-block; }
 
-
       .bg-transition {
         transition: background-color 0.5s ease, border-color 0.5s ease;
       }
@@ -192,73 +174,63 @@ export default function RealProblemSection({ theme = "light" }) {
     };
   }, []);
 
-
   // --- END ELECTRIC ANIMATION LOGIC ---
 
+  // TRIANGLE CREATION FUNCTION - COMMENTED OUT
+  // const createTriangle = useCallback((x, y) => {
+  //   const id = triangleIdRef.current++;
+  //   const size = Math.random() * 12 + 20;
+  //   const rotation = Math.random() * 360;
+  //   const greenShades = ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"];
+  //   const color = greenShades[Math.floor(Math.random() * greenShades.length)];
 
-  const createTriangle = useCallback((x, y) => {
-    const id = triangleIdRef.current++;
-    const size = Math.random() * 12 + 20;
-    const rotation = Math.random() * 360;
-    const greenShades = ["#74F5A1", "#5FE08D", "#4DD97F", "#3BC972"];
-    const color = greenShades[Math.floor(Math.random() * greenShades.length)];
+  //   const newTriangle = {
+  //     id,
+  //     x,
+  //     y,
+  //     size,
+  //     rotation,
+  //     color,
+  //   };
 
+  //   setTriangles((prev) => [...prev, newTriangle]);
 
-    const newTriangle = {
-      id,
-      x,
-      y,
-      size,
-      rotation,
-      color,
-    };
+  //   setTimeout(() => {
+  //     setTriangles((prev) => prev.filter((t) => t.id !== id));
+  //   }, 1050);
+  // }, []);
 
+  // MOUSE MOVE EFFECT - COMMENTED OUT
+  // useEffect(() => {
+  //   const section = containerRef.current?.closest("section");
+  //   if (!section) return;
 
-    setTriangles((prev) => [...prev, newTriangle]);
+  //   let lastTime = 0;
+  //   const throttleDelay = 100;
 
+  //   const handleMouseMove = (e) => {
+  //     const currentTime = Date.now();
+  //     if (currentTime - lastTime < throttleDelay) return;
+  //     lastTime = currentTime;
 
-    setTimeout(() => {
-      setTriangles((prev) => prev.filter((t) => t.id !== id));
-    }, 1050);
-  }, []);
+  //     const rect = section.getBoundingClientRect();
+  //     const x = e.clientX - rect.left;
+  //     const y = e.clientY - rect.top;
 
+  //     createTriangle(x, y);
+  //   };
 
-  useEffect(() => {
-    const section = containerRef.current?.closest("section");
-    if (!section) return;
+  //   section.addEventListener("mousemove", handleMouseMove);
 
-
-    let lastTime = 0;
-    const throttleDelay = 100;
-
-
-    const handleMouseMove = (e) => {
-      const currentTime = Date.now();
-      if (currentTime - lastTime < throttleDelay) return;
-      lastTime = currentTime;
-
-
-      const rect = section.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-
-      createTriangle(x, y);
-    };
-
-
-    section.addEventListener("mousemove", handleMouseMove);
-
-
-    return () => {
-      section.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [createTriangle]);
-
+  //   return () => {
+  //     section.removeEventListener("mousemove", handleMouseMove);
+  //   };
+  // }, [createTriangle]);
 
   return (
     <>
-      <style jsx>{`
+      {/* TRIANGLE ANIMATION STYLES - COMMENTED OUT */}
+      {/* <style jsx>{`
         @keyframes triangle-fade {
           0% {
             opacity: 0.7;
@@ -270,12 +242,10 @@ export default function RealProblemSection({ theme = "light" }) {
           }
         }
 
-
         .animate-triangle-fade {
           animation: triangle-fade 1.05s ease-out forwards;
         }
-      `}</style>
-
+      `}</style> */}
 
       <section
         ref={containerRef}
@@ -290,9 +260,8 @@ export default function RealProblemSection({ theme = "light" }) {
           />
         )}
 
-
-        {/* CURSOR TRAIL TRIANGLES */}
-        {triangles.map((triangle) => (
+        {/* CURSOR TRAIL TRIANGLES - COMMENTED OUT */}
+        {/* {triangles.map((triangle) => (
           <div
             key={triangle.id}
             className="pointer-events-none absolute z-[5] animate-triangle-fade"
@@ -308,8 +277,7 @@ export default function RealProblemSection({ theme = "light" }) {
               opacity: 0.7,
             }}
           />
-        ))}
-
+        ))} */}
 
         <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col justify-center min-h-full">
           {/* Label above everything */}
@@ -323,7 +291,6 @@ export default function RealProblemSection({ theme = "light" }) {
               The real problem is
             </span>
           </div>
-
 
           {/* Heading left, copy/CTA right */}
           <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
@@ -348,7 +315,6 @@ export default function RealProblemSection({ theme = "light" }) {
               </h2>
             </div>
 
-
             <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 lg:max-w-[600px] mt-4 sm:mt-6 md:mt-8 lg:mt-16">
               <p
                 className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
@@ -358,7 +324,6 @@ export default function RealProblemSection({ theme = "light" }) {
                 Too many businesses invest in the latest tools and platforms, expecting them to solve their growth challenges. But without the right systems in place, those tools become expensive distractions rather than drivers of real results.
               </p>
 
-
               <p
                 className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
@@ -366,7 +331,6 @@ export default function RealProblemSection({ theme = "light" }) {
               >
                 We build the frameworks, processes, and workflows that turn your tech stack into a high-performing marketing engine. Strategy comes first, tools follow.
               </p>
-
 
               <Link
                 href="/services"

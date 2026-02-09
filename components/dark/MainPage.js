@@ -13,7 +13,10 @@ import TalkToExpertSection from './TalkToExpertSection';
 import Footer from './Footer';
 import DeepJudgeAnimation from './DeepJudgeAnimation';
 import TestimonialsSection from './TestimonialsSection';
-import CursorTrail from './CursorTrail';
+// import CursorTrail from './CursorTrail';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
 import './MainPage.css';
 import RealProblemSection from './RealProblemSection';
 import NewServicesSection from './NewServicesSection';
@@ -35,6 +38,35 @@ const MainPage = () => {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
+  useEffect(() => {
+    // Initialize Lenis
+    const lenis = new Lenis({
+      // CONTROL SPEED HERE:
+      duration: 3.5, // Higher = Slower/Smoother (e.g., 2.0). Lower = Faster/Snappier (e.g., 0.8). Default: 1.2
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1, // Higher = Faster scroll per wheel tick. Default: 1
+      smoothTouch: false, // Mobile usually desires native scroll
+      touchMultiplier: 2,
+    });
+
+    // Integrate with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    };
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -43,7 +75,7 @@ const MainPage = () => {
   };
 
   return (
-    <CursorTrail theme={theme}>
+    // <CursorTrail theme={theme}>
       <div style={{ position: 'relative', zIndex: 1 }} data-theme={theme}>
         {/* Theme Toggle Button */}
         <button 
@@ -92,7 +124,7 @@ const MainPage = () => {
         <TalkToExpertSection theme={theme} /> */}
         <Footer theme={theme} />
       </div>
-    </CursorTrail>
+    // </CursorTrail>
   );
 };
 

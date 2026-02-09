@@ -641,22 +641,22 @@ export default function HeroSection({ theme = "light" }) {
   }, [hoveredPortfolioCard, isInHeroSection, createTriangleForPortfolioCard]);
 
   // --- Portfolio triangles ---
-  useEffect(() => {
-    const section = portfolioSectionRef.current;
-    if (!section) return;
-    let lastTime = 0;
-    const handleMouseMove = (e) => {
-      if (isInHeroSection) return;
+  // useEffect(() => {
+  //   const section = portfolioSectionRef.current;
+  //   if (!section) return;
+  //   let lastTime = 0;
+  //   const handleMouseMove = (e) => {
+  //     if (isInHeroSection) return;
 
-      const currentTime = Date.now();
-      if (currentTime - lastTime < 300) return;
-      lastTime = currentTime;
-      const rect = section.getBoundingClientRect();
-      // createPortfolioTriangle(e.clientX - rect.left, e.clientY - rect.top);
-    };
-    section.addEventListener("mousemove", handleMouseMove);
-    return () => section.removeEventListener("mousemove", handleMouseMove);
-  }, [createPortfolioTriangle, isInHeroSection]);
+  //     const currentTime = Date.now();
+  //     if (currentTime - lastTime < 300) return;
+  //     lastTime = currentTime;
+  //     const rect = section.getBoundingClientRect();
+  //     // createPortfolioTriangle(e.clientX - rect.left, e.clientY - rect.top);
+  //   };
+  //   section.addEventListener("mousemove", handleMouseMove);
+  //   return () => section.removeEventListener("mousemove", handleMouseMove);
+  // }, [createPortfolioTriangle, isInHeroSection]);
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -1159,9 +1159,9 @@ export default function HeroSection({ theme = "light" }) {
         className="w-full min-h-screen py-0 relative"
         style={bgStyle}
       >
-        {portfolioTriangles.map((triangle) => (
+        {/* {portfolioTriangles.map((triangle) => (
           <TriangleSVG key={triangle.id} triangle={triangle} />
-        ))}
+        ))} */}
 
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">

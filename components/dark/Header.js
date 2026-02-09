@@ -183,8 +183,8 @@ export default function Header({ theme = "light" }) {
   const [quotePopupOpen, setQuotePopupOpen] = useState(false);
 
   // Triangle animation effects - only for light theme (original)
-  const [triangles, setTriangles] = useState([]);
-  const triangleIdRef = useRef(0);
+  // const [triangles, setTriangles] = useState([]);
+  // const triangleIdRef = useRef(0);
 
   // Refs for Get a Quote button animation
   const getQuoteBtnRef = useRef(null);
@@ -228,76 +228,76 @@ export default function Header({ theme = "light" }) {
     }, 150);
   };
 
-  const createTriangle = useCallback(
-    (x, y) => {
-      if (theme === "light") {
-        const id = triangleIdRef.current++;
-        const size = Math.random() * 5 + 8;
-        const rotation = Math.random() * 360;
-        const greenShades = ["#013825", "#295E4C", "#9E8F72", "#CEC8B0"];
-        const color =
-          greenShades[Math.floor(Math.random() * greenShades.length)];
+  // const createTriangle = useCallback(
+  //   (x, y) => {
+  //     if (theme === "light") {
+  //       const id = triangleIdRef.current++;
+  //       const size = Math.random() * 5 + 8;
+  //       const rotation = Math.random() * 360;
+  //       const greenShades = ["#013825", "#295E4C", "#9E8F72", "#CEC8B0"];
+  //       const color =
+  //         greenShades[Math.floor(Math.random() * greenShades.length)];
 
-        const newTriangle = {
-          id,
-          x,
-          y,
-          size,
-          rotation,
-          color,
-        };
+  //       const newTriangle = {
+  //         id,
+  //         x,
+  //         y,
+  //         size,
+  //         rotation,
+  //         color,
+  //       };
 
-        setTriangles((prev) => [...prev, newTriangle]);
+  //       setTriangles((prev) => [...prev, newTriangle]);
 
-        setTimeout(() => {
-          setTriangles((prev) => prev.filter((t) => t.id !== id));
-        }, 800);
-      }
-    },
-    [theme]
-  );
+  //       setTimeout(() => {
+  //         setTriangles((prev) => prev.filter((t) => t.id !== id));
+  //       }, 800);
+  //     }
+  //   },
+  //   [theme]
+  // );
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (activeDropdown && theme === "light") {
-        const dropdown = document.querySelector(
-          `[data-dropdown="${activeDropdown}"]`
-        );
-        if (dropdown) {
-          const rect = dropdown.getBoundingClientRect();
-          if (
-            e.clientX >= rect.left &&
-            e.clientX <= rect.right &&
-            e.clientY >= rect.top &&
-            e.clientY <= rect.bottom
-          ) {
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            createTriangle(x, y);
-          }
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleMouseMove = (e) => {
+  //     if (activeDropdown && theme === "light") {
+  //       const dropdown = document.querySelector(
+  //         `[data-dropdown="${activeDropdown}"]`
+  //       );
+  //       if (dropdown) {
+  //         const rect = dropdown.getBoundingClientRect();
+  //         if (
+  //           e.clientX >= rect.left &&
+  //           e.clientX <= rect.right &&
+  //           e.clientY >= rect.top &&
+  //           e.clientY <= rect.bottom
+  //         ) {
+  //           const x = e.clientX - rect.left;
+  //           const y = e.clientY - rect.top;
+  //           createTriangle(x, y);
+  //         }
+  //       }
+  //     }
+  //   };
 
-    let lastTime = 0;
-    const throttleDelay = 80;
+  //   let lastTime = 0;
+  //   const throttleDelay = 80;
 
-    const throttledMouseMove = (e) => {
-      const currentTime = Date.now();
-      if (currentTime - lastTime < throttleDelay) return;
-      lastTime = currentTime;
-      handleMouseMove(e);
-    };
+  //   const throttledMouseMove = (e) => {
+  //     const currentTime = Date.now();
+  //     if (currentTime - lastTime < throttleDelay) return;
+  //     lastTime = currentTime;
+  //     handleMouseMove(e);
+  //   };
 
-    document.addEventListener("mousemove", throttledMouseMove);
+  //   document.addEventListener("mousemove", throttledMouseMove);
 
-    return () => {
-      document.removeEventListener("mousemove", throttledMouseMove);
-      if (dropdownTimeoutRef.current) {
-        clearTimeout(dropdownTimeoutRef.current);
-      }
-    };
-  }, [activeDropdown, createTriangle, theme]);
+  //   return () => {
+  //     document.removeEventListener("mousemove", throttledMouseMove);
+  //     if (dropdownTimeoutRef.current) {
+  //       clearTimeout(dropdownTimeoutRef.current);
+  //     }
+  //   };
+  // }, [activeDropdown, createTriangle, theme]);
 
   useEffect(() => {
     return () => {
@@ -837,7 +837,7 @@ export default function Header({ theme = "light" }) {
               }}
             >
               {/* Triangle animations - only for light theme */}
-              {theme === "light" &&
+              {/* {theme === "light" &&
                 triangles.map((triangle) => (
                   <div
                     key={triangle.id}
@@ -854,7 +854,7 @@ export default function Header({ theme = "light" }) {
                       opacity: 0.7,
                     }}
                   />
-                ))}
+                ))} */}
 
               {/* Row 1: 4 Cards */}
               <div
@@ -1055,7 +1055,7 @@ export default function Header({ theme = "light" }) {
               }}
             >
               {/* Triangle animations */}
-              {theme === "light" &&
+              {/* {theme === "light" &&
                 triangles.map((triangle) => (
                   <div
                     key={triangle.id}
@@ -1072,7 +1072,7 @@ export default function Header({ theme = "light" }) {
                       opacity: 0.7,
                     }}
                   />
-                ))}
+                ))} */}
 
               <div
                 className="grid gap-4 transition-all duration-500 ease-out"
@@ -1174,7 +1174,7 @@ export default function Header({ theme = "light" }) {
               }}
             >
               {/* Triangle animations */}
-              {theme === "light" &&
+              {/* {theme === "light" &&
                 triangles.map((triangle) => (
                   <div
                     key={triangle.id}
@@ -1191,7 +1191,7 @@ export default function Header({ theme = "light" }) {
                       opacity: 0.7,
                     }}
                   />
-                ))}
+                ))} */}
 
               <div
                 className="grid gap-4 transition-all duration-500 ease-out"
