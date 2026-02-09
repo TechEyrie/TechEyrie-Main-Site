@@ -806,8 +806,8 @@ export default function HeroSection({ theme = "light" }) {
                   >
                     <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:opacity-0">
                       <svg
-                        width="14"
-                        height="14"
+                        width="10"
+                        height="10"
                         viewBox="0 0 14 14"
                         aria-hidden="true"
                       >
@@ -1133,7 +1133,7 @@ export default function HeroSection({ theme = "light" }) {
               return (
                 <svg
                   key={index}
-                  className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-300 -my-1"
+                  className="w-6 h-6 md:w-6 md:h-6 transition-colors duration-300 -my-1"
                   viewBox="0 0 24 24"
                   fill="none"
                   style={{
