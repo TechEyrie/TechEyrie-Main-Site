@@ -123,7 +123,7 @@ export default function ServicesSection({ theme = "light" }) {
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Title */}
         <h2
-          className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] mb-8 sm:mb-12 md:mb-16 transition-colors duration-500 ${
+          className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] tracking-[0.01em] mb-8 sm:mb-12 md:mb-16 transition-colors duration-500 ${
             theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
           }`}
         >
@@ -225,7 +225,7 @@ export default function ServicesSection({ theme = "light" }) {
                 {/* Text Content - with padding */}
                 <div className="flex-1 flex flex-col px-5 sm:px-6 md:px-8 pb-5 sm:pb-6 md:pb-8">
                   <h3
-                    className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] mb-2"
+                    className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2"
                     style={{ color: service.textColor }}
                   >
                     {service.title}
@@ -247,17 +247,17 @@ export default function ServicesSection({ theme = "light" }) {
                     {service.description}
                   </p>
 
-                  {/* Button - Increased height and font size */}
+                  {/* Button - same style as RealProblemSection (font, color, style) */}
                   <button
-                    className="mt-auto inline-flex items-center justify-between px-6 py-4 text-[13px] sm:text-[14px] md:text-[15px] font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg w-full"
-                    style={{
-                      backgroundColor: service.buttonBg,
-                      color: service.buttonText,
-                    }}
+                    type="button"
+                    className="mt-auto group inline-flex items-center justify-between w-full rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+                    style={{ backgroundColor: '#12685b' }}
                   >
-                    <span>SUBMIT REQUEST</span>
+                    <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+                      SUBMIT REQUEST
+                    </span>
                     <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"

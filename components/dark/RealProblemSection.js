@@ -304,17 +304,17 @@ export default function RealProblemSection({ theme = "light" }) {
           </div>
 
           {/* Heading left, copy/CTA right */}
-          <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <div ref={titleContainerRef}>
               <h2
-                className={`leading-[1.02] tracking-tight ${
+                className={`leading-[1.02] tracking-[0.01em] ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                 }`}
               >
-                <span className="real-problem-title-line block font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
+                <span className="real-problem-title-line block font-italiana font-light tracking-[0.01em] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
                   Most businesses don&apos;t
                 </span>
-                <span className="real-problem-title-line block font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
+                <span className="real-problem-title-line block font-italiana font-light tracking-[0.01em] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
                   have a tool problem,
                 </span>
                 <span className="real-problem-title-line block font-playfair font-semibold italic text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">

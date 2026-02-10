@@ -851,10 +851,10 @@ export default function HeroSection({ theme = "light" }) {
             </div>
           </div>
 
-          {/* ✅ HERO SECTION CARDS - RESPONSIVE SIZING */}
+          {/* ✅ HERO SECTION CARDS - RESPONSIVE SIZING (extra right padding so last card stays inside) */}
           {isDesktop ? (
             <div
-              className="flex justify-end items-end mb-0 pr-32"
+              className="flex justify-end items-end mb-0 pr-48 lg:pr-56 xl:pr-64 2xl:pr-72"
               style={{ transform: "translateY(-95%)" }}
             >
               <div

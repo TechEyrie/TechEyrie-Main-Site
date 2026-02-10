@@ -34,7 +34,7 @@ export default function AirplaneHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full bg-black flex flex-col justify-between overflow-hidden font-sans"
+      className="relative min-h-screen w-full bg-black flex flex-col justify-between overflow-hidden"
     >
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
@@ -49,10 +49,10 @@ export default function AirplaneHero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
       </div>
 
-      {/* Main Content Area */}
+      {/* Main Content Area (FAQ: font-italiana font-light, 32→40→48→56→64→72→80, #f3f3f3) */}
       <div className="relative z-10 flex-1 flex flex-col justify-start pt-24 md:pt-32 px-6 sm:px-12 md:px-20 lg:px-32">
         <div ref={textRef} className="max-w-3xl">
-          <h1 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] font-light font-italiana text-white leading-[1.1] tracking-tight">
+          <h1 className="font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] text-[#f3f3f3] leading-[1.1] tracking-[0.01em]">
             We manage flights.
             <br />
             You grow your aviation
@@ -64,16 +64,17 @@ export default function AirplaneHero() {
         <div ref={buttonRef} className="mt-8 md:mt-12">
           <Link
             href="/get-started"
-            className="group relative inline-flex items-center justify-center px-10 py-3.5 overflow-hidden font-light font-merriweather text-black bg-white rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl"
+            className="group inline-flex items-center justify-center self-start rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+            style={{ backgroundColor: '#12685b' }}
           >
-            <span className="relative text-sm tracking-widest font-regular uppercase">
+            <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
               Get Started
             </span>
           </Link>
         </div>
       </div>
 
-      {/* Footer Email Section */}
+      {/* Footer Email Section (FAQ body scale: 12→15px, placeholder #a0a0a0) */}
       <div 
         ref={footerRef}
         className="relative z-10 w-full px-6 sm:px-12 md:px-20 lg:px-32 pb-12"
@@ -83,21 +84,27 @@ export default function AirplaneHero() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full bg-transparent border-none text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-merriweather font-light placeholder:text-gray-700 focus:outline-none focus:ring-0 transition-all"
+              className="w-full bg-transparent border-none text-[#f3f3f3] font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] placeholder:text-[#a0a0a0] focus:outline-none focus:ring-0 transition-all"
             />
           </div>
 
-          <button className="group flex items-center gap-3 bg-white/90 hover:bg-white text-black px-8 py-3 font-merriweather rounded-lg transition-all duration-300 shadow-lg">
-            <span className="text-sm font-regular uppercase tracking-wider">Get Started</span>
-            <svg 
-              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
+          <Link
+            href="/get-started"
+            className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+            style={{ backgroundColor: '#12685b' }}
+          >
+            <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+              Get Started
+            </span>
+            <svg
+              className="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -37,16 +37,16 @@ export default function DeepJudgeAnimation({ theme }) {
     cardShadow: "#DCDAD7",
   };
   
-  // Theme Colors
-  const textColor = isDark ? 'text-[#e5e5e5]' : 'text-slate-900';
-  const subtitleColor = isDark ? 'text-neutral-400' : 'text-slate-600';
+  // Theme Colors (aligned with FAQ: #f3f3f3, #a0a0a0, #d0d0d0)
+  const textColor = isDark ? 'text-[#f3f3f3]' : 'text-slate-900';
+  const subtitleColor = isDark ? 'text-[#a0a0a0]' : 'text-slate-600';
   const circleBlobColor = isDark ? 'bg-neutral-800/80 border-neutral-700/50' : '';
   const circleBlobStyle = isDark ? {} : { backgroundColor: `${lightColors.tertiary}B3`, borderColor: `${lightColors.tertiary}66` };
-  const subTextColor = isDark ? 'text-neutral-400' : 'text-slate-600';
+  const subTextColor = isDark ? 'text-[#a0a0a0]' : 'text-slate-600';
   const cardBg = isDark ? 'bg-neutral-900/95 border-neutral-800' : 'bg-white/95 border-gray-200';
   const cardBgStyle = isDark ? {} : { backgroundColor: `${lightColors.background}F2`, borderColor: `${lightColors.tertiary}80` };
-  const cardTitle = isDark ? 'text-white' : 'text-slate-900';
-  const cardDesc = isDark ? 'text-neutral-400' : 'text-slate-500';
+  const cardTitle = isDark ? 'text-[#f3f3f3]' : 'text-slate-900';
+  const cardDesc = isDark ? 'text-[#d0d0d0]' : 'text-slate-500';
   const badgeBg = isDark ? 'bg-neutral-800 text-white' : '';
   const badgeBgStyle = isDark ? {} : { backgroundColor: lightColors.tertiary, color: '#1a1a1a' };
 
@@ -311,15 +311,15 @@ export default function DeepJudgeAnimation({ theme }) {
     : { backgroundColor: lightColors.background };
 
   return (
-    <main ref={containerRef} style={bgStyle} className={`min-h-screen font-helvetica overflow-x-hidden transition-colors duration-500`}>
+    <main ref={containerRef} style={bgStyle} className={`min-h-screen overflow-x-hidden transition-colors duration-500`}>
       <div ref={wrapperRef} className="h-screen w-full relative flex items-center justify-center overflow-hidden">
         
-        {/* === HEADINGS === */}
+        {/* === HEADINGS === (FAQ scale: 32→40→48→56→64→72→80, font-italiana / playfair, #f3f3f3 / #a0a0a0 / #d0d0d0) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[25] px-4 sm:px-6">
           <div className="text-center">
-            {/* STAGE 1: Title - 5xl */}
-            <h1 ref={heading1Ref} className={`text-3xl sm:text-4xl md:text-5xl ${textColor} tracking-tight leading-[1.1] max-w-5xl transition-colors duration-500`}>
-              <span className="font-italiana font-normal">
+            {/* STAGE 1 */}
+            <h1 ref={heading1Ref} className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] ${textColor} tracking-[0.01em] leading-[1.1] max-w-5xl transition-colors duration-500`}>
+              <span className="font-normal">
                 Your business runs on<br />
                 systems and data
               </span>
@@ -331,24 +331,24 @@ export default function DeepJudgeAnimation({ theme }) {
             </h1>
           </div>
 
-          {/* STAGE 2: Heading & Description - 6xl */}
+          {/* STAGE 2 */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <h1 ref={heading2Ref} className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center ${textColor} tracking-tight leading-[1.15] opacity-0 transition-colors duration-500 z-[26] px-4 max-w-4xl`}>
-              <span className="font-italiana font-normal">Design systems that work the<br />way your </span>
+            <h1 ref={heading2Ref} className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] text-center ${textColor} tracking-[0.01em] leading-[1.15] opacity-0 transition-colors duration-500 z-[26] px-4 max-w-4xl`}>
+              <span className="font-normal">Design systems that work the<br />way your </span>
               <span className="font-playfair italic font-semibold">business works</span>
             </h1>
-            <p ref={description2Ref} className={`text-sm sm:text-base md:text-lg ${subtitleColor} opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12 font-merriweather font-normal`}>
+            <p ref={description2Ref} className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] ${subtitleColor} opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12`}>
               Empower your organization with intelligent platforms built around your real workflows not generic tools. Tech Eyrie designs and engineers AI-powered systems, automation, and digital platforms that connect your data, processes, and people into one scalable foundation. No unnecessary complexity. No rigid templates. Just thoughtfully engineered solutions built for clarity, speed, and growth.
             </p>
           </div>
 
-          {/* STAGE 3: New Heading & Description - 6xl */}
+          {/* STAGE 3 */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <h1 ref={heading3Ref} className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center ${textColor} tracking-tight leading-[1.15] opacity-0 transition-colors duration-500 z-[26] px-4 max-w-4xl`}>
-              <span className="font-italiana font-normal">We don't jump straight into </span>
+            <h1 ref={heading3Ref} className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] text-center ${textColor} tracking-[0.01em] leading-[1.15] opacity-0 transition-colors duration-500 z-[26] px-4 max-w-4xl`}>
+              <span className="font-normal">We don't jump straight into </span>
               <span className="font-playfair italic font-semibold">building.</span>
             </h1>
-            <p ref={description3Ref} className={`text-sm sm:text-base md:text-lg ${subtitleColor} opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12 font-merriweather font-normal`}>
+            <p ref={description3Ref} className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] ${subtitleColor} opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12`}>
               Our process is designed to understand your business, architect the right solution, and engineer systems that evolve as you grow — powered by AI, automation, and modern technology.
             </p>
           </div>
@@ -399,8 +399,8 @@ export default function DeepJudgeAnimation({ theme }) {
                 style={{ width: '0px', height: '0px', opacity: 0, borderRadius: '50%', backgroundColor: '#FFFFFF' }} 
             >
                 <div ref={searchFieldRef} className="flex items-center w-full px-3 sm:px-4 md:px-5 lg:px-6 opacity-0">
-                  <Search className="text-slate-500 mr-2 sm:mr-3 md:mr-4 shrink-0 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" size={24} />
-                  <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-400 font-normal truncate">Ask anything about your data...</span>
+                  <Search className="text-[#a0a0a0] mr-2 sm:mr-3 md:mr-4 shrink-0 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" size={24} />
+                  <span className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] text-[#a0a0a0] font-normal truncate">Ask anything about your data...</span>
                 </div>
             </div>
 
@@ -421,8 +421,8 @@ export default function DeepJudgeAnimation({ theme }) {
                         <div className={`w-12 h-12 sm:w-14 sm:h-14 ${badgeBg} rounded-xl flex items-center justify-center font-bold mb-4 sm:mb-5 shrink-0 text-lg sm:text-xl`} style={badgeBgStyle}>
                             {i+1}
                         </div>
-                        <h3 className={`text-2xl sm:text-3xl md:text-3xl font-normal ${cardTitle} mb-3 sm:mb-4 font-italiana`}>{card.title}</h3>
-                        <p className={`${cardDesc} text-sm sm:text-base leading-relaxed font-merriweather`}>{card.desc}</p>
+                        <h3 className={`font-italiana font-light text-[18px] sm:text-[20px] md:text-[22px] ${cardTitle} mb-3 sm:mb-4`}>{card.title}</h3>
+                        <p className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed ${cardDesc}`}>{card.desc}</p>
                     </div>
                 </div>
             ))}

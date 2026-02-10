@@ -58,8 +58,8 @@ export default function TestimonialsSection({ theme }) {
 
   const bgColor = isDark ? 'bg-[#1c1c1c]' : '';
   const bgColorStyle = isDark ? {} : { backgroundColor: lightColors.background };
-  const textColor = isDark ? 'text-[#e5e5e5]' : 'text-slate-900';
-  const headingColor = isDark ? 'text-[#f0f0f0]' : 'text-slate-900';
+  const textColor = isDark ? 'text-[#f3f3f3]' : 'text-slate-900';
+  const headingColor = isDark ? 'text-[#f3f3f3]' : 'text-slate-900';
   const cardBg = isDark ? 'bg-[#e6e6e2]' : '';
   const cardBgStyle = isDark ? {} : { backgroundColor: lightColors.tertiary };
   const cardText = 'text-[#1a1a1a]'; // Cards are always light based, text is dark
@@ -92,32 +92,32 @@ export default function TestimonialsSection({ theme }) {
 
 
   return (
-    <div style={bgStyle} className={`min-h-[150vh] ${textColor} font-sans selection:bg-indigo-500/30 transition-colors duration-500`}>
+    <div style={bgStyle} className={`min-h-[150vh] ${textColor} selection:bg-indigo-500/30 transition-colors duration-500`}>
         
         <div className="relative">
-            {/* Sticky Heading Section */}
+            {/* Sticky Heading Section (FAQ: font-italiana, 32→40→48→56→64→72→80, #f3f3f3) */}
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center -z-0 overflow-hidden px-4">
-                <h1 className={`text- font-italiana text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] font-serif text-center leading-tight tracking-tight ${headingColor} transition-colors duration-500`}>
+                <h1 className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] text-center leading-tight tracking-[0.01em] ${headingColor} transition-colors duration-500`}>
                     What people say<br className="hidden sm:block" />
                     <span className="sm:hidden"> </span>about TechEyerie
                 </h1>
             </div>
 
-            {/* Scrollable Cards Section */}
+            {/* Scrollable Cards Section (FAQ: merriweather / playfair, 12→15px, #d0d0d0 / #a0a0a0) */}
             <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 md:gap-6 pb-16 sm:pb-20 md:pb-24 lg:pb-32 pt-10 sm:pt-[18vh] md:pt-[20vh] px-4 sm:px-6 w-full">
                 {testimonials.map((t) => (
                     <div 
                         key={t.id} 
-                        className={`w-full max-w-full sm:max-w-lg md:max-w-xl ${cardBg} ${cardText} p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-xl sm:rounded-2xl ${cardShadow} transition-all duration-300 hover:scale-[1.01] font-suisse font-light`}
+                        className={`w-full max-w-full sm:max-w-lg md:max-w-xl ${cardBg} ${cardText} p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-xl sm:rounded-2xl ${cardShadow} transition-all duration-300 hover:scale-[1.01] font-merriweather`}
                         style={cardBgStyle}
                     >
                         {/* Company Name */}
                         <div className="mb-4 sm:mb-6 md:mb-8">
-                            <h4 className="text-[10px] sm:text-xs font-light font-merriweather tracking-widest uppercase text-gray-600">{t.company}</h4>
+                            <h4 className="font-merriweather font-semibold text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-widest uppercase text-gray-600">{t.company}</h4>
                         </div>
 
                         {/* Quote */}
-                        <blockquote className="text-base text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12 font- font-playfair">
+                        <blockquote className="font-playfair text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12">
                             "{t.content}"
                         </blockquote>
 
@@ -130,8 +130,8 @@ export default function TestimonialsSection({ theme }) {
                                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover grayscale"
                                 />
                                 <div>
-                                    <h5 className="font-bold text-xs sm:text-sm">{t.name}</h5>
-                                    <p className="text-[10px] sm:text-xs text-gray-600">{t.role}</p>
+                                    <h5 className="font-merriweather font-semibold text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px]">{t.name}</h5>
+                                    <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] text-gray-600">{t.role}</p>
                                 </div>
                             </div>
                             

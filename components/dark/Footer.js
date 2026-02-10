@@ -25,8 +25,8 @@ export default function Footer({ theme = 'light' }) {
   // Theme-based styles
   const footerBg = theme === 'dark' ? '#1A1A1A' : lightColors.background;
   const cardBg = theme === 'dark' ? '#111111' : lightColors.tertiary; // Tertiary on cards / inner band
-  const textColor = theme === 'dark' ? darkColors.text : lightColors.text;
-  const secondaryTextColor = theme === 'dark' ? '#D6D6D6' : '#444444';
+  const textColor = theme === 'dark' ? '#f3f3f3' : lightColors.text;
+  const secondaryTextColor = theme === 'dark' ? '#d0d0d0' : '#444444';
   const borderColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
   const socialBg = theme === 'dark' ? '#181818' : '#F5F5F5';
   
@@ -124,64 +124,26 @@ export default function Footer({ theme = 'light' }) {
       `}</style>
 
       <footer 
-        className="pt-4 sm:pt-5 md:pt-6 pb-6 sm:pb-7 md:pb-8 px-4 sm:px-5 md:px-6 lg:px-8"
+        className="pt-3 sm:pt-4 md:pt-5 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6 lg:px-8"
         style={{ backgroundColor: footerBg, ...bgPatternStyle }}
       >
         {/* Floating footer card */}
         <div 
-          className="mx-auto max-w-[1920px] rounded-xl sm:rounded-2xl md:rounded-3xl shadow-[0_18px_70px_rgba(0,0,0,0.15)] px-4 sm:px-5 md:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 md:pt-10 pb-6 sm:pb-7 md:pb-8"
+          className="mx-auto max-w-[1920px] rounded-lg sm:rounded-xl md:rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.35)] px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 pt-4 sm:pt-5 md:pt-6 pb-4 sm:pb-5 md:pb-6"
           style={{ 
             backgroundColor: cardBg,
             border: `1px solid ${borderColor}`
           }}
         >
           {/* TOP: 7 COLUMNS IN ONE ROW ON DESKTOP */}
-          <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 border-b pb-6 sm:pb-7 md:pb-8" style={{ borderColor }}>
-            {/* Contact Tycho */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
-                Contact Tycho
-              </h3>
-              <div className="space-y-0.5 sm:space-y-1">
-                <a
-                  href="mailto:hello@dapper.agency"
-                  className="footer-link-underline block font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold transition-colors break-all"
-                  style={{ color: secondaryTextColor }}
-                >
-                  hello@dapper.agency
-                </a>
-                <a
-                  href="tel:+31103076707"
-                  className="footer-link-underline block font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold transition-colors"
-                  style={{ color: secondaryTextColor }}
-                >
-                  +31 10 307 6707
-                </a>
-              </div>
-            </div>
-
-            {/* Dapper Rotterdam */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
-                Dapper Rotterdam
-              </h3>
-              <p 
-                className="font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold leading-relaxed"
-                style={{ color: secondaryTextColor }}
-              >
-                Weena 70, 13th floor
-                <br />
-                3012 CM Rotterdam
-              </p>
-            </div>
-
+          <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 border-b pb-4 sm:pb-5 md:pb-6" style={{ borderColor }}>
             {/* Dapper Lisbon */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
                 Dapper Lisbon
               </h3>
               <p 
-                className="font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold leading-relaxed"
+                className="font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed"
                 style={{ color: secondaryTextColor }}
               >
                 Av. Duque de Loulé 12,
@@ -190,9 +152,47 @@ export default function Footer({ theme = 'light' }) {
               </p>
             </div>
 
+            {/* Dapper Rotterdam */}
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
+                Dapper Rotterdam
+              </h3>
+              <p 
+                className="font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed"
+                style={{ color: secondaryTextColor }}
+              >
+                Weena 70, 13th floor
+                <br />
+                3012 CM Rotterdam
+              </p>
+            </div>
+
+            {/* Contact Tycho */}
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
+                Contact Tycho
+              </h3>
+              <div className="space-y-0.5 sm:space-y-1">
+                <a
+                  href="mailto:hello@dapper.agency"
+                  className="footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors break-all"
+                  style={{ color: secondaryTextColor }}
+                >
+                  hello@dapper.agency
+                </a>
+                <a
+                  href="tel:+31103076707"
+                  className="footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
+                  style={{ color: secondaryTextColor }}
+                >
+                  +31 10 307 6707
+                </a>
+              </div>
+            </div>
+
             {/* Services */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
                 Services
               </h3>
               <nav className="space-y-0.5 sm:space-y-1">
@@ -218,8 +218,8 @@ export default function Footer({ theme = 'light' }) {
             </div>
 
             {/* Expertise */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
                 Expertise
               </h3>
               <nav className="space-y-0.5 sm:space-y-1">
@@ -236,8 +236,8 @@ export default function Footer({ theme = 'light' }) {
             </div>
 
             {/* Resources */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
                 Resources
               </h3>
               <nav className="space-y-0.5 sm:space-y-1">
@@ -248,8 +248,8 @@ export default function Footer({ theme = 'light' }) {
             </div>
 
             {/* Company */}
-            <div className="space-y-1.5 sm:space-y-2">
-              <h3 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}>
                 Company
               </h3>
               <nav className="space-y-0.5 sm:space-y-1">
@@ -261,10 +261,10 @@ export default function Footer({ theme = 'light' }) {
           </div>
 
           {/* LOGO BAND */}
-          <div className="flex items-end border-b py-4 sm:py-5 md:py-6" style={{ borderColor }}>
+          <div className="flex items-end border-b py-3 sm:py-4 md:py-4" style={{ borderColor }}>
             <div className="flex items-end gap-4 sm:gap-5 md:gap-6">
               {/* Logo */}
-              <div className="relative h-[80px] w-auto sm:h-[104px] md:h-[128px]">
+              <div className="relative h-[48px] w-auto sm:h-[60px] md:h-[72px]">
                 <Image
                   src="/logo/techeyrie_logo.png"
                   alt="TechEyrie Logo"
@@ -278,25 +278,25 @@ export default function Footer({ theme = 'light' }) {
           </div>
 
           {/* BOTTOM BAR */}
-          <div className="flex flex-col gap-3 sm:gap-4 py-3 sm:py-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2 sm:gap-3 py-2 sm:py-3 md:flex-row md:items-center md:justify-between">
             {/* Left: copyright + legal */}
-            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1.5 sm:gap-y-2">
+            <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 sm:gap-y-1.5">
               <span 
-                className="font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-semibold"
+                className="font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold whitespace-nowrap"
                 style={{ color: secondaryTextColor }}
               >
                 © 2025 Dapper
               </span>
               <Link
                 href="/privacy-policy"
-                className="footer-link-underline font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-semibold transition-colors"
+                className="footer-link-underline font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
                 style={{ color: secondaryTextColor }}
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms-and-conditions"
-                className="footer-link-underline font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-semibold transition-colors"
+                className="footer-link-underline font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
                 style={{ color: secondaryTextColor }}
               >
                 Terms and Conditions
@@ -305,7 +305,7 @@ export default function Footer({ theme = 'light' }) {
 
             {/* Middle: credits */}
             <div 
-              className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1.5 sm:gap-y-2 text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-[Helvetica Now Text,Arial,sans-serif] font-semibold"
+              className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 sm:gap-y-1.5 text-[11px] sm:text-[11px] md:text-[12px] font-merriweather font-semibold whitespace-nowrap"
               style={{ color: secondaryTextColor }}
             >
               <span>Design by Nasick</span>
@@ -335,13 +335,12 @@ export default function Footer({ theme = 'light' }) {
 }
 
 function FooterLink({ href, children, theme = 'light' }) {
-  // Match the main footer body text colours for consistency
-  const textColor = theme === 'dark' ? '#D6D6D6' : '#444444';
+  const textColor = theme === 'dark' ? '#d0d0d0' : '#444444';
   
   return (
     <Link
       href={href}
-      className="footer-link-underline block font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold transition-colors"
+      className="footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
       style={{ color: textColor }}
     >
       {children}

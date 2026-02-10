@@ -272,7 +272,7 @@ export default function FAQSection({ theme = 'light' }) {
         {/* Heading */}
         <h2 
           ref={titleRef}
-          className={`mx-auto mb-6 sm:mb-8 md:mb-10 max-w-5xl text-center font-italiana leading-[1.08] tracking-[-0.02em] ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}
+          className={`mx-auto mb-6 sm:mb-8 md:mb-10 max-w-5xl text-center font-italiana leading-[1.08] tracking-[0.01em] ${theme === 'dark' ? 'text-[#f3f3f3]' : 'text-[#111111]'}`}
         >
           <span className="faq-title-line block text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] font-light">
             Frequently Asked Questions
@@ -280,7 +280,7 @@ export default function FAQSection({ theme = 'light' }) {
         </h2>
 
         {/* Subheading */}
-        <p className={`mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 max-w-3xl text-center font-merriweather text-[13px] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-regular leading-relaxed tracking-tight ${theme === 'dark' ? 'text-[#a0a0a0]' : 'text-[#444444]'}`}>
+        <p className={`mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 max-w-3xl text-center font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-regular leading-relaxed tracking-tight ${theme === 'dark' ? 'text-[#a0a0a0]' : 'text-[#444444]'}`}>
           Have questions about our services? We've got answers. Browse through our most commonly asked questions below.
         </p>
 

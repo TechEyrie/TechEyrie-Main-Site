@@ -76,47 +76,28 @@ export default function AirvoirSection({ theme = "light" }) {
         },
       });
 
+      // One continuous eagle move: extreme left → extreme right (no stop at center)
+      const eagleDuration = 2.8;
       mainTl
-        // Phase 1: Eagle moves from left to center (0% - 33%)
-        .to(eagle, {
-          x: 0,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          ease: "power2.inOut",
-        }, 0)
-        .to(firstHeading, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.out",
-        }, 0.3)
-        
-        // Phase 2: First heading fades out, second heading fades in (33% - 66%)
-        .to(firstHeading, {
-          opacity: 0,
-          duration: 0.4,
-          ease: "power2.in",
-        }, 1.3)
-        .to(secondHeading, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.out",
-        }, 1.5)
-        
-        // Phase 3: Eagle moves from center to right and fades out (66% - 100%)
         .to(eagle, {
           x: () => window.innerWidth / 2 + 500,
           y: -50,
           scale: 1.2,
           rotation: 15,
-          duration: 1,
-          ease: "power2.inOut",
-        }, 2)
-        .to(eagle, {
+          duration: eagleDuration,
+          ease: "none",
+        }, 0)
+        // Content swap as eagle passes center (~halfway through scroll)
+        .to(firstHeading, {
           opacity: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.in",
-        }, 2.7);
+        }, eagleDuration * 0.4)
+        .to(secondHeading, {
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        }, eagleDuration * 0.45);
     }, section);
 
     return () => ctx.revert();
@@ -138,10 +119,10 @@ export default function AirvoirSection({ theme = "light" }) {
       {/* Container for all content */}
       <div className="relative z-10 w-full h-screen flex items-center justify-center">
         
-        {/* Eagle Image */}
+        {/* Eagle Image - on top of all section content */}
         <div 
           ref={eagleRef} 
-          className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] z-20"
+          className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] z-[100]"
         >
           <Image
             src="/eagle-pic-right2.png"
@@ -169,7 +150,7 @@ export default function AirvoirSection({ theme = "light" }) {
             </div>
 
             <h1
-              className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px] 3xl:text-[90px] leading-[0.95] tracking-tight transition-colors duration-500 mb-8 sm:mb-12 ${
+              className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 mb-8 sm:mb-12 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
@@ -177,14 +158,12 @@ export default function AirvoirSection({ theme = "light" }) {
             </h1>
 
             <button
-              className={`inline-flex items-center justify-center gap-2 px-6 py-3 text-[14px] font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg ${
-                theme === "dark"
-                  ? "bg-[#f3f3f3] text-[#111111] hover:bg-[#e0e0e0]"
-                  : "bg-[#111111] text-[#f3f3f3] hover:bg-[#2b2b2b]"
-              }`}
+              type="button"
+              className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+              style={{ backgroundColor: '#12685b' }}
             >
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -196,7 +175,9 @@ export default function AirvoirSection({ theme = "light" }) {
                   d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                 />
               </svg>
-              Book your flight
+              <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+                Book your flight
+              </span>
             </button>
           </div>
         </div>
@@ -208,7 +189,7 @@ export default function AirvoirSection({ theme = "light" }) {
         >
           <div className="text-center max-w-5xl">
             <h2
-              className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] leading-[1.2] tracking-tight transition-colors duration-500 mb-6 sm:mb-8 md:mb-10 ${
+              className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[1.2] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 md:mb-10 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
@@ -216,14 +197,12 @@ export default function AirvoirSection({ theme = "light" }) {
             </h2>
 
             <button
-              className={`inline-flex items-center justify-center gap-2 px-6 py-3 text-[14px] font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg ${
-                theme === "dark"
-                  ? "bg-[#f3f3f3] text-[#111111] hover:bg-[#e0e0e0]"
-                  : "bg-[#111111] text-[#f3f3f3] hover:bg-[#2b2b2b]"
-              }`}
+              type="button"
+              className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+              style={{ backgroundColor: '#12685b' }}
             >
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -235,7 +214,9 @@ export default function AirvoirSection({ theme = "light" }) {
                   d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                 />
               </svg>
-              Book a flight
+              <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+                Book a flight
+              </span>
             </button>
           </div>
         </div>

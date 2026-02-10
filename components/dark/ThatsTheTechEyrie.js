@@ -423,7 +423,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
                 <div ref={techEyrieTextRef} className="relative">
                   <h2
-                    className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-tight transition-colors duration-500 ${
+                    className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 ${
                       theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                     }`}
                   >
@@ -442,11 +442,11 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           className="lg:absolute lg:inset-0 lg:w-full lg:h-full lg:opacity-0"
         >
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
-            <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+              <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
               <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                <h2 className="leading-[1.05] tracking-tight">
-                  <div
-                    className={`build-title-line font-italiana font-light text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
+                <h2 className="leading-[1.05] tracking-[0.01em]">
+                    <div
+                      className={`build-title-line font-italiana font-light tracking-[0.01em] text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
                       theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                     }`}
                   >
@@ -475,7 +475,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                 <div></div>
                 <div className="space-y-6 max-w-[600px]">
                   <p
-                    className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
+                    className={`build-description font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
                       theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                     }`}
                   >
@@ -483,7 +483,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                   </p>
 
                   <p
-                    className={`build-description font-merriweather font-light text-[12px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
+                    className={`build-description font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
                       theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                     }`}
                   >
@@ -493,9 +493,12 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
                   <div className="build-cta pt-2">
                     <Link
                       href="/about"
-                      className="inline-flex items-center justify-center px-5 py-2.5 text-[12px] font-light text-white bg-[#2D6A5A] hover:bg-[#245548] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="group inline-flex items-center justify-center self-start rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-2 sm:mt-3"
+                      style={{ backgroundColor: '#12685b' }}
                     >
-                      Learn More About Us
+                      <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+                        Learn More About Us
+                      </span>
                     </Link>
                   </div>
                 </div>

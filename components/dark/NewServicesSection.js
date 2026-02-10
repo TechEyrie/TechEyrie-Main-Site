@@ -627,13 +627,13 @@ export default function NewServicesSection({ theme = "light" }) {
           <div className="grid lg:grid-cols-[25%_1fr] gap-8 lg:gap-40 mb-10 sm:mb-12 md:mb-14">
             <div className="hidden lg:block" />
             <div ref={titleContainerRef} className="mt-16 sm:-mt-0 md:mt-4 lg:-mt-16 xl:-mt-16 2xl:-mt-16">
-              <h2 className="leading-[1.02] tracking-tight">
+              <h2 className="leading-[1.02] tracking-[0.01em]">
                 <div
                   className={`new-services-title-line text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] 3xl:text-[90px] text-transition ${
                     theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                   }`}
                 >
-                  <span className="font-italiana font-light">Business Systems Built</span>
+                  <span className="font-italiana font-light tracking-[0.01em]">Business Systems Built</span>
                 </div>
                 <div
                   className={`new-services-title-line text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] 3xl:text-[90px] text-transition ${
@@ -641,7 +641,7 @@ export default function NewServicesSection({ theme = "light" }) {
                   }`}
                 >
                   <span className="font-merriweather font-light">for </span>
-                  <span className="font-playfair italic font-semibold tracking-[0.03em]">
+                  <span className="font-playfair italic font-semibold tracking-[0.01em]">
                     Clarity
                   </span>
                 </div>
