@@ -419,6 +419,7 @@ export default function HeroSection({ theme = "light" }) {
 
               // Track scroll progress for pagination dots
               setScrollProgress(progress);
+
               const heroContainerRect =
                 heroCardsContainerRef.current.getBoundingClientRect();
               const placeholderRect = placeholder.getBoundingClientRect();
@@ -439,11 +440,11 @@ export default function HeroSection({ theme = "light" }) {
               const currentScale =
                 startScale + (targetScale - startScale) * progress;
 
-              // ✅ Calculate scaled dimensions for proper centering
+              // Calculate scaled dimensions for proper centering
               const scaledWidth = heroWidth * currentScale;
               const scaledHeight = heroHeight * currentScale;
 
-              // ✅ Center the card within the placeholder
+              // Center the card within the placeholder
               const offsetX = (targetWidth - scaledWidth) / 2;
               const offsetY = (targetHeight - scaledHeight) / 2;
 
@@ -453,8 +454,12 @@ export default function HeroSection({ theme = "light" }) {
               const deltaX = targetX - heroStartX;
               const deltaY = targetY - heroStartY;
 
+              // Small horizontal fine‑tune so the hero card
+              // lines up perfectly over the portfolio card
+              const horizontalNudge = 0; // tweak (e.g. 2 or -2) if needed
+
               gsap.set(heroCard, {
-                x: stackOffset + deltaX * progress,
+                x: stackOffset + deltaX * progress + horizontalNudge * progress,
                 y: deltaY * progress,
                 scale: currentScale,
               });
@@ -1227,9 +1232,19 @@ export default function HeroSection({ theme = "light" }) {
       // Calculate how many 100px steps we are below 1800px
       const steps = Math.max(0, Math.floor((baseWidth - width) / 100));
       
-      // Decrease by 2px for every 100px less
-      const offsetX = Math.max(0, baseOffsetX - (steps * 2));
+      // Decrease a bit more aggressively per 100px
+      // so that as the viewport gets narrower and the
+      // hero cards visually drift right, the target
+      // placeholders are nudged left to compensate.
+      let offsetX = Math.max(0, baseOffsetX - steps * 3);
       const offsetY = Math.max(0, baseOffsetY - (steps * 3)); // Y decreases by 3px per step
+
+      // Fine‑tune band: between ~laptop widths (just under 1250px)
+      // the card was drifting slightly left, so we nudge the
+      // placeholder a few pixels to the right only in that range.
+      if (width >= 1024 && width <= 1250) {
+        offsetX += 4;
+      }
       
       return `translate(${offsetX}px, ${offsetY}px)`;
     })(),

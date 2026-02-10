@@ -67,7 +67,7 @@ export default function RealProblemSection({ theme = "light" }) {
           .split("")
           .map(
             (char, i) =>
-              `<span class="char" style="color: ${originalColor}; display: inline-block; position: relative;" data-index="${i}">${
+              `<span class="char" style="display: inline-block; position: relative;" data-index="${i}">${
                 char === " " ? "&nbsp;" : char
               }</span>`
           )
@@ -117,6 +117,17 @@ export default function RealProblemSection({ theme = "light" }) {
             },
             0
           );
+      });
+    });
+
+    // When the whole electrical animation finishes, clear inline color
+    // so the title color can follow the current theme classes again.
+    tl.eventCallback("onComplete", () => {
+      const allChars = document.querySelectorAll(
+        ".real-problem-title-line .char"
+      );
+      allChars.forEach((char) => {
+        char.style.color = "";
       });
     });
   }, [theme]);

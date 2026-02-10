@@ -58,7 +58,9 @@ export default function AirvoirSection({ theme = "light" }) {
         opacity: 1,
       });
       
-      gsap.set(firstHeading, { opacity: 0 });
+      // Keep the first heading visible as soon as the
+      // user reaches this section to avoid an empty gap.
+      gsap.set(firstHeading, { opacity: 1 });
       gsap.set(secondHeading, { opacity: 0 });
 
       // Main timeline with ScrollTrigger
@@ -111,11 +113,6 @@ export default function AirvoirSection({ theme = "light" }) {
           ease: "power2.inOut",
         }, 2)
         .to(eagle, {
-          opacity: 0,
-          duration: 0.3,
-          ease: "power2.in",
-        }, 2.7)
-        .to(secondHeading, {
           opacity: 0,
           duration: 0.3,
           ease: "power2.in",

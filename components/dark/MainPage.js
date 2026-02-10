@@ -42,7 +42,7 @@ const MainPage = () => {
     // Initialize Lenis
     const lenis = new Lenis({
       // CONTROL SPEED HERE:
-      duration: 3.5, // Higher = Slower/Smoother (e.g., 2.0). Lower = Faster/Snappier (e.g., 0.8). Default: 1.2
+      duration: 3.5, // Keep the original slow, cinematic feel
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -109,8 +109,9 @@ const MainPage = () => {
        
         <DeepJudgeAnimation theme={theme} />
           <ThatsTheTechEyrie theme={theme} />
+          {/* Keep sections in normal flow to avoid ScrollTrigger/Lenis jumps */}
           <AirvoirSection theme={theme} />
-                  <TestimonialsSection theme={theme} />
+          <TestimonialsSection theme={theme} />
                   <CardsServicesSection theme={theme} />
                   <FAQSection theme={theme} />
                   <BlogsSection theme={theme} />

@@ -42,8 +42,10 @@ export default function ServicesSection({ theme = "light" }) {
       subtitle: "",
       description: "Development of content strategies, writing sales texts and content promotion.",
       tags: [],
-      bgColor: theme === "dark" ? "#2a2a2a" : "#E5E5E5",
-      textColor: "#111111",
+      // In dark theme, match the first card's background
+      bgColor: theme === "dark" ? "#1a1a1a" : "#E5E5E5",
+      // Make title/description light in dark theme
+      textColor: theme === "dark" ? "#f3f3f3" : "#111111",
       buttonBg: "#111111",
       buttonText: "#f3f3f3",
     },
