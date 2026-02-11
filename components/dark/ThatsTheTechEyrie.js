@@ -128,6 +128,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
 
       // Calculate the gap between T and E to bring them together
       const getGapToClose = () => {
+        if (!tChar || !eChar) return { tMove: 0, eMove: 0 };
         const tRect = tChar.getBoundingClientRect();
         const eRect = eChar.getBoundingClientRect();
         const currentGap = eRect.left - tRect.right;
@@ -148,42 +149,38 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           pin: true,
           anticipatePin: 1,
           onLeave: () => {
-            // ✅ Convert to absolute AFTER pin ends
+            if (!section || !secondPart || !teContainer) return;
             const targetTE = secondPart.querySelector(".target-te-position");
-            if (targetTE) {
-              const targetRect = targetTE.getBoundingClientRect();
-              const sectionRect = section.getBoundingClientRect();
+            if (!targetTE) return;
+            const targetRect = targetTE.getBoundingClientRect();
+            const sectionRect = section.getBoundingClientRect();
 
-              // Calculate position relative to section
-              const finalTop = targetRect.top - sectionRect.top + targetRect.height / 2;
-              const finalLeft = targetRect.left - sectionRect.left + targetRect.width / 2;
+            const finalTop = targetRect.top - sectionRect.top + targetRect.height / 2;
+            const finalLeft = targetRect.left - sectionRect.left + targetRect.width / 2;
 
-              // Get current scale from transform
-              const currentTransform = window.getComputedStyle(teContainer).transform;
-              let currentScale = 1;
-              if (currentTransform && currentTransform !== 'none') {
-                const matrix = currentTransform.match(/matrix\((.+)\)/);
-                if (matrix) {
-                  const values = matrix[1].split(', ');
-                  currentScale = parseFloat(values[0]);
-                }
+            const currentTransform = window.getComputedStyle(teContainer).transform;
+            let currentScale = 1;
+            if (currentTransform && currentTransform !== 'none') {
+              const matrix = currentTransform.match(/matrix\((.+)\)/);
+              if (matrix) {
+                const values = matrix[1].split(', ');
+                currentScale = parseFloat(values[0]);
               }
-
-              gsap.set(teContainer, {
-                position: "absolute",
-                top: finalTop,
-                left: finalLeft,
-                xPercent: -50,
-                yPercent: -50,
-                transform: `translate(-50%, -50%) scale(${currentScale})`,
-              });
-
-              // Move to section so it scrolls with content
-              section.appendChild(teContainer);
             }
+
+            gsap.set(teContainer, {
+              position: "absolute",
+              top: finalTop,
+              left: finalLeft,
+              xPercent: -50,
+              yPercent: -50,
+              transform: `translate(-50%, -50%) scale(${currentScale})`,
+            });
+
+            section.appendChild(teContainer);
           },
           onEnterBack: () => {
-            // ✅ Convert back to fixed when scrolling back up
+            if (!section || !secondPart || !teContainer) return;
             const targetTE = secondPart.querySelector(".target-te-position");
             if (targetTE && teContainer.parentNode === section) {
               const targetRect = targetTE.getBoundingClientRect();
@@ -237,26 +234,40 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         // Phase 3: Pause with combined TE (0.35 - 0.45)
         .to({}, { duration: 0.1 }, 0.35)
 
-        // Phase 4: Switch to floating container (0.45 - 0.5)
+        // Phase 4: Switch to floating container at EXACT position (0.45 - 0.5)
+        .set(teContainer, {
+          opacity: 1,
+          top: () => {
+            const tRect = tChar.getBoundingClientRect();
+            return tRect.top + tRect.height / 2;
+          },
+          left: () => {
+            const tRect = tChar.getBoundingClientRect();
+            const eRect = eChar.getBoundingClientRect();
+            return (tRect.left + eRect.right) / 2;
+          },
+          xPercent: -50,
+          yPercent: -50,
+        }, 0.45)
         .set([tChar, eChar], { opacity: 0 }, 0.45)
-        .set(teContainer, { opacity: 1 }, 0.45)
 
-        // ✅ UPDATED: Phase 5 - Delay second section fade in until TE starts moving (0.6 - 0.75)
+        // Phase 5: Delay second section fade in until TE starts moving (0.6 - 0.75)
         .to(secondPart, {
           opacity: 1,
           duration: 0.15,
           ease: "power2.out",
-        }, 0.8)  // Changed from 0.5 to 0.6 - starts right before TE moves
+        }, 0.8)
         .to(firstPart, {
           opacity: 0,
           duration: 0.15,
           ease: "power2.in",
-        }, 0.8)  // Changed from 0.5 to 0.6 - synced with second section
+        }, 0.8)
 
         // Phase 6: Move TE to final position (0.65 - 0.85)
         .to(teContainer, {
           top: "50%",
           left: () => {
+            if (!secondPart) return "50%";
             const targetTE = secondPart.querySelector(".target-te-position");
             if (!targetTE) return "50%";
             const targetRect = targetTE.getBoundingClientRect();
@@ -265,6 +276,7 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           xPercent: -50,
           yPercent: -155,
           scale: () => {
+            if (!secondPart || !teContainer) return 1;
             const targetTE = secondPart.querySelector(".target-te-position");
             if (!targetTE) return 1;
             const currentSize = parseFloat(window.getComputedStyle(teContainer).fontSize);
@@ -274,6 +286,18 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           duration: 0.2,
           ease: "power2.inOut",
         }, 0.65)
+
+        // Phase 6b: After TE lands, show the real "TE" text in exact same position and hide floating container
+        .to(".target-te-position", {
+          opacity: 1,
+          duration: 0.12,
+          ease: "power2.out",
+        }, 0.84)
+        .to(teContainer, {
+          opacity: 0,
+          duration: 0.12,
+          ease: "power2.in",
+        }, 0.84)
 
         // Phase 7: Fade in second section content (0.85 - 0.95)
         .to(".build-title-line", {
@@ -442,11 +466,11 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
           className="lg:absolute lg:inset-0 lg:w-full lg:h-full lg:opacity-0"
         >
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
-              <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+            <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
               <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
                 <h2 className="leading-[1.05] tracking-[0.01em]">
-                    <div
-                      className={`build-title-line font-italiana font-light tracking-[0.01em] text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
+                  <div
+                    className={`build-title-line font-italiana font-light tracking-[0.01em] text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
                       theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                     }`}
                   >

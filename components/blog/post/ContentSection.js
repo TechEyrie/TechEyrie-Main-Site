@@ -264,10 +264,13 @@ export default function BlogPostContent({ theme = 'light', post }) {
 
   const scrollToSection = (index) => {
     const heading = document.querySelector(`[data-index="${index}"]`);
-    if (heading) {
+    if (!heading) return;
+    try {
       const offset = 120;
       const top = heading.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
+    } catch (_) {
+      // Guard: element may be detached during navigation
     }
   };
 

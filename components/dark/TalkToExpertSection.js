@@ -90,11 +90,13 @@ export default function TalkToExpertSection({ theme = 'light' }) {
     const throttleDelay = 100;
 
     const handleMouseMove = (e) => {
+      const currentSection = sectionRef.current;
+      if (!currentSection) return;
       const currentTime = Date.now();
       if (currentTime - lastTime < throttleDelay) return;
       lastTime = currentTime;
 
-      const rect = section.getBoundingClientRect();
+      const rect = currentSection.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 

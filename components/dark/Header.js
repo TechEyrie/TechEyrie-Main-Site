@@ -332,11 +332,13 @@ export default function Header({ theme = "light" }) {
     }
 
     const handleGlobalMouseMove = (e) => {
-      if (!faceContainer || !faceIcon) return;
-      
-      const rect = faceIcon.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+      try {
+        const fc = faceContainerRef.current;
+        const fi = faceIconRef.current;
+        if (!fc || !fi) return;
+        const rect = fi.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
       
       const deltaX = e.clientX - centerX;
       const deltaY = e.clientY - centerY;
@@ -344,7 +346,7 @@ export default function Header({ theme = "light" }) {
       let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
       const limitedAngle = Math.max(-25, Math.min(25, angle));
       
-      gsap.to(faceContainer, {
+      gsap.to(fc, {
         rotation: limitedAngle,
         duration: 0.4,
         ease: "power2.out",
@@ -363,6 +365,9 @@ export default function Header({ theme = "light" }) {
           duration: 0.3,
           ease: "power2.out",
         });
+      }
+      } catch (_) {
+        // Guard: refs may be null during navigation/unmount
       }
     };
 

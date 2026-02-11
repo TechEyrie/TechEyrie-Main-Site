@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef,useEffect, useLayoutEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -10,38 +10,46 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const MAX_BLOGS = 3;
+const FALLBACK_POSTS = [
+  { id: 1, title: "July 2025 TikTok Trends: 20 Viral Moments You Need to Know", tags: ["For Creators", "Trends"], date: "06.23.25", image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "July 2025 TikTok Trends thumbnail", slug: "blog-1" },
+  { id: 2, title: "Viral Product Drop Strategy: FOMO, Limited Editions & TikTok", tags: ["POV"], date: "07.03.25", image: "https://www.datocms-assets.com/151374/1751487740-ne_blog_thumbnail_product-drop_v1-0-1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "Viral Product Drop Strategy thumbnail", slug: "blog-2" },
+  { id: 3, title: "TikTok Trends for DTC Brands in 2025: What's Driving Growth", tags: ["Trends", "Content & Creative"], date: "06.25.25", image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "TikTok Trends for DTC Brands thumbnail", slug: "blog-3" },
+];
+
 const BlogsSection = ({ theme = "light" }) => {
   const titleRef = useRef(null);
   const sectionRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false); // ✅ Track if animation has played
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [blogPosts, setBlogPosts] = useState(FALLBACK_POSTS);
+  const [loading, setLoading] = useState(true);
 
-  // Blog posts data with images
-  const blogPosts = [
-    {
-      id: 1,
-      title: "July 2025 TikTok Trends: 20 Viral Moments You Need to Know",
-      tags: ["For Creators", "Trends"],
-      date: "06.23.25",
-      image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600",
-      alt: "July 2025 TikTok Trends thumbnail"
-    },
-    {
-      id: 2,
-      title: "Viral Product Drop Strategy: FOMO, Limited Editions & TikTok",
-      tags: ["POV"],
-      date: "07.03.25",
-      image: "https://www.datocms-assets.com/151374/1751487740-ne_blog_thumbnail_product-drop_v1-0-1.png?auto=format&fit=max&h=600&q=85&w=600",
-      alt: "Viral Product Drop Strategy thumbnail"
-    },
-    {
-      id: 3,
-      title: "TikTok Trends for DTC Brands in 2025: What's Driving Growth",
-      tags: ["Trends", "Content & Creative"],
-      date: "06.25.25",
-      image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600",
-      alt: "TikTok Trends for DTC Brands thumbnail"
-    }
-  ];
+  useEffect(() => {
+    const loadPosts = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch('/api/blog-posts');
+        const wpPosts = res.ok ? await res.json() : null;
+        if (Array.isArray(wpPosts) && wpPosts.length > 0) {
+          const mapped = wpPosts.slice(0, MAX_BLOGS).map((post) => ({
+            id: post.id,
+            title: post.title || '',
+            tags: post.category ? [post.category] : [],
+            date: post.date || '',
+            image: post.image || '',
+            alt: post.title || 'Blog post',
+            slug: post.slug || '',
+          }));
+          setBlogPosts(mapped);
+        }
+      } catch (e) {
+        console.error('Error loading blog posts for dark page:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPosts();
+  }, []);
 
   // ✅ Electrical animation function - character-by-character effect
   const triggerElectricalAnimation = useCallback(() => {
@@ -307,29 +315,32 @@ const BlogsSection = ({ theme = "light" }) => {
           </div>
         </div>
 
-        {/* Blog Posts Grid */}
+        {/* Blog Posts Grid - fetched from API (max 3), same styling as blog page */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 mb-10 sm:mb-12 md:mb-14 lg:mb-16">
-          {blogPosts.map((post, index) => (
-            <article 
-              key={post.id}
-              className="group cursor-pointer"
-            >
-              {/* Blog Post Image */}
-              <div className="w-full aspect-[4/3] bg-gray-200 rounded-lg sm:rounded-xl md:rounded-2xl mb-4 sm:mb-5 md:mb-6 overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.alt}
-                  width={600}
-                  height={450}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  priority={index === 0}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
+          {loading ? (
+            <div className="col-span-full font-merriweather text-[12px] sm:text-[13px] md:text-[14px] text-center py-8" style={{ color: theme === 'dark' ? '#a0a0a0' : '#444' }}>
+              Loading…
+            </div>
+          ) : (
+          blogPosts.map((post, index) => (
+            <Link key={post.id} href={post.slug ? `/blog/${post.slug}` : '/blog'} className="block group">
+              <article className="group cursor-pointer">
+                {/* Blog Post Image */}
+                <div className="w-full aspect-[4/3] bg-gray-200 rounded-lg sm:rounded-xl md:rounded-2xl mb-4 sm:mb-5 md:mb-6 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.alt}
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    priority={index === 0}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
 
-              {/* Tags and Date */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                {post.tags.map((tag, tagIndex) => (
+                {/* Tags and Date */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  {(post.tags || []).map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
                     className={`inline-flex items-center px-3 py-1.5 rounded-full border text-[11px] sm:text-[12px] font-medium leading-none transition-colors duration-300 ${
@@ -376,8 +387,9 @@ const BlogsSection = ({ theme = "light" }) => {
                   {post.title}
                 </span>
               </h3>
-            </article>
-          ))}
+              </article>
+            </Link>
+          )))}
         </div>
 
         {/* View All Button - same style as RealProblemSection */}

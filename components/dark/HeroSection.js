@@ -164,10 +164,11 @@ export default function HeroSection({ theme = "light" }) {
   // --- Track scroll position ---
   useEffect(() => {
     const handleScroll = () => {
-      if (heroSectionRef.current) {
-        const heroBottom =
-          heroSectionRef.current.getBoundingClientRect().bottom;
-        const heroTop = heroSectionRef.current.getBoundingClientRect().top;
+      const hero = heroSectionRef.current;
+      if (!hero) return;
+      try {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        const heroTop = hero.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
 
         const inHero = heroBottom > windowHeight * 0.3;
@@ -175,7 +176,7 @@ export default function HeroSection({ theme = "light" }) {
 
         const scrollingDown = heroTop < 0;
         setIsScrolling(scrollingDown);
-      }
+      } catch (_) {}
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -420,8 +421,9 @@ export default function HeroSection({ theme = "light" }) {
               // Track scroll progress for pagination dots
               setScrollProgress(progress);
 
-              const heroContainerRect =
-                heroCardsContainerRef.current.getBoundingClientRect();
+              const heroContainer = heroCardsContainerRef.current;
+              if (!heroContainer || !placeholder) return;
+              const heroContainerRect = heroContainer.getBoundingClientRect();
               const placeholderRect = placeholder.getBoundingClientRect();
 
               const stackOffset = index * 100;
@@ -595,7 +597,9 @@ export default function HeroSection({ theme = "light" }) {
     if (!activeCardElement) return;
 
     autoTriangleIntervalRef.current = setInterval(() => {
-      const cardRect = activeCardElement.getBoundingClientRect();
+      const card = heroCardsRef.current?.[activeCard];
+      if (!card) return;
+      const cardRect = card.getBoundingClientRect();
 
       if (cardRect.width > 0 && cardRect.height > 0) {
         const randomX = Math.random() * cardRect.width;
@@ -627,7 +631,9 @@ export default function HeroSection({ theme = "light" }) {
       if (!cardElement) return;
 
       portfolioCardTriangleIntervals.current[hoveredPortfolioCard] = setInterval(() => {
-        const cardRect = cardElement.getBoundingClientRect();
+        const card = heroCardsRef.current?.[hoveredPortfolioCard];
+        if (!card) return;
+        const cardRect = card.getBoundingClientRect();
 
         if (cardRect.width > 0 && cardRect.height > 0) {
           const randomX = Math.random() * cardRect.width;
