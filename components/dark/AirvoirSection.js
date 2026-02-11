@@ -50,11 +50,12 @@ export default function AirvoirSection({ theme = "light" }) {
     if (!section || !eagle || !firstHeading || !secondHeading) return;
 
     const ctx = gsap.context(() => {
-      // Set initial states
+      // Set initial states - start off-screen left, no rotation
       gsap.set(eagle, {
-        x: () => -window.innerWidth / 2 - 300,
+        x: () => -window.innerWidth / 2 - 900,
         y: 0,
-        scale: 0.8,
+        rotation: 0,
+        scale: 1.1,
         opacity: 1,
       });
       
@@ -76,14 +77,14 @@ export default function AirvoirSection({ theme = "light" }) {
         },
       });
 
-      // One continuous eagle move: extreme left → extreme right (no stop at center)
+      // Plane moves straight left → right, no rotation
       const eagleDuration = 2.8;
       mainTl
         .to(eagle, {
-          x: () => window.innerWidth / 2 + 500,
-          y: -50,
-          scale: 1.2,
-          rotation: 15,
+          x: () => window.innerWidth / 2 + 1000,
+          y: 0,
+          scale: 1.5,
+          rotation: 0,
           duration: eagleDuration,
           ease: "none",
         }, 0)
@@ -119,14 +120,14 @@ export default function AirvoirSection({ theme = "light" }) {
       {/* Container for all content */}
       <div className="relative z-10 w-full h-screen flex items-center justify-center">
         
-        {/* Eagle Image - on top of all section content */}
+        {/* Top view image - on top of all section content */}
         <div 
           ref={eagleRef} 
-          className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] z-[100]"
+          className="absolute w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] lg:w-[1200px] lg:h-[1200px] z-[100]"
         >
           <Image
-            src="/eagle-pic-right2.png"
-            alt="Eagle"
+            src="https://cdn.prod.website-files.com/661fdce3e735db03332bf817/66223004372c7c1124c1b0d1_Top-view2x.webp"
+            alt="Top view"
             fill
             className="object-contain"
             priority
@@ -139,9 +140,9 @@ export default function AirvoirSection({ theme = "light" }) {
           className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 md:px-8"
         >
           <div className="text-center max-w-5xl">
-            <div className="mb-4 sm:mb-6">
+            <div className="mb-3 sm:mb-4">
               <span
-                className={`font-merriweather italic font-semibold text-[18px] sm:text-[24px] md:text-[28px] lg:text-[32px] transition-colors duration-500 ${
+                className={`font-merriweather italic font-semibold text-[14px] sm:text-[18px] md:text-[20px] lg:text-[24px] transition-colors duration-500 ${
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                 }`}
               >
@@ -150,7 +151,7 @@ export default function AirvoirSection({ theme = "light" }) {
             </div>
 
             <h1
-              className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 mb-8 sm:mb-12 ${
+              className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[34px] lg:text-[40px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[64px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
@@ -189,7 +190,7 @@ export default function AirvoirSection({ theme = "light" }) {
         >
           <div className="text-center max-w-5xl">
             <h2
-              className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[1.2] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 md:mb-10 ${
+              className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[34px] lg:text-[40px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[64px] leading-[1.2] tracking-[0.01em] transition-colors duration-500 mb-5 sm:mb-6 md:mb-8 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >

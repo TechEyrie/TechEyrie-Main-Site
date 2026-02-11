@@ -80,6 +80,7 @@ export default function HeroSection({ theme = "light" }) {
   const [hoveredPortfolioCard, setHoveredPortfolioCard] = useState(null);
   const [cardWidth, setCardWidth] = useState(220);
   const [portfolioCardWidth, setPortfolioCardWidth] = useState(300);
+  const [heroStackOffset, setHeroStackOffset] = useState(100);
 
   // --- Data (Memoized to prevent re-renders) ---
   const mediaAssets = useMemo(
@@ -216,7 +217,7 @@ export default function HeroSection({ theme = "light" }) {
     heroCardsRef.current.forEach((card, index) => {
       if (!card) return;
 
-      const offset = isDesktop ? 100 : 30;
+      const offset = isDesktop ? heroStackOffset : 30;
 
       if (index === activeCard) {
         gsap.to(card, {
@@ -243,7 +244,7 @@ export default function HeroSection({ theme = "light" }) {
         });
       }
     });
-  }, [activeCard, isDesktop, mediaAssets.length]);
+  }, [activeCard, isDesktop, mediaAssets.length, heroStackOffset]);
 
   const handleCardClick = useCallback(
     (clickedIndex) => {
@@ -307,6 +308,14 @@ export default function HeroSection({ theme = "light" }) {
       const sizes = calculateCardSizes(width);
       setCardWidth(sizes.heroWidth);
       setPortfolioCardWidth(sizes.portfolioWidth);
+      // Smaller stack offset on laptop/small desktop so 4th card doesn't overflow right
+      if (width >= 1280) {
+        setHeroStackOffset(100);
+      } else if (width >= 1024) {
+        setHeroStackOffset(56);
+      } else {
+        setHeroStackOffset(100); // only used when isDesktop, fallback
+      }
     };
 
     checkScreen();
@@ -426,7 +435,7 @@ export default function HeroSection({ theme = "light" }) {
               const heroContainerRect = heroContainer.getBoundingClientRect();
               const placeholderRect = placeholder.getBoundingClientRect();
 
-              const stackOffset = index * 100;
+              const stackOffset = index * heroStackOffset;
               const heroStartX = heroContainerRect.left + stackOffset;
               const heroStartY = heroContainerRect.top;
 
@@ -478,7 +487,7 @@ export default function HeroSection({ theme = "light" }) {
     }, containerRef.current);
 
     return () => ctx.revert();
-  }, [isDesktop, screenSize, mediaAssets, triggerElectricalAnimation]);
+  }, [isDesktop, screenSize, mediaAssets, triggerElectricalAnimation, heroStackOffset]);
 
 
 
@@ -880,7 +889,7 @@ export default function HeroSection({ theme = "light" }) {
                       className="absolute w-full h-full cursor-pointer shadow-lg rounded-xl overflow-hidden"
                       style={{
                         zIndex: 50 - index,
-                        transform: `translateX(${index * 100}px) scale(${1 - index * 0.05})`,
+                        transform: `translateX(${index * heroStackOffset}px) scale(${1 - index * 0.05})`,
                       }}
                       onClick={() => handleCardClick(index)}
                       onMouseEnter={() => setHoveredPortfolioCard(index)}

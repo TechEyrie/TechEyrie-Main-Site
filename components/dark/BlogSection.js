@@ -11,10 +11,37 @@ if (typeof window !== "undefined") {
 }
 
 const MAX_BLOGS = 3;
+
+// Fallback posts that match the demo blog detail slugs,
+// so clicking from the dark page always opens a working article.
 const FALLBACK_POSTS = [
-  { id: 1, title: "July 2025 TikTok Trends: 20 Viral Moments You Need to Know", tags: ["For Creators", "Trends"], date: "06.23.25", image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "July 2025 TikTok Trends thumbnail", slug: "blog-1" },
-  { id: 2, title: "Viral Product Drop Strategy: FOMO, Limited Editions & TikTok", tags: ["POV"], date: "07.03.25", image: "https://www.datocms-assets.com/151374/1751487740-ne_blog_thumbnail_product-drop_v1-0-1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "Viral Product Drop Strategy thumbnail", slug: "blog-2" },
-  { id: 3, title: "TikTok Trends for DTC Brands in 2025: What's Driving Growth", tags: ["Trends", "Content & Creative"], date: "06.25.25", image: "https://www.datocms-assets.com/151374/1750711920-ne_blog_thumbnails_july_v1.png?auto=format&fit=max&h=600&q=85&w=600", alt: "TikTok Trends for DTC Brands thumbnail", slug: "blog-3" },
+  {
+    id: 1,
+    title: "What Is Demand Generation? A Simple Guide for B2B Marketers",
+    tags: ["Demand Generation"],
+    date: "August 15, 2025",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    alt: "What Is Demand Generation? A Simple Guide for B2B Marketers",
+    slug: "what-is-demand-generation",
+  },
+  {
+    id: 2,
+    title: "Why Brand Is Your Most Underrated Growth Channel",
+    tags: ["Demand Generation"],
+    date: "August 21, 2025",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+    alt: "Why Brand Is Your Most Underrated Growth Channel",
+    slug: "why-brand-is-underrated-growth-channel",
+  },
+  {
+    id: 3,
+    title: "What Is Thought Leadership in B2B Marketing?",
+    tags: ["Demand Generation"],
+    date: "August 10, 2025",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+    alt: "What Is Thought Leadership in B2B Marketing?",
+    slug: "what-is-thought-leadership-b2b",
+  },
 ];
 
 const BlogsSection = ({ theme = "light" }) => {

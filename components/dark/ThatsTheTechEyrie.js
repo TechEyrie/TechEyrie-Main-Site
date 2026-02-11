@@ -144,8 +144,8 @@ export default function TechEyrieIntroSection({ theme = "light" }) {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=300%",
-          scrub: 1,
+          end: "+=140%",
+          scrub: 0.8,
           pin: true,
           anticipatePin: 1,
           onLeave: () => {
