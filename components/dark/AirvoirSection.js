@@ -64,12 +64,12 @@ export default function AirvoirSection({ theme = "light" }) {
       gsap.set(firstHeading, { opacity: 1 });
       gsap.set(secondHeading, { opacity: 0 });
 
-      // Main timeline with ScrollTrigger
+      // Main timeline with ScrollTrigger (shorter scroll = plane passes faster)
       const mainTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=300%",
+          end: "+=100%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -190,11 +190,13 @@ export default function AirvoirSection({ theme = "light" }) {
         >
           <div className="text-center max-w-5xl">
             <h2
-              className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[34px] lg:text-[40px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[64px] leading-[1.2] tracking-[0.01em] transition-colors duration-500 mb-5 sm:mb-6 md:mb-8 ${
+              className={`font-italiana font-light text-[17px] sm:text-[19px] md:text-[22px] lg:text-[26px] xl:text-[30px] 2xl:text-[34px] 3xl:text-[38px] leading-[1.3] tracking-[0.01em] transition-colors duration-500 mb-5 sm:mb-6 md:mb-8 ${
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              Discover corporate air travel redefined. Experience personalized service, every step of the way.
+              Discover corporate air travel redefined.
+              <br />
+              Experience personalized service, every step of the way.
             </h2>
 
             <button

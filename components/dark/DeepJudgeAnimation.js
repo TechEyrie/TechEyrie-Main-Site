@@ -318,7 +318,7 @@ export default function DeepJudgeAnimation({ theme }) {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[25] px-4 sm:px-6">
           <div className="text-center">
             {/* STAGE 1 */}
-            <h1 ref={heading1Ref} className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] ${textColor} tracking-[0.01em] leading-[1.1] max-w-5xl transition-colors duration-500`}>
+            <h1 ref={heading1Ref} className={`font-italiana font-light text-[22px] sm:text-[28px] md:text-[34px] lg:text-[39px] xl:text-[45px] ${textColor} tracking-[0.01em] leading-[1.1] max-w-5xl transition-colors duration-500`}>
               <span className="font-normal">
                 Your business runs on<br />
                 systems and data

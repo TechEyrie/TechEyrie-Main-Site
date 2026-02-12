@@ -1176,7 +1176,7 @@ export default function HeroSection({ theme = "light" }) {
 
       <section
         ref={portfolioSectionRef}
-        className="w-full min-h-screen py-0 relative"
+        className="w-full min-h-screen py-0 relative -mt-[20vh]"
         style={bgStyle}
       >
         {/* {portfolioTriangles.map((triangle) => (
