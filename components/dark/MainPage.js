@@ -27,6 +27,7 @@ import CardsServicesSection from './CardsServicesSection';
 import FAQSection from './FAQSection';
 import AirplaneHero from './AirplaneSection';
 import BlogsSection from './BlogSection';
+import ThatsTheTechEyrie2 from './ThatsTheTechEyrie2';
 
 const MainPage = () => {
   const [theme] = useState('dark');
@@ -123,7 +124,8 @@ const MainPage = () => {
         {/* <StatsSection theme={theme} /> */}
        
         <DeepJudgeAnimation theme={theme} />
-          <ThatsTheTechEyrie theme={theme} />
+          {/* <ThatsTheTechEyrie theme={theme} /> */}
+          <ThatsTheTechEyrie2 theme={theme} />
           {/* Keep sections in normal flow to avoid ScrollTrigger/Lenis jumps */}
           <AirvoirSection theme={theme} />
           <TestimonialsSection theme={theme} />

@@ -422,8 +422,8 @@ export default function HeroSection({ theme = "light" }) {
           ScrollTrigger.create({
             trigger: heroSectionRef.current,
             start: "top top",
-            end: "bottom top",
-            scrub: 1.5,
+            end: "50% top",
+            scrub: true,
             onUpdate: (self) => {
               const progress = self.progress;
 
@@ -1243,24 +1243,17 @@ export default function HeroSection({ theme = "light" }) {
       const baseWidth = 1800;
       const baseOffsetX = 39;
       const baseOffsetY = 60;
-      
-      // Calculate how many 100px steps we are below 1800px
-      const steps = Math.max(0, Math.floor((baseWidth - width) / 100));
-      
-      // Decrease a bit more aggressively per 100px
-      // so that as the viewport gets narrower and the
-      // hero cards visually drift right, the target
-      // placeholders are nudged left to compensate.
-      let offsetX = Math.max(0, baseOffsetX - steps * 3);
-      const offsetY = Math.max(0, baseOffsetY - (steps * 3)); // Y decreases by 3px per step
+      const stepPx = width < 1400 ? 50 : 15;
+      const pxPerStep = width < 1400 ? 1.2: 0.4;
 
-      // Fine‑tune band: between ~laptop widths (just under 1250px)
-      // the card was drifting slightly left, so we nudge the
-      // placeholder a few pixels to the right only in that range.
+      const steps = Math.max(0, Math.floor((baseWidth - width) / stepPx));
+      let offsetX = Math.max(0, baseOffsetX - steps * pxPerStep);
+      const offsetY = Math.max(0, baseOffsetY - steps * pxPerStep);
+
       if (width >= 1024 && width <= 1250) {
-        offsetX += 4;
+        offsetX += 2;
       }
-      
+
       return `translate(${offsetX}px, ${offsetY}px)`;
     })(),
   } : {
