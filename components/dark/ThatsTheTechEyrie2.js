@@ -145,6 +145,8 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
         if (!section || !secondPart || !teContainer) return;
         const targetTE = secondPart.querySelector(".target-te-position");
         if (!targetTE) return;
+        // Hide first to avoid flash during reparent
+        gsap.set(teContainer, { opacity: 0, visibility: "hidden" });
         const targetRect = targetTE.getBoundingClientRect();
         const sectionRect = section.getBoundingClientRect();
         const finalTop = targetRect.top - sectionRect.top + targetRect.height / 2;
@@ -180,6 +182,7 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
           left: targetRect.left + targetRect.width / 2,
           xPercent: -50,
           yPercent: -155,
+          visibility: "visible",
         });
         document.body.appendChild(teContainer);
       };
@@ -263,16 +266,22 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
         .to(
           teContainer,
           {
-            top: "50%",
+            top: () => {
+              if (!secondPart) return "50%";
+              const targetTE = secondPart.querySelector(".target-te-position");
+              if (!targetTE) return "50%";
+              const r = targetTE.getBoundingClientRect();
+              return r.top + r.height / 2;
+            },
             left: () => {
               if (!secondPart) return "50%";
               const targetTE = secondPart.querySelector(".target-te-position");
               if (!targetTE) return "50%";
-              const targetRect = targetTE.getBoundingClientRect();
-              return targetRect.left + targetRect.width / 2;
+              const r = targetTE.getBoundingClientRect();
+              return r.left + r.width / 2;
             },
             xPercent: -50,
-            yPercent: -155,
+            yPercent: -50,
             scale: () => {
               if (!secondPart || !teContainer) return 1;
               const targetTE = secondPart.querySelector(".target-te-position");
@@ -290,16 +299,8 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
           },
           0.65
         )
-        .to(
-          ".target-te-position",
-          { opacity: 1, duration: 0.04, ease: "power2.out" },
-          0.84
-        )
-        .to(
-          teContainer,
-          { opacity: 0, duration: 0.04, ease: "power2.in" },
-          0.84
-        )
+        .set(teContainer, { opacity: 0 }, 0.85)
+        .set(".target-te-position", { opacity: 1 }, 0.85)
         .to(
           ".build-title-line",
           {
