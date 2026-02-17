@@ -28,6 +28,7 @@ import FAQSection from './FAQSection';
 import AirplaneHero from './AirplaneSection';
 import BlogsSection from './BlogSection';
 import ThatsTheTechEyrie2 from './ThatsTheTechEyrie2';
+import HeroSectionMediaSlot from './HeroSectionMediaSlot';
 
 const MainPage = () => {
   const [theme] = useState('dark');
@@ -114,7 +115,8 @@ const MainPage = () => {
     // <CursorTrail theme={theme}>
       <div style={{ position: 'relative', zIndex: 1 }} data-theme={theme}>
         <Header theme={theme} />
-        <HeroSection theme={theme} />
+        {/* <HeroSection theme={theme} /> */}
+        <HeroSectionMediaSlot theme={theme} />
         <RealProblemSection theme={theme} />
         <NewServicesSection theme={theme} />
       
