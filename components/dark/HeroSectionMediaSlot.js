@@ -417,6 +417,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
     return () => { if (autoTriangleIntervalRef.current) clearInterval(autoTriangleIntervalRef.current); };
   }, [createTriangleForCard, isInHeroSection, isScrolling, activeCard]);
 
+  // --- AUTO TRIANGLES for HOVERED HERO CARD when in PORTFOLIO SECTION (desktop) ---
   useEffect(() => {
     Object.keys(portfolioCardTriangleIntervals.current).forEach((key) =>
       clearInterval(portfolioCardTriangleIntervals.current[key])
@@ -440,6 +441,32 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
       );
     };
   }, [hoveredPortfolioCard, isInHeroSection, createTriangleForPortfolioCard]);
+
+  // --- AUTO TRIANGLES for HOVERED CARD in PORTFOLIO SECTION (mobile/tablet) ---
+  const mobileCardTriangleIntervals = useRef({});
+  useEffect(() => {
+    Object.keys(mobileCardTriangleIntervals.current).forEach((key) =>
+      clearInterval(mobileCardTriangleIntervals.current[key])
+    );
+    mobileCardTriangleIntervals.current = {};
+    if (hoveredCard !== null && !isDesktop) {
+      const placeholder = portfolioCardPlaceholdersRef.current[hoveredCard];
+      if (!placeholder) return;
+      mobileCardTriangleIntervals.current[hoveredCard] = setInterval(() => {
+        const el = portfolioCardPlaceholdersRef.current?.[hoveredCard];
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          createTriangleForPortfolioCard(hoveredCard, Math.random() * rect.width, Math.random() * rect.height);
+        }
+      }, 200);
+    }
+    return () => {
+      Object.keys(mobileCardTriangleIntervals.current).forEach((key) =>
+        clearInterval(mobileCardTriangleIntervals.current[key])
+      );
+    };
+  }, [hoveredCard, isDesktop, createTriangleForPortfolioCard]);
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -504,7 +531,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
           ...bgStyle,
           paddingBottom: getBottomPadding(),
           zIndex: 2,
-          marginBottom: "-1rem", // ✅ KEY CHANGE: was "-1rem"
+          marginBottom: "-1rem",
         }}
       >
         <div className="relative z-10 mx-auto max-w-[1800px] px-4 md:px-6 lg:px-10 min-h-0 flex flex-col justify-between pt-12">
@@ -567,7 +594,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
           {isDesktop ? (
             <div
               className="flex justify-end items-end mb-0 pr-48 lg:pr-56 xl:pr-64 2xl:pr-72"
-              style={{ transform: "translateY(-95%)", height: 120, overflow: "visible" }} // ✅ KEY CHANGE: height:0 collapses layout space
+              style={{ transform: "translateY(-95%)", height: 120, overflow: "visible" }}
             >
               <div ref={heroCardsContainerRef} style={{ width: `${cardWidth}px` }}>
                 <div className="relative w-full aspect-[3/4]" style={{ perspective: "1000px" }}>
@@ -732,7 +759,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
       {/* PORTFOLIO SECTION */}
       <section
         ref={portfolioSectionRef}
-        className="w-full min-h-screen py-0 relative -mt-20 overflow-visible" // ✅ KEY CHANGE: was -mt-4
+        className="w-full min-h-screen py-0 relative overflow-visible"
         style={{ ...bgStyle, zIndex: 1 }}
       >
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
@@ -757,9 +784,19 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
                   <div
                     ref={(el) => { if (el) portfolioCardPlaceholdersRef.current[index] = el; }}
                     className="relative w-full overflow-hidden rounded-t-xl flex-shrink-0"
-                    style={{ aspectRatio: "3 / 4", zIndex: 10, pointerEvents: isDesktop && !isInHeroSection ? "none" : "auto" }}
-                    onMouseEnter={() => !isDesktop && setHoveredCard(index)}
-                    onMouseLeave={() => !isDesktop && setHoveredCard(null)}
+                    style={{
+                      aspectRatio: "3 / 4",
+                      zIndex: 10,
+                      pointerEvents: "auto",
+                    }}
+                    onMouseEnter={() => {
+                      if (!isDesktop) setHoveredCard(index);
+                      if (isDesktop && !isInHeroSection) setHoveredPortfolioCard(index);
+                    }}
+                    onMouseLeave={() => {
+                      if (!isDesktop) setHoveredCard(null);
+                      if (isDesktop && !isInHeroSection) setHoveredPortfolioCard(null);
+                    }}
                   >
                     {!isDesktop && (
                       <>
@@ -771,9 +808,21 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
                       </>
                     )}
                     {isDesktop && <div className="absolute inset-0 bg-black/5" aria-hidden />}
+
+                    {/* ✅ FIXED: Triangles for mobile/tablet portfolio card hover */}
+                    {!isDesktop && hoveredCard === index && portfolioCardTriangles[index] && (
+                      <div className="absolute inset-0 z-[15] pointer-events-none overflow-hidden rounded-t-xl">
+                        {portfolioCardTriangles[index].map((triangle) => (
+                          <TriangleSVG key={triangle.id} triangle={triangle} />
+                        ))}
+                      </div>
+                    )}
+
                     {!isDesktop && (
                       <div
-                        className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-hidden ${hoveredCard === index ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+                        className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-hidden ${
+                          hoveredCard === index ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                        }`}
                         style={{ height: "18%" }}
                       >
                         <svg className="absolute bottom-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">

@@ -74,7 +74,8 @@ export default function Footer({ theme = 'light' }) {
 
         .footer-link-underline {
           position: relative;
-          display: inline-block;
+          display: block;
+          width: fit-content;
           padding-bottom: 2px;
         }
 
