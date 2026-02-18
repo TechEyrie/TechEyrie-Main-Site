@@ -97,7 +97,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
         title: "Cotopaxi",
         subtitle: "Outdoor & Lifestyle",
         metric: "+20% Marketing Efficiency",
-        buttons: ["Outdoor & Active Lifestyle", "Fashion & Apparel"],
+        buttons: ["Food & Beverage", "CPG"],
         link: "/work/cotopaxi",
       },
       {
