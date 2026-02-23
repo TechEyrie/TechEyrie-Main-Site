@@ -10,12 +10,12 @@ const DrawerScore = forwardRef(function DrawerScore({ overallScore, evaluationMe
     }`}>
       {/* Header */}
       <div className="flex items-start justify-between mb-8 sm:mb-12 md:mb-16 flex-wrap gap-4">
-        <h3 className={`text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] xl:text-[96px] font-bold leading-none tracking-tight ${
+        <h3 className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-none tracking-[-0.03em] ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>
           SOTD / SCORE
         </h3>
-        <span className={`text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-wider ${
+        <span className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.16em] ${
           isDark ? 'text-gray-500' : 'text-gray-500'
         }`}>
           Evaluation System
@@ -57,12 +57,12 @@ const DrawerScore = forwardRef(function DrawerScore({ overallScore, evaluationMe
 
                 {/* Score */}
                 <div className="flex items-baseline gap-0.5 sm:gap-1">
-                  <span className={`text-[80px] sm:text-[120px] md:text-[180px] lg:text-[200px] xl:text-[220px] font-bold leading-none tracking-tighter ${
+                  <span className={`font-italiana font-light text-[80px] sm:text-[120px] md:text-[180px] lg:text-[200px] xl:text-[220px] leading-none tracking-tighter ${
                     isDark ? 'text-white' : 'text-gray-900'
                   }`}>
                     {overallScore}
                   </span>
-                  <span className={`text-[28px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-medium ${
+                  <span className={`font-merriweather text-[28px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-medium ${
                     isDark ? 'text-gray-500' : 'text-gray-500'
                   }`}>
                     /10
@@ -77,12 +77,12 @@ const DrawerScore = forwardRef(function DrawerScore({ overallScore, evaluationMe
           <div key={index} className="flex flex-col">
             {/* Category and Weight */}
             <div className="flex items-baseline justify-between mb-4">
-              <h4 className={`text-[15px] font-semibold ${
+              <h4 className={`font-merriweather text-[14px] font-semibold ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
                 {metric.category}
               </h4>
-              <span className={`text-[14px] font-semibold ${
+              <span className={`font-merriweather text-[14px] font-semibold ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
                 {metric.weight}
@@ -112,12 +112,12 @@ const DrawerScore = forwardRef(function DrawerScore({ overallScore, evaluationMe
 
             {/* Score Display */}
             <div className="text-center">
-              <span className={`text-[22px] font-bold ${
+              <span className={`font-italiana text-[22px] font-light ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
                 {metric.score}
               </span>
-              <span className={`text-[15px] font-medium ${
+              <span className={`font-merriweather text-[15px] font-medium ${
                 isDark ? 'text-gray-500' : 'text-gray-500'
               }`}>
                 {" "}

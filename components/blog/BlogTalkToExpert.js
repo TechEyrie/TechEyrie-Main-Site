@@ -31,11 +31,11 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
     >
       <div className="mx-auto max-w-[1400px] px-6 sm:px-8 md:px-12 lg:px-16">
         <h2
-          className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] md:text-[40px] lg:text-[48px] font-bold mb-12 text-center ${
+          className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] mb-12 text-center ${
             isDark ? 'text-white' : 'text-[#111111]'
           }`}
         >
-          Talk to <span className="italic">an expert</span>
+          Talk to <span className="italic font-playfair font-light">an expert</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -46,7 +46,7 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
             }`}
           >
             <h3
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xl font-bold mb-2 ${
+              className={`font-merriweather text-[13px] font-semibold mb-2 ${
                 isDark ? 'text-white' : 'text-[#111111]'
               }`}
             >
@@ -55,7 +55,7 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
             <div className="space-y-3">
               <Link
                 href="mailto:hello@dapper.agency"
-                className={`block font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm transition-colors ${
+                className={`block font-merriweather text-[14px] transition-colors ${
                   isDark
                     ? 'text-white/70 hover:text-[#74F5A1]'
                     : 'text-[#666666] hover:text-[#111111]'
@@ -64,14 +64,14 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
                 Contact Tycho
               </Link>
               <p
-                className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm ${
+                className={`font-merriweather text-[14px] ${
                   isDark ? 'text-white/60' : 'text-[#666666]'
                 }`}
               >
                 hello@dapper.agency
               </p>
               <p
-                className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm ${
+                className={`font-merriweather text-[14px] ${
                   isDark ? 'text-white/60' : 'text-[#666666]'
                 }`}
               >
@@ -87,14 +87,14 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
             }`}
           >
             <h3
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xl font-bold mb-4 ${
+              className={`font-merriweather text-[13px] font-semibold mb-4 ${
                 isDark ? 'text-white' : 'text-[#111111]'
               }`}
             >
               Dapper Rotterdam
             </h3>
             <p
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm leading-relaxed ${
+              className={`font-merriweather text-[14px] leading-relaxed ${
                 isDark ? 'text-white/70' : 'text-[#666666]'
               }`}
             >
@@ -110,14 +110,14 @@ export default function BlogTalkToExpert({ theme = 'light' }) {
             }`}
           >
             <h3
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xl font-bold mb-4 ${
+              className={`font-merriweather text-[13px] font-semibold mb-4 ${
                 isDark ? 'text-white' : 'text-[#111111]'
               }`}
             >
               Dapper Lisbon
             </h3>
             <p
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm leading-relaxed ${
+              className={`font-merriweather text-[14px] leading-relaxed ${
                 isDark ? 'text-white/70' : 'text-[#666666]'
               }`}
             >

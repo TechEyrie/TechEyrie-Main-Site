@@ -536,12 +536,16 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
     >
       {/* Header Section */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20">
+        <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 ${isDark ? "text-white/90" : "text-black/80"}`}>
+          Case studies
+        </p>
         <h1
-          className={`text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] xl:text-[112px] font-bold mb-8 sm:mb-12 md:mb-16 leading-tight ${
+          className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-8 sm:mb-12 md:mb-16 ${
             isDark ? "text-white" : "text-black"
           }`}
         >
-          Explore our projects
+          <span className="block">Explore our</span>
+          <span className="block -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px]">projects</span>
         </h1>
 
         {/* Category Filters */}
@@ -555,8 +559,8 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   onClick={() => setActiveCategory(category.id)}
                   className={`
                     px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6
-                    text-[13px] sm:text-[15px] md:text-[16px] font-bold
-                    tracking-wider uppercase rounded-lg
+                    font-merriweather text-[14px] font-semibold
+                    tracking-[0.16em] uppercase rounded-lg
                     transition-all duration-300 ease-out
                     active:scale-95
                     focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -747,7 +751,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   {project.tags?.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className={`text-[13px] sm:text-[14px] md:text-[15px] font-semibold uppercase tracking-wider ${
+                      className={`font-merriweather text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.16em] ${
                         isDark ? "text-gray-400" : "text-gray-600"
                       }`}
                     >
@@ -758,7 +762,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
                 {/* Title */}
                 <h2
-                  className={`text-[32px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[56px] font-semibold mb-8 leading-tight ${
+                  className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] mb-8 leading-tight tracking-[-0.03em] ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
@@ -770,7 +774,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   {project.badges?.map((badge, badgeIndex) => (
                     <div
                       key={badgeIndex}
-                      className={`px-8 sm:px-10 md:px-12 py-3 rounded-lg font-normal text-[14px] sm:text-[15px] md:text-[16px] flex items-center gap-2.5 ${
+                      className={`px-8 sm:px-10 md:px-12 py-3 rounded-lg font-merriweather text-[14px] flex items-center gap-2.5 ${
                         isDark
                           ? "bg-[#2a2a2a] text-white"
                           : "bg-black text-white"
@@ -786,14 +790,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
                   <div>
                     <h3
-                      className={`text-[13px] sm:text-[14px] font-semibold uppercase tracking-wider mb-3 ${
+                      className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-3 ${
                         isDark ? "text-gray-500" : "text-gray-600"
                       }`}
                     >
                       TECH STACK
                     </h3>
                     <p
-                      className={`text-[18px] sm:text-[20px] md:text-[22px] font-light ${
+                      className={`font-merriweather text-[14px] ${
                         isDark ? "text-white" : "text-black"
                       }`}
                     >
@@ -802,14 +806,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   </div>
                   <div>
                     <h3
-                      className={`text-[13px] sm:text-[14px] font-semibold uppercase tracking-wider mb-3 ${
+                      className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-3 ${
                         isDark ? "text-gray-500" : "text-gray-600"
                       }`}
                     >
                       TIMELINE
                     </h3>
                     <p
-                      className={`text-[18px] sm:text-[20px] md:text-[22px] font-light ${
+                      className={`font-merriweather text-[14px] ${
                         isDark ? "text-white" : "text-black"
                       }`}
                     >
@@ -821,7 +825,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 {/* Results */}
                 <div className="mb-10">
                   <h3
-                    className={`text-[13px] sm:text-[14px] font-semibold uppercase tracking-wider mb-5 ${
+                    className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-5 ${
                       isDark ? "text-gray-500" : "text-gray-600"
                     }`}
                   >
@@ -831,7 +835,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                     {project.results?.map((result, resultIndex) => (
                       <p
                         key={resultIndex}
-                        className={`text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-light ${
+                        className={`font-merriweather text-[14px] ${
                           isDark ? "text-white" : "text-black"
                         }`}
                       >
@@ -844,7 +848,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 {/* Button */}
                 <button
                   onClick={() => handleImageClick(project)}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold text-[14px] sm:text-[15px] rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-10 cursor-pointer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-merriweather text-[14px] font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-10 cursor-pointer"
                 >
                   {project.buttonText}
                   <svg
@@ -882,14 +886,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       </div>
                       <div>
                         <h4
-                          className={`text-[16px] sm:text-[18px] font-semibold ${
+                          className={`font-merriweather text-[14px] font-semibold ${
                             isDark ? "text-white" : "text-black"
                           }`}
                         >
                           {project.testimonial.name}
                         </h4>
                         <p
-                          className={`text-[13px] sm:text-[14px] font-light ${
+                          className={`font-merriweather text-[13px] md:text-[14px] ${
                             isDark ? "text-gray-400" : "text-gray-600"
                           }`}
                         >
@@ -900,7 +904,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
                     {/* Quote */}
                     <p
-                      className={`text-[16px] sm:text-[18px] md:text-[20px] font-light leading-relaxed ${
+                      className={`font-merriweather text-[14px] font-normal leading-relaxed ${
                         isDark ? "text-gray-300" : "text-gray-700"
                       }`}
                     >
@@ -917,7 +921,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
       {/* Empty State */}
       {filteredProjects.length === 0 && (
         <div className="text-center py-20 px-4">
-          <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+          <p className={`font-merriweather text-[14px] ${isDark ? "text-gray-400" : "text-gray-600"}`}>
             No projects found in this category.
           </p>
         </div>

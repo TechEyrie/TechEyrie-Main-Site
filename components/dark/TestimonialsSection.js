@@ -117,7 +117,7 @@ export default function TestimonialsSection({ theme }) {
                         </div>
 
                         {/* Quote */}
-                        <blockquote className="font-playfair text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12">
+                        <blockquote className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12">
                             "{t.content}"
                         </blockquote>
 

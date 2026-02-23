@@ -276,9 +276,9 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
       title: "Handy Tools and Apps for De...",
       customContent: (
         <div className="text-center">
-          <h3 className="text-white text-[32px] font-bold mb-1">HANDY TOOLS</h3>
-          <h3 className="text-white text-[32px] font-bold mb-3">AND APPS</h3>
-          <p className="text-white text-[11px] uppercase tracking-wider">COLLECTION</p>
+          <h3 className="font-italiana font-light text-white text-[32px] mb-1">HANDY TOOLS</h3>
+          <h3 className="font-italiana font-light text-white text-[32px] mb-3">AND APPS</h3>
+          <p className="font-merriweather text-white text-[11px] uppercase tracking-[0.16em]">COLLECTION</p>
         </div>
       ),
       type: "Collection",
@@ -296,16 +296,16 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
       customContent: (
         <div className="relative w-full h-full p-8">
           <div className="absolute top-8 left-8">
-            <span className="text-[120px] font-bold text-gray-900 leading-none">HE</span>
+            <span className="font-italiana font-light text-[120px] text-gray-900 leading-none">HE</span>
           </div>
           <div className="absolute top-8 right-8">
-            <span className="text-[120px] font-bold text-gray-900 leading-none">R</span>
+            <span className="font-italiana font-light text-[120px] text-gray-900 leading-none">R</span>
           </div>
           <div className="absolute bottom-8 left-8">
-            <span className="text-[120px] font-bold text-gray-900 leading-none">V</span>
+            <span className="font-italiana font-light text-[120px] text-gray-900 leading-none">V</span>
           </div>
           <div className="absolute bottom-8 right-8">
-            <span className="text-[120px] font-bold text-gray-900 leading-none">É</span>
+            <span className="font-italiana font-light text-[120px] text-gray-900 leading-none">É</span>
           </div>
         </div>
       ),

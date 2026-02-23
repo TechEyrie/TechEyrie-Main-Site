@@ -86,20 +86,20 @@ export default function ExpertiseSection() {
             {/* Badge */}
             <div className="mb-10 flex items-center gap-3">
               <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-              <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
+              <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
                 Expertise
               </span>
             </div>
 
             {/* Title */}
-            <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.05] tracking-[-0.02em]">
-              <span className="block text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
+            <h2 className="font-italiana font-light leading-[1.05] tracking-[-0.03em] text-[#111111]">
+              <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
                 We understand how to
               </span>
-              <span className="mt-1 block text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
-                <span className="italic font-light">convert</span> in-market SaaS
+              <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
+                <span className="font-playfair italic font-light">convert</span> in-market SaaS
               </span>
-              <span className="mt-1 block text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
+              <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
                 buyers
               </span>
             </h2>
@@ -134,7 +134,7 @@ export default function ExpertiseSection() {
                     className="expertise-card group relative flex min-h-[280px] flex-col justify-between rounded-lg border border-black/8 bg-[#F8F8F8] p-8 hover:bg-white hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]"
                   >
                     {/* Title */}
-                    <h3 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[28px] md:text-[32px] font-bold tracking-tight text-[#111111]">
+                    <h3 className="font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] tracking-tight text-[#111111]">
                       {item.title}
                     </h3>
 
@@ -142,7 +142,7 @@ export default function ExpertiseSection() {
                     <div className="mt-auto flex items-end justify-between gap-4">
                       {/* Description - fades in on hover */}
                       <p
-                        className={`expertise-description max-w-[320px] font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[15px] font-medium leading-snug text-[#555555] ${
+                        className={`expertise-description max-w-[320px] font-merriweather text-[14px] leading-snug text-[#555555] ${
                           isActive
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-4 opacity-0'
@@ -225,7 +225,7 @@ export default function ExpertiseSection() {
                     className="expertise-card group relative flex min-h-[280px] flex-col justify-between rounded-lg border border-black/8 bg-[#F8F8F8] p-8 hover:bg-white hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]"
                   >
                     {/* Title */}
-                    <h3 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[28px] md:text-[32px] font-bold tracking-tight text-[#111111]">
+                    <h3 className="font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] tracking-tight text-[#111111]">
                       {item.title}
                     </h3>
 
@@ -233,7 +233,7 @@ export default function ExpertiseSection() {
                     <div className="mt-auto flex items-end justify-between gap-4">
                       {/* Description - fades in on hover */}
                       <p
-                        className={`expertise-description max-w-[320px] font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[15px] font-medium leading-snug text-[#555555] ${
+                        className={`expertise-description max-w-[320px] font-merriweather text-[14px] leading-snug text-[#555555] ${
                           isActive
                             ? 'translate-y-0 opacity-100'
                             : 'translate-y-4 opacity-0'

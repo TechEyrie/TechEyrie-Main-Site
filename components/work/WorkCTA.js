@@ -91,11 +91,8 @@ export default function WorkCTA({ theme = "light" }) {
             {/* Main Heading */}
             <h2
               ref={headingRef}
-              className="text-[2.5rem] md:text-[3.5rem] lg:text-[5rem] font-serif leading-[1.1] tracking-[-0.02em] mb-4"
-              style={{
-                fontFamily: "'Times New Roman', 'Georgia', serif",
-                color: "#1a1a1a",
-              }}
+              className="font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-4"
+              style={{ color: "#1a1a1a" }}
             >
               Ready to make the leap?
             </h2>
@@ -103,11 +100,8 @@ export default function WorkCTA({ theme = "light" }) {
             {/* Subheading */}
             <p
               ref={subheadingRef}
-              className="text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] font-serif leading-[1.3] tracking-[-0.01em]"
-              style={{
-                fontFamily: "'Times New Roman', 'Georgia', serif",
-                color: "rgba(26, 26, 26, 0.5)",
-              }}
+              className="font-playfair text-[17px] md:text-[25px] font-normal leading-[1.3]"
+              style={{ color: "rgba(26, 26, 26, 0.5)" }}
             >
               Share your vision, and we'll help shape it into something
               unforgettable.
@@ -119,7 +113,7 @@ export default function WorkCTA({ theme = "light" }) {
         <div className="w-full max-w-[1800px] mx-auto px-6 md:px-12 lg:px-20">
           <a
             href="/approach"
-            className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:opacity-80"
+            className="inline-flex items-center px-6 py-3 rounded-full font-merriweather text-[14px] font-semibold transition-all duration-300 hover:opacity-80"
             style={{
               backgroundColor: "rgba(30, 40, 50, 0.8)",
               color: "#ffffff",

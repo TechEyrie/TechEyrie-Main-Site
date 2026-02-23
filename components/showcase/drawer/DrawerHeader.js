@@ -10,22 +10,22 @@ export default function DrawerHeader({ selectedItem, onClose, rating, date, them
       <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-3">
         {/* Left: Site name and creators */}
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap min-w-0 flex-1">
-          <h3 className={`text-[14px] sm:text-[16px] font-semibold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`font-merriweather text-[14px] font-semibold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>
             {selectedItem.title}
           </h3>
-          <span className={`text-[12px] sm:text-[14px] hidden sm:inline ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>by</span>
+          <span className={`font-merriweather text-[12px] sm:text-[14px] hidden sm:inline ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>by</span>
           {selectedItem.creators?.slice(0, 1).map((creator, index) => (
             <div key={index} className="flex items-center gap-1.5 sm:gap-2">
-              <div className={`flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[9px] sm:text-[10px] font-bold ${
+              <div className={`flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full font-merriweather text-[9px] sm:text-[10px] font-bold ${
                 isDark ? 'bg-white text-black' : 'bg-gray-900 text-white'
               }`}>
                 {creator.avatar}
               </div>
-              <span className={`text-[12px] sm:text-[13px] font-medium truncate max-w-[100px] sm:max-w-none ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              <span className={`font-merriweather text-[12px] sm:text-[13px] font-medium truncate max-w-[100px] sm:max-w-none ${isDark ? 'text-white' : 'text-gray-900'}`}>
                 {creator.name}
               </span>
               {creator.type && (
-                <span className={`rounded px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[9px] font-bold hidden sm:inline ${
+                <span className={`font-merriweather rounded px-1 sm:px-1.5 py-0.5 text-[8px] sm:text-[9px] font-bold hidden sm:inline ${
                   isDark ? 'bg-white text-black' : 'bg-gray-900 text-white'
                 }`}>
                   {creator.type}
@@ -126,17 +126,17 @@ export default function DrawerHeader({ selectedItem, onClose, rating, date, them
               ? 'border-gray-700 bg-[#2a2a2a]' 
               : 'border-gray-300 bg-white'
           }`}>
-            <span className={`text-[9px] sm:text-[11px] font-bold uppercase tracking-wide ${
+            <span className={`font-merriweather text-[9px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] ${
               isDark ? 'text-gray-400' : 'text-gray-500'
             }`}>
               SOTD
             </span>
-            <span className={`text-[20px] sm:text-[24px] md:text-[28px] font-bold leading-none mt-0.5 sm:mt-1 ${
+            <span className={`font-italiana text-[20px] sm:text-[24px] md:text-[28px] font-light leading-none mt-0.5 sm:mt-1 ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
               {rating}
             </span>
-            <span className={`text-[9px] sm:text-[11px] font-medium ${
+            <span className={`font-merriweather text-[9px] sm:text-[11px] font-medium ${
               isDark ? 'text-gray-500' : 'text-gray-400'
             }`}>
               /10
@@ -147,7 +147,7 @@ export default function DrawerHeader({ selectedItem, onClose, rating, date, them
 
       {/* Date */}
       {date && (
-        <p className={`text-center text-[11px] sm:text-[13px] mb-3 sm:mb-4 ${
+        <p className={`font-merriweather text-center text-[11px] sm:text-[13px] mb-3 sm:mb-4 ${
           isDark ? 'text-gray-400' : 'text-gray-600'
         }`}>
           {date}
@@ -155,7 +155,7 @@ export default function DrawerHeader({ selectedItem, onClose, rating, date, them
       )}
 
       {/* Large Title */}
-      <h2 className={`text-[32px] sm:text-[48px] md:text-[64px] lg:text-[80px] xl:text-[100px] font-bold leading-none mb-4 sm:mb-6 uppercase tracking-tight text-center px-2 ${
+      <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-4 sm:mb-6 text-center px-2 ${
         isDark ? 'text-white' : 'text-gray-900'
       }`}>
         {selectedItem.title}
@@ -165,18 +165,18 @@ export default function DrawerHeader({ selectedItem, onClose, rating, date, them
       <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap mb-6 sm:mb-8 px-2">
         {selectedItem.creators?.map((creator, index) => (
           <div key={index} className="flex items-center gap-2">
-            <div className={`flex h-8 w-8 items-center justify-center rounded-full text-[12px] font-bold ${
+            <div className={`flex h-8 w-8 items-center justify-center rounded-full font-merriweather text-[12px] font-bold ${
               isDark ? 'bg-white text-black' : 'bg-gray-900 text-white'
             }`}>
               {creator.avatar}
             </div>
-            <span className={`text-[14px] font-semibold ${
+            <span className={`font-merriweather text-[14px] font-semibold ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
               {creator.name}
             </span>
             {creator.type && (
-              <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+              <span className={`font-merriweather rounded px-1.5 py-0.5 text-[10px] font-bold ${
                 isDark ? 'bg-white text-black' : 'bg-gray-900 text-white'
               }`}>
                 {creator.type}

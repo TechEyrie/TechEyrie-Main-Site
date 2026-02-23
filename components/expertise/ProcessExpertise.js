@@ -132,17 +132,17 @@ export default function ProcessSection() {
           {/* Badge */}
           <div className="mb-10 flex items-center gap-3">
             <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
+            <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
               Process
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.05] tracking-[-0.02em]">
-            <span className="block text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
-              Our <span className="italic font-light">process</span> to improve
+          <h2 className="font-italiana font-light leading-[1.05] tracking-[-0.03em] text-[#111111]">
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
+              Our <span className="font-playfair italic font-light">process</span> to improve
             </span>
-            <span className="mt-1 block text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
               your SaaS pipeline
             </span>
           </h2>
@@ -211,7 +211,7 @@ export default function ProcessSection() {
               {/* Top: Title and Icon */}
               <div className="flex items-start justify-between gap-6">
                 {/* Title */}
-                <h3 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] md:text-[38px] lg:text-[43px] font-regular tracking-tight text-[#111111] leading-tight">
+                <h3 className="font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] lg:text-[38px] tracking-tight text-[#111111] leading-tight">
                   {index + 1}. {step.title}
                 </h3>
 
@@ -220,7 +220,7 @@ export default function ProcessSection() {
               </div>
 
               {/* Bottom: Description */}
-              <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[18px] font-medium leading-relaxed text-[#555555]">
+              <p className="font-merriweather text-[14px] leading-relaxed text-[#555555]">
                 {step.description}
               </p>
             </article>

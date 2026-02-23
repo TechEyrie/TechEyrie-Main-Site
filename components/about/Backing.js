@@ -29,7 +29,7 @@ const Backing = ({ theme = "light" }) => {
             {/* Title */}
             <div className="mb-12 md:mb-16">
               <MaskedReveal delay={0.1}>
-                <h2 className={`text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] font-['Figtree'] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
+                <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
                   Backing is believing
                 </h2>
               </MaskedReveal>
@@ -38,7 +38,7 @@ const Backing = ({ theme = "light" }) => {
             {/* Description */}
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
-                <p className={`text-lg md:text-xl leading-relaxed font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   Backed by prominent industry leaders who saw us challenging conventions, solving problems that matter, and delivering products that truly make a difference - and decided to come along for the ride.
                 </p>
               </MaskedReveal>
@@ -102,7 +102,7 @@ const Backing = ({ theme = "light" }) => {
                         }`}
                     />
                   ) : (
-                    <span className={`text-4xl md:text-5xl font-['Figtree'] font-bold tracking-tighter transition-colors duration-300 ${isDark ? 'text-white/90 group-hover:text-white' : 'text-black/90 group-hover:text-black'}`}>
+                    <span className={`font-italiana text-[24px] md:text-[32px] font-light tracking-tight transition-colors duration-300 ${isDark ? 'text-white/90 group-hover:text-white' : 'text-black/90 group-hover:text-black'}`}>
                       {partner.name}
                     </span>
                   )}

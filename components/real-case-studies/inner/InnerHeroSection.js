@@ -49,7 +49,7 @@ export default function InnerHeroSection({ theme = "light" }) {
               <li key={index} className="flex items-center gap-3 sm:gap-4">
                 <Link
                   href={crumb.href}
-                  className={`text-[13px] sm:text-[14px] md:text-[15px] font-semibold uppercase tracking-wider transition-colors ${
+                  className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] transition-colors ${
                     index === project.breadcrumb.length - 1
                       ? isDark
                         ? "text-white"
@@ -80,7 +80,7 @@ export default function InnerHeroSection({ theme = "light" }) {
           {project.categories.map((category, index) => (
             <span
               key={index}
-              className={`px-7 sm:px-8 md:px-9 py-3 sm:py-3.5 md:py-4 rounded-lg text-[13px] sm:text-[14px] md:text-[15px] font-bold uppercase tracking-wider ${
+              className={`font-merriweather px-7 sm:px-8 md:px-9 py-3 sm:py-3.5 md:py-4 rounded-lg text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] ${
                 isDark
                   ? "bg-[#2a2a2a] text-white"
                   : "bg-gray-100 text-black"
@@ -93,7 +93,7 @@ export default function InnerHeroSection({ theme = "light" }) {
 
         {/* Main Title */}
         <h1
-          className={`text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] xl:text-[96px] font-semibold mb-10 sm:mb-12 md:mb-16 leading-[1.1] max-w-full lg:max-w-[85%] xl:max-w-[80%] ${
+          className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-10 sm:mb-12 md:mb-16 max-w-full lg:max-w-[85%] xl:max-w-[80%] ${
             isDark ? "text-white" : "text-black"
           }`}
         >
@@ -105,7 +105,7 @@ export default function InnerHeroSection({ theme = "light" }) {
           href={project.ctaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-[14px] sm:text-[15px] md:text-[16px] rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-16 sm:mb-20 md:mb-24"
+          className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-orange-500 hover:bg-orange-600 text-white font-merriweather text-[14px] font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-16 sm:mb-20 md:mb-24"
         >
           {project.ctaText}
           <svg
@@ -150,7 +150,7 @@ export default function InnerHeroSection({ theme = "light" }) {
             >
               {/* Title - Top */}
               <h3
-                className={`text-[24px] sm:text-[28px] md:text-[32px] lg:text-[32px] font-regular mb-auto pb-8 sm:pb-10 md:pb-12 leading-tight ${
+                className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-tight tracking-[-0.03em] mb-auto pb-8 sm:pb-10 md:pb-12 ${
                   isDark ? "text-white" : "text-black"
                 }`}
               >
@@ -159,7 +159,7 @@ export default function InnerHeroSection({ theme = "light" }) {
 
               {/* Description - Bottom */}
               <p
-                className={`text-[17px] sm:text-[18px] md:text-[19px] lg:text-[20px] font-light leading-relaxed ${
+                className={`font-merriweather text-[14px] leading-relaxed ${
                   isDark ? "text-gray-300" : "text-gray-700"
                 }`}
               >

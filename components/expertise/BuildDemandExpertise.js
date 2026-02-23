@@ -78,7 +78,7 @@ export default function BuildDemandSection({ theme = 'light' }) {
             <div>
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-                <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-white' : 'text-[#212121]'}`}>
+                <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-white' : 'text-[#212121]'}`}>
                   Build demand
                 </span>
               </div>
@@ -86,12 +86,12 @@ export default function BuildDemandSection({ theme = 'light' }) {
 
             {/* Right: Title */}
             <div>
-              <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.05] tracking-[-0.02em]">
-                <span className={`block text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
+              <h2 className={`font-italiana font-light leading-[1.05] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#111111]'}`}>
+                <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
                   We help you build
                 </span>
-                <span className={`mt-1 block text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                  <span className="italic font-light">demand</span> for your SaaS
+                <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
+                  <span className="font-playfair italic font-light">demand</span> for your SaaS
                 </span>
               </h2>
             </div>
@@ -140,7 +140,7 @@ export default function BuildDemandSection({ theme = 'light' }) {
                       className={`demand-card group relative flex h-full min-h-[180px] sm:min-h-0 flex-col justify-between rounded-lg border ${isDark ? 'border-white/10 bg-[#2a2a2a] hover:bg-[#333333]' : 'border-black/6 bg-white hover:bg-[#FAFAFA]'} p-6 sm:p-8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]`}
                     >
                       {/* Title */}
-                      <h3 className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[22px] md:text-[24px] lg:text-[28px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111111]'}`}>
+                      <h3 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] tracking-tight ${isDark ? 'text-white' : 'text-[#111111]'}`}>
                         {item.title}
                       </h3>
 
@@ -148,7 +148,7 @@ export default function BuildDemandSection({ theme = 'light' }) {
                       <div className="mt-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4">
                         {/* Description - fades in on hover */}
                         <p
-                          className={`demand-description w-full sm:max-w-[280px] font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] sm:text-[14px] font-medium leading-snug ${isDark ? 'text-gray-300' : 'text-[#555555]'} ${
+                          className={`demand-description w-full sm:max-w-[280px] font-merriweather text-[14px] leading-snug ${isDark ? 'text-gray-300' : 'text-[#555555]'} ${
                             isActive
                               ? 'translate-y-0 opacity-100'
                               : 'translate-y-4 opacity-0'
@@ -229,7 +229,7 @@ export default function BuildDemandSection({ theme = 'light' }) {
                       className={`demand-card group relative flex h-full min-h-[180px] sm:min-h-0 flex-col justify-between rounded-lg border ${isDark ? 'border-white/10 bg-[#2a2a2a] hover:bg-[#333333]' : 'border-black/6 bg-white hover:bg-[#FAFAFA]'} p-6 sm:p-8 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]`}
                     >
                       {/* Title */}
-                      <h3 className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[22px] md:text-[24px] lg:text-[28px] font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111111]'}`}>
+                      <h3 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] tracking-tight ${isDark ? 'text-white' : 'text-[#111111]'}`}>
                         {item.title}
                       </h3>
 
@@ -237,7 +237,7 @@ export default function BuildDemandSection({ theme = 'light' }) {
                       <div className="mt-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4">
                         {/* Description - fades in on hover */}
                         <p
-                          className={`demand-description w-full sm:max-w-[280px] font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] sm:text-[14px] font-medium leading-snug ${isDark ? 'text-gray-300' : 'text-[#555555]'} ${
+                          className={`demand-description w-full sm:max-w-[280px] font-merriweather text-[14px] leading-snug ${isDark ? 'text-gray-300' : 'text-[#555555]'} ${
                             isActive
                               ? 'translate-y-0 opacity-100'
                               : 'translate-y-4 opacity-0'

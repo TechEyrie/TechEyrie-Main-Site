@@ -107,16 +107,16 @@ export default function Services2FAQs({ theme = 'light' }) {
       <div className="px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 mb-12 md:mb-16">
         <div className="max-w-[1800px] mx-auto">
           <div className="max-w-[800px]">
-            <h2 
+            <h2
               ref={headingRef}
-              className="font-space-grotesk text-[48px] md:text-[56px] lg:text-[64px] font-semibold mb-6"
-              style={{ color: isDark ? '#FFFFFF' : '#7b2cbf', lineHeight: '1.1' }}
+              className="font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.1] tracking-[-0.03em] mb-6"
+              style={{ color: isDark ? '#FFFFFF' : '#7b2cbf' }}
             >
               FAQs
             </h2>
-            <p 
+            <p
               ref={descRef}
-              className="font-space-grotesk text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed"
+              className="font-merriweather text-[14px] leading-relaxed"
               style={{ color: isDark ? '#B0B0B0' : '#7b2cbf' }}
             >
               Frequently asked questions about our sector expertise. Answered clearly, directly, from experience.
@@ -140,7 +140,7 @@ export default function Services2FAQs({ theme = 'light' }) {
                 className="w-full text-left py-6 md:py-8 flex items-start justify-between group"
               >
                 <h3
-                  className="font-space-grotesk text-[20px] md:text-[24px] lg:text-[28px] font-medium pr-8 transition-opacity duration-300 group-hover:opacity-70"
+                  className="font-italiana font-light text-[24px] md:text-[28px] lg:text-[32px] pr-8 transition-opacity duration-300 group-hover:opacity-70"
                   style={{ 
                     color: isDark ? '#FFFFFF' : '#7b2cbf',
                     lineHeight: '1.3'
@@ -179,7 +179,7 @@ export default function Services2FAQs({ theme = 'light' }) {
               >
                 <div className="pb-6 md:pb-8 pr-12">
                   <p
-                    className="font-space-grotesk text-[16px] md:text-[18px] leading-relaxed"
+                    className="font-merriweather text-[14px] leading-relaxed"
                     style={{ color: isDark ? '#B0B0B0' : '#5a5a5a' }}
                   >
                     {faq.answer}

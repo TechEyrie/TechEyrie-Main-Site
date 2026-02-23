@@ -1758,7 +1758,7 @@ export default function ResultsSection({ theme = "light" }) {
                           theme === "dark"
                             ? "border-[#f3f3f3]"
                             : "border-[#111111]"
-                        } pl-3 sm:pl-4 md:pl-6 font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[17px] md:text-[20px] lg:text-[24px] xl:text-[30px] leading-snug ${
+                        } pl-3 sm:pl-4 md:pl-6 font-merriweather text-[14px] sm:text-[17px] md:text-[20px] lg:text-[24px] xl:text-[30px] leading-snug ${
                           theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                         }`}
                       >
@@ -1778,7 +1778,7 @@ export default function ResultsSection({ theme = "light" }) {
                           </div>
                           <div className="min-w-0">
                             <p
-                              className={`font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-bold truncate ${
+                              className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] font-semibold truncate ${
                                 theme === "dark"
                                   ? "text-[#f3f3f3]"
                                   : "text-[#111111]"
@@ -1787,7 +1787,7 @@ export default function ResultsSection({ theme = "light" }) {
                               {testimonial.author}
                             </p>
                             <p
-                              className={`font-[Helvetica Now Text,Arial,sans-serif] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-medium truncate ${
+                              className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-medium truncate ${
                                 theme === "dark"
                                   ? "text-[#a0a0a0]"
                                   : "text-[#444444]"

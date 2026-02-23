@@ -399,7 +399,7 @@ export default function BlogPostPage({ params }) {
         <div className={`flex items-center justify-center min-h-[60vh] sm:min-h-screen ${theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-white'}`}>
           <div className="text-center px-4">
             <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-[#74F5A1]"></div>
-            <p className={`mt-4 text-base sm:text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`mt-4 font-merriweather text-[14px] ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
               Loading blog post...
             </p>
           </div>
@@ -416,10 +416,10 @@ export default function BlogPostPage({ params }) {
       ) : (
         <div className={`flex items-center justify-center min-h-[60vh] sm:min-h-screen ${theme === 'dark' ? 'bg-[#0a0a0a]' : 'bg-white'}`}>
           <div className="text-center px-4">
-            <h1 className={`text-xl sm:text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
+            <h1 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] mb-4 ${theme === 'dark' ? 'text-white' : 'text-[#111111]'}`}>
               Post not found
             </h1>
-            <a href="/blog" className="text-[#74F5A1] hover:underline text-sm sm:text-base">
+            <a href="/blog" className="font-merriweather text-[14px] text-[#74F5A1] hover:underline">
               Back to blog
             </a>
           </div>

@@ -125,20 +125,20 @@ export default function B2BBuyersSection() {
               {/* Badge */}
               <div className="b2b-badge mb-10 flex items-center gap-3">
                 <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-                <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
+                <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
                   B2B buyers
                 </span>
               </div>
 
               {/* Title */}
-              <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[0.95] tracking-[-0.02em]">
-                <span className="b2b-title-line block text-[52px] sm:text-[64px] md:text-[76px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
+              <h2 className="font-italiana font-light leading-[0.95] tracking-[-0.03em] text-[#111111]">
+                <span className="b2b-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
                   Marketing for
                 </span>
-                <span className="b2b-title-line mt-1 block text-[52px] sm:text-[64px] md:text-[76px] lg:text-[84px] xl:text-[96px] font-bold text-[#111111]">
+                <span className="b2b-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
                   modern-day
                 </span>
-                <span className="b2b-title-line mt-1 block text-[52px] sm:text-[64px] md:text-[76px] lg:text-[84px] xl:text-[96px] italic font-light text-[#111111]">
+                <span className="b2b-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] font-playfair italic font-light">
                   Go-To-Market
                 </span>
               </h2>
@@ -152,7 +152,7 @@ export default function B2BBuyersSection() {
           <div className="mt-12 lg:mt-16 lg:ml-[50%]">
             <div className="lg:max-w-[650px]">
               <div className="b2b-description mb-10">
-                <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[19px] md:text-[21px] lg:text-[22px] font-normal leading-[1.65] text-[#212121]">
+                <p className="font-playfair text-[17px] md:text-[25px] font-normal leading-[1.65] text-[#212121]">
                   How B2B buyers buy has changed. B2B buyers research themselves,
                   and will reach out to you when they're ready to buy. The job of
                   marketing is to educate and nurture prospects with great
@@ -166,7 +166,7 @@ export default function B2BBuyersSection() {
                   href="/contact"
                   className="group inline-flex items-center gap-3 rounded-lg bg-[#74F5A1] px-7 py-4 transition-all duration-300 hover:bg-[#5FE08D] hover:scale-105 hover:shadow-lg"
                 >
-                  <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] md:text-[16px] font-bold text-[#111111]">
+                  <span className="font-merriweather text-[14px] font-semibold text-[#111111]">
                     Book a Strategy Call
                   </span>
                   <span className="flex h-5 w-5 items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

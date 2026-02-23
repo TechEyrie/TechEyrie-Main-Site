@@ -192,13 +192,7 @@ export default function IndustriesGrid({ theme = 'light' }) {
 
               {/* Title */}
               <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <h3 
-                  className="text-white font-light leading-tight font-space-grotesk"
-                  style={{
-                    fontSize: 'clamp(20px, 2.5vw, 28px)',
-                    textShadow: '0 2px 12px rgba(0,0,0,0.4)'
-                  }}
-                >
+                <h3 className="font-italiana text-white text-[24px] sm:text-[26px] md:text-[28px] lg:text-[32px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
                   {industry.title}
                 </h3>
               </div>

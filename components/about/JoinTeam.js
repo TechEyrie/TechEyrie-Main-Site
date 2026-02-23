@@ -93,7 +93,7 @@ const JoinTeam = ({ theme = "light" }) => {
         {/* Label */}
         <div className="mb-8">
            <MaskedReveal>
-             <span className={`text-sm md:text-base font-medium tracking-wide font-mono uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+             <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
                Our Team
              </span>
            </MaskedReveal>
@@ -102,7 +102,7 @@ const JoinTeam = ({ theme = "light" }) => {
         {/* Title */}
         <div className="mb-12 md:mb-16">
           <MaskedReveal delay={0.1}>
-            <h2 className={`text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-[0.9] font-['Figtree'] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
+            <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
               Ready to make <br />
               goods flow?
             </h2>
@@ -114,7 +114,7 @@ const JoinTeam = ({ theme = "light" }) => {
           <MaskedReveal delay={0.2}>
             <Link 
               href="#" 
-              className={`inline-block text-sm md:text-base font-mono tracking-widest uppercase border-b pb-1 transition-colors ${
+              className={`inline-block font-merriweather text-[14px] font-semibold tracking-[0.16em] uppercase border-b pb-1 transition-colors ${
                   isDark 
                   ? 'text-white border-white hover:text-white/70 hover:border-white/70' 
                   : 'text-black border-black hover:text-[#032219]/70 hover:border-[#032219]/70'

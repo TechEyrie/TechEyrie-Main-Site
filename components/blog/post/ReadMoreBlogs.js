@@ -24,10 +24,10 @@ export default function ReadMoreBlogs({ posts = [], currentSlug = '', theme = 'l
         
         {/* Section Header - Left Aligned */}
         <div className="mb-8 sm:mb-10 md:mb-12">
-          <h2 className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold leading-[1.1] ${
+          <h2 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] ${
             isDark ? 'text-white' : 'text-[#111111]'
           }`}>
-            Read <span className="italic font-light">more</span> blogs
+            Read <span className="italic font-playfair font-light">more</span> blogs
           </h2>
         </div>
 
@@ -55,11 +55,11 @@ export default function ReadMoreBlogs({ posts = [], currentSlug = '', theme = 'l
                 <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
                   <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                     <div>
-                      <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                      <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                         {post.category || 'Blog'}
                       </span>
                     </div>
-                    <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[30px] xl:text-[32px] font-semibold leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                    <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                       {post.title}
                     </h2>
                     <div className="flex items-center gap-2 sm:gap-3">
@@ -74,15 +74,15 @@ export default function ReadMoreBlogs({ posts = [], currentSlug = '', theme = 'l
                           />
                         </div>
                       ) : (
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold bg-[#111111] text-white">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-merriweather text-[14px] font-semibold bg-[#111111] text-white">
                           {post.author?.charAt(0) || 'A'}
                         </div>
                       )}
                       <div className="flex flex-col gap-0.5">
-                        <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg font-medium text-[#111111]">
+                        <span className="font-merriweather text-[14px] text-[#111111]">
                           {post.author || 'Author'}
                         </span>
-                        <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base text-[#666666]">
+                        <span className="font-merriweather text-[14px] text-[#666666]">
                           {post.readTime || '5 min read'}
                         </span>
                       </div>

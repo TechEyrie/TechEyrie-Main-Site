@@ -11,10 +11,10 @@ const DrawerCollections = forwardRef(function DrawerCollections({ collections = 
     }`}>
       {/* Header */}
       <div className="mb-8 sm:mb-10 md:mb-12">
-        <span className={`text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-wide mb-2 sm:mb-3 block ${
+        <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-2 sm:mb-3 block ${
           isDark ? 'text-gray-500' : 'text-gray-500'
         }`}>Collections</span>
-        <h3 className={`text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-bold leading-tight ${
+        <h3 className={`font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] leading-tight tracking-[-0.03em] ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>
           Explore more<br />great collections.
@@ -49,8 +49,8 @@ const DrawerCollections = forwardRef(function DrawerCollections({ collections = 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-end p-4 sm:p-6">
                   <div className="text-white">
-                    <p className="text-[16px] sm:text-[17px] md:text-[18px] font-bold mb-1">{collection.type || "Collection"}</p>
-                    <p className="text-[13px] sm:text-[14px] md:text-[15px] text-white/90">{collection.subtitle || "Inspiration"}</p>
+                    <p className="font-italiana font-light text-[16px] sm:text-[17px] md:text-[18px] mb-1">{collection.type || "Collection"}</p>
+                    <p className="font-merriweather text-[14px] text-white/90">{collection.subtitle || "Inspiration"}</p>
                   </div>
                 </div>
               </div>
@@ -59,11 +59,11 @@ const DrawerCollections = forwardRef(function DrawerCollections({ collections = 
             {/* Collection Info */}
             <div className="flex items-center justify-between gap-2 sm:gap-3">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                <h4 className={`text-[15px] sm:text-[16px] md:text-[17px] font-semibold truncate ${
+                <h4 className={`font-merriweather text-[14px] font-semibold truncate ${
                   isDark ? 'text-white' : 'text-gray-900'
                 }`}>{collection.title}</h4>
                 {collection.showFollowedBy && (
-                  <span className={`text-[11px] sm:text-[12px] md:text-[13px] hidden sm:inline ${
+                  <span className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] hidden sm:inline ${
                     isDark ? 'text-gray-500' : 'text-gray-500'
                   }`}>followed by</span>
                 )}
@@ -91,7 +91,7 @@ const DrawerCollections = forwardRef(function DrawerCollections({ collections = 
                               className="object-cover w-full h-full"
                             />
                           ) : (
-                            <span className={`text-[10px] sm:text-[12px] font-semibold ${
+                            <span className={`font-merriweather text-[10px] sm:text-[12px] font-semibold ${
                               isDark ? 'text-gray-400' : 'text-gray-600'
                             }`}>
                               {follower.name?.[0]?.toUpperCase() || '?'}
@@ -102,7 +102,7 @@ const DrawerCollections = forwardRef(function DrawerCollections({ collections = 
                     })}
                   </div>
                   {collection.followerCount && (
-                    <span className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold ${
+                    <span className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] font-semibold ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>+{collection.followerCount}</span>
                   )}

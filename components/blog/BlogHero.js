@@ -55,7 +55,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
       >
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="mb-6 sm:mb-8 flex justify-center">
-            <span className={`inline-flex items-center gap-2 text-sm sm:text-base font-medium ${isDark ? 'text-white/80' : 'text-[#111111]'}`}>
+            <span className={`inline-flex items-center gap-2 font-merriweather text-[13px] font-semibold ${isDark ? 'text-white/80' : 'text-[#111111]'}`}>
               <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#74F5A1] rounded-sm"></span>
               Blog
             </span>
@@ -63,15 +63,15 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
           
           <h1 
             ref={titleRef}
-            className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[36px] xs:text-[42px] sm:text-[48px] md:text-[64px] lg:text-[80px] xl:text-[96px] 2xl:text-[120px] font-bold leading-[0.95] tracking-tight text-center ${isDark ? 'text-white' : 'text-[#111111]'}`}
+            className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[0.95] tracking-tight text-center ${isDark ? 'text-white' : 'text-[#111111]'}`}
             style={{ opacity: 1 }}
           >
-            On our <span className="italic font-light">minds</span>
+            On our <span className="italic font-playfair font-light">minds</span>
           </h1>
           
           <div className="mt-8 sm:mt-10 md:mt-12 mb-4 sm:mb-6 text-center">
             <span 
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base font-medium ${isDark ? 'text-white/70' : 'text-[#666666]'}`}
+              className={`font-merriweather text-[14px] ${isDark ? 'text-white/70' : 'text-[#666666]'}`}
             >
               Choose a category:
             </span>
@@ -82,7 +82,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 font-medium ${
+                className={`font-merriweather text-[13px] font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-[#74F5A1] text-[#0a0a0a] shadow-lg shadow-[#74F5A1]/20'
                     : isDark
@@ -106,7 +106,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
           {/* No Posts Message */}
           {filteredPosts.length === 0 && (
             <div className="text-center py-16 sm:py-20 md:py-24">
-              <p className={`text-lg sm:text-xl md:text-2xl font-medium ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
+              <p className={`font-merriweather text-[14px] ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
                 No blog posts found in this category.
               </p>
             </div>
@@ -151,29 +151,29 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                         
                         {/* Top - Category Badge */}
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                             {filteredPosts[0].category || 'Blog'}
                           </span>
                         </div>
 
                         {/* Middle - Title */}
-                        <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[22px] sm:text-[26px] md:text-[32px] lg:text-[36px] xl:text-[42px] 2xl:text-[48px] font-bold leading-[1.1] text-white transition-colors duration-300 group-hover:text-[#74F5A1]">
+                        <h2 className="font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] text-white transition-colors duration-300 group-hover:text-[#74F5A1]">
                           {filteredPosts[0].title}
                         </h2>
 
                         {/* Bottom - Author Info */}
                         <div className="flex items-center gap-3 sm:gap-4">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold text-[#74F5A1]">
+                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {filteredPosts[0].author?.charAt(0) || 'A'}
                             </span>
                           </div>
                           
                           <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base font-medium text-white">
+                            <span className="font-merriweather text-[14px] text-white">
                               {filteredPosts[0].author || 'Author'}
                             </span>
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm text-white/60">
+                            <span className="font-merriweather text-[14px] text-white/60">
                               {filteredPosts[0].readTime || '5 min read'}
                             </span>
                           </div>
@@ -215,28 +215,28 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                         
                         {/* Category */}
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                             {filteredPosts[1].category || 'Blog'}
                           </span>
                         </div>
 
                         {/* Title */}
-                        <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[30px] xl:text-[32px] font-semibold leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {filteredPosts[1].title}
                         </h2>
 
                         {/* Meta Info */}
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold text-[#74F5A1]">
+                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {filteredPosts[1].author?.charAt(0) || 'A'}
                             </span>
                           </div>
                           <div className="flex flex-col gap-0.5">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg font-medium text-[#111111]">
+                            <span className="font-merriweather text-[14px] text-[#111111]">
                               {filteredPosts[1].author || 'Author'}
                             </span>
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base text-[#666666]">
+                            <span className="font-merriweather text-[14px] text-[#666666]">
                               {filteredPosts[1].readTime || '5 min read'}
                             </span>
                           </div>
@@ -277,24 +277,24 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                     <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
                       <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                             {post.category || 'Blog'}
                           </span>
                         </div>
-                        <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[30px] xl:text-[32px] font-semibold leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {post.title}
                         </h2>
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold text-[#74F5A1]">
+                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {post.author?.charAt(0) || 'A'}
                             </span>
                           </div>
                           <div className="flex flex-col gap-0.5">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg font-medium text-[#111111]">
+                            <span className="font-merriweather text-[14px] text-[#111111]">
                               {post.author || 'Author'}
                             </span>
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base text-[#666666]">
+                            <span className="font-merriweather text-[14px] text-[#666666]">
                               {post.readTime || '5 min read'}
                             </span>
                           </div>
@@ -334,24 +334,24 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                     <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
                       <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                             {post.category || 'Blog'}
                           </span>
                         </div>
-                        <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[30px] xl:text-[32px] font-semibold leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {post.title}
                         </h2>
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold text-[#74F5A1]">
+                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {post.author?.charAt(0) || 'A'}
                             </span>
                           </div>
                           <div className="flex flex-col gap-0.5">
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg font-medium text-[#111111]">
+                            <span className="font-merriweather text-[14px] text-[#111111]">
                               {post.author || 'Author'}
                             </span>
-                            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base text-[#666666]">
+                            <span className="font-merriweather text-[14px] text-[#666666]">
                               {post.readTime || '5 min read'}
                             </span>
                           </div>

@@ -99,7 +99,7 @@ export default function KeyProjectSection({ theme = "light" }) {
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
-          className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-wider mb-6 sm:mb-8 ${
+          className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-6 sm:mb-8 ${
             isDark ? "text-gray-500" : "text-gray-600"
           }`}
         >
@@ -108,7 +108,7 @@ export default function KeyProjectSection({ theme = "light" }) {
 
         {/* Title */}
         <h2
-          className={`text-[48px] sm:text-[56px] md:text-[64px] lg:text-[72px] xl:text-[80px] font-semibold mb-16 sm:mb-20 md:mb-24 leading-tight ${
+          className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] mb-16 sm:mb-20 md:mb-24 leading-tight tracking-[-0.03em] ${
             isDark ? "text-white" : "text-black"
           }`}
         >
@@ -146,7 +146,7 @@ export default function KeyProjectSection({ theme = "light" }) {
               >
                 {/* Feature Title */}
                 <h3
-                  className={`text-[32px] sm:text-[36px] md:text-[40px] lg:text-[44px] font-semibold mb-6 sm:mb-8 ${
+                  className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] lg:text-[38px] mb-6 sm:mb-8 tracking-[-0.03em] ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
@@ -155,7 +155,7 @@ export default function KeyProjectSection({ theme = "light" }) {
 
                 {/* Description */}
                 <p
-                  className={`text-[18px] sm:text-[20px] md:text-[22px] font-light leading-relaxed mb-8 sm:mb-10 ${
+                  className={`font-merriweather text-[14px] leading-relaxed mb-8 sm:mb-10 ${
                     isDark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
@@ -164,7 +164,7 @@ export default function KeyProjectSection({ theme = "light" }) {
 
                 {/* Subheading */}
                 <h4
-                  className={`text-[22px] sm:text-[24px] md:text-[26px] font-semibold mb-4 sm:mb-6 ${
+                  className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-4 sm:mb-6 ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
@@ -176,7 +176,7 @@ export default function KeyProjectSection({ theme = "light" }) {
                   {feature.points.map((point, pointIndex) => (
                     <li
                       key={pointIndex}
-                      className={`text-[16px] sm:text-[17px] md:text-[18px] font-light leading-relaxed flex items-start ${
+                      className={`font-merriweather text-[14px] leading-relaxed flex items-start ${
                         isDark ? "text-gray-300" : "text-gray-700"
                       }`}
                     >

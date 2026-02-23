@@ -183,23 +183,23 @@ export default function ClientsSection() {
               {/* Badge */}
               <div className="mb-8 flex items-center gap-3">
                 <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-                <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
+                <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
                   Clients
                 </span>
               </div>
 
               {/* Title */}
-              <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[48px] sm:text-[60px] md:text-[72px] lg:text-[84px] xl:text-[96px] font-bold leading-[1.05] tracking-[-0.02em] text-[#111111]">
+              <h2 className="font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.02em] text-[#111111]">
                 <span className="block">50+ B2B software companies</span>
-                <span className="block mt-1">trust us to improve their</span>
-                <span className="block mt-1 italic font-light">Marketing ROI</span>
+                <span className="block -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px]">trust us to improve their</span>
+                <span className="block -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] font-playfair italic font-light">Marketing ROI</span>
               </h2>
             </div>
 
             {/* Right: CTA Button - Bottom Right Aligned */}
             <div className="lg:flex items-end pb-2">
               <button className="group flex items-center gap-3 rounded-lg bg-white px-6 py-4 transition-all duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-lg">
-                <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] md:text-[16px] font-bold text-[#111111]">
+                <span className="font-merriweather text-[14px] font-semibold text-[#111111]">
                   Explore our results
                 </span>
                 <span className="flex h-5 w-5 items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

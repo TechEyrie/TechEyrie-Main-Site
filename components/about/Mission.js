@@ -128,16 +128,16 @@ const MissionSection = ({ theme = "light" }) => {
             }`}>
               <div className="max-w-2xl">
                 <div className="flex items-start gap-4 mb-8">
-                  <span className={`text-sm font-mono ${isDark ? 'text-gray-500' : 'text-gray-400'} mt-2`}>{section.number}</span>
+                  <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'} mt-2`}>{section.number}</span>
                   <MaskedReveal>
-                    <h2 className="text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]">
+                    <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-black'}`}>
                       {section.title}
                     </h2>
                   </MaskedReveal>
                 </div>
 
                 <div className="">
-                  <ScrollTextReveal className="text-lg md:text-xl leading-relaxed font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif]" isDark={isDark}>
+                  <ScrollTextReveal className="font-merriweather text-[14px] leading-relaxed" isDark={isDark}>
                     {section.text}
                   </ScrollTextReveal>
                 </div>

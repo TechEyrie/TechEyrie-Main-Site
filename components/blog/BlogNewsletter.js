@@ -75,8 +75,8 @@ export default function BlogNewsletter({ theme = 'light' }) {
             {/* LEFT SIDE - Content & Decorative Shapes */}
             <div className="relative">
               {/* Heading */}
-              <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold leading-[1.1] text-white mb-6 sm:mb-8">
-                Receive weekly <span className="italic font-light">growth</span> tips
+              <h2 className="font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] text-white mb-6 sm:mb-8">
+                Receive weekly <span className="italic font-playfair font-light">growth</span> tips
               </h2>
             </div>
 
@@ -87,7 +87,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                 <div>
                   <label
                     htmlFor="newsletter-name"
-                    className="block mb-2 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base font-medium text-white"
+                    className="block mb-2 font-merriweather text-[13px] font-semibold text-white"
                   >
                     Name <span className="text-[#74F5A1]">*</span>
                   </label>
@@ -97,7 +97,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className={`w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base border text-white placeholder:text-white/40 focus:border-[#74F5A1] focus:outline-none transition-all ${
+                    className={`w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl font-merriweather text-[14px] border text-white placeholder:text-white/40 focus:border-[#74F5A1] focus:outline-none transition-all ${
                       isDark 
                         ? 'bg-[#0a0a0a] border-white/10' 
                         : 'bg-[#111111] border-white/10'
@@ -110,7 +110,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                 <div>
                   <label
                     htmlFor="newsletter-email"
-                    className="block mb-2 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base font-medium text-white"
+                    className="block mb-2 font-merriweather text-[13px] font-semibold text-white"
                   >
                     Email Address <span className="text-[#74F5A1]">*</span>
                   </label>
@@ -120,7 +120,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base border text-white placeholder:text-white/40 focus:border-[#74F5A1] focus:outline-none transition-all ${
+                    className={`w-full px-4 sm:px-5 py-3 sm:py-4 rounded-lg sm:rounded-xl font-merriweather text-[14px] border text-white placeholder:text-white/40 focus:border-[#74F5A1] focus:outline-none transition-all ${
                       isDark 
                         ? 'bg-[#0a0a0a] border-white/10' 
                         : 'bg-[#111111] border-white/10'
@@ -130,7 +130,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                 </div>
 
                 {/* Terms Text */}
-                <p className="text-xs sm:text-sm font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-white/60 leading-relaxed">
+                <p className="font-merriweather text-[14px] text-white/60 leading-relaxed">
                   By clicking 'Subscribe' you're confirming that you agree with our{' '}
                   <a href="#" className="underline hover:text-[#74F5A1] transition-colors">
                     Terms and Conditions
@@ -142,7 +142,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg font-semibold bg-[#74F5A1] text-[#0a0a0a] hover:bg-[#5FE08D] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-merriweather text-[14px] font-semibold bg-[#74F5A1] text-[#0a0a0a] hover:bg-[#5FE08D] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                   <svg 
@@ -157,7 +157,7 @@ export default function BlogNewsletter({ theme = 'light' }) {
 
                 {/* Success Message */}
                 {submitStatus === 'success' && (
-                  <div className="p-4 rounded-xl bg-[#74F5A1]/20 text-[#74F5A1] text-center font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif]">
+                  <div className="p-4 rounded-xl bg-[#74F5A1]/20 text-[#74F5A1] text-center font-merriweather text-[14px]">
                     Success! We'll be in touch soon.
                   </div>
                 )}

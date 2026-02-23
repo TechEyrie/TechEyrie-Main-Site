@@ -52,7 +52,7 @@ export default function ProjectOverview({ theme = "light" }) {
           <div>
             {/* Label */}
             <p
-              className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-wider mb-8 sm:mb-10 md:mb-12 ${
+              className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-8 sm:mb-10 md:mb-12 ${
                 isDark ? "text-gray-500" : "text-gray-600"
               }`}
             >
@@ -61,7 +61,7 @@ export default function ProjectOverview({ theme = "light" }) {
 
             {/* Title */}
             <h2
-              className={`text-[36px] sm:text-[44px] md:text-[52px] lg:text-[60px] xl:text-[68px] font-semibold leading-[1.1] ${
+              className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${
                 isDark ? "text-white" : "text-black"
               }`}
             >
@@ -82,7 +82,7 @@ export default function ProjectOverview({ theme = "light" }) {
           <div className="space-y-12 sm:space-y-14 md:space-y-16">
             {/* Description */}
             <p
-              className={`text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-light leading-relaxed ${
+              className={`font-playfair text-[17px] md:text-[20px] font-normal leading-relaxed ${
                 isDark ? "text-white" : "text-black"
               }`}
             >
@@ -92,15 +92,15 @@ export default function ProjectOverview({ theme = "light" }) {
             {/* Client */}
             <div>
               <h3
-                className={`text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-normal mb-4 sm:mb-5 ${
-                  isDark ? "text-white" : "text-black"
+                className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-4 sm:mb-5 ${
+                  isDark ? "text-gray-400" : "text-gray-600"
                 }`}
               >
                 Client
               </h3>
               <div className="flex items-center gap-3">
                 <span
-                  className={`text-[14px] sm:text-[15px] md:text-[16px] font-light uppercase tracking-wider ${
+                  className={`font-merriweather text-[14px] uppercase tracking-[0.16em] ${
                     isDark ? "text-gray-400" : "text-gray-700"
                   }`}
                 >
@@ -108,7 +108,7 @@ export default function ProjectOverview({ theme = "light" }) {
                 </span>
                 <span className="text-[18px]">{overview.client.flag}</span>
                 <span
-                  className={`text-[14px] sm:text-[15px] md:text-[16px] font-light uppercase tracking-wider ${
+                  className={`font-merriweather text-[14px] uppercase tracking-[0.16em] ${
                     isDark ? "text-gray-400" : "text-gray-700"
                   }`}
                 >
@@ -120,8 +120,8 @@ export default function ProjectOverview({ theme = "light" }) {
             {/* Services */}
             <div>
               <h3
-                className={`text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-normal mb-4 sm:mb-5 ${
-                  isDark ? "text-white" : "text-black"
+                className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-4 sm:mb-5 ${
+                  isDark ? "text-gray-400" : "text-gray-600"
                 }`}
               >
                 Services
@@ -130,7 +130,7 @@ export default function ProjectOverview({ theme = "light" }) {
                 {overview.services.map((service, index) => (
                   <span
                     key={index}
-                    className={`text-[13px] sm:text-[14px] md:text-[15px] font-light uppercase tracking-wider ${
+                    className={`font-merriweather text-[14px] uppercase tracking-[0.16em] ${
                       isDark ? "text-gray-400" : "text-gray-700"
                     }`}
                   >
@@ -143,8 +143,8 @@ export default function ProjectOverview({ theme = "light" }) {
             {/* Technologies */}
             <div>
               <h3
-                className={`text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-normal mb-4 sm:mb-5 ${
-                  isDark ? "text-white" : "text-black"
+                className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-4 sm:mb-5 ${
+                  isDark ? "text-gray-400" : "text-gray-600"
                 }`}
               >
                 Technologies
@@ -156,7 +156,7 @@ export default function ProjectOverview({ theme = "light" }) {
                       {tech.icon}
                     </span>
                     <span
-                      className={`text-[13px] sm:text-[14px] md:text-[15px] font-light uppercase tracking-wider ${
+                      className={`font-merriweather text-[14px] uppercase tracking-[0.16em] ${
                         isDark ? "text-gray-400" : "text-gray-700"
                       }`}
                     >

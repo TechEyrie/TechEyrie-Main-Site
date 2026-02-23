@@ -25,11 +25,11 @@ export default function Services1MainServices({ theme = 'light' }) {
 
             {/* Content */}
             <div className="flex-1">
-              <h2 className={`font-suisse text-[24px] md:text-[26px] lg:text-[30px] font-light leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
+              <h2 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
                 Qualitative Research
               </h2>
               
-              <p className={`font-suisse text-[16px] md:text-[17px] lg:text-[18px] leading-[1.7] font-light ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
+              <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
                 This is what we do best. Our qualitative research uncovers the "why" behind human behaviour through interviews, focus groups, and in-market conversations led by cultural experts. We go deep, not wide, to surface insights that drive real impact across multiple markets.
               </p>
             </div>
@@ -50,11 +50,11 @@ export default function Services1MainServices({ theme = 'light' }) {
 
             {/* Content */}
             <div className="flex-1">
-              <h2 className={`font-suisse text-[24px] md:text-[26px] lg:text-[30px] font-light leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
+              <h2 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
                 Behavioural Analysis
               </h2>
               
-              <p className={`font-suisse text-[16px] md:text-[17px] lg:text-[18px] leading-[1.7] font-light ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
+              <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
                 Behavioural analysis complements our qualitative work by focusing on what people actually do, not just what they say. Using observational methods and real-time data, we help you understand habits, patterns, and decision-making at a granular level, so you can respond with confidence.
               </p>
             </div>

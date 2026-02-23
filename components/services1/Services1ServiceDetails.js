@@ -104,10 +104,10 @@ export default function Services1ServiceDetails({ theme = 'light' }) {
               <div className="grid gap-8 md:gap-12 lg:gap-16 xl:gap-20 md:grid-cols-2 items-center">
                 {/* Text Content - Always on Left */}
                 <div className="max-w-[550px]">
-                  <h3 className={`font-suisse text-[28px] md:text-[32px] lg:text-[38px] xl:text-[42px] font-light leading-[1.15] tracking-[-0.01em] mb-5 md:mb-6 lg:mb-7 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  <h3 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.15] tracking-[-0.01em] mb-5 md:mb-6 lg:mb-7 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
                     {service.title}
                   </h3>
-                  <p className={`font-suisse text-[16px] md:text-[17px] lg:text-[18px] leading-[1.7] font-light ${isDark ? 'text-[#b0b0b0]' : 'text-[#3a3a3a]'}`}>
+                  <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#3a3a3a]'}`}>
                     {service.description}
                   </p>
                 </div>

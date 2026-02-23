@@ -19,7 +19,7 @@ const DrawerHighlights = forwardRef(function DrawerHighlights({ highlights = [],
   return (
     <div ref={ref} className={`px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#E8E8E8]'}`}>
       <div className="mb-6 sm:mb-8">
-        <h3 className={`text-[24px] sm:text-[28px] md:text-[32px] font-bold leading-tight ${
+        <h3 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-tight tracking-[-0.03em] ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>
           See the highlights
@@ -69,10 +69,10 @@ const DrawerHighlights = forwardRef(function DrawerHighlights({ highlights = [],
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4 sm:p-6">
                   {/* Bottom Left - Text */}
                   <div className="text-white">
-                    <h4 className="text-[14px] sm:text-[16px] md:text-[18px] font-bold mb-1">
+                    <h4 className="font-italiana font-light text-[14px] sm:text-[16px] md:text-[18px] mb-1">
                       {highlight.title}
                     </h4>
-                    <p className="text-[12px] sm:text-[13px] md:text-[14px] text-white/80">
+                    <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] text-white/80">
                       {highlight.subtitle}
                     </p>
                   </div>
@@ -114,13 +114,13 @@ const DrawerHighlights = forwardRef(function DrawerHighlights({ highlights = [],
 
             {/* Labels Below Card */}
             <div className="mt-2 sm:mt-3 flex items-center gap-2 flex-wrap">
-              <span className={`text-[13px] sm:text-[15px] font-semibold ${
+              <span className={`font-merriweather text-[13px] md:text-[14px] font-semibold ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
                 {highlight.title || 'Highlight'}
               </span>
               <span className={`hidden sm:inline ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>→</span>
-              <span className={`text-[11px] sm:text-[13px] ${
+              <span className={`font-merriweather text-[11px] sm:text-[13px] ${
                 isDark ? 'text-gray-400' : 'text-gray-600'
               }`}>
                 {highlight.subtitle || ''}

@@ -26,19 +26,17 @@ export default function TalkToExpertSection({ theme = 'light' }) {
     background: "#F9F7F0",   // Very light neutral for section background
   };
 
-  // Background styles based on theme - KEEPING ORIGINAL AS DEFAULT
-  const bgStyle = theme === 'dark' 
-    ? {
-        backgroundColor: '#f5f5f5', // White-gray background as in dapper.agency
+  // Background: light theme = black, dark theme = light
+  const bgStyle = theme === 'light'
+    ? { backgroundColor: '#0a0a0a' }
+    : {
+        backgroundColor: '#f5f5f5',
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
           radial-gradient(ellipse at top left, rgba(0, 0, 0, 0.03), transparent 50%),
           radial-gradient(ellipse at bottom right, rgba(0, 0, 0, 0.02), transparent 50%)
         `,
         backgroundBlendMode: 'overlay, normal, normal',
-      }
-    : {
-        backgroundColor: lightColors.background, // Light brown for light theme
       };
 
   const noiseOverlayStyle = {
@@ -283,7 +281,7 @@ export default function TalkToExpertSection({ theme = 'light' }) {
               ref={leftTextRef}
               className="text-center lg:text-right will-change-transform"
             >
-              <h2 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] 4xl:text-[96px] font-bold leading-[1.05] tracking-[-0.02em] ${theme === 'light' ? 'text-white' : 'text-[#111111]'}`}>
+              <h2 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] leading-[1.05] tracking-[-0.02em] ${theme === 'light' ? 'text-white' : 'text-[#111111]'}`}>
                 Talk to
               </h2>
             </div>
@@ -368,7 +366,7 @@ export default function TalkToExpertSection({ theme = 'light' }) {
               ref={rightTextRef}
               className="text-center lg:text-left will-change-transform"
             >
-              <h2 className={`font-[Helvetica Now Text,Arial,sans-serif] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] 4xl:text-[96px] font-normal italic leading-[1.05] tracking-[-0.02em] ${theme === 'light' ? 'text-white' : 'text-[#111111]'}`}>
+              <h2 className={`font-playfair italic font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] leading-[1.05] tracking-[-0.02em] ${theme === 'light' ? 'text-white' : 'text-[#111111]'}`}>
                 an expert
               </h2>
             </div>

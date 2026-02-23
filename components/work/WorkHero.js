@@ -16,24 +16,19 @@ export default function WorkHero({ theme = "light" }) {
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32">
         <div className="flex flex-col gap-2">
+          <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-white/70' : 'text-[#1a1a1a]/70'}`}>
+            Work
+          </p>
           {/* Main Heading */}
           <h1
-            className="font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] leading-[1.1] tracking-[-0.02em]"
-            style={{
-              fontFamily: "'Times New Roman', 'Georgia', serif",
-              color: isDark ? "#ffffff" : "#1a1a1a",
-            }}
+            className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}
           >
             Our work
           </h1>
 
           {/* Subheading */}
           <h2
-            className="font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] leading-[1.1] tracking-[-0.02em]"
-            style={{
-              fontFamily: "'Times New Roman', 'Georgia', serif",
-              color: isDark ? "rgba(255,255,255,0.6)" : "rgba(26,26,26,0.5)",
-            }}
+            className={`font-playfair italic font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] leading-[1.05] tracking-[-0.03em] ${isDark ? 'text-white/60' : 'text-[#1a1a1a]/50'}`}
           >
             From idea to exit
           </h2>

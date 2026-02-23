@@ -31,7 +31,7 @@ const Investors = ({ theme = "light" }) => {
             {/* Label */}
             <div className="mb-8">
                <MaskedReveal>
-                 <span className={`text-sm md:text-base font-medium tracking-wide font-mono uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                 <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
                    Our Investors and Advisors
                  </span>
                </MaskedReveal>
@@ -40,7 +40,7 @@ const Investors = ({ theme = "light" }) => {
             {/* Title */}
             <div className="mb-12 md:mb-16">
               <MaskedReveal delay={0.1}>
-                <h2 className={`text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] font-['Figtree'] ${isDark ? 'text-white' : 'text-black'}`}>
+                <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-black'}`}>
                   Backed by decades <br className="hidden md:block" />
                   of logistics expertise
                 </h2>
@@ -50,7 +50,7 @@ const Investors = ({ theme = "light" }) => {
             {/* Description */}
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
-                <p className={`text-lg md:text-xl leading-relaxed font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   Our founders, investors, and advisors are driven by the critical need to create an industry standard in the yard. They see us challenging conventions, solving problems that matter, and delivering products that revolutionize the way logistics works.
                 </p>
               </MaskedReveal>
@@ -112,10 +112,10 @@ const Investors = ({ theme = "light" }) => {
 
                 {/* Info */}
                 <div className="text-center space-y-2 z-10">
-                   <h3 className={`text-2xl font-['Figtree'] font-semibold ${isDark ? 'text-white' : 'text-[#032219]'}`}>
+                   <h3 className={`font-italiana text-[24px] md:text-[28px] font-light ${isDark ? 'text-white' : 'text-[#032219]'}`}>
                       {investor.name}
                    </h3>
-                   <p className={`font-medium font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                   <p className={`font-merriweather text-[14px] font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                       {investor.title}
                    </p>
                 </div>

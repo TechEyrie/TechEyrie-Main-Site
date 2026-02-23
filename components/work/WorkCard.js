@@ -49,20 +49,17 @@ export default function WorkCard({ project, theme = "light", layout = "grid", on
           }}
         >
           <span
-            className="text-[1.3rem] md:text-[1.5rem] transition-opacity duration-300 group-hover:opacity-60"
-            style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
+            className={`font-italiana font-light text-[24px] md:text-[28px] transition-opacity duration-300 group-hover:opacity-60 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}
           >
             {project.title}
             <span
-              className="opacity-0 group-hover:opacity-40 transition-opacity duration-300 ml-3"
-              style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
+              className={`font-merriweather opacity-0 group-hover:opacity-40 transition-opacity duration-300 ml-3 text-[14px] ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}
             >
               {project.category}
             </span>
           </span>
           <span
-            className="text-[1.1rem] md:text-[1.2rem] opacity-50"
-            style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
+            className={`font-merriweather text-[14px] opacity-50 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}
           >
             {project.year}
           </span>
@@ -117,10 +114,7 @@ export default function WorkCard({ project, theme = "light", layout = "grid", on
             backgroundColor: "rgba(0,0,0,0.2)",
           }}
         >
-          <span
-            className="text-white text-xl md:text-2xl font-medium tracking-wide"
-            style={{ fontFamily: "'Inter', sans-serif" }}
-          >
+          <span className="font-italiana font-light text-white text-xl md:text-2xl tracking-[-0.03em]">
             {project.title}
           </span>
         </div>
@@ -128,15 +122,11 @@ export default function WorkCard({ project, theme = "light", layout = "grid", on
 
       {/* Card Info */}
       <div className="flex flex-col gap-1">
-        <h3
-          className="text-[1rem] md:text-[1.1rem] font-medium"
-          style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
-        >
+        <h3 className={`font-italiana font-light text-[24px] md:text-[28px] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
           {project.title}
         </h3>
         <span
-          className="text-[0.85rem] opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-          style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
+          className={`font-merriweather text-[14px] opacity-0 group-hover:opacity-50 transition-opacity duration-300 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}
         >
           {project.category}
         </span>

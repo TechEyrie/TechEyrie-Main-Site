@@ -212,7 +212,7 @@ export default function BlogPage() {
         <div className="flex items-center justify-center min-h-[60vh] sm:min-h-screen">
           <div className="text-center px-4">
             <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-[#74F5A1]"></div>
-            <p className={`mt-4 text-base sm:text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`mt-4 font-merriweather text-[14px] ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
               Loading blog posts...
             </p>
           </div>

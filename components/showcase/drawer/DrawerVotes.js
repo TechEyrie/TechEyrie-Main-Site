@@ -24,21 +24,21 @@ const DrawerVotes = forwardRef(function DrawerVotes({ juryMembers = [], theme = 
       <div className={`flex items-center gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-10 border-b overflow-x-auto ${
         isDark ? 'border-gray-800' : 'border-gray-300'
       }`}>
-        <button className={`text-[14px] sm:text-[15px] md:text-[16px] font-semibold pb-3 sm:pb-4 border-b-2 whitespace-nowrap ${
+        <button className={`font-merriweather text-[14px] font-semibold pb-3 sm:pb-4 border-b-2 whitespace-nowrap ${
           isDark 
             ? 'text-white border-white' 
             : 'text-gray-900 border-gray-900'
         }`}>
           Votes
         </button>
-        <button className={`text-[14px] sm:text-[15px] md:text-[16px] font-medium pb-3 sm:pb-4 border-b-2 border-transparent transition-colors whitespace-nowrap ${
+        <button className={`font-merriweather text-[14px] font-medium pb-3 sm:pb-4 border-b-2 border-transparent transition-colors whitespace-nowrap ${
           isDark 
             ? 'text-white hover:border-gray-600' 
             : 'text-gray-900 hover:border-gray-400'
         }`}>
           Jury
         </button>
-        <button className={`text-[14px] sm:text-[15px] md:text-[16px] font-medium pb-3 sm:pb-4 border-b-2 border-transparent transition-colors whitespace-nowrap ${
+        <button className={`font-merriweather text-[14px] font-medium pb-3 sm:pb-4 border-b-2 border-transparent transition-colors whitespace-nowrap ${
           isDark 
             ? 'text-gray-500 hover:border-gray-700' 
             : 'text-gray-400 hover:border-gray-300'
@@ -52,25 +52,25 @@ const DrawerVotes = forwardRef(function DrawerVotes({ juryMembers = [], theme = 
         {/* Table Header */}
         <div className="grid grid-cols-[200px_80px_80px_100px_70px_120px_80px_80px] sm:grid-cols-[1fr_100px_100px_120px_80px_140px_100px_100px] gap-3 sm:gap-4 mb-4 sm:mb-6 min-w-[800px]">
         <div></div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Semantics</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Animations</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Accessibility</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>WPO</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Responsive Design</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Markup</div>
-        <div className={`text-[13px] font-semibold text-center ${
+        <div className={`font-merriweather text-[13px] font-semibold text-center ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>Overall</div>
       </div>
@@ -95,37 +95,37 @@ const DrawerVotes = forwardRef(function DrawerVotes({ juryMembers = [], theme = 
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-baseline gap-1.5 sm:gap-2 mb-0.5 sm:mb-1 flex-wrap">
-                    <span className={`text-[14px] sm:text-[15px] md:text-[16px] font-semibold truncate ${
+                    <span className={`font-merriweather text-[14px] font-semibold truncate ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>{member.name}</span>
                     
                   </div>
                   {member.role && (
-                    <p className={`text-[12px] sm:text-[13px] md:text-[14px] truncate ${
+                    <p className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] truncate ${
                       isDark ? 'text-gray-400' : 'text-gray-600'
                     }`}>{member.role}</p>
                   )}
                 </div>
               </div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.semantics || "-"}</div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.animations || "-"}</div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.accessibility || "-"}</div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.wpo || "-"}</div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.responsiveDesign || "-"}</div>
-              <div className={`text-[14px] sm:text-[15px] md:text-[16px] text-center font-medium ${
+              <div className={`font-merriweather text-[14px] text-center font-medium ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.scores?.markup || "-"}</div>
-              <div className={`text-[16px] sm:text-[17px] md:text-[18px] font-bold text-center ${
+              <div className={`font-italiana text-[16px] sm:text-[17px] md:text-[18px] font-light text-center ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>{member.overall || "-"}</div>
             </div>

@@ -117,10 +117,10 @@ function ContactPopup({ isOpen, onClose, type }) {
           </svg>
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 font-merriweather">
+        <h2 className="font-italiana font-light text-[24px] md:text-[32px] tracking-[-0.03em] mb-4 text-gray-900">
           {type === "contact" ? "Talk to Us" : "Get a Quote"}
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="font-merriweather text-[14px] text-gray-600 mb-6">
           {type === "contact"
             ? "Let's discuss your project"
             : "Tell us about your requirements"}
@@ -128,41 +128,41 @@ function ContactPopup({ isOpen, onClose, type }) {
 
         <form className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
               Name
             </label>
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
               placeholder="Your name"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
               Email
             </label>
             <input
               type="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
               Message
             </label>
             <textarea
               rows="4"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
               placeholder="Tell us about your project..."
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-[#013825] text-white py-3 rounded-lg font-medium hover:bg-[#024d33] transition-colors"
+            className="w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors"
           >
             Submit
           </button>

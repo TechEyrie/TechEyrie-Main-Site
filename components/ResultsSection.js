@@ -506,7 +506,7 @@ export default function ResultsSection() {
                   className="basis-full px-2 flex-shrink-0 sm:px-3 lg:basis-1/2"
                 >
                   <article className="relative flex h-full min-h-[280px] flex-col justify-between rounded-2xl border border-black/[0.06] bg-white px-4 py-7 shadow-[0_10px_30px_rgba(0,0,0,0.10)] sm:min-h-[360px] sm:px-6 sm:py-9 md:min-h-[420px] lg:px-10 lg:py-14 pointer-events-none">
-                    <blockquote className="border-l-4 border-[#111111] pl-4 sm:pl-6 font-[Helvetica Now Text,Arial,sans-serif] text-[17px] sm:text-[20px] md:text-[24px] lg:text-[30px] leading-snug text-[#111111]">
+                    <blockquote className="border-l-4 border-[#111111] pl-4 sm:pl-6 font-merriweather text-[17px] sm:text-[20px] md:text-[24px] lg:text-[30px] leading-snug text-[#111111]">
                       "{testimonial.quote}"
                     </blockquote>
 
@@ -521,10 +521,10 @@ export default function ResultsSection() {
                           />
                         </div>
                         <div className="min-w-0">
-                          <p className="font-[Helvetica Now Text,Arial,sans-serif] text-[14px] sm:text-[15px] font-bold text-[#111111] truncate">
+                          <p className="font-merriweather text-[14px] sm:text-[15px] font-semibold text-[#111111] truncate">
                             {testimonial.author}
                           </p>
-                          <p className="font-[Helvetica Now Text,Arial,sans-serif] text-[12px] sm:text-[13px] font-medium text-[#444444] truncate">
+                          <p className="font-merriweather text-[12px] sm:text-[13px] font-medium text-[#444444] truncate">
                             {testimonial.role} – {testimonial.company}
                           </p>
                         </div>

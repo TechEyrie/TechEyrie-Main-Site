@@ -319,18 +319,7 @@ export default function WorkPortfolio({ theme = "light" }) {
               <React.Fragment key={cat}>
                 <button
                   onClick={() => setActiveCategory(cat)}
-                  className="transition-all duration-300 text-[1.3rem] md:text-[1.5rem]"
-                  style={{
-                    color:
-                      activeCategory === cat
-                        ? isDark
-                          ? "#ffffff"
-                          : "#1a1a1a"
-                        : isDark
-                        ? "rgba(255,255,255,0.4)"
-                        : "rgba(0,0,0,0.4)",
-                    fontWeight: activeCategory === cat ? "500" : "400",
-                  }}
+                  className={`font-merriweather text-[14px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 ${activeCategory === cat ? (isDark ? 'text-white' : 'text-[#1a1a1a]') : (isDark ? 'text-white/40' : 'text-black/40')}`}
                 >
                   {cat}
                 </button>
@@ -517,10 +506,7 @@ export default function WorkPortfolio({ theme = "light" }) {
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (
-          <div
-            className="text-center py-16 opacity-50"
-            style={{ color: isDark ? "#ffffff" : "#1a1a1a" }}
-          >
+          <div className={`font-merriweather text-[14px] text-center py-16 opacity-50 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
             No projects found in this category.
           </div>
         )}
@@ -542,10 +528,10 @@ export default function WorkPortfolio({ theme = "light" }) {
             <div
               className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6"
             >
-              <h3 className="text-white text-2xl font-bold mb-1">
+              <h3 className="font-italiana font-light text-white text-[24px] md:text-[28px] mb-1">
                 {activeProject.title}
               </h3>
-              <p className="text-white/70 text-sm">{activeProject.category}</p>
+              <p className="font-merriweather text-white/70 text-[14px]">{activeProject.category}</p>
             </div>
           </div>
         )}

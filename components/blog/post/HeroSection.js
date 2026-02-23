@@ -96,7 +96,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
         {/* Back Button */}
         <Link 
           href="/blog"
-          className={`inline-flex items-center gap-2 mb-8 sm:mb-10 md:mb-12 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base font-medium transition-all duration-300 ${
+          className={`inline-flex items-center gap-2 mb-8 sm:mb-10 md:mb-12 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full font-merriweather text-[14px] transition-all duration-300 ${
             isDark 
               ? 'bg-white/10 text-white hover:bg-white/15' 
               : 'bg-white text-[#111111] hover:bg-[#f0f0f0]'
@@ -120,7 +120,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
           <div className="order-2 lg:order-1 text-center lg:text-left w-full">
             {/* Category Badge */}
             <div className="mb-6 sm:mb-8 flex justify-center lg:justify-start">
-              <span className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+              <span className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
                 {postData.category || 'Blog'}
               </span>
             </div>
@@ -128,7 +128,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
             {/* Title */}
             <h1 
               ref={titleRef}
-              className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[64px] 2xl:text-[76px] font-bold leading-[1.1] tracking-tight mb-6 sm:mb-8 md:mb-10 ${
+              className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] tracking-tight mb-6 sm:mb-8 md:mb-10 ${
                 isDark ? 'text-white' : 'text-[#111111]'
               }`}
               style={{ opacity: 1 }}
@@ -155,7 +155,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
                     />
                   </div>
                 ) : (
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg lg:text-xl font-semibold ${
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center font-merriweather text-[14px] font-semibold ${
                     isDark 
                       ? 'bg-[#74F5A1]/20 text-[#74F5A1]' 
                       : 'bg-[#111111] text-white'
@@ -163,9 +163,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
                     {postData.author?.charAt(0) || 'A'}
                   </div>
                 )}
-                <p className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base md:text-lg font-semibold ${
-                  isDark ? 'text-white' : 'text-[#111111]'
-                }`}>
+                <p className={`font-merriweather text-[14px] ${isDark ? 'text-white' : 'text-[#111111]'}`}>
                   {postData.author || 'Author'}
                 </p>
               </div>
@@ -176,9 +174,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-                <p className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base ${
-                  isDark ? 'text-white/60' : 'text-[#666666]'
-                }`}>
+                <p className={`font-merriweather text-[14px] ${isDark ? 'text-white/60' : 'text-[#666666]'}`}>
                   {postData.readTime || '5 min read'}
                 </p>
               </div>
@@ -189,9 +185,7 @@ export default function BlogPostHero({ theme = 'light', post }) {
                   <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${isDark ? 'text-white/60' : 'text-[#666666]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <p className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-xs sm:text-sm md:text-base ${
-                    isDark ? 'text-white/60' : 'text-[#666666]'
-                  }`}>
+                  <p className={`font-merriweather text-[14px] ${isDark ? 'text-white/60' : 'text-[#666666]'}`}>
                     {postData.date}
                   </p>
                 </div>

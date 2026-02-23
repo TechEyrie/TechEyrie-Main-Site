@@ -124,59 +124,50 @@ export default function ApproachSection({ theme = 'light' }) {
           <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 lg:p-16">
             {/* Top Label */}
             <div ref={labelRef}>
-              <span className="text-white/90 text-sm md:text-base font-space-grotesk font-medium">
+              <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-white/90">
                 Approach
               </span>
             </div>
 
             {/* Center Content */}
             <div className="flex-1 flex flex-col justify-center max-w-[800px]">
-              <h2 
+              <h2
                 ref={headingRef}
-                className="text-white font-semibold mb-4 md:mb-6 font-space-grotesk"
-                style={{
-                  fontSize: 'clamp(36px, 5vw, 60px)',
-                  lineHeight: '1.1',
-                  letterSpacing: '-0.02em'
-                }}
+                className="font-italiana font-light text-white text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] mb-4 md:mb-6"
               >
                 Future Catalists
               </h2>
-              <p 
+              <p
                 ref={subheadingRef}
-                className="text-white/90 font-space-grotesk font-normal"
-                style={{
-                  fontSize: 'clamp(16px, 2vw, 20px)',
-                  lineHeight: '1.5'
-                }}
+                className="font-playfair text-[17px] md:text-[20px] font-normal text-white/90 leading-[1.5]"
               >
                 From Idea to Plan. Turn your vision into action
               </p>
             </div>
 
             {/* Bottom Buttons */}
-            <div 
+            <div
               ref={buttonsRef}
               className="flex flex-wrap gap-3"
             >
-              <button 
-                className="px-5 py-2.5 rounded-full text-white font-space-grotesk text-sm hover:bg-white/10 transition-colors cursor-pointer"
+              <button
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
                 style={{
                   border: '1px solid #e8ddd3'
                 }}
               >
                 The Idea Forge
               </button>
-              <button 
-                className="px-5 py-2.5 rounded-full text-white font-space-grotesk text-sm hover:bg-white/10 transition-colors cursor-pointer"
+              <button
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
                 style={{
                   border: '1px solid #e8ddd3'
                 }}
               >
                 The Reality Engine
               </button>
-              <button 
-                className="px-5 py-2.5 rounded-full text-white font-space-grotesk text-sm hover:bg-white/10 transition-colors cursor-pointer"
+              <button
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
                 style={{
                   border: '1px solid #e8ddd3'
                 }}
@@ -195,13 +186,10 @@ export default function ApproachSection({ theme = 'light' }) {
       >
         <div className="max-w-[1400px] mx-auto">
           {/* Main Text */}
-          <h3 
+          <h3
             ref={mainTextRef}
-            className="text-center font-normal font-space-grotesk mb-16 md:mb-20"
+            className="font-italiana font-light text-center text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.4] tracking-[-0.03em] mb-16 md:mb-20"
             style={{
-              fontSize: 'clamp(24px, 3.5vw, 52px)',
-              lineHeight: '1.4',
-              letterSpacing: '-0.01em',
               color: isDark ? '#74F5A1' : '#c7006e'
             }}
           >

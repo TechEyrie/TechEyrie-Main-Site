@@ -80,17 +80,17 @@ export default function FAQSection() {
           {/* Badge */}
           <div className="mb-10 flex items-center justify-center gap-3">
             <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-            <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
+            <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-[#212121]">
               FAQ
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.1] tracking-[-0.02em]">
-            <span className="block text-[48px] sm:text-[56px] md:text-[64px] lg:text-[72px] font-bold text-[#111111]">
+          <h2 className="font-italiana font-light leading-[1.1] tracking-[-0.03em] text-[#111111]">
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
               Frequently Asked
             </span>
-            <span className="mt-2 block text-[48px] sm:text-[56px] md:text-[64px] lg:text-[72px] italic font-light text-[#111111]">
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] font-playfair italic">
               Questions
             </span>
           </h2>
@@ -142,7 +142,7 @@ export default function FAQSection() {
                   </div>
 
                   {/* Question */}
-                  <h3 className="flex-1 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-tight text-[#111111]">
+                  <h3 className="flex-1 font-italiana text-[24px] md:text-[28px] lg:text-[32px] font-light leading-tight text-[#111111]">
                     {faq.question}
                   </h3>
                 </button>
@@ -155,7 +155,7 @@ export default function FAQSection() {
                   }`}
                 >
                   <div className="px-6 md:px-8 pb-6 md:pb-8 pl-[88px] md:pl-[104px]">
-                    <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[17px] lg:text-[18px] font-normal leading-[1.7] text-[#555555]">
+                    <p className="font-merriweather text-[14px] font-normal leading-[1.7] text-[#555555]">
                       {faq.answer}
                     </p>
                   </div>

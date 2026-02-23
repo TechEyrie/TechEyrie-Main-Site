@@ -287,7 +287,7 @@ export default function BlogPostContent({ theme = 'light', post }) {
             <div className={`rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 ${
               isDark ? 'bg-[#1a1a1a]' : 'bg-white'
             }`}>
-              <h3 className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 ${
+              <h3 className={`font-merriweather text-[13px] font-semibold mb-4 sm:mb-6 ${
                 isDark ? 'text-white' : 'text-[#111111]'
               }`}>
                 In this article:
@@ -298,7 +298,7 @@ export default function BlogPostContent({ theme = 'light', post }) {
                   <button
                     key={index}
                     onClick={() => scrollToSection(index)}
-                    className={`w-full text-left flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-sm sm:text-base transition-all duration-300 group ${
+                    className={`w-full text-left flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-merriweather text-[14px] transition-all duration-300 group ${
                       activeSection === index
                         ? isDark
                           ? 'bg-white/10 text-white'
@@ -336,7 +336,7 @@ export default function BlogPostContent({ theme = 'light', post }) {
                   <h2 
                     key={index}
                     data-index={headingIndex}
-                    className={`content-heading font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[28px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] font-bold mb-6 sm:mb-8 mt-10 sm:mt-12 md:mt-16 first:mt-0 scroll-mt-20 sm:scroll-mt-24 leading-tight text-center lg:text-left ${
+                    className={`content-heading font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] mb-6 sm:mb-8 mt-10 sm:mt-12 md:mt-16 first:mt-0 scroll-mt-20 sm:scroll-mt-24 leading-tight text-center lg:text-left ${
                       isDark ? 'text-white' : 'text-[#111111]'
                     }`}
                   >
@@ -349,7 +349,7 @@ export default function BlogPostContent({ theme = 'light', post }) {
                 return (
                   <p 
                     key={index}
-                    className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-6 sm:mb-8 text-center lg:text-left ${
+                    className={`font-merriweather text-[17px] sm:text-[18px] leading-relaxed mb-6 sm:mb-8 text-center lg:text-left ${
                       section.isQuote 
                         ? `pl-4 sm:pl-6 border-l-4 ${isDark ? 'border-[#74F5A1] text-white/80' : 'border-[#74F5A1] text-[#666666]'} italic`
                         : isDark ? 'text-white/90' : 'text-[#1a1a1a]'
@@ -408,7 +408,7 @@ export default function BlogPostContent({ theme = 'light', post }) {
                             />
                           </svg>
                         </span>
-                        <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed ${
+                        <span className={`font-merriweather text-[17px] sm:text-[18px] leading-relaxed ${
                           isDark ? 'text-white/90' : 'text-[#1a1a1a]'
                         }`}>
                           {item}

@@ -72,7 +72,7 @@ export default function ChallengesSolutions({ theme = "light" }) {
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
-          className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-wider mb-6 sm:mb-8 ${
+          className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-6 sm:mb-8 ${
             isDark ? "text-gray-500" : "text-gray-600"
           }`}
         >
@@ -81,7 +81,7 @@ export default function ChallengesSolutions({ theme = "light" }) {
 
         {/* Title */}
         <h2
-          className={`text-[48px] sm:text-[56px] md:text-[64px] lg:text-[72px] xl:text-[80px] font-semibold mb-16 sm:mb-20 md:mb-24 leading-tight ${
+          className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] mb-16 sm:mb-20 md:mb-24 leading-tight tracking-[-0.03em] ${
             isDark ? "text-white" : "text-black"
           }`}
         >
@@ -104,21 +104,21 @@ export default function ChallengesSolutions({ theme = "light" }) {
                 }`}
               >
                 <h3
-                  className={`text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-semibold mb-6 sm:mb-8 ${
+                  className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] mb-6 sm:mb-8 tracking-[-0.03em] ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
                   Challenge
                 </h3>
                 <h4
-                  className={`text-[20px] sm:text-[22px] md:text-[24px] font-semibold mb-auto pb-8 sm:pb-10 ${
+                  className={`font-italiana font-light text-[24px] md:text-[28px] mb-auto pb-8 sm:pb-10 tracking-[-0.03em] ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
                   {item.challenge}
                 </h4>
                 <p
-                  className={`text-[16px] sm:text-[17px] md:text-[22px] font-light leading-relaxed ${
+                  className={`font-merriweather text-[14px] leading-relaxed ${
                     isDark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
@@ -133,14 +133,14 @@ export default function ChallengesSolutions({ theme = "light" }) {
                 }`}
               >
                 <h3
-                  className={`text-[24px] sm:text-[26px] md:text-[28px] lg:text-[30px] font-semibold mb-auto pb-8 sm:pb-10 ${
+                  className={`font-italiana font-light text-[24px] md:text-[28px] mb-auto pb-8 sm:pb-10 tracking-[-0.03em] ${
                     isDark ? "text-white" : "text-black"
                   }`}
                 >
                   Solution
                 </h3>
                 <p
-                  className={`text-[16px] sm:text-[17px] md:text-[22px] font-light leading-relaxed ${
+                  className={`font-merriweather text-[14px] leading-relaxed ${
                     isDark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >

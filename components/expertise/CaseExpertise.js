@@ -12,14 +12,14 @@ export default function CaseExpertise() {
             {/* Badge */}
             <div className="mb-10 flex items-center gap-3">
               <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-              <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-semibold tracking-[0.16em] uppercase text-white">
+              <span className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-white">
                 Case
               </span>
             </div>
 
             {/* Title */}
             <div className="flex-1">
-              <h3 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] font-bold leading-[1.1] tracking-tight text-white">
+              <h3 className="font-italiana text-[24px] md:text-[32px] lg:text-[38px] xl:text-[44px] font-light leading-[1.1] tracking-tight text-white">
                 Demand Gen strategy leading to 200% increase in inbound calls
               </h3>
             </div>
@@ -29,7 +29,7 @@ export default function CaseExpertise() {
               {/* Company Logo */}
               <div className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] md:text-[36px] font-bold text-white">
+                  <span className="font-italiana text-[24px] md:text-[32px] font-light text-white">
                     ccp
                   </span>
                 </div>
@@ -40,7 +40,7 @@ export default function CaseExpertise() {
                 href="/case-study"
                 className="group/btn inline-flex items-center gap-3 rounded-lg bg-[#74F5A1] px-6 py-3.5 transition-all duration-300 hover:bg-[#5FE08D] hover:gap-4 hover:shadow-[0_8px_30px_rgba(116,245,161,0.4)]"
               >
-                <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] md:text-[16px] font-bold text-[#111111]">
+                <span className="font-merriweather text-[14px] font-semibold text-[#111111]">
                   Explore case
                 </span>
                 <svg
@@ -117,7 +117,7 @@ export default function CaseExpertise() {
             <div className="relative z-10 flex flex-col justify-between h-full p-10 md:p-12 lg:p-14">
               {/* Text Content */}
               <div className="flex-1 flex items-center">
-                <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[32px] md:text-[38px] lg:text-[44px] xl:text-[48px] font-bold leading-[1.15] tracking-tight text-[#4338CA]">
+                <p className="font-italiana text-[24px] md:text-[32px] lg:text-[38px] xl:text-[44px] font-light leading-[1.15] tracking-tight text-[#4338CA]">
                   Trusted by 200+ platforms and marketplaces across Europe for Payment Solutions.
                 </p>
               </div>
@@ -128,7 +128,7 @@ export default function CaseExpertise() {
                   href="/solutions"
                   className="group/btn inline-flex items-center gap-3 rounded-lg bg-[#4338CA] px-8 py-4 transition-all duration-300 hover:bg-[#3730A3] hover:gap-4 hover:shadow-[0_12px_40px_rgba(67,56,202,0.4)]"
                 >
-                  <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[18px] font-bold text-white">
+                  <span className="font-merriweather text-[14px] font-semibold text-white">
                     Learn more
                   </span>
                   <svg

@@ -21,7 +21,7 @@ export default function ProjectAwards({ theme = "light" }) {
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
-          className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-wider mb-12 sm:mb-16 md:mb-20 ${
+          className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-12 sm:mb-16 md:mb-20 ${
             isDark ? "text-gray-500" : "text-gray-600"
           }`}
         >
@@ -35,7 +35,7 @@ export default function ProjectAwards({ theme = "light" }) {
             <h2
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className={`text-[36px] sm:text-[44px] md:text-[52px] lg:text-[60px] xl:text-[72px] font-semibold leading-[1.1] cursor-pointer transition-colors duration-300 ${
+              className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-[1.1] tracking-[-0.03em] cursor-pointer transition-colors duration-300 ${
                 isHovered
                   ? isDark
                     ? "text-white"
@@ -62,7 +62,7 @@ export default function ProjectAwards({ theme = "light" }) {
                   {award.cardTitle.map((line, index) => (
                     <h3
                       key={index}
-                      className={`text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-bold leading-[0.9] ${
+                      className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] leading-[0.95] tracking-[-0.03em] ${
                         isDark ? "text-white" : "text-black"
                       }`}
                     >
@@ -73,7 +73,7 @@ export default function ProjectAwards({ theme = "light" }) {
 
                 {/* Year */}
                 <p
-                  className={`text-[18px] sm:text-[20px] md:text-[24px] font-semibold mb-4 sm:mb-6 ${
+                  className={`font-merriweather text-[14px] font-semibold mb-4 sm:mb-6 ${
                     isDark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
@@ -82,7 +82,7 @@ export default function ProjectAwards({ theme = "light" }) {
 
                 {/* Description */}
                 <p
-                  className={`text-[13px] sm:text-[14px] md:text-[15px] font-light leading-relaxed text-center ${
+                  className={`font-merriweather text-[14px] leading-relaxed text-center ${
                     isDark ? "text-gray-200" : "text-gray-800"
                   }`}
                 >

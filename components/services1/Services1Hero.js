@@ -35,25 +35,30 @@ export default function Services1Hero({ theme = 'light' }) {
       ref={sectionRef}
       className={`relative overflow-hidden min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[900px] ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#FF6B5A]'}`}
     >
-      <div className="relative mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-52 pb-12 sm:pb-16 md:pb-20">
+      <div className="relative mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-52 pb-12 sm:pb-16 md:pb-20 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex flex-col sm:flex-row sm:justify-between sm:items-stretch gap-8 sm:gap-0">
         
         {/* Left Side - Services Label + Heading */}
         <div 
           ref={headingRef}
-          className="relative z-10 pl-0 sm:pl-2 md:pl-4 lg:pl-6 max-w-[700px] mb-8 sm:mb-12 md:mb-0"
+          className="relative z-10 pl-0 sm:pl-2 md:pl-4 lg:pl-6 max-w-[700px] mb-0"
         >
-          <p className={`font-suisse text-[12px] sm:text-[14px] md:text-[16px] tracking-wide mb-6 sm:mb-8 md:mb-10 font-normal ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
+          <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 md:mb-10 ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
             Services
           </p>
           
-          <h1 className={`font-suisse text-[48px] xs:text-[56px] sm:text-[64px] md:text-[80px] lg:text-[100px] xl:text-[120px] 2xl:text-[170px] font-medium leading-[0.9] tracking-[-0.025em] ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
-            No more<br />chaos.
+          <h1 className={`mb-0 font-italiana tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] font-light">
+              No more
+            </span>
+            <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] leading-[1.05] font-light -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
+              chaos.
+            </span>
           </h1>
         </div>
 
-        {/* Right Side - Description (Bottom Right Corner) */}
-        <div className="relative sm:absolute sm:right-4 md:right-6 lg:right-8 sm:bottom-0 w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] pr-0 sm:pr-2 md:pr-4 lg:pr-6 pb-0 sm:pb-16 md:pb-20 z-10 mt-8 sm:mt-0">
-          <p className={`font-suisse text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] xl:text-[19px] leading-[1.65] font-normal ${isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
+        {/* Right Side - Description (pushed to bottom on right) */}
+        <div className="relative w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] pr-0 sm:pr-2 md:pr-4 lg:pr-6 z-10 mt-auto sm:pt-0 flex flex-col sm:justify-end">
+          <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
             At MindMarket, we specialise in global qualitative research that helps brands make smarter, faster decisions. Whether you're refining a product, exploring new markets, or launching a campaign, our custom research services deliver the clarity you need — without the complexity.
           </p>
         </div>

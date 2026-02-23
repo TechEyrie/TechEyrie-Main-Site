@@ -48,7 +48,7 @@ export default function ContactForm({ isOpen, onClose }) {
         <div className="contact-form-panel-inner">
           {/* Header */}
           <div className="contact-form-header">
-            <h2 className="contact-form-title">
+            <h2 className="contact-form-title font-italiana font-light text-[28px] sm:text-[32px] md:text-[40px] leading-[1.2] tracking-[-0.03em] text-[#000]">
               Get<br />in touch
             </h2>
             <button 
@@ -72,8 +72,9 @@ export default function ContactForm({ isOpen, onClose }) {
                 name="name" 
                 placeholder=" "
                 required
+                className="font-merriweather text-[14px]"
               />
-              <label htmlFor="contact-name">* Name</label>
+              <label htmlFor="contact-name" className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase">* Name</label>
             </div>
 
             {/* Phone */}
@@ -84,8 +85,9 @@ export default function ContactForm({ isOpen, onClose }) {
                 name="phone" 
                 placeholder=" "
                 required
+                className="font-merriweather text-[14px]"
               />
-              <label htmlFor="contact-phone">* Phone</label>
+              <label htmlFor="contact-phone" className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase">* Phone</label>
             </div>
 
             {/* Email */}
@@ -96,8 +98,9 @@ export default function ContactForm({ isOpen, onClose }) {
                 name="email" 
                 placeholder=" "
                 required
+                className="font-merriweather text-[14px]"
               />
-              <label htmlFor="contact-email">* Email</label>
+              <label htmlFor="contact-email" className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase">* Email</label>
             </div>
 
             {/* Service Dropdown */}
@@ -110,7 +113,7 @@ export default function ContactForm({ isOpen, onClose }) {
                 placeholder=""
                 id="contact-service"
               />
-              <label htmlFor="contact-service">* Select a service</label>
+              <label htmlFor="contact-service" className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase">* Select a service</label>
             </div>
 
             {/* Country Dropdown */}
@@ -123,7 +126,7 @@ export default function ContactForm({ isOpen, onClose }) {
                 placeholder=""
                 id="contact-country"
               />
-              <label htmlFor="contact-country">* Country of interest</label>
+              <label htmlFor="contact-country" className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase">* Country of interest</label>
             </div>
 
             {/* Privacy Checkbox */}
@@ -134,13 +137,13 @@ export default function ContactForm({ isOpen, onClose }) {
                 name="privacy"
                 required
               />
-              <label htmlFor="contact-privacy">
+              <label htmlFor="contact-privacy" className="font-merriweather text-[14px]">
                 I agree with the <a href="/privacy-policy">privacy policy</a>
               </label>
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="contact-submit-btn">
+            <button type="submit" className="contact-submit-btn font-merriweather text-[14px] font-semibold">
               Apply Now
             </button>
           </form>

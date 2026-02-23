@@ -25,7 +25,7 @@ export default function DocumentationSection({ theme = "light" }) {
           <div>
             {/* Label */}
             <p
-              className={`text-[12px] sm:text-[13px] md:text-[14px] font-semibold uppercase tracking-wider mb-8 sm:mb-10 md:mb-12 ${
+              className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-8 sm:mb-10 md:mb-12 ${
                 isDark ? "text-gray-500" : "text-gray-600"
               }`}
             >
@@ -34,7 +34,7 @@ export default function DocumentationSection({ theme = "light" }) {
 
             {/* Title */}
             <h2
-              className={`text-[36px] sm:text-[44px] md:text-[52px] lg:text-[60px] xl:text-[68px] font-semibold leading-[1.1] ${
+              className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${
                 isDark ? "text-white" : "text-black"
               }`}
             >
@@ -54,7 +54,7 @@ export default function DocumentationSection({ theme = "light" }) {
           {/* Description on right */}
           <div>
             <p
-              className={`text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-light leading-relaxed ${
+              className={`font-playfair text-[17px] md:text-[20px] font-normal leading-relaxed ${
                 isDark ? "text-white" : "text-black"
               }`}
             >
