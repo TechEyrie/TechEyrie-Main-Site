@@ -742,7 +742,7 @@ export default function HeroSectionMediaSlot({ theme = "light" }) {
           )}
         </div>
 
-        <div className={`absolute z-20 ${isDesktop ? "left-1/2 -translate-x-1/2 bottom-[calc(20rem*1.2)]" : "left-4 sm:left-6 md:left-8 bottom-8 sm:bottom-12 md:bottom-4"}`}>
+        <div className={`absolute z-20 ${isDesktop ? "left-1/2 -translate-x-1/2 bottom-[15%]" : "left-4 sm:left-6 md:left-8 bottom-8 sm:bottom-12 md:bottom-4"}`}>
           <button onClick={scrollToPortfolio} className="flex flex-col gap-[-2px] cursor-pointer group hover:scale-110 transition-transform duration-300" aria-label="Scroll to next section">
             {[0, 1, 2, 3].map((index) => {
               const isActive = 3 - index < activeArrows;
