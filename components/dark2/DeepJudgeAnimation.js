@@ -300,18 +300,26 @@ export default function DeepJudgeAnimation({ theme }) {
 
   const bgStyle = theme === "dark"
     ? {
-        backgroundColor: "#2b2b2b",
+        backgroundColor: "#162d24",
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
-          radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
-          radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%)
+          radial-gradient(
+            ellipse at 60% 80%,
+            rgba(117, 133, 53, 0.5) 0%,
+            rgba(27, 71, 50, 0.4) 40%,
+            rgba(22, 45, 36, 0.92) 100%
+          )
         `,
-        backgroundBlendMode: "overlay, normal, normal",
+        backgroundBlendMode: "overlay, normal",
       }
     : { backgroundColor: lightColors.background };
 
   return (
-    <main ref={containerRef} style={bgStyle} className={`min-h-screen overflow-x-hidden transition-colors duration-500`}>
+    <main
+      ref={containerRef}
+      style={bgStyle}
+      className={`min-h-screen overflow-x-hidden transition-colors duration-500`}
+    >
       <div ref={wrapperRef} className="h-screen w-full relative flex items-center justify-center overflow-hidden">
         {/* === HEADINGS === (FAQ scale: 32→40→48→56→64→72→80, font-italiana / playfair, #f3f3f3 / #a0a0a0 / #d0d0d0) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[25] px-4 sm:px-6">
