@@ -1,5 +1,5 @@
-import MainPage from '../../../components/dark5/MainPage'
+import Dark5ClientPage from './Dark5ClientPage'
 
 export default function Home() {
-  return <MainPage />
+  return <Dark5ClientPage />
 }
