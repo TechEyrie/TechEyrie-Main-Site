@@ -1,0 +1,269 @@
+/* components/MainPage.css */
+
+:root {
+  /* ── BASE COLORS ── */
+  --c-dark-green:       #162d24;
+  --c-green:            #1b4732;
+  --c-light-green:      #a7b431;
+  --c-olive:            #758535;
+  --c-dark-blue:        #101e27;
+  --c-blue:             #005160;
+  --c-light-blue:       #67bfda;
+  --c-sky:              #bee5ee;
+  --c-beige:            #e0d1b6;
+  --c-beige-background: #f5e8d1;
+  --c-white:            #ffffff;
+  --c-black:            #030303;
+}
+
+/* ── BODY / DEFAULT SECTIONS ── */
+body {
+  background-color: #f5e8d1; /* warm beige */
+  color: #162d24;
+}
+
+/* ===== Fonts for /dark6 ===== */
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("/fonts/SourceSerif4-VariableFont_opsz,wght.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 100 900;
+  src: url("/fonts/SourceSerif4-VariableFont_opsz,wght.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_medium.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 600;
+  /* We only have a bold file for this weight set; browser will not need heavy synthesis. */
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_light.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/Fontspring-DEMO-tt_commons_pro_black.otf') format('opentype');
+  font-display: swap;
+}
+
+/* Scope dark2 layout + full-page background */
+.dark6-page {
+  min-height: 100vh;
+  background-color: #162d24;
+}
+
+/* Make all text on dark6 page beige and force font family */
+.dark6-page {
+  color: #e0d1b6 !important;
+  font-family: 'TT Commons Pro', Helvetica, Arial, sans-serif !important;
+}
+
+/* Let inner components override font-family normally (testimonials already
+   set their own font classes like `font-merriweather`). */
+.dark6-page * {
+  color: #e0d1b6 !important;
+}
+
+/* Allow black text on hero pyramid labels */
+.dark6-page .hero-pyramid-label {
+  color: #000000 !important;
+}
+
+/* Headings: Source Serif 4 */
+.dark6-page h1,
+.dark6-page h2,
+.dark6-page h3,
+.dark6-page h4,
+.dark6-page h5,
+.dark6-page h6,
+.dark6-page .h1,
+.dark6-page .h2,
+.dark6-page .h3,
+.dark6-page .h4,
+.dark6-page .h5,
+.dark6-page .h6,
+.dark6-page .text-h1,
+.dark6-page .text-h2,
+.dark6-page .text-h3,
+.dark6-page .text-h4,
+.dark6-page .text-h5,
+.dark6-page .text-h6,
+.dark6-page h1 *,
+.dark6-page h2 *,
+.dark6-page h3 *,
+.dark6-page h4 *,
+.dark6-page h5 *,
+.dark6-page h6 * {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+/* Ensure descendants inside class-based headings inherit Source Serif 4 too.
+   (Your dark6 rule forces TT Commons Pro on every element, so descendants
+   must be explicitly overridden.) */
+.dark6-page .h1 *,
+.dark6-page .h2 *,
+.dark6-page .h3 *,
+.dark6-page .h4 *,
+.dark6-page .h5 *,
+.dark6-page .h6 *,
+.dark6-page .text-h1 *,
+.dark6-page .text-h2 *,
+.dark6-page .text-h3 *,
+.dark6-page .text-h4 *,
+.dark6-page .text-h5 *,
+.dark6-page .text-h6 * {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+/* Headline spans (many sections render titles as spans, not h1-h6) */
+.dark6-page .hero-main-title-line,
+.dark6-page .hero-title-line,
+.dark6-page .real-problem-title-line,
+.dark6-page .faq-title-line,
+.dark6-page .new-services-title-line,
+.dark6-page .build-title-line,
+.dark6-page .tech-word,
+.dark6-page .eyrie-word {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+.dark6-page .hero-main-title-line *,
+.dark6-page .hero-title-line *,
+.dark6-page .real-problem-title-line *,
+.dark6-page .faq-title-line *,
+.dark6-page .new-services-title-line *,
+.dark6-page .build-title-line *,
+.dark6-page .tech-word *,
+.dark6-page .eyrie-word * {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+/* Specific: some headings are spans styled with `font-playfair italic` (e.g. "That's the ..."). */
+.dark6-page .font-playfair.italic,
+.dark6-page .font-playfair.italic * {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  background-color: #162d24;
+  background: linear-gradient(
+    135deg,
+    rgba(22, 45, 36, 0.80) 0%,
+    rgba(27, 71, 50, 0.55) 45%,
+    rgba(16, 30, 39, 0.85) 100%
+  );
+}
+
+/* ── DARK SECTIONS (Wellness panel etc.) ── */
+.section-dark {
+  background-color: #162d24; /* --c-dark-green */
+}
+
+/* ── WELLNESS IMAGE PANEL ── */
+.wellness-panel {
+  background-color: #101e27; /* --c-dark-blue */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hide scrollbar for a cleaner "slider-less" look */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
