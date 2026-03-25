@@ -78,7 +78,7 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
 
   return (
     <div
-      className={`relative min-h-[150vh] ${textColor} selection:bg-indigo-500/30 transition-colors duration-500 ${bgColor}`}
+      className={`dark6-testimonials-section relative min-h-[150vh] ${textColor} selection:bg-indigo-500/30 transition-colors duration-500 ${bgColor}`}
       style={bgColorStyle}
     >
         {isDark && !sharedBackground && (

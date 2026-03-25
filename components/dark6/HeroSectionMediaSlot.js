@@ -531,7 +531,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="dark6-hero-media relative w-full"
       style={sharedBackground ? { background: "transparent", backgroundColor: "transparent" } : bgStyle}
     >
       {theme === "dark" && !sharedBackground && (

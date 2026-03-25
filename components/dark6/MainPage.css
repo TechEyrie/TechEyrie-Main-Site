@@ -100,10 +100,32 @@ body {
   font-family: 'TT Commons Pro', Helvetica, Arial, sans-serif !important;
 }
 
-/* Let inner components override font-family normally (testimonials already
-   set their own font classes like `font-merriweather`). */
+/* Tailwind utilities (`font-merriweather`, `font-playfair`) still override the page default. */
 .dark6-page * {
   color: #e0d1b6 !important;
+}
+
+.dark6-page .font-merriweather,
+.dark6-page .font-merriweather * {
+  font-family: 'TT Commons Pro', Helvetica, Arial, sans-serif !important;
+}
+
+.dark6-page .dark6-testimonials-section .font-merriweather,
+.dark6-page .dark6-testimonials-section .font-merriweather * {
+  font-family: 'Merriweather', serif !important;
+}
+
+/* Body / UI copy: Playfair without italic → sans. Italic pairs stay display serif via rule below. */
+.dark6-page .font-playfair:not(.italic) {
+  font-family: 'TT Commons Pro', Helvetica, Arial, sans-serif !important;
+}
+
+/* Inside main title tags, keep display serif for Playfair (utility order can otherwise win). */
+.dark6-page h1 .font-playfair,
+.dark6-page h2 .font-playfair,
+.dark6-page h1 .font-playfair *,
+.dark6-page h2 .font-playfair * {
+  font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
 }
 
 /* Allow black text on hero pyramid labels */
@@ -184,6 +206,15 @@ body {
 .dark6-page .font-playfair.italic,
 .dark6-page .font-playfair.italic * {
   font-family: 'Source Serif 4', Helvetica, Arial, sans-serif !important;
+}
+
+/*
+ * Hero + portfolio: CTA uses arbitrary Helvetica utility; global Merriweather/Playfair
+ * rules above already map body copy to TT Commons Pro.
+ */
+/* CTA still uses arbitrary Helvetica utility in markup */
+.dark6-page .dark6-hero-media a span[class*="Helvetica_Now_Text"] {
+  font-family: 'TT Commons Pro', Helvetica, Arial, sans-serif !important;
 }
 
 /* ── HERO SECTION ── */
