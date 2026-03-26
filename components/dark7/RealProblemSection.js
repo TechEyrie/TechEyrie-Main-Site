@@ -347,7 +347,8 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
                 }`}
               >
-                Too many businesses invest in the latest tools and platforms, expecting them to solve their growth challenges. But without the right systems in place, those tools become expensive distractions rather than drivers of real results.
+                Growth is a story told with intention, executed through systems, and valued by results. We craft frameworks and workflows that elevate your tech stack into a premium marketing engine. Every action drives impact, every campaign fuels the pipeline, every decision shapes your trajectory."
+
               </p>
 
               <p

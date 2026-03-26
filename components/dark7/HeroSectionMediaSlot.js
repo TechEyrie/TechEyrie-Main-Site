@@ -677,7 +677,10 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
 
               <div className="hero-body max-w-full lg:max-w-[640px] pt-20">
                 <p className={`mb-9 font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
-                  We build, optimize and scale marketing engines that generate pipeline and improve marketing ROI.
+                  {/* We build, optimize and scale marketing engines that generate pipeline and improve marketing ROI. */}
+
+                  Turning leads into loyal customers, we tailor high performance pipeline, ROI and elevate your brand authority.
+
                 </p>
                 <Link href="#discover" className="inline-flex items-center gap-3 group">
                   <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[20px] font-bold tracking-tight ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}>
