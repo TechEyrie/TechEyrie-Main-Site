@@ -13,7 +13,7 @@ const SERVICES = [
     title: "Business Automation & AI Enablement",
     titleLine1: "Business Automation &",
     titleLine2: "AI Enablement",
-    description: "We automate critical business processes using AI-enabled workflows, integrations, and intelligent agents — reducing manual work and operational friction.",
+    description: "Transforming critical business process through AI-enabled workflows and intelligent agents by delivering efficient work and reducing manual working so your team can focus on creativity, growth and strategy.",
     imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -21,7 +21,7 @@ const SERVICES = [
     title: "Data & Decision Intelligence",
     titleLine1: "Data & Decision",
     titleLine2: "Intelligence",
-    description: "We build unified data and analytics systems that give leadership real-time visibility into performance, risk, and opportunity.",
+    description: "We build unified data and systems that bring everything into focus. No delays or uncertainty, just real-time Visibility into risk and opportunity, giving the leadership the confidence to lead. Every system transforms raw data into insights so your business doesn't just react, it predicts.",
     imageUrl: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -29,7 +29,7 @@ const SERVICES = [
     title: "Custom Digital Platforms",
     titleLine1: "Custom Digital Platforms",
     titleLine2: null,
-    description: "We develop secure, scalable digital platforms that support automation, analytics, and growth — tailored to your business needs.",
+    description: "Every platform is tailored to your business aligned with workflow, data and long-term visions not by generic templates. Resulting in a foundation of robust, evolved and intelligent elevating your business with clarity, precision and control.",
     imageUrl: "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
 ];
