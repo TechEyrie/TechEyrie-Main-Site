@@ -696,7 +696,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                   {/* As businesses grow, tools multiply, processes become manual, and visibility is lost. What once felt manageable slowly turns into complexity. */}
 
 
-                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips.
+                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable.
                 </p>
                 <p
                   className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
@@ -706,6 +706,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                   {/* Tech Eyrie helps businesses regain clarity by designing connected systems that make work manageable, bring data into focus, and automate work into decisions — so operations run smoothly as the organization scales. */}
 
                   But Tech Eyrie brings back clarity, creating connected systems that make work viable, bringing data into focus, and automating decisions, turning operations into a high- performing engine for an impressive success.
+
 
                 </p>
               </div>

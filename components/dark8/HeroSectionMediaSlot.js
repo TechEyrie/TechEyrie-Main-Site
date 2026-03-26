@@ -593,7 +593,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
             }}
           >
             <video
-              className="absolute inset-0 h-full w-full object-cover opacity-[0.42]"
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.55]"
               src="/videos/eagle-video-test.mp4"
               autoPlay
               muted
@@ -602,7 +602,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               preload="metadata"
             />
             {/* Hero-only: lighter forest base than page #162d24 — lifts bg color without exposing brighter video */}
-            <div className="absolute inset-0 bg-[#2d5f4c]/76" />
+            <div className="absolute inset-0 bg-[#2d5f4c]/64" />
             <div
               className="absolute inset-0 bg-gradient-to-br from-[#3a7260]/32 via-transparent to-transparent"
               style={{ mixBlendMode: "soft-light" }}
@@ -630,7 +630,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 opacity: 0.7,
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0c241c]/46 via-[#234d3e]/14 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0c241c]/34 via-[#234d3e]/10 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#265445]/44 via-transparent to-[#17352c]/30" />
             <div
               className="absolute inset-0 opacity-[0.12]"
