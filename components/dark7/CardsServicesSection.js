@@ -14,7 +14,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       id: 0,
       title: "SEO",
       subtitle: "(Search Engine Optimization)",
-      description: "Research and selection of the most effective keywords for your business.",
+      description: "We research and select the most powerful keywords to elevate visibility of your business, that connect with a high-intent audience.",
       tags: ["Keyword Analysis", "Content Optimization"],
       bgColor: theme === "dark" ? "#1a1a1a" : "#111111",
       textColor: "#f3f3f3",
@@ -25,7 +25,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       id: 1,
       title: "SMM",
       subtitle: "",
-      description: "Strategy development and presence in social networks that aligns with your goals.",
+      description: "It's not only about existence, it is all about influence. We design well-crafted strategies, goal driven social media systems that connect you to high-value audiences. ",
       tags: [],
       bgColor: "#E8FF6B",
       textColor: "#111111",
@@ -40,7 +40,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
         </>
       ),
       subtitle: "",
-      description: "Development of content strategies, writing sales texts and content promotion.",
+      description: "At Tech Eyrie we tailor content strategies, persuasive sales copy and promote digital presence turning technology into  stories that repel to the right audience and drive measurable growth. ",
       tags: [],
       // In dark theme, match the first card's background
       bgColor: theme === "dark" ? "#1a1a1a" : "#E5E5E5",
@@ -57,7 +57,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
         </>
       ),
       subtitle: "",
-      description: "Creating advertising campaigns, constant monitoring and optimization.",
+      description: "We turn attention into Action. Here at Tech Eyrie we create data driven advertisement campaigns, Real-time monitoring and clear strategies which will deliver meaningful business outcomes.",
       tags: [],
       bgColor: "#E8FF6B",
       textColor: "#111111",

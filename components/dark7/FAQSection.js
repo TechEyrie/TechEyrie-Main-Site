@@ -6,28 +6,28 @@ import gsap from 'gsap';
 
 const FAQ_ITEMS = [
   {
-    question: 'What services does Airvoir provide?',
-    answer: 'Airvoir specializes in corporate air travel solutions, offering personalized charter services, private jet bookings, and customized travel experiences for businesses of all sizes.',
+    question: 'What services does Tech Eyrie provide?',
+    answer: 'At Tech Eyrie, we redefine digital transformation. We deliver seamless systems and end-to-end business solutions, tailoring strategies to elevate and engage your tech brand. From strategic planning to targeted promotion, we ensure your message reaches the right audience at the right time.',
   },
   {
-    question: 'How do I book a flight with Airvoir?',
-    answer: 'You can book a flight through our online platform, mobile app, or by contacting our dedicated customer service team. We offer 24/7 support to ensure seamless booking experiences.',
+    question: 'How to engage with Tech Eyrie?',
+    answer: 'Connect with us seamlessly, At Tech Eyrie we take every step to transform your business into an effortless, strategic and unforgettable journey. We got you covered with 24/7 support, online consultation and personalized guidance. Get connected and feel the difference.'
   },
   {
-    question: 'What types of aircraft are available?',
-    answer: 'We provide access to a diverse fleet including light jets, midsize jets, heavy jets, and turboprops. Each aircraft is maintained to the highest safety standards and equipped with modern amenities.',
+    question: 'What type of solutions are available?',
+    answer: 'Tech Eyrie provides a diverse range of tech solutions to meet your business needs. We offer intelligent systems with AI-driven automation, High-performance platforms to ensure a stable growth, Data and Analytical solutions with advanced tools and tailored systems to connect with your infrastructure.',
   },
   {
-    question: 'Can I customize my travel itinerary?',
-    answer: 'Absolutely! We specialize in creating personalized travel experiences. Our team works with you to customize departure times, destinations, in-flight services, and ground transportation.',
+    question: 'Can I customize my Technology solution?',
+    answer: 'That’s the best about Tech Eyrie, we customize your business needs by working closely with you. Our team can customize you, AI-driven workflow automation to match your operations, selecting the best platform features to support your business objectives, integration and Deployment with seamless alignment, and customized dashboards and insights to track your performance. We tailor technology experiences that are unique to your business. ',
   },
   {
-    question: 'What are your safety standards?',
-    answer: 'Safety is our top priority. All aircraft in our network undergo rigorous inspections, our pilots are extensively trained and certified, and we comply with all aviation safety regulations.',
+    question: 'How Does Tech Eyrie Ensure Quality and Security?',
+    answer: 'At Tech Eyrie, our main focus is on reliability and security. Every system we deliver goes through testing and quality assurance to ensure a perfect performance, adhere to industry standards to ensure your business runs smoothly and continuous monitoring. We don’t just deliver technology, we tailor your systems to perform reliably, securely and at highest performance.',
   },
   {
-    question: 'Do you offer membership programs?',
-    answer: 'Yes, we offer various membership tiers that provide exclusive benefits including priority booking, discounted rates, flexible cancellation policies, and dedicated account management.',
+    question: 'Do You Offer Membership or Partnership Programs?',
+    answer: 'Absolutely, Tech Eyrie offers premium memberships and offers with benefits for the audience. Early access to the latest solutions, customizing packages according to your business needs, one single contact to guide your business journey to flow without pause, and a flexible and engaged team to ensure  your needs are met. It is not only about the membership, we focus on innovations, authenticity and a long-term business journey. ',
   },
 ];
 
@@ -295,7 +295,7 @@ export default function FAQSection({ theme = 'light', sharedBackground = false }
 
         {/* Subheading */}
         <p className={`mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 max-w-3xl text-center font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-regular leading-relaxed tracking-tight ${theme === 'dark' ? 'text-[#a0a0a0]' : 'text-[#444444]'}`}>
-          Have questions about our services? We've got answers. Browse through our most commonly asked questions below.
+        Are you curious about what we do? We’ve got you covered. Check out the most FAQs to unleash what Tech Eyrie can do to make your business grow and shine.
         </p>
 
         {/* FAQ Items - Centered Column */}

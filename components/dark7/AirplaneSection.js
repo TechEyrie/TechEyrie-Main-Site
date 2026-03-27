@@ -53,11 +53,14 @@ export default function AirplaneHero({ theme = "dark" }) {
       <div className="relative z-10 flex-1 flex flex-col justify-start pt-24 md:pt-32 px-6 sm:px-12 md:px-20 lg:px-32">
         <div ref={textRef} className="max-w-3xl">
           <h1 className="font-italiana font-light text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] text-[#f3f3f3] leading-[1.1] tracking-[0.01em]">
-            We manage flights.
+          Your competitors are already building.
+            
+            {/* We manage flights. */}
             <br />
-            You grow your aviation
+            Are you?
+            {/* You grow your aviation */}
             <br />
-            business.
+            {/* business. */}
           </h1>
         </div>
 

@@ -159,7 +159,7 @@ export default function AirvoirSection({ theme = "light" }) {
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                 }`}
               >
-                Welcome to Airvoir
+               Welcome to Tech Eyrie 
               </span>
             </div>
 
@@ -168,7 +168,8 @@ export default function AirvoirSection({ theme = "light" }) {
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              Where journeys become unforgettable
+              Every interaction is a journey, resonating digital experiences into meaningful impact.
+
             </h1>
 
             <button
@@ -207,9 +208,10 @@ export default function AirvoirSection({ theme = "light" }) {
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              Discover corporate air travel redefined.
+             Every business needs clarity and understanding, At Tech Eyrie we carefully craft digital systems that would elevate your journey by turning complexity into remarkable journeys. 
+
               <br />
-              Experience personalized service, every step of the way.
+              {/* Experience personalized service, every step of the way. */}
             </h2>
 
             <button

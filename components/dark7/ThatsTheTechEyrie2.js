@@ -518,17 +518,16 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
                         theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                       }`}
                     >
-                      We're a technology studio focused on turning complexity into
-                      clarity. From AI-driven automation to high-performance digital
-                      platforms, we design systems that help businesses move faster,
-                      think smarter, and scale with confidence.
+                      In the fast moving world where technology becomes complex, clarity is your biggest success. Here in Tech Eyrie we built systems that dive through complexity combining AI- driven automation, data and high- performance platforms into flawless digital experiences.
+
                     </p>
                     <p
                       className={`build-description font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
                         theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                       }`}
                     >
-                      We don't chase trends — we engineer foundations built to last.
+                     No trends, only intelligent systems that lasts long.
+
                     </p>
                     <div className="build-cta pt-2">
                       <Link
