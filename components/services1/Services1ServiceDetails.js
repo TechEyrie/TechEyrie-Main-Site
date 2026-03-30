@@ -45,7 +45,7 @@ const serviceDetails = [
   {
     id: 'analysis-reporting',
     title: 'Analysis & Reporting',
-    description: 'Consider us an extended arm of your team - we will deep dive into the analysis and reporting of the data we gather to tease out the actionable insights that matter most. We get involved in the full project life cycle and we offer different reporting formats, all depending on your needs: from short summaries all the way to full reports with personas, verbatims, and recommendations.',
+    description: 'We don’t just guide you, we focus on the objectives, challenges and your growth as a team. Tech Eyrie gathers data, uncover insights, dive deeper into observations and derives into positive outcomes. Our team is involved in your full project, from preparing summaries to tailoring the outputs according to your needs. We help you reach the goal with confidence and direction.',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
   },

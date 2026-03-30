@@ -30,7 +30,8 @@ const Backing = ({ theme = "light" }) => {
             <div className="mb-12 md:mb-16">
               <MaskedReveal delay={0.1}>
                 <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
-                  Backing is believing
+                Built on Trust, Innovation <br className="hidden md:block" /> and Performance.
+
                 </h2>
               </MaskedReveal>
             </div>
@@ -39,7 +40,8 @@ const Backing = ({ theme = "light" }) => {
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
                 <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Backed by prominent industry leaders who saw us challenging conventions, solving problems that matter, and delivering products that truly make a difference - and decided to come along for the ride.
+                Prominent leaders found Tech Eyrie and our ability to deliver AI-driven high-impact solutions, this strategic alignment, a commitment to building platforms to redefine your business- and chose to partner in shaping the future of logistics.
+
                 </p>
               </MaskedReveal>
             </div>

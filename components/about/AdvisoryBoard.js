@@ -41,7 +41,7 @@ const AdvisoryBoard = ({ theme = "light" }) => {
             <div className="mb-8">
                <MaskedReveal>
                  <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                   Industry Strategic Advisory Board
+                 Elevating operations, Redefining brands
                  </span>
                </MaskedReveal>
             </div>
@@ -50,8 +50,11 @@ const AdvisoryBoard = ({ theme = "light" }) => {
             <div className="mb-12 md:mb-16">
               <MaskedReveal delay={0.1}>
                 <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#032219]'}`}>
-                  Thinking big, <br className="hidden md:block" />
-                  reinventing logistics
+                  {/* Thinking big, <br className="hidden md:block" />
+                  reinventing logistics */}
+
+                  The Future, Empowered
+
                 </h2>
               </MaskedReveal>
             </div>
@@ -60,7 +63,7 @@ const AdvisoryBoard = ({ theme = "light" }) => {
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
                 <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Our strategic advisors bring deep industry expertise to help us reinvent the future of logistics, turning operational bottlenecks into a scalable, strategic advantage.
+                Tech Eyrie isn't a dealer, it is a strategic partner of transformation and reinvention. We work with industrial leaders to transform chaos to clarity, intelligence and control.
                 </p>
               </MaskedReveal>
             </div>

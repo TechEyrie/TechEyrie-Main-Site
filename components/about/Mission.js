@@ -11,24 +11,24 @@ const SECTIONS = [
   {
     id: 1,
     number: "01",
-    title: "Built by the industry, for the industry",
-    text: "Terminal is a strategic joint venture, not a typical startup. Backed by leading logistics operators such as Prologis, Ryder, Lineage, and NFI, and supported by venture capital firm 8VC, we were designed to solve major industry pain points and establish the category standard. Our strategic investors contributed critical insights and became anchor product design partners, ensuring we’re rapidly solving the industries biggest challenges in yard logistics.",
+    title: "Industry built it, Tech Eyrie Perfected it",
+    text: "We don’t exercise as a startup but as an organized partnership, collaborating with market leaders and providing realistic solutions and challenges. Tech Eyrie, partnering with tech companies such as —---------- to create critical insights, guiding decisions and addressing complex strategies. With Tech Eyrie, every insight, platforms and workflow collaborates with the leaders in providing accuracy, reliability and impacts in the luxury B2B market.",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop", // Truck yard placeholder
     layout: "text-left", // Text on left, Image on right
   },
   {
     id: 2,
     number: "02",
-    title: "Solving the yard's biggest challenges",
-    text: "Fragmented systems and manual processes have held yard operations back for decades. We bring everything together into a single, intelligent platform that gives you total visibility and control. From gate management to spotter optimization, our AI-driven solution prevents bottlenecks before they happen.",
+    title: "No more waiting ,Technology unleashed",
+    text: "For decades manual systems have paused and slowed down the most important operations, but when it comes to B2B it is not only inefficient but also costly. With Tech Eyrie  complexity is turned into clarity, our intelligence and platforms connect all the operational elements and deliver an efficient, controllable and visible business track. From management to real-time optimization, our AI-driven solutions obstruct any potential disruptions into opportunities, in the luxury B2B world operational excellence is all about competition. ",
     image: "https://images.unsplash.com/photo-1621955964441-c173e01c135b?q=80&w=2086&auto=format&fit=crop", // Logistics placeholder
     layout: "image-left", // Image on left, Text on right
   },
   {
     id: 3,
     number: "03",
-    title: "Total visibility across your operations",
-    text: "Stop guessing and start knowing. Our platform creates a real-time digital twin of your yard, tracking every asset, trailer, and driver movement with precision. Gain actionable insights that drive efficiency and safety from day one.",
+    title: "Total Visibility and control",
+    text: "In B2B market uncertainty is costly, every delay results in inefficiency, unnoticed movement and loss of time. But in Tech Eyrie, there is no room for guessing, we create real-time digital operations tracking assets, trailers and precisions. From the very first day you will be notified about the insights, efficiency, safety and optimization of decisions. Every luxury brand needs to know the next step, that's the strategic differentiator not just an advantage. ",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Dashboard/Analytics/High-tech placeholder
     layout: "text-left", // Text on left, Image on right
   },

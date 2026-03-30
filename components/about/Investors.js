@@ -41,8 +41,10 @@ const Investors = ({ theme = "light" }) => {
             <div className="mb-12 md:mb-16">
               <MaskedReveal delay={0.1}>
                 <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-black'}`}>
-                  Backed by decades <br className="hidden md:block" />
-                  of logistics expertise
+                Built by leaders, <br className="hidden md:block" />
+                Backed by decades, 
+                  <br className="hidden md:block" />
+                  Crafted for you
                 </h2>
               </MaskedReveal>
             </div>
@@ -51,7 +53,8 @@ const Investors = ({ theme = "light" }) => {
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
                 <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Our founders, investors, and advisors are driven by the critical need to create an industry standard in the yard. They see us challenging conventions, solving problems that matter, and delivering products that revolutionize the way logistics works.
+                Supported by founders, investors and advisors whose vision shapes our industry to deliver a measurable and lasting impression. They empowered us to solve complex issues, create                 intelligent platforms and challenge outdated modules, creating beliefs in future of logistics
+
                 </p>
               </MaskedReveal>
             </div>

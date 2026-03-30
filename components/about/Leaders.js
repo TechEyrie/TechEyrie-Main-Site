@@ -65,9 +65,9 @@ const Leaders = ({ theme = "light" }) => {
         <div className="mb-16 md:mb-24">
           <MaskedReveal delay={0.1}>
             <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[0.95] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-black'}`}>
-              Powered by <br className="hidden md:block" />
-              innovators in tech <br className="hidden md:block" />
-              & experts in logistics
+            Powered by<br className="hidden md:block" />
+            visionaries in Technology   <br className="hidden md:block" />
+            and refined by strategy
             </h2>
           </MaskedReveal>
         </div>
@@ -76,13 +76,16 @@ const Leaders = ({ theme = "light" }) => {
         <div className="max-w-2xl mx-auto space-y-12 mb-32">
           <MaskedReveal delay={0.2}>
             <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Terminal leaders drive towards a combined mission with extreme ownership, smart execution, and passionate innovation.
+            Driven by innovation, refined execution, and industry insight, shaping the future of 
+High-Value Brands
+
             </p>
           </MaskedReveal>
 
           <MaskedReveal delay={0.3}>
             <p className={`font-merriweather text-[14px] ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Meet the strategic problem solvers at the helm:
+            Meet the Mater minds behind the strategies 
+
             </p>
           </MaskedReveal>
         </div>

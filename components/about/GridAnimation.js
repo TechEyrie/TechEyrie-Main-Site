@@ -3,117 +3,130 @@ import React, { useEffect, useRef } from "react";
 
 export const GridAnimation = ({ className = "", theme = "light" }) => {
   const canvasRef = useRef(null);
-  const offscreenCanvasRef = useRef(null); // Ref for caching geometry
+  const offscreenCanvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Initialize Offscreen Canvas
     if (!offscreenCanvasRef.current) {
-        offscreenCanvasRef.current = document.createElement("canvas");
+      offscreenCanvasRef.current = document.createElement("canvas");
     }
     const offCanvas = offscreenCanvasRef.current;
-    
-    // optimize for transparency
-    const ctx = canvas.getContext("2d", { alpha: true }); 
+
+    const ctx = canvas.getContext("2d", { alpha: true });
     const offCtx = offCanvas.getContext("2d", { alpha: true });
 
-    const dpr = window.devicePixelRatio || 1;
-    const gridSize = 70;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const gridSizePx = 70;
     const dotRadius = 2.5;
     const gap = 12;
+    const MAX_PULSES = 36;
+    const PULSE_SPAWN_MS = 600;
 
-    // Resizing Logic: Prepare both canvases
-    const resize = () => {
-       const width = canvas.offsetWidth;
-       const height = canvas.offsetHeight;
+    const drawStaticGrid = (context, width, height) => {
+      const cols = Math.ceil(width / gridSizePx) + 4;
+      const rows = Math.ceil(height / gridSizePx) + 4;
 
-       // Main Canvas
-       canvas.width = width * dpr;
-       canvas.height = height * dpr;
-       ctx.scale(dpr, dpr);
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = "#000000";
+      context.strokeStyle = "#000000";
+      context.lineWidth = 1.0;
 
-       // Offscreen Canvas (Cache static geometry)
-       offCanvas.width = width * dpr;
-       offCanvas.height = height * dpr;
-       offCtx.scale(dpr, dpr);
-       
-       // DRAW STATIC GEOMETRY ONCE
-       drawStaticGrid(offCtx, width, height);
+      for (let i = 0; i < cols; i++) {
+        const x = (i - 1) * gridSizePx;
+        for (let j = 0; j < rows; j++) {
+          const y = (j - 1) * gridSizePx;
+
+          context.beginPath();
+          context.arc(x, y, dotRadius, 0, Math.PI * 2);
+          context.fill();
+
+          if (j < rows - 1) {
+            context.beginPath();
+            context.moveTo(x + gap, y);
+            context.lineTo(x + gridSizePx - gap, y);
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(x + gap, y + gridSizePx);
+            context.lineTo(x + gridSizePx - gap, y + gridSizePx);
+            context.stroke();
+          }
+
+          if (i < cols - 1) {
+            context.beginPath();
+            context.moveTo(x, y + gap);
+            context.lineTo(x, y + gridSizePx - gap);
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(x + gridSizePx, y + gap);
+            context.lineTo(x + gridSizePx, y + gridSizePx - gap);
+            context.stroke();
+          }
+        }
+      }
     };
 
-    // Helper to draw static grid geometry (opaque black)
-    const drawStaticGrid = (context, width, height) => {
-        const cols = Math.ceil(width / gridSize) + 4;
-        const rows = Math.ceil(height / gridSize) + 4;
-        
-        context.clearRect(0, 0, width, height);
-        // Draw in black always on offscreen buffer. 
-        // We tint it using source-in gradient later.
-        context.fillStyle = "#000000"; 
-        context.strokeStyle = "#000000";
-        context.lineWidth = 1.0;
+    const resize = () => {
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      if (width < 1 || height < 1) return;
 
-        for (let i = 0; i < cols; i++) {
-            const x = (i - 1) * gridSize;
-            for (let j = 0; j < rows; j++) {
-              const y = (j - 1) * gridSize;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-              // Dot
-              context.beginPath();
-              context.arc(x, y, dotRadius, 0, Math.PI * 2);
-              context.fill();
+      offCanvas.width = Math.floor(width * dpr);
+      offCanvas.height = Math.floor(height * dpr);
+      offCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-              // Lines
-              if (j < rows - 1) {
-                context.beginPath();
-                context.moveTo(x + gap, y);
-                context.lineTo(x + gridSize - gap, y);
-                context.stroke();
-
-                context.beginPath();
-                context.moveTo(x + gap, y + gridSize);
-                context.lineTo(x + gridSize - gap, y + gridSize);
-                context.stroke();
-              }
-
-              if (i < cols - 1) {
-                context.beginPath();
-                context.moveTo(x, y + gap);
-                context.lineTo(x, y + gridSize - gap);
-                context.stroke();
-
-                context.beginPath();
-                context.moveTo(x + gridSize, y + gap);
-                context.lineTo(x + gridSize, y + gridSize - gap);
-                context.stroke();
-              }
-            }
-        }
+      drawStaticGrid(offCtx, width, height);
     };
 
     resize();
     window.addEventListener("resize", resize);
 
-    // PULSE SYSTEM
     let time = 0;
     const yellowPulses = [];
+    let animationId = null;
+    let pulseIntervalId = null;
+    let isVisible = false;
+
+    const stopWhenHidden = () => {
+      if (pulseIntervalId !== null) {
+        clearInterval(pulseIntervalId);
+        pulseIntervalId = null;
+      }
+      if (animationId !== null) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      yellowPulses.length = 0;
+    };
+
     const createYellowPulse = () => {
-      const cols = Math.ceil(canvas.offsetWidth / gridSize) + 4;
-      const rows = Math.ceil(canvas.offsetHeight / gridSize) + 4;
-      const numLines = 5 + Math.floor(Math.random() * 5); 
+      if (!isVisible || canvas.offsetWidth < 1) return;
+
+      const cols = Math.ceil(canvas.offsetWidth / gridSizePx) + 4;
+      const rows = Math.ceil(canvas.offsetHeight / gridSizePx) + 4;
+      const room = Math.max(0, MAX_PULSES - yellowPulses.length);
+      const desired = 3 + Math.floor(Math.random() * 4);
+      const numLines = Math.min(desired, room);
+      if (numLines <= 0) return;
 
       for (let k = 0; k < numLines; k++) {
         const isHorizontal = Math.random() < 0.5;
         let gridIndex;
-        
+
         if (isHorizontal) {
-          gridIndex = Math.floor(Math.random() * (rows - 1));
+          gridIndex = Math.floor(Math.random() * Math.max(1, rows - 1));
         } else {
           const minCol = 1;
-          const maxCol = cols - 2;
-          gridIndex = minCol + Math.floor(Math.random() * (maxCol - minCol + 1));
+          const maxCol = Math.max(minCol, cols - 2);
+          gridIndex =
+            minCol + Math.floor(Math.random() * (maxCol - minCol + 1));
         }
 
         yellowPulses.push({
@@ -121,169 +134,163 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
           gridIndex,
           startFrac: Math.random() * 0.5,
           fraction: 3 + Math.random() * 3,
-          progress: -0.2 + Math.random() * 0.4, 
-          speed: 0.003 + Math.random() * 0.003, 
-          life: 0, 
+          progress: -0.2 + Math.random() * 0.4,
+          speed: 0.003 + Math.random() * 0.003,
+          life: 0,
         });
       }
     };
 
-    const pulseInterval = setInterval(createYellowPulse, 450);
-    createYellowPulse();
+    const startWhenVisible = () => {
+      if (pulseIntervalId === null) {
+        pulseIntervalId = setInterval(createYellowPulse, PULSE_SPAWN_MS);
+        createYellowPulse();
+      }
+      if (animationId === null) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
 
-    let animationId;
-    let isVisible = true;
-
-    // MAIN ANIMATION LOOP
     const animate = () => {
-      if (!isVisible) return;
+      if (!isVisible) {
+        animationId = null;
+        return;
+      }
 
       const width = canvas.offsetWidth;
       const height = canvas.offsetHeight;
+      if (width < 1 || height < 1) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
 
       ctx.clearRect(0, 0, width, height);
-
-      // 1. Draw Static Grid from Cache + Apply Shimmer Gradient
       ctx.drawImage(offCanvas, 0, 0, width, height);
 
-      // Gradient Logic
       const waveWidth = 1200;
       const fullCycle = width + waveWidth * 2;
       const cycleTime = fullCycle / 1.2;
       const t = (time / cycleTime) % 2;
       const pingPong = t <= 1 ? t : 2 - t;
-      let waveX = -waveWidth + pingPong * fullCycle;
+      const waveX = -waveWidth + pingPong * fullCycle;
 
-      const gradient = ctx.createLinearGradient(waveX, 0, waveX + waveWidth, 0);
-      
-      const isDark = theme === 'dark';
-      // Use White (255) for Dark Mode, Black (0) for Light Mode
+      const gradient = ctx.createLinearGradient(
+        waveX,
+        0,
+        waveX + waveWidth,
+        0
+      );
+
+      const isDark = theme === "dark";
       const r = isDark ? 255 : 0;
       const g = isDark ? 255 : 0;
       const b = isDark ? 255 : 0;
+      const a = (val) => (isDark ? Math.min(1, val * 2.5) : val);
 
-      const a = (val) => isDark ? Math.min(1, val * 2.5) : val; // Boost opacity significantly for dark mode
-
-      gradient.addColorStop(0.00, `rgba(${r}, ${g}, ${b}, ${a(0.00)})`);
+      gradient.addColorStop(0.0, `rgba(${r}, ${g}, ${b}, ${a(0.0)})`);
       gradient.addColorStop(0.08, `rgba(${r}, ${g}, ${b}, ${a(0.04)})`);
-      gradient.addColorStop(0.20, `rgba(${r}, ${g}, ${b}, ${a(0.10)})`);
-      gradient.addColorStop(0.35, `rgba(${r}, ${g}, ${b}, ${a(0.20)})`);
-      gradient.addColorStop(0.50, `rgba(${r}, ${g}, ${b}, ${a(0.32)})`);
-      gradient.addColorStop(0.65, `rgba(${r}, ${g}, ${b}, ${a(0.20)})`);
-      gradient.addColorStop(0.80, `rgba(${r}, ${g}, ${b}, ${a(0.10)})`);
+      gradient.addColorStop(0.2, `rgba(${r}, ${g}, ${b}, ${a(0.1)})`);
+      gradient.addColorStop(0.35, `rgba(${r}, ${g}, ${b}, ${a(0.2)})`);
+      gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${a(0.32)})`);
+      gradient.addColorStop(0.65, `rgba(${r}, ${g}, ${b}, ${a(0.2)})`);
+      gradient.addColorStop(0.8, `rgba(${r}, ${g}, ${b}, ${a(0.1)})`);
       gradient.addColorStop(0.92, `rgba(${r}, ${g}, ${b}, ${a(0.04)})`);
-      gradient.addColorStop(1.00, `rgba(${r}, ${g}, ${b}, ${a(0.00)})`);
+      gradient.addColorStop(1.0, `rgba(${r}, ${g}, ${b}, ${a(0.0)})`);
 
-      // Apply Gradient using source-in
       ctx.globalCompositeOperation = "source-in";
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
-      
-      // Reset Composite for Pulses
       ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
 
-      // 2. Draw Yellow Pulses and Filter Dead Ones
-      const cols = Math.ceil(width / gridSize) + 4;
-      const rows = Math.ceil(height / gridSize) + 4;
+      const cols = Math.ceil(width / gridSizePx) + 4;
+      const rows = Math.ceil(height / gridSizePx) + 4;
 
       ctx.save();
       ctx.lineCap = "round";
-      
-      // Use filter to create a new array of active pulses
-      // This prevents the "splice during forEach" skip bug
+
       const activePulses = [];
-      
+
       yellowPulses.forEach((pulse) => {
         pulse.progress += pulse.speed;
         pulse.life += 0.01;
 
-        if (pulse.progress > 1.2 || pulse.life > 1) { 
-           // Skip adding to activePulses (effectively removing it)
-           return;
+        if (pulse.progress > 1.2 || pulse.life > 1) {
+          return;
         }
-        
+
         activePulses.push(pulse);
 
-        const opacity = Math.sin(pulse.life * Math.PI) * 1; 
-        const totalPulseLength = pulse.fraction * gridSize; 
-        
-        // DRAWING LOGIC
+        const opacity = Math.sin(pulse.life * Math.PI);
+        const totalPulseLength = pulse.fraction * gridSizePx;
+
         if (pulse.isHorizontal) {
-          const y = pulse.gridIndex * gridSize;
-          const startX = pulse.startFrac * gridSize; 
-          const currentHeadX = startX + pulse.progress * (width + totalPulseLength) - totalPulseLength;
+          const y = pulse.gridIndex * gridSizePx;
+          const startX = pulse.startFrac * gridSizePx;
+          const currentHeadX =
+            startX +
+            pulse.progress * (width + totalPulseLength) -
+            totalPulseLength;
           const currentTailX = currentHeadX - totalPulseLength;
 
           for (let i = 0; i < cols; i++) {
-             const segX = (i - 1) * gridSize;
-             const segStart = segX + gap;
-             const segEnd = segX + gridSize - gap;
-             
-             const overlapStart = Math.max(segStart, currentTailX);
-             const overlapEnd = Math.min(segEnd, currentHeadX);
+            const segX = (i - 1) * gridSizePx;
+            const segStart = segX + gap;
+            const segEnd = segX + gridSizePx - gap;
 
-             if (overlapStart < overlapEnd) {
-                const pulseCenter = (currentHeadX + currentTailX) / 2;
-                const segCenter = (overlapStart + overlapEnd) / 2;
-                const dist = Math.abs(segCenter - pulseCenter);
-                const maxDist = totalPulseLength / 2;
-                const segOpacity = Math.max(0, 1 - (dist / maxDist));
-                const glowColor = `rgba(251, 191, 36, ${opacity * segOpacity})`;
-                
-                ctx.shadowColor = "rgba(251, 191, 36, 1)";
-                ctx.shadowBlur = 10;
-                ctx.strokeStyle = glowColor;
-                ctx.lineWidth = 2;
+            const overlapStart = Math.max(segStart, currentTailX);
+            const overlapEnd = Math.min(segEnd, currentHeadX);
 
-                ctx.beginPath();
-                ctx.moveTo(overlapStart, y);
-                ctx.lineTo(overlapEnd, y);
-                ctx.stroke();
-
-                ctx.shadowBlur = 0; 
-             }
+            if (overlapStart < overlapEnd) {
+              const pulseCenter = (currentHeadX + currentTailX) / 2;
+              const segCenter = (overlapStart + overlapEnd) / 2;
+              const dist = Math.abs(segCenter - pulseCenter);
+              const maxDist = totalPulseLength / 2;
+              const segOpacity = Math.max(0, 1 - dist / maxDist);
+              ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * segOpacity})`;
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(overlapStart, y);
+              ctx.lineTo(overlapEnd, y);
+              ctx.stroke();
+            }
           }
-
         } else {
-           const x = pulse.gridIndex * gridSize;
-           const startY = pulse.startFrac * gridSize;
-           const currentHeadY = startY + pulse.progress * (height + totalPulseLength) - totalPulseLength;
-           const currentTailY = currentHeadY - totalPulseLength;
+          const x = pulse.gridIndex * gridSizePx;
+          const startY = pulse.startFrac * gridSizePx;
+          const currentHeadY =
+            startY +
+            pulse.progress * (height + totalPulseLength) -
+            totalPulseLength;
+          const currentTailY = currentHeadY - totalPulseLength;
 
-           for (let j = 0; j < rows; j++) {
-              const segY = (j - 1) * gridSize;
-              const segStart = segY + gap;
-              const segEnd = segY + gridSize - gap;
+          for (let j = 0; j < rows; j++) {
+            const segY = (j - 1) * gridSizePx;
+            const segStart = segY + gap;
+            const segEnd = segY + gridSizePx - gap;
 
-              const overlapStart = Math.max(segStart, currentTailY);
-              const overlapEnd = Math.min(segEnd, currentHeadY);
+            const overlapStart = Math.max(segStart, currentTailY);
+            const overlapEnd = Math.min(segEnd, currentHeadY);
 
-              if (overlapStart < overlapEnd) {
-                 const pulseCenter = (currentHeadY + currentTailY) / 2;
-                 const segCenter = (overlapStart + overlapEnd) / 2;
-                 const dist = Math.abs(segCenter - pulseCenter);
-                 const maxDist = totalPulseLength / 2;
-                 const segOpacity = Math.max(0, 1 - (dist / maxDist));
-                 const glowColor = `rgba(251, 191, 36, ${opacity * segOpacity})`;
-
-                 ctx.shadowColor = "rgba(251, 191, 36, 1)";
-                 ctx.shadowBlur = 10;
-                 ctx.strokeStyle = glowColor;
-                 ctx.lineWidth = 2;
-
-                 ctx.beginPath();
-                 ctx.moveTo(x, overlapStart);
-                 ctx.lineTo(x, overlapEnd);
-                 ctx.stroke();
-                 ctx.shadowBlur = 0;
-              }
-           }
+            if (overlapStart < overlapEnd) {
+              const pulseCenter = (currentHeadY + currentTailY) / 2;
+              const segCenter = (overlapStart + overlapEnd) / 2;
+              const dist = Math.abs(segCenter - pulseCenter);
+              const maxDist = totalPulseLength / 2;
+              const segOpacity = Math.max(0, 1 - dist / maxDist);
+              ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * segOpacity})`;
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(x, overlapStart);
+              ctx.lineTo(x, overlapEnd);
+              ctx.stroke();
+            }
+          }
         }
       });
+
       ctx.restore();
 
-      // Update the main array reference logic
-      // Since yellowPulses is const array, we clear and refill it
       yellowPulses.length = 0;
       yellowPulses.push(...activePulses);
 
@@ -291,24 +298,25 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
       animationId = requestAnimationFrame(animate);
     };
 
-    // Observer and Cleanup
     const observer = new IntersectionObserver(
       ([entry]) => {
-         isVisible = entry.isIntersecting;
-         if (isVisible && !animationId) animate(); 
-         else if (!isVisible && animationId) {
-             cancelAnimationFrame(animationId);
-             animationId = null;
-         }
+        const next = entry?.isIntersecting ?? false;
+        if (next === isVisible) return;
+        isVisible = next;
+        if (isVisible) {
+          startWhenVisible();
+        } else {
+          stopWhenHidden();
+        }
       },
-      { threshold: 0 }
+      { threshold: 0, rootMargin: "80px" }
     );
+
     observer.observe(canvas);
 
     return () => {
       window.removeEventListener("resize", resize);
-      clearInterval(pulseInterval);
-      if (animationId) cancelAnimationFrame(animationId);
+      stopWhenHidden();
       observer.disconnect();
     };
   }, [theme]);
