@@ -30,7 +30,8 @@ export default function Services1MainServices({ theme = 'light' }) {
               </h2>
               
               <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
-                This is what we do best. Our qualitative research uncovers the "why" behind human behaviour through interviews, focus groups, and in-market conversations led by cultural experts. We go deep, not wide, to surface insights that drive real impact across multiple markets.
+              Exploring human motivations behind every decision, through interviews, behavioural expertise and cultural insights we reveal what others miss Focusing on deeper concepts, smart strategies and turning data into practicable intelligence. Because understanding human behaviour is mandatory to expect an exceptional result. 
+
               </p>
             </div>
           </div>
@@ -55,7 +56,8 @@ export default function Services1MainServices({ theme = 'light' }) {
               </h2>
               
               <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
-                Behavioural analysis complements our qualitative work by focusing on what people actually do, not just what they say. Using observational methods and real-time data, we help you understand habits, patterns, and decision-making at a granular level, so you can respond with confidence.
+              Our qualitative work emphasizes on what people actually do, not what they say. Through observational methods, time- tracking and behavioural data we bring out habits, decision making and patterns to a granular level, helping your business to respond with confidence across the audience, markets and touchpoints. 
+
               </p>
             </div>
           </div>

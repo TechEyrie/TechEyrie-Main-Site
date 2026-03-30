@@ -59,7 +59,8 @@ export default function Services1Hero({ theme = 'light' }) {
         {/* Right Side - Description (pushed to bottom on right) */}
         <div className="relative w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] pr-0 sm:pr-2 md:pr-4 lg:pr-6 z-10 mt-auto sm:pt-0 flex flex-col sm:justify-end">
           <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
-            At MindMarket, we specialise in global qualitative research that helps brands make smarter, faster decisions. Whether you're refining a product, exploring new markets, or launching a campaign, our custom research services deliver the clarity you need — without the complexity.
+          Tech Eyrie  transforms complexity into clarity through global qualitative research, giving brands insights on making smarter and bolder decisions, from finding refined products to launching high-impact campaigns all under one service. 
+
           </p>
         </div>
       </div>

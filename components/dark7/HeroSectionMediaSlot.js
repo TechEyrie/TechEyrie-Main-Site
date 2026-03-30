@@ -657,7 +657,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     style={{ backgroundColor: theme === "dark" ? darkColors.primary : lightColors.primary }}
                   />
                   <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
-                    B2B marketing agency
+                    B2B tech agency
                   </span>
                 </div>
 
@@ -916,7 +916,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <header className="text-center mb-12 sm:mb-16">
             <p className={`font-merriweather text-sm sm:text-base md:text-lg mb-4 sm:mb-6 ${theme === "dark" ? "text-white/70" : "text-[#111111]/70"}`}>
-              Lorem Ipsum
+              Our Goal
             </p>
             <h2 className={`font-italiana text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight ${theme === "dark" ? "text-white" : "text-[#111111]"}`}>
               <span className="font-light">Creating impact for </span>

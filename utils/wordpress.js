@@ -635,19 +635,24 @@ export function transformWordPressCaseStudy(wpCaseStudy, featuredMedia = null) {
   const testimonials = caseData.testimonials || [];
   const testimonial = testimonials.length > 0 ? testimonials[0] : null;
 
+  const listingImage =
+    extractImageUrl(caseData.image) ||
+    (typeof caseData.image === 'string' ? caseData.image : null) ||
+    imageUrl;
+
   return {
     id: wpCaseStudy.id,
     slug: wpCaseStudy.slug || wpCaseStudy.post_name || '',
     title: wpCaseStudy.title?.rendered || wpCaseStudy.title || '',
     category: caseData.category || 'web-app',
-    image: caseData.image || imageUrl,
+    image: listingImage,
     tags: caseData.tags || [],
     badges: caseData.badges || [],
     techStack: caseData.techStack || '',
     timeline: caseData.timeline || '',
     results: caseData.results || [],
     testimonial: testimonial ? {
-      avatar: testimonial.avatar || '',
+      avatar: extractImageUrl(testimonial.avatar) || (typeof testimonial.avatar === 'string' ? testimonial.avatar : '') || '',
       name: testimonial.name || '',
       position: testimonial.position || '',
       quote: testimonial.quote || '',
