@@ -9,50 +9,50 @@ gsap.registerPlugin(ScrollTrigger);
 const serviceDetails = [
   {
     id: 'international-recruitment',
-    title: 'International Respondent Recruitment',
+    title: 'Connecting Audience across the world',
     description: "Finding right people for the research isn't complicated with us, through our global network you can get high-quality participants across the market via a single contact. We got you covered with consumers for any niche like healthcare specialist, user interviews and B2B experts, ensuring every participant is engaged, authentic and aligned to the goals. The insights you gain are trusted and representative of your audience. ",
     imageAlt: 'Diverse group of research participants from different ethnicities, ages, and backgrounds representing MindMarket\'s global respondent recruitment network',
     imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop'
   },
   {
     id: 'screener-design',
-    title: 'Screener Design',
+    title: 'Art of Selection',
     description: 'For brands with a luxury market, an error should never exist, every insight must be carefully studied, experienced, influenced, and integrated with the industry. We research deeper into your expectations, and build screeners to refine your luxury product. It’s not about how you reach the company, but how accurately you reach them. In Tech Eyrie insights start with the right voice and choice. ',
     imageAlt: 'Researchers collaborating on screener questionnaire design with documents spread on table',
     imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop'
   },
   {
     id: 'study-design',
-    title: 'Study/Research Design',
+    title: 'Capturing intelligence that matter',
     description: "At Tech Eyrie, insights are made with intelligent designs built with precision, purpose and a powerful vision. If you are new to the market, or making high-end decisions, our research team will guide you in methodologies, objectives and execution to move forward with confidence, speed and consistency. Tech Eyrie doesn't just make designs, it designs the foundation for a smarter future.",
     imageAlt: 'Two researchers planning study design with laptop and research documents in professional setting',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
   },
   {
     id: 'discussion-guide',
-    title: 'Discussion Guide Development',
+    title: 'Refined, Actionable and precise',
     description: 'At Tech Eyrie, we engage in a deep discussion to understand your objectives, timeline, and expectations. Our team will begin with warm up questions, to perspectives to the  clarity of your business. Tech Eyrie values your insights and conversations, it is all about well structured conversion and strategic advancement.',
     imageAlt: 'Professional researcher preparing discussion guide for focus group moderation',
     imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop'
   },
   {
     id: 'desk-research',
-    title: 'Desk Research',
+    title: 'Knowledge Refined',
     description: 'Tech Eyrie is built on primary research, but when the clients need extra guidance, we summarise the existing information into narrative format to support their objectives. Gathering data, refining,  connecting and boosting it for a meaningful result. At Tech Eyrie we make sure to build a sharper, deeper and stronger understanding of your market.',
     imageAlt: 'Research team conducting desk research and analysing existing data on laptop',
     imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'
   },
   {
     id: 'analysis-reporting',
-    title: 'Analysis & Reporting',
+    title: 'From Data to Decision',
     description: 'We don’t just guide you, we focus on the objectives, challenges and your growth as a team. Tech Eyrie gathers data, uncover insights, dive deeper into observations and derives into positive outcomes. Our team is involved in your full project, from preparing summaries to tailoring the outputs according to your needs. We help you reach the goal with confidence and direction.',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
   },
   {
     id: 'translation-transcripts',
-    title: 'Translation and Transcripts',
-    description: 'Whether you need stimuli translated or the full transcripts of focus group recordings, MindMarket works with a global network of professional linguists, which allows us to offer quicker turnaround times than most agencies. Our researchers can then use the collected insights for their analysis and reporting.',
+    title: 'Insight across globe',
+    description: 'At Tech Eyrie, speed, clarity and precision are non-negotiable during strategic decisions. Whether you need research stimuli translated or complete transcripts from group sessions, our team will ensure that you get them. Combining methodologies and language masteries we deliver quicker insights than the traditional agencies.',
     imageAlt: 'Professional linguist wearing headphones transcribing focus group recordings at laptop',
     imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop'
   }

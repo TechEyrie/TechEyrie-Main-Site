@@ -10,7 +10,9 @@ export default function Services1CTASection({ theme = 'light' }) {
       <div className="mx-auto max-w-[900px] px-6 md:px-8 text-center">
         {/* Heading */}
         <h2 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.15] tracking-[-0.015em] mb-10 md:mb-12 lg:mb-14 ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
-          Discover the tools we<br />use to get you there.
+          {/* Discover the tools we<br />use to get you there. */}
+          Crafted for clarity 
+
         </h2>
 
         {/* CTA Button */}
