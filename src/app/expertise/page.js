@@ -1,15 +1,14 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Header from '../../../components/dark/Header';
-import Services2Hero from '../../../components/services2/Services2Hero';
-import Services2Industries from '../../../components/services2/Services2Industries';
-import Services2Approach from '../../../components/services2/Services2Approach';
-import Services2FAQs from '../../../components/services2/Services2FAQs';
-import Services2CTA from '../../../components/services2/Services2CTA';
+import Services1Hero from '../../../components/services1/Services1Hero';
+import Services1MainServices from '../../../components/services1/Services1MainServices';
+import Services1ServiceDetails from '../../../components/services1/Services1ServiceDetails';
+import Services1CTASection from '../../../components/services1/Services1CTASection';
 import Footer from '../../../components/dark/Footer';
 import '../../../components/dark/MainPage.css';
 
-export default function ExpertisePage() {
+export default function Services1Page() {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
@@ -49,11 +48,10 @@ export default function ExpertisePage() {
       </button>
 
       <Header theme={theme} />
-      <Services2Hero theme={theme} />
-      <Services2Industries theme={theme} />
-      <Services2Approach theme={theme} />
-      <Services2FAQs theme={theme} />
-      <Services2CTA theme={theme} />
+      <Services1Hero theme={theme} />
+      <Services1MainServices theme={theme} />
+      <Services1ServiceDetails theme={theme} />
+      <Services1CTASection theme={theme} />
       <Footer theme={theme} />
     </div>
   );
