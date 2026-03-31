@@ -8,6 +8,9 @@ export default function Services1MainServices({ theme = 'light' }) {
   return (
     <section className={`relative py-20 md:py-28 lg:py-36 xl:py-40 rounded-[32px] md:rounded-[40px] lg:rounded-[48px] -mt-12 md:-mt-16 lg:-mt-20 xl:-mt-24 z-20 ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#EDE8E0]'}`}>
       <div className="mx-auto max-w-[1400px] px-6 md:px-8 lg:px-12 xl:px-16">
+        <p className={`max-w-4xl mx-auto text-center font-merriweather text-[16px] md:text-[18px] lg:text-[20px] leading-[1.8] mb-12 md:mb-16 lg:mb-20 ${isDark ? 'text-[#d0d0d0]' : 'text-[#3f3f3f]'}`}>
+          We believe industries don&apos;t just grow, they grow with intelligent decisions, organized systems, and partners who believe.
+        </p>
         <div className="grid gap-12 md:gap-16 lg:gap-20 xl:gap-24 md:grid-cols-2">
           
           {/* Qualitative Research Card */}
