@@ -9,87 +9,147 @@ gsap.registerPlugin(ScrollTrigger);
 const industries = [
   {
     id: 1,
-    title: "FMCG",
-    image: "https://images.unsplash.com/photo-1601599561213-832382fd07ba?w=800&q=80",
-    link: "/expertise/fmcg",
-    slug: "fmcg"
+    title: "AI Product Development",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
+    link: "/services1/ai-product-development",
+    slug: "ai-product-development",
+    description: "We turn AI ideas into fully functional, production-ready products - from intelligent recommendation engines to computer vision systems built for real-world impact."
   },
   {
     id: 2,
-    title: "Transport & Logistics",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    link: "/expertise/logistics",
-    slug: "logistics"
+    title: "AI Agents & Autonomous Systems",
+    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80",
+    link: "/services1/ai-agents-autonomous-systems",
+    slug: "ai-agents-autonomous-systems",
+    description: "We build AI agents that don't just answer questions - they reason, make decisions, and complete complex multi-step tasks without human hand-holding."
   },
   {
     id: 3,
-    title: "NGOs and Non-Profit Organisations",
-    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
-    link: "/expertise/ngo",
-    slug: "ngo"
+    title: "Generative AI & LLM Development",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80",
+    link: "/services1/generative-ai-llm-development",
+    slug: "generative-ai-llm-development",
+    description: "We design, fine-tune, and deploy large language models tailored to your business - including RAG pipelines, private LLMs, and deep custom AI integrations."
   },
   {
     id: 4,
-    title: "Technology & Startups",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
-    link: "/expertise/technology",
-    slug: "technology"
+    title: "Custom Model Training & Fine-Tuning",
+    image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=1200&q=80",
+    link: "/services1/custom-model-training-fine-tuning",
+    slug: "custom-model-training-fine-tuning",
+    description: "We take powerful foundation models and make them yours - trained on your data, aligned to your domain, and optimized for production performance."
   },
   {
     id: 5,
-    title: "Healthcare & Life Sciences",
-    image: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80",
-    link: "/expertise/healthcare",
-    slug: "healthcare"
+    title: "Intelligent Process Automation",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
+    link: "/services1/intelligent-process-automation",
+    slug: "intelligent-process-automation",
+    description: "We map, redesign, and automate your most expensive workflows using AI-driven automation that cuts costs, reduces errors, and scales without limits."
   },
   {
     id: 6,
-    title: "Financial Services",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    link: "/expertise/finance",
-    slug: "finance"
+    title: "Robotic Process Automation (RPA)",
+    image: "https://images.unsplash.com/photo-1581092919535-7146ff1a590b?w=1200&q=80",
+    link: "/services1/robotic-process-automation-rpa",
+    slug: "robotic-process-automation-rpa",
+    description: "We deploy software robots that silently handle your repetitive, rule-based tasks 24/7 - freeing your team to focus on work that actually needs them."
   },
   {
     id: 7,
-    title: "Retail & E-commerce",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
-    link: "/expertise/retail",
-    slug: "retail"
+    title: "NLP & Recommendation Systems",
+    image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200&q=80",
+    link: "/services1/nlp-recommendation-systems",
+    slug: "nlp-recommendation-systems",
+    description: "We build language processing tools and smart recommendation engines that understand your users and deliver hyper-personalized experiences at scale."
   },
   {
     id: 8,
-    title: "Education & EdTech",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
-    link: "/expertise/education",
-    slug: "education"
+    title: "Chatbots & Conversational AI",
+    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80",
+    link: "/services1/chatbots-conversational-ai",
+    slug: "chatbots-conversational-ai",
+    description: "We design intelligent assistants that go beyond scripted responses - handling real queries, integrating with your systems, and improving over time."
   },
   {
     id: 9,
-    title: "Manufacturing & Industrial",
-    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
-    link: "/expertise/manufacturing",
-    slug: "manufacturing"
+    title: "Web Design & Development",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80",
+    link: "/services1/web-design-development",
+    slug: "web-design-development",
+    description: "We craft fast, modern, and visually refined websites built for performance, conversion, and seamless user experience across every device."
   },
   {
     id: 10,
-    title: "Hospitality & Tourism",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-    link: "/expertise/hospitality",
-    slug: "hospitality"
+    title: "Full Stack Development",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=80",
+    link: "/services1/full-stack-development",
+    slug: "full-stack-development",
+    description: "From pixel-perfect frontends to bulletproof backends and databases - we build complete, scalable applications engineered to grow with your business."
   },
   {
     id: 11,
-    title: "Public Sector & Government",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
-    link: "/expertise/public",
-    slug: "public"
+    title: "eCommerce Development",
+    image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=1200&q=80",
+    link: "/services1/ecommerce-development",
+    slug: "ecommerce-development",
+    description: "We build and migrate high-converting stores with custom functionality, smooth checkout experiences, and the backend logic your business model demands."
   },
   {
     id: 12,
-    title: "Media & Entertainment",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80",
-    link: "/expertise/media",
-    slug: "media"
+    title: "CMS & LMS Development",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80",
+    link: "/services1/cms-lms-development",
+    slug: "cms-lms-development",
+    description: "We develop flexible content and learning platforms that are easy to manage, built to scale, and tailored to how your team actually works."
+  },
+  {
+    id: 13,
+    title: "Cloud & Data Engineering",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80",
+    link: "/services1/cloud-data-engineering",
+    slug: "cloud-data-engineering",
+    description: "We architect reliable, scalable cloud infrastructure and data pipelines that ensure your data is clean, accessible, and always working for you."
+  },
+  {
+    id: 14,
+    title: "Business Intelligence & Analytics",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+    link: "/services1/business-intelligence-analytics",
+    slug: "business-intelligence-analytics",
+    description: "We transform scattered data into sharp, interactive dashboards and reports that give decision-makers the clarity they need to act fast and confidently."
+  },
+  {
+    id: 15,
+    title: "Enterprise & SaaS Integrations",
+    image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=1200&q=80",
+    link: "/services1/enterprise-saas-integrations",
+    slug: "enterprise-saas-integrations",
+    description: "We connect your CRMs, ERPs, third-party platforms, and internal tools into one unified ecosystem - eliminating silos and manual data juggling."
+  },
+  {
+    id: 16,
+    title: "Blockchain & Smart Contracts",
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80",
+    link: "/services1/blockchain-smart-contracts",
+    slug: "blockchain-smart-contracts",
+    description: "We develop secure, audited smart contracts and decentralized applications that automate trust and remove the need for intermediaries."
+  },
+  {
+    id: 17,
+    title: "DeFi & Asset Tokenization",
+    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=80",
+    link: "/services1/defi-asset-tokenization",
+    slug: "defi-asset-tokenization",
+    description: "We build decentralized finance protocols and tokenize real-world assets - opening new revenue models and liquidity opportunities on Web3 infrastructure."
+  },
+  {
+    id: 18,
+    title: "Maintenance, SEO & Support",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    link: "/services1/maintenance-seo-support",
+    slug: "maintenance-seo-support",
+    description: "We keep your digital products healthy, fast, and discoverable - with proactive monitoring, performance tuning, and SEO that compounds over time."
   }
 ];
 
@@ -190,11 +250,14 @@ export default function IndustriesGrid({ theme = 'light' }) {
                 </svg>
               </button>
 
-              {/* Title */}
+              {/* Title + Hover Description */}
               <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <h3 className="font-italiana text-white text-[24px] sm:text-[26px] md:text-[28px] lg:text-[32px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+                <h3 className="font-italiana text-white text-[22px] sm:text-[24px] md:text-[26px] lg:text-[30px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
                   {industry.title}
                 </h3>
+                <p className="mt-3 max-h-0 overflow-hidden opacity-0 translate-y-2 transition-all duration-500 ease-out group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0 font-merriweather text-[13px] md:text-[14px] leading-relaxed text-white/90 pr-1">
+                  {industry.description}
+                </p>
               </div>
             </a>
           ))}
