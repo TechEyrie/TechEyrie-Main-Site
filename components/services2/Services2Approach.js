@@ -3,9 +3,11 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
+
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ApproachSection({ theme = 'light' }) {
+export default function ApproachSection({ theme = 'light', dark7 = false }) {
   const isDark = theme === 'dark';
   const sectionRef = useRef(null);
   const videoSectionRef = useRef(null);
@@ -85,12 +87,14 @@ export default function ApproachSection({ theme = 'light' }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full"
-      style={{ 
-        background: isDark 
-          ? 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)'
-          : 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)'
-      }}
+      className="relative w-full transition-colors duration-500"
+      style={
+        isDark && dark7
+          ? services1ListingDarkSurface
+          : isDark
+            ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
+            : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
+      }
     >
       {/* Video/Hero Section */}
       <div 
@@ -151,25 +155,25 @@ export default function ApproachSection({ theme = 'light' }) {
               className="flex flex-wrap gap-3"
             >
               <button
-                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-[#74F5A1]/15 transition-colors cursor-pointer"
                 style={{
-                  border: '1px solid #e8ddd3'
+                  border: isDark ? '1px solid rgba(116, 245, 161, 0.45)' : '1px solid #e8ddd3'
                 }}
               >
                 The Idea Forge
               </button>
               <button
-                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-[#74F5A1]/15 transition-colors cursor-pointer"
                 style={{
-                  border: '1px solid #e8ddd3'
+                  border: isDark ? '1px solid rgba(116, 245, 161, 0.45)' : '1px solid #e8ddd3'
                 }}
               >
                 The Reality Engine
               </button>
               <button
-                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded-full text-white font-merriweather text-[14px] hover:bg-[#74F5A1]/15 transition-colors cursor-pointer"
                 style={{
-                  border: '1px solid #e8ddd3'
+                  border: isDark ? '1px solid rgba(116, 245, 161, 0.45)' : '1px solid #e8ddd3'
                 }}
               >
                 The Growth Driver
@@ -188,9 +192,9 @@ export default function ApproachSection({ theme = 'light' }) {
           {/* Main Text */}
           <h3
             ref={mainTextRef}
-            className="font-italiana font-light text-center text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.4] tracking-[-0.03em] mb-16 md:mb-20"
+            className={`font-italiana font-light text-center text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.4] tracking-[-0.03em] mb-16 md:mb-20 ${isDark && dark7 ? 's2-approach-highlight' : ''}`}
             style={{
-              color: isDark ? '#74F5A1' : '#c7006e'
+              color: isDark && !dark7 ? '#74F5A1' : isDark && dark7 ? undefined : '#c7006e'
             }}
           >
             We're more than problem solvers; we're dream weavers and future shapers. We transform bold ideas into extraordinary digital experiences that echo through generations.

@@ -1,0 +1,107 @@
+/* /industries listing — same dark7 contrast fixes as services1 under .dark2-page */
+.dark2-page .ind-hero-kicker {
+  color: #74f5a1 !important;
+}
+.dark2-page .ind-hero-title {
+  color: #f3f3f3 !important;
+}
+.dark2-page .ind-hero-lead {
+  color: #e0d1b6 !important;
+}
+.dark2-page .ind-hero-index {
+  color: rgba(243, 243, 243, 0.45) !important;
+}
+.dark2-page .ind-strip-stat {
+  color: #74f5a1 !important;
+}
+
+/* Mint/green surfaces must use dark text for contrast and readability */
+.dark2-page .ind-mint-text {
+  color: #081b15 !important;
+}
+.dark2-page .ind-mint-btn {
+  color: #081b15 !important;
+}
+.dark2-page .ind-mint-subtext {
+  color: rgba(8, 27, 21, 0.88) !important;
+}
+
+/* Hero right float — subtle bob + light sweep */
+@keyframes ind-hero-float-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0.35deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-0.35deg);
+  }
+}
+
+.dark2-page .ind-hero-art-float {
+  animation: ind-hero-float-bob 5.8s ease-in-out infinite;
+}
+
+@keyframes ind-hero-float-shimmer {
+  0% {
+    transform: translateX(-130%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(130%) skewX(-12deg);
+  }
+}
+
+.dark2-page .ind-hero-float-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.07) 45%, transparent 100%);
+  animation: ind-hero-float-shimmer 7s ease-in-out infinite;
+  mix-blend-mode: soft-light;
+}
+
+/* Industries CTA — form fields beat global .dark2-page * color */
+.dark2-page .ind-cta-form .ind-cta-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(224, 209, 182, 0.82) !important;
+}
+
+.dark2-page .ind-cta-input,
+.dark2-page .ind-cta-textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 20, 16, 0.62);
+  padding: 0.65rem 1rem;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #f4f3ee !important;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark2-page .ind-cta-input::placeholder,
+.dark2-page .ind-cta-textarea::placeholder {
+  color: rgba(224, 209, 182, 0.38) !important;
+}
+
+.dark2-page .ind-cta-input:focus,
+.dark2-page .ind-cta-textarea:focus {
+  border-color: rgba(116, 245, 161, 0.45);
+  box-shadow: 0 0 0 1px rgba(116, 245, 161, 0.18);
+}
+
+.dark2-page .ind-cta-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath stroke='%2374F5A1' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' d='M2.5 4.25 6 7.75 9.5 4.25'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.dark2-page .ind-cta-select option {
+  background-color: #061410;
+  color: #f4f3ee;
+}

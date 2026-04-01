@@ -1,0 +1,47 @@
+/* Overrides for /services1 listing: .dark2-page * forces beige — restore dark7 accents where needed */
+.dark2-page .s2-hero-eyebrow {
+  color: #74f5a1 !important;
+}
+.dark2-page .s2-hero-h1 {
+  color: #f3f3f3 !important;
+}
+.dark2-page .s2-hero-desc {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page .s2-faq-title {
+  color: #74f5a1 !important;
+}
+.dark2-page .s2-faq-desc {
+  color: #e0d1b6 !important;
+}
+.dark2-page .s2-faq-question {
+  color: #f3f3f3 !important;
+}
+.dark2-page .s2-faq-answer {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page .s2-approach-highlight {
+  color: #74f5a1 !important;
+}
+
+/* /expertise — Services1 sections under .dark2-page */
+.dark2-page .s1-section-intro {
+  color: #e0d1b6 !important;
+}
+.dark2-page .s1-card-title {
+  color: #f3f3f3 !important;
+}
+.dark2-page .s1-card-body {
+  color: #e0d1b6 !important;
+}
+.dark2-page .s1-detail-title {
+  color: #f3f3f3 !important;
+}
+.dark2-page .s1-detail-body {
+  color: #e0d1b6 !important;
+}
+.dark2-page .s1-cta-heading {
+  color: #f3f3f3 !important;
+}

@@ -6,7 +6,14 @@ import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Services2Hero({ theme = 'dark' }) {
+export default function Services2Hero({
+  theme = 'dark',
+  dark7 = false,
+  kicker = 'Industries',
+  titleLine1 = 'Industries & Sector',
+  titleLine2 = 'Expertise',
+  description = 'We make moves in these specialised industries and sectors.',
+}) {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -89,9 +96,11 @@ export default function Services2Hero({ theme = 'dark' }) {
         ref={overlayRef}
         className="absolute inset-0 z-[1]"
         style={{
-          background: isDark 
-            ? 'linear-gradient(to bottom, rgba(200, 60, 40, 0.35) 0%, rgba(220, 80, 50, 0.3) 50%, rgba(200, 60, 40, 0.35) 100%), linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.25) 100%)'
-            : 'linear-gradient(to bottom, rgba(200, 60, 40, 0.4) 0%, rgba(220, 80, 50, 0.35) 50%, rgba(200, 60, 40, 0.4) 100%), linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%)'
+          background: isDark && dark7
+            ? 'linear-gradient(135deg, rgba(22,45,36,0.88) 0%, rgba(0,81,96,0.5) 45%, rgba(22,45,36,0.92) 100%), linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 55%, rgba(22,45,36,0.75) 100%), radial-gradient(ellipse 90% 80% at 60% 85%, rgba(142,162,88,0.22) 0%, transparent 55%)'
+            : isDark
+              ? 'linear-gradient(to bottom, rgba(200, 60, 40, 0.35) 0%, rgba(220, 80, 50, 0.3) 50%, rgba(200, 60, 40, 0.35) 100%), linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.25) 100%)'
+              : 'linear-gradient(to bottom, rgba(200, 60, 40, 0.4) 0%, rgba(220, 80, 50, 0.35) 50%, rgba(200, 60, 40, 0.4) 100%), linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%)'
         }}
       />
 
@@ -102,15 +111,15 @@ export default function Services2Hero({ theme = 'dark' }) {
           ref={headingRef}
           className="relative max-w-[700px] pt-12 md:pt-16 lg:pt-20"
         >
-          <p className="font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase text-white/95 mb-6 sm:mb-8 md:mb-10">
-            Industries
+          <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 md:mb-10 ${isDark && dark7 ? 's2-hero-eyebrow' : 'text-white/95'}`}>
+            {kicker}
           </p>
-          <h1 className="font-italiana font-light leading-[1.05] tracking-[-0.03em] text-white" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
+          <h1 className={`font-italiana font-light leading-[1.05] tracking-[-0.03em] ${isDark && dark7 ? 's2-hero-h1' : 'text-white'}`} style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
             <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px]">
-              Industries & Sector
+              {titleLine1}
             </span>
             <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem]">
-              Expertise
+              {titleLine2}
             </span>
           </h1>
         </div>
@@ -120,8 +129,8 @@ export default function Services2Hero({ theme = 'dark' }) {
           ref={descriptionRef}
           className="relative w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] mt-auto sm:pt-0 flex flex-col sm:justify-end"
         >
-          <p className="font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed text-white/95" style={{ textShadow: '0 1px 10px rgba(0,0,0,0.2)' }}>
-            We make moves in these specialised industries and sectors.
+          <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark && dark7 ? 's2-hero-desc' : 'text-white/95'}`} style={{ textShadow: '0 1px 10px rgba(0,0,0,0.2)' }}>
+            {description}
           </p>
         </div>
       </div>

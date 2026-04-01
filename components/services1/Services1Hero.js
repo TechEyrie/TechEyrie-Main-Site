@@ -2,10 +2,11 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { services1ListingDarkSurface } from './services1ListingSurfaces';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Services1Hero({ theme = 'light' }) {
+export default function Services1Hero({ theme = 'light', dark7 = false }) {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
 
@@ -33,7 +34,8 @@ export default function Services1Hero({ theme = 'light' }) {
   return (
     <section 
       ref={sectionRef}
-      className={`relative overflow-hidden min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[900px] ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#FF6B5A]'}`}
+      className={`relative overflow-hidden min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[900px] ${!isDark ? 'bg-[#FF6B5A]' : isDark && dark7 ? '' : 'bg-[#1a1a1a]'}`}
+      style={isDark && dark7 ? services1ListingDarkSurface : undefined}
     >
       <div className="relative mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-52 pb-12 sm:pb-16 md:pb-20 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex flex-col sm:flex-row sm:justify-between sm:items-stretch gap-8 sm:gap-0">
         
@@ -42,11 +44,11 @@ export default function Services1Hero({ theme = 'light' }) {
           ref={headingRef}
           className="relative z-10 pl-0 sm:pl-2 md:pl-4 lg:pl-6 max-w-[700px] mb-0"
         >
-          <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 md:mb-10 ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
+          <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 md:mb-10 ${isDark && dark7 ? 's2-hero-eyebrow' : isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
             Services
           </p>
           
-          <h1 className={`mb-0 font-italiana tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
+          <h1 className={`mb-0 font-italiana tracking-[-0.03em] ${isDark && dark7 ? 's2-hero-h1' : isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
             <span className="block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] font-light">
             We think 
             </span>
@@ -58,7 +60,7 @@ export default function Services1Hero({ theme = 'light' }) {
 
         {/* Right Side - Description (pushed to bottom on right) */}
         <div className="relative w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] pr-0 sm:pr-2 md:pr-4 lg:pr-6 z-10 mt-auto sm:pt-0 flex flex-col sm:justify-end">
-          <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
+          <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark && dark7 ? 's2-hero-desc' : isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
           We believe industries don’t just grow, it grows with intelligent decisions, organized systems and partners who believe. 
 
 
@@ -109,7 +111,7 @@ export default function Services1Hero({ theme = 'light' }) {
         <svg viewBox="0 0 130 45" fill="none" className="w-full h-full">
           <path 
             d="M 10 22 Q 35 12, 60 22 T 110 22" 
-            stroke={isDark ? "#ffffff" : "#1a1a1a"} 
+            stroke={isDark ? (dark7 ? '#74F5A1' : '#ffffff') : '#1a1a1a'} 
             strokeWidth="2.5" 
             fill="none"
             strokeLinecap="round"

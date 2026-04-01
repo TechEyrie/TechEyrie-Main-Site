@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
@@ -43,7 +45,7 @@ const faqs = [
   },
 ];
 
-export default function Services2FAQs({ theme = 'light' }) {
+export default function Services2FAQs({ theme = 'light', dark7 = false }) {
   const isDark = theme === 'dark';
   const [openFAQ, setOpenFAQ] = useState(null);
   const sectionRef = useRef(null);
@@ -96,12 +98,14 @@ export default function Services2FAQs({ theme = 'light' }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-16 md:py-20 lg:py-24"
-      style={{ 
-        background: isDark 
-          ? 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)'
-          : 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)'
-      }}
+      className="relative py-16 md:py-20 lg:py-24 transition-colors duration-500"
+      style={
+        isDark && dark7
+          ? services1ListingDarkSurface
+          : isDark
+            ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
+            : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
+      }
     >
       {/* Section Header - Left Aligned */}
       <div className="px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 mb-12 md:mb-16">
@@ -109,15 +113,15 @@ export default function Services2FAQs({ theme = 'light' }) {
           <div className="max-w-[800px]">
             <h2
               ref={headingRef}
-              className="font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.1] tracking-[-0.03em] mb-6"
-              style={{ color: isDark ? '#FFFFFF' : '#7b2cbf' }}
+              className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.1] tracking-[-0.03em] mb-6 ${isDark && dark7 ? 's2-faq-title' : ''}`}
+              style={{ color: !isDark ? '#7b2cbf' : dark7 ? undefined : '#FFFFFF' }}
             >
               FAQs
             </h2>
             <p
               ref={descRef}
-              className="font-merriweather text-[14px] leading-relaxed"
-              style={{ color: isDark ? '#B0B0B0' : '#7b2cbf' }}
+              className={`font-merriweather text-[14px] leading-relaxed ${isDark && dark7 ? 's2-faq-desc' : ''}`}
+              style={{ color: !isDark ? '#7b2cbf' : dark7 ? undefined : '#B0B0B0' }}
             >
               Frequently asked questions about our sector expertise. Answered clearly, directly, from experience.
             </p>
@@ -133,16 +137,16 @@ export default function Services2FAQs({ theme = 'light' }) {
               key={faq.id}
               ref={(el) => (faqsRef.current[index] = el)}
               className="border-b"
-              style={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.1)' : '#7b2cbf' }}
+              style={{ borderColor: isDark ? (dark7 ? 'rgba(116, 245, 161, 0.28)' : 'rgba(255, 255, 255, 0.1)') : '#7b2cbf' }}
             >
               <button
                 onClick={() => toggleFAQ(faq.id)}
                 className="w-full text-left py-6 md:py-8 flex items-start justify-between group"
               >
                 <h3
-                  className="font-italiana font-light text-[24px] md:text-[28px] lg:text-[32px] pr-8 transition-opacity duration-300 group-hover:opacity-70"
+                  className={`font-italiana font-light text-[24px] md:text-[28px] lg:text-[32px] pr-8 transition-opacity duration-300 group-hover:opacity-70 ${isDark && dark7 ? 's2-faq-question' : ''}`}
                   style={{ 
-                    color: isDark ? '#FFFFFF' : '#7b2cbf',
+                    color: !isDark ? '#7b2cbf' : dark7 ? undefined : '#FFFFFF',
                     lineHeight: '1.3'
                   }}
                 >
@@ -161,7 +165,7 @@ export default function Services2FAQs({ theme = 'light' }) {
                   >
                     <path
                       d="M16 8V24M8 16H24"
-                      stroke={isDark ? '#FFFFFF' : '#7b2cbf'}
+                      stroke={isDark ? (dark7 ? '#74F5A1' : '#FFFFFF') : '#7b2cbf'}
                       strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -179,8 +183,8 @@ export default function Services2FAQs({ theme = 'light' }) {
               >
                 <div className="pb-6 md:pb-8 pr-12">
                   <p
-                    className="font-merriweather text-[14px] leading-relaxed"
-                    style={{ color: isDark ? '#B0B0B0' : '#5a5a5a' }}
+                    className={`font-merriweather text-[14px] leading-relaxed ${isDark && dark7 ? 's2-faq-answer' : ''}`}
+                    style={{ color: !isDark ? '#5a5a5a' : dark7 ? undefined : '#B0B0B0' }}
                   >
                     {faq.answer}
                   </p>

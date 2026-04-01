@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -153,7 +154,7 @@ const industries = [
   }
 ];
 
-export default function IndustriesGrid({ theme = 'light' }) {
+export default function IndustriesGrid({ theme = 'light', dark7 = false }) {
   const isDark = theme === 'dark';
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
@@ -195,12 +196,14 @@ export default function IndustriesGrid({ theme = 'light' }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20"
-      style={{ 
-        background: isDark 
-          ? 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)'
-          : 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)'
-      }}
+      className="relative w-full py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 transition-colors duration-500"
+      style={
+        isDark && dark7
+          ? services1ListingDarkSurface
+          : isDark
+            ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
+            : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
+      }
     >
       <div className="max-w-[1800px] mx-auto">
         {/* Grid Container */}

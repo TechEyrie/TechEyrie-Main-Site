@@ -1,0 +1,13 @@
+/* Beat .dark2-page * { color: #e0d1b6 !important } from dark7/MainPage.css */
+.dark2-page .services1-detail-cta-box .services1-detail-cta-heading {
+  color: #020d0a !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.dark2-page .services1-detail-cta-box .services1-detail-cta-sub {
+  color: #063629 !important;
+}
+
+.dark2-page .services1-detail-cta-box .services1-detail-cta-btn {
+  color: #f0fffa !important;
+}

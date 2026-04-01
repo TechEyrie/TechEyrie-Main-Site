@@ -1,0 +1,129 @@
+.dark2-page .sa-kicker {
+  color: #74f5a1 !important;
+}
+
+.dark2-page .sa-title {
+  color: #f3f3f3 !important;
+}
+
+.dark2-page .sa-lead {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page .sa-mint-text {
+  color: #081b15 !important;
+}
+
+.dark2-page .sa-mint-sub {
+  color: rgba(8, 27, 21, 0.88) !important;
+}
+
+/* Gradient headline — beats .dark2-page * text color */
+.dark2-page .sa-gradient-headline {
+  background-image: linear-gradient(
+    105deg,
+    #74f5a1 0%,
+    #c8ffe8 28%,
+    #67bfda 58%,
+    #e8fff4 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark2-page .sa-stat-num {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark2-page .sa-hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+}
+
+.dark2-page .sa-hero-grid-bright {
+  opacity: 0.55;
+  background-size: 28px 28px;
+  background-image: linear-gradient(rgba(116, 245, 161, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 191, 218, 0.09) 1px, transparent 1px);
+}
+
+@keyframes sa-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.sa-marquee-wrap .sa-marquee-track {
+  animation: sa-marquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-marquee-wrap .sa-marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes sa-ring-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.03);
+  }
+}
+
+.sa-hero-ring-pulse {
+  animation: sa-ring-pulse 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-hero-ring-pulse {
+    animation: none;
+    opacity: 0.75;
+  }
+}
+
+@keyframes sa-cta-sheen {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.sa-cta-sheen {
+  animation: sa-cta-sheen 10s ease-in-out infinite;
+}
+
+@keyframes sa-cta-gradient-shift {
+  0%,
+  100% {
+    filter: saturate(1) brightness(1);
+  }
+  50% {
+    filter: saturate(1.12) brightness(1.05);
+  }
+}
+
+.sa-cta-gradient-shift {
+  animation: sa-cta-gradient-shift 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-cta-sheen,
+  .sa-cta-gradient-shift {
+    animation: none;
+  }
+}
