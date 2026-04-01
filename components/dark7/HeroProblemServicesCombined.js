@@ -7,7 +7,7 @@ import HeroSectionMediaSlot from "./HeroSectionMediaSlot";
 import RealProblemSection from "./RealProblemSection";
 import NewServicesSection from "./NewServicesSection";
 import { dark7MainSurfaceStyle } from "./dark7PageSurface";
-
+import HeroVersion2 from './HeroVersion2';
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -262,6 +262,7 @@ export default function HeroProblemServicesCombined({ theme = "light" }) {
 
           <div className="relative z-[3]">
             <HeroSectionMediaSlot theme={theme} sharedBackground />
+            {/* <HeroVersion2 theme={theme} sharedBackground /> */}
           </div>
         </div>
 

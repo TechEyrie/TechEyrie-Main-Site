@@ -28,6 +28,7 @@ import ThatsTheTechEyrie2 from './ThatsTheTechEyrie2';
 import InfoSectionsCombined from './InfoSectionsCombined';
 import TestimonialsSection from './TestimonialsSection';
 
+
 const MainPage = () => {
   const [theme] = useState('dark');
   const [enableLenis, setEnableLenis] = useState(false);

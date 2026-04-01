@@ -593,8 +593,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
             }}
           >
             <video
-              className="absolute inset-0 h-full w-full object-cover opacity-[0.42]"
-              src="/videos/back-video.mp4"
+              className="absolute inset-0 h-full w-full object-cover opacity-[1.0]"
+              src="/videos/video-test-mountain.mp4"
               autoPlay
               muted
               loop
