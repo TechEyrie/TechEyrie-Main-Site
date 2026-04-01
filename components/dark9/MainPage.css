@@ -1,0 +1,122 @@
+/* components/MainPage.css */
+
+:root {
+  /* ── BASE COLORS ── */
+  --c-dark-green:       #162d24;
+  --c-green:            #1b4732;
+  --c-light-green:      #a7b431;
+  --c-olive:            #758535;
+  --c-dark-blue:        #101e27;
+  --c-blue:             #005160;
+  --c-light-blue:       #67bfda;
+  --c-sky:              #bee5ee;
+  --c-beige:            #e0d1b6;
+  --c-beige-background: #f5e8d1;
+  --c-white:            #ffffff;
+  --c-black:            #030303;
+}
+
+/* ── BODY / DEFAULT SECTIONS ── */
+body {
+  background-color: #f5e8d1; /* warm beige */
+  color: #162d24;
+}
+
+/* Scope dark2 layout + full-page background */
+.dark2-page {
+  min-height: 100vh;
+  background-color: #162d24;
+}
+
+/* Make all text on dark2 page beige */
+.dark2-page,
+.dark2-page * {
+  color: #e0d1b6 !important;
+}
+
+/* Allow black text on hero pyramid labels */
+.dark2-page .hero-pyramid-label {
+  color: #000000 !important;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  background-color: #162d24;
+  background: linear-gradient(
+    135deg,
+    rgba(22, 45, 36, 0.80) 0%,
+    rgba(27, 71, 50, 0.55) 45%,
+    rgba(16, 30, 39, 0.85) 100%
+  );
+}
+
+/* ── DARK SECTIONS (Wellness panel etc.) ── */
+.section-dark {
+  background-color: #162d24; /* --c-dark-green */
+}
+
+/* ── WELLNESS IMAGE PANEL ── */
+.wellness-panel {
+  background-color: #101e27; /* --c-dark-blue */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hide scrollbar for a cleaner "slider-less" look */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
