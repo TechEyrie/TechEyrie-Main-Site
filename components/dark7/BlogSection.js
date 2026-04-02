@@ -339,9 +339,10 @@ const BlogsSection = ({ theme = "light", sharedBackground = false }) => {
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              <span className="insights-by-text block">Insights by</span>
+              <span className="insights-by-text block">Not Built for Everyone</span>
               <span className={`new-engen-text block ${theme === "dark" ? "text-[#74F5A1]" : "text-[#111111]"}`}>
-                New Engen
+              Built for the Right Ones
+
               </span>
             </h2>
           </div>
@@ -353,7 +354,8 @@ const BlogsSection = ({ theme = "light", sharedBackground = false }) => {
                 theme === "dark" ? "text-[#a0a0a0]" : "text-[#444444]"
               }`}
             >
-              Insights that drive impact—rooted in research, supported by data, and made to fuel brand growth.
+            Our insights are built on research, data driven and designed to elevate the strategic growth of your business. 
+
             </p>
           </div>
         </div>

@@ -95,7 +95,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         type: "image",
         src: "https://www.datocms-assets.com/151374/1741831437-mudwtr.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
         alt: "MUD\\WTR brand showcase",
-        title: "MUD\\WTR",
+        title: "Technology Partner",
         subtitle: "Health & Wellness",
         metric: "+35% Conversion Rate",
         buttons: ["Health & Wellness"],
@@ -105,7 +105,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         type: "image",
         src: "https://www.datocms-assets.com/151374/1741910699-cotopaxi_482x858_alternate.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
         alt: "Cotopaxi brand showcase",
-        title: "Cotopaxi",
+        title: "Solution Architect",
         subtitle: "Outdoor & Lifestyle",
         metric: "+20% Marketing Efficiency",
         buttons: ["Food & Beverage", "CPG"],
@@ -115,7 +115,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         type: "video",
         src: "https://stream.mux.com/zaOX00ijKS1dZVZGFpLMjhNOIGbKQ8dmO/medium.mp4",
         alt: "Digital marketing campaign showcase",
-        title: "OREO",
+        title: "Exacting Precision",
         subtitle: "Food & Beverage",
         metric: "+45% Engagement",
         buttons: ["Food & Beverage", "CPG"],
@@ -125,7 +125,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         type: "video",
         src: "https://stream.mux.com/s5S6U18mND3t8caFSka7r7Wrulxm4SAb/medium.mp4",
         alt: "Brand impact visualization",
-        title: "Coca-Cola",
+        title: "Expert Mastery",
         subtitle: "Global Campaigns",
         metric: "+60% Brand Awareness",
         buttons: ["Food & Beverage", "CPG"],
@@ -657,20 +657,21 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     style={{ backgroundColor: theme === "dark" ? darkColors.primary : lightColors.primary }}
                   />
                   <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
-                    B2B tech agency
+                  AI & Automation Partner
+
                   </span>
                 </div>
 
                 <h1 className="mb-4 font-italiana tracking-[-0.03em]">
                   <span className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] whitespace-nowrap ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}>
-                    <span className="font-light">We build </span>
-                    <span className="font-playfair italic text-[0.94em] tracking-[0.03em]">high‑performing</span>
+                    <span className="font-light">AI Systems   </span>
+                    <span className="font-playfair italic text-[0.94em] tracking-[0.03em]">that turns</span>
                   </span>
                   <span className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] leading-[1.05] font-light whitespace-nowrap -mt-[0.2rem] sm:-mt-[0.3rem] md:-mt-[0.4rem] lg:-mt-[0.5rem] xl:-mt-[0.6rem] 2xl:-mt-[0.7rem] ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}>
-                    marketing engines for
+                  workflows into 
                   </span>
                   <span className={`hero-main-title-line block text-[32px] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] leading-[1.05] font-light whitespace-nowrap ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}>
-                    B2B brands
+                  Profit
                   </span>
                 </h1>
               </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { services1ListingDarkSurface } from './services1ListingSurfaces';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,7 +32,7 @@ const serviceDetails = [
   {
     id: 'discussion-guide',
     title: 'Conversational AI models',
-    description: 'We design agents that don’t just respond, but they reason out, make decisions and implement workflows. Each model focuses on flawless operations, elevating insights, developing productivity and customer satisfaction.',
+    description: 'We design AI agents that don’t just respond, but they reason out, make decisions and implement workflows. Each model focuses on flawless operations, elevating insights, developing productivity and customer satisfaction.',
     imageAlt: 'Professional researcher preparing discussion guide for focus group moderation',
     imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop'
   },
@@ -45,89 +46,114 @@ const serviceDetails = [
   {
     id: 'analysis-reporting',
     title: 'Full-stack Development',
-    description: 'At Tech Eyrie, we design web and mobile applications that are secured, flexible and modern from elegant and user-centric to powerful backend architecture. Our approach is not only about building, but ideal for business impact. ',
+    description: 'At Tech Eyrie, we design the best website creating apps that are secured, flexible and modern from elegant and user-centric to powerful backend architecture. Our approach is not only about building, but ideal for business impact. ',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
   },
   {
     id: 'translation-transcripts',
     title: 'Cloud & System Integration Services',
-    description: 'As Cloud and enterprise integration are the backbone of our business we connect CRMs, ERPs, and services into perfect operation reducing friction, boost collaboration and elevate real-time insights to your organization. ',
+    description: 'As Cloud and enterprise integration are the backbone of our business we connect CRMs, ERPs, and services into perfect operation reducing friction, boost collaboration and elevate real time data analyst to your organization.',
     imageAlt: 'Professional linguist wearing headphones transcribing focus group recordings at laptop',
     imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop'
   },
   {
     id: 'analysis-reporting1',
     title: 'Blockchain powered Systems',
-    description: 'It is all about trust, value and transparency. We bring practical application across smart contracts, decentralized finance, asset tokenization, and web3 infrastructure across blockchain networks, unlocking complex concepts into measurable values.  ',
+    description: 'It is all about trust, value and transparency. We bring practical application across smart contracts, decentralized finance, asset tokenization, and web3 infrastructure across blockchain networks, unlocking complex concepts into measurable values.',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
   },
 ];
 
-export default function Services1ServiceDetails({ theme = 'light' }) {
+export default function Services1ServiceDetails({ theme = 'light', dark7 = false }) {
   const isDark = theme === 'dark';
   const imageRefs = useRef([]);
 
   useEffect(() => {
-    imageRefs.current.forEach((image, index) => {
-      if (!image) return;
-
-      // Alternate tilt: even indices tilt right, odd tilt left
-      const tiltDirection = index % 2 === 0 ? 12 : -12;
-
-      gsap.to(image, {
-        scrollTrigger: {
-          trigger: image,
-          start: 'top 70%',
-          end: 'top 20%',
-          scrub: 1.5,
-          toggleActions: 'play reverse play reverse',
-          // markers: true, // Uncomment to debug
-        },
-        y: 0,
-        rotation: 0,
-        scale: 1,
-        ease: 'none',
-        from: {
-          y: 120,
-          rotation: tiltDirection,
-          scale: 0.95,
-        }
+    const ctx = gsap.context(() => {
+      imageRefs.current.forEach((image, index) => {
+        if (!image) return;
+        const tiltDirection = index % 2 === 0 ? 12 : -12;
+        gsap.fromTo(
+          image,
+          { y: 120, rotation: tiltDirection, scale: 0.95 },
+          {
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: image,
+              start: 'top 70%',
+              end: 'top 20%',
+              scrub: 1.5,
+            },
+          }
+        );
       });
     });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className={`relative rounded-[32px] py-20 md:py-28 lg:py-60 ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#D9D4CA]'}`}>
-      <div className="mx-auto max-w-[1800px] px-6 md:px-8 lg:px-12 xl:px-16">
+    <section
+      className={`relative overflow-hidden rounded-[32px] py-20 md:py-28 lg:py-60 ${
+        isDark && dark7 ? '' : isDark ? 'bg-[#1a1a1a]' : 'bg-[#D9D4CA]'
+      }`}
+      style={isDark && dark7 ? services1ListingDarkSurface : undefined}
+    >
+      {isDark && dark7 && (
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-[0.35]"
+          style={{
+            background:
+              'radial-gradient(ellipse 90% 55% at 10% 15%, rgba(0, 81, 96, 0.45) 0%, transparent 55%)',
+          }}
+          aria-hidden
+        />
+      )}
+      <div className="relative z-[1] mx-auto max-w-[1800px] px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="space-y-28 md:space-y-36 lg:space-y-44 xl:space-y-52">
           {serviceDetails.map((service, index) => (
             <React.Fragment key={service.id}>
               <div className="grid gap-8 md:gap-12 lg:gap-16 xl:gap-20 md:grid-cols-2 items-center">
-                {/* Text Content - Always on Left */}
                 <div className="max-w-[550px]">
-                  <h3 className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.15] tracking-[-0.01em] mb-5 md:mb-6 lg:mb-7 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  <h3
+                    className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.15] tracking-[-0.01em] mb-5 md:mb-6 lg:mb-7 ${
+                      isDark && dark7 ? 's1-detail-title' : isDark ? 'text-white' : 'text-[#1a1a1a]'
+                    }`}
+                  >
                     {service.title}
                   </h3>
-                  <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#3a3a3a]'}`}>
+                  <p
+                    className={`font-merriweather text-[14px] leading-[1.7] ${
+                      isDark && dark7 ? 's1-detail-body' : isDark ? 'text-[#b0b0b0]' : 'text-[#3a3a3a]'
+                    }`}
+                  >
                     {service.description}
                   </p>
                 </div>
 
-                {/* Image - Always on Right */}
-                <div 
+                <div
                   ref={(el) => (imageRefs.current[index] = el)}
                   className="relative"
                   style={{
-                    transform: 'translateY(120px) rotate(' + (index % 2 === 0 ? '12deg' : '-12deg') + ') scale(0.95)'
+                    transform:
+                      'translateY(120px) rotate(' +
+                      (index % 2 === 0 ? '12deg' : '-12deg') +
+                      ') scale(0.95)',
                   }}
                 >
-                  <div className={`relative w-full h-[380px] md:h-[460px] lg:h-[540px] xl:h-[600px] rounded-[20px] md:rounded-[24px] lg:rounded-[28px] overflow-hidden shadow-lg ${isDark ? 'bg-[#2a2a2a]' : 'bg-[#e8e4dc]'}`}>
+                  <div
+                    className={`relative w-full h-[380px] md:h-[460px] lg:h-[540px] xl:h-[600px] rounded-[20px] md:rounded-[24px] lg:rounded-[28px] overflow-hidden shadow-lg ${
+                      isDark && dark7
+                        ? 'border border-[rgba(116,245,161,0.18)] bg-[#101e27] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)]'
+                        : isDark
+                          ? 'bg-[#2a2a2a]'
+                          : 'bg-[#e8e4dc]'
+                    }`}
+                  >
                     <Image
                       src={service.imageUrl}
                       alt={service.imageAlt}
@@ -139,9 +165,12 @@ export default function Services1ServiceDetails({ theme = 'light' }) {
                 </div>
               </div>
 
-              {/* Divider Line - Show between items, not after last */}
               {index < serviceDetails.length - 1 && (
-                <div className={`w-full h-[1px] opacity-40 ${isDark ? 'bg-white/20' : 'bg-[#b8b3a8]'}`} />
+                <div
+                  className={`w-full h-px ${
+                    isDark && dark7 ? 'bg-[#e0d1b6]/15' : isDark ? 'bg-white/20 opacity-40' : 'bg-[#b8b3a8] opacity-40'
+                  }`}
+                />
               )}
             </React.Fragment>
           ))}

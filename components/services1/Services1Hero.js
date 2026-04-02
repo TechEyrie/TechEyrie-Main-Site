@@ -6,7 +6,7 @@ import { services1ListingDarkSurface } from './services1ListingSurfaces';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Services1Hero({ theme = 'light', dark7 = false }) {
+export default function Services1Hero({ theme = 'light', dark7 = false, kicker = 'Services' }) {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
 
@@ -45,7 +45,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false }) {
           className="relative z-10 pl-0 sm:pl-2 md:pl-4 lg:pl-6 max-w-[700px] mb-0"
         >
           <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 md:mb-10 ${isDark && dark7 ? 's2-hero-eyebrow' : isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
-            Services
+            {kicker}
           </p>
           
           <h1 className={`mb-0 font-italiana tracking-[-0.03em] ${isDark && dark7 ? 's2-hero-h1' : isDark ? 'text-white' : 'text-[#2d2d2d]'}`}>
@@ -61,7 +61,8 @@ export default function Services1Hero({ theme = 'light', dark7 = false }) {
         {/* Right Side - Description (pushed to bottom on right) */}
         <div className="relative w-full sm:w-auto sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] pr-0 sm:pr-2 md:pr-4 lg:pr-6 z-10 mt-auto sm:pt-0 flex flex-col sm:justify-end">
           <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${isDark && dark7 ? 's2-hero-desc' : isDark ? 'text-[#b0b0b0]' : 'text-[#2d2d2d]'}`}>
-          We believe industries don’t just grow, it grows with intelligent decisions, organized systems and partners who believe. 
+          Tech Eyrie is all about transforming complex strategies into clear and actionable strategic business insights values that would elevate your business with success and innovation. Specialized in AI solution and automation we focus on a variety of other fields that would guide you to elevate your business. 
+
 
 
           </p>
@@ -85,8 +86,8 @@ export default function Services1Hero({ theme = 'light', dark7 = false }) {
         <svg viewBox="0 0 120 90" fill="none" className="w-full h-full">
           <path 
             d="M 10 45 L 110 10 L 100 45 L 110 80 L 10 45 Z M 100 45 L 40 45" 
-            fill="white" 
-            stroke="#2d2d2d" 
+            fill={isDark && dark7 ? '#e8e4dc' : 'white'} 
+            stroke={isDark && dark7 ? '#1b4732' : '#2d2d2d'} 
             strokeWidth="2" 
             opacity="0.9"
           />
@@ -98,8 +99,8 @@ export default function Services1Hero({ theme = 'light', dark7 = false }) {
         <svg viewBox="0 0 75 55" fill="none" className="w-full h-full">
           <path 
             d="M 5 27 L 70 5 L 65 27 L 70 50 L 5 27 Z M 65 27 L 25 27" 
-            fill="white" 
-            stroke="#2d2d2d" 
+            fill={isDark && dark7 ? '#e8e4dc' : 'white'} 
+            stroke={isDark && dark7 ? '#1b4732' : '#2d2d2d'} 
             strokeWidth="1.5" 
             opacity="0.85"
           />
@@ -124,7 +125,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false }) {
         <svg viewBox="0 0 50 75" fill="none" className="w-full h-full">
           <path 
             d="M 25 10 Q 32 30, 25 42 T 25 65" 
-            stroke="#FFD93D" 
+            stroke={isDark && dark7 ? '#a7b431' : '#FFD93D'} 
             strokeWidth="5" 
             fill="none"
             strokeLinecap="round"

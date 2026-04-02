@@ -23,14 +23,20 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
     const gap = 12;
     const MAX_PULSES = 36;
     const PULSE_SPAWN_MS = 600;
+    const isDarkTheme = theme === "dark";
 
     const drawStaticGrid = (context, width, height) => {
       const cols = Math.ceil(width / gridSizePx) + 4;
       const rows = Math.ceil(height / gridSizePx) + 4;
 
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "#000000";
-      context.strokeStyle = "#000000";
+      if (isDarkTheme) {
+        context.fillStyle = "rgba(116, 245, 161, 0.09)";
+        context.strokeStyle = "rgba(232, 228, 220, 0.07)";
+      } else {
+        context.fillStyle = "#000000";
+        context.strokeStyle = "#000000";
+      }
       context.lineWidth = 1.0;
 
       for (let i = 0; i < cols; i++) {
@@ -182,10 +188,10 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
       );
 
       const isDark = theme === "dark";
-      const r = isDark ? 255 : 0;
-      const g = isDark ? 255 : 0;
-      const b = isDark ? 255 : 0;
-      const a = (val) => (isDark ? Math.min(1, val * 2.5) : val);
+      const r = isDark ? 232 : 0;
+      const g = isDark ? 228 : 0;
+      const b = isDark ? 220 : 0;
+      const a = (val) => (isDark ? Math.min(1, val * 2.2) : val);
 
       gradient.addColorStop(0.0, `rgba(${r}, ${g}, ${b}, ${a(0.0)})`);
       gradient.addColorStop(0.08, `rgba(${r}, ${g}, ${b}, ${a(0.04)})`);
@@ -247,7 +253,7 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
               const dist = Math.abs(segCenter - pulseCenter);
               const maxDist = totalPulseLength / 2;
               const segOpacity = Math.max(0, 1 - dist / maxDist);
-              ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * segOpacity})`;
+              ctx.strokeStyle = `rgba(116, 245, 161, ${opacity * segOpacity})`;
               ctx.lineWidth = 2;
               ctx.beginPath();
               ctx.moveTo(overlapStart, y);
@@ -278,7 +284,7 @@ export const GridAnimation = ({ className = "", theme = "light" }) => {
               const dist = Math.abs(segCenter - pulseCenter);
               const maxDist = totalPulseLength / 2;
               const segOpacity = Math.max(0, 1 - dist / maxDist);
-              ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * segOpacity})`;
+              ctx.strokeStyle = `rgba(116, 245, 161, ${opacity * segOpacity})`;
               ctx.lineWidth = 2;
               ctx.beginPath();
               ctx.moveTo(x, overlapStart);

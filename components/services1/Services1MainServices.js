@@ -75,12 +75,12 @@ export default function Services1MainServices({ theme = 'light', dark7 = false }
 
             {/* Content */}
             <div className="flex-1">
-              <h2 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
+              <h2 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-[1.2] tracking-[-0.01em] mb-4 md:mb-5 ${isDark && dark7 ? 's1-card-title' : isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>
               Precision in Action
 
               </h2>
               
-              <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
+              <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark && dark7 ? 's1-card-body' : isDark ? 'text-[#b0b0b0]' : 'text-[#4a4a4a]'}`}>
               Our qualitative work emphasizes on what people actually do, not what they say. Through observational methods, time- tracking and behavioural data we bring out habits, decision making and patterns to a granular level, helping your business to respond with confidence across the audience, markets and touchpoints. 
 
               </p>

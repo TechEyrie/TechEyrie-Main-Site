@@ -25,7 +25,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       id: 1,
       title: "SMM",
       subtitle: "",
-      description: "It's not only about existence, it is all about influence. We design well-crafted strategies, goal driven social media systems that connect you to high-value audiences. ",
+      description: "It's not only about existence, it is all about influence. We design well-crafted strategies, goal driven social media systems that connect you to high-value audiences.",
       tags: [],
       bgColor: "#E8FF6B",
       textColor: "#111111",

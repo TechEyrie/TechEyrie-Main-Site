@@ -365,6 +365,7 @@ export default function DeepJudgeAnimation({ theme }) {
             </h1>
             <p ref={description2Ref} className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] ${subtitleColor} opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12`}>
             Design systems that align with the way your business works. No templates, No assumptions, just systems built around you. Tech Eyrie we tailor AI- powered platforms connecting data, processes and teams into one flexible foundation. No Complexity, No clatter, just a system thoughtfully designed for clarity, speed and growth. 
+
             </p>
           </div>
 
@@ -433,11 +434,11 @@ export default function DeepJudgeAnimation({ theme }) {
 
             {/* GROUP 3: TALLER VERTICAL CARDS - Card Titles 4xl */}
             {[
-               { title: "Discovery", desc: "Understanding your workflow, challenges and ambitions to elevate your business. We go beyond the surface level to analyse what you really need." },
-               { title: "Architecture", desc: "We design flexible and secure systems to align with your operations, No one size fits all, only precision- built foundation." },
-               { title: "Engineering", desc: "Building AI powered platforms, automation workflows and custom digital systems using high and modern technology." },
+               { title: "Discovery", desc: "Understanding your workflow, challenges and ambitions to elevate your business. We go beyond the surface level to analyse what you really need. " },
+               { title: "Architecture", desc: "We design flexible and secure systems to align with your operations, No one size fits all, only precision- built foundation. " },
+               { title: "Engineering", desc: "Building AI powered platforms, best workflow automation tools (medium) and custom digital systems using high and modern technology. " },
                { title: "Integration", desc: "Everything works together seamlessly by connecting your data, tools and teams into one unified intelligent system." },
-               { title: "Evolution", desc: "We ensure your system adapts, scale and improve as the business grow, with continuous refinement and long-term performance." }
+               { title: "Evolution", desc: "We ensure your system adapts, scales and improves as the business grows, with continuous refinement and long-term performance. " }
             ].map((card, i) => (
                 <div 
                     key={i}

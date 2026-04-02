@@ -45,3 +45,16 @@
 .dark2-page .s1-cta-heading {
   color: #f3f3f3 !important;
 }
+.dark2-page .s1-cta-btn {
+  color: #ffffff !important;
+  background-color: #12685b !important;
+}
+.dark2-page .s1-cta-btn:hover {
+  background-color: #0d5248 !important;
+}
+.dark2-page .s1-cta-btn .s1-cta-icon-wrap {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+.dark2-page .s1-cta-btn .s1-cta-icon-wrap svg {
+  color: #162d24 !important;
+}

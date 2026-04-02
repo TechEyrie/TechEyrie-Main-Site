@@ -168,7 +168,8 @@ export default function AirvoirSection({ theme = "light" }) {
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-              Every interaction is a journey, resonating digital experiences into meaningful impact.
+           Every interaction is a journey, resonating digital experiences into meaningful impact.
+
 
             </h1>
 
@@ -208,7 +209,8 @@ export default function AirvoirSection({ theme = "light" }) {
                 theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
               }`}
             >
-             Every business needs clarity and understanding, At Tech Eyrie we carefully craft digital systems that would elevate your journey by turning complexity into remarkable journeys. 
+        Every business needs clarity and understanding, At Tech Eyrie we carefully craft digital systems that would elevate your journey by turning complexity into remarkable journeys. 
+
 
               <br />
               {/* Experience personalized service, every step of the way. */}

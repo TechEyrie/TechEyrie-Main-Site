@@ -12,15 +12,15 @@ const SECTIONS = [
     id: 1,
     number: "01",
     title: "Industry built it, Tech Eyrie Perfected it",
-    text: "We don’t exercise as a startup but as an organized partnership, collaborating with market leaders and providing realistic solutions and challenges. Tech Eyrie, partnering with tech companies such as —---------- to create critical insights, guiding decisions and addressing complex strategies. With Tech Eyrie, every insight, platforms and workflow collaborates with the leaders in providing accuracy, reliability and impacts in the luxury B2B market.",
+    text: "We don’t exercise as a startup but as an organized partnership, collaborating with market leaders and providing realistic solutions and challenges. Tech Eyrie, partnering with tech companies such as —---------- to create strategic business insights goals guiding decisions and addressing complex strategies. With Tech Eyrie, every insight, platforms and workflow collaborates with the leaders in providing accuracy, reliability and impacts in the luxury B2B market. ",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop", // Truck yard placeholder
     layout: "text-left", // Text on left, Image on right
   },
   {
     id: 2,
     number: "02",
-    title: "No more waiting ,Technology unleashed",
-    text: "For decades manual systems have paused and slowed down the most important operations, but when it comes to B2B it is not only inefficient but also costly. With Tech Eyrie  complexity is turned into clarity, our intelligence and platforms connect all the operational elements and deliver an efficient, controllable and visible business track. From management to real-time optimization, our AI-driven solutions obstruct any potential disruptions into opportunities, in the luxury B2B world operational excellence is all about competition. ",
+    title: "No more waiting, Technology unleashed",
+    text: "For decades manual systems have paused and slowed down the most important operations, but when it comes to B2B it is not only inefficient but also costly. With Tech Eyrie  complexity is turned into clarity, our intelligence and platforms connect all the operational elements and deliver an efficient, controllable and visible business track. From management to real-time optimization, our ai driven solution obstruct any potential disruptions into opportunities, in the luxury B2B world operational excellence is all about competition. ",
     image: "https://images.unsplash.com/photo-1621955964441-c173e01c135b?q=80&w=2086&auto=format&fit=crop", // Logistics placeholder
     layout: "image-left", // Image on left, Text on right
   },
@@ -55,8 +55,8 @@ const ScrollTextReveal = ({ children, className = "", isDark = false }) => {
             scrub: true,
           },
           keyframes: [
-            { color: "#FBBF24", duration: 1 }, // Highlight Yellow
-            { color: isDark ? "#FFFFFF" : "#000000", duration: 1 }, // Settle to White/Black
+            { color: "#74F5A1", duration: 1 },
+            { color: isDark ? "#E8E4DC" : "#000000", duration: 1 },
           ]
         }
       );
@@ -111,7 +111,7 @@ const MissionSection = ({ theme = "light" }) => {
   }, []);
 
   return (
-    <section ref={containerRef} className={`${isDark ? 'bg-[#0B0B0B] text-white' : 'bg-white text-black'} py-24 md:py-32 overflow-hidden transition-colors duration-500`}>
+    <section ref={containerRef} className={`${isDark ? 'bg-[#162d24] text-[#f3f3f3]' : 'bg-white text-black'} py-24 md:py-32 overflow-hidden transition-colors duration-500`}>
       <div className="w-full space-y-32 md:space-y-48">
         {SECTIONS.map((section, index) => (
           <div
@@ -128,9 +128,9 @@ const MissionSection = ({ theme = "light" }) => {
             }`}>
               <div className="max-w-2xl">
                 <div className="flex items-start gap-4 mb-8">
-                  <span className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-gray-500' : 'text-gray-400'} mt-2`}>{section.number}</span>
+                  <span className={`font-merriweather about-lux-label text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase ${isDark ? '' : 'text-gray-400'} mt-2`}>{section.number}</span>
                   <MaskedReveal>
-                    <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${isDark ? 'text-white' : 'text-black'}`}>
+                    <h2 className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${isDark ? 'text-[#f3f3f3]' : 'text-black'}`}>
                       {section.title}
                     </h2>
                   </MaskedReveal>

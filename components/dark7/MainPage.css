@@ -177,6 +177,57 @@ html {
   font-weight: 400;
 }
 
+/* About page: dark7 luxury stacks + beat universal beige */
+.dark2-page.about-route,
+.dark2-page.about-route main,
+.dark2-page.about-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.about-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+  color: #f3f3f3 !important;
+}
+.dark2-page.about-route main .font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.about-route main p,
+.dark2-page.about-route main .font-merriweather:not(.about-lux-cta) {
+  color: #c8c2ad !important;
+}
+.dark2-page.about-route main strong {
+  color: #f3f3f3 !important;
+}
+.dark2-page.about-route main .about-lux-label {
+  color: #a8a498 !important;
+}
+.dark2-page.about-route main a.about-lux-link {
+  color: #e8e4dc !important;
+  border-color: rgba(232, 228, 220, 0.45) !important;
+}
+.dark2-page.about-route main a.about-lux-link:hover {
+  color: #74f5a1 !important;
+  border-color: rgba(116, 245, 161, 0.5) !important;
+}
+.dark2-page.about-route main a.about-lux-btn {
+  color: #ffffff !important;
+  background-color: #12685b !important;
+}
+.dark2-page.about-route main a.about-lux-btn:hover {
+  background-color: #0d5248 !important;
+}
+
+/* Expertise (/expertise) — Services1 under dark7 */
+.dark2-page.expertise-route,
+.dark2-page.expertise-route main,
+.dark2-page.expertise-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.expertise-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
 /* Privacy policy: same stacks as FAQs / dark7 */
 .dark2-page.privacy-route,
 .dark2-page.privacy-route main,

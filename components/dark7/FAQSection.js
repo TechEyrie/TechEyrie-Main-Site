@@ -7,7 +7,7 @@ import gsap from 'gsap';
 const FAQ_ITEMS = [
   {
     question: 'What services does Tech Eyrie provide?',
-    answer: 'At Tech Eyrie, we redefine digital transformation. We deliver seamless systems and end-to-end business solutions, tailoring strategies to elevate and engage your tech brand. From strategic planning to targeted promotion, we ensure your message reaches the right audience at the right time.',
+    answer: 'At Tech Eyrie, we redefine business and digital transformation.(High competition) We deliver seamless systems and end-to-end business solutions, tailoring strategies to elevate and engage your tech brand. From strategic planning to targeted promotion, we ensure your message reaches the right audience at the right time.',
   },
   {
     question: 'How to engage with Tech Eyrie?',
@@ -15,11 +15,11 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What type of solutions are available?',
-    answer: 'Tech Eyrie provides a diverse range of tech solutions to meet your business needs. We offer intelligent systems with AI-driven automation, High-performance platforms to ensure a stable growth, Data and Analytical solutions with advanced tools and tailored systems to connect with your infrastructure.',
+    answer: 'Tech Eyrie provides a diverse range of tech solutions to meet your business needs. We offer intelligent systems with AI-driven automation, High-performance platforms to ensure a stable growth, Data and Analytical solutions with advanced tools and tailored systems to connect with your infrastructure.  ',
   },
   {
     question: 'Can I customize my Technology solution?',
-    answer: 'That’s the best about Tech Eyrie, we customize your business needs by working closely with you. Our team can customize you, AI-driven workflow automation to match your operations, selecting the best platform features to support your business objectives, integration and Deployment with seamless alignment, and customized dashboards and insights to track your performance. We tailor technology experiences that are unique to your business. ',
+    answer: 'That’s the best about Tech Eyrie, we customize your business needs by working closely with you. Our team can customize you, AI-driven workflow automation to match your operations, selecting the best platform features to support your business objectives, integration and Deployment with seamless alignment, and customized dashboards and insights to track your performance. We tailor technology experiences that are unique to your business.',
   },
   {
     question: 'How Does Tech Eyrie Ensure Quality and Security?',
@@ -27,7 +27,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Do You Offer Membership or Partnership Programs?',
-    answer: 'Absolutely, Tech Eyrie offers premium memberships and offers with benefits for the audience. Early access to the latest solutions, customizing packages according to your business needs, one single contact to guide your business journey to flow without pause, and a flexible and engaged team to ensure  your needs are met. It is not only about the membership, we focus on innovations, authenticity and a long-term business journey. ',
+    answer: 'Tech Eyrie offers premium memberships and offers with benefits for the audience. Early access to the latest solutions, customizing packages according to your business needs, one single contact to guide your business journey to flow without pause, and a flexible and engaged team to ensure  your needs are met. It is not only about the membership, we focus on innovations, authenticity and a long-term business journey.  ',
   },
 ];
 

@@ -13,7 +13,7 @@ const SERVICES = [
     title: "Business Automation & AI Enablement",
     titleLine1: "Business Automation &",
     titleLine2: "AI Enablement",
-    description: "Transforming critical business process through AI-enabled workflows and intelligent agents by delivering efficient work and reducing manual working so your team can focus on creativity, growth and strategy.",
+    description: "Transforming critical business processes through AI-enabled workflows and intelligent agents by delivering efficient work and reducing manual working so your team can focus on creativity, growth and strategy.",
     imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -696,7 +696,8 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                   {/* As businesses grow, tools multiply, processes become manual, and visibility is lost. What once felt manageable slowly turns into complexity. */}
 
 
-                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable.
+                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable. 
+
                 </p>
                 <p
                   className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
@@ -706,6 +707,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                   {/* Tech Eyrie helps businesses regain clarity by designing connected systems that make work manageable, bring data into focus, and automate work into decisions — so operations run smoothly as the organization scales. */}
 
                   But Tech Eyrie brings back clarity, creating connected systems that make work viable, bringing data into focus, and automating decisions, turning operations into a high- performing engine for an impressive success.
+
 
 
                 </p>

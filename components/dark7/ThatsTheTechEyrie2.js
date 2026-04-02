@@ -518,7 +518,8 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
                         theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                       }`}
                     >
-                      In the fast moving world where technology becomes complex, clarity is your biggest success. Here in Tech Eyrie we built systems that dive through complexity combining AI- driven automation, data and high- performance platforms into flawless digital experiences.
+                    In the fast moving world where technology becomes complex, clarity is your biggest success. Here in Tech Eyrie we built systems that dive through complexity combining AI- driven automation, data and high- performance platforms into flawless digital experiences.
+
 
                     </p>
                     <p
@@ -526,7 +527,8 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
                         theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                       }`}
                     >
-                     No trends, only intelligent systems that lasts long.
+                   No trends, only intelligent systems that lasts long.
+
 
                     </p>
                     <div className="build-cta pt-2">

@@ -347,7 +347,8 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
                 }`}
               >
-                Growth is a story told with intention, executed through systems, and valued by results. We craft frameworks and workflows that elevate your tech stack into a premium marketing engine. Every action drives impact, every campaign fuels the pipeline, every decision shapes your trajectory."
+              Growth is a story told with intention, executed through systems, and valued by results. We craft frameworks and workflows that elevate your tech stack(low competition) into Precision Growth Engine. Every action drives impact, every campaign fuels the pipeline, every decision shapes your trajectory.
+
 
               </p>
 
@@ -356,7 +357,8 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
                   theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
                 }`}
               >
-                We build the frameworks, processes, and workflows that turn your tech stack into a high-performing marketing engine. Strategy comes first, tools follow.
+              Building framework, processes and workflows that will unlock your tech stack into a high-performing marketing engine ready for growth. Strategy leads, tools follow. 
+
               </p>
 
               <Link
