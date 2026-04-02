@@ -130,6 +130,7 @@ export default function Home() {
             testimonial: cs.testimonial || null,
             buttonText: cs.buttonText || 'VIEW PROJECT',
             buttonLink: cs.buttonLink || `/case-studies/${cs.slug}`,
+            wordpressUrl: cs.wordpressUrl || '',
             slug: cs.slug, // Include slug for drawer fetching
           }));
           setProjects(transformed);

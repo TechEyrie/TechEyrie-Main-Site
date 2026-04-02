@@ -380,6 +380,7 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
           activeSection={activeSection}
           onSectionClick={scrollToSection}
           theme={theme}
+          visitUrl={selectedItem?.url}
         />
       </div>
     </>

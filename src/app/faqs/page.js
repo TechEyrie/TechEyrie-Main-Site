@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/all";
 import Header from "../../../components/dark7/Header";
 import Footer from "../../../components/dark7/Footer";
-import PrivacyPolicyPageContent from "../../../components/privacy-policy/PrivacyPolicyPageContent";
+import FaqsPageContent from "../../../components/faqs/FaqsPageContent";
 import "../../../components/dark7/MainPage.css";
 
-export default function PrivacyPolicyPage() {
+export default function FaqsPage() {
   const theme = "dark";
 
   useEffect(() => {
@@ -27,12 +27,12 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div
-      className="dark2-page privacy-route relative z-[1] min-h-screen font-merriweather"
+      className="dark2-page faqs-route relative z-[1] min-h-screen font-merriweather"
       data-theme={theme}
     >
       <Header theme={theme} />
       <main className="relative">
-        <PrivacyPolicyPageContent />
+        <FaqsPageContent />
       </main>
       <Footer theme={theme} />
     </div>

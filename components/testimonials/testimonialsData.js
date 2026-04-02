@@ -1,0 +1,98 @@
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    quote:
+      "Since we started with Dapper we finally have prospects reaching out to us, instead of relying on outbound.",
+    author: "George Borst",
+    role: "Business Development Lead",
+    company: "FOCUS-ON",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    rating: 5,
+    service: "Demand Generation",
+  },
+  {
+    id: 2,
+    quote:
+      "Dapper constantly improves results in a proactive and very structured way; this makes the company stand out.",
+    author: "Sammie Perkins",
+    role: "Director Marketing EMEA",
+    company: "Ultimaker",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=5",
+    rating: 5,
+    service: "Paid Media & Performance",
+  },
+  {
+    id: 3,
+    quote:
+      "Working with Dapper has transformed our approach to demand generation. The results speak for themselves.",
+    author: "Jane Smith",
+    role: "VP Marketing",
+    company: "TechCorp",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=20",
+    rating: 5,
+    service: "Content & Creative",
+  },
+  {
+    id: 4,
+    quote:
+      "The strategic approach and execution from Dapper have exceeded our expectations in every way possible.",
+    author: "Michael Chen",
+    role: "Head of Growth",
+    company: "CloudScale",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=33",
+    rating: 5,
+    service: "Data & Measurement",
+  },
+  {
+    id: 5,
+    quote:
+      "Our pipeline has never been stronger. Dapper understands B2B marketing at a level few agencies do.",
+    author: "Sarah Johnson",
+    role: "CMO",
+    company: "SaaSPro",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=47",
+    rating: 5,
+    service: "Demand Gen Agency",
+  },
+  {
+    id: 6,
+    quote:
+      "The chatbot Dapper developed for us has revolutionized our customer support. Response times dropped by 80%.",
+    author: "David Wilson",
+    role: "CTO",
+    company: "TechFlow",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=51",
+    rating: 5,
+    service: "Chatbot Development",
+  },
+  {
+    id: 7,
+    quote:
+      "Their website development team delivered exactly what we needed. Professional, fast, and incredibly detailed.",
+    author: "Emily Davis",
+    role: "Founder",
+    company: "StartupX",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=45",
+    rating: 5,
+    service: "Website Development",
+  },
+  {
+    id: 8,
+    quote:
+      "The AI agents they built have automated our entire workflow. We've saved countless hours and improved accuracy significantly.",
+    author: "Robert Martinez",
+    role: "Operations Director",
+    company: "InnovateDaily",
+    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=80&fit=crop&q=80",
+    avatar: "https://i.pravatar.cc/150?img=32",
+    rating: 5,
+    service: "AI Agents Development",
+  },
+];

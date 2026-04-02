@@ -1,6 +1,18 @@
-// WordPress API utility functions
-const WORDPRESS_API_URL = 'https://app.thetecheyrie.com/wp-json/wp/v2';
-const WORDPRESS_GRAPHQL_URL = 'https://app.thetecheyrie.com/graphql';
+// WordPress API utility functions — set NEXT_PUBLIC_WORDPRESS_URL to your site origin (no trailing slash)
+function normalizeWordPressSiteUrl() {
+  const raw = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://app.thetecheyrie.com';
+  return String(raw).trim().replace(/\/$/, '');
+}
+
+const WORDPRESS_SITE_URL = normalizeWordPressSiteUrl();
+const WORDPRESS_API_URL = `${WORDPRESS_SITE_URL}/wp-json/wp/v2`;
+const WORDPRESS_GRAPHQL_URL = `${WORDPRESS_SITE_URL}/graphql`;
+
+function wordPressPermalinkFromUri(uri) {
+  if (!uri || typeof uri !== 'string') return '';
+  const path = uri.startsWith('/') ? uri : `/${uri}`;
+  return `${WORDPRESS_SITE_URL}${path}`;
+}
 
 // Try GraphQL first, fallback to REST
 const USE_GRAPHQL = true;
@@ -659,6 +671,7 @@ export function transformWordPressCaseStudy(wpCaseStudy, featuredMedia = null) {
     } : null,
     buttonText: caseData.buttonText || 'VIEW PROJECT',
     buttonLink: caseData.buttonLink || `/case-studies/${wpCaseStudy.slug || wpCaseStudy.post_name || ''}`,
+    wordpressUrl: wpCaseStudy.link || '',
     content: wpCaseStudy.content?.rendered || wpCaseStudy.content || '',
     excerpt: wpCaseStudy.excerpt?.rendered || wpCaseStudy.excerpt || '',
     // Detail page fields
@@ -701,6 +714,7 @@ async function fetchWordPressCaseStudiesGraphQL() {
             id
             title
             slug
+            uri
             date
             content
             featuredImage {
@@ -750,6 +764,7 @@ async function fetchWordPressCaseStudiesGraphQL() {
         testimonial: null,
         buttonText: 'VIEW PROJECT',
         buttonLink: `/case-studies/${cs.slug}`,
+        wordpressUrl: wordPressPermalinkFromUri(cs.uri),
         content: cs.content || '',
       }));
     }
@@ -813,6 +828,7 @@ async function fetchWordPressCaseStudyBySlugGraphQL(slug) {
           id
           title
           slug
+          uri
           date
           content
           featuredImage {
@@ -861,6 +877,7 @@ async function fetchWordPressCaseStudyBySlugGraphQL(slug) {
       title: cs.title || '',
       category: 'web-app',
       image: cs.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+      wordpressUrl: wordPressPermalinkFromUri(cs.uri),
       content: cs.content || '',
     };
   } catch (error) {

@@ -4,6 +4,24 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SiteDrawer from "../showcase/SiteDrawar";
+
+function getCaseStudySlugForFetch(project) {
+  if (project?.slug) return project.slug;
+  const link = project?.buttonLink;
+  if (!link || typeof link !== "string") return null;
+  if (/^https?:\/\//i.test(link)) {
+    try {
+      const pathname = new URL(link).pathname;
+      const m = pathname.match(/\/case-studies\/([^/]+)/i);
+      if (m) return decodeURIComponent(m[1]);
+    } catch {
+      return null;
+    }
+    return null;
+  }
+  const tail = link.replace(/^.*\/case-studies\//, "").replace(/^\//, "");
+  return tail.split("/")[0] || null;
+}
 import { fetchWordPressCaseStudyBySlug } from "../../utils/wordpress";
 
 const CATEGORIES = [
@@ -366,7 +384,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
       id: project.id,
       title: project.title,
       image: project.image,
-      url: project.buttonLink,
+      url: project.wordpressUrl || project.buttonLink,
       badges: project.tags?.map(tag => tag.replace('#', '').toUpperCase()) || [],
       isPro: true,
       category: project.category === 'web-app' ? 'Web App' : 
@@ -387,11 +405,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
     // Fetch full WordPress case study data
     try {
-      // Extract slug from buttonLink (e.g., "/case-studies/slug" -> "slug") or use project.slug
-      let slug = project.slug;
-      if (!slug && project.buttonLink) {
-        slug = project.buttonLink.replace('/case-studies/', '').replace(/^\//, '');
-      }
+      const slug = getCaseStudySlugForFetch(project);
       
       if (slug) {
         const wpCaseStudy = await fetchWordPressCaseStudyBySlug(slug);
@@ -502,6 +516,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
           // Update drawer item with WordPress data
           const enrichedDrawerItem = {
             ...basicDrawerItem,
+            url: wpCaseStudy.wordpressUrl || basicDrawerItem.url,
             rating: wpCaseStudy.rating || wpCaseStudy.overallScore || '8.5',
             date: wpCaseStudy.launchDate || 'Site of the Day',
             description: wpCaseStudy.shortDescription || wpCaseStudy.excerpt || project.title,

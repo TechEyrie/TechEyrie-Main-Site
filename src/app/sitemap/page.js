@@ -64,6 +64,7 @@ const SITEMAP_DATA = {
   ],
   legal: [
     { title: "Privacy Policy", href: "/privacy-policy", description: "Privacy policy and data protection" },
+    { title: "Terms and Conditions", href: "/terms-and-conditions", description: "Website and services terms" },
   ],
   other: [
     { title: "Sitemap", href: "/sitemap", description: "This page" },

@@ -39,6 +39,14 @@ body {
   color: #000000 !important;
 }
 
+/* Strategy carousel: teal pills need white chevrons (beat universal beige) */
+.dark2-page .strategy-carousel-nav:not(:disabled) {
+  color: #ffffff !important;
+}
+.dark2-page .strategy-carousel-nav:not(:disabled) svg {
+  color: #ffffff !important;
+}
+
 /* ── HERO SECTION ── */
 .hero {
   background-color: #162d24;
@@ -118,5 +126,243 @@ html {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+/* Contact page: form fields vs .dark2-page universal text rule */
+.dark2-page .contact-input {
+  color: #f5e8d1 !important;
+}
+.dark2-page .contact-input::placeholder {
+  color: rgba(163, 154, 136, 0.55) !important;
+}
+/* Submit CTA: RealProblemSection pill — beat .dark2-page universal text */
+.dark2-page .contact-submit,
+.dark2-page .contact-submit * {
+  color: #ffffff !important;
+}
+
+.dark2-page .faqs-cta-link,
+.dark2-page .faqs-cta-link *,
+.dark2-page .privacy-cta-link,
+.dark2-page .privacy-cta-link *,
+.dark2-page .terms-cta-link,
+.dark2-page .terms-cta-link *,
+.dark2-page .testimonials-cta-link,
+.dark2-page .testimonials-cta-link * {
+  color: #ffffff !important;
+}
+
+/* Contact page: same stacks as dark7 (Merriweather UI, Italiana display, Playfair italic accents) */
+.dark2-page.contact-route,
+.dark2-page.contact-route main,
+.dark2-page.contact-route main input,
+.dark2-page.contact-route main textarea,
+.dark2-page.contact-route main button,
+.dark2-page.contact-route main label {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.contact-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* FAQs page: same base stacks as contact / dark7 main */
+.dark2-page.faqs-route,
+.dark2-page.faqs-route main,
+.dark2-page.faqs-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.faqs-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Privacy policy: same stacks as FAQs / dark7 */
+.dark2-page.privacy-route,
+.dark2-page.privacy-route main,
+.dark2-page.privacy-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.privacy-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.testimonials-route,
+.dark2-page.testimonials-route main,
+.dark2-page.testimonials-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.testimonials-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.testimonials-route .testimonials-page-heading,
+.dark2-page.testimonials-route .testimonials-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.testimonials-route .testimonials-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.testimonials-route .testimonials-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.testimonials-route .testimonials-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.testimonials-route .testimonials-filter-idle {
+  color: #e8e4dc !important;
+}
+.dark2-page.testimonials-route .testimonials-filter-active {
+  color: #000000 !important;
+}
+
+.dark2-page.testimonials-route .testimonials-star {
+  color: #74f5a1 !important;
+  fill: #74f5a1 !important;
+}
+
+.dark2-page.terms-route,
+.dark2-page.terms-route main,
+.dark2-page.terms-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.terms-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.terms-route .terms-page-heading,
+.dark2-page.terms-route .terms-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.terms-route .terms-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.terms-route .terms-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.terms-route .terms-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.terms-route .terms-toc-btn:not(.terms-toc-btn-active):hover .lucide {
+  stroke: #a7b431 !important;
+}
+
+.dark2-page.privacy-route .privacy-page-heading,
+.dark2-page.privacy-route .privacy-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.privacy-route .privacy-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.privacy-route .privacy-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.privacy-route .privacy-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+/* Inactive TOC Lucide: hover olive (active row keeps black stroke from color prop) */
+.dark2-page.privacy-route .privacy-toc-btn:not(.privacy-toc-btn-active):hover .lucide {
+  stroke: #a7b431 !important;
+}
+
+/* FAQs: headings + luxury hero beat universal beige where needed */
+.dark2-page.faqs-route .faq-page-heading,
+.dark2-page.faqs-route .faq-page-heading .faq-page-title-line {
+  color: #f3f3f3 !important;
+}
+.dark2-page.faqs-route .faq-page-heading .faq-page-title-line.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.faqs-route .faq-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+
+/* FAQs luxury: slow mesh + card polish */
+@keyframes faqs-luxury-mesh {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    opacity: 0.55;
+    transform: translate(1.5%, -1.5%) scale(1.02);
+  }
+  66% {
+    opacity: 0.48;
+    transform: translate(-1%, 1%) scale(1.01);
+  }
+}
+
+@keyframes faqs-luxury-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.dark2-page.faqs-route .faqs-luxury-mesh,
+.dark2-page.privacy-route .faqs-luxury-mesh,
+.dark2-page.testimonials-route .faqs-luxury-mesh,
+.dark2-page.terms-route .faqs-luxury-mesh {
+  animation: faqs-luxury-mesh 22s ease-in-out infinite;
+}
+
+.dark2-page.faqs-route .faqs-luxury-hero-frame,
+.dark2-page.privacy-route .faqs-luxury-hero-frame,
+.dark2-page.testimonials-route .faqs-luxury-hero-frame,
+.dark2-page.terms-route .faqs-luxury-hero-frame {
+  background: linear-gradient(
+    90deg,
+    rgba(167, 180, 49, 0) 0%,
+    rgba(167, 180, 49, 0.35) 50%,
+    rgba(167, 180, 49, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: faqs-luxury-shimmer 8s linear infinite;
+}
+
+.dark2-page.faqs-route .faqs-lux-card,
+.dark2-page.privacy-route .faqs-lux-card,
+.dark2-page.testimonials-route .faqs-lux-card,
+.dark2-page.terms-route .faqs-lux-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 32px 64px -16px rgba(0, 0, 0, 0.45);
+}
+
+.dark2-page.faqs-route .faqs-lux-card.is-open {
+  box-shadow:
+    0 1px 0 0 rgba(116, 245, 161, 0.12) inset,
+    0 0 0 1px rgba(116, 245, 161, 0.2),
+    0 40px 80px -20px rgba(0, 0, 0, 0.5);
+}
+
+.dark2-page.faqs-route .faqs-lux-cta-panel,
+.dark2-page.privacy-route .faqs-lux-cta-panel,
+.dark2-page.testimonials-route .faqs-lux-cta-panel,
+.dark2-page.terms-route .faqs-lux-cta-panel {
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 32, 0.95) 0%,
+    rgba(10, 24, 20, 0.98) 50%,
+    rgba(8, 18, 14, 1) 100%
+  );
+  box-shadow: 0 1px 0 0 rgba(167, 180, 49, 0.15) inset;
 }
 

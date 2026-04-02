@@ -11,7 +11,7 @@ const sections = [
   { id: "collections", label: "Collections" },
 ];
 
-export default function DrawerNavigation({ activeSection, onSectionClick, theme = 'light' }) {
+export default function DrawerNavigation({ activeSection, onSectionClick, theme = 'light', visitUrl }) {
   const isDark = theme === 'dark';
   
   return (
@@ -36,11 +36,20 @@ export default function DrawerNavigation({ activeSection, onSectionClick, theme 
             {section.label}
           </button>
         ))}
-        <button
-          className="font-merriweather min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap transition-all duration-200 flex-shrink-0 border-0 cursor-pointer bg-yellow-400 text-black hover:bg-yellow-500 ml-1 sm:ml-2"
-        >
-          Visit Site
-        </button>
+        {visitUrl ? (
+          <a
+            href={visitUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-merriweather min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap transition-all duration-200 flex-shrink-0 border-0 cursor-pointer bg-yellow-400 text-black hover:bg-yellow-500 ml-1 sm:ml-2 no-underline"
+          >
+            Visit Site
+          </a>
+        ) : (
+          <span className="font-merriweather min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap flex-shrink-0 border border-gray-600 ml-1 sm:ml-2 opacity-50 cursor-not-allowed">
+            Visit Site
+          </span>
+        )}
       </div>
     </div>
   );
