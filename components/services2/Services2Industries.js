@@ -10,148 +10,148 @@ gsap.registerPlugin(ScrollTrigger);
 const industries = [
   {
     id: 1,
-    title: "AI Product Development",
+    title: "AI powered solutions",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
     link: "/services1/ai-product-development",
     slug: "ai-product-development",
-    description: "We turn AI ideas into fully functional, production-ready products - from intelligent recommendation engines to computer vision systems built for real-world impact."
+    description: "We transform your ideas into fully ready AI-solution that would analyze with precision to build designs that elevate your vision to strategic asset not just concept "
   },
   {
     id: 2,
-    title: "AI Agents & Autonomous Systems",
+    title: "Personalized AI Agents",
     image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80",
     link: "/services1/ai-agents-autonomous-systems",
     slug: "ai-agents-autonomous-systems",
-    description: "We build AI agents that don't just answer questions - they reason, make decisions, and complete complex multi-step tasks without human hand-holding."
+    description: "At Tech Eyrie, AI agents don’t just give you answers, they question you, make conclusions, and deploy multiple tasks to free your team to focus on what really matters. "
   },
   {
     id: 3,
-    title: "Generative AI & LLM Development",
+    title: "AI system and Language System Development",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80",
     link: "/services1/generative-ai-llm-development",
     slug: "generative-ai-llm-development",
-    description: "We design, fine-tune, and deploy large language models tailored to your business - including RAG pipelines, private LLMs, and deep custom AI integrations."
+    description: "Our AI system will reflect your business, data and insights. It is curated with LLMs, RAG Pipelines, and integrated AI system to deliver powerful insights, elevate workflows and unleash innovations."
   },
   {
     id: 4,
-    title: "Custom Model Training & Fine-Tuning",
+    title: "Refined intelligence, Around your industry",
     image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=1200&q=80",
     link: "/services1/custom-model-training-fine-tuning",
     slug: "custom-model-training-fine-tuning",
-    description: "We take powerful foundation models and make them yours - trained on your data, aligned to your domain, and optimized for production performance."
+    description: "Every model is tuned to demonstrate your goals, workflows and logic, ensuring consistency and accuracy. Our AI models are curated to understand your context and perform reliably to meet clarity. "
   },
   {
     id: 5,
-    title: "Intelligent Process Automation",
+    title: "Smart workflow automation",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
     link: "/services1/intelligent-process-automation",
     slug: "intelligent-process-automation",
-    description: "We map, redesign, and automate your most expensive workflows using AI-driven automation that cuts costs, reduces errors, and scales without limits."
+    description: "By combining intelligent decision making and workflow automation we redesign, and plan your workflows, cutting costs, reducing human errors and eliminating inefficiency to move faster and smarter."
   },
   {
     id: 6,
-    title: "Robotic Process Automation (RPA)",
+    title: "RPA and Automation",
     image: "https://images.unsplash.com/photo-1581092919535-7146ff1a590b?w=1200&q=80",
     link: "/services1/robotic-process-automation-rpa",
     slug: "robotic-process-automation-rpa",
-    description: "We deploy software robots that silently handle your repetitive, rule-based tasks 24/7 - freeing your team to focus on work that actually needs them."
+    description: "Our 24/7 RPA is designed to integrate into your workflow to elevate productivity without errors, resulting in a smooth, fast and efficient business. Which will help your team to focus on high-end work that truly matters. "
   },
   {
     id: 7,
-    title: "NLP & Recommendation Systems",
+    title: "NLP Solutions and personalized Engines",
     image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200&q=80",
     link: "/services1/nlp-recommendation-systems",
     slug: "nlp-recommendation-systems",
-    description: "We build language processing tools and smart recommendation engines that understand your users and deliver hyper-personalized experiences at scale."
+    description: "At Tech Eyrie, our systems are crafted in a way to understand your insights and deliver solutions accurately, our NLP system will help businesses to operate extensively using AI text analysis."
   },
   {
     id: 8,
-    title: "Chatbots & Conversational AI",
+    title: "Virtual Assistance and AI",
     image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80",
     link: "/services1/chatbots-conversational-ai",
     slug: "chatbots-conversational-ai",
-    description: "We design intelligent assistants that go beyond scripted responses - handling real queries, integrating with your systems, and improving over time."
+    description: "Not just scripted answers, our chatbots work closely to integrate real world queries, understanding, adapting and delivering values that feel natural, personal and ideal. "
   },
   {
     id: 9,
-    title: "Web Design & Development",
+    title: "Custom Web Solution",
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80",
     link: "/services1/web-design-development",
     slug: "web-design-development",
-    description: "We craft fast, modern, and visually refined websites built for performance, conversion, and seamless user experience across every device."
+    description: "From interactive designs to scalable solutions,our web development team ensures flexible, intelligent and adaptable insights ensuring your digital presence is beautiful and strategically  effective."
   },
   {
     id: 10,
-    title: "Full Stack Development",
+    title: "End-to-End web and Application Development",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=80",
     link: "/services1/full-stack-development",
     slug: "full-stack-development",
-    description: "From pixel-perfect frontends to bulletproof backends and databases - we build complete, scalable applications engineered to grow with your business."
+    description: "Our techniques are blended with elegant designs with attentive engineering creating platforms that remain reliable as per your needs, by giving end-to-end business solutions. At Tech Eyrie Stack development is a long-term success."
   },
   {
     id: 11,
-    title: "eCommerce Development",
+    title: "Digital store solution",
     image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=1200&q=80",
     link: "/services1/ecommerce-development",
     slug: "ecommerce-development",
-    description: "We build and migrate high-converting stores with custom functionality, smooth checkout experiences, and the backend logic your business model demands."
+    description: "At Tech Eyrie, our system is crafted with backend logic to ensure online stores are run smoothly with effortless checkout. We make sure every platform aligns perfectly with your strategic business insights values ensuring authenticity and excellence."
   },
   {
     id: 12,
-    title: "CMS & LMS Development",
+    title: "Full Stack CMS & LMS Engineering",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80",
     link: "/services1/cms-lms-development",
     slug: "cms-lms-development",
-    description: "We develop flexible content and learning platforms that are easy to manage, built to scale, and tailored to how your team actually works."
+    description: "Every system is built with accuracy and flexibility of LMS and CMS to ensure that your content and learning operations remain structured as your organization develops, helping your team to focus on creating values not complexity."
   },
   {
     id: 13,
-    title: "Cloud & Data Engineering",
+    title: "Cloud- Native solutions and Data platforms",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80",
     link: "/services1/cloud-data-engineering",
     slug: "cloud-data-engineering",
-    description: "We architect reliable, scalable cloud infrastructure and data pipelines that ensure your data is clean, accessible, and always working for you."
+    description: "We craft strong and flexible cloud infrastructure and design end-to-end pipelines to verify your data is clean, approachable and powering your ideas, enabling your team to elevate with confidence and speed."
   },
   {
     id: 14,
-    title: "Business Intelligence & Analytics",
+    title: "Predictive Analysis and Reporting",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
     link: "/services1/business-intelligence-analytics",
     slug: "business-intelligence-analytics",
-    description: "We transform scattered data into sharp, interactive dashboards and reports that give decision-makers the clarity they need to act fast and confidently."
+    description: "Our analytics are instruments that transform scattered information into interactive analytical dashboards and reports that ease decision- makers with clarity, speed and confidence. We craft data visualization paths for smarter decisions."
   },
   {
     id: 15,
-    title: "Enterprise & SaaS Integrations",
+    title: "Business platform integration system",
     image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=1200&q=80",
     link: "/services1/enterprise-saas-integrations",
     slug: "enterprise-saas-integrations",
-    description: "We connect your CRMs, ERPs, third-party platforms, and internal tools into one unified ecosystem - eliminating silos and manual data juggling."
+    description: "We combine your CRMs, ERPs, third-party platforms and internal tools into a high-performing network that develops decision making and operational efficiency and reduces manual errors. "
   },
   {
     id: 16,
-    title: "Blockchain & Smart Contracts",
+    title: "Smart contract Engineering",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1200&q=80",
     link: "/services1/blockchain-smart-contracts",
     slug: "blockchain-smart-contracts",
-    description: "We develop secure, audited smart contracts and decentralized applications that automate trust and remove the need for intermediaries."
+    description: "Securing audited smart contracts and decentralized applications that ensures trust, scalability and ideal to your business operations, eliminating mediators and unlocking new business models"
   },
-  {
-    id: 17,
-    title: "DeFi & Asset Tokenization",
-    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=80",
-    link: "/services1/defi-asset-tokenization",
-    slug: "defi-asset-tokenization",
-    description: "We build decentralized finance protocols and tokenize real-world assets - opening new revenue models and liquidity opportunities on Web3 infrastructure."
-  },
-  {
-    id: 18,
-    title: "Maintenance, SEO & Support",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    link: "/services1/maintenance-seo-support",
-    slug: "maintenance-seo-support",
-    description: "We keep your digital products healthy, fast, and discoverable - with proactive monitoring, performance tuning, and SEO that compounds over time."
-  }
+  // {
+  //   id: 17,
+  //   title: "DeFi & Asset Tokenization",
+  //   image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=80",
+  //   link: "/services1/defi-asset-tokenization",
+  //   slug: "defi-asset-tokenization",
+  //   description: "We build decentralized finance protocols and tokenize real-world assets - opening new revenue models and liquidity opportunities on Web3 infrastructure."
+  // },
+  // {
+  //   id: 18,
+  //   title: "Maintenance, SEO & Support",
+  //   image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+  //   link: "/services1/maintenance-seo-support",
+  //   slug: "maintenance-seo-support",
+  //   description: "We keep your digital products healthy, fast, and discoverable - with proactive monitoring, performance tuning, and SEO that compounds over time."
+  // }
 ];
 
 export default function IndustriesGrid({ theme = 'light', dark7 = false }) {

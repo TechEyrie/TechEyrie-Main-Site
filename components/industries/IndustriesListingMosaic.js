@@ -82,7 +82,10 @@ export default function IndustriesListingMosaic({ theme = "dark" }) {
                 isDark ? "text-[#f3f3f3]" : "text-[#162d24]"
               }`}
             >
-              Pick your vertical—<span className="text-[#67bfda]">we speak the search language.</span>
+              Pick a sector—
+              <span className="text-[#67bfda]">
+                Tech Eyrie will convert content and search strategies to luxury clients
+              </span>
             </h2>
           </div>
           <p
@@ -90,7 +93,7 @@ export default function IndustriesListingMosaic({ theme = "dark" }) {
               isDark ? "text-[#e0d1b6]/90" : "text-[#3f3a34]"
             }`}
           >
-            Twenty sectors in a tight grid—every row fills edge to edge so nothing feels half-finished.
+            Twenty sectors—one flow designed edge-to-edge that conveys luxury and completeness.
           </p>
         </div>
 

@@ -10,19 +10,19 @@ gsap.registerPlugin(ScrollTrigger);
 const faqs = [
   {
     q: "Do you create unique copy per industry or reuse blocks?",
-    a: "Each of the twenty sector routes has its own H1, keyword-led modules, and CTA paths. Shared components keep the experience fast; the wording is vertical-specific.",
+    a: "Every sector is powered by AI-informed insights with its own H1, keyword-led modules, and CTA path. Shared components speed delivery, but copy remains vertical-specific, ensuring the message is SEO-optimized and aligned with buyer intent.",
   },
   {
     q: "Can these pages plug into our broader services funnel?",
-    a: "Yes. Industry pages can deep-link to relevant /services1 capabilities—so searchers land on sector context, then convert into productized offers.",
+    a: "Absolutely. Each industry is crafted to deep-link seamlessly to relevant services. Clients land on sector-specific pages, then are guided to productized offers, creating a comfortable, AI-optimized conversation path.",
   },
   {
     q: "How do you handle regulated industries like legal, finance, or healthcare?",
-    a: "We design information architecture for disclaimers, peer proof, and compliant forms while keeping UX friction low. Technical SEO stays conservative and accurate.",
+    a: "We craft information that balances compliance and user experience, with connected disclaimers, forms, and peer proof. Our SEO is carefully crafted to be accurate, conservative, and effective for search visibility, ensuring sector pages are safe and professional.",
   },
   {
     q: "Will you help maintain rankings after launch?",
-    a: "We can ship with measurement (Search Console, events) and an editorial calendar for sector updates—so freshness signals match your go-to-market.",
+    a: "Yes, we launch with measurement tools, event tracking, and Google Search Console, ensuring the content stays fresh, aligns with buyer intent, and supports your market strategy and SEO performance.",
   },
 ];
 

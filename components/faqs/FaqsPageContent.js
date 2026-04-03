@@ -80,15 +80,21 @@ export default function FaqsPageContent() {
       },
     });
 
+    const charSpan = (c) =>
+      `<span class="char" style="display:inline-block">${c === " " ? "&nbsp;" : c}</span>`;
+
     lines.forEach((line, lineIndex) => {
       if (!line.querySelector(".char")) {
         const text = line.textContent;
-        line.innerHTML = text
-          .split("")
-          .map(
-            (c) =>
-              `<span class="char" style="display:inline-block">${c === " " ? "&nbsp;" : c}</span>`
-          )
+        const segments = text.split(/(\s+)/);
+        line.innerHTML = segments
+          .map((segment) => {
+            if (/^\s+$/.test(segment)) {
+              return segment.split("").map(charSpan).join("");
+            }
+            const chars = segment.split("").map(charSpan).join("");
+            return `<span class="faq-title-word" style="white-space:nowrap;display:inline-block">${chars}</span>`;
+          })
           .join("");
       }
       const lineColor = line.classList.contains("font-playfair") ? "#e8e4dc" : "#f3f3f3";
@@ -320,11 +326,11 @@ export default function FaqsPageContent() {
             <div className="flex items-center gap-3 sm:gap-4">
               <span className="inline-flex h-3 w-3 shrink-0 rotate-45 border border-[#74F5A1]/80 bg-[#74F5A1]/20 sm:h-3.5 sm:w-3.5" />
               <span className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-semibold uppercase tracking-[0.16em] text-[#f3f3f3]">
-                Concierge knowledge
+                Insight Concierge
               </span>
             </div>
             <span className="hidden sm:inline font-playfair text-[12px] italic text-[#a7b431]/75">
-              Est. clarity
+              Absolute clarity
             </span>
           </div>
 
@@ -333,17 +339,17 @@ export default function FaqsPageContent() {
             className="faq-page-heading max-w-5xl font-italiana font-light leading-[1.05] tracking-[0.012em] text-[#f3f3f3]"
           >
             <span className="faq-page-title-line block text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] xl:text-[82px] 2xl:text-[92px]">
-              Answers shaped with
+              Precision Delivered.
             </span>
             <span className="faq-page-title-line block font-playfair font-semibold italic text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] xl:text-[82px] 2xl:text-[92px] text-[#e8e4dc]">
-              poise & precision
+              Answers designed to perform.
             </span>
           </h1>
 
           <p className="mt-10 max-w-xl border-l border-[#a7b431]/35 pl-6 font-merriweather text-[13px] sm:text-[14px] md:text-[15px] leading-[1.9] text-[#c8c2ad]">
-            A quiet editorial space—where process, expectations, and next steps read as
-            clearly as the work we deliver. No noise, only the signal you need to move
-            forward with confidence.
+            At Tech Eyrie, the Insight Concierge space is where strategy meets elegance. Its editorial environment is
+            powered by AI insights (low volume) and sector-specific intelligence, so processes, expectations, and next
+            steps are communicated with absolute clarity.
           </p>
         </div>
       </section>
@@ -467,14 +473,33 @@ export default function FaqsPageContent() {
             />
 
             <p className="font-merriweather text-[10px] uppercase tracking-[0.28em] text-[#74F5A1]/90">
-              A conversation, not a pitch
+              Connect first, convert later
             </p>
             <p className="mx-auto mt-4 max-w-lg font-italiana text-[26px] leading-tight text-[#e0d1b6] sm:text-[32px] md:text-[38px]">
-              Still thinking it through?
+              Still thinking of your next move?
             </p>
             <p className="mx-auto mt-4 max-w-md font-playfair text-[15px] italic leading-relaxed text-[#b5ae9c] sm:text-[16px]">
-              One thoughtful call often replaces a week of wondering—we&apos;d be glad to
-              meet you there.
+              One thoughtful, focused call can replace a week of uncertainty. At Tech Eyrie, we meet you where you
+              are—strategic, clear, and actionable.
+            </p>
+            <div className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+              {[
+                "AI-powered workflows (low volume)",
+                "Analytics tools (medium volume)",
+                "AI insights (low volume)",
+              ].map((label) => (
+                <span
+                  key={label}
+                  className="rounded-full border border-[#a7b431]/30 bg-[rgba(12,22,18,0.55)] px-3 py-1.5 font-merriweather text-[10px] sm:text-[11px] tracking-wide text-[#d0d0d0]"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+            <p className="mx-auto mt-6 max-w-2xl font-merriweather text-[12px] sm:text-[13px] leading-relaxed text-[#a8a59a]">
+              Combining medium-volume keywords for broader visibility with low-volume, high-intent keywords for niche
+              authority provides a balanced SEO strategy, aligning perfectly with Tech Eyrie&apos;s AI-driven,
+              high-conversion, and premium positioning.
             </p>
             <Link
               href="/contact"

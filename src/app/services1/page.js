@@ -28,9 +28,10 @@ export default function Services1Page() {
         theme={theme}
         dark7
         kicker="Services"
-        titleLine1="Services that"
-        titleLine2="ship in production"
-        description="End-to-end capabilities from AI and automation to full-stack delivery — built for production, not demos."
+        titleLine1="Unlock potential
+"
+        titleLine2="with our Experts"
+        description="At Tech Eyrie, we don’t just enter the industry, we elevate them by combining luxury UX design,AI automation, and intelligent systems that deliver a High-impact solution that targets your brand value."
       />
       <Services2Industries theme={theme} dark7 />
       <Services2Approach theme={theme} dark7 />

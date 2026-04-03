@@ -1,5 +1,6 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 export default function ChallengesSolutions({ theme = "light" }) {
   const isDark = theme === "dark";
 
@@ -68,12 +69,12 @@ export default function ChallengesSolutions({ theme = "light" }) {
   };
 
   return (
-    <section className={`w-full ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+    <section className={caseStudySectionShell(isDark)} style={caseStudySectionSurface(isDark)}>
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
           className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-6 sm:mb-8 ${
-            isDark ? "text-gray-500" : "text-gray-600"
+            isDark ? "text-[#a8a498]" : "text-gray-600"
           }`}
         >
           {content.label}
@@ -82,7 +83,7 @@ export default function ChallengesSolutions({ theme = "light" }) {
         {/* Title */}
         <h2
           className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] mb-16 sm:mb-20 md:mb-24 leading-tight tracking-[-0.03em] ${
-            isDark ? "text-white" : "text-black"
+            isDark ? "text-[#f3f3f3]" : "text-black"
           }`}
         >
           {content.title}
@@ -99,27 +100,27 @@ export default function ChallengesSolutions({ theme = "light" }) {
               <div
                 className={`p-8 sm:p-10 md:p-12 lg:p-14 rounded-2xl border min-h-[400px] sm:min-h-[450px] md:min-h-[500px] flex flex-col ${
                   isDark
-                    ? "bg-[#1a1a1a] border-gray-800"
+                    ? "border-[#e0d1b6]/15 bg-[#101e27]/70"
                     : "bg-white border-gray-200"
                 }`}
               >
                 <h3
                   className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] mb-6 sm:mb-8 tracking-[-0.03em] ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   Challenge
                 </h3>
                 <h4
                   className={`font-italiana font-light text-[24px] md:text-[28px] mb-auto pb-8 sm:pb-10 tracking-[-0.03em] ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   {item.challenge}
                 </h4>
                 <p
                   className={`font-merriweather text-[14px] leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-gray-700"
+                    isDark ? "text-[#c8c2ad]" : "text-gray-700"
                   }`}
                 >
                   {item.challengeDescription}
@@ -129,19 +130,19 @@ export default function ChallengesSolutions({ theme = "light" }) {
               {/* Solution Card */}
               <div
                 className={`p-8 sm:p-10 md:p-12 lg:p-14 rounded-2xl min-h-[400px] sm:min-h-[450px] md:min-h-[500px] flex flex-col ${
-                  isDark ? "bg-[#2a2a2a]" : "bg-gray-50"
+                  isDark ? "bg-[#101e27]/85 border border-[#e0d1b6]/10" : "bg-gray-50"
                 }`}
               >
                 <h3
                   className={`font-italiana font-light text-[24px] md:text-[28px] mb-auto pb-8 sm:pb-10 tracking-[-0.03em] ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   Solution
                 </h3>
                 <p
                   className={`font-merriweather text-[14px] leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-gray-700"
+                    isDark ? "text-[#c8c2ad]" : "text-gray-700"
                   }`}
                 >
                   {item.solution}

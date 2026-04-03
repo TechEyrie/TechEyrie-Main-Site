@@ -1,5 +1,6 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
@@ -95,12 +96,12 @@ export default function KeyProjectSection({ theme = "light" }) {
   }, []);
 
   return (
-    <section className={`w-full ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+    <section className={caseStudySectionShell(isDark)} style={caseStudySectionSurface(isDark)}>
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
           className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-6 sm:mb-8 ${
-            isDark ? "text-gray-500" : "text-gray-600"
+            isDark ? "text-[#a8a498]" : "text-gray-600"
           }`}
         >
           {content.label}
@@ -109,7 +110,7 @@ export default function KeyProjectSection({ theme = "light" }) {
         {/* Title */}
         <h2
           className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] mb-16 sm:mb-20 md:mb-24 leading-tight tracking-[-0.03em] ${
-            isDark ? "text-white" : "text-black"
+            isDark ? "text-[#f3f3f3]" : "text-black"
           }`}
         >
           {content.title}
@@ -147,7 +148,7 @@ export default function KeyProjectSection({ theme = "light" }) {
                 {/* Feature Title */}
                 <h3
                   className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] lg:text-[38px] mb-6 sm:mb-8 tracking-[-0.03em] ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   {feature.title}
@@ -156,7 +157,7 @@ export default function KeyProjectSection({ theme = "light" }) {
                 {/* Description */}
                 <p
                   className={`font-merriweather text-[14px] leading-relaxed mb-8 sm:mb-10 ${
-                    isDark ? "text-gray-300" : "text-gray-700"
+                    isDark ? "text-[#c8c2ad]" : "text-gray-700"
                   }`}
                 >
                   {feature.description}
@@ -165,7 +166,7 @@ export default function KeyProjectSection({ theme = "light" }) {
                 {/* Subheading */}
                 <h4
                   className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-4 sm:mb-6 ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   {feature.subheading}
@@ -177,7 +178,7 @@ export default function KeyProjectSection({ theme = "light" }) {
                     <li
                       key={pointIndex}
                       className={`font-merriweather text-[14px] leading-relaxed flex items-start ${
-                        isDark ? "text-gray-300" : "text-gray-700"
+                        isDark ? "text-[#c8c2ad]" : "text-gray-700"
                       }`}
                     >
                       <span className="mr-3 mt-1.5">–</span>

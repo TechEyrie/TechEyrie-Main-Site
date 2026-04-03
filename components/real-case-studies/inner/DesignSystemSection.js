@@ -1,5 +1,6 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 import Image from "next/image";
 
 export default function DesignSystemSection({ theme = "light" }) {
@@ -37,7 +38,7 @@ export default function DesignSystemSection({ theme = "light" }) {
   };
 
   return (
-    <section className={`w-full ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+    <section className={caseStudySectionShell(isDark)} style={caseStudySectionSurface(isDark)}>
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 xl:gap-24">
           {/* Left Side - Label and Title */}
@@ -45,7 +46,7 @@ export default function DesignSystemSection({ theme = "light" }) {
             {/* Label */}
             <p
               className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-8 sm:mb-10 md:mb-12 ${
-                isDark ? "text-gray-500" : "text-gray-600"
+                isDark ? "text-[#a8a498]" : "text-gray-600"
               }`}
             >
               {research.label}
@@ -54,7 +55,7 @@ export default function DesignSystemSection({ theme = "light" }) {
             {/* Title */}
             <h2
               className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] ${
-                isDark ? "text-white" : "text-black"
+                isDark ? "text-[#f3f3f3]" : "text-black"
               }`}
             >
               {research.title}
@@ -75,7 +76,7 @@ export default function DesignSystemSection({ theme = "light" }) {
             {/* Description */}
             <p
               className={`font-playfair text-[17px] md:text-[20px] font-normal leading-relaxed ${
-                isDark ? "text-white" : "text-black"
+                isDark ? "text-[#f3f3f3]" : "text-black"
               }`}
             >
               {research.description}

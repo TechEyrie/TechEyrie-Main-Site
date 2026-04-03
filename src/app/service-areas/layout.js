@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Service Areas | Premium Web Design Coverage",
   description:
-    "Explore our service areas across Qatar, Sri Lanka, UAE, and Oxfordshire UK with city-focused web design and SEO delivery.",
+    "Tech Eyrie AI Automation (medium volume) delivers accurate, market-specific strategies across Qatar, Sri Lanka, the UAE, and Oxfordshire UK—intelligent systems and refined experiences.",
 };
 
 export default function ServiceAreasLayout({ children }) {

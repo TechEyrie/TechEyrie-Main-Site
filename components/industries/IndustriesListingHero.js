@@ -136,11 +136,12 @@ export default function IndustriesListingHero({ theme = "dark" }) {
             Industries
           </p>
           <h1 className="ind-hero-title font-italiana font-light tracking-[-0.04em] leading-[0.95] text-[42px] sm:text-[56px] md:text-[72px] lg:text-[88px] xl:text-[106px]">
-            <span className="block">Where strategy meets</span>
-            <span className="block mt-1 text-[#74F5A1]">sector craft</span>
+            <span className="block">Tailored Strategy</span>
+            <span className="block mt-1 text-[#74F5A1]">for every domain</span>
           </h1>
           <p className="ind-hero-lead font-playfair text-[19px] md:text-[27px] leading-relaxed mt-7 md:mt-8 max-w-2xl">
-            Twenty verticals, one delivery standard: fast sites, credible story, and SEO that matches how buyers actually search.
+            At Tech Eyrie we bind market strategy with deep sector expertise. Every page, every interaction, every keyword
+            is designed to align with your audience&apos;s expectations and brand&apos;s standard.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link href="/contact" className="ind-mint-btn inline-flex items-center rounded-full px-6 py-3 bg-[#74F5A1] font-merriweather text-[13px] md:text-[14px] font-bold hover:translate-x-1 transition-transform shadow-[0_12px_34px_rgba(116,245,161,0.35)]">

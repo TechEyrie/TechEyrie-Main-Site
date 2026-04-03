@@ -1,5 +1,6 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 import { useState } from "react";
 
 export default function ProjectAwards({ theme = "light" }) {
@@ -17,12 +18,12 @@ export default function ProjectAwards({ theme = "light" }) {
   };
 
   return (
-    <section className={`w-full ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+    <section className={caseStudySectionShell(isDark)} style={caseStudySectionSurface(isDark)}>
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Label */}
         <p
           className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-12 sm:mb-16 md:mb-20 ${
-            isDark ? "text-gray-500" : "text-gray-600"
+            isDark ? "text-[#a8a498]" : "text-gray-600"
           }`}
         >
           {award.label}
@@ -38,10 +39,10 @@ export default function ProjectAwards({ theme = "light" }) {
               className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-[1.1] tracking-[-0.03em] cursor-pointer transition-colors duration-300 ${
                 isHovered
                   ? isDark
-                    ? "text-white"
+                    ? "text-[#74F5A1]"
                     : "text-black"
                   : isDark
-                  ? "text-gray-600"
+                  ? "text-[#a8a498]"
                   : "text-gray-400"
               }`}
             >
@@ -54,7 +55,7 @@ export default function ProjectAwards({ theme = "light" }) {
             {isHovered && (
               <div
                 className={`w-[70%] sm:w-[65%] md:w-[60%] aspect-square rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 md:p-10 shadow-2xl animate-fadeIn ${
-                  isDark ? "bg-[#4a3f5f]" : "bg-[#e8d9ff]"
+                  isDark ? "bg-[#1b4732]/90 border border-[#74F5A1]/15" : "bg-[#e8d9ff]"
                 }`}
               >
                 {/* Card Title - Stacked */}
@@ -63,7 +64,7 @@ export default function ProjectAwards({ theme = "light" }) {
                     <h3
                       key={index}
                       className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] leading-[0.95] tracking-[-0.03em] ${
-                        isDark ? "text-white" : "text-black"
+                        isDark ? "text-[#f3f3f3]" : "text-black"
                       }`}
                     >
                       {line}
@@ -74,7 +75,7 @@ export default function ProjectAwards({ theme = "light" }) {
                 {/* Year */}
                 <p
                   className={`font-merriweather text-[14px] font-semibold mb-4 sm:mb-6 ${
-                    isDark ? "text-gray-300" : "text-gray-700"
+                    isDark ? "text-[#c8c2ad]" : "text-gray-700"
                   }`}
                 >
                   {award.year}
@@ -83,7 +84,7 @@ export default function ProjectAwards({ theme = "light" }) {
                 {/* Description */}
                 <p
                   className={`font-merriweather text-[14px] leading-relaxed text-center ${
-                    isDark ? "text-gray-200" : "text-gray-800"
+                    isDark ? "text-[#e8e4dc]" : "text-gray-800"
                   }`}
                 >
                   {award.description}

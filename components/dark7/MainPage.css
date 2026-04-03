@@ -228,6 +228,57 @@ html {
   font-weight: 400;
 }
 
+/* Newsletter */
+.dark2-page.newsletter-route,
+.dark2-page.newsletter-route main,
+.dark2-page.newsletter-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.newsletter-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Newsletter: intended palette (beats .dark2-page universal beige) */
+.dark2-page.newsletter-route main .nl-cream {
+  color: #f3f3f3 !important;
+}
+.dark2-page.newsletter-route main .nl-e8 {
+  color: #e8e4dc !important;
+}
+.dark2-page.newsletter-route main .nl-c8 {
+  color: #c8c2ad !important;
+}
+.dark2-page.newsletter-route main .nl-a8 {
+  color: #a8a498 !important;
+}
+.dark2-page.newsletter-route main .nl-e0 {
+  color: #e0d1b6 !important;
+}
+.dark2-page.newsletter-route main .nl-mint {
+  color: #74f5a1 !important;
+}
+.dark2-page.newsletter-route main section.talk-expert-dark7 h2.font-italiana {
+  color: #f3f3f3 !important;
+}
+.dark2-page.newsletter-route main section.talk-expert-dark7 h2.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.newsletter-route main .nl-danger {
+  color: #e57373 !important;
+}
+
+/* Case studies listing + detail */
+.dark2-page.case-studies-route,
+.dark2-page.case-studies-route main,
+.dark2-page.case-studies-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark2-page.case-studies-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
 /* Privacy policy: same stacks as FAQs / dark7 */
 .dark2-page.privacy-route,
 .dark2-page.privacy-route main,

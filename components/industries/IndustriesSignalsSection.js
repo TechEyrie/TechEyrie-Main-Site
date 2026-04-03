@@ -9,9 +9,24 @@ import { services1ListingDarkSurface } from "../services1/services1ListingSurfac
 gsap.registerPlugin(ScrollTrigger);
 
 const signals = [
-  { stat: "20", label: "Vertical playbooks", detail: "Each industry page maps to how buyers evaluate vendors in that space." },
-  { stat: "3×", label: "Keyword depth", detail: "Primary terms inform H1, modules, and internal linking—not a single meta tag." },
-  { stat: "1", label: "Design system", detail: "Dark7 typography and mint/teal accents carry from overview to detail routes." },
+  {
+    stat: "20",
+    label: "Vertical play books",
+    detail:
+      "Each industry page is a strategic one, it mirrors how buyers evaluate vendors in that sector.",
+  },
+  {
+    stat: "3",
+    label: "Keyword depth",
+    detail:
+      "Primary terms guide H1, modules, and internal links, ensuring search intent drives every element.",
+  },
+  {
+    stat: "1",
+    label: "Design system",
+    detail:
+      "Dark typography paired with mint accents flows seamlessly from overview to detailed pages, reinforcing brand clarity.",
+  },
 ];
 
 export default function IndustriesSignalsSection({ theme = "dark" }) {
@@ -51,24 +66,24 @@ export default function IndustriesSignalsSection({ theme = "dark" }) {
       <div className="max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,560px)_minmax(0,760px)] lg:justify-between gap-10 lg:gap-x-16 xl:gap-x-24 items-start">
         <div className="w-full max-w-none lg:max-w-[560px]">
           <p className="font-merriweather text-[12px] uppercase tracking-[0.2em] text-[#74F5A1] mb-4">
-            Why sector pages matter
+            Why sector page matters
           </p>
           <h2 className="font-italiana text-[36px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-[0.98] mb-6">
             {isDark ? <span className="text-[#f3f3f3]">Signals buyers look for</span> : <span className="text-[#111]">Signals buyers look for</span>}
           </h2>
           <p className={`font-merriweather text-[15px] md:text-[17px] leading-[1.85] ${isDark ? "text-[#e0d1b6]/90" : "text-[#3f3a34]"}`}>
-            Generic &ldquo;services&rdquo; pages dilute intent. When someone searches for{" "}
-            <span className="text-[#74F5A1] font-semibold">insurance broker websites</span> or{" "}
-            <span className="text-[#67bfda] font-semibold">clinic SEO</span>, they want proof you understand their workflows, compliance, and sales motion.
+            A general service page won&rsquo;t attract confidence—a buyer searching for{" "}
+            <span className="text-[#74F5A1] font-semibold">insurance broker website</span> or{" "}
+            <span className="text-[#67bfda] font-semibold">clinic SEO</span> might need you to understand their workflow, compliance, and sales processes before they even scroll or continue.
           </p>
           <ul className={`mt-6 space-y-3 font-merriweather text-[14px] md:text-[15px] leading-snug ${isDark ? "text-[#e0d1b6]/88" : "text-[#3f3a34]"}`}>
             <li className="flex gap-3">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#74F5A1]" />
-              Proof and sector language before the fold—not generic agency filler.
+              Proof and sector language above the fold—no general filter, just reliability.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#67bfda]" />
-              Pages structured for how buyers actually compare vendors in that vertical.
+              Structured for comparison—pages reflect how buyers judge their vendors in their industry.
             </li>
           </ul>
           <div className="mt-6 flex flex-wrap gap-2.5">

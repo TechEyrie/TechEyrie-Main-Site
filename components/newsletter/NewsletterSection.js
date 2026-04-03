@@ -1,44 +1,33 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
+import { dark7MainSurfaceStyle } from "../dark7/dark7PageSurface";
 
-export default function NewsletterPage({ theme = 'light' }) {
+export default function NewsletterSection({ theme = "light" }) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     agreedToTerms: false,
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validation
     const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!validateEmail(formData.email))
+      newErrors.email = "Please enter a valid email";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -46,71 +35,101 @@ export default function NewsletterPage({ theme = 'light' }) {
     }
 
     setIsSubmitting(true);
-
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Handle successful submission
       setIsSuccess(true);
-      setFormData({ name: '', email: '', agreedToTerms: false });
-      
-      // Reset success message after 5 seconds
+      setFormData({ name: "", email: "", agreedToTerms: false });
       setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error) {
-      setErrors({ submit: 'Something went wrong. Please try again.' });
+    } catch {
+      setErrors({ submit: "Something went wrong. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const isDark = theme === 'dark';
+  const isDark = theme === "dark";
+
+  const mailingBenefits = [
+    "Learn product development AI for real-world applications and scalable solutions",
+    "Explore B2B systems, enterprise platforms, SaaS architecture, and AI-driven solutions",
+    "Master SEO-driven content and strategies that elevate your brand visibility.",
+    "Discover AI agents and automation systems that simplify complex workflows.",
+    "Responsive web design and development for seamless cross-device experiences.",
+  ];
 
   return (
-    <div className={`min-h-screen flex items-center justify-center pt-28 pb-8 px-4 md:px-6 lg:px-8 ${isDark ? 'bg-[#0a0a0a]' : 'bg-[#EFEFEF]'}`}>
+    <div
+      className="flex min-h-screen items-center justify-center px-4 pb-8 pt-28 md:px-6 lg:px-8"
+      style={isDark ? dark7MainSurfaceStyle : { backgroundColor: "#f5e8d1" }}
+    >
       <div className="w-full max-w-[1800px]">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden ${isDark ? 'shadow-[0_20px_60px_rgba(255,255,255,0.05)]' : 'shadow-[0_20px_60px_rgba(0,0,0,0.15)]'}`}>
+        <div
+          className={`grid grid-cols-1 gap-0 overflow-hidden rounded-3xl lg:grid-cols-2 ${
+            isDark
+              ? "shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+              : "shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
+          }`}
+        >
           {/* Left Column */}
-          <div className={`${isDark ? 'bg-[#1a1a1a]' : 'bg-[#EFEFEF]'} p-8 md:p-12 lg:p-16 xl:p-20 flex flex-col justify-center`}>
-            {/* Badge */}
+          <div
+            className={`flex flex-col justify-center p-8 md:p-12 lg:p-16 xl:p-20 ${
+              isDark ? "bg-[#132920]" : "bg-[#f5e8d1]"
+            }`}
+          >
             <div className="mb-10 flex items-center gap-3">
-              <span className="inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-              <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[16px] font-semibold tracking-[0.16em] uppercase ${isDark ? 'text-white' : 'text-[#212121]'}`}>
+              <span className="inline-flex h-5 w-5 flex-shrink-0 rounded-sm bg-[#74F5A1]" />
+              <span
+                className={`font-merriweather text-[14px] font-semibold uppercase tracking-[0.16em] md:text-[16px] ${
+                  isDark ? "nl-mint" : "nl-forest"
+                }`}
+              >
                 Newsletter
               </span>
             </div>
 
-            {/* Title */}
-            <h1 className="mb-12 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.05] tracking-[-0.02em]">
-              <span className={`block text-[54px] sm:text-[63px] md:text-[72px] lg:text-[81px] xl:text-[90px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                Sign up for
+            <h1 className="mb-10 font-italiana font-normal leading-[1.06] tracking-[-0.02em] sm:mb-12">
+              <span
+                className={`block text-[2.125rem] font-normal sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4.125rem] ${
+                  isDark ? "nl-cream" : "nl-forest"
+                }`}
+              >
+                Why sign up to
               </span>
-              <span className={`mt-1 block text-[54px] sm:text-[63px] md:text-[72px] lg:text-[81px] xl:text-[90px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                Tycho's <span className="italic font-light">personal</span>
-              </span>
-              <span className={`mt-1 block text-[54px] sm:text-[63px] md:text-[72px] lg:text-[81px] xl:text-[90px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                weekly mailing
+              <span
+                className={`mt-1 block text-[2.125rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] xl:text-[4.125rem] ${
+                  isDark ? "nl-cream" : "nl-forest"
+                }`}
+              >
+                <span
+                  className={`font-playfair font-light italic ${
+                    isDark ? "nl-e8" : "nl-forest"
+                  }`}
+                >
+                  Tech Eyrie
+                </span>{" "}
+                <span className="font-normal">weekly mailing?</span>
               </span>
             </h1>
 
-            {/* What to Expect */}
             <div>
-              <h2 className={`mb-8 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[22px] md:text-[25px] lg:text-[27px] font-bold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                What you can expect in B2B Marketing Made Stupid Simple
+              <h2
+                className={`mb-8 max-w-2xl font-italiana text-[1.25rem] font-normal leading-snug md:text-[1.4rem] lg:text-[1.55rem] ${
+                  isDark ? "nl-cream" : "nl-forest"
+                }`}
+              >
+                What can you expect from Tech Eyrie to grow your business, made
+                effortless
               </h2>
 
-              {/* Benefits List */}
               <ul className="space-y-5">
-                {[
-                  'One value-packed e-mail every week, max 5 minutes to read',
-                  'Real marketing lessons from B2B companies we work with daily',
-                  'How to create content that beats your competitors',
-                  'Ways to grow and engage your LinkedIn audience',
-                  'Paid media tactics that improve ROI',
-                ].map((item, index) => (
+                {mailingBenefits.map((item, index) => (
                   <li key={index} className="flex items-start gap-4">
-                    <span className="flex-shrink-0 mt-1.5 inline-flex h-5 w-5 rounded-sm bg-[#74F5A1]" />
-                    <span className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[19px] md:text-[20px] lg:text-[21px] font-normal leading-relaxed ${isDark ? 'text-[#e0e0e0]' : 'text-[#212121]'}`}>
+                    <span className="mt-1.5 inline-flex h-5 w-5 flex-shrink-0 rounded-sm bg-[#74F5A1]" />
+                    <span
+                      className={`font-merriweather text-[19px] font-normal leading-relaxed md:text-[20px] lg:text-[21px] ${
+                        isDark ? "nl-e0" : "nl-forest"
+                      }`}
+                    >
                       {item}
                     </span>
                   </li>
@@ -119,55 +138,112 @@ export default function NewsletterPage({ theme = 'light' }) {
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className={`${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} p-8 md:p-12 lg:p-16 xl:p-20 flex flex-col justify-center`}>
-            {/* Header */}
+          {/* Right Column — ivory gradient + soft light well (dark7 luxury) */}
+          <div
+            className={`relative flex flex-col justify-center overflow-hidden p-8 md:p-12 lg:p-16 xl:p-20 ${
+              isDark
+                ? "border-t border-[rgba(224,209,182,0.2)] shadow-[inset_0_1px_0_rgba(255,255,255,0.82)] lg:border-l lg:border-t-0 lg:border-[rgba(224,209,182,0.22)]"
+                : "bg-[#101e27]"
+            }`}
+            style={
+              isDark
+                ? {
+                    backgroundColor: "#f3f1ec",
+                    backgroundImage: `
+                      radial-gradient(ellipse 90% 60% at 10% -5%, rgba(255,255,255,0.85), transparent 50%),
+                      radial-gradient(ellipse 75% 50% at 105% 100%, rgba(18,104,91,0.09), transparent 52%),
+                      linear-gradient(168deg, #fcfcfa 0%, #efeae3 48%, #e3ddd3 100%)
+                    `,
+                  }
+                : undefined
+            }
+          >
+            {isDark && (
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.35]"
+                style={{
+                  backgroundImage: `repeating-linear-gradient(
+                    -12deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(22, 45, 36, 0.02) 2px,
+                    rgba(22, 45, 36, 0.02) 3px
+                  )`,
+                }}
+                aria-hidden
+              />
+            )}
+            <div className="relative z-[1]">
             <div className="mb-12">
-              <h2 className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] leading-[1.15] tracking-[-0.01em]">
-                <span className={`block text-[32px] sm:text-[36px] md:text-[42px] lg:text-[48px] italic font-light ${isDark ? 'text-[#111111]' : 'text-white'}`}>
-                  Sign up for:
+              <h2 className="font-italiana font-normal leading-[1.15] tracking-[-0.01em]">
+                <span
+                  className={`block text-[32px] italic sm:text-[36px] md:text-[42px] lg:text-[48px] ${
+                    isDark ? "font-playfair nl-forest" : "font-playfair nl-cream"
+                  }`}
+                >
+                  Sign up for
                 </span>
-                <span className={`mt-2 block text-[32px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-bold ${isDark ? 'text-[#111111]' : 'text-white'}`}>
-                  B2B Marketing Made Stupid Simple
+                <span
+                  className={`mt-2 block text-[28px] font-normal leading-[1.18] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[44px] ${
+                    isDark ? "nl-forest" : "nl-cream"
+                  }`}
+                >
+                  refined and premium strategic business insights and values
                 </span>
               </h2>
             </div>
 
-            {/* Author Profile */}
             <div className="mb-12 flex items-center gap-4">
-              <div className={`relative h-14 w-14 rounded-full overflow-hidden ${isDark ? 'bg-[#EFEFEF]' : 'bg-[#2A2A2A]'}`}>
-                <div className={`absolute inset-0 flex items-center justify-center text-xl font-bold ${isDark ? 'text-[#111111]' : 'text-white'}`}>
-                  TL
+              <div
+                className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-1 ${
+                  isDark
+                    ? "bg-white/55 ring-[#162d24]/12 shadow-sm"
+                    : "bg-[#162d24] ring-transparent"
+                }`}
+              >
+                <div
+                  className={`absolute inset-0 flex items-center justify-center font-merriweather text-xl font-bold ${
+                    isDark ? "nl-forest" : "nl-cream"
+                  }`}
+                >
+                  NN
                 </div>
               </div>
               <div>
-                <h3 className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[17px] md:text-[18px] font-bold ${isDark ? 'text-[#111111]' : 'text-white'}`}>
-                  Tycho Luijten
+                <h3
+                  className={`font-merriweather text-[17px] font-bold md:text-[18px] ${
+                    isDark ? "nl-forest" : "nl-cream"
+                  }`}
+                >
+                  Nasick Nadeer
                 </h3>
-                <p className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[15px] font-normal ${isDark ? 'text-[#666666]' : 'text-[#999999]'}`}>
-                  Co-founder at Dapper
+                <p
+                  className={`font-merriweather text-[14px] font-normal md:text-[15px] ${
+                    isDark ? "nl-forest-muted" : "nl-a8"
+                  }`}
+                >
+                  Founder of Tech Eyrie
                 </p>
               </div>
             </div>
 
-            {/* Success Message */}
             {isSuccess && (
               <div className="mb-6 rounded-lg bg-[#74F5A1] p-4 text-center">
-                <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] font-semibold text-[#111111]">
+                <p className="font-merriweather text-[15px] font-semibold text-[#162d24]">
                   Successfully subscribed! Check your email for confirmation.
                 </p>
               </div>
             )}
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
               <div>
                 <label
                   htmlFor="name"
-                  className={`mb-2 block font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[15px] font-semibold ${isDark ? 'text-[#111111]' : 'text-white'}`}
+                  className={`mb-2 block font-merriweather text-[14px] font-semibold md:text-[15px] ${
+                    isDark ? "nl-label-light" : "nl-label-dark"
+                  }`}
                 >
-                  Name <span className="text-[#FF6B6B]">*</span>
+                  Name <span className="text-[#e57373]">*</span>
                 </label>
                 <input
                   type="text"
@@ -176,25 +252,26 @@ export default function NewsletterPage({ theme = 'light' }) {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className={`w-full rounded-lg ${isDark ? 'bg-[#EFEFEF] text-[#111111] placeholder:text-[#666666]' : 'bg-[#2A2A2A] text-white placeholder:text-[#666666]'} px-5 py-4 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] md:text-[16px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#74F5A1] ${
-                    errors.name ? 'ring-2 ring-[#FF6B6B]' : ''
-                  }`}
+                  className={`w-full rounded-lg px-5 py-4 font-merriweather text-[15px] transition-all duration-200 focus:outline-none md:text-[16px] ${
+                    isDark ? "nl-input-light" : "nl-input-dark"
+                  } ${errors.name ? "ring-2 ring-[#e57373]" : ""}`}
                   disabled={isSubmitting}
                 />
                 {errors.name && (
-                  <p className="mt-2 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] text-[#FF6B6B]">
+                  <p className="mt-2 font-merriweather text-[13px] text-[#e57373]">
                     {errors.name}
                   </p>
                 )}
               </div>
 
-              {/* Email Field */}
               <div>
                 <label
                   htmlFor="email"
-                  className={`mb-2 block font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] md:text-[15px] font-semibold ${isDark ? 'text-[#111111]' : 'text-white'}`}
+                  className={`mb-2 block font-merriweather text-[14px] font-semibold md:text-[15px] ${
+                    isDark ? "nl-label-light" : "nl-label-dark"
+                  }`}
                 >
-                  Email Address <span className="text-[#FF6B6B]">*</span>
+                  Email Address <span className="text-[#e57373]">*</span>
                 </label>
                 <input
                   type="email"
@@ -203,45 +280,43 @@ export default function NewsletterPage({ theme = 'light' }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="johndoe@gmail.com"
-                  className={`w-full rounded-lg ${isDark ? 'bg-[#EFEFEF] text-[#111111] placeholder:text-[#666666]' : 'bg-[#2A2A2A] text-white placeholder:text-[#666666]'} px-5 py-4 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[15px] md:text-[16px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#74F5A1] ${
-                    errors.email ? 'ring-2 ring-[#FF6B6B]' : ''
-                  }`}
+                  className={`w-full rounded-lg px-5 py-4 font-merriweather text-[15px] transition-all duration-200 focus:outline-none md:text-[16px] ${
+                    isDark ? "nl-input-light" : "nl-input-dark"
+                  } ${errors.email ? "ring-2 ring-[#e57373]" : ""}`}
                   disabled={isSubmitting}
                 />
                 {errors.email && (
-                  <p className="mt-2 font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] text-[#FF6B6B]">
+                  <p className="mt-2 font-merriweather text-[13px] text-[#e57373]">
                     {errors.email}
                   </p>
                 )}
               </div>
 
-              {/* Terms and Conditions */}
-              <p className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[13px] md:text-[14px] font-normal leading-relaxed ${isDark ? 'text-[#666666]' : 'text-[#999999]'}`}>
-                By clicking 'Subscribe' you're confirming that you agree with our{' '}
-                <a
-                  href="/terms"
-                  className={`${isDark ? 'text-[#111111]' : 'text-white'} underline transition-colors duration-200 hover:text-[#74F5A1]`}
-                >
+              <p
+                className={`font-merriweather text-[13px] font-normal leading-relaxed md:text-[14px] ${
+                  isDark ? "nl-legal-light" : "nl-legal-dark"
+                }`}
+              >
+                By clicking &apos;Subscribe&apos; you&apos;re confirming that you agree with our{" "}
+                <a href="/terms-and-conditions" className="nl-legal-link underline transition-colors duration-200">
                   Terms and Conditions
                 </a>
                 .
               </p>
 
-              {/* Submit Error */}
               {errors.submit && (
-                <p className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[14px] text-[#FF6B6B]">
+                <p className="font-merriweather text-[14px] text-[#e57373]">
                   {errors.submit}
                 </p>
               )}
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group inline-flex items-center gap-3 rounded-lg bg-[#74F5A1] px-8 py-4 transition-all duration-300 hover:bg-[#5FE08D] hover:gap-4 hover:shadow-[0_8px_30px_rgba(116,245,161,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="nl-submit group inline-flex min-h-[52px] items-center gap-3 rounded-xl px-9 py-3.5 hover:gap-4 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <span className="font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] md:text-[17px] font-bold text-[#111111]">
-                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                <span className="font-merriweather text-[15px] font-semibold md:text-[16px]">
+                  {isSubmitting ? "Subscribing…" : "Subscribe"}
                 </span>
                 {!isSubmitting && (
                   <svg
@@ -253,13 +328,15 @@ export default function NewsletterPage({ theme = 'light' }) {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-[#111111] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden
                   >
                     <path d="M7 17L17 7M17 7H7M17 7v10" />
                   </svg>
                 )}
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>

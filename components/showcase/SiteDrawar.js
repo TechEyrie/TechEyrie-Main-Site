@@ -334,7 +334,7 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
       {/* Drawer Content */}
       <div
         className={`fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl h-[85vh] sm:h-[90vh] overflow-hidden transition-transform duration-400 ease-in-out ${
-          isDark ? 'bg-[#1a1a1a]' : 'bg-[#E8E8E8]'
+          isDark ? 'bg-[#162d24]' : 'bg-[#E8E8E8]'
         } ${isAnimating ? "translate-y-0" : "translate-y-full"}`}
       >
         <DrawerCloseButton onClose={handleClose} theme={theme} />
@@ -373,7 +373,7 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
           <DrawerCollections ref={collectionsRef} collections={collections} theme={theme} />
 
           {/* Bottom Padding */}
-          <div className={`h-12 ${isDark ? 'bg-[#1a1a1a]' : 'bg-[#E8E8E8]'}`} />
+          <div className={`h-12 ${isDark ? 'bg-[#162d24]' : 'bg-[#E8E8E8]'}`} />
         </div>
 
         <DrawerNavigation

@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SiteDrawer from "../showcase/SiteDrawar";
+import { fetchWordPressCaseStudyBySlug } from "../../utils/wordpress";
+import { caseStudySectionShell, caseStudySectionSurface } from "./caseStudySectionProps";
 
 function getCaseStudySlugForFetch(project) {
   if (project?.slug) return project.slug;
@@ -22,7 +24,6 @@ function getCaseStudySlugForFetch(project) {
   const tail = link.replace(/^.*\/case-studies\//, "").replace(/^\//, "");
   return tail.split("/")[0] || null;
 }
-import { fetchWordPressCaseStudyBySlug } from "../../utils/wordpress";
 
 const CATEGORIES = [
   { id: "all", label: "ALL PROJECTS" },
@@ -545,18 +546,17 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
   return (
     <section
-      className={`w-full min-h-screen pt-16 sm:pt-20 md:pt-24 lg:pt-32 ${
-        isDark ? "bg-[#1a1a1a]" : "bg-white"
-      }`}
+      className={`${caseStudySectionShell(isDark)} min-h-screen pt-16 sm:pt-20 md:pt-24 lg:pt-32`}
+      style={caseStudySectionSurface(isDark)}
     >
       {/* Header Section */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20">
-        <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 ${isDark ? "text-white/90" : "text-black/80"}`}>
+        <p className={`font-merriweather text-[13px] md:text-[15px] font-semibold tracking-[0.16em] uppercase mb-6 sm:mb-8 ${isDark ? "text-[#74F5A1]" : "text-black/80"}`}>
           Case studies
         </p>
         <h1
           className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-8 sm:mb-12 md:mb-16 ${
-            isDark ? "text-white" : "text-black"
+            isDark ? "text-[#f3f3f3]" : "text-black"
           }`}
         >
           <span className="block">Explore our</span>
@@ -578,14 +578,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                     tracking-[0.16em] uppercase rounded-lg
                     transition-all duration-300 ease-out
                     active:scale-95
-                    focus:outline-none focus:ring-2 focus:ring-offset-2
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent
                     ${
                       isActive
                         ? isDark
-                          ? "bg-white text-black focus:ring-white"
+                          ? "cs-filter-active focus:ring-[#e8e4dc]"
                           : "bg-black text-white focus:ring-black"
                         : isDark
-                        ? "bg-transparent text-white hover:bg-gray-700 focus:ring-gray-600"
+                        ? "cs-filter-idle focus:ring-[#74F5A1]/40"
                         : "bg-transparent text-black hover:bg-gray-200 focus:ring-gray-400"
                     }
                   `}
@@ -709,8 +709,8 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 <div
                   className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer"
                   style={{ 
-                    background: isDark ? '#1a1a1a' : 'transparent',
-                    backgroundColor: isDark ? '#1a1a1a' : 'transparent',
+                    background: isDark ? 'transparent' : 'transparent',
+                    backgroundColor: 'transparent',
                     boxShadow: 'none'
                   }}
                   onClick={() => handleImageClick(project)}
@@ -736,12 +736,12 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   ) : (
                     <div
                       className={`w-full h-full flex items-center justify-center ${
-                        isDark ? "bg-[#2a2a2a]" : "bg-gray-200"
+                        isDark ? "bg-[#101e27]/80 border border-[#e0d1b6]/10" : "bg-gray-200"
                       }`}
                     >
                       <svg
                         className={`w-16 h-16 ${
-                          isDark ? "text-gray-600" : "text-gray-400"
+                          isDark ? "text-[#5c6b62]" : "text-gray-400"
                         }`}
                         fill="none"
                         stroke="currentColor"
@@ -760,14 +760,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
               </div>
 
               {/* Right Side - Project Details */}
-              <div className={`order-2 lg:order-2 ${isDark ? "text-white" : "text-black"}`}>
+              <div className={`order-2 lg:order-2 ${isDark ? "text-[#f3f3f3]" : "text-black"}`}>
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
                   {project.tags?.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
                       className={`font-merriweather text-[13px] md:text-[14px] font-semibold uppercase tracking-[0.16em] ${
-                        isDark ? "text-gray-400" : "text-gray-600"
+                        isDark ? "text-[#a8a498]" : "text-gray-600"
                       }`}
                     >
                       {tag}
@@ -778,7 +778,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 {/* Title */}
                 <h2
                   className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] mb-8 leading-tight tracking-[-0.03em] ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
                   {project.title}
@@ -791,7 +791,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       key={badgeIndex}
                       className={`px-8 sm:px-10 md:px-12 py-3 rounded-lg font-merriweather text-[14px] flex items-center gap-2.5 ${
                         isDark
-                          ? "bg-[#2a2a2a] text-white"
+                          ? "border border-[#e0d1b6]/15 bg-[#101e27]/90 text-[#f3f3f3]"
                           : "bg-black text-white"
                       }`}
                     >
@@ -806,14 +806,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   <div>
                     <h3
                       className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-3 ${
-                        isDark ? "text-gray-500" : "text-gray-600"
+                        isDark ? "text-[#a8a498]" : "text-gray-600"
                       }`}
                     >
                       TECH STACK
                     </h3>
                     <p
                       className={`font-merriweather text-[14px] ${
-                        isDark ? "text-white" : "text-black"
+                        isDark ? "text-[#e8e4dc]" : "text-black"
                       }`}
                     >
                       {project.techStack}
@@ -822,14 +822,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   <div>
                     <h3
                       className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-3 ${
-                        isDark ? "text-gray-500" : "text-gray-600"
+                        isDark ? "text-[#a8a498]" : "text-gray-600"
                       }`}
                     >
                       TIMELINE
                     </h3>
                     <p
                       className={`font-merriweather text-[14px] ${
-                        isDark ? "text-white" : "text-black"
+                        isDark ? "text-[#e8e4dc]" : "text-black"
                       }`}
                     >
                       {project.timeline}
@@ -841,7 +841,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 <div className="mb-10">
                   <h3
                     className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-5 ${
-                      isDark ? "text-gray-500" : "text-gray-600"
+                      isDark ? "text-[#a8a498]" : "text-gray-600"
                     }`}
                   >
                     RESULTS
@@ -851,7 +851,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       <p
                         key={resultIndex}
                         className={`font-merriweather text-[14px] ${
-                          isDark ? "text-white" : "text-black"
+                          isDark ? "text-[#c8c2ad]" : "text-black"
                         }`}
                       >
                         {result}
@@ -863,7 +863,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 {/* Button */}
                 <button
                   onClick={() => handleImageClick(project)}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-merriweather text-[14px] font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-10 cursor-pointer"
+                  className="cs-cta-primary inline-flex items-center gap-3 px-8 py-4 font-merriweather text-[14px] font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-10 cursor-pointer"
                 >
                   {project.buttonText}
                   <svg
@@ -885,7 +885,9 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 {project.testimonial && (
                   <div
                     className={`rounded-2xl p-6 sm:p-8 ${
-                      isDark ? "bg-[#2a2a2a]" : "bg-gray-50"
+                      isDark
+                        ? "border border-[#e0d1b6]/12 bg-[#101e27]/80"
+                        : "bg-gray-50"
                     }`}
                   >
                     {/* Avatar and Info */}
@@ -902,14 +904,14 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       <div>
                         <h4
                           className={`font-merriweather text-[14px] font-semibold ${
-                            isDark ? "text-white" : "text-black"
+                            isDark ? "text-[#f3f3f3]" : "text-black"
                           }`}
                         >
                           {project.testimonial.name}
                         </h4>
                         <p
                           className={`font-merriweather text-[13px] md:text-[14px] ${
-                            isDark ? "text-gray-400" : "text-gray-600"
+                            isDark ? "text-[#a8a498]" : "text-gray-600"
                           }`}
                         >
                           {project.testimonial.position}
@@ -920,7 +922,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                     {/* Quote */}
                     <p
                       className={`font-merriweather text-[14px] font-normal leading-relaxed ${
-                        isDark ? "text-gray-300" : "text-gray-700"
+                        isDark ? "text-[#c8c2ad]" : "text-gray-700"
                       }`}
                     >
                       {project.testimonial.quote}
@@ -936,7 +938,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
       {/* Empty State */}
       {filteredProjects.length === 0 && (
         <div className="text-center py-20 px-4">
-          <p className={`font-merriweather text-[14px] ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+          <p className={`font-merriweather text-[14px] ${isDark ? "text-[#c8c2ad]" : "text-gray-600"}`}>
             No projects found in this category.
           </p>
         </div>

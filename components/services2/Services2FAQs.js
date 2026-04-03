@@ -10,38 +10,38 @@ gsap.registerPlugin(ScrollTrigger);
 const faqs = [
   {
     id: 1,
-    question: 'What industries does WeAreBrain specialise in?',
-    answer: 'We specialise in FMCG, Transport & Logistics, NGOs and Non-Profit Organisations, Technology & Startups, Healthcare & Life Sciences, Financial Services, Retail & E-commerce, Education & EdTech, Manufacturing & Industrial, Hospitality & Tourism, Public Sector & Government, and Media & Entertainment.',
+    question: 'What industries does Tech Eyrie specialise in?',
+    answer: 'We specialise in AI-driven, automation-first digital solutions that transform operations and elevate experiences across a wide range of industries — from technology and startups to retail, healthcare, finance, manufacturing, NGOs, and beyond.',
   },
   {
     id: 2,
     question: 'How do your solutions adapt to industry-specific needs?',
-    answer: 'We tailor technology and design choices based on sector-specific challenges, regulations, user behaviour, and competitive dynamics. Our approach involves thorough research, stakeholder engagement, and iterative development to ensure solutions meet unique industry requirements.',
+    answer: 'We understand that every business has its own challenges, insights, and pace. Our AI-driven solutions tailor design, workflow automation, and technology to match each client\'s needs and complexity. Our AI-powered automation is never one-size-fits-all.',
   },
   {
     id: 3,
     question: 'Can you share success stories or case studies by industry?',
-    answer: 'Yes, we have extensive case studies across all our sectors. Each project showcases how we\'ve helped businesses transform their digital presence, streamline operations, and achieve measurable results tailored to their specific industry challenges.',
+    answer: 'Absolutely. We have a portfolio of case studies across multiple sectors demonstrating how AI, smart automation, and digital strategies have elevated businesses. Each project highlights results tailored to specific industries with unique needs and challenges.',
   },
   {
     id: 4,
     question: 'Do you have experience in regulated industries (e.g., finance, healthcare)?',
-    answer: 'Absolutely. We have deep experience working with highly regulated industries. Our team understands compliance requirements, data protection regulations (GDPR, HIPAA), and industry standards, ensuring all solutions meet regulatory requirements while delivering exceptional experiences.',
+    answer: 'Yes. At Tech Eyrie, we deliver AI-powered automated solutions to highly regulated sectors, elevating user experiences through intelligent automation, secure workflows, and data-driven insights — all while meeting industry compliance standards.',
   },
   {
     id: 5,
     question: 'How do you drive innovation in traditional sectors?',
-    answer: 'We combine cutting-edge technology with deep industry knowledge to identify opportunities for innovation. Our approach focuses on understanding traditional workflows and pain points, then applying modern solutions that respect industry nuances while driving meaningful transformation.',
+    answer: 'We combine cutting-edge AI, automation, and digital technologies with deep industry expertise to unlock opportunities in traditional sectors. By understanding existing workflows, challenges, and legacy systems, we deliver innovations that are both practical and reliable.',
   },
   {
     id: 6,
     question: 'What kind of AI solutions are suitable for my industry?',
-    answer: 'AI solutions vary by industry—from predictive analytics in healthcare, fraud detection in finance, inventory optimization in retail, to personalized learning in education. We assess your specific needs and recommend AI applications that deliver tangible ROI for your sector.',
+    answer: 'At Tech Eyrie, we provide industry-specific AI solutions by working closely with you to assess your needs and deliver targeted insights. Tech Eyrie isn\'t just technology — it\'s a strategic advantage built around your sector\'s unique demands.',
   },
   {
     id: 7,
     question: 'Do you support digital transformation for NGOs and impact organisations?',
-    answer: 'Yes, we\'re passionate about helping NGOs and impact organizations leverage technology for greater social good. We offer specialized solutions for donor management, campaign tracking, volunteer coordination, and impact measurement tailored to the non-profit sector.',
+    answer: 'Absolutely. Tech Eyrie is passionate about empowering NGOs to harness AI, automation, and intelligent digital systems. We help transform workflows, streamline operations, and deliver results that amplify your mission and maximise impact.',
   },
 ];
 

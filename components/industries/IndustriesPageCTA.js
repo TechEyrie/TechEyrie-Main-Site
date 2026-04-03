@@ -153,21 +153,21 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
 
               <div className="relative">
                 <p className="ind-mint-subtext font-merriweather text-[11px] md:text-[12px] uppercase tracking-[0.22em] mb-4">
-                  Private briefing
+                  Confidential session
                 </p>
                 <h2 className="ind-mint-text font-italiana text-[34px] sm:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.04] max-w-xl">
-                  A sector narrative worth the inquiry.
+                  Sector narrative powered by AI and SEO.
                 </h2>
                 <p className="ind-mint-subtext font-playfair text-[16px] md:text-[19px] leading-relaxed mt-5 max-w-lg">
-                  Share where you compete and what buyers should feel when they land on your brand. We reply with a
-                  concise audit outline—not a generic pitch deck.
+                  Insights (including low-volume terms) on where you compete and what buyers should feel when they land on
+                  your page—we respond with concise, data-driven guidance, never a generic pitch.
                 </p>
 
                 <ul className="mt-8 space-y-3 max-w-md">
                   {[
-                    "Intent-mapped page architecture for your vertical",
-                    "Editorial copy direction aligned with compliance tone",
-                    "Measurement: events, funnels, and SERP milestones",
+                    "AI-informed, intent-mapped page architecture for your vertical page",
+                    "Editorial copy aligned with compliance, buyer intent, and SEO",
+                    "Measurement and optimization—events, funnels, and SERP milestones",
                   ].map((line) => (
                     <li
                       key={line}

@@ -7,7 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const chips = ["Dark7 craft", "CRO-grade funnels", "SERP-ready IA", "24/7 delivery pods"];
+const chips = [
+  "Deep learning UX",
+  "Auto-optimized pipelines",
+  "Search-optimized structure",
+  "24/7 automation cells",
+];
 
 export default function ServiceAreasHero() {
   const sectionRef = useRef(null);
@@ -74,15 +79,16 @@ export default function ServiceAreasHero() {
             <span className="sa-gradient-headline">Global voltage.</span>
           </h1>
           <p className="sa-lead font-playfair text-[18px] md:text-[24px] leading-relaxed mt-7 max-w-[760px]">
-            Neon-bright strategy meets quiet luxury: we ship market-specific experiences for Qatar, Sri Lanka, UAE, and
-            Oxfordshire UK—each with its own punch and polish.
+            At Tech Eyrie, our AI Automation (medium volume) solutions provide market-specific strategies with accuracy.
+            From Qatar to Sri Lanka, the UAE, and Oxfordshire UK, we blend intelligent systems and automation technology
+            to create experiences that are both powerful and refined.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-2 md:gap-2.5">
             {chips.map((c) => (
               <span
                 key={c}
-                className="inline-flex items-center rounded-full border border-[#74F5A1]/45 bg-[#74F5A1]/12 px-4 py-1.5 font-merriweather text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.12em] text-[#74F5A1]"
+                className="inline-flex items-center rounded-full border border-[#74F5A1]/45 bg-[#74F5A1]/12 px-4 py-1.5 font-merriweather text-[11px] md:text-[12px] font-semibold tracking-[0.04em] text-[#74F5A1] normal-case"
               >
                 {c}
               </span>
@@ -126,9 +132,9 @@ export default function ServiceAreasHero() {
               <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {[
                   ["4", "Markets"],
-                  ["14", "Cities"],
-                  ["100%", "Brand-locked QA"],
-                  ["∞", "Iteration cycles"],
+                  ["14", "premium cities"],
+                  ["100%", "brand locked QA"],
+                  ["∞", "Iterative excellence"],
                 ].map(([value, label]) => (
                   <div
                     key={label}
@@ -137,7 +143,7 @@ export default function ServiceAreasHero() {
                     <p className="font-italiana text-[34px] md:text-[42px] leading-none bg-gradient-to-br from-[#74F5A1] to-[#67bfda] bg-clip-text text-transparent sa-stat-num">
                       {value}
                     </p>
-                    <p className="mt-2 font-merriweather text-[10px] md:text-[11px] uppercase tracking-[0.16em] text-[#e0d1b6]/85">
+                    <p className="mt-2 font-merriweather text-[11px] md:text-[12px] font-medium tracking-[0.06em] text-[#e0d1b6]/90 normal-case">
                       {label}
                     </p>
                   </div>

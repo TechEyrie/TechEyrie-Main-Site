@@ -16,13 +16,15 @@ export default function ServiceAreasGrid() {
         <div className="flex flex-wrap items-end justify-between gap-5 md:gap-8 mb-10 md:mb-12">
           <div>
             <p className="sa-kicker font-merriweather text-[11px] uppercase tracking-[0.22em] mb-3">Locations</p>
-            <h2 className="sa-title font-italiana text-[36px] md:text-[52px] leading-[1.02]">
-              Cities we{" "}
-              <span className="sa-gradient-headline">light up</span>
+            <h2 className="sa-title font-italiana text-[36px] md:text-[52px] leading-[1.06]">
+              Some cities demand attention,
+              <br />
+              <span className="sa-gradient-headline">some earn it.</span>
             </h2>
           </div>
           <p className="sa-lead font-playfair text-[17px] md:text-[20px] max-w-[520px]">
-            Imagery, glow, and region-specific copy—pick a market and we’ll architect the earn-it moment on page one.
+            Imagery that resonates, refined visual identity, region-specific copy—choose your market and we&apos;ll
+            design the moment your brand earns it.
           </p>
         </div>
 

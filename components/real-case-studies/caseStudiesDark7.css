@@ -1,0 +1,22 @@
+/* /case-studies under .dark2-page — polish filters, cards, drawer-adjacent UI */
+.dark2-page.case-studies-route .cs-filter-active {
+  background-color: #e8e4dc !important;
+  color: #162d24 !important;
+}
+.dark2-page.case-studies-route .cs-filter-idle {
+  color: #e8e4dc !important;
+  border: 1px solid rgba(224, 209, 182, 0.22) !important;
+  background-color: rgba(16, 30, 39, 0.35) !important;
+}
+.dark2-page.case-studies-route .cs-filter-idle:hover {
+  border-color: rgba(116, 245, 161, 0.35) !important;
+  background-color: rgba(27, 71, 50, 0.45) !important;
+}
+
+.dark2-page.case-studies-route .cs-cta-primary {
+  background-color: #12685b !important;
+  color: #ffffff !important;
+}
+.dark2-page.case-studies-route .cs-cta-primary:hover {
+  background-color: #0d5248 !important;
+}

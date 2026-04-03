@@ -8,18 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {
-    title: "Intent maps",
-    body: "Every city cluster gets its own keyword spine and page hierarchy—no copy-paste templates.",
+    title: "AI Automation for business growth",
+    body: "At Tech Eyrie, every territory is treated as a high-impact place. Using AI-driven data analytics and workflow automation, we create location-based intent strategy, content pillars, and site architecture that elevates visibility.",
     tone: "from-[#74F5A1]/35 to-transparent",
   },
   {
-    title: "Luxury UX",
-    body: "Dark7 polish: typography, spacing, and motion that still hits aggressive CRO benchmarks.",
+    title: "UX Design for Automated Digital Workflows",
+    body: "Our Dark7 polish is strategic: each design is calibrated with data and connected with AI-driven insights, marking an ideal benchmark without compromising the brand.",
     tone: "from-[#67bfda]/30 to-transparent",
   },
   {
-    title: "Launch velocity",
-    body: "Shared design systems let us roll multi-market updates without breaking brand consistency.",
+    title: "Precision at speed",
+    body: "At Tech Eyrie, it's not about launching faster, but scaling presence with precision across the market that demands variation. Each audience, each region, each digital point aligned without compromise.",
     tone: "from-[#c8ffd8]/25 to-transparent",
   },
 ];
@@ -56,12 +56,13 @@ export default function ServiceAreasSpotlight() {
           <div>
             <p className="sa-kicker font-merriweather text-[11px] uppercase tracking-[0.22em] mb-3">Why it pops</p>
             <h2 className="sa-title font-italiana text-[32px] md:text-[46px] leading-[1.02] max-w-[720px]">
-              Bright strategy.
-              <span className="sa-gradient-headline"> Zero generic.</span>
+              Smart Workflow,
+              <br />
+              <span className="sa-gradient-headline">Measurable Growth</span>
             </h2>
           </div>
           <p className="sa-lead font-playfair text-[16px] md:text-[19px] max-w-[400px]">
-            We treat each territory like a product launch—not a footer link list.
+            Every city is a strategic opportunity, not just a footnote.
           </p>
         </div>
 

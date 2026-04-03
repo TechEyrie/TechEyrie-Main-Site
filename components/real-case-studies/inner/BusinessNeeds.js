@@ -1,5 +1,6 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 import { useState, useRef } from "react";
 import Image from "next/image";
 
@@ -37,7 +38,7 @@ export default function BeforeAfterComparison({ theme = "light" }) {
   const afterImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80";
 
   return (
-    <section className={`w-full ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+    <section className={caseStudySectionShell(isDark)} style={caseStudySectionSurface(isDark)}>
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-28">
         {/* Before/After Comparison Container */}
         <div

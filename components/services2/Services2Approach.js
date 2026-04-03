@@ -139,13 +139,15 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
                 ref={headingRef}
                 className="font-italiana font-light text-white text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-[-0.03em] mb-4 md:mb-6"
               >
-                Future Catalists
+                Crafting the future with Tech Eyrie
+
               </h2>
               <p
                 ref={subheadingRef}
                 className="font-playfair text-[17px] md:text-[20px] font-normal text-white/90 leading-[1.5]"
               >
-                From Idea to Plan. Turn your vision into action
+                We don’t deliver results, we engineer reality
+
               </p>
             </div>
 
@@ -197,7 +199,8 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
               color: isDark && !dark7 ? '#74F5A1' : isDark && dark7 ? undefined : '#c7006e'
             }}
           >
-            We're more than problem solvers; we're dream weavers and future shapers. We transform bold ideas into extraordinary digital experiences that echo through generations.
+          At Tech Eyrie, we are the architects of the future. Every challenge is a step to innovation, Every idea holds potential for reshaping the Digital world, our mission is to turn bold concepts into AI driven experiences that don’t just perform but evolve. 
+
           </h3>
 
           {/* Decorative Icon */}

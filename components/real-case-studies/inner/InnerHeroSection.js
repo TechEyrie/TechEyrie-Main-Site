@@ -1,9 +1,10 @@
 "use client";
 
+import { caseStudySectionShell, caseStudySectionSurface } from "../caseStudySectionProps";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function InnerHeroSection({ theme = "light" }) {
+export default function InnerHeroSection({ theme = "light", caseStudy = null }) {
   const isDark = theme === "dark";
 
   // Sample project data - replace with actual data from API/props
@@ -34,37 +35,46 @@ export default function InnerHeroSection({ theme = "light" }) {
     ],
   };
 
+  const merged = caseStudy
+    ? {
+        ...project,
+        title: caseStudy.title || project.title,
+        heroImage: caseStudy.heroImage || caseStudy.image || project.heroImage,
+        ctaLink: caseStudy.ctaLink || caseStudy.wordpressUrl || project.ctaLink,
+        ctaText: caseStudy.ctaText || project.ctaText,
+      }
+    : project;
+
   return (
     <section
-      className={`w-full min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-32 ${
-        isDark ? "bg-[#1a1a1a]" : "bg-white"
-      }`}
+      className={`${caseStudySectionShell(isDark)} min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-32`}
+      style={caseStudySectionSurface(isDark)}
     >
       {/* Container */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20">
         {/* Breadcrumb */}
         <nav className="mb-12 sm:mb-16 md:mb-20">
           <ol className="flex flex-wrap items-center gap-3 sm:gap-4">
-            {project.breadcrumb.map((crumb, index) => (
+            {merged.breadcrumb.map((crumb, index) => (
               <li key={index} className="flex items-center gap-3 sm:gap-4">
                 <Link
                   href={crumb.href}
                   className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] transition-colors ${
-                    index === project.breadcrumb.length - 1
+                    index === merged.breadcrumb.length - 1
                       ? isDark
-                        ? "text-white"
+                        ? "text-[#f3f3f3]"
                         : "text-black"
                       : isDark
-                      ? "text-gray-500 hover:text-gray-300"
+                      ? "text-[#a8a498] hover:text-[#e8e4dc]"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
                   {crumb.label}
                 </Link>
-                {index < project.breadcrumb.length - 1 && (
+                {index < merged.breadcrumb.length - 1 && (
                   <span
                     className={`text-[13px] sm:text-[14px] ${
-                      isDark ? "text-gray-600" : "text-gray-400"
+                      isDark ? "text-[#5c6b62]" : "text-gray-400"
                     }`}
                   >
                     /
@@ -82,7 +92,7 @@ export default function InnerHeroSection({ theme = "light" }) {
               key={index}
               className={`font-merriweather px-7 sm:px-8 md:px-9 py-3 sm:py-3.5 md:py-4 rounded-lg text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] ${
                 isDark
-                  ? "bg-[#2a2a2a] text-white"
+                  ? "border border-[#e0d1b6]/20 bg-[#101e27]/80 text-[#f3f3f3]"
                   : "bg-gray-100 text-black"
               }`}
             >
@@ -94,20 +104,20 @@ export default function InnerHeroSection({ theme = "light" }) {
         {/* Main Title */}
         <h1
           className={`font-italiana font-light text-[32px] sm:text-[42px] md:text-[58px] lg:text-[65px] xl:text-[75px] 2xl:text-[85px] leading-[1.05] tracking-[-0.03em] mb-10 sm:mb-12 md:mb-16 max-w-full lg:max-w-[85%] xl:max-w-[80%] ${
-            isDark ? "text-white" : "text-black"
+            isDark ? "text-[#f3f3f3]" : "text-black"
           }`}
         >
-          {project.title}
+          {merged.title}
         </h1>
 
         {/* CTA Button */}
         <Link
-          href={project.ctaLink}
+          href={merged.ctaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-orange-500 hover:bg-orange-600 text-white font-merriweather text-[14px] font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-16 sm:mb-20 md:mb-24"
+          className="cs-cta-primary inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 font-merriweather text-[14px] font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-16 sm:mb-20 md:mb-24"
         >
-          {project.ctaText}
+          {merged.ctaText}
           <svg
             width="20"
             height="20"
@@ -128,8 +138,8 @@ export default function InnerHeroSection({ theme = "light" }) {
         <div className="w-full max-w-[95%] mx-auto mb-16 sm:mb-20 md:mb-24 lg:mb-28">
           <div className="relative w-full aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
             <Image
-              src={project.heroImage}
-              alt={project.title}
+              src={merged.heroImage}
+              alt={merged.title}
               fill
               className="object-cover"
               sizes="95vw"
@@ -145,13 +155,15 @@ export default function InnerHeroSection({ theme = "light" }) {
             <div
               key={index}
               className={`p-10 sm:p-12 md:p-14 lg:p-16 rounded-2xl flex flex-col ${
-                isDark ? "bg-[#2a2a2a]" : "bg-gray-50"
+                isDark
+                  ? "border border-[#e0d1b6]/12 bg-[#101e27]/75"
+                  : "bg-gray-50"
               }`}
             >
               {/* Title - Top */}
               <h3
                 className={`font-italiana font-light text-[24px] sm:text-[28px] md:text-[32px] leading-tight tracking-[-0.03em] mb-auto pb-8 sm:pb-10 md:pb-12 ${
-                  isDark ? "text-white" : "text-black"
+                  isDark ? "text-[#f3f3f3]" : "text-black"
                 }`}
               >
                 {highlight.title}
@@ -160,7 +172,7 @@ export default function InnerHeroSection({ theme = "light" }) {
               {/* Description - Bottom */}
               <p
                 className={`font-merriweather text-[14px] leading-relaxed ${
-                  isDark ? "text-gray-300" : "text-gray-700"
+                  isDark ? "text-[#c8c2ad]" : "text-gray-700"
                 }`}
               >
                 {highlight.description}

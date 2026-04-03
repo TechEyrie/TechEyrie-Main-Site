@@ -20,20 +20,21 @@ export default function ServiceAreasCTA() {
                 <span className="h-2 w-2 rounded-full bg-[#081b15]/20" />
               </div>
               <div className="relative">
-                <p className="sa-mint-sub font-merriweather text-[11px] uppercase tracking-[0.22em] mb-4 font-bold">
-                  Next market move
-                </p>
                 <h3 className="sa-mint-text font-italiana text-[36px] md:text-[52px] leading-[1.02] max-w-[720px]">
-                  Turn your next territory into a flagship experience.
+                  Your next move
                 </h3>
                 <p className="sa-mint-sub font-playfair text-[18px] md:text-[22px] mt-5 max-w-[640px] leading-relaxed font-medium">
-                  Launch pages that feel bespoke per city, with one design system keeping the whole brand laser-aligned.
+                  Your next territory—designed, AI-optimized, and automated to lead.
+                </p>
+                <p className="sa-mint-sub font-playfair text-[16px] md:text-[19px] mt-4 max-w-[640px] leading-relaxed font-medium opacity-95">
+                  Each city gets its own launch page, reflecting local culture, intent, and expectations—keeping a shared
+                  system that aligns with your brand, across borders.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-2">
-                  {["Launch sprints", "SEO runway", "CRO instrumentation"].map((t) => (
+                  {["Neural Velocity", "Coded flow", "Search Forge"].map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-[#081b15]/20 bg-[#081b15]/10 px-3.5 py-1.5 font-merriweather text-[10px] font-bold uppercase tracking-[0.14em] text-[#081b15]"
+                      className="sa-cta-chip rounded-full border px-3.5 py-1.5 font-merriweather text-[11px] font-bold tracking-[0.04em] normal-case"
                     >
                       {t}
                     </span>

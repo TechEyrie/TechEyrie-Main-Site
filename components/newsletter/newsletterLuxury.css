@@ -1,0 +1,138 @@
+/* Newsletter: dark7 tokens on original layout (cream form column vs deep panels) */
+
+.dark2-page.newsletter-route .nl-forest {
+  color: #162d24 !important;
+}
+.dark2-page.newsletter-route .nl-forest-muted {
+  color: #4a5c54 !important;
+}
+
+/* Form column — light surface (theme dark); fields sit as crisp cards on ivory */
+.dark2-page.newsletter-route .nl-input-light {
+  color: #162d24 !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(22, 45, 36, 0.1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 1px 2px rgba(22, 45, 36, 0.04) !important;
+}
+.dark2-page.newsletter-route .nl-input-light::placeholder {
+  color: #6b7d72 !important;
+}
+.dark2-page.newsletter-route .nl-input-light:focus {
+  border-color: rgba(18, 104, 91, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(116, 245, 161, 0.22);
+}
+
+.dark2-page.newsletter-route .nl-label-light {
+  color: #162d24 !important;
+}
+
+.dark2-page.newsletter-route .nl-legal-light {
+  color: #4a5c54 !important;
+}
+
+/* Form column — dark surface (theme light) */
+.dark2-page.newsletter-route .nl-input-dark {
+  color: #f3f3f3 !important;
+  background-color: rgba(22, 45, 36, 0.72) !important;
+  border: 1px solid rgba(224, 209, 182, 0.18) !important;
+}
+.dark2-page.newsletter-route .nl-input-dark::placeholder {
+  color: #8a9a91 !important;
+}
+.dark2-page.newsletter-route .nl-input-dark:focus {
+  border-color: rgba(116, 245, 161, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(116, 245, 161, 0.2);
+}
+
+.dark2-page.newsletter-route .nl-label-dark {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.newsletter-route .nl-legal-dark {
+  color: #a8a498 !important;
+}
+
+.dark2-page.newsletter-route .nl-legal-link {
+  color: #74f5a1 !important;
+}
+.dark2-page.newsletter-route .nl-legal-link:hover {
+  color: #a7b431 !important;
+}
+
+.dark2-page.newsletter-route .nl-legal-light .nl-legal-link {
+  color: #12685b !important;
+}
+.dark2-page.newsletter-route .nl-legal-light .nl-legal-link:hover {
+  color: #0d5248 !important;
+}
+
+/* Primary CTA — dark7 teal, lifted luxury treatment */
+.dark2-page.newsletter-route .nl-submit {
+  position: relative;
+  color: #fafcfb !important;
+  background: linear-gradient(
+    175deg,
+    #1a7f72 0%,
+    #12685b 42%,
+    #0e5750 100%
+  ) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.75rem !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(3, 14, 11, 0.35),
+    0 14px 32px -10px rgba(18, 104, 91, 0.55) !important;
+  letter-spacing: 0.03em !important;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.28s ease,
+    filter 0.2s ease,
+    gap 0.3s ease !important;
+}
+
+.dark2-page.newsletter-route .nl-submit span {
+  letter-spacing: 0.04em !important;
+}
+
+.dark2-page.newsletter-route .nl-submit:hover:not(:disabled) {
+  background: linear-gradient(
+    175deg,
+    #219486 0%,
+    #157a6c 45%,
+    #12685b 100%
+  ) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+    0 2px 0 rgba(3, 14, 11, 0.25),
+    0 20px 44px -12px rgba(18, 104, 91, 0.58) !important;
+  transform: translateY(-2px);
+  filter: brightness(1.04) saturate(1.05);
+}
+
+.dark2-page.newsletter-route .nl-submit:active:not(:disabled) {
+  transform: translateY(0);
+  filter: brightness(0.98);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(3, 14, 11, 0.3),
+    0 8px 22px -8px rgba(18, 104, 91, 0.45) !important;
+}
+
+.dark2-page.newsletter-route .nl-submit:focus-visible {
+  outline: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 3px rgba(116, 245, 161, 0.35),
+    0 14px 32px -10px rgba(18, 104, 91, 0.5) !important;
+}
+
+.dark2-page.newsletter-route .nl-submit:disabled {
+  transform: none !important;
+  filter: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 1px 0 rgba(3, 14, 11, 0.2),
+    0 6px 16px -8px rgba(18, 104, 91, 0.3) !important;
+}

@@ -48,10 +48,10 @@ export default function IndustriesShowcaseFlow({ theme = "dark" }) {
       <div className="max-w-[1700px] mx-auto">
         <div className="ind-show-block mb-12 md:mb-14 lg:mb-16">
           <p className="font-merriweather text-[12px] uppercase tracking-[0.2em] text-[#74F5A1] mb-4">
-            Featured snapshots
+            Flagship Experiences
           </p>
           <h2 className="font-italiana text-[36px] sm:text-[48px] md:text-[62px] lg:text-[74px] leading-[0.98] text-[#f3f3f3] max-w-5xl">
-            A more engaging flow: sector story, visual proof, then action.
+            Elevate your brand with combined storytelling, visual authority, and SEO-driven engagement for luxury clients.
           </h2>
         </div>
 

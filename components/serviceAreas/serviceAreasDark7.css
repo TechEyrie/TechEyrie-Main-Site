@@ -18,6 +18,13 @@
   color: rgba(8, 27, 21, 0.88) !important;
 }
 
+/* CTA pill tags — true black (beats .dark2-page universal beige) */
+.dark2-page .sa-cta-chip {
+  color: #030303 !important;
+  border-color: rgba(3, 3, 3, 0.28) !important;
+  background-color: rgba(3, 3, 3, 0.08) !important;
+}
+
 /* Gradient headline — beats .dark2-page * text color */
 .dark2-page .sa-gradient-headline {
   background-image: linear-gradient(

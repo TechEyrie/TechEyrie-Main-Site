@@ -1,7 +1,7 @@
 // components/TalkToExpertSection.jsx
 'use client';
 
-import { useLayoutEffect, useRef, useState, useEffect, useCallback } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -13,18 +13,6 @@ export default function TalkToExpertSection({ theme = 'light' }) {
   const sectionRef = useRef(null);
   const leftTextRef = useRef(null);
   const rightTextRef = useRef(null);
-  
-  // Triangle animation effects
-  const [triangles, setTriangles] = useState([]);
-  const triangleIdRef = useRef(0);
-
-  // Color Palettes
-  const lightColors = {
-    primary: "#013825",      // Deep Forest Green
-    secondary: "#9E8F72",    // Golden Brown (updated)
-    tertiary: "#CEC8B0",     // Light Beige/Tan (updated)
-    background: "#F9F7F0",   // Very light neutral for section background
-  };
 
   // Background: light theme = black, dark theme = light
   const bgStyle = theme === 'light'
@@ -54,59 +42,6 @@ export default function TalkToExpertSection({ theme = 'light' }) {
       repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px)
     `,
   };
-
-  const createTriangle = useCallback((x, y) => {
-    const id = triangleIdRef.current++;
-    const size = Math.random() * 5 + 8;
-    const rotation = Math.random() * 360;
-    const greenShades = theme === 'dark' 
-      ? ['#74F5A1', '#5FE08D', '#4DD97F', '#3BC972']
-      : ['#013825', '#295E4C', '#9E8F72', '#CEC8B0'];
-    const color = greenShades[Math.floor(Math.random() * greenShades.length)];
-
-    const newTriangle = {
-      id,
-      x,
-      y,
-      size,
-      rotation,
-      color,
-    };
-
-    setTriangles((prev) => [...prev, newTriangle]);
-
-    setTimeout(() => {
-      setTriangles((prev) => prev.filter((t) => t.id !== id));
-    }, 1050);
-  }, []);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let lastTime = 0;
-    const throttleDelay = 100;
-
-    const handleMouseMove = (e) => {
-      const currentSection = sectionRef.current;
-      if (!currentSection) return;
-      const currentTime = Date.now();
-      if (currentTime - lastTime < throttleDelay) return;
-      lastTime = currentTime;
-
-      const rect = currentSection.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      createTriangle(x, y);
-    };
-
-    section.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      section.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [createTriangle]);
 
   useLayoutEffect(() => {
     if (typeof window === 'undefined') return;
@@ -159,24 +94,6 @@ export default function TalkToExpertSection({ theme = 'light' }) {
   }, []);
 
   return (
-    <>
-      <style jsx>{`
-        @keyframes triangle-fade {
-          0% {
-            opacity: 0.7;
-            transform: translate(-50%, -50%) scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(1.5);
-          }
-        }
-
-        .animate-triangle-fade {
-          animation: triangle-fade 1.05s ease-out forwards;
-        }
-      `}</style>
-
       <section
         ref={sectionRef}
         className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
@@ -194,25 +111,6 @@ export default function TalkToExpertSection({ theme = 'light' }) {
             style={lightNoiseOverlayStyle}
           />
         )}
-
-        {/* CURSOR TRAIL TRIANGLES */}
-        {triangles.map((triangle) => (
-          <div
-            key={triangle.id}
-            className="pointer-events-none absolute z-[5] animate-triangle-fade"
-            style={{
-              left: `${triangle.x}px`,
-              top: `${triangle.y}px`,
-              width: '0',
-              height: '0',
-              borderLeft: `${triangle.size / 2}px solid transparent`,
-              borderRight: `${triangle.size / 2}px solid transparent`,
-              borderBottom: `${triangle.size}px solid ${triangle.color}`,
-              transform: `translate(-50%, -50%) rotate(${triangle.rotation}deg)`,
-              opacity: 0.7,
-            }}
-          />
-        ))}
 
         {/* Subtle background pattern for light theme */}
         {theme === 'light' && (
@@ -335,11 +233,10 @@ export default function TalkToExpertSection({ theme = 'light' }) {
                       <svg
                         width="16"
                         height="16"
-                        className="sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-[22px] lg:h-[22px]"
+                        className="transition-transform duration-300 group-hover:translate-x-1 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-[22px] lg:h-[22px]"
                         viewBox="0 0 24 24"
                         fill="none"
                         aria-hidden="true"
-                        className="transition-transform duration-300 group-hover:translate-x-1"
                       >
                         <path
                           d="M5 12L19 12M19 12L12 5M19 12L12 19"
@@ -373,6 +270,5 @@ export default function TalkToExpertSection({ theme = 'light' }) {
           </div>
         </div>
       </section>
-    </>
   );
 }

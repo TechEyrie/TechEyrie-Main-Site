@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
 import { services1ListingDarkSurface } from './services1ListingSurfaces';
 
 export default function Services1MainServices({ theme = 'light', dark7 = false }) {
