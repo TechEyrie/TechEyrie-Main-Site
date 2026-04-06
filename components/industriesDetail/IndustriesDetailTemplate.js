@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -13,8 +13,8 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function IndustriesDetailTemplate({ slug, theme = "dark" }) {
-  const data = getIndustryDetailData(slug);
+function IndustriesDetailTemplate({ slug, theme = "dark" }) {
+  const data = useMemo(() => getIndustryDetailData(slug), [slug]);
   const isDark = theme === "dark";
   const rootRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(0);
@@ -53,13 +53,23 @@ export default function IndustriesDetailTemplate({ slug, theme = "dark" }) {
 
   useEffect(() => {
     if (!data) return;
+    const faqCount = data.faqs.length;
     const measure = () => {
-      setFaqHeights(data.faqs.map((_, i) => faqRefs.current[i]?.scrollHeight || 0));
+      setFaqHeights((prev) => {
+        const next = Array.from({ length: faqCount }, (_, i) => faqRefs.current[i]?.scrollHeight || 0);
+        if (
+          prev.length === next.length &&
+          next.every((h, i) => h === prev[i])
+        ) {
+          return prev;
+        }
+        return next;
+      });
     };
     requestAnimationFrame(measure);
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [data]);
+  }, [slug, data]);
 
   if (!data) return null;
 
@@ -290,3 +300,5 @@ export default function IndustriesDetailTemplate({ slug, theme = "dark" }) {
     </main>
   );
 }
+
+export default memo(IndustriesDetailTemplate);

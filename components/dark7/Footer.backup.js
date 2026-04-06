@@ -1,30 +1,11 @@
-// components/Footer.jsx — essential links variant (full multi-column nav backup: Footer.backup.js)
+// Backup of dark7 Footer before Essential-links-only variant (2026).
+// Not imported by the app — restore by copying over Footer.js if needed.
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 
-const ESSENTIAL_LINK_GROUPS = [
-  {
-    title: 'Tools & proof',
-    links: [
-      { href: '/pricing-calculator', label: 'Pricing calculator' },
-      { href: '/testimonials', label: 'Testimonials' },
-      { href: '/newsletter', label: 'Newsletter' },
-    ],
-  },
-  {
-    title: 'Legal & help',
-    links: [
-      { href: '/terms-and-conditions', label: 'Terms and conditions' },
-      { href: '/privacy-policy', label: 'Privacy policy' },
-      { href: '/faqs', label: 'FAQs' },
-    ],
-  },
-];
-
 export default function Footer({ theme = 'light' }) {
-  // Keep existing footer UI; only map colors to dark5 palette.
   const lightColors = {
     primary: '#013825',
     secondary: '#9E8F72',
@@ -141,99 +122,96 @@ export default function Footer({ theme = 'light' }) {
             border: `1px solid ${borderColor}`,
           }}
         >
-          <div
-            className="grid gap-8 sm:gap-9 md:gap-10 grid-cols-1 lg:grid-cols-7 border-b pb-4 sm:pb-5 md:pb-6"
-            style={{ borderColor }}
-          >
-            <div className="space-y-4 sm:space-y-5 sm:col-span-2 md:col-span-3 lg:col-span-3">
-              <h3
-                className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-[0.12em] uppercase"
-                style={{ color: textColor }}
-              >
-                Studios &amp; contact
+          <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 border-b pb-4 sm:pb-5 md:pb-6" style={{ borderColor }}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Dapper Lisbon
               </h3>
-              <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                <div className="space-y-1 sm:space-y-1.5">
-                  <p
-                    className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight"
-                    style={{ color: textColor }}
-                  >
-                    Dapper Lisbon
-                  </p>
-                  <p className="dark5-footer-subtext font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed" style={{ color: secondaryTextColor }}>
-                    Av. Duque de Loulé 12,
-                    <br />
-                    1050-093 Lisbon
-                  </p>
-                </div>
+              <p className="dark5-footer-subtext font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed" style={{ color: secondaryTextColor }}>
+                Av. Duque de Loulé 12,
+                <br />
+                1050-093 Lisbon
+              </p>
+            </div>
 
-                <div className="space-y-1 sm:space-y-1.5">
-                  <p
-                    className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight"
-                    style={{ color: textColor }}
-                  >
-                    Dapper Rotterdam
-                  </p>
-                  <p className="dark5-footer-subtext font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed" style={{ color: secondaryTextColor }}>
-                    Weena 70, 13th floor
-                    <br />
-                    3012 CM Rotterdam
-                  </p>
-                </div>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Dapper Rotterdam
+              </h3>
+              <p className="dark5-footer-subtext font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold leading-relaxed" style={{ color: secondaryTextColor }}>
+                Weena 70, 13th floor
+                <br />
+                3012 CM Rotterdam
+              </p>
+            </div>
 
-                <div className="space-y-1 sm:space-y-1.5 sm:col-span-2 md:col-span-1">
-                  <p
-                    className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight"
-                    style={{ color: textColor }}
-                  >
-                    Contact Tycho
-                  </p>
-                  <div className="space-y-0.5 sm:space-y-1">
-                    <a
-                      href="mailto:hello@dapper.agency"
-                      className="dark5-footer-subtext footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors break-all"
-                      style={{ color: secondaryTextColor }}
-                    >
-                      hello@dapper.agency
-                    </a>
-                    <a
-                      href="tel:+31103076707"
-                      className="dark5-footer-subtext footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
-                      style={{ color: secondaryTextColor }}
-                    >
-                      +31 10 307 6707
-                    </a>
-                  </div>
-                </div>
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Contact Tycho
+              </h3>
+              <div className="space-y-0.5 sm:space-y-1">
+                <a
+                  href="mailto:hello@dapper.agency"
+                  className="dark5-footer-subtext footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors break-all"
+                  style={{ color: secondaryTextColor }}
+                >
+                  hello@dapper.agency
+                </a>
+                <a
+                  href="tel:+31103076707"
+                  className="dark5-footer-subtext footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap"
+                  style={{ color: secondaryTextColor }}
+                >
+                  +31 10 307 6707
+                </a>
               </div>
             </div>
 
-            <div className="space-y-5 sm:space-y-6 sm:col-span-2 md:col-span-3 lg:col-span-4 lg:pl-4 xl:pl-8 lg:border-l" style={{ borderColor }}>
-              <h3
-                className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-[0.12em] uppercase"
-                style={{ color: textColor }}
-              >
-                Essential links
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Services
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 sm:gap-y-0">
-                {ESSENTIAL_LINK_GROUPS.map((group) => (
-                  <div key={group.title} className="space-y-2 sm:space-y-2.5">
-                    <h4
-                      className="font-merriweather text-[11px] sm:text-[12px] font-semibold tracking-tight"
-                      style={{ color: textColor }}
-                    >
-                      {group.title}
-                    </h4>
-                    <nav className="flex flex-col gap-y-0.5 sm:gap-y-1">
-                      {group.links.map((item) => (
-                        <FooterLink key={item.href} href={item.href} theme={theme}>
-                          {item.label}
-                        </FooterLink>
-                      ))}
-                    </nav>
-                  </div>
-                ))}
-              </div>
+              <nav className="space-y-0.5 sm:space-y-1">
+                <FooterLink href="/services/content-creative" theme={theme}>Content &amp; Creative</FooterLink>
+                <FooterLink href="/services/paid-media" theme={theme}>Paid Media &amp; Performance</FooterLink>
+                <FooterLink href="/services/data-measurement" theme={theme}>Data &amp; Measurement</FooterLink>
+                <FooterLink href="/services/demand-team" theme={theme}>Demand Team</FooterLink>
+                <FooterLink href="/services/demand-gen-agency" theme={theme}>Demand Gen Agency</FooterLink>
+                <FooterLink href="/services/demand-gen-training" theme={theme}>Demand Gen Training</FooterLink>
+              </nav>
+            </div>
+
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Expertise
+              </h3>
+              <nav className="space-y-0.5 sm:space-y-1">
+                <FooterLink href="/expertise/b2b-saas" theme={theme}>B2B SaaS</FooterLink>
+                <FooterLink href="/expertise/b2b-service" theme={theme}>B2B Service</FooterLink>
+                <FooterLink href="/expertise/b2b-hardware" theme={theme}>B2B Hardware</FooterLink>
+              </nav>
+            </div>
+
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Resources
+              </h3>
+              <nav className="space-y-0.5 sm:space-y-1">
+                <FooterLink href="/cases" theme={theme}>Cases</FooterLink>
+                <FooterLink href="/blog" theme={theme}>Blog</FooterLink>
+                <FooterLink href="/newsletter" theme={theme}>Newsletter</FooterLink>
+              </nav>
+            </div>
+
+            <div className="space-y-1 sm:space-y-1.5">
+              <h3 className="dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-semibold tracking-tight" style={{ color: textColor }}>
+                Company
+              </h3>
+              <nav className="space-y-0.5 sm:space-y-1">
+                <FooterLink href="/about" theme={theme}>About</FooterLink>
+                <FooterLink href="/careers" theme={theme}>Careers</FooterLink>
+                <FooterLink href="/contact" theme={theme}>Contact</FooterLink>
+              </nav>
             </div>
           </div>
 
@@ -257,6 +235,12 @@ export default function Footer({ theme = 'light' }) {
               <span className="dark5-footer-subtext font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold whitespace-nowrap" style={{ color: secondaryTextColor }}>
                 © 2025 Dapper
               </span>
+              <Link href="/privacy-policy" className="dark5-footer-subtext footer-link-underline font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap" style={{ color: secondaryTextColor }}>
+                Privacy Policy
+              </Link>
+              <Link href="/terms-and-conditions" className="dark5-footer-subtext footer-link-underline font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-semibold transition-colors whitespace-nowrap" style={{ color: secondaryTextColor }}>
+                Terms and Conditions
+              </Link>
             </div>
 
             <div className="dark5-footer-subtext flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 sm:gap-y-1.5 text-[11px] sm:text-[11px] md:text-[12px] font-merriweather font-semibold whitespace-nowrap" style={{ color: secondaryTextColor }}>

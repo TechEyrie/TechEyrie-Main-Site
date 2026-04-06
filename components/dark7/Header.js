@@ -9,9 +9,9 @@ const navItems = [
   { label: "Services", hasDropdown: true, type: "mega", href: "/services1" },
   { label: "Expertise", hasDropdown: true, type: "mega", href: "/expertise" },
   { label: "Cases", hasDropdown: false, href: "/case-studies" },
-  { label: "Resources", hasDropdown: true, type: "mega" },
+  { label: "Blog", hasDropdown: false, href: "/blog" },
+  { label: "Industry", hasDropdown: false, href: "/industries" },
   { label: "About", hasDropdown: false, href: "/about" },
-  { label: "Careers", hasDropdown: false, href: "/work" },
 ];
 
 const SERVICES_ROW_1 = [
@@ -76,23 +76,6 @@ const EXPERTISE_ITEMS = [
     description:
       "Marketing solutions for hardware and equipment manufacturers.",
     href: "/expertise/b2b-hardware",
-  },
-];
-
-const RESOURCES_ITEMS = [
-  {
-    id: "blog",
-    title: "Blog",
-    description:
-      "Insights, strategies, and best practices for B2B marketing success.",
-    href: "/blog",
-  },
-  {
-    id: "newsletter",
-    title: "Newsletter",
-    description:
-      "Get the latest demand generation insights delivered to your inbox.",
-    href: "/newsletter",
   },
 ];
 
@@ -1093,123 +1076,6 @@ export default function Header({ theme = "light" }) {
                 }}
               >
                 {EXPERTISE_ITEMS.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    onMouseEnter={() => setHoveredCard(item.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                    className="dropdown-card group relative flex flex-col justify-between rounded-xl border px-6 py-6 min-h-[180px] transition-all duration-500 ease-out hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] cursor-pointer"
-                    style={{
-                      borderColor:
-                        theme === "dark"
-                          ? "rgba(255, 255, 255, 0.1)"
-                          : "rgba(0, 0, 0, 0.06)",
-                      backgroundColor: cardBg,
-                    }}
-                  >
-                    <div>
-                      <h3
-                        className="font-[Helvetica Now Text,Arial,sans-serif] text-[16px] font-semibold tracking-tight mb-2"
-                        style={{ color: cardText }}
-                      >
-                        {item.title}
-                      </h3>
-                      <p
-                        className="font-[Helvetica Now Text,Arial,sans-serif] text-[13px] font-regular leading-snug"
-                        style={{ color: cardDesc }}
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="flex justify-end mt-4">
-                      <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center">
-                        <span className="relative flex h-6 w-6 items-center justify-center overflow-hidden rounded-[4px] bg-[#74F5A1] transition-all duration-500 ease-out group-hover:bg-black group-hover:scale-110 group-hover:-translate-y-[1px]">
-                          <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:opacity-0">
-                            <svg width="10" height="10" viewBox="0 0 14 14">
-                              <path
-                                d="M1 13L13 1M13 1H5M13 1V9"
-                                fill="none"
-                                stroke="#111111"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                          <span className="absolute inset-0 flex items-center justify-center translate-x-[-10px] translate-y-[10px] opacity-0 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
-                            <svg width="10" height="10" viewBox="0 0 14 14">
-                              <path
-                                d="M1 13L13 1M13 1H5M13 1V9"
-                                fill="none"
-                                stroke="#74F5A1"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* MEGA MENU DROPDOWN - Resources - KEPT ORIGINAL WITH WIDTH EXPANSION */}
-        <div
-          data-dropdown="Resources"
-          className={`hidden lg:block absolute left-0 right-0 top-[calc(100%+8px)] transition-all duration-300 ${
-            activeDropdown === "Resources"
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-2 pointer-events-none"
-          }`}
-          onMouseEnter={() => handleMouseEnter("Resources")}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="flex justify-center px-2 md:px-4">
-            <div
-              className="w-full max-w-[800px] rounded-[14px] shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-4 relative overflow-hidden"
-              style={{
-                backgroundColor: dropdownBg,
-                border: `1px solid ${dropdownBorder}`,
-              }}
-            >
-              {/* Triangle animations */}
-              {/* {theme === "light" &&
-                triangles.map((triangle) => (
-                  <div
-                    key={triangle.id}
-                    className="pointer-events-none absolute animate-triangle-fade"
-                    style={{
-                      left: `${triangle.x}px`,
-                      top: `${triangle.y}px`,
-                      width: "0",
-                      height: "0",
-                      borderLeft: `${triangle.size / 2}px solid transparent`,
-                      borderRight: `${triangle.size / 2}px solid transparent`,
-                      borderBottom: `${triangle.size}px solid ${triangle.color}`,
-                      transform: `translate(-50%, -50%) rotate(${triangle.rotation}deg)`,
-                      opacity: 0.7,
-                    }}
-                  />
-                ))} */}
-
-              <div
-                className="grid gap-4 transition-all duration-500 ease-out"
-                style={{
-                  gridTemplateColumns:
-                    hoveredCard === "blog"
-                      ? "1.28fr 0.72fr"
-                      : hoveredCard === "newsletter"
-                      ? "0.72fr 1.28fr"
-                      : "1fr 1fr",
-                }}
-              >
-                {RESOURCES_ITEMS.map((item) => (
                   <Link
                     key={item.id}
                     href={item.href}
