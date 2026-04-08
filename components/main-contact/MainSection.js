@@ -99,11 +99,12 @@ export default function MainSection({ theme = "dark" }) {
                 isDark ? "text-[#e0d1b6]" : "text-[#162d24]"
               }`}
             >
-              Speak with an{" "}
+              A strategic conversation 
+
               <span className="font-playfair italic font-semibold opacity-95">
-                expert
+                
               </span>
-              , not a salesperson
+               <br></br>with the Experts 
             </h1>
           </div>
 
@@ -113,10 +114,8 @@ export default function MainSection({ theme = "dark" }) {
                 isDark ? "text-[#d0d0d0]" : "text-[#374635]"
               }`}
             >
-              When you book a meeting with us, you&apos;ll talk directly to a
-              B2B marketing expert—not a sales rep. We&apos;re here to provide
-              insights, brainstorm strategies, and discuss your growth goals
-              from day one.
+           When you book a meeting with us, you’ll talk directly to experts, not any ordinary person. Get actionable insights, explore tailored strategies, and align your growth goals from the very first conversation.
+
             </p>
 
             <div className="flex flex-wrap gap-3 sm:gap-4">

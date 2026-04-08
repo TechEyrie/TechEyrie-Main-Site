@@ -12,38 +12,38 @@ const strategySteps = [
   {
     id: 1,
     number: '01',
-    title: 'Discovery Meeting',
-    description: "We take the time to understand your business, marketing goals, and challenges — so we can get a clear picture of what you truly need."
+    title: 'Introductory Consultation',
+    description: "We take time to understand your business, goals and strategies so we can deliver tailored strategies that align with your needs."
   },
   {
     id: 2,
     number: '02',
-    title: 'Analysis of Marketing Set-up',
-    description: "We analyze your marketing setup to identify opportunities and gaps."
+    title: 'Insight- driven marketing strategy',
+    description: "We analyze your marketing strategy to identify gaps, unleash growth opportunities and optimize overall performance."
   },
   {
     id: 3,
     number: '03',
-    title: 'Strategy Presentation',
-    description: "In a follow-up call, we share our findings and an initial roadmap for higher marketing ROI."
+    title: 'Strategic Briefing',
+    description: "In a follow-up call, we provide detailed insights and roadmaps aiming at ROI, optimizing strategy, and identifying growth opportunities. "
   },
   {
     id: 4,
     number: '04',
-    title: 'Custom Solution Design',
-    description: "Based on our analysis, we design a tailored marketing strategy that aligns with your business objectives and budget."
+    title: 'Exclusive solution',
+    description: "Through our analysis, we design personalized marketing strategies that aligns with your business objectives and long-term vision."
   },
   {
     id: 5,
     number: '05',
-    title: 'Implementation Planning',
-    description: "We create a detailed implementation plan with timelines, milestones, and key performance indicators to track progress."
+    title: 'High-impact Planning ',
+    description: "We deliver structured plans with a clear timeline, defined milestones, monitor performance, optimize execution, and achieve higher marketing ROI. "
   },
   {
     id: 6,
     number: '06',
-    title: 'Ongoing Support',
-    description: "We provide continuous support and optimization to ensure your marketing engine delivers maximum ROI over time."
+    title: 'Long-term support',
+    description: "We provide continuous support and optimization  ensuring the strategies are delivered to result in maximum ROI."
   }
 ];
 

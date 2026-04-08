@@ -452,9 +452,9 @@ export default function PrivacyPolicyPageContent() {
           </h1>
 
           <p className="privacy-hero-reveal mt-10 max-w-xl border-l border-[#a7b431]/35 pl-6 font-merriweather text-[13px] sm:text-[14px] md:text-[15px] leading-[1.9] text-[#c8c2ad]">
-            A precise statement of how we collect, use, and protect what you share—written
-            to be read, not to be buried. When in doubt, we default to the narrowest use
-            and the clearest language.
+            At Tech Eyrie, privacy is one of our core priorities. Every piece of information
+            you share is handled with precision, respect, and intention. Our approach reflects
+            the same rigor we apply when building strategy.
           </p>
 
         </div>
@@ -564,10 +564,10 @@ export default function PrivacyPolicyPageContent() {
                   We&apos;re here
                 </p>
                 <p className="mx-auto mt-4 max-w-lg font-italiana text-[24px] leading-tight text-[#e0d1b6] sm:text-[30px] md:text-[36px]">
-                  Questions about this policy?
+                  Want to know more about this policy?
                 </p>
                 <p className="mx-auto mt-4 max-w-md font-playfair text-[14px] italic leading-relaxed text-[#b5ae9c] sm:text-[15px]">
-                  Reach out directly—we respond with the same care we apply to your data.
+                  Reach out directly- your questions are treated with the same attention as your information.
                 </p>
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
                   <a

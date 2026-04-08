@@ -452,9 +452,8 @@ export default function TermsPageContent() {
           </h1>
 
           <p className="terms-hero-reveal mt-10 max-w-xl border-l border-[#a7b431]/35 pl-6 font-merriweather text-[13px] sm:text-[14px] md:text-[15px] leading-[1.9] text-[#c8c2ad]">
-            The rules of engagement for our site and our work—clear boundaries, mutual
-            respect, and terms you can actually read. Your signed agreements add detail;
-            this page sets the baseline for everyone who visits or partners with us.
+          At Tech Eyrie every engagement begins with clarity. These terms define the foundation of how we work setting expectations with precision, respect, and intention. Not hidden in complexity, but written to be understood. While signed agreements may go deeper detailing the specifics of each engagement this page sets the baseline. It applies to every interaction, every visit, and every partnership formed within our ecosystem.
+
           </p>
 
         </div>

@@ -1,6 +1,9 @@
 import Home1CTA from "../../../components/home1/Home1CTA";
 import Home1CTA2 from "../../../components/home1/Home1CTA2";
 import Home1Discuss from "../../../components/home1/Home1Discuss";
+import EagleHeadReveal from "../../../components/home1/Home1Eagle2SVG";
+import DivingEagleReveal from "../../../components/home1/Home1Eagle3SVG";
+import EagleReveal from "../../../components/home1/Home1EagleSVG";
 import Home1Footer from "../../../components/home1/Home1Footer";
 import Home1Hero from "../../../components/home1/Home1Hero";
 import Home1HowWeWork from "../../../components/home1/Home1HowWeWork";
@@ -28,6 +31,9 @@ export default function Home1Page() {
       <Home1CTA2 />
       <Home1Footer />
       <CursorRevealStar />
+      <EagleReveal />
+      <EagleHeadReveal />
+      <DivingEagleReveal />
     </div>
   );
 }
