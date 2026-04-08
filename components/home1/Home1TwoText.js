@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { gsap } from "gsap";
@@ -88,29 +88,29 @@ function AnimatedTextBlock({ lines, delay = 0 }) {
 }
 
 export default function Home2About() {
-  // Left block: 5 lines Ã— 0.18s stagger + 1.1s duration for last line
+  // Left block: 5 lines Ãƒâ€” 0.18s stagger + 1.1s duration for last line
   // Last line starts at: 4 * 0.18 = 0.72s, finishes at 0.72 + 1.1 = 1.82s
   // Right block delay = 1.82s + 0.2s breath = ~2.0s
   const LEFT_TOTAL = (LEFT_LINES.length - 1) * 0.18 + 0.3;
 
   return (
     <section
-      className="relative w-full bg-[#162d24] py-28"
+      className="relative w-full bg-[#f0ede6] py-28"
       style={{ minHeight: "100vh" }}
     >
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
 
-        {/* Top-left text block â€” animates first */}
+        {/* Top-left text block Ã¢â‚¬â€ animates first */}
         <div className="max-w-[600px]">
-          <div className="font-merriweather font-thin text-[18px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[37px] tracking-[-0.01em] text-[#e0d1b6]">
+          <div className="font-merriweather font-thin text-[18px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[37px] tracking-[-0.01em] text-[#1a1a1a]">
             <AnimatedTextBlock lines={LEFT_LINES} delay={0} />
           </div>
         </div>
 
-        {/* Bottom-right text block â€” animates after left finishes */}
+        {/* Bottom-right text block Ã¢â‚¬â€ animates after left finishes */}
         <div className="mt-[16vh] flex justify-end">
           <div className="max-w-[600px]">
-            <div className="font-merriweather font-thin text-[18px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[37px] tracking-[-0.01em] text-[#e0d1b6]">
+            <div className="font-merriweather font-thin text-[18px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[37px] tracking-[-0.01em] text-[#1a1a1a]">
               <AnimatedTextBlock lines={RIGHT_LINES} delay={LEFT_TOTAL} />
             </div>
           </div>
@@ -120,3 +120,5 @@ export default function Home2About() {
     </section>
   );
 }
+
+

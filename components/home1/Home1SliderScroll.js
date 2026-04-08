@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { gsap } from "gsap";
@@ -8,7 +8,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-// â”€â”€ Gallery images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Gallery images Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 const IMAGES = [
   { id: 1,  src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80", alt: "Portrait 1" },
   { id: 2,  src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80", alt: "Portrait 2" },
@@ -40,7 +40,7 @@ const CARD_W = 220;
 const CARD_GAP = 12;
 const TRAVEL = (CARD_W + CARD_GAP) * IMAGES.length * 0.55;
 
-// â”€â”€ Statement text lines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Statement text lines Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 const HEADING_LINES = [
   "WE'RE A SMALL TEAM",
   "OF PROFESSIONALS",
@@ -57,7 +57,7 @@ export default function Home7Gallery() {
 
   useGSAP(
     () => {
-      // â”€â”€ Scroll-scrub horizontal slide â”€â”€
+      // Ã¢â€â‚¬Ã¢â€â‚¬ Scroll-scrub horizontal slide Ã¢â€â‚¬Ã¢â€â‚¬
       gsap.fromTo(
         rowRef.current,
         { x: 0 },
@@ -73,7 +73,7 @@ export default function Home7Gallery() {
         }
       );
 
-      // â”€â”€ Heading kinetic mask reveal â”€â”€
+      // Ã¢â€â‚¬Ã¢â€â‚¬ Heading kinetic mask reveal Ã¢â€â‚¬Ã¢â€â‚¬
       const lines = headingLineRefs.current.filter(Boolean);
       if (lines.length) {
         gsap.set(lines, {
@@ -99,7 +99,7 @@ export default function Home7Gallery() {
         });
       }
 
-      // â”€â”€ Subtitle fade up â”€â”€
+      // Ã¢â€â‚¬Ã¢â€â‚¬ Subtitle fade up Ã¢â€â‚¬Ã¢â€â‚¬
       if (subtitleRef.current) {
         gsap.set(subtitleRef.current, { autoAlpha: 0, y: 18 });
         gsap.to(subtitleRef.current, {
@@ -122,9 +122,9 @@ export default function Home7Gallery() {
   return (
     <section
       ref={sectionRef}
-      className="w-full overflow-hidden bg-[#162d24]"
+      className="w-full overflow-hidden bg-[#f0ede6]"
     >
-      {/* â”€â”€ Horizontal scroll gallery â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Horizontal scroll gallery Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="overflow-hidden pt-16 sm:pt-20">
         <div
           ref={rowRef}
@@ -149,13 +149,13 @@ export default function Home7Gallery() {
         </div>
       </div>
 
-      {/* â”€â”€ Statement text â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Statement text Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div
         ref={headingRef}
         className="mx-auto max-w-[1200px] px-6 pb-20 pt-20 sm:px-10 sm:pb-24 sm:pt-40 md:px-14 lg:px-16"
       >
         {/* Large heading */}
-        <h2 className="font-italiana mb-10 text-[42px] sm:text-[56px] md:text-[68px] lg:text-[78px] xl:text-[88px] font-regular leading-[0.92] tracking-[-0.025em] text-[#f3f3f3] uppercase">
+        <h2 className="font-italiana mb-10 text-[42px] sm:text-[56px] md:text-[68px] lg:text-[78px] xl:text-[88px] font-regular leading-[0.92] tracking-[-0.025em] text-[#1a1a1a] uppercase">
           {HEADING_LINES.map((line, i) => (
             <span
               key={i}
@@ -175,12 +175,12 @@ export default function Home7Gallery() {
           ))}
         </h2>
 
-        {/* Subtitle â€” bottom left, small caps */}
+        {/* Subtitle Ã¢â‚¬â€ bottom left, small caps */}
         <p
           ref={subtitleRef}
-          className="font-merriweather max-w-[260px] text-[11px] sm:text-[12px] font-light leading-[1.8] tracking-[0.05em] text-[#e0d1b6]/65 uppercase"
+          className="font-merriweather max-w-[260px] text-[11px] sm:text-[12px] font-light leading-[1.8] tracking-[0.05em] text-[#1a1a1a]/55 uppercase"
         >
-          NO UNNECESSARY LAYERS — JUST DIRECT
+          NO UNNECESSARY LAYERS â€” JUST DIRECT
           <br />
           COLLABORATION AND A CLEAR FOCUS ON
           <br />
@@ -190,3 +190,5 @@ export default function Home7Gallery() {
     </section>
   );
 }
+
+

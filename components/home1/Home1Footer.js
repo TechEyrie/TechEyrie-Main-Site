@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { gsap } from "gsap";
@@ -83,10 +83,10 @@ export default function HomeFooter() {
   return (
     <footer
       ref={footerRef}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#162d24]"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#f0ede6]"
     >
 
-      {/* â”€â”€ Top section â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Top section Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div
         ref={topRef}
         className="w-full px-6 pt-14 sm:px-10 sm:pt-16 md:px-14 lg:px-16"
@@ -95,9 +95,9 @@ export default function HomeFooter() {
 
         <div className="flex flex-col gap-10 pt-10 sm:flex-row sm:gap-0">
 
-          {/* Left â€” tagline */}
+          {/* Left Ã¢â‚¬â€ tagline */}
           <div className="w-full sm:w-1/2 lg:w-[45%]">
-            <p className="font-merriweather text-[14px] sm:text-[16px] md:text-[17px] font-light leading-[1.9] tracking-[0.05em] text-[#e0d1b6] uppercase">
+            <p className="font-merriweather text-[14px] sm:text-[16px] md:text-[17px] font-light leading-[1.9] tracking-[0.05em] text-[#1a1a1a] uppercase">
               WE BUILD HIGH-IMPACT ONE-PAGE
               <br />
               WEBSITES MADE TO LAUNCH FAST
@@ -106,24 +106,24 @@ export default function HomeFooter() {
             </p>
           </div>
 
-          {/* Right â€” contact rows */}
+          {/* Right Ã¢â‚¬â€ contact rows */}
           <div className="w-full sm:w-1/2 lg:w-[55%]">
             {CONTACT_ROWS.map((row) => (
               <div key={row.label}>
                 <div className="h-px w-full bg-[#74F5A1]/22" />
                 <div className="flex flex-col gap-[6px] py-5">
-                  <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-medium tracking-[0.08em] text-[#f3f3f3] uppercase">
+                  <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-medium tracking-[0.08em] text-[#1a1a1a] uppercase">
                     {row.label}
                   </span>
                   {row.href ? (
                     <a
                       href={row.href}
-                      className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#e0d1b6]/60 uppercase transition-colors duration-200 hover:text-[#74F5A1]"
+                      className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#1a1a1a]/60 uppercase transition-colors duration-200 hover:text-[#1a1a1a]"
                     >
                       {row.value}
                     </a>
                   ) : (
-                    <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#e0d1b6]/60 uppercase">
+                    <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#1a1a1a]/60 uppercase">
                       {row.value}
                     </span>
                   )}
@@ -136,7 +136,7 @@ export default function HomeFooter() {
         </div>
       </div>
 
-      {/* â”€â”€ Bottom bar â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Bottom bar Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div
         ref={bottomRef}
         className="w-full px-6 pb-6 pt-10 sm:px-10 sm:pb-8 sm:pt-12 md:px-14 lg:px-16"
@@ -145,20 +145,20 @@ export default function HomeFooter() {
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-          {/* Left â€” back to top + copyright */}
+          {/* Left Ã¢â‚¬â€ back to top + copyright */}
           <div className="flex flex-col gap-[8px]">
             <button
               onClick={scrollToTop}
-              className="font-merriweather w-fit text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.08em] text-[#e0d1b6] uppercase transition-opacity duration-200 hover:opacity-40"
+              className="font-merriweather w-fit text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.08em] text-[#1a1a1a] uppercase transition-opacity duration-200 hover:opacity-40"
             >
               BACK TO TOP
             </button>
-            <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#e0d1b6]/55 uppercase">
-              2026 © TECHEYRIE STUDIO
+            <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.05em] text-[#1a1a1a]/55 uppercase">
+              2026 Â© TECHEYRIE STUDIO
             </span>
           </div>
 
-          {/* Right â€” social links */}
+          {/* Right Ã¢â‚¬â€ social links */}
           <div className="flex items-center gap-8 sm:gap-10">
             {SOCIAL_LINKS.map((link) => (
               <a
@@ -166,7 +166,7 @@ export default function HomeFooter() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.08em] text-[#e0d1b6] uppercase transition-opacity duration-200 hover:opacity-40"
+                className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-light tracking-[0.08em] text-[#1a1a1a] uppercase transition-opacity duration-200 hover:opacity-40"
               >
                 {link.label}
               </a>
@@ -176,15 +176,15 @@ export default function HomeFooter() {
         </div>
       </div>
 
-      {/* â”€â”€ Watermark â€” center aligned, pushed to bottom â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Watermark Ã¢â‚¬â€ center aligned, pushed to bottom Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div
         ref={watermarkRef}
         className="mt-auto w-full select-none overflow-hidden"
         aria-hidden="true"
       >
-        {/* âœ… text-center + block display centers it perfectly */}
+        {/* Ã¢Å“â€¦ text-center + block display centers it perfectly */}
         <p
-          className="font-italiana block w-full text-center font-bold leading-none tracking-[-0.03em] text-[#74F5A1]"
+          className="font-italiana block w-full text-center font-bold leading-none tracking-[-0.03em] text-[#1a1a1a]"
           style={{
             fontSize: "clamp(72px, 18vw, 9999px)",
             opacity: 0.10,
@@ -197,3 +197,6 @@ export default function HomeFooter() {
     </footer>
   );
 }
+
+
+

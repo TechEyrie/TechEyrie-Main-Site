@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
@@ -101,13 +101,13 @@ export default function Home6HowWeWork() {
     });
   }
 
-  // â”€â”€ Char reveal â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Char reveal Ã¢â€â‚¬Ã¢â€â‚¬
   useGSAP(
     () => {
       const chars = charRefs.current.filter(Boolean);
       if (!chars.length) return;
 
-      gsap.set(chars, { color: "rgba(224,209,182,0.14)" });
+      gsap.set(chars, { color: "rgba(26,26,26,0.14)" });
 
       gsap.timeline({
         scrollTrigger: {
@@ -118,7 +118,7 @@ export default function Home6HowWeWork() {
         },
         onComplete: () => setCardVisible(true),
       }).to(chars, {
-        color: "#e0d1b6",
+        color: "#1a1a1a",
         duration: 0.03,
         stagger: { each: 0.018, from: "start" },
         ease: "none",
@@ -127,7 +127,7 @@ export default function Home6HowWeWork() {
     { scope: sectionRef }
   );
 
-  // â”€â”€ Card entrance â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Card entrance Ã¢â€â‚¬Ã¢â€â‚¬
   useEffect(() => {
     if (!cardVisible) return;
 
@@ -148,7 +148,7 @@ export default function Home6HowWeWork() {
     );
   }, [cardVisible]);
 
-  // â”€â”€ Slide transition â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Slide transition Ã¢â€â‚¬Ã¢â€â‚¬
   const goToStep = useCallback(
     (nextIndex) => {
       if (animating || nextIndex === activeStep) return;
@@ -197,7 +197,7 @@ export default function Home6HowWeWork() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-[#162d24]"
+      className="relative w-full overflow-hidden bg-[#f0ede6]"
       style={{ minHeight: "100vh" }}
     >
       {/* HOW WE WORK label */}
@@ -206,7 +206,7 @@ export default function Home6HowWeWork() {
         className="absolute left-0 right-0 top-5 z-20 text-center"
         style={{ opacity: 0 }}
       >
-        <span className="font-merriweather text-[11px] font-light tracking-[0.22em] text-[#e0d1b6]/55 uppercase">
+        <span className="font-merriweather text-[11px] font-light tracking-[0.22em] text-[#1a1a1a]/45 uppercase">
           HOW WE WORK
         </span>
       </div>
@@ -214,7 +214,7 @@ export default function Home6HowWeWork() {
       {/* Background title */}
       <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none">
         <h2
-          className="font-italiana w-full text-center font-semibold uppercase leading-[0.92] tracking-[-0.02em] text-[#e0d1b6]/90 select-none"
+          className="font-italiana w-full text-center font-semibold uppercase leading-[0.92] tracking-[-0.02em] text-[#1a1a1a]/85 select-none"
           style={{ fontSize: "clamp(48px, 11.5vw, 100px)" }}
         >
           {BG_LINES.map((line, li) => (
@@ -243,26 +243,26 @@ export default function Home6HowWeWork() {
             transition: "background-color 0.4s ease",
           }}
         >
-          {/* Inner â€” flex-col + items-center = everything centered */}
+          {/* Inner Ã¢â‚¬â€ flex-col + items-center = everything centered */}
           <div
             ref={cardInnerRef}
             className="flex flex-col items-center px-8 pt-8 pb-10"
             style={{ minHeight: "520px" }}
           >
 
-            {/* TOP: Step number â€” centered */}
-            <p className="font-merriweather w-full text-center text-[13px] font-light tracking-[0.06em] text-[#e0d1b6]/45">
+            {/* TOP: Step number Ã¢â‚¬â€ centered */}
+            <p className="font-merriweather w-full text-center text-[13px] font-light tracking-[0.06em] text-[#1a1a1a]/35">
               {step.id}
             </p>
 
-            {/* MIDDLE: Emoji â€” flex-1 centers it vertically */}
+            {/* MIDDLE: Emoji Ã¢â‚¬â€ flex-1 centers it vertically */}
             <div className="flex flex-1 items-center justify-center">
               <span className="text-[104px] leading-none select-none">
                 {step.emoji}
               </span>
             </div>
 
-            {/* BOTTOM: Title + description â€” centered */}
+            {/* BOTTOM: Title + description Ã¢â‚¬â€ centered */}
             <div className="w-full text-center">
               <h3 className="font-merriweather mb-3 text-[16px] sm:text-[27px] font-regular leading-tight tracking-[0.01em] text-[#f3f3f3]">
                 {step.title}
@@ -306,3 +306,7 @@ export default function Home6HowWeWork() {
     </section>
   );
 }
+
+
+
+

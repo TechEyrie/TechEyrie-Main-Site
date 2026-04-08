@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -87,7 +87,7 @@ const PROJECTS = [
 
 const HEADING_LINES = ["RECENT", "PROJECTS"];
 
-// â”€â”€ Single project card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Single project card Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function ProjectCard({ project, index }) {
   const cardRef = useRef(null);
   const [hovered, setHovered] = useState(false);
@@ -179,7 +179,7 @@ function ProjectCard({ project, index }) {
   );
 }
 
-// â”€â”€ Main section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Main section Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 export default function Home4Projects() {
   const [activeFilter, setActiveFilter] = useState("ALL");
 
@@ -194,7 +194,7 @@ export default function Home4Projects() {
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeFilter);
 
-  // â”€â”€ Heading reveal â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Heading reveal Ã¢â€â‚¬Ã¢â€â‚¬
   useGSAP(
     () => {
       const lines = headingLineRefs.current.filter(Boolean);
@@ -226,7 +226,7 @@ export default function Home4Projects() {
     { scope: sectionRef }
   );
 
-  // â”€â”€ Filter pills reveal â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Filter pills reveal Ã¢â€â‚¬Ã¢â€â‚¬
   useGSAP(
     () => {
       const pills = filterRefs.current.filter(Boolean);
@@ -252,13 +252,13 @@ export default function Home4Projects() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#162d24] px-6 py-24 sm:px-10 md:px-14 lg:px-16"
+      className="w-full bg-[#f0ede6] px-6 py-24 sm:px-10 md:px-14 lg:px-16"
     >
       <div className="mx-auto max-w-[1200px]">
 
-        {/* â”€â”€ Heading â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Heading Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div ref={headingRef} className="mb-8 text-center">
-          <h2 className="font-italiana text-[52px] sm:text-[68px] md:text-[84px] lg:text-[96px] xl:text-[108px] font-semibold leading-[0.88] tracking-[-0.03em] text-[#f3f3f3] uppercase">
+          <h2 className="font-italiana text-[52px] sm:text-[68px] md:text-[84px] lg:text-[96px] xl:text-[108px] font-semibold leading-[0.88] tracking-[-0.03em] text-[#1a1a1a] uppercase">
             {HEADING_LINES.map((line, i) => (
               <span
                 key={i}
@@ -283,7 +283,7 @@ export default function Home4Projects() {
           </h2>
         </div>
 
-        {/* â”€â”€ Filter pills â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Filter pills Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div
           ref={filtersRef}
           className="mb-10 flex flex-wrap items-center justify-center gap-[4px]"
@@ -296,7 +296,7 @@ export default function Home4Projects() {
               className="font-merriweather cursor-pointer rounded-full px-4 py-[6px] text-[13px] sm:text-[14px] font-medium tracking-[0.04em] uppercase transition-all duration-300"
               style={{
                 background: activeFilter === filter ? "#74F5A1" : "transparent",
-                color: activeFilter === filter ? "#162d24" : "#e0d1b6",
+                color: activeFilter === filter ? "#162d24" : "#1a1a1a",
                 border: "1.5px solid #74F5A1",
               }}
             >
@@ -305,7 +305,7 @@ export default function Home4Projects() {
           ))}
         </div>
 
-        {/* â”€â”€ Projects grid â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Projects grid Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {filtered.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
@@ -316,3 +316,6 @@ export default function Home4Projects() {
     </section>
   );
 }
+
+
+

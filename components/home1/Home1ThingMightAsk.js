@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -15,7 +15,7 @@ const FAQ_GROUPS = [
     items: [
       {
         q: "IS ONE PAGE REALLY ENOUGH?",
-        a: "IN MANY CASES — YES. A WELL-STRUCTURED ONE-PAGE WEBSITE IS ENOUGH TO LAUNCH, TEST AN IDEA, AND START GETTING LEADS. YOU CAN ALWAYS SCALE IT LATER.",
+        a: "IN MANY CASES â€” YES. A WELL-STRUCTURED ONE-PAGE WEBSITE IS ENOUGH TO LAUNCH, TEST AN IDEA, AND START GETTING LEADS. YOU CAN ALWAYS SCALE IT LATER.",
       },
       {
         q: "CAN WE SCALE THE WEBSITE LATER?",
@@ -93,7 +93,7 @@ const FAQ_GROUPS = [
   },
 ];
 
-// â”€â”€ Single FAQ item â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Single FAQ item Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function FAQItem({ item, isLast }) {
   const [open, setOpen] = useState(false);
   const answerRef = useRef(null);
@@ -140,13 +140,13 @@ function FAQItem({ item, isLast }) {
         onClick={toggle}
         className="flex w-full items-start justify-between gap-4 py-5 text-left"
       >
-        {/* Question â€” increased ~50% from text-[12px] â†’ text-[17px] */}
-        <span className="font-merriweather text-[15px] sm:text-[16px] md:text-[17px] font-normal leading-[1.45] tracking-[0.02em] text-[#f3f3f3] uppercase">
+        {/* Question Ã¢â‚¬â€ increased ~50% from text-[12px] Ã¢â€ â€™ text-[17px] */}
+        <span className="font-merriweather text-[15px] sm:text-[16px] md:text-[17px] font-normal leading-[1.45] tracking-[0.02em] text-[#1a1a1a] uppercase">
           {item.q}
         </span>
         <span
           ref={arrowRef}
-          className="mt-1 flex-shrink-0 text-[#e0d1b6]/55"
+          className="mt-1 flex-shrink-0 text-[#1a1a1a]/50"
           style={{ transformOrigin: "center", display: "inline-block" }}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -165,8 +165,8 @@ function FAQItem({ item, isLast }) {
         ref={answerRef}
         style={{ height: 0, overflow: "hidden", visibility: "hidden" }}
       >
-        {/* Answer â€” increased ~50% from text-[11px] â†’ text-[15px] */}
-        <p className="font-merriweather pb-5 text-[13px] sm:text-[14px] md:text-[15px] font-light leading-[1.85] tracking-[0.03em] text-[#e0d1b6]/70 uppercase">
+        {/* Answer Ã¢â‚¬â€ increased ~50% from text-[11px] Ã¢â€ â€™ text-[15px] */}
+        <p className="font-merriweather pb-5 text-[13px] sm:text-[14px] md:text-[15px] font-light leading-[1.85] tracking-[0.03em] text-[#1a1a1a]/55 uppercase">
           {item.a}
         </p>
       </div>
@@ -176,12 +176,12 @@ function FAQItem({ item, isLast }) {
   );
 }
 
-// â”€â”€ FAQ group â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ FAQ group Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function FAQGroup({ group, groupRef }) {
   return (
     <div ref={groupRef}>
-      {/* Category â€” regular font weight, increased size */}
-      <h3 className="font-italiana mb-8 text-[28px] sm:text-[32px] md:text-[36px] font-normal leading-tight tracking-[-0.01em] text-[#f3f3f3] uppercase">
+      {/* Category Ã¢â‚¬â€ regular font weight, increased size */}
+      <h3 className="font-italiana mb-8 text-[28px] sm:text-[32px] md:text-[36px] font-normal leading-tight tracking-[-0.01em] text-[#1a1a1a] uppercase">
         {group.category}
       </h3>
 
@@ -198,7 +198,7 @@ function FAQGroup({ group, groupRef }) {
   );
 }
 
-// â”€â”€ Main section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬ Main section Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 export default function Home10FAQ() {
   const sectionRef = useRef(null);
   const headingWrapRef = useRef(null);
@@ -207,7 +207,7 @@ export default function Home10FAQ() {
 
   useGSAP(
     () => {
-      // â”€â”€ Heading â€” trigger on headingWrapRef (stable DOM node) â”€â”€
+      // Ã¢â€â‚¬Ã¢â€â‚¬ Heading Ã¢â‚¬â€ trigger on headingWrapRef (stable DOM node) Ã¢â€â‚¬Ã¢â€â‚¬
       const lines = headingLineRefs.current.filter(Boolean);
       if (lines.length && headingWrapRef.current) {
         gsap.set(lines, {
@@ -233,7 +233,7 @@ export default function Home10FAQ() {
         });
       }
 
-      // â”€â”€ Groups stagger â”€â”€
+      // Ã¢â€â‚¬Ã¢â€â‚¬ Groups stagger Ã¢â€â‚¬Ã¢â€â‚¬
       const groups = groupRefs.current.filter(Boolean);
       if (groups.length) {
         gsap.set(groups, { autoAlpha: 0, y: 32 });
@@ -257,13 +257,13 @@ export default function Home10FAQ() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#162d24] px-6 py-24 sm:px-10 sm:py-28 md:px-14 lg:px-16"
+      className="w-full bg-[#f0ede6] px-6 py-24 sm:px-10 sm:py-28 md:px-14 lg:px-16"
     >
       <div className="mx-auto max-w-[1280px]">
 
-        {/* â”€â”€ Heading â€” left aligned â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Heading Ã¢â‚¬â€ left aligned Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div ref={headingWrapRef} className="mb-20 sm:mb-24">
-          <h2 className="font-italiana text-left text-[52px] sm:text-[72px] md:text-[88px] lg:text-[104px] xl:text-[116px] font-semibold leading-[0.9] tracking-[-0.03em] text-[#f3f3f3] uppercase">
+          <h2 className="font-italiana text-left text-[52px] sm:text-[72px] md:text-[88px] lg:text-[104px] xl:text-[116px] font-semibold leading-[0.9] tracking-[-0.03em] text-[#1a1a1a] uppercase">
             {HEADING_LINES.map((line, i) => (
               <span
                 key={i}
@@ -288,7 +288,7 @@ export default function Home10FAQ() {
           </h2>
         </div>
 
-        {/* â”€â”€ 2-column FAQ grid â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ 2-column FAQ grid Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div className="grid grid-cols-1 gap-x-16 gap-y-16 sm:grid-cols-2 lg:gap-x-24">
           {FAQ_GROUPS.map((group, i) => (
             <FAQGroup
@@ -303,3 +303,5 @@ export default function Home10FAQ() {
     </section>
   );
 }
+
+

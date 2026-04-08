@@ -22,7 +22,7 @@ export default function Home5Contact() {
   const cardRef = useRef(null);
   const cardLineRefs = useRef([]);
 
-  // â”€â”€ Cursor glow RAF â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ Cursor glow RAF Ã¢â€â‚¬Ã¢â€â‚¬
   useEffect(() => {
     const node = sectionRef.current;
     if (!node) return;
@@ -52,7 +52,7 @@ export default function Home5Contact() {
     };
   };
 
-  // â”€â”€ All animations scoped to sectionRef â”€â”€
+  // Ã¢â€â‚¬Ã¢â€â‚¬ All animations scoped to sectionRef Ã¢â€â‚¬Ã¢â€â‚¬
   useGSAP(
     () => {
       // Heading lines
@@ -163,7 +163,7 @@ export default function Home5Contact() {
       {/* Content */}
       <div className="relative z-[2] mx-auto w-full max-w-[1200px] px-6 sm:px-10 md:px-14 lg:flex lg:items-center lg:gap-14 lg:px-16">
 
-        {/* â”€â”€ Left: heading + subtitle + CTA â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Left: heading + subtitle + CTA Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div className="w-full py-12 lg:w-[52%] lg:py-0">
           <h2 className="font-italiana text-[48px] sm:text-[62px] md:text-[76px] lg:text-[70px] xl:text-[70px] font-regular leading-[0.92] tracking-[-0.02em] text-[#f3f3f3] uppercase">
             {HEADING_LINES.map((line, i) => (
@@ -204,11 +204,11 @@ export default function Home5Contact() {
           </div>
         </div>
 
-        {/* â”€â”€ Right: person card â”€â”€ */}
+        {/* Ã¢â€â‚¬Ã¢â€â‚¬ Right: person card Ã¢â€â‚¬Ã¢â€â‚¬ */}
         <div className="w-full pb-12 lg:w-[48%] lg:pb-0">
           <div
             ref={cardRef}
-            className="flex overflow-hidden rounded-[3px] border border-[#74F5A1]/20 bg-[#122a21]"
+            className="flex overflow-hidden rounded-[3px] border border-[#74F5A1]/20 bg-[#f0ede6]"
             style={{ willChange: "transform, opacity" }}
           >
             {/* Photo */}
@@ -230,13 +230,13 @@ export default function Home5Contact() {
               <div>
                 <p
                   ref={(el) => (cardLineRefs.current[0] = el)}
-                  className="font-merriweather mb-2 text-[10px] font-light tracking-[0.1em] text-[#e0d1b6]/55 uppercase"
+                  className="font-merriweather mb-2 text-[10px] font-light tracking-[0.1em] text-[#1a1a1a]/70 uppercase"
                 >
                   CREATIVE DIRECTOR
                 </p>
                 <h3
                   ref={(el) => (cardLineRefs.current[1] = el)}
-                  className="font-merriweather mb-4 text-[20px] sm:text-[24px] font-semibold leading-none tracking-[-0.01em] text-[#f3f3f3]"
+                  className="font-merriweather mb-4 text-[20px] sm:text-[24px] font-semibold leading-none tracking-[-0.01em] text-[#1a1a1a]"
                 >
                   ALEX TKACHEV
                 </h3>
@@ -248,7 +248,7 @@ export default function Home5Contact() {
 
                 <p
                   ref={(el) => (cardLineRefs.current[3] = el)}
-                  className="font-merriweather text-[10px] sm:text-[11px] font-light leading-[1.75] tracking-[0.04em] text-[#e0d1b6]/70 uppercase"
+                  className="font-merriweather text-[10px] sm:text-[11px] font-light leading-[1.75] tracking-[0.04em] text-[#1a1a1a] uppercase"
                 >
                   AN EXPERIENCED DIGITAL DESIGNER
                   <br />
@@ -272,7 +272,7 @@ export default function Home5Contact() {
                 <a
                   ref={(el) => (cardLineRefs.current[5] = el)}
                   href="mailto:alex@ykwmi.studio"
-                  className="font-merriweather text-[10px] sm:text-[11px] font-light tracking-[0.08em] text-[#e0d1b6]/65 uppercase transition-colors duration-200 hover:text-[#74F5A1]"
+                  className="font-merriweather text-[10px] sm:text-[11px] font-light tracking-[0.08em] text-[#1a1a1a]/75 uppercase transition-colors duration-200 hover:text-[#74F5A1]"
                 >
                   ALEX@YKWMI.STUDIO
                 </a>
@@ -285,3 +285,7 @@ export default function Home5Contact() {
     </section>
   );
 }
+
+
+
+

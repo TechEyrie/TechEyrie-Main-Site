@@ -141,13 +141,13 @@ export default function Home9Pricing() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#162d24] px-6 py-24 sm:px-10 sm:py-28 md:px-14 lg:px-16"
+      className="w-full bg-[#f0ede6] px-6 py-24 sm:px-10 sm:py-28 md:px-14 lg:px-16"
     >
       <div className="mx-auto max-w-[1280px]">
 
         {/* Heading */}
         <div ref={headingWrapRef}>
-          <h2 className="font-italiana mb-6 text-center text-[40px] sm:text-[56px] md:text-[70px] lg:text-[82px] xl:text-[92px] font-semibold leading-[0.92] tracking-[-0.025em] text-[#f3f3f3] uppercase">
+          <h2 className="font-italiana mb-6 text-center text-[40px] sm:text-[56px] md:text-[70px] lg:text-[82px] xl:text-[92px] font-semibold leading-[0.92] tracking-[-0.025em] text-[#1a1a1a] uppercase">
             {HEADING_LINES.map((line, i) => (
               <span
                 key={i}
@@ -175,7 +175,7 @@ export default function Home9Pricing() {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-merriweather mx-auto mb-20 max-w-[360px] text-center text-[11px] sm:text-[12px] font-light leading-[1.85] tracking-[0.05em] text-[#e0d1b6]/55 uppercase"
+          className="font-merriweather mx-auto mb-20 max-w-[360px] text-center text-[11px] sm:text-[12px] font-light leading-[1.85] tracking-[0.05em] text-[#1a1a1a]/45 uppercase"
         >
           ONE-PAGE FIRST. SCALE WHEN YOU'RE READY.
           <br />
@@ -193,29 +193,29 @@ export default function Home9Pricing() {
             <div
               key={plan.name}
               ref={(el) => (cardRefs.current[i] = el)}
-              className="flex flex-col bg-[#122a21] p-8 sm:p-10"
+              className="flex flex-col bg-[#f0ede6] p-8 sm:p-10"
               style={{
-                border: "1px solid rgba(116,245,161,0.22)",
+                border: "1px solid rgba(26,26,26,0.25)",
                 willChange: "transform, opacity",
               }}
             >
-              {/* Plan name â€” increased font size */}
-              <p className="font-merriweather mb-16 text-[14px] sm:text-[15px] font-light tracking-[0.1em] text-[#e0d1b6]/50 uppercase">
+              {/* Plan name Ã¢â‚¬â€ increased font size */}
+              <p className="font-merriweather mb-16 text-[14px] sm:text-[15px] font-light tracking-[0.1em] text-[#1a1a1a]/70 uppercase">
                 {plan.name}
               </p>
 
               {/* Price */}
               <div className="mb-4">
-                <span className="font-merriweather text-[34px] sm:text-[36px] md:text-[40px] font-light leading-none tracking-[-0.02em] text-[#f3f3f3]">
+                <span className="font-merriweather text-[34px] sm:text-[36px] md:text-[40px] font-light leading-none tracking-[-0.02em] text-[#1a1a1a]">
                   {plan.price}
                 </span>
-                <span className="font-merriweather ml-[6px] text-[18px] sm:text-[20px] font-light tracking-[-0.01em] text-[#e0d1b6]">
+                <span className="font-merriweather ml-[6px] text-[18px] sm:text-[20px] font-light tracking-[-0.01em] text-[#1a1a1a]">
                   {plan.period}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="font-merriweather mb-8 text-[13px] sm:text-[14px] font-light leading-[1.8] tracking-[0.04em] text-[#e0d1b6] uppercase">
+              <p className="font-merriweather mb-8 text-[13px] sm:text-[14px] font-light leading-[1.8] tracking-[0.04em] text-[#1a1a1a] uppercase">
                 {plan.description}
               </p>
 
@@ -223,19 +223,19 @@ export default function Home9Pricing() {
               <ul className="mb-10 flex flex-1 flex-col">
                 {plan.features.map((feat, fi) => (
                   <li key={fi}>
-                    <div className="h-[1.5px] w-full bg-[#74F5A1]/25" />
-                    <p className="font-merriweather py-[14px] text-[13px] sm:text-[14px] font-light tracking-[0.04em] text-[#e0d1b6] uppercase">
+                    <div className="h-[1.5px] w-full bg-[#1a1a1a]/25" />
+                    <p className="font-merriweather py-[14px] text-[13px] sm:text-[14px] font-light tracking-[0.04em] text-[#1a1a1a] uppercase">
                       {feat}
                     </p>
                   </li>
                 ))}
-                <div className="h-[1.5px] w-full bg-[#74F5A1]/25" />
+                <div className="h-[1.5px] w-full bg-[#1a1a1a]/25" />
               </ul>
 
               {/* CTA */}
               <a
                 href="#"
-                className="font-merriweather mt-auto flex w-full items-center justify-center rounded-full border border-[#74F5A1] py-[14px] text-[12px] sm:text-[13px] font-light tracking-[0.1em] text-[#e0d1b6] uppercase transition-all duration-300 hover:bg-[#74F5A1] hover:text-[#162d24]"
+                className="font-merriweather mt-auto flex w-full items-center justify-center rounded-full border border-black py-[14px] text-[12px] sm:text-[13px] font-light tracking-[0.1em] text-[#1a1a1a] uppercase transition-all duration-300 hover:bg-[#74F5A1] hover:text-[#1a1a1a]"
               >
                 {plan.cta}
               </a>
@@ -247,3 +247,7 @@ export default function Home9Pricing() {
     </section>
   );
 }
+
+
+
+
