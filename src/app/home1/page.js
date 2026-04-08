@@ -8,6 +8,7 @@ import Home1Pricing from "../../../components/home1/Home1Pricing";
 import Home1RecentProjects from "../../../components/home1/Home1RecentProjects";
 import Home1Services from "../../../components/home1/Home1Services";
 import Home1SliderScroll from "../../../components/home1/Home1SliderScroll";
+import CursorRevealStar from "../../../components/home1/Home1StarAnimation";
 import Home1ThingMightAsk from "../../../components/home1/Home1ThingMightAsk";
 import Home1TwoText from "../../../components/home1/Home1TwoText";
 
@@ -26,6 +27,7 @@ export default function Home1Page() {
       <Home1ThingMightAsk />
       <Home1CTA2 />
       <Home1Footer />
+      <CursorRevealStar />
     </div>
   );
 }
