@@ -593,8 +593,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
             }}
           >
             <video
-              className="absolute inset-0 h-full w-full object-cover opacity-[1.0]"
-              src="/videos/video-test-mountain.mp4"
+              className="absolute inset-0 h-full w-full object-cover opacity-[2.0]"
+              src="/videos/bg-test-video-1.mp4"
               autoPlay
               muted
               loop
@@ -602,12 +602,12 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               preload="metadata"
             />
             {/* Hero-only: lighter forest base than page #162d24 — lifts bg color without exposing brighter video */}
-            <div className="absolute inset-0 bg-[#2d5f4c]/76" />
-            <div
+            {/* <div className="absolute inset-0 bg-[#2d5f4c]/76" /> */}
+            {/* <div
               className="absolute inset-0 bg-gradient-to-br from-[#3a7260]/32 via-transparent to-transparent"
               style={{ mixBlendMode: "soft-light" }}
-            />
-            <div
+            /> */}
+            {/* <div
               className="absolute inset-0"
               style={{
                 background: `
@@ -638,7 +638,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`,
                 mixBlendMode: "overlay",
               }}
-            />
+            /> */}
           </div>
         )}
         {theme === "dark" && !sharedBackground && (

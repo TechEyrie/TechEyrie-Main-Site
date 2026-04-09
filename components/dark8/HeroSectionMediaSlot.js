@@ -602,12 +602,12 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               preload="metadata"
             />
             {/* Hero-only: lighter forest base than page #162d24 — lifts bg color without exposing brighter video */}
-            <div className="absolute inset-0 bg-[#2d5f4c]/64" />
+            {/* <div className="absolute inset-0 bg-[#2d5f4c]/64" />
             <div
               className="absolute inset-0 bg-gradient-to-br from-[#3a7260]/32 via-transparent to-transparent"
               style={{ mixBlendMode: "soft-light" }}
-            />
-            <div
+            /> */}
+            {/* <div
               className="absolute inset-0"
               style={{
                 background: `
@@ -620,8 +620,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 `,
                 mixBlendMode: "soft-light",
               }}
-            />
-            <div
+            /> */}
+            {/* <div
               className="absolute inset-0"
               style={{
                 background:
@@ -629,8 +629,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 mixBlendMode: "screen",
                 opacity: 0.7,
               }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0c241c]/34 via-[#234d3e]/10 to-transparent" />
+            /> */}
+            {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0c241c]/34 via-[#234d3e]/10 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#265445]/44 via-transparent to-[#17352c]/30" />
             <div
               className="absolute inset-0 opacity-[0.12]"
@@ -638,7 +638,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`,
                 mixBlendMode: "overlay",
               }}
-            />
+            /> */}
           </div>
         )}
         {theme === "dark" && !sharedBackground && (

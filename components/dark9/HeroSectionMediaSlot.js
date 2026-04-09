@@ -592,9 +592,9 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
             }}
           >
-            <video
+            <img
               className="absolute inset-0 h-full w-full object-cover opacity-[1.0]"
-              src="/videos/video-test-emerald.mp4"
+              src="/rvED4.jpg"
               autoPlay
               muted
               loop
@@ -602,7 +602,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               preload="metadata"
             />
             {/* Hero-only: lighter forest base than page #162d24 — lifts bg color without exposing brighter video */}
-            <div className="absolute inset-0 bg-[#2d5f4c]/76" />
+            {/* <div className="absolute inset-0 bg-[#2d5f4c]/76" />
             <div
               className="absolute inset-0 bg-gradient-to-br from-[#3a7260]/32 via-transparent to-transparent"
               style={{ mixBlendMode: "soft-light" }}
@@ -638,7 +638,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`,
                 mixBlendMode: "overlay",
               }}
-            />
+            /> */}
           </div>
         )}
         {theme === "dark" && !sharedBackground && (
