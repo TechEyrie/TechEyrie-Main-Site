@@ -18,7 +18,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// ─── Total frames in public/sequence ────────────────────────────────────────
 const TOTAL_FRAMES = 120;
 
 export default function HeroSectionMediaSlot({ theme = "light", sharedBackground = false }) {
@@ -41,10 +40,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   const containerRef                   = useRef(null);
   const heroSectionRef                 = useRef(null);
   const heroContentRef                 = useRef(null);
-  // Canvas ref for the sequence animation
   const sequenceCanvasRef              = useRef(null);
   const portfolioSectionRef            = useRef(null);
-  const portfolioSpacerRef             = useRef(null);
   const titleContainerRef              = useRef(null);
   const portfolioCardPlaceholdersRef   = useRef([]);
   const portfolioCardTriangleIntervals = useRef({});
@@ -52,65 +49,68 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   const portfolioCardTriangleIdRef     = useRef(0);
 
   const [portfolioCardTriangles, setPortfolioCardTriangles] = useState({});
-  const [isDesktop, setIsDesktop]         = useState(false);
-  const [screenSize, setScreenSize]       = useState("mobile");
-  const [hoveredCard, setHoveredCard]     = useState(null);
-  const [hoveredBottomSection, setHoveredBottomSection] = useState(null);
-  const [hoveredPortfolioCard, setHoveredPortfolioCard] = useState(null);
-  const [portfolioCardWidth, setPortfolioCardWidth]     = useState(300);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isDesktop, setIsDesktop]                           = useState(false);
+  const [screenSize, setScreenSize]                         = useState("mobile");
+  const [hoveredCard, setHoveredCard]                       = useState(null);
+  const [hoveredBottomSection, setHoveredBottomSection]     = useState(null);
+  const [hoveredPortfolioCard, setHoveredPortfolioCard]     = useState(null);
+  const [portfolioCardWidth, setPortfolioCardWidth]         = useState(300);
+  const [prefersReducedMotion, setPrefersReducedMotion]     = useState(false);
 
+  // ─── Reduced motion ──────────────────────────────────────────────────────────
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mq     = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setPrefersReducedMotion(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // ─── Media assets ────────────────────────────────────────────────────────────
   const mediaAssets = useMemo(() => [
     {
-      type: "image",
-      src: "https://www.datocms-assets.com/151374/1741831437-mudwtr.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
-      alt: "MUD\\WTR brand showcase",
-      title: "Technology Partner",
+      type:     "image",
+      src:      "https://www.datocms-assets.com/151374/1741831437-mudwtr.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
+      alt:      "MUD\\WTR brand showcase",
+      title:    "Technology Partner",
       subtitle: "Health & Wellness",
-      metric: "+35% Conversion Rate",
-      buttons: ["Health & Wellness"],
-      link: "/work/mud-wtr",
+      metric:   "+35% Conversion Rate",
+      buttons:  ["Health & Wellness"],
+      link:     "/work/mud-wtr",
     },
     {
-      type: "image",
-      src: "https://www.datocms-assets.com/151374/1741910699-cotopaxi_482x858_alternate.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
-      alt: "Cotopaxi brand showcase",
-      title: "Solution Architect",
+      type:     "image",
+      src:      "https://www.datocms-assets.com/151374/1741910699-cotopaxi_482x858_alternate.png?auto=format&fit=max&h=2440&lossless=false&q=75&w=2440",
+      alt:      "Cotopaxi brand showcase",
+      title:    "Solution Architect",
       subtitle: "Outdoor & Lifestyle",
-      metric: "+20% Marketing Efficiency",
-      buttons: ["Food & Beverage", "CPG"],
-      link: "/work/cotopaxi",
+      metric:   "+20% Marketing Efficiency",
+      buttons:  ["Food & Beverage", "CPG"],
+      link:     "/work/cotopaxi",
     },
     {
-      type: "video",
-      src: "https://stream.mux.com/zaOX00ijKS1dZVZGFpLMjhNOIGbKQ8dmO/medium.mp4",
-      alt: "Digital marketing campaign showcase",
-      title: "Exacting Precision",
-      subtitle: "Food & Beverage",
-      metric: "+45% Engagement",
+      type:    "video",
+      src:     "https://stream.mux.com/zaOX00ijKS1dZVZGFpLMjhNOIGbKQ8dmO/medium.mp4",
+      alt:     "Digital marketing campaign showcase",
+      title:   "Exacting Precision",
+      subtitle:"Food & Beverage",
+      metric:  "+45% Engagement",
       buttons: ["Food & Beverage", "CPG"],
-      link: "/work/oreo",
+      link:    "/work/oreo",
     },
     {
-      type: "video",
-      src: "https://stream.mux.com/s5S6U18mND3t8caFSka7r7Wrulxm4SAb/medium.mp4",
-      alt: "Brand impact visualization",
-      title: "Expert Mastery",
-      subtitle: "Global Campaigns",
-      metric: "+60% Brand Awareness",
+      type:    "video",
+      src:     "https://stream.mux.com/s5S6U18mND3t8caFSka7r7Wrulxm4SAb/medium.mp4",
+      alt:     "Brand impact visualization",
+      title:   "Expert Mastery",
+      subtitle:"Global Campaigns",
+      metric:  "+60% Brand Awareness",
       buttons: ["Food & Beverage", "CPG"],
-      link: "/work/coca-cola",
+      link:    "/work/coca-cola",
     },
   ], []);
 
+  // ─── Responsive sizes ────────────────────────────────────────────────────────
   const calculateCardSizes = useCallback((w) => {
     if (w >= 1920) return 360;
     if (w >= 1536) return 330;
@@ -134,19 +134,19 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     return () => window.removeEventListener("resize", check);
   }, [calculateCardSizes]);
 
+  // ─── Electrical title animation ──────────────────────────────────────────────
   const triggerElectricalAnimation = useCallback(() => {
     const lines = document.querySelectorAll(".hero-main-title-line");
-    const orig  = theme === "dark" ? "#f3f3f3" : "#111111";
     const elec  = theme === "dark" ? "#74F5A1" : "#3BC972";
     const tl    = gsap.timeline();
     lines.forEach((line, i) => {
-      tl.to(line, { color: "#ffffff",  duration: 0.10, ease: "power2.out" }, i * 0.2)
-        .to(line, { color: elec,       duration: 0.15, ease: "sine.inOut" })
-        .to(line, { color: orig,       duration: 0.25, ease: "power2.in"  });
+      tl.to(line, { color: "#ffffff", duration: 0.10, ease: "power2.out" }, i * 0.2)
+        .to(line, { color: elec,      duration: 0.15, ease: "sine.inOut" })
+        .to(line, { color: "#ffffff", duration: 0.25, ease: "power2.in"  });
     });
   }, [theme]);
 
-  // ─── IMAGE SEQUENCE + HERO PIN ──────────────────────────────────────────────
+  // ─── Image sequence + hero pin ───────────────────────────────────────────────
   useLayoutEffect(() => {
     const canvas = sequenceCanvasRef.current;
     const hero   = heroSectionRef.current;
@@ -154,12 +154,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
 
     const ctx = canvas.getContext("2d");
 
-    // ── 1. Build frame path helper ──────────────────────────────────────────
-    const padded = (n) => String(n).padStart(3, "0");
-    // Filenames: frame_000_delay-0.067s.webp … frame_119_delay-0.067s.webp
-    const frameSrc = (n) => `/sequence/frame_${padded(n)}_delay-0.067s.webp`;
-
-    // ── 2. Resize canvas to full viewport ──────────────────────────────────
+    // Resize canvas to viewport
     const resize = () => {
       canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -167,14 +162,18 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     resize();
     window.addEventListener("resize", resize);
 
-    // ── 3. Preload all frames ───────────────────────────────────────────────
+    // Build frame paths: frame_000_delay-0.067s.webp … frame_119_delay-0.067s.webp
+    const padded   = (n) => String(n).padStart(3, "0");
+    const frameSrc = (n) => `/sequence/frame_${padded(n)}_delay-0.067s.webp`;
+
+    // Preload all frames
     const frames = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
       const img = new window.Image();
-      img.src = frameSrc(i);
+      img.src   = frameSrc(i);
       return img;
     });
 
-    // Draw a single frame centred / cover-fitted on the canvas
+    // Cover-fit draw helper
     const drawFrame = (index) => {
       const img = frames[Math.min(index, TOTAL_FRAMES - 1)];
       if (!img.complete || !img.naturalWidth) return;
@@ -188,39 +187,36 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
       ctx.drawImage(img, sx, sy, sw, sh);
     };
 
-    // Draw frame 0 as soon as it loads so there's no blank flash
+    // Show first frame immediately
     frames[0].onload = () => drawFrame(0);
     if (frames[0].complete) drawFrame(0);
 
-    // ── 4. GSAP scrub object ────────────────────────────────────────────────
-    const seq = { frame: 0 };
-
+    // ScrollTrigger — pin hero, scrub sequence over 300vh
     const st = ScrollTrigger.create({
-      trigger:    hero,
-      start:      "top top",
-      // 300vh of scroll = full sequence + heading disappear
-      end:        "+=300%",
-      pin:        true,
-      pinSpacing: true,
-      scrub:      0.6,
-      anticipatePin: 1,
+      trigger:             hero,
+      start:               "top top",
+      end:                 () => `+=${window.innerHeight * 1.5}`,
+      pin:                 true,
+      pinSpacing:          true,   // GSAP owns the spacer — no manual spacer needed
+      scrub:               0.6,
+      anticipatePin:       1,
+      invalidateOnRefresh: true,
       onUpdate: (self) => {
-        const frameIndex = Math.round(self.progress * (TOTAL_FRAMES - 1));
-        drawFrame(frameIndex);
+        // Drive sequence
+        drawFrame(Math.round(self.progress * (TOTAL_FRAMES - 1)));
 
-        // Fade heading out during first 25 % of scroll
+        // Fade heading out over first 25 % of scroll
         if (heroContentRef.current) {
-          const headingProgress = Math.min(self.progress / 0.25, 1);
-          gsap.set(heroContentRef.current, {
-            opacity: 1 - headingProgress,
-            y:       -80 * headingProgress,
-          });
+          const p = Math.min(self.progress / 0.25, 1);
+          gsap.set(heroContentRef.current, { opacity: 1 - p, y: -80 * p });
         }
       },
     });
 
-    // ── 5. Entrance animations (unchanged) ─────────────────────────────────
-    gsap.from(".hero-badge", { y: 24, opacity: 0, duration: 0.9, ease: "power3.out", delay: 0.1 });
+    // Entrance animations
+    gsap.from(".hero-badge", {
+      y: 24, opacity: 0, duration: 0.9, ease: "power3.out", delay: 0.1,
+    });
     gsap.fromTo(
       ".hero-main-title-line",
       { opacity: 0, y: 60, skewY: 4 },
@@ -236,29 +232,27 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     return () => {
       st.kill();
       window.removeEventListener("resize", resize);
-      if (heroContentRef.current) gsap.set(heroContentRef.current, { clearProps: "y,opacity" });
+      if (heroContentRef.current)
+        gsap.set(heroContentRef.current, { clearProps: "y,opacity" });
     };
   }, [isDesktop, screenSize, theme, triggerElectricalAnimation, prefersReducedMotion]);
 
-  // ─── CASE STUDY SECTION ENTRANCE ────────────────────────────────────────────
+  // ─── Case study entrance ─────────────────────────────────────────────────────
   useLayoutEffect(() => {
-    if (
-      !portfolioSectionRef.current ||
-      !portfolioSpacerRef.current
-    ) return;
-
     const portfolio = portfolioSectionRef.current;
-    const spacer    = portfolioSpacerRef.current;
+    if (!portfolio) return;
 
-    // Keep portfolio hidden until hero sequence ends, then reveal naturally
+    // Always visible as default — entrance is a nice-to-have fade-in
+    gsap.set(portfolio, { opacity: 1, y: 0 });
+
     const st = ScrollTrigger.create({
       trigger: portfolio,
-      start:   "top 80%",
+      start:   "top 85%",
       once:    true,
       onEnter: () => {
         gsap.fromTo(
           portfolio,
-          { opacity: 0, y: 60 },
+          { opacity: 0, y: 50 },
           { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
         );
       },
@@ -267,6 +261,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     return () => st.kill();
   }, [isDesktop, screenSize]);
 
+  // ─── Mobile electrical trigger ───────────────────────────────────────────────
   useEffect(() => {
     if (!isDesktop) {
       const t = setTimeout(triggerElectricalAnimation, 1500);
@@ -274,6 +269,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     }
   }, [triggerElectricalAnimation, isDesktop]);
 
+  // ─── Triangle helpers ────────────────────────────────────────────────────────
   const createTriangleForPortfolioCard = useCallback((cardIndex, x, y) => {
     const id       = portfolioCardTriangleIdRef.current++;
     const size     = Math.random() * 10 + 15;
@@ -303,7 +299,11 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         if (!ref) return;
         const rect = ref.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0)
-          createTriangleForPortfolioCard(hoveredPortfolioCard, Math.random() * rect.width, Math.random() * rect.height);
+          createTriangleForPortfolioCard(
+            hoveredPortfolioCard,
+            Math.random() * rect.width,
+            Math.random() * rect.height,
+          );
       }, 200);
     }
     return () => Object.values(portfolioCardTriangleIntervals.current).forEach(clearInterval);
@@ -318,12 +318,17 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         if (!ref) return;
         const rect = ref.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0)
-          createTriangleForPortfolioCard(hoveredCard, Math.random() * rect.width, Math.random() * rect.height);
+          createTriangleForPortfolioCard(
+            hoveredCard,
+            Math.random() * rect.width,
+            Math.random() * rect.height,
+          );
       }, 200);
     }
     return () => Object.values(mobileCardTriangleIntervals.current).forEach(clearInterval);
   }, [hoveredCard, isDesktop, createTriangleForPortfolioCard]);
 
+  // ─── Triangle keyframe injection ────────────────────────────────────────────
   useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = `
@@ -337,6 +342,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     return () => document.head.removeChild(style);
   }, []);
 
+  // ─── Styles ──────────────────────────────────────────────────────────────────
   const sharedSectionBgStyle = useMemo(() => {
     if (theme === "dark" && sharedBackground) return dark7MainSurfaceStyle;
     if (sharedBackground) return { background: "transparent" };
@@ -356,31 +362,44 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     ? { background: "linear-gradient(135deg,#162d24 0%,#1b4732 18%,#005160 55%,#162d24 100%)" }
     : { backgroundColor: lightColors.background };
 
+  // ─── Sub-components ──────────────────────────────────────────────────────────
   const TriangleSVG = ({ triangle }) => (
     <div
       className="absolute animate-triangle-fade pointer-events-none"
       style={{
-        left: `${triangle.x}px`, top: `${triangle.y}px`,
-        width: `${triangle.size}px`, height: `${triangle.size}px`,
-        "--rotation": `${triangle.rotation}deg`, opacity: 0.7,
+        left:         `${triangle.x}px`,
+        top:          `${triangle.y}px`,
+        width:        `${triangle.size}px`,
+        height:       `${triangle.size}px`,
+        "--rotation": `${triangle.rotation}deg`,
+        opacity:      0.7,
       }}
     >
-      <svg className="w-full h-full" viewBox="0 0 100 100" fill="none"
-        style={{ transform: `translate(-50%,-50%) rotate(${triangle.rotation}deg)` }}>
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 100 100"
+        fill="none"
+        style={{ transform: `translate(-50%,-50%) rotate(${triangle.rotation}deg)` }}
+      >
         <path d="M50 10 L90 90 L10 90 Z" fill={triangle.color} />
       </svg>
     </div>
   );
 
+  // ─── Render ──────────────────────────────────────────────────────────────────
   return (
     <div ref={containerRef} className="relative w-full" style={sharedSectionBgStyle}>
 
       {theme === "dark" && !sharedBackground && (
         <>
-          <div className="absolute inset-x-0 top-0 h-24 sm:h-28 md:h-32 pointer-events-none z-[1]"
-            style={{ background: "linear-gradient(to bottom,#162d24 0%,rgba(22,45,36,0) 100%)" }} />
-          <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[1]"
-            style={{ background: "linear-gradient(to top,rgba(0,81,96,.9) 0%,rgba(0,81,96,0) 100%)" }} />
+          <div
+            className="absolute inset-x-0 top-0 h-24 sm:h-28 md:h-32 pointer-events-none z-[1]"
+            style={{ background: "linear-gradient(to bottom,#162d24 0%,rgba(22,45,36,0) 100%)" }}
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[1]"
+            style={{ background: "linear-gradient(to top,rgba(0,81,96,.9) 0%,rgba(0,81,96,0) 100%)" }}
+          />
         </>
       )}
 
@@ -392,20 +411,19 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         className="relative w-full min-h-screen flex flex-col items-center overflow-hidden"
         style={{ zIndex: 2 }}
       >
-        {/* ── Full-bleed sequence canvas ── */}
+        {/* Full-bleed sequence canvas */}
         <canvas
           ref={sequenceCanvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ zIndex: 0, objectFit: "cover" }}
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0, width: "100%", height: "100%" }}
         />
 
-        {/* Dark gradient vignette so text remains readable over the sequence */}
+        {/* Vignette — keeps text readable over any frame */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            zIndex: 1,
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.45) 100%)",
+            zIndex:     1,
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.50) 100%)",
           }}
         />
 
@@ -413,10 +431,10 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
           <div className="absolute inset-0 pointer-events-none z-[2]" style={noiseOverlayStyle} />
         )}
 
-        {/* ── Hero text content ── */}
+        {/* Hero text */}
         <div
           ref={heroContentRef}
-          className="relative z-10 w-full flex flex-col items-center text-center pt-32 md:pt-40 px-4 md:px-6 lg:px-10"
+          className="relative w-full flex flex-col items-center text-center pt-32 md:pt-40 px-4 md:px-6 lg:px-10"
           style={{ zIndex: 3 }}
         >
           <div className="hero-badge flex items-center gap-3 mb-6">
@@ -444,8 +462,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
             </h1>
           </div>
 
-          {/* Scroll hint — fades out with heading */}
-          <p className="mt-10 text-white/60 text-sm tracking-widest uppercase animate-bounce">
+          {/* Scroll hint */}
+          <p className="mt-10 text-white/50 text-xs tracking-[0.3em] uppercase animate-bounce select-none">
             Scroll
           </p>
         </div>
@@ -453,17 +471,20 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
 
       {/* ══════════════════════════════════
           CASE STUDY SECTION
+          — No inline opacity here; GSAP owns visibility
           ══════════════════════════════════ */}
       <section
         ref={portfolioSectionRef}
         className="w-full min-h-screen relative"
-        style={{ ...portfolioBgStyle, opacity: 0 /* revealed by ScrollTrigger */ }}
+        style={{ ...portfolioBgStyle }}
       >
         {theme === "dark" && !sharedBackground && (
           <>
             <div className="absolute inset-0 pointer-events-none z-[1]" style={noiseOverlayStyle} />
-            <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[1]"
-              style={{ background: "linear-gradient(to top,rgba(0,81,96,.9) 0%,rgba(0,81,96,0) 100%)" }} />
+            <div
+              className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[1]"
+              style={{ background: "linear-gradient(to top,rgba(0,81,96,.9) 0%,rgba(0,81,96,0) 100%)" }}
+            />
           </>
         )}
 
@@ -487,11 +508,17 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                   className="relative flex flex-col"
                   style={{ width: isDesktop ? `${portfolioCardWidth}px` : "85%" }}
                 >
+                  {/* Card hover bg */}
                   <div
                     className="absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none"
-                    style={{ backgroundColor: "#015b4f", opacity: hoveredBottomSection === index ? 1 : 0, zIndex: 0 }}
+                    style={{
+                      backgroundColor: "#015b4f",
+                      opacity:         hoveredBottomSection === index ? 1 : 0,
+                      zIndex:          0,
+                    }}
                   />
 
+                  {/* Media thumbnail */}
                   <div
                     ref={(el) => { if (el) portfolioCardPlaceholdersRef.current[index] = el; }}
                     className="relative w-full overflow-hidden rounded-t-xl flex-shrink-0"
@@ -500,29 +527,45 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     onMouseLeave={() => isDesktop ? setHoveredPortfolioCard(null) : setHoveredCard(null)}
                   >
                     {item.type === "image" ? (
-                      <Image src={item.src} alt={item.alt} fill
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
                         sizes="(max-width:640px) 85vw,(max-width:1024px) 50vw,260px"
-                        className="object-cover w-full h-full" />
+                        className="object-cover w-full h-full"
+                      />
                     ) : (
-                      <video src={item.src} muted loop playsInline autoPlay
-                        className="absolute inset-0 w-full h-full object-cover" />
+                      <video
+                        src={item.src}
+                        muted loop playsInline autoPlay
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
                     )}
 
+                    {/* Triangle particles */}
                     {((isDesktop && hoveredPortfolioCard === index) || (!isDesktop && hoveredCard === index)) &&
                       portfolioCardTriangles[index] && (
                         <div className="absolute inset-0 z-[15] pointer-events-none overflow-hidden rounded-t-xl">
-                          {portfolioCardTriangles[index].map((t) => <TriangleSVG key={t.id} triangle={t} />)}
+                          {portfolioCardTriangles[index].map((t) => (
+                            <TriangleSVG key={t.id} triangle={t} />
+                          ))}
                         </div>
                       )}
 
+                    {/* Hover metric overlay */}
                     <div
                       className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-hidden ${
                         (isDesktop && hoveredPortfolioCard === index) || (!isDesktop && hoveredCard === index)
-                          ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-full opacity-0"
                       }`}
                       style={{ height: "18%" }}
                     >
-                      <svg className="absolute bottom-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <svg
+                        className="absolute bottom-0 left-0 w-full h-full"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                      >
                         <path d="M 0 100 L 30 35 C 38 25,44 20,50 20 C 56 20,62 25,70 35 L 100 100 Z" fill="#74f5a1" />
                       </svg>
                       <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 flex flex-col items-center">
@@ -532,6 +575,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     </div>
                   </div>
 
+                  {/* Card bottom info */}
                   <div
                     className="relative z-10 w-full rounded-b-xl transition-colors duration-300 flex flex-col justify-center h-[132px] sm:h-[148px]"
                     onMouseEnter={() => setHoveredBottomSection(index)}
@@ -541,18 +585,28 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                       <div className="px-4 sm:px-6 py-5 sm:py-6 flex flex-col justify-center h-full">
                         <h3
                           className="font-bold text-base sm:text-lg mb-2 transition-colors duration-300"
-                          style={{ color: hoveredBottomSection === index ? "#fff" : theme === "dark" ? "#fff" : "#111111" }}
+                          style={{
+                            color: hoveredBottomSection === index
+                              ? "#fff"
+                              : theme === "dark" ? "#fff" : "#111111",
+                          }}
                         >
                           {item.title}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {item.buttons.map((btn, bi) => (
-                            <span key={bi}
+                            <span
+                              key={bi}
                               className="border rounded-full px-3 py-1 text-xs transition-colors duration-300"
                               style={{
-                                borderColor: hoveredBottomSection === index ? "rgba(255,255,255,.3)" : theme === "dark" ? "rgba(255,255,255,.3)" : "rgba(0,0,0,.2)",
-                                color:       hoveredBottomSection === index ? "rgba(255,255,255,.8)" : theme === "dark" ? "rgba(255,255,255,.8)" : "rgba(0,0,0,.8)",
-                              }}>
+                                borderColor: hoveredBottomSection === index
+                                  ? "rgba(255,255,255,.3)"
+                                  : theme === "dark" ? "rgba(255,255,255,.3)" : "rgba(0,0,0,.2)",
+                                color: hoveredBottomSection === index
+                                  ? "rgba(255,255,255,.8)"
+                                  : theme === "dark" ? "rgba(255,255,255,.8)" : "rgba(0,0,0,.8)",
+                              }}
+                            >
                               {btn}
                             </span>
                           ))}
@@ -566,6 +620,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
           </div>
         </div>
       </section>
+
     </div>
   );
 }
