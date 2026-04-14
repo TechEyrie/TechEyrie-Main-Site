@@ -195,10 +195,9 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
 
     // ── Responsive initial canvas dimensions ──
     const isMobile = window.innerWidth < 768;
-    const initWidth  = isMobile ? 70 : 38;   // % of viewport width
-    const initHeight = isMobile ? 26 : 30;   // % of viewport height
-    const initTop    = isMobile ? 60 : 56;   // % from top
-
+    const initWidth  = isMobile ? 55 : 24;   // ← was 70/38, now much narrower
+    const initHeight = isMobile ? 22 : 24;   // ← was 26/30, now shorter
+    const initTop    = isMobile ? 62 : 58;   // ← was 60/56, pushed down a touch
     // ── Initial state: compact strip just under the heading ──
     gsap.set(canvas, {
       position:     "absolute",
