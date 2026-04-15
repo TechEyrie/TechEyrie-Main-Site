@@ -592,9 +592,9 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
             }}
           >
-            <img
+            <video
               className="absolute inset-0 h-full w-full object-cover opacity-[1.0]"
-              src="/rvED4.jpg"
+              src="/videos/whisk-1.mp4"
               autoPlay
               muted
               loop

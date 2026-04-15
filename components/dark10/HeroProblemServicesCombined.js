@@ -263,9 +263,9 @@ export default function HeroProblemServicesCombined({ theme = "light" }) {
           )}
 
           <div className="relative z-[3]">
-            {/* <HeroSectionMediaSlot theme={theme} sharedBackground /> */}
+            <HeroSectionMediaSlot theme={theme} sharedBackground />
             {/* <HeroSectionMediaSlot2 theme={theme} sharedBackground /> */}
-            <HeroSectionMediaSlot3 theme={theme} sharedBackground />
+            {/* <HeroSectionMediaSlot3 theme={theme} sharedBackground /> */}
             {/* <HeroVersion2 theme={theme} sharedBackground /> */}
           </div>
         </div>
