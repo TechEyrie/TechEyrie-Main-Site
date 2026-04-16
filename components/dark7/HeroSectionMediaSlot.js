@@ -79,6 +79,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   const [portfolioCardWidth, setPortfolioCardWidth] = useState(300);
   const [heroStackOffset, setHeroStackOffset] = useState(100);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [currentCityIndex, setCurrentCityIndex] = useState(0);
+  const [outgoingCity, setOutgoingCity] = useState(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -134,6 +136,29 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     ],
     [],
   );
+
+  const rotatingCities = useMemo(() => ["Qatar", "Dubai", "UK"], []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    let cycleTimeout;
+    let swapTimeout;
+
+    cycleTimeout = window.setTimeout(() => {
+      setOutgoingCity(rotatingCities[currentCityIndex]);
+
+      swapTimeout = window.setTimeout(() => {
+        setCurrentCityIndex((prev) => (prev + 1) % rotatingCities.length);
+        setOutgoingCity(null);
+      }, 520);
+    }, 2600);
+
+    return () => {
+      window.clearTimeout(cycleTimeout);
+      window.clearTimeout(swapTimeout);
+    };
+  }, [currentCityIndex, prefersReducedMotion, rotatingCities]);
 
   const calculateCardSizes = useCallback((width) => {
     let heroWidth;
@@ -487,6 +512,52 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
         100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5) rotate(var(--rotation)); }
       }
       .animate-triangle-fade { animation: triangle-fade 1.05s ease-out forwards; }
+      @keyframes hero-ripple {
+        0% {
+          transform: translate3d(-8%, -50%, 0) scaleX(0.9);
+          opacity: 0.0;
+        }
+        18% {
+          opacity: 0.78;
+        }
+        50% {
+          transform: translate3d(8%, -52%, 0) scaleX(1.08);
+          opacity: 0.9;
+        }
+        82% {
+          opacity: 0.0;
+        }
+        100% {
+          transform: translate3d(12%, -48%, 0) scaleX(1.16);
+          opacity: 0.0;
+        }
+      }
+        @keyframes city-pill-slide-in {
+          0% {
+            opacity: 0;
+            transform: translateY(-110%);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes city-pill-slide-out {
+          0% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(115%);
+          }
+        }
+        .animate-city-pill-in {
+          animation: city-pill-slide-in 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .animate-city-pill-out {
+          animation: city-pill-slide-out 0.52s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+        }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
@@ -580,65 +651,31 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
           marginBottom: "0",
         }}
       >
-        {theme === "dark" && !prefersReducedMotion && (
+        {theme === "dark" && (
           <div
             className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
             aria-hidden
             style={{
-              /* Fade stack out so wrapper surface (noise + radial) shows — identical to portfolio rows */
+              /* Fade stack out so wrapper surface (noise + radial) shows — same as dark8 hero */
               maskImage:
                 "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
               WebkitMaskImage:
                 "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
             }}
           >
-            <video
-              className="absolute inset-0 h-full w-full object-cover opacity-[2.0]"
-              src="/videos/bg-test-video-1.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            />
-            {/* Hero-only: lighter forest base than page #162d24 — lifts bg color without exposing brighter video */}
-            {/* <div className="absolute inset-0 bg-[#2d5f4c]/76" /> */}
-            {/* <div
-              className="absolute inset-0 bg-gradient-to-br from-[#3a7260]/32 via-transparent to-transparent"
-              style={{ mixBlendMode: "soft-light" }}
-            /> */}
-            {/* <div
+            {/* Base: solid #162D24 */}
+            <div
               className="absolute inset-0"
-              style={{
-                background: `
-                  radial-gradient(
-                    ellipse 120% 90% at 60% 85%,
-                    rgba(142, 162, 88, 0.46) 0%,
-                    rgba(52, 102, 82, 0.34) 42%,
-                    rgba(22, 45, 36, 0) 72%
-                  )
-                `,
-                mixBlendMode: "soft-light",
-              }}
+              style={{ backgroundColor: "#162D24" }}
             />
+            {/* Glow: #263C27, bottom center, slightly to the right */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 85% 70% at 50% 20%, rgba(0, 81, 96, 0.36) 0%, transparent 58%)",
-                mixBlendMode: "screen",
-                opacity: 0.7,
+                  "radial-gradient(ellipse 135% 65% at 62% 96%, #263C27 0%, rgba(38,60,39,0.98) 30%, rgba(22,45,36,0.0) 88%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0c241c]/46 via-[#234d3e]/14 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#265445]/44 via-transparent to-[#17352c]/30" />
-            <div
-              className="absolute inset-0 opacity-[0.12]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`,
-                mixBlendMode: "overlay",
-              }}
-            /> */}
           </div>
         )}
         {theme === "dark" && !sharedBackground && (
@@ -688,7 +725,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     Discover more
                   </span>
                   <span
-                    className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-[4px] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-[1px]"
+                    className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-[4px] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-[10px]"
                     style={{ backgroundColor: theme === "dark" ? darkColors.primary : lightColors.primary }}
                   >
                     <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:opacity-0">
@@ -782,23 +819,6 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                   ))}
                 </div>
 
-                <div
-                  className="flex justify-center mt-4 space-x-2 transition-opacity duration-300"
-                  style={{ opacity: scrollProgress > 0.05 ? 0 : 1, pointerEvents: scrollProgress > 0.05 ? "none" : "auto" }}
-                >
-                  {mediaAssets.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleCardClick(index)}
-                      className="w-1.5 h-1.5 rounded-full transition-all"
-                      style={{
-                        backgroundColor: index === activeCard
-                          ? theme === "dark" ? darkColors.paginationActive : lightColors.paginationActive
-                          : theme === "dark" ? darkColors.paginationInactive : lightColors.paginationInactive,
-                      }}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           ) : (
@@ -856,31 +876,23 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-center mt-4 space-x-2">
-                  {mediaAssets.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleCardClick(index)}
-                      className="w-1.5 h-1.5 rounded-full transition-all"
-                      style={{
-                        backgroundColor: index === activeCard
-                          ? theme === "dark" ? darkColors.paginationActive : lightColors.paginationActive
-                          : theme === "dark" ? darkColors.paginationInactive : lightColors.paginationInactive,
-                      }}
-                    />
-                  ))}
-                </div>
               </div>
             </div>
           )}
         </div>
 
-        <div className={`absolute z-20 ${isDesktop ? "left-1/2 -translate-x-1/2 bottom-[15%]" : "left-4 sm:left-6 md:left-8 bottom-8 sm:bottom-12 md:bottom-4"}`}>
+        <div
+          className={`absolute z-20 ${
+            isDesktop
+              ? "left-1/2 -translate-x-1/2 top-[calc(50%+21rem)]"
+              : "left-1/2 -translate-x-1/2 top-[calc(50%+8rem)]"
+          }`}
+        >
           <button onClick={scrollToPortfolio} className="flex flex-col gap-[-2px] cursor-pointer group hover:scale-110 transition-transform duration-300" aria-label="Scroll to next section">
             {[0, 1, 2, 3].map((index) => {
               const isActive = 3 - index < activeArrows;
               return (
-                <svg key={index} className="w-6 h-6 md:w-6 md:h-6 transition-colors duration-300 -my-1" viewBox="0 0 24 24" fill="none" style={{ color: isActive ? "#FCD34D" : "#92400E" }}>
+                <svg key={index} className="w-4 h-4 md:w-4 md:h-4 transition-colors duration-300 -my-0.5" viewBox="0 0 24 24" fill="none" style={{ color: isActive ? "#FCD34D" : "#92400E" }}>
                   <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               );
@@ -920,8 +932,23 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               Our Goal
             </p>
             <h2 className={`font-italiana text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight ${theme === "dark" ? "text-white" : "text-[#111111]"}`}>
-              <span className="font-light">Creating impact for </span>
-              <span className="italic bg-black text-white px-3 py-1.5 rounded-xl font-playfair font-semibold">businesses in Qatar</span>
+              <span className="font-light">Creating impact for businesses in </span>
+              <span className="relative inline-flex min-w-[6ch] items-center justify-center overflow-hidden rounded-xl bg-black px-3 py-1 align-middle text-white -top-[2px]">
+                {outgoingCity && !prefersReducedMotion && (
+                  <span className="absolute inset-0 -translate-y-[1px] flex items-center justify-center italic font-playfair font-semibold animate-city-pill-out">
+                    {outgoingCity}
+                  </span>
+                )}
+                <span
+                  key={rotatingCities[currentCityIndex]}
+                  className={`-translate-y-[1px] flex items-center justify-center italic font-playfair font-semibold ${
+                    prefersReducedMotion ? "" : "animate-city-pill-in"
+                  }`}
+                  style={{ opacity: outgoingCity ? 0 : 1 }}
+                >
+                  {rotatingCities[currentCityIndex]}
+                </span>
+              </span>
             </h2>
           </header>
 
@@ -930,8 +957,15 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
               <div key={index} className="flex flex-col items-center">
                 <div className="relative flex flex-col w-full" style={{ width: isDesktop ? `${portfolioCardWidth}px` : "85%" }}>
                   <div
-                    className="absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none"
-                    style={{ backgroundColor: "#015b4f", opacity: hoveredBottomSection === index ? 1 : 0, zIndex: 0 }}
+                    className="absolute inset-0 rounded-xl pointer-events-none"
+                    style={{
+                      backgroundColor: "#015b4f",
+                      zIndex: 0,
+                      opacity: hoveredBottomSection === index ? 1 : 0,
+                      transform: hoveredBottomSection === index ? "scaleY(1)" : "scaleY(0)",
+                      transformOrigin: "top center",
+                      transition: "transform 720ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease-out",
+                    }}
                   />
                   <div
                     ref={(el) => { if (el) portfolioCardPlaceholdersRef.current[index] = el; }}

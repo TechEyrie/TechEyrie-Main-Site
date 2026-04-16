@@ -266,7 +266,7 @@ export default function HeroProblemServicesCombined({ theme = "light" }) {
           </div>
         </div>
 
-        <RealProblemSection theme={theme} sharedBackground />
+        <RealProblemSection theme={theme} />
 
         {/* Scroll trigger marker: sits between RealProblemSection and NewServicesSection */}
         <div ref={midMarkerRef} style={{ height: 1, width: "100%" }} />

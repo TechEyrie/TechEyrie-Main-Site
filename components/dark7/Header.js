@@ -532,12 +532,12 @@ export default function Header({ theme = "light" }) {
           
           {/* Logo - Left Side */}
           <Link href="/dark" className="flex flex-shrink-0 items-center">
-            <div className="relative flex h-[40px] w-auto md:h-[45px] items-center justify-center">
+            <div className="relative flex h-[75px] w-auto md:h-[86px] items-center justify-center">
               <Image
                 src="/logo/techeyrie_logo.png"
                 alt="TechEyrie Logo"
-                width={90}
-                height={90}
+                width={172}
+                height={172}
                 className="h-full w-auto object-contain"
                 priority
               />

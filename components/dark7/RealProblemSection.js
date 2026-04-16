@@ -23,13 +23,14 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
   };
 
   // Background styles based on theme
-  const bgStyle =
-    theme === "dark"
-      ? {
-          background:
-            "radial-gradient(ellipse at 15% 20%, #005160 0%, #1b4732 45%, #162d24 100%)",
-        }
-      : { backgroundColor: lightColors.background };
+  // NOTE: original dark background kept for easy revert:
+  // {
+  //   background:
+  //     "radial-gradient(ellipse at 15% 20%, #005160 0%, #1b4732 45%, #162d24 100%)",
+  // }
+  const bgStyle = {
+    backgroundColor: "#F5E8D1",
+  };
 
   const noiseOverlayStyle = {
     backgroundImage: `
@@ -44,7 +45,8 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
   const triggerElectricalAnimation = useCallback(() => {
     const titleLines = document.querySelectorAll(".real-problem-title-line");
 
-    const originalColor = theme === "dark" ? "#f3f3f3" : "#111111";
+    // Always return text to solid black at the end
+    const originalColor = "#111111";
     const electricColor = theme === "dark" ? "#74F5A1" : "#3BC972";
     const brightElectricColor = theme === "dark" ? "#FFFFFF" : "#FFFFFF";
 
@@ -265,24 +267,15 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
               className="absolute inset-0 pointer-events-none z-[1]"
               style={noiseOverlayStyle}
             />
-            {/* Soft blend into adjacent sections */}
-            <div
-              className="absolute inset-x-0 top-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[2]"
-              style={{
-                // Match the deeper teal from the hero fade so the
-                // overlap feels rich but still smooth.
-                background:
-                  "linear-gradient(to bottom, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
-              }}
-            />
-            <div
-              className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[2]"
-              style={{
-                // Seam match with NewServicesSection top
-                background:
-                  "linear-gradient(to top, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
-              }}
-            />
+            {/* Soft top/bottom teal gradients removed as requested.
+                Original top gradient:
+                <div className="absolute inset-x-0 top-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[2]" style={{
+                  background: "linear-gradient(to bottom, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
+                }} />
+                Original bottom gradient:
+                <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 pointer-events-none z-[2]" style={{
+                  background: "linear-gradient(to top, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
+                }} /> */}
           </>
         )}
 
@@ -309,11 +302,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
           {/* Label above everything */}
           <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-10 flex items-center gap-2 sm:gap-3">
             <span className="inline-flex h-4 w-4 sm:h-5 sm:w-5 rounded-sm bg-[#74F5A1]" />
-            <span
-              className={`font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em]  ${
-                theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-              }`}
-            >
+            <span className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em] text-black">
               The real problem is
             </span>
           </div>
@@ -321,11 +310,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
           {/* Heading left, copy/CTA right */}
           <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <div ref={titleContainerRef}>
-              <h2
-                className={`leading-[1.02] tracking-[0.01em] ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                }`}
-              >
+              <h2 className="leading-[1.02] tracking-[0.01em] text-black">
                 <span className="real-problem-title-line block font-italiana font-light tracking-[0.01em] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
                   Most businesses don&apos;t
                 </span>
@@ -342,21 +327,13 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
             </div>
 
             <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 lg:max-w-[600px] mt-4 sm:mt-6 md:mt-8 lg:mt-16">
-              <p
-                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
-                }`}
-              >
+              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black">
               Growth is a story told with intention, executed through systems, and valued by results. We craft frameworks and workflows that elevate your tech stack(low competition) into Precision Growth Engine. Every action drives impact, every campaign fuels the pipeline, every decision shapes your trajectory.
 
 
               </p>
 
-              <p
-                className={`font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed ${
-                  theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"
-                }`}
-              >
+              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black">
               Building framework, processes and workflows that will unlock your tech stack into a high-performing marketing engine ready for growth. Strategy leads, tools follow. 
 
               </p>
