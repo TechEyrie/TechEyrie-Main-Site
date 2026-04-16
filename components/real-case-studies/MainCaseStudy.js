@@ -317,6 +317,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
   const [visibleImages, setVisibleImages] = useState(new Set());
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [imageHeights, setImageHeights] = useState({});
   const imageRefs = useRef([]);
   const observerRef = useRef(null);
   const isDark = theme === "dark";
@@ -377,6 +378,47 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
   useEffect(() => {
     setVisibleImages(new Set());
   }, [activeCategory]);
+
+  // Desktop only: keep right column height synced with image height.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const observers = [];
+
+    imageRefs.current.forEach((el, index) => {
+      if (!el) return;
+
+      const update = () => {
+        const isDesktop = window.innerWidth >= 1024;
+        const nextHeight = isDesktop ? Math.round(el.getBoundingClientRect().height) : null;
+        setImageHeights((prev) => {
+          const prevValue = prev[index] ?? null;
+          if (prevValue === nextHeight) return prev;
+          return { ...prev, [index]: nextHeight };
+        });
+      };
+
+      update();
+      const ro = new ResizeObserver(update);
+      ro.observe(el);
+      observers.push(ro);
+    });
+
+    const onResize = () => {
+      imageRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const isDesktop = window.innerWidth >= 1024;
+        const nextHeight = isDesktop ? Math.round(el.getBoundingClientRect().height) : null;
+        setImageHeights((prev) => ({ ...prev, [index]: nextHeight }));
+      });
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      observers.forEach((ro) => ro.disconnect());
+      window.removeEventListener("resize", onResize);
+    };
+  }, [filteredProjects]);
 
   // Handle image click to open drawer
   const handleImageClick = async (project) => {
@@ -760,9 +802,13 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
               </div>
 
               {/* Right Side - Project Details */}
-              <div className={`order-2 lg:order-2 ${isDark ? "text-[#f3f3f3]" : "text-black"}`}>
+              <div
+                className={`order-2 lg:order-2 ${isDark ? "text-[#f3f3f3]" : "text-black"}`}
+                style={imageHeights[index] ? { height: `${imageHeights[index]}px` } : undefined}
+              >
+                <div className="lg:flex lg:h-full lg:flex-col">
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
                   {project.tags?.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
@@ -777,7 +823,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
                 {/* Title */}
                 <h2
-                  className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] mb-8 leading-tight tracking-[-0.03em] ${
+                  className={`font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] mb-6 leading-tight tracking-[-0.03em] ${
                     isDark ? "text-[#f3f3f3]" : "text-black"
                   }`}
                 >
@@ -785,7 +831,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 </h2>
 
                 {/* Badges */}
-                <div className="flex flex-wrap gap-4 mb-10">
+                <div className="flex flex-wrap gap-3 mb-6">
                   {project.badges?.map((badge, badgeIndex) => (
                     <div
                       key={badgeIndex}
@@ -802,7 +848,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 </div>
 
                 {/* Tech Stack & Timeline */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
                     <h3
                       className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-3 ${
@@ -838,7 +884,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                 </div>
 
                 {/* Results */}
-                <div className="mb-10">
+                <div className="mb-6">
                   <h3
                     className={`font-merriweather text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.16em] mb-5 ${
                       isDark ? "text-[#a8a498]" : "text-gray-600"
@@ -846,7 +892,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   >
                     RESULTS
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {project.results?.map((result, resultIndex) => (
                       <p
                         key={resultIndex}
@@ -860,75 +906,78 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                   </div>
                 </div>
 
-                {/* Button */}
-                <button
-                  onClick={() => handleImageClick(project)}
-                  className="cs-cta-primary inline-flex items-center gap-3 px-8 py-4 font-merriweather text-[14px] font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-10 cursor-pointer"
-                >
-                  {project.buttonText}
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <div className="lg:mt-auto">
+                  {/* Button */}
+                  <button
+                    onClick={() => handleImageClick(project)}
+                    className="cs-cta-primary inline-flex items-center gap-3 px-8 py-4 font-merriweather text-[14px] font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 mb-6 cursor-pointer"
                   >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
+                    {project.buttonText}
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </button>
 
-                {/* Testimonial (if exists) */}
-                {project.testimonial && (
-                  <div
-                    className={`rounded-2xl p-6 sm:p-8 ${
-                      isDark
-                        ? "border border-[#e0d1b6]/12 bg-[#101e27]/80"
-                        : "bg-gray-50"
-                    }`}
-                  >
-                    {/* Avatar and Info */}
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
-                        <Image
-                          src={project.testimonial.avatar}
-                          alt={project.testimonial.name}
-                          fill
-                          className="object-cover"
-                          unoptimized
-                        />
-                      </div>
-                      <div>
-                        <h4
-                          className={`font-merriweather text-[14px] font-semibold ${
-                            isDark ? "text-[#f3f3f3]" : "text-black"
-                          }`}
-                        >
-                          {project.testimonial.name}
-                        </h4>
-                        <p
-                          className={`font-merriweather text-[13px] md:text-[14px] ${
-                            isDark ? "text-[#a8a498]" : "text-gray-600"
-                          }`}
-                        >
-                          {project.testimonial.position}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Quote */}
-                    <p
-                      className={`font-merriweather text-[14px] font-normal leading-relaxed ${
-                        isDark ? "text-[#c8c2ad]" : "text-gray-700"
+                  {/* Testimonial (if exists) */}
+                  {project.testimonial && (
+                    <div
+                      className={`rounded-2xl p-6 sm:p-8 ${
+                        isDark
+                          ? "border border-[#e0d1b6]/12 bg-[#101e27]/80"
+                          : "bg-gray-50"
                       }`}
                     >
-                      {project.testimonial.quote}
-                    </p>
-                  </div>
-                )}
+                      {/* Avatar and Info */}
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
+                          <Image
+                            src={project.testimonial.avatar}
+                            alt={project.testimonial.name}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        </div>
+                        <div>
+                          <h4
+                            className={`font-merriweather text-[14px] font-semibold ${
+                              isDark ? "text-[#f3f3f3]" : "text-black"
+                            }`}
+                          >
+                            {project.testimonial.name}
+                          </h4>
+                          <p
+                            className={`font-merriweather text-[13px] md:text-[14px] ${
+                              isDark ? "text-[#a8a498]" : "text-gray-600"
+                            }`}
+                          >
+                            {project.testimonial.position}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Quote */}
+                      <p
+                        className={`font-merriweather text-[14px] font-normal leading-relaxed ${
+                          isDark ? "text-[#c8c2ad]" : "text-gray-700"
+                        }`}
+                      >
+                        {project.testimonial.quote}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                </div>
               </div>
             </div>
           ))}

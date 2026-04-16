@@ -757,7 +757,11 @@ export default function Header({ theme = "light" }) {
               }}
             >
               {/* Animated overlay */}
-              <div ref={getQuoteOverlayRef} className="get-quote-overlay" />
+              <div
+                ref={getQuoteOverlayRef}
+                className="get-quote-overlay"
+                style={{ backgroundColor: headerBg }}
+              />
               
               <div className="get-quote-btn-content">
                 <span
@@ -767,7 +771,7 @@ export default function Header({ theme = "light" }) {
                   Get a quote
                 </span>
                 
-                {/* Smiling Face Icon */}
+                {/* Smiling Face Icon (temporarily disabled)
                 <div 
                   ref={faceIconRef}
                   className="flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
@@ -800,6 +804,7 @@ export default function Header({ theme = "light" }) {
                     <ellipse cx="17" cy="13" rx="1.5" ry="1" fill="#FFB6C1" opacity="0.6" />
                   </svg>
                 </div>
+                */}
               </div>
             </button>
           </div>

@@ -45,10 +45,10 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
   const triggerElectricalAnimation = useCallback(() => {
     const titleLines = document.querySelectorAll(".real-problem-title-line");
 
-    // Always return text to solid black at the end
-    const originalColor = "#111111";
-    const electricColor = theme === "dark" ? "#74F5A1" : "#3BC972";
-    const brightElectricColor = theme === "dark" ? "#FFFFFF" : "#FFFFFF";
+    // Keep heading animation strictly black (no white/green flashes)
+    const originalColor = "#000000";
+    const electricColor = "#000000";
+    const brightElectricColor = "#000000";
 
     const tl = gsap.timeline({
       defaults: {
@@ -64,7 +64,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
           .split("")
           .map(
             (char, i) =>
-              `<span class="char" style="display: inline-block; position: relative;" data-index="${i}">${
+              `<span class="char" style="display: inline-block; position: relative; color: #000000;" data-index="${i}">${
                 char === " " ? "&nbsp;" : char
               }</span>`
           )
@@ -117,16 +117,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
       });
     });
 
-    // When the whole electrical animation finishes, clear inline color
-    // so the title color can follow the current theme classes again.
-    tl.eventCallback("onComplete", () => {
-      const allChars = document.querySelectorAll(
-        ".real-problem-title-line .char"
-      );
-      allChars.forEach((char) => {
-        char.style.color = "";
-      });
-    });
+    // Keep inline color locked to black.
   }, [theme]);
 
   // --- INTERSECTION OBSERVER FOR VIEWPORT DETECTION ---
@@ -257,7 +248,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
 
       <section
         ref={containerRef}
-        className="relative overflow-hidden py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 2xl:py-24 bg-transition"
+        className="real-problem-section relative overflow-hidden py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 2xl:py-24 bg-transition"
         style={sharedBackground ? { background: "transparent", backgroundColor: "transparent" } : bgStyle}
       >
         {/* Noise texture overlay */}
@@ -302,7 +293,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
           {/* Label above everything */}
           <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-10 flex items-center gap-2 sm:gap-3">
             <span className="inline-flex h-4 w-4 sm:h-5 sm:w-5 rounded-sm bg-[#74F5A1]" />
-            <span className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em] text-black">
+            <span className="font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px] font-semibold tracking-[0.16em] text-black" style={{ color: "#000000" }}>
               The real problem is
             </span>
           </div>
@@ -310,7 +301,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
           {/* Heading left, copy/CTA right */}
           <div className="grid gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <div ref={titleContainerRef}>
-              <h2 className="leading-[1.02] tracking-[0.01em] text-black">
+              <h2 className="leading-[1.02] tracking-[0.01em] text-black" style={{ color: "#000000" }}>
                 <span className="real-problem-title-line block font-italiana font-light tracking-[0.01em] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] xl:text-[70px] 2xl:text-[82px]">
                   Most businesses don&apos;t
                 </span>
@@ -327,20 +318,20 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
             </div>
 
             <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 lg:max-w-[600px] mt-4 sm:mt-6 md:mt-8 lg:mt-16">
-              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black">
+              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black" style={{ color: "#000000" }}>
               Growth is a story told with intention, executed through systems, and valued by results. We craft frameworks and workflows that elevate your tech stack(low competition) into Precision Growth Engine. Every action drives impact, every campaign fuels the pipeline, every decision shapes your trajectory.
 
 
               </p>
 
-              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black">
+              <p className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-normal leading-relaxed text-black" style={{ color: "#000000" }}>
               Building framework, processes and workflows that will unlock your tech stack into a high-performing marketing engine ready for growth. Strategy leads, tools follow. 
 
               </p>
 
               <Link
                 href="/services"
-                className="group inline-flex items-center justify-center self-start rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-2 sm:mt-3"
+                className="contact-submit group inline-flex items-center justify-center self-start rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-2 sm:mt-3"
                 style={{ backgroundColor: '#12685b' }}
               >
                 <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">

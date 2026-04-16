@@ -34,6 +34,12 @@ body {
   color: #e0d1b6 !important;
 }
 
+/* RealProblemSection override: force black text on cream background */
+.dark2-page .real-problem-section,
+.dark2-page .real-problem-section * {
+  color: #000000 !important;
+}
+
 /* Allow black text on hero pyramid labels */
 .dark2-page .hero-pyramid-label {
   color: #000000 !important;
