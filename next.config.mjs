@@ -83,6 +83,18 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+
+      {
+        
+        protocol: "https",
+        hostname: "icomat.cdn.prismic.io",
+        port: "",
+        pathname: "/**",
+      },
+
+
+
+  
     
       
      
