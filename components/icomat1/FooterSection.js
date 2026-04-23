@@ -37,9 +37,9 @@ const YouTubeIcon = () => (
 // ── Nav data ───────────────────────────────────────────────────
 const NAV_MAIN = [
   { label: "OUR SERVICES", href: "https://freshysites.com/" },
-  { label: "OUR WORK", href: "https://freshysites.com/portfolio/" },
-  { label: "ABOUT US", href: "https://freshysites.com/about/" },
-  { label: "GET A QUOTE", href: "https://freshysites.com/" },
+  { label: "OUR WORK",     href: "https://freshysites.com/portfolio/" },
+  { label: "ABOUT US",     href: "https://freshysites.com/about/" },
+  { label: "GET A QUOTE",  href: "https://freshysites.com/" },
   {
     label: "TEAM", href: "https://freshysites.com/team/",
     sub: ["TESTIMONIALS", "FEATURED PROJECTS", "CLIENT SUPPORT"],
@@ -48,8 +48,8 @@ const NAV_MAIN = [
 ];
 
 const NAV_LEGAL = [
-  { label: "LEGAL", href: "https://freshysites.com/", bold: true },
-  { label: "TERMS", href: "https://freshysites.com/", bold: false },
+  { label: "LEGAL",          href: "https://freshysites.com/", bold: true },
+  { label: "TERMS",          href: "https://freshysites.com/", bold: false },
   { label: "PRIVACY POLICY", href: "https://freshysites.com/", bold: false },
 ];
 
@@ -60,8 +60,6 @@ const SOCIALS = [
 ];
 
 // ── Wave lines background ──────────────────────────────────────
-// Draws horizontal sine waves that scroll across the canvas
-// giving a proper animated wave-line background like the reference.
 function WaveLines() {
   const canvasRef = useRef(null);
 
@@ -71,15 +69,13 @@ function WaveLines() {
     const ctx = canvas.getContext("2d");
     let W = 0, H = 0, raf = null, tick = 0;
 
-    // ── tuneable params ────────────────────────────────────────
-    const LINE_SPACING = 22;   // px between wave rows
-    const AMPLITUDE    = 6;    // max wave height (px)
-    const WAVELENGTH   = 220;  // px per full cycle
-    const SPEED        = 0.6;  // px shift per frame (scroll speed)
+    const LINE_SPACING = 22;
+    const AMPLITUDE    = 6;
+    const WAVELENGTH   = 220;
+    const SPEED        = 0.6;
     const BASE_OPACITY = 0.055;
     const LINE_WIDTH   = 0.85;
-    // Each row is slightly tilted, matching the 135° diagonal look
-    const TILT         = 0.18; // vertical rise per horizontal px
+    const TILT         = 0.18;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -91,31 +87,20 @@ function WaveLines() {
       ctx.clearRect(0, 0, W, H);
       tick += SPEED;
 
-      // How many rows we need to fill the height (+ a buffer above/below)
       const rowCount = Math.ceil(H / LINE_SPACING) + 2;
-
-      ctx.lineWidth   = LINE_WIDTH;
+      ctx.lineWidth = LINE_WIDTH;
 
       for (let r = -1; r < rowCount; r++) {
         const baseY = r * LINE_SPACING;
-
-        // Slight opacity variation per row for depth
         const opacityMod = 0.7 + 0.3 * ((r % 5) / 5);
         ctx.strokeStyle = `rgba(255,255,255,${(BASE_OPACITY * opacityMod).toFixed(4)})`;
-
         ctx.beginPath();
 
-        // Draw the wave sample-by-sample across the full width
         for (let x = 0; x <= W; x += 2) {
-          // Diagonal tilt: y shifts slightly as x increases
           const tiltY = x * TILT;
-
-          // Wave: each row has a small phase offset so they aren't in sync
           const phase = (r * 0.55) + (tick / WAVELENGTH) * (Math.PI * 2);
           const waveY = Math.sin((x / WAVELENGTH) * Math.PI * 2 - phase) * AMPLITUDE;
-
           const y = baseY + tiltY + waveY;
-
           if (x === 0) ctx.moveTo(x, y);
           else         ctx.lineTo(x, y);
         }
@@ -190,27 +175,25 @@ export default function FooterSection() {
     return () => ctx.revert();
   }, []);
 
-  // 1141px × 0.9 ≈ 1027px
   return (
     <footer
       ref={footerRef}
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "1027px",
+        minHeight: "720px",
         background: "#0a0a09",
         overflow: "hidden",
-        padding: "clamp(60px, 7.5vw, 96px) clamp(28px, 5vw, 72px) 44px",
+        padding: "clamp(20px, 2.5vw, 28px) clamp(28px, 5vw, 72px) 36px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
       }}
     >
 
-      {/* ── Animated wave lines ───────────────────────────────── */}
       <WaveLines />
 
-      {/* ── Radial glow — bottom-right ───────────────────────── */}
+      {/* Radial glow */}
       <div
         aria-hidden="true"
         style={{
@@ -223,27 +206,28 @@ export default function FooterSection() {
         }}
       />
 
-      {/* ══════════════════════════════════════════════════════ */}
-      {/*  TOP ROW — waves logo (left)  |  wordmark+nav (right) */}
-      {/* ══════════════════════════════════════════════════════ */}
+      {/* ── TOP ROW ───────────────────────────────────────────── */}
       <div
         style={{
-          position: "relative", zIndex: 1,
+          position: "relative",
+          zIndex: 1,
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "space-between",
+          marginTop: 0,
+          paddingTop: 0,
         }}
       >
-        {/* Waves logo mark */}
-        <div ref={logoRef}>
+        {/* Left: waves logo */}
+        <div ref={logoRef} style={{ marginTop: 0, paddingTop: 0 }}>
           <WavesLogo />
         </div>
 
-        {/* Right column */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "32px" }}>
+        {/* Right: wordmark + nav + socials */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "24px" }}>
 
-          {/* ICOMAT wordmark */}
-          <div ref={wordmarkRef}>
+          {/* FRESHY wordmark */}
+          <div ref={wordmarkRef} style={{ marginTop: 0, paddingTop: 0 }}>
             <span style={{
               display: "block",
               fontFamily: "'Arial Black', 'Arial', sans-serif",
@@ -258,76 +242,57 @@ export default function FooterSection() {
             </span>
           </div>
 
-          {/* Nav row + socials */}
+          {/* Nav + socials */}
           <div ref={navRef} style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "20px" }}>
             <nav aria-label="Footer navigation">
               <div style={{ display: "flex", gap: "clamp(16px, 2vw, 32px)", alignItems: "flex-start" }}>
                 {NAV_MAIN.map((item) => (
                   <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <a href={item.href} style={{
-                      color: "rgba(255,255,255,0.82)",
-                      fontSize: "clamp(0.6rem, 0.72vw, 0.7rem)",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      textDecoration: "none",
-                      transition: "color 0.2s",
-                      whiteSpace: "nowrap",
-                    }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = "#fff"}
-                      onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.82)"}
-                    >{item.label}</a>
-                    {item.sub?.map((sub) => (
-                      <a key={sub} href={`#${sub.toLowerCase().replace(/\s/g, "-")}`} style={{
-                        color: "rgba(255,255,255,0.35)",
-                        fontSize: "clamp(0.58rem, 0.68vw, 0.66rem)",
-                        fontWeight: 500,
-                        letterSpacing: "0.1em",
+                    <a
+                      href={item.href}
+                      style={{
+                        color: "rgba(255,255,255,0.82)",
+                        fontSize: "clamp(0.6rem, 0.72vw, 0.7rem)",
+                        fontWeight: 700,
+                        letterSpacing: "0.12em",
                         textDecoration: "none",
                         transition: "color 0.2s",
                         whiteSpace: "nowrap",
                       }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = "#fff"}
+                      onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.82)"}
+                    >
+                      {item.label}
+                    </a>
+                    {item.sub?.map((sub) => (
+                      <a
+                        key={sub}
+                        href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
+                        style={{
+                          color: "rgba(255,255,255,0.35)",
+                          fontSize: "clamp(0.58rem, 0.68vw, 0.66rem)",
+                          fontWeight: 500,
+                          letterSpacing: "0.1em",
+                          textDecoration: "none",
+                          transition: "color 0.2s",
+                          whiteSpace: "nowrap",
+                        }}
                         onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
                         onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
-                      >{sub}</a>
+                      >
+                        {sub}
+                      </a>
                     ))}
                   </div>
                 ))}
               </div>
             </nav>
-
-            {/* Social icons directly under nav */}
-            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-              {SOCIALS.map((s) => (
-                <a key={s.label} href={s.href} aria-label={s.label} style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  width: "32px", height: "32px",
-                  borderRadius: "50%",
-                  border: "1px solid rgba(255,255,255,0.14)",
-                  color: "rgba(255,255,255,0.6)",
-                  textDecoration: "none",
-                  transition: "border-color 0.2s, color 0.2s, background 0.2s",
-                }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#fff";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.45)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "rgba(255,255,255,0.6)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
-                    e.currentTarget.style.background = "transparent";
-                  }}
-                >{s.icon}</a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════ */}
-      {/*  BOTTOM ROW                                           */}
-      {/* ══════════════════════════════════════════════════════ */}
-      <div style={{ position: "relative", zIndex: 1, marginTop: "clamp(40px, 6vw, 80px)" }}>
+      {/* ── BOTTOM ROW ────────────────────────────────────────── */}
+      <div style={{ position: "relative", zIndex: 1, marginTop: "clamp(24px, 4vw, 48px)" }}>
 
         <div style={{
           width: "100%", height: "1px",
@@ -371,47 +336,65 @@ export default function FooterSection() {
             </p>
           </div>
 
-          {/* ── Bottom-center: legal links + nav links below ── */}
+          {/* Bottom-center: legal + socials */}
           <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignSelf: "flex-end" }}>
 
-            {/* Legal links */}
             {NAV_LEGAL.map((item) => (
-              <a key={item.label} href={item.href} style={{
-                color: item.bold ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.32)",
-                fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
-                fontWeight: item.bold ? 700 : 500,
-                letterSpacing: "0.1em",
-                textDecoration: "none",
-                transition: "color 0.2s",
-                whiteSpace: "nowrap",
-              }}
+              <a
+                key={item.label}
+                href={item.href}
+                style={{
+                  color: item.bold ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.32)",
+                  fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
+                  fontWeight: item.bold ? 700 : 500,
+                  letterSpacing: "0.1em",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                  whiteSpace: "nowrap",
+                }}
                 onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.75)"}
                 onMouseLeave={(e) => e.currentTarget.style.color = item.bold ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.32)"}
-              >{item.label}</a>
+              >
+                {item.label}
+              </a>
             ))}
 
-            {/* Thin divider between legal and nav */}
             <div style={{
               width: "100%", height: "1px",
               background: "rgba(255,255,255,0.07)",
               margin: "8px 0",
             }} />
 
-            {/* Main nav links below legal */}
-            {NAV_MAIN.map((item) => (
-              <a key={item.label} href={item.href} style={{
-                color: "rgba(255,255,255,0.28)",
-                fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
-                fontWeight: 500,
-                letterSpacing: "0.1em",
-                textDecoration: "none",
-                transition: "color 0.2s",
-                whiteSpace: "nowrap",
-              }}
-                onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.65)"}
-                onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.28)"}
-              >{item.label}</a>
-            ))}
+            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    width: "32px", height: "32px",
+                    borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    color: "rgba(255,255,255,0.6)",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s, color 0.2s, background 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#fff";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.45)";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "rgba(255,255,255,0.6)";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Bottom-right: design credit */}

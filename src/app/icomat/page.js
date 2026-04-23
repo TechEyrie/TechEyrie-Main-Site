@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Header from '../../../components/dark7/Header'
+
 import Footer from '../../../components/dark7/Footer'
 import HeroSection from '../../../components/icomat/HeroSection'
 import RTSSection from '../../../components/icomat/RTSSection'
@@ -21,6 +21,7 @@ import IndustriesSection from '../../../components/icomat/IndustriesSection'
 import BuildWithIcomatSection from '../../../components/icomat/BuildWithIcomatSection'
 import UnlockingSection from '../../../components/icomat/UnlockingSection'
 import FooterSection from '../../../components/icomat/FooterSection'
+import Header from '../../../components/icomat1/Header'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -81,7 +82,7 @@ export default function IcomatPage() {
         }
       `}</style>
 
-      <Header theme="dark" />
+      <Header />
       <HeroSection />
       <RTSSection />
       {/* <RTSRevolutionSection />
