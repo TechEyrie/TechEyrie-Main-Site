@@ -264,19 +264,20 @@ export default function CustomersSection() {
           transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
 
           if (bgGradientRef.current) {
-            const bW  = 55 + p * 90;
-            const bH  = bW * 0.52;
+            // Grow the gradient noticeably more during scroll (~40% extra spread)
+            const bW  = 55 + p * 126;
+            const bH  = bW * 0.62;
             const op1 = 0.45 + p * 0.5;
             const op2 = op1 * 0.5;
             bgGradientRef.current.style.background = `
               radial-gradient(ellipse 60% 45% at 50% 50%,
-                rgba(20, 90, 220, ${0.15 + p * 0.3}) 0%,
-                rgba(10, 55, 170, ${0.08 + p * 0.15}) 45%,
+                rgba(27, 71, 50, ${0.2 + p * 0.35}) 0%,
+                rgba(27, 71, 50, ${0.1 + p * 0.2}) 45%,
                 transparent 70%
               ),
               radial-gradient(ellipse ${bW}% ${bH}% at 50% 110%,
-                rgba(15, 110, 240, ${op1}) 0%,
-                rgba(8,  65, 180, ${op2}) 40%,
+                rgba(27, 71, 50, ${op1}) 0%,
+                rgba(27, 71, 50, ${op2}) 40%,
                 transparent 68%
               )
             `;
@@ -336,7 +337,7 @@ export default function CustomersSection() {
 
       <div
         ref={outerRef}
-        style={{ background: "#06080f", position: "relative" }}
+        style={{ background: "#162D24", position: "relative" }}
       >
         {/* Animated gradient */}
         <div
@@ -346,13 +347,13 @@ export default function CustomersSection() {
             pointerEvents: "none", zIndex: 0,
             background: `
               radial-gradient(ellipse 55% 40% at 50% 50%,
-                rgba(20, 80, 200, 0.25) 0%,
-                rgba(10, 50, 160, 0.12) 45%,
+                rgba(27, 71, 50, 0.24) 0%,
+                rgba(27, 71, 50, 0.12) 45%,
                 transparent 70%
               ),
               radial-gradient(ellipse 55% 28% at 50% 110%,
-                rgba(15, 110, 240, 0.45) 0%,
-                rgba(8,  65, 180, 0.22) 40%,
+                rgba(27, 71, 50, 0.45) 0%,
+                rgba(27, 71, 50, 0.22) 40%,
                 transparent 68%
               )
             `,

@@ -34,17 +34,56 @@ const YouTubeIcon = () => (
   </svg>
 );
 
-// ── Nav data ───────────────────────────────────────────────────
+// ── Nav data (keeps previous footer structure) ─────────────────
 const NAV_MAIN = [
-  { label: "OUR SERVICES", href: "https://freshysites.com/" },
-  { label: "OUR WORK",     href: "https://freshysites.com/portfolio/" },
-  { label: "ABOUT US",     href: "https://freshysites.com/about/" },
-  { label: "GET A QUOTE",  href: "https://freshysites.com/" },
   {
-    label: "TEAM", href: "https://freshysites.com/team/",
-    sub: ["TESTIMONIALS", "FEATURED PROJECTS", "CLIENT SUPPORT"],
+    label: "OUR SERVICES",
+    href: "https://freshysites.com/",
+    sub: [
+      "WordPress website design",
+      "WordPress retained services",
+      "WordPress backups",
+      "WordPress conversion",
+      "WordPress security",
+      "WordPress search engine optimization",
+      "WordPress support",
+      "WooCommerce developer",
+      "WordPress development",
+      "WordPress hosting",
+      "WordPress compliance",
+      "WordPress Divi theme",
+      "WordPress migration",
+      "WordPress GDPR compliance",
+      "WordPress theme experts",
+      "Sell my web design company",
+      "WordPress maintenance",
+      "WordPress ADA compliance",
+      "Marketing Pro",
+      "WordPress Elementor builder",
+      "WordPress PCI compliance",
+      "WordPress speed optimization",
+      "WordPress white label",
+    ],
   },
-  { label: "CONTACT", href: "https://freshysites.com/" },
+  {
+    label: "OUR WORK",
+    href: "https://freshysites.com/portfolio/",
+    sub: ["Featured projects", "Testimonials", "Markets we serve", "Industries we serve"],
+  },
+  {
+    label: "ABOUT US",
+    href: "https://freshysites.com/about/",
+    sub: [
+      "Why Freshy",
+      "Read the blog",
+      "How to sell your agency guide",
+      "WordPress resource guides",
+      "WordPress security bulletins",
+      "Compare WordPress agencies",
+      "Privacy policy",
+      "AI disclosure (llms.txt)",
+    ],
+  },
 ];
 
 const NAV_LEGAL = [
@@ -182,7 +221,7 @@ export default function FooterSection() {
         position: "relative",
         width: "100%",
         minHeight: "720px",
-        background: "#0a0a09",
+        background: "#162D24",
         overflow: "hidden",
         padding: "clamp(20px, 2.5vw, 28px) clamp(28px, 5vw, 72px) 36px",
         display: "flex",
@@ -207,27 +246,20 @@ export default function FooterSection() {
       />
 
       {/* ── TOP ROW ───────────────────────────────────────────── */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          marginTop: 0,
-          paddingTop: 0,
-        }}
-      >
-        {/* Left: waves logo */}
-        <div ref={logoRef} style={{ marginTop: 0, paddingTop: 0 }}>
-          <WavesLogo />
-        </div>
-
-        {/* Right: wordmark + nav + socials */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "24px" }}>
-
-          {/* FRESHY wordmark */}
-          <div ref={wordmarkRef} style={{ marginTop: 0, paddingTop: 0 }}>
+      <div style={{ position: "relative", zIndex: 1, marginTop: 0, paddingTop: 0 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: "20px",
+            marginBottom: "22px",
+          }}
+        >
+          <div ref={logoRef} style={{ marginTop: 0, paddingTop: 0 }}>
+            <WavesLogo />
+          </div>
+          <div ref={wordmarkRef} style={{ marginTop: 0, paddingTop: 0, textAlign: "right" }}>
             <span style={{
               display: "block",
               fontFamily: "'Arial Black', 'Arial', sans-serif",
@@ -241,11 +273,20 @@ export default function FooterSection() {
               FRESHY
             </span>
           </div>
+        </div>
 
-          {/* Nav + socials */}
-          <div ref={navRef} style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%" }}>
+          <div ref={navRef} style={{ display: "flex", flexDirection: "column", alignItems: "stretch", gap: "20px", width: "100%", marginTop: "48px" }}>
             <nav aria-label="Footer navigation">
-              <div style={{ display: "flex", gap: "clamp(16px, 2vw, 32px)", alignItems: "flex-start" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "2.2fr 1fr 1fr",
+                  gap: "clamp(34px, 4vw, 72px)",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
                 {NAV_MAIN.map((item) => (
                   <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <a
@@ -264,25 +305,36 @@ export default function FooterSection() {
                     >
                       {item.label}
                     </a>
-                    {item.sub?.map((sub) => (
-                      <a
-                        key={sub}
-                        href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
+                    {item.sub && (
+                      <div
                         style={{
-                          color: "rgba(255,255,255,0.35)",
-                          fontSize: "clamp(0.58rem, 0.68vw, 0.66rem)",
-                          fontWeight: 500,
-                          letterSpacing: "0.1em",
-                          textDecoration: "none",
-                          transition: "color 0.2s",
-                          whiteSpace: "nowrap",
+                          display: item.label === "OUR SERVICES" ? "grid" : "flex",
+                          gridTemplateColumns: item.label === "OUR SERVICES" ? "repeat(3, minmax(0, 1fr))" : undefined,
+                          gap: item.label === "OUR SERVICES" ? "6px 30px" : "8px",
+                          flexDirection: item.label === "OUR SERVICES" ? undefined : "column",
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
-                        onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
                       >
-                        {sub}
-                      </a>
-                    ))}
+                        {item.sub.map((sub) => (
+                          <a
+                            key={sub}
+                            href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
+                            style={{
+                              color: "rgba(255,255,255,0.35)",
+                          fontSize: "clamp(0.76rem, 0.9vw, 0.88rem)",
+                              fontWeight: 500,
+                              letterSpacing: "0.1em",
+                              textDecoration: "none",
+                              transition: "color 0.2s",
+                              whiteSpace: "nowrap",
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
+                            onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
+                          >
+                            {sub}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -293,7 +345,6 @@ export default function FooterSection() {
 
       {/* ── BOTTOM ROW ────────────────────────────────────────── */}
       <div style={{ position: "relative", zIndex: 1, marginTop: "clamp(24px, 4vw, 48px)" }}>
-
         <div style={{
           width: "100%", height: "1px",
           background: "rgba(255,255,255,0.08)",
@@ -310,8 +361,6 @@ export default function FooterSection() {
             gap: "16px",
           }}
         >
-
-          {/* Bottom-left: tagline + copyright */}
           <div ref={taglineRef} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <div>
               <p style={{
@@ -336,9 +385,7 @@ export default function FooterSection() {
             </p>
           </div>
 
-          {/* Bottom-center: legal + socials */}
           <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignSelf: "flex-end" }}>
-
             {NAV_LEGAL.map((item) => (
               <a
                 key={item.label}
@@ -395,18 +442,6 @@ export default function FooterSection() {
                 </a>
               ))}
             </div>
-          </div>
-
-          {/* Bottom-right: design credit */}
-          <div style={{ alignSelf: "flex-end" }}>
-            <p style={{
-              color: "rgba(255,255,255,0.2)",
-              fontSize: "clamp(0.56rem, 0.62vw, 0.62rem)",
-              fontWeight: 500, letterSpacing: "0.1em",
-              margin: 0, textTransform: "uppercase",
-            }}>
-              DESIGN BY REJOICE
-            </p>
           </div>
 
         </div>

@@ -149,7 +149,7 @@ export default function IndustriesSection() {
         position: "relative",
         width: "100%",
         height: "200vh",
-        background: "#0a0a0a",
+        background: "#162D24",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",

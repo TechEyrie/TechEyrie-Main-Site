@@ -20,7 +20,7 @@ function CardVideo({ src, badge, footerContent }) {
     <div className="flex flex-col">
       <div
         className="relative w-full bg-black overflow-hidden cursor-pointer group"
-        style={{ aspectRatio: "4/3" }}
+        style={{ aspectRatio: "16/8.5" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -49,7 +49,7 @@ function CardVideo({ src, badge, footerContent }) {
           </div>
         </div>
       </div>
-      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-5 px-5">{footerContent}</div>
+      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-4">{footerContent}</div>
     </div>
   );
 }
@@ -68,6 +68,75 @@ const GRID_DOTS = [
   { top: "88%", left: "75%" }, { top: "88%", left: "91%" },
 ];
 
+const CARD_ITEMS = [
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    badge: "Design + Dev",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        WordPress website design
+        <br />
+        <span className="font-normal text-[#666]">Beautiful websites made by top WordPress designers</span>
+      </p>
+    ),
+  },
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    badge: "Managed Services",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        WordPress development
+        <br />
+        Full WordPress development team with deep technical experience
+      </p>
+    ),
+  },
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    badge: "Maintenance",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        WordPress maintenance
+        <br />
+        <span className="font-normal text-[#666]">Always secure, always available, always updated</span>
+      </p>
+    ),
+  },
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    badge: "Hosting",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        WordPress managed hosting
+        <br />
+        High-level security and performance
+      </p>
+    ),
+  },
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    badge: "Support",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        Premium support
+        <br />
+        <span className="font-normal text-[#666]">Dedicated point of contact and priority support</span>
+      </p>
+    ),
+  },
+  {
+    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    badge: "SEO",
+    footer: (
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+        Search engine optimization
+        <br />
+        Set your website up for long-term growth
+      </p>
+    ),
+  },
+];
+
 function CrosshairDot({ top, left }) {
   return (
     <div className="absolute pointer-events-none" style={{ top, left, transform: "translate(-50%,-50%)" }}>
@@ -83,8 +152,6 @@ export default function RTSCombinedSection() {
   const panelARef = useRef(null);
   const headerRef = useRef(null);
   const midColRef = useRef(null);
-  const leftCardRef = useRef(null);
-  const rightCardRef = useRef(null);
   const cardsWrapperRef = useRef(null);
   const panelBRef = useRef(null);
   const badgesRef = useRef(null);
@@ -119,40 +186,64 @@ export default function RTSCombinedSection() {
         }
       );
 
-      // ── Panel A: card slide ────────────────────────────────────
+      // ── Panel A: card slide for 3x2 grid ───────────────────────
+      let cardsTrigger = null;
       const setupCards = () => {
-        const leftEl = leftCardRef.current;
-        const rightEl = rightCardRef.current;
-        if (!leftEl || !rightEl) return;
+        const cards = cardsWrapperRef.current?.querySelectorAll(".rts-card-item");
+        if (!cards || cards.length === 0) return;
 
         if (window.innerWidth < 768) {
-          gsap.set([leftEl, rightEl], { clearProps: "all" });
+          cardsTrigger?.kill();
+          cardsTrigger = null;
+          gsap.set(cards, { clearProps: "all" });
           return;
         }
 
-        const leftWidth = leftEl.getBoundingClientRect().width;
-        const startX = -(leftWidth * 0.8 + 16);
+        cardsTrigger?.kill();
+        gsap.set(cards, { opacity: 0.55, scale: 0.96 });
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const overlapStep = cardWidth * 0.9;
+        cards.forEach((card, i) => {
+          const col = i % 3;
+          const startX = -(col * overlapStep);
+          gsap.set(card, { x: startX, y: 0, zIndex: 10 + col });
+        });
 
-        gsap.set(leftEl, { opacity: 0.5, scale: 0.97 });
-        gsap.set(rightEl, { x: startX });
-
-        ScrollTrigger.create({
+        cardsTrigger = ScrollTrigger.create({
           trigger: cardsWrapperRef.current,
           start: "top 75%",
           end: "top 20%",
           scrub: 1.4,
           onUpdate: (self) => {
             const p = self.progress;
-            gsap.set(rightEl, { x: startX * (1 - p) });
-            gsap.set(leftEl, { opacity: 0.5 + 0.5 * p, scale: 0.97 + 0.03 * p });
+            cards.forEach((card, i) => {
+              const col = i % 3;
+              const startX = -(col * overlapStep);
+              gsap.set(card, {
+                x: startX * (1 - p),
+                y: 0,
+                opacity: 0.55 + 0.45 * p,
+                scale: 0.96 + 0.04 * p,
+              });
+            });
           },
           onLeaveBack: () => {
-            gsap.to(rightEl, { x: startX, duration: 0.5, ease: "power2.inOut", overwrite: true });
-            gsap.to(leftEl, { opacity: 0.5, scale: 0.97, duration: 0.5, ease: "power2.inOut", overwrite: true });
+            cards.forEach((card, i) => {
+              const col = i % 3;
+              const startX = -(col * overlapStep);
+              gsap.to(card, {
+                x: startX,
+                y: 0,
+                opacity: 0.55,
+                scale: 0.96,
+                duration: 0.45,
+                ease: "power2.inOut",
+                overwrite: true,
+              });
+            });
           },
           onLeave: () => {
-            gsap.set(rightEl, { x: 0 });
-            gsap.set(leftEl, { opacity: 1, scale: 1 });
+            gsap.set(cards, { x: 0, y: 0, opacity: 1, scale: 1 });
           },
         });
       };
@@ -213,7 +304,16 @@ export default function RTSCombinedSection() {
       );
       masterTl.to({}, { duration: 1 }); // dwell
 
-      window.addEventListener("resize", () => { setupCards(); ScrollTrigger.refresh(); });
+      const onResize = () => {
+        setupCards();
+        ScrollTrigger.refresh();
+      };
+      window.addEventListener("resize", onResize);
+
+      return () => {
+        cardsTrigger?.kill();
+        window.removeEventListener("resize", onResize);
+      };
 
     }, wrapperRef);
 
@@ -231,7 +331,7 @@ export default function RTSCombinedSection() {
       {/* ── PANEL A ─────────────────────────────────────────────── */}
       <div
         ref={panelARef}
-        className="absolute inset-0 w-full bg-[#f5f5f5] pt-20 pb-0 will-change-transform"
+        className="absolute inset-0 w-full bg-[#f5f5f5] pt-8 pb-0 will-change-transform"
         style={{
           height: "100vh",
           overflow: "clip",
@@ -241,7 +341,7 @@ export default function RTSCombinedSection() {
       >
         <div
           ref={headerRef}
-          className="px-6 sm:px-10 md:px-16 lg:px-20 mb-14 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20"
+          className="px-6 sm:px-10 md:px-16 lg:px-20 mb-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10"
         >
           <div className="flex items-start">
             <p className="text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-[#111] tracking-tight leading-snug">
@@ -261,37 +361,22 @@ export default function RTSCombinedSection() {
         </div>
 
         <div ref={cardsWrapperRef} className="px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
-            <div ref={leftCardRef} className="will-change-transform">
-              <CardVideo
-                src="https://www.icomat.co.uk/videos/composites/A01.mp4"
-                badge="Design + Dev"
-                footerContent={
-                  <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
-                    WordPress website design<br />
-                    <span className="font-normal text-[#666]">Beautiful websites made by top WordPress designers</span>
-                  </p>
-                }
-              />
-            </div>
-            <div ref={rightCardRef} className="will-change-transform">
-              <CardVideo
-                src="https://www.icomat.co.uk/videos/composites/A02.mp4"
-                badge="Managed Services"
-                footerContent={
-                  <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
-                    WordPress development<br />
-                    Full WordPress development team with deep technical experience
-                  </p>
-                }
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {CARD_ITEMS.map((card, idx) => (
+              <div key={idx} className="rts-card-item will-change-transform">
+                <CardVideo
+                  src={card.src}
+                  badge={card.badge}
+                  footerContent={card.footer}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         <div
           ref={midColRef}
-          className="mt-5 mx-6 sm:mx-10 md:mx-16 lg:mx-20 border border-[#ddd] rounded-sm py-3 px-5 mb-14"
+          className="mt-1 mx-6 sm:mx-10 md:mx-16 lg:mx-20 border border-[#ddd] rounded-sm py-1.5 px-4 mb-4"
         >
           <p className="text-[11px] sm:text-[12px] font-medium text-[#aaa] tracking-[0.18em] uppercase">
             Freshy / WordPress Service Platform
@@ -302,7 +387,7 @@ export default function RTSCombinedSection() {
       {/* ── PANEL B ─────────────────────────────────────────────── */}
       <div
         ref={panelBRef}
-        className="absolute inset-0 w-full bg-[#0a0a0a] overflow-hidden will-change-transform"
+        className="absolute inset-0 w-full bg-[#162D24] overflow-hidden will-change-transform"
         style={{ height: "100vh", zIndex: 2 }}
       >
         <video

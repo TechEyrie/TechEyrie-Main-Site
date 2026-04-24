@@ -22,11 +22,13 @@ import BuildWithIcomatSection from '../../../components/icomat1/BuildWithIcomatS
 import UnlockingSection from '../../../components/icomat1/UnlockingSection'
 import FooterSection from '../../../components/icomat1/FooterSection'
 import Header from '../../../components/icomat1/Header'
+import CTASection from '../../../components/icomat1/CTASection'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function IcomatPage() {
   const [theme] = useState('dark')
+  const [quoteOpen, setQuoteOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark')
@@ -70,7 +72,7 @@ export default function IcomatPage() {
   }, [])
 
   return (
-    <div data-theme="dark" style={{ backgroundColor: '#1A1A1A', minHeight: '100vh' }}>
+    <div data-theme="dark" className="icomat1-laygrotesk" style={{ backgroundColor: '#162D24', minHeight: '100vh' }}>
       <style jsx global>{`
         html, body {
           -ms-overflow-style: none;
@@ -82,8 +84,8 @@ export default function IcomatPage() {
         }
       `}</style>
 
-        <Header />
-      <HeroSection />
+        <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
+      <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
       <RTSSection />
       {/* <RTSRevolutionSection />
       <CompositeShowcaseSection /> */}
@@ -92,11 +94,12 @@ export default function IcomatPage() {
       <OurAdvantageSection />
       <EndToEndSection />
       <CustomersSection />
-      <BusinessModelSection />
+      {/* <BusinessModelSection /> */}
       <IcomatSolutionSection />
       <IndustriesSection />
       <BuildWithIcomatSection />
       <UnlockingSection />
+      <CTASection />
       <FooterSection />
       {/* <Footer theme="dark" /> */}
     </div>

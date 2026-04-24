@@ -109,7 +109,7 @@ function HeroQuoteButton({ onClick }) {
 
 export default function HeroSection({ onQuoteClick }) {
   const containerRef = useRef(null);
-  const videoRef = useRef(null);
+  const imageRef = useRef(null);
   const overlayRef = useRef(null);
   const headingRef = useRef(null);
   const badgeRef = useRef(null);
@@ -117,28 +117,22 @@ export default function HeroSection({ onQuoteClick }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
-      // ── Set hard initial states so scroll-out never conflicts ──────
-      gsap.set(videoRef.current, { opacity: 0 });
+      gsap.set(imageRef.current, { opacity: 0 });
       gsap.set(overlayRef.current, { opacity: 0 });
       gsap.set(badgeRef.current, { opacity: 0, y: 20 });
       gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
-      // ── Entrance timeline ──────────────────────────────────────────
       const tl = gsap.timeline({ delay: 0.3 });
-
       tl.to(
-        videoRef.current,
+        imageRef.current,
         { opacity: 1, duration: 1.8, ease: "power2.inOut" },
         0
       );
-
       tl.to(
         overlayRef.current,
         { opacity: 1, duration: 1.5, ease: "power2.inOut" },
         0.2
       );
-
       tl.to(
         badgeRef.current,
         { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
@@ -170,7 +164,6 @@ export default function HeroSection({ onQuoteClick }) {
         1.8
       );
 
-      // Scroll indicator bounce
       gsap.to(scrollIndicatorRef.current, {
         y: 8,
         duration: 1.2,
@@ -180,7 +173,6 @@ export default function HeroSection({ onQuoteClick }) {
         delay: 2.6,
       });
 
-      // ── Scroll-out: heading ────────────────────────────────────────
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: "50% top",
@@ -193,18 +185,8 @@ export default function HeroSection({ onQuoteClick }) {
             opacity: 1 - p,
           });
         },
-        onLeaveBack: () => {
-          gsap.to(headingRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        },
       });
 
-      // ── Scroll-out: badge ──────────────────────────────────────────
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: "30% top",
@@ -217,20 +199,10 @@ export default function HeroSection({ onQuoteClick }) {
             opacity: 1 - p,
           });
         },
-        onLeaveBack: () => {
-          gsap.to(badgeRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        },
       });
 
-      // ── Video parallax ─────────────────────────────────────────────
-      gsap.to(videoRef.current, {
-        yPercent: -12,
+      gsap.to(imageRef.current, {
+        yPercent: -8,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -239,7 +211,6 @@ export default function HeroSection({ onQuoteClick }) {
           scrub: true,
         },
       });
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -251,19 +222,13 @@ export default function HeroSection({ onQuoteClick }) {
       className="relative w-full h-screen min-h-[600px] bg-[#162D24]"
       style={{ overflow: "clip" }}
     >
-      {/* Background Video */}
-      <video
-        ref={videoRef}
+      <img
+        ref={imageRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://icomat.cdn.prismic.io/icomat/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+        src="/pics/solutions-main-pic.avif"
+        alt="About us hero"
       />
 
-      {/* Gradient Overlay */}
       <div
         ref={overlayRef}
         className="absolute inset-0"
@@ -273,7 +238,6 @@ export default function HeroSection({ onQuoteClick }) {
         }}
       />
 
-      {/* Bottom fade */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
         style={{
@@ -282,13 +246,9 @@ export default function HeroSection({ onQuoteClick }) {
         }}
       />
 
-      {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col px-6 sm:px-10 md:px-16 lg:px-10 pt-84 pb-16 md:pb-20">
-
-        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Bottom-left heading */}
         <div>
           <h1
             ref={headingRef}
@@ -298,31 +258,17 @@ export default function HeroSection({ onQuoteClick }) {
               fontWeight: 600,
             }}
           >
-            The WordPress
-            <br />
-            agency you've been looking for.
-            <sup
-              style={{
-                fontSize: "0.22em",
-                verticalAlign: "super",
-                fontWeight: 400,
-                letterSpacing: "0.05em",
-                marginLeft: "0.3em",
-              }}
-            >
-              ™
-            </sup>
+            Why Freshy
           </h1>
 
-          <div
-            ref={badgeRef}
-            className="mt-4 max-w-[760px]"
-          >
+          <div ref={badgeRef} className="mt-4 max-w-[760px]">
             <p
               className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed"
               style={{ color: "rgba(255,255,255,0.72)" }}
             >
-              US-based firm | Web design & development | WP hosting, maintenance, & support | Search engine optimization
+              We&apos;ve spent the last 15 years perfecting our website design and
+              development process so that each project exceeds client
+              expectations.
             </p>
 
             <HeroQuoteButton onClick={onQuoteClick} />
@@ -330,7 +276,6 @@ export default function HeroSection({ onQuoteClick }) {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <div
         ref={scrollIndicatorRef}
         className="absolute bottom-8 right-6 sm:right-10 md:right-16 lg:right-20 z-20"
@@ -355,3 +300,4 @@ export default function HeroSection({ onQuoteClick }) {
     </section>
   );
 }
+

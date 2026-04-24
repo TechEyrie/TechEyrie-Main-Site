@@ -307,8 +307,60 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'LayGrotesk-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/laygrotesk-trial-regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LayGrotesk-Semibold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/laygrotesk-trial-semibold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akkurat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Akkurat.ttf') format('truetype');
+  font-display: swap;
+}
+
 .font-ppneue {
   font-family: 'PPNeueMontreal', 'Helvetica Now Text', Arial, sans-serif;
+}
+
+/* icomat1 font scope */
+.icomat1-laygrotesk,
+.icomat1-laygrotesk p,
+.icomat1-laygrotesk span,
+.icomat1-laygrotesk a,
+.icomat1-laygrotesk li,
+.icomat1-laygrotesk button,
+.icomat1-laygrotesk input,
+.icomat1-laygrotesk textarea,
+.icomat1-laygrotesk label,
+.icomat1-laygrotesk small,
+.icomat1-laygrotesk div {
+  font-family: LayGrotesk-Regular,sans-serif;
+}
+
+.icomat1-laygrotesk h1,
+.icomat1-laygrotesk h2,
+.icomat1-laygrotesk h3,
+.icomat1-laygrotesk h4,
+.icomat1-laygrotesk h5,
+.icomat1-laygrotesk h6,
+.icomat1-laygrotesk .font-semibold,
+.icomat1-laygrotesk .font-bold,
+.icomat1-laygrotesk .font-extrabold,
+.icomat1-laygrotesk .font-black {
+  font-family: LayGrotesk-Semibold,sans-serif;
 }
 
 

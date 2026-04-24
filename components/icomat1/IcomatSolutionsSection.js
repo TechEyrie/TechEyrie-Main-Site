@@ -105,7 +105,7 @@ export default function IcomatSolutionSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#0a0a0a] px-6 sm:px-10 md:px-16 lg:px-20 py-20 md:py-28"
+      className="w-full bg-[#162D24] px-6 sm:px-10 md:px-16 lg:px-20 py-20 md:py-28"
     >
 
       {/* ── Heading ───────────────────────────────────────────── */}

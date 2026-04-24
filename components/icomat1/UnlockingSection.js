@@ -47,39 +47,39 @@ const CARDS = [
   {
     id: "build",
     eyebrow: "Leading web design & development solutions in the USA",
-    title: "Crafting premium, professional, and responsive WordPress websites tailored to your needs.",
-    desc: null,
+    title: "Industry-leading web providers in the USA",
+    desc: "As trusted providers of WordPress, we deliver premium, professional, and responsive web services tailored to your needs. From skilled programmers to expert developers, our team ensures high-quality designs that set your brand apart.",
     icon: null,
     isHero: true,
   },
   {
     id: "steered",
     title: "Expert web designers & developers",
-    desc: "Our team of skilled designers, developers, and specialists delivers innovative web solutions for businesses of all sizes.",
+    desc: "Our team of skilled designers, developers, and specialists delivers innovative web solutions for businesses of all sizes. We partner with firms, agencies, and companies across the United States to create high-performing WordPress websites.",
     icon: <IconWaves />,
   },
   {
     id: "lighter",
     title: "Custom web design services",
-    desc: "As a leading studio, we specialize in designing custom websites that align with your brand identity.",
+    desc: "As a leading studio, we specialize in designing custom websites that align with your brand identity. Our expert designer team ensures each project is visually stunning and optimized for performance.",
     icon: <IconLayers />,
   },
   {
     id: "speed",
     title: "Ecommerce & WooCommerce development",
-    desc: "We provide cutting-edge ecommerce solutions, including WooCommerce integration and customization.",
+    desc: "We provide cutting-edge ecommerce solutions, including WooCommerce integration and customization. Our developers build seamless online stores that enhance user experience and drive conversions.",
     icon: <IconBolt />,
   },
   {
     id: "precision",
     title: "Fully managed web services",
-    desc: "Our company offers managed website services, ensuring your WordPress site remains secure, up-to-date, and optimized.",
+    desc: "Our company offers managed website services, ensuring your WordPress site remains secure, up-to-date, and optimized. We handle everything from maintenance to performance improvements, so you can focus on growing your business.",
     icon: <IconTarget />,
   },
   {
     id: "integrated",
     title: "Consulting & strategic web solutions",
-    desc: "We provide expert consulting services to help businesses navigate the digital landscape.",
+    desc: "We provide expert consulting services to help businesses navigate the digital landscape. Whether you’re looking for a recommended web strategy or need guidance on developing a new site, our team is here to help.",
     icon: <IconCog />,
   },
 ];
@@ -121,7 +121,7 @@ function FeatureCard({ card, animRef }) {
     const descEl  = el.querySelector(".card-desc");
 
     const onEnter = () => {
-      gsap.to(el, { backgroundColor: "#2d2d2b", duration: 0.45, ease: "power1.inOut" });
+      gsap.to(el, { backgroundColor: "#162D24", duration: 0.45, ease: "power1.inOut" });
       gsap.to([iconEl, titleEl].filter(Boolean), {
         color: "#ffffff", duration: 0.6, ease: "power1.inOut", stagger: 0.06,
       });
@@ -150,7 +150,7 @@ function FeatureCard({ card, animRef }) {
       <div
         ref={setRef}
         style={{
-          background: "#2d2d2b",
+          background: "#162D24",
           borderRadius: "18px",
           padding: "clamp(28px, 3.5vw, 44px)",
           display: "flex",
@@ -171,11 +171,23 @@ function FeatureCard({ card, animRef }) {
           <p style={{
             color: "rgba(255,255,255,0.88)",
             fontSize: "clamp(0.95rem, 1.1vw, 1.08rem)",
-            fontWeight: 700,
+            fontWeight: 500,
             lineHeight: 1.4,
+            marginBottom: "10px",
           }}>
             {card.title}
           </p>
+          {card.desc && (
+            <p style={{
+              color: "rgba(255,255,255,0.62)",
+              fontSize: "clamp(0.95rem, 1.1vw, 1.08rem)",
+              fontWeight: 400,
+              lineHeight: 1.6,
+              margin: 0,
+            }}>
+              {card.desc}
+            </p>
+          )}
         </div>
         <a
           href="#"
@@ -226,7 +238,7 @@ function FeatureCard({ card, animRef }) {
           style={{
             color: "rgba(0,0,0,0.82)",
             fontSize: "clamp(0.95rem, 1.1vw, 1.08rem)",
-            fontWeight: 700,
+            fontWeight: 500,
             lineHeight: 1.35,
             marginBottom: "10px",
           }}
@@ -257,6 +269,9 @@ function ImageLinkCard({ card, animRef }) {
   const cardRef = useRef(null);
   const imgRef  = useRef(null);
   const pillRef = useRef(null);
+  const textRef = useRef(null);
+  const cloneRef = useRef(null);
+  const tlRef = useRef(null);
 
   const setRef = (el) => {
     cardRef.current = el;
@@ -267,15 +282,37 @@ function ImageLinkCard({ card, animRef }) {
     const el   = cardRef.current;
     const img  = imgRef.current;
     const pill = pillRef.current;
-    if (!el || !img) return;
+    const text = textRef.current;
+    const clone = cloneRef.current;
+    if (!el || !img || !pill || !text || !clone) return;
+
+    const H = pill.offsetHeight;
+    gsap.set(clone, { y: H, opacity: 1 });
+    gsap.set(text, { y: 0, opacity: 1 });
 
     const onEnter = () => {
       gsap.to(img,  { scale: 1.05, duration: 0.7, ease: "power2.out" });
-      gsap.to(pill, { backgroundColor: "rgba(40,38,36,0.88)", duration: 0.4, ease: "power2.out" });
+      gsap.to(pill, {
+        backgroundColor: "rgba(255,255,255,0.96)",
+        borderColor: "rgba(255,255,255,1)",
+        duration: 0.35,
+        ease: "power2.out",
+      });
+      tlRef.current?.kill();
+      tlRef.current = gsap.timeline({ defaults: { duration: 0.52, ease: "power3.inOut" } });
+      tlRef.current.to(text, { y: -H }, 0).to(clone, { y: 0 }, 0);
     };
     const onLeave = () => {
       gsap.to(img,  { scale: 1,    duration: 0.7, ease: "power2.inOut" });
-      gsap.to(pill, { backgroundColor: "rgba(60,58,54,0.68)", duration: 0.4, ease: "power2.inOut" });
+      gsap.to(pill, {
+        backgroundColor: "rgba(255,255,255,0.12)",
+        borderColor: "rgba(255,255,255,0.34)",
+        duration: 0.35,
+        ease: "power2.out",
+      });
+      tlRef.current?.kill();
+      tlRef.current = gsap.timeline({ defaults: { duration: 0.48, ease: "power3.inOut" } });
+      tlRef.current.to(clone, { y: H }, 0).to(text, { y: 0 }, 0);
     };
 
     el.addEventListener("mouseenter", onEnter);
@@ -283,6 +320,7 @@ function ImageLinkCard({ card, animRef }) {
     return () => {
       el.removeEventListener("mouseenter", onEnter);
       el.removeEventListener("mouseleave", onLeave);
+      tlRef.current?.kill();
     };
   }, []);
 
@@ -340,19 +378,49 @@ function ImageLinkCard({ card, animRef }) {
         <div
           ref={pillRef}
           style={{
-            backgroundColor: "rgba(60,58,54,0.68)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            borderRadius: "999px",
-            padding: "14px 44px",
-            color: "rgba(255,255,255,0.88)",
-            fontSize: "clamp(0.68rem, 0.8vw, 0.76rem)",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
+            position: "relative",
+            overflow: "hidden",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(255,255,255,0.12)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.34)",
+            borderRadius: "38px",
+            padding: "36px 46px",
+            fontSize: "clamp(11px, 0.75vw, 12px)",
+            fontWeight: 300,
+            letterSpacing: "0.09em",
             textTransform: "uppercase",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 24px rgba(0,0,0,0.3)",
+            lineHeight: 1,
           }}
         >
-          {card.label}
+          <span
+            ref={textRef}
+            style={{
+              display: "block",
+              color: "#ffffff",
+              whiteSpace: "nowrap",
+              lineHeight: 1,
+            }}
+          >
+            {card.label}
+          </span>
+          <span
+            ref={cloneRef}
+            aria-hidden="true"
+            style={{
+              display: "block",
+              color: "#101010",
+              whiteSpace: "nowrap",
+              position: "absolute",
+              lineHeight: 1,
+            }}
+          >
+            {card.label}
+          </span>
         </div>
       </div>
     </a>

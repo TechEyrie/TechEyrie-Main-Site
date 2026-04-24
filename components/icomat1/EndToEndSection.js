@@ -10,29 +10,29 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const CARDS = [
   {
     num: "01",
-    label: "HRchitect",
+    label: "HRCHITECT",
     sub: "Website migration, infrastructure review, and a comprehensive audit result in strategic planning for phase II redesign project.",
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400&q=85&fit=crop",
     color: "#1a1a2e",
   },
   {
     num: "02",
-    label: "Tiger",
-    sub: null,
+    label: "TIGER",
+    sub: "Five sister websites get fresh looks and added features",
     img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=85&fit=crop",
     color: "#16213e",
   },
   {
     num: "03",
-    label: "Azelis A&ES",
+    label: "AZELIS A&ES",
     sub: "Seamless merger of two ecommerce websites into one adds ease and efficiency.",
     img: "https://images.unsplash.com/photo-1581091215367-59ab6dcef2f8?w=1400&q=85&fit=crop",
     color: "#0f3460",
   },
   {
     num: "04",
-    label: "Acertus",
-    sub: null,
+    label: "ACERTUS",
+    sub: "WordPress website migrated, optimized for long term expansion via Freshy retained services.",
     img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1400&q=85&fit=crop",
     color: "#1a1a2e",
   },
@@ -123,7 +123,7 @@ export default function EndToEndSection() {
   return (
     <section
       ref={wrapperRef}
-      className="w-full bg-[#0a0a0a] overflow-hidden pb-24"
+      className="w-full bg-[#162D24] overflow-hidden pb-24"
       style={{ minHeight: "100vh" }}
     >
       {/* ── Heading ───────────────────────────────────────────────── */}
@@ -133,7 +133,7 @@ export default function EndToEndSection() {
           className="font-semibold text-center leading-tight tracking-tight"
           style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
         >
-          Featured projects
+        Case Studies
         </h2>
       </div>
 
@@ -157,6 +157,8 @@ export default function EndToEndSection() {
                   style={{
                     fontSize: "clamp(1rem, 1.4vw, 1.4rem)",
                     color: "rgba(255,255,255,0.35)",
+                    fontFamily: "'Doto', monospace",
+                    fontVariationSettings: "'wght' 700, 'ROND' 100",
                   }}
                 >
                   {card.num}
@@ -204,6 +206,13 @@ export default function EndToEndSection() {
           ))}
         </div>
       </div>
+      <style jsx global>{`
+        @font-face {
+          font-family: 'Doto';
+          src: url('/fonts/Doto-VariableFont_ROND,wght.ttf') format('truetype');
+          font-display: swap;
+        }
+      `}</style>
     </section>
   );
 }
