@@ -56,6 +56,18 @@ const DOT_MAP = {
     [1,0,0,1,0],[1,0,1,0,0],[1,1,0,0,0],
     [1,0,1,0,0],[1,0,0,1,0],[1,0,0,1,0],[1,0,0,0,1],
   ],
+  "+": [
+    [0,0,0,0,0],[0,0,1,0,0],[0,0,1,0,0],
+    [1,1,1,1,1],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,0,0],
+  ],
+  "W": [
+    [1,0,0,0,1],[1,0,0,0,1],[1,0,1,0,1],
+    [1,0,1,0,1],[1,0,1,0,1],[1,1,0,1,1],[1,0,0,0,1],
+  ],
+  "P": [
+    [1,1,1,1,0],[1,0,0,0,1],[1,0,0,0,1],
+    [1,1,1,1,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],
+  ],
 };
 
 function DotChar({ char, dotSize = 6, gap = 3, color = "rgba(0,0,0,0.15)" }) {
@@ -164,17 +176,17 @@ function StatCell({ label, sublabel, value, isLeftCol }) {
 
 // ── Stats data ────────────────────────────────────────────────
 const STATS = [
-  { id: "cleanroom",  label: "5,000 SQFT ISO",       sublabel: "CLASS 7 CLEAN ROOM",    value: "5000", col: 0 },
-  { id: "autoclaves", label: "2 AUTOCLAVES",          sublabel: "(6M × 3M CAPACITY)",    value: "2X",   col: 1 },
-  { id: "cnc",        label: "CNC MACHINING CENTERS", sublabel: "(6M X 3M CAPACITY)",    value: "3X",   col: 0 },
-  { id: "rts",        label: "6 RTS MATERIAL",        sublabel: "DEPOSITION HEADS",      value: "6X",   col: 1 },
+  { id: "team",      label: "EXPERIENCED TEAM",      sublabel: "MEMBERS",              value: "50+",  col: 0 },
+  { id: "wordpress", label: "WORDPRESS",             sublabel: "EXPERTS",              value: "WP",   col: 1 },
+  { id: "reviews",   label: "5-STAR GOOGLE",         sublabel: "REVIEWS",              value: "370+", col: 0 },
+  { id: "projects",  label: "PROJECTS",              sublabel: "COMPLETED",            value: "2K+",  col: 1 },
 ];
 
 // ── Main Section ──────────────────────────────────────────────
 export default function FactorySection({
-  heading      = "Factory 1 — Our Flexible Manufacturing Hub",
-  description1 = "Factory 1 in Gloucester provides complete end-to-end production, from raw material to finished assemblies.",
-  description2 = "With RTS systems, ISO Class 7 cleanroom environments, large-format autoclaves, press moulding, CNC machining, metrology and forming technologies, every part follows its optimal manufacturing route.",
+  heading      = "We're focused on creating value through service",
+  description1 = "At Freshy, we believe we're a team of guides. We are focused on solving problems in order to make our clients' lives easier and their work more effective. Every process we build, every system we implement, every team member we add, aims to further that mission.",
+  description2 = "",
   stats        = STATS,
 }) {
   const headingRef = useRef(null);
@@ -278,16 +290,18 @@ export default function FactorySection({
               }}>
                 {description1}
               </p>
-              <p style={{
-                fontFamily: "inherit",
-                fontSize: "clamp(1rem, 1.15vw, 1.15rem)",
-                fontWeight: 400,
-                lineHeight: 1.72,
-                color: "#0a0a09",
-                margin: 0,
-              }}>
-                {description2}
-              </p>
+              {description2 ? (
+                <p style={{
+                  fontFamily: "inherit",
+                  fontSize: "clamp(1rem, 1.15vw, 1.15rem)",
+                  fontWeight: 400,
+                  lineHeight: 1.72,
+                  color: "#0a0a09",
+                  margin: 0,
+                }}>
+                  {description2}
+                </p>
+              ) : null}
             </div>
 
             {/* The Numbers block */}

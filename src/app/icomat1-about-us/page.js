@@ -9,6 +9,10 @@ import Header from '../../../components/icomat1/Header'
 import FooterSection from '../../../components/icomat1/FooterSection'
 import HeroSection from '../../../components/icomat1-about-us/HeroSection'
 import FactorySection from '../../../components/icomat1-about-us/FactorySection'
+import ReliableSection from '../../../components/icomat1-about-us/ReliableSection'
+import UnlockingSection from '../../../components/icomat1-about-us/UnlockingSection'
+import EndToEndSection from '../../../components/icomat1/EndToEndSection'
+import CTASection from '../../../components/icomat1/CTASection'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -65,6 +69,10 @@ export default function Icomat1AboutUsPage() {
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
       <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
       <FactorySection />
+      <ReliableSection />
+      <UnlockingSection />
+      <EndToEndSection />
+      <CTASection />
       <FooterSection />
     </div>
   )
