@@ -14,23 +14,27 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       id: 0,
       title: "SEO",
       subtitle: "(Search Engine Optimization)",
-      description: "We research and select the most powerful keywords to elevate visibility of your business, that connect with a high-intent audience.",
+      description:
+        "We research and select the most powerful keywords to elevate visibility for your business, connecting you with a high-intent audience through strategies built for lasting organic growth and measurable results.",
       tags: ["Keyword Analysis", "Content Optimization"],
       bgColor: theme === "dark" ? "#1a1a1a" : "#111111",
       textColor: "#f3f3f3",
       buttonBg: "#f3f3f3",
       buttonText: "#111111",
+      isLightCard: false,
     },
     {
       id: 1,
       title: "SMM",
       subtitle: "",
-      description: "It's not only about existence, it is all about influence. We design well-crafted strategies, goal driven social media systems that connect you to high-value audiences.",
+      description:
+        "It's not only about existence, it is all about influence. We design well-crafted, goal-driven social media systems that connect you to high-value audiences and turn engagement into meaningful brand momentum.",
       tags: [],
-      bgColor: "#E8FF6B",
+      bgColor: "#ffffff",
       textColor: "#111111",
       buttonBg: "#111111",
-      buttonText: "#E8FF6B",
+      buttonText: "#ffffff",
+      isLightCard: true,
     },
     {
       id: 2,
@@ -40,14 +44,14 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
         </>
       ),
       subtitle: "",
-      description: "At Tech Eyrie we tailor content strategies, persuasive sales copy and promote digital presence turning technology into  stories that repel to the right audience and drive measurable growth. ",
+      description:
+        "At Tech Eyrie we tailor content strategies, persuasive sales copy and promote digital presence turning technology into stories that repel to the right audience and drive measurable growth.",
       tags: [],
-      // In dark theme, match the first card's background
       bgColor: theme === "dark" ? "#1a1a1a" : "#E5E5E5",
-      // Make title/description light in dark theme
       textColor: theme === "dark" ? "#f3f3f3" : "#111111",
       buttonBg: "#111111",
       buttonText: "#f3f3f3",
+      isLightCard: false,
     },
     {
       id: 3,
@@ -57,12 +61,14 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
         </>
       ),
       subtitle: "",
-      description: "We turn attention into Action. Here at Tech Eyrie we create data driven advertisement campaigns, Real-time monitoring and clear strategies which will deliver meaningful business outcomes.",
+      description:
+        "We turn attention into action. Here at Tech Eyrie we create data-driven advertisement campaigns, real-time monitoring and clear strategies which will deliver meaningful business outcomes and sustained performance.",
       tags: [],
-      bgColor: "#E8FF6B",
+      bgColor: "#ffffff",
       textColor: "#111111",
       buttonBg: "#111111",
-      buttonText: "#E8FF6B",
+      buttonText: "#ffffff",
+      isLightCard: true,
     },
   ];
 
@@ -201,11 +207,14 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                         : "w-10 h-10 sm:w-11 sm:h-11 border-2 border-dashed hover:rotate-45"
                     }`}
                     style={{
-                      backgroundColor: 
-                        index === activeCard 
-                          ? (service.bgColor === "#E8FF6B" ? "#111111" : "#E8FF6B")
+                      backgroundColor:
+                        index === activeCard
+                          ? service.isLightCard
+                            ? "#111111"
+                            : "#E8FF6B"
                           : "transparent",
-                      borderColor: index === activeCard ? "transparent" : service.textColor,
+                      borderColor:
+                        index === activeCard ? "transparent" : service.textColor,
                     }}
                   >
                     <svg
@@ -217,7 +226,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                       fill="none"
                       stroke={
                         index === activeCard
-                          ? (service.bgColor === "#E8FF6B" ? "#E8FF6B" : "#111111")
+                          ? service.isLightCard
+                            ? "#ffffff"
+                            : "#111111"
                           : service.textColor
                       }
                       strokeWidth="2"
@@ -255,23 +266,25 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                 {/* Text Content - with padding */}
                 <div className="flex-1 flex flex-col px-5 sm:px-6 md:px-8 pb-5 sm:pb-6 md:pb-8">
                   <h3
-                    className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2"
+                    className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2 min-h-[2.4em] leading-[1.1]"
                     style={{ color: service.textColor }}
                   >
                     {service.title}
                   </h3>
 
-                  {service.subtitle && (
+                  {service.subtitle ? (
                     <p
-                      className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] mb-3"
+                      className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] mb-3 min-h-[1.25rem]"
                       style={{ color: service.textColor }}
                     >
                       {service.subtitle}
                     </p>
+                  ) : (
+                    <div className="mb-3 min-h-[1.25rem]" aria-hidden="true" />
                   )}
 
                   <p
-                    className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-5"
+                    className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-5 min-h-[5.5rem] sm:min-h-[5rem] md:min-h-[4.75rem] lg:min-h-[4.5rem]"
                     style={{ color: service.textColor }}
                   >
                     {service.description}

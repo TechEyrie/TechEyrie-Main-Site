@@ -141,6 +141,12 @@ export default function DeepJudgeAnimation({ theme }) {
             gsap.set(el, { x: pos.x, y: pos.y, scale: 1, opacity: 1 });
         });
 
+        // GSAP owns transform — keep orb centered when animating y (Tailwind translate gets wiped)
+        const orbCenter = { xPercent: -50, yPercent: -50 };
+        if (centerOrbRef.current) {
+          gsap.set(centerOrbRef.current, orbCenter);
+        }
+
         // =========================================
         // STAGE 1: MERGE TO CENTER
         // =========================================
@@ -159,8 +165,8 @@ export default function DeepJudgeAnimation({ theme }) {
         
         .to(circleBgRefs.current, { opacity: 0, duration: 0.1 }, "stage1+=1.9")
         .fromTo(centerOrbRef.current, 
-            { width: 0, height: 0, opacity: 1, backgroundColor: "#FFFFFF" },
-            { width: 20, height: 20, opacity: 1, duration: 0.2 },
+            { width: 0, height: 0, opacity: 1, backgroundColor: "#FFFFFF", borderRadius: 0, ...orbCenter },
+            { width: 20, height: 20, opacity: 1, borderRadius: 10, ...orbCenter, duration: 0.2 },
             "stage1+=1.9"
         );
 
@@ -171,6 +177,10 @@ export default function DeepJudgeAnimation({ theme }) {
         // =========================================
         
         const fieldWidth = isDesktop ? "600px" : "85vw";
+        const fieldHeight = 64;
+        const pillRadius = fieldHeight / 2; // 32px — keep px-only, never %
+        const dotSize = 20;
+        const dotRadius = dotSize / 2; // 10px circle
         const headingY = isDesktop ? -120 : -220; 
         const descriptionY = isDesktop ? -120 : -90;
         const fieldY = isDesktop ? 140 : 100;
@@ -187,17 +197,34 @@ export default function DeepJudgeAnimation({ theme }) {
             "stage2+=0.3"
         );
         
-        tl.to(centerOrbRef.current, {
-            width: fieldWidth,
-            height: "64px",
-            borderRadius: "32px",
+        // px-only radius: dot → pill (avoid % ↔ px scrub jitter)
+        tl.fromTo(
+          centerOrbRef.current,
+          {
+            width: dotSize,
+            height: dotSize,
+            borderRadius: dotRadius,
             backgroundColor: "#FFFFFF",
+            ...orbCenter,
+            y: 0,
+          },
+          {
+            width: fieldWidth,
+            height: fieldHeight,
+            borderRadius: pillRadius,
+            backgroundColor: "#FFFFFF",
+            ...orbCenter,
             y: fieldY,
             duration: 1.5,
-            ease: "power2.inOut"
-        }, "stage2")
+            ease: "power2.inOut",
+          },
+          "stage2",
+        )
         
         .to(searchFieldRef.current, { opacity: 1, duration: 0.5 }, "stage2+=1.2");
+
+        // Lock pill radius for the entire hold — do not let scrub drift it
+        tl.set(centerOrbRef.current, { borderRadius: pillRadius }, "stage2+=1.5");
 
         tl.to({}, { duration: 1 });
 
@@ -205,16 +232,19 @@ export default function DeepJudgeAnimation({ theme }) {
         // STAGE 3: FIELD MORPHS BACK TO DOT
         // =========================================
         
-        tl.to(searchFieldRef.current, { opacity: 0, duration: 0.5 }, "stage3")
+        // Keep pillRadius locked while shrinking; browser clamps to a circle at dot size
+        tl.set(centerOrbRef.current, { borderRadius: pillRadius }, "stage3")
+        .to(searchFieldRef.current, { opacity: 0, duration: 0.5 }, "stage3")
         .to(centerOrbRef.current, {
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
+            width: dotSize,
+            height: dotSize,
             backgroundColor: "#FFFFFF",
+            ...orbCenter,
             y: 0,
             duration: 1,
             ease: "power3.inOut"
         }, "stage3")
+        .set(centerOrbRef.current, { borderRadius: dotRadius }, "stage3+=1")
         .to([heading2Ref.current, description2Ref.current], { opacity: 0, y: -150, duration: 1 }, "stage3");
 
         // =========================================
@@ -238,7 +268,7 @@ export default function DeepJudgeAnimation({ theme }) {
             "stage4+=0.3"
         );
         
-        tl.to(centerOrbRef.current, { width: 30, height: 30, duration: 0.2 }, "stage4");
+        tl.to(centerOrbRef.current, { width: 30, height: 30, ...orbCenter, duration: 0.2 }, "stage4");
 
         const cards = gsap.utils.toArray(".feature-card");
         tl.set(cards, { opacity: 1, scale: 0.2 }, "stage4+=0.1")
@@ -423,8 +453,8 @@ export default function DeepJudgeAnimation({ theme }) {
             {/* GROUP 2: CENTER ORB / FIELD */}
             <div 
                 ref={centerOrbRef}
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-30 flex items-center justify-center overflow-hidden shadow-2xl`}
-                style={{ width: '0px', height: '0px', opacity: 0, borderRadius: '50%', backgroundColor: '#FFFFFF' }} 
+                className="absolute left-1/2 top-1/2 bg-white z-30 flex items-center justify-center overflow-hidden shadow-2xl"
+                style={{ width: '0px', height: '0px', opacity: 0, backgroundColor: '#FFFFFF' }} 
             >
                 <div ref={searchFieldRef} className="flex items-center w-full px-3 sm:px-4 md:px-5 lg:px-6 opacity-0">
                   <Search className="text-[#a0a0a0] mr-2 sm:mr-3 md:mr-4 shrink-0 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" size={24} />
