@@ -257,8 +257,10 @@ class Slide extends THREE.Mesh {
 
 export default function NewServicesSection({ theme = "light", sharedBackground = false }) {
   const [activeId, setActiveId] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef(null);
   const titleContainerRef = useRef(null);
+  const isDesktopRef = useRef(false);
   
   const canvasContainerRef = useRef(null);
   const threeRootRef = useRef(null);
@@ -402,7 +404,10 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
       onComplete: () => {
         currentImageIndexRef.current = targetIndex;
         isTransitioningRef.current = false;
-      }
+        if (!isDesktopRef.current) {
+          setActiveId(SERVICES[targetIndex].id);
+        }
+      },
     });
 
     tl.fromTo(slideOut, 
@@ -443,6 +448,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
   }, [transitionToImage]);
 
   const handleCardHover = useCallback((serviceId) => {
+    if (!isDesktopRef.current) return;
     setActiveId(serviceId);
     
     if (autoRotateTimeoutRef.current) {
@@ -456,9 +462,60 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
   }, [transitionToImage]);
 
   const handleCardLeave = useCallback(() => {
+    if (!isDesktopRef.current) return;
     setActiveId(null);
     startAutoRotate();
   }, [startAutoRotate]);
+
+  const handleMobileCardSelect = useCallback(
+    (serviceId) => {
+      setActiveId(serviceId);
+
+      if (autoRotateTimeoutRef.current) {
+        clearTimeout(autoRotateTimeoutRef.current);
+      }
+
+      const index = SERVICES.findIndex((s) => s.id === serviceId);
+      if (index !== -1 && index !== currentImageIndexRef.current) {
+        transitionToImage(index);
+      }
+
+      autoRotateTimeoutRef.current = setTimeout(() => {
+        startAutoRotate();
+      }, 8000);
+    },
+    [startAutoRotate, transitionToImage],
+  );
+
+  useEffect(() => {
+    const checkViewport = () => {
+      const desktop = window.innerWidth >= 1024;
+      setIsDesktop(desktop);
+      isDesktopRef.current = desktop;
+    };
+
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
+    return () => window.removeEventListener("resize", checkViewport);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) return;
+    setActiveId((current) => current ?? SERVICES[0].id);
+  }, [isDesktop]);
+
+  const desktopCardGridStyle = isDesktop
+    ? {
+        gridTemplateColumns:
+          activeId === "automation"
+            ? "1.2fr 0.8fr"
+            : activeId === "data"
+              ? "0.8fr 1.2fr"
+              : "1fr 1fr",
+        gridTemplateRows:
+          activeId === "platforms" ? "0.45fr 0.55fr" : "0.5fr 0.5fr",
+      }
+    : undefined;
 
   // Initialize Three.js Scene
   useEffect(() => {
@@ -561,6 +618,26 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
   }, [startAutoRotate]);
 
   useEffect(() => {
+    const container = canvasContainerRef.current;
+    const renderer = rendererRef.current;
+    const camera = cameraRef.current;
+    if (!container || !renderer || !camera) return;
+
+    const resizeCanvas = () => {
+      const width = container.offsetWidth;
+      const height = container.offsetHeight;
+      if (!width || !height) return;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    };
+
+    resizeCanvas();
+    const frame = requestAnimationFrame(resizeCanvas);
+    return () => cancelAnimationFrame(frame);
+  }, [isDesktop]);
+
+  useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = `
       .text-transition { transition: color 0.5s ease; }
@@ -571,6 +648,12 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                    box-shadow 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
                    background-color 0.5s ease,
                    border-color 0.5s ease;
+      }
+
+      @media (max-width: 1023px) {
+        .service-card {
+          transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
       }
 
       .three-canvas-container {
@@ -597,7 +680,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
     <>
       <section
         ref={sectionRef}
-        className="relative overflow-hidden pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-20 sm:pb-24 md:pb-32 lg:pb-40 bg-transition"
+        className="relative overflow-hidden pt-12 sm:pt-16 md:pt-24 lg:pt-40 pb-12 sm:pb-16 md:pb-24 lg:pb-40 bg-transition"
         style={sharedBackground ? { background: "transparent", backgroundColor: "transparent" } : bgStyle}
       >
         {theme === "dark" && !sharedBackground && (
@@ -638,20 +721,20 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
             </span>
           </div>
 
-          {/* Title - Right side only on desktop - MOVED UP */}
-          <div className="grid lg:grid-cols-[25%_1fr] gap-8 lg:gap-40 mb-10 sm:mb-12 md:mb-14">
+          {/* Title */}
+          <div className="grid lg:grid-cols-[25%_1fr] gap-8 lg:gap-40 mb-8 sm:mb-10 md:mb-12 lg:mb-14">
             <div className="hidden lg:block" />
-            <div ref={titleContainerRef} className="mt-16 sm:-mt-0 md:mt-4 lg:-mt-16 xl:-mt-16 2xl:-mt-16">
-              <h2 className="leading-[1.02] tracking-[0.01em]">
+            <div ref={titleContainerRef} className="lg:-mt-16 xl:-mt-16 2xl:-mt-16">
+              <h2 className="leading-[1.08] sm:leading-[1.05] tracking-[0.01em]">
                 <div
-                  className={`new-services-title-line text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] 3xl:text-[90px] text-transition ${
+                  className={`new-services-title-line text-[26px] sm:text-[34px] md:text-[42px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] text-transition ${
                     theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                   }`}
                 >
                   <span className="font-italiana font-light tracking-[0.01em]">Business Systems Built</span>
                 </div>
                 <div
-                  className={`new-services-title-line text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] 3xl:text-[90px] text-transition ${
+                  className={`new-services-title-line text-[26px] sm:text-[34px] md:text-[42px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] text-transition ${
                     theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
                   }`}
                 >
@@ -664,70 +747,77 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
             </div>
           </div>
 
-          {/* Grid with Image left | Description + Cards right - 30% MORE GAP */}
-          <div className="grid lg:grid-cols-[25%_1fr] gap-8 lg:gap-40">
-            {/* Image Container */}
-            <div className="relative w-full h-full">
-              <div className="sticky top-8 h-full">
-                <div className="relative w-full service-card h-full">
-                  <div 
+          {/* Intro copy — mobile/tablet (above image) */}
+          <div className="mb-6 sm:mb-8 space-y-4 lg:hidden">
+            <p
+              className={`font-merriweather text-[14px] sm:text-[15px] font-normal leading-relaxed text-transition ${
+                theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+              }`}
+            >
+              Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable.
+            </p>
+            <p
+              className={`font-merriweather text-[14px] sm:text-[15px] font-normal leading-relaxed text-transition ${
+                theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
+              }`}
+            >
+              But Tech Eyrie brings back clarity, creating connected systems that make work viable, bringing data into focus, and automating decisions, turning operations into a high-performing engine for impressive success.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[25%_1fr] lg:gap-40">
+            {/* Image */}
+            <div className="relative w-full">
+              <div className="lg:sticky lg:top-8">
+                <div className="relative w-full service-card">
+                  <div
                     ref={canvasContainerRef}
-                    className="three-canvas-container relative h-[450px] sm:h-[550px] md:h-[600px] lg:h-[700px] xl:h-[750px] rounded-xl sm:rounded-2xl border border-transition shadow-2xl overflow-hidden"
-
-
-
+                    className="three-canvas-container relative h-[280px] sm:h-[340px] md:h-[400px] lg:h-[700px] xl:h-[750px] rounded-xl sm:rounded-2xl border border-transition shadow-2xl overflow-hidden"
                   />
 
-                  <span className="pointer-events-none absolute left-3 top-3 sm:left-4 sm:top-4 md:left-6 md:top-6 h-8 w-6 sm:h-10 sm:w-7 md:h-12 md:w-8 bg-[#74F5A1] z-10" />
-                  <span className="pointer-events-none absolute left-12 top-20 sm:left-16 sm:top-24 md:left-20 md:top-32 h-6 w-4 sm:h-8 sm:w-5 md:h-10 md:w-6 bg-[#74F5A1] z-10" />
+                  <span className="pointer-events-none absolute left-3 top-3 sm:left-4 sm:top-4 md:left-6 md:top-6 h-6 w-4 sm:h-10 sm:w-7 md:h-12 md:w-8 bg-[#74F5A1] z-10" />
+                  <span className="pointer-events-none absolute left-10 top-14 sm:left-16 sm:top-24 md:left-20 md:top-32 h-5 w-3 sm:h-8 sm:w-5 md:h-10 md:w-6 bg-[#74F5A1] z-10" />
+
+                  {!isDesktop && activeId && (
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-4 pb-4 pt-10 sm:px-5 sm:pb-5">
+                      <p className="font-merriweather text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#74F5A1] mb-1">
+                        Featured service
+                      </p>
+                      <p className="font-merriweather text-[15px] sm:text-[16px] text-white leading-snug">
+                        {SERVICES.find((s) => s.id === activeId)?.title}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Right Content: Description + Cards - FULL WIDTH */}
-            <div className="flex flex-col w-full">
-              {/* Description */}
-              <div className="mb-6 sm:mb-8 space-y-4 lg:max-w-[70%]">
+            {/* Description + cards */}
+            <div className="flex flex-col w-full min-w-0">
+              <div className="hidden lg:block mb-6 sm:mb-8 space-y-4 lg:max-w-[70%]">
                 <p
-                  className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
+                  className={`font-merriweather text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
                     theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                   }`}
                 >
-                  {/* As businesses grow, tools multiply, processes become manual, and visibility is lost. What once felt manageable slowly turns into complexity. */}
-
-
-                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable. 
-
+                  Growth is thrilling until it meets complexity. Tools expand, processes slow down, and visibility slips. Once felt controllable turns into uncontrollable.
                 </p>
                 <p
-                  className={`font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
+                  className={`font-merriweather text-[13px] xl:text-[15px] font-normal leading-relaxed text-transition ${
                     theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
                   }`}
                 >
-                  {/* Tech Eyrie helps businesses regain clarity by designing connected systems that make work manageable, bring data into focus, and automate work into decisions — so operations run smoothly as the organization scales. */}
-
-                  But Tech Eyrie brings back clarity, creating connected systems that make work viable, bringing data into focus, and automating decisions, turning operations into a high- performing engine for an impressive success.
-
-
-
+                  But Tech Eyrie brings back clarity, creating connected systems that make work viable, bringing data into focus, and automating decisions, turning operations into a high-performing engine for impressive success.
                 </p>
               </div>
 
-              {/* Cards Grid - 30% LESS HEIGHT */}
               <div
-                className="grid h-full gap-0.5 sm:gap-0.5 md:gap-1 transition-all duration-700 ease-out"
-                style={{
-                  gridTemplateColumns:
-                    activeId === "automation"
-                      ? "1.2fr 0.8fr"
-                      : activeId === "data"
-                      ? "0.8fr 1.2fr"
-                      : "1fr 1fr",
-                  gridTemplateRows:
-                 
-  activeId === "platforms" ? "0.45fr 0.55fr" : "0.5fr 0.5fr",
-
-                }}
+                className={
+                  isDesktop
+                    ? "grid h-full gap-0.5 md:gap-1 transition-all duration-700 ease-out"
+                    : "flex flex-col gap-3 sm:gap-4"
+                }
+                style={desktopCardGridStyle}
               >
                 {SERVICES.map((service, index) => {
                   const isActive = activeId === service.id;
@@ -735,61 +825,69 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                   return (
                     <article
                       key={service.id}
-                      onMouseEnter={() => handleCardHover(service.id)}
-                      onMouseLeave={handleCardLeave}
+                      role={!isDesktop ? "button" : undefined}
+                      tabIndex={!isDesktop ? 0 : undefined}
+                      onClick={() => !isDesktop && handleMobileCardSelect(service.id)}
+                      onKeyDown={(event) => {
+                        if (isDesktop) return;
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          handleMobileCardSelect(service.id);
+                        }
+                      }}
+                      onMouseEnter={() => isDesktop && handleCardHover(service.id)}
+                      onMouseLeave={() => isDesktop && handleCardLeave()}
                       className={`
-                        service-card group relative flex flex-col justify-between 
-                        rounded-xl sm:rounded-2xl border px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 lg:px-7 lg:py-5
-                        transition-all duration-700 ease-out
+                        service-card group relative flex flex-col
+                        rounded-xl sm:rounded-2xl border
+                        transition-all duration-500 ease-out
+                        ${
+                          isDesktop
+                            ? "justify-between px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 lg:px-7 lg:py-5"
+                            : "px-4 py-4 sm:px-5 sm:py-5 cursor-pointer"
+                        }
                         ${
                           theme === "dark"
                             ? "bg-[#162d24] border-white/10"
                             : "bg-white border-black/6"
                         }
-                        ${index === 2 ? "col-span-2" : ""}
+                        ${isDesktop && index === 2 ? "col-span-2" : ""}
+                        ${
+                          !isDesktop && isActive
+                            ? "border-[#74F5A1]/40 shadow-[0_12px_40px_rgba(0,0,0,0.22)]"
+                            : ""
+                        }
                       `}
                     >
-                      <h3
-                        className={`font-merriweather text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] 2xl:text-[18px] font-normal tracking-tight leading-snug text-transition ${
-                          theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                        }`}
-                      >
-                        {service.titleLine2 ? (
-                          <>
-                            {service.titleLine1}
-                            <br />
-                            {service.titleLine2}
-                          </>
-                        ) : (
-                          service.titleLine1
-                        )}
-                      </h3>
-
-                      <div className="mt-2 sm:mt-3 flex items-end justify-between gap-3 sm:gap-4">
-                        <p
-                          className={`max-w-full sm:max-w-[350px] md:max-w-[450px] font-merriweather text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] font-normal leading-snug transition-all duration-500 ease-out text-transition ${
-                            theme === "dark"
-                              ? "text-[#aaaaaa]"
-                              : "text-[#444444]"
-                          } ${
-                            isActive
-                              ? "opacity-100 translate-y-0"
-                              : "opacity-0 translate-y-4"
-                          }`}
+                      <div className={`${!isDesktop ? "flex items-start justify-between gap-3" : ""}`}>
+                        <h3
+                          className={`font-merriweather font-normal tracking-tight leading-snug text-transition ${
+                            isDesktop
+                              ? "text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] 2xl:text-[18px]"
+                              : "text-[16px] sm:text-[17px] pr-2"
+                          } ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"}`}
                         >
-                          {service.description}
-                        </p>
+                          {service.titleLine2 ? (
+                            <>
+                              {service.titleLine1}
+                              <br />
+                              {service.titleLine2}
+                            </>
+                          ) : (
+                            service.titleLine1
+                          )}
+                        </h3>
 
-                        <Link
-                          href={`/services/${service.id}`}
-                          className={`relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-[6px] bg-[#74F5A1] transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1 flex-shrink-0 ${
-                            theme === "dark"
-                              ? "group-hover:bg-white"
-                              : "group-hover:bg-black"
-                          }`}
-                        >
-                          <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0">
-                            <svg width="12" height="12" className="sm:w-4 sm:h-4" viewBox="0 0 14 14">
+                        {!isDesktop && (
+                          <Link
+                            href={`/services/${service.id}`}
+                            onClick={(event) => event.stopPropagation()}
+                            className={`relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-[6px] bg-[#74F5A1] flex-shrink-0 ${
+                              theme === "dark" ? "active:bg-white" : "active:bg-black"
+                            }`}
+                            aria-label={`Learn more about ${service.title}`}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
                               <path
                                 d="M1 13L13 1M13 1H5M13 1V9"
                                 fill="none"
@@ -799,21 +897,73 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
                                 strokeLinejoin="round"
                               />
                             </svg>
-                          </span>
+                          </Link>
+                        )}
+                      </div>
 
-                          <span className="absolute inset-0 flex items-center justify-center translate-x-[-12px] translate-y-[12px] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
-                            <svg width="12" height="12" className="sm:w-4 sm:h-4" viewBox="0 0 14 14">
-                              <path
-                                d="M1 13L13 1M13 1H5M13 1V9"
-                                fill="none"
-                                stroke={theme === "dark" ? "#111111" : "#74F5A1"}
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                        </Link>
+                      <div
+                        className={`${
+                          isDesktop
+                            ? "mt-2 sm:mt-3 flex items-end justify-between gap-3 sm:gap-4"
+                            : isActive
+                              ? "mt-3 sm:mt-4 block"
+                              : "hidden"
+                        }`}
+                      >
+                        <p
+                          className={`font-merriweather font-normal leading-relaxed text-transition ${
+                            isDesktop
+                              ? "max-w-full sm:max-w-[350px] md:max-w-[450px] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] leading-snug transition-all duration-500 ease-out"
+                              : "text-[14px] sm:text-[15px] leading-relaxed"
+                          } ${
+                            theme === "dark" ? "text-[#c8c8c8]" : "text-[#444444]"
+                          } ${
+                            isDesktop
+                              ? isActive
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-4 pointer-events-none"
+                              : "opacity-100 translate-y-0"
+                          }`}
+                        >
+                          {service.description}
+                        </p>
+
+                        {isDesktop && (
+                          <Link
+                            href={`/services/${service.id}`}
+                            className={`relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-[6px] bg-[#74F5A1] transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1 flex-shrink-0 ${
+                              theme === "dark"
+                                ? "group-hover:bg-white"
+                                : "group-hover:bg-black"
+                            }`}
+                          >
+                            <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0">
+                              <svg width="12" height="12" className="sm:w-4 sm:h-4" viewBox="0 0 14 14" aria-hidden="true">
+                                <path
+                                  d="M1 13L13 1M13 1H5M13 1V9"
+                                  fill="none"
+                                  stroke={theme === "dark" ? "#212121" : "#212121"}
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+
+                            <span className="absolute inset-0 flex items-center justify-center translate-x-[-12px] translate-y-[12px] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
+                              <svg width="12" height="12" className="sm:w-4 sm:h-4" viewBox="0 0 14 14" aria-hidden="true">
+                                <path
+                                  d="M1 13L13 1M13 1H5M13 1V9"
+                                  fill="none"
+                                  stroke={theme === "dark" ? "#111111" : "#74F5A1"}
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+                          </Link>
+                        )}
                       </div>
                     </article>
                   );

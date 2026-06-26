@@ -1,5 +1,4 @@
-// ThatsTheTechEyrie2 – same as ThatsTheTechEyrie but uses CSS sticky wrapper
-// instead of ScrollTrigger pin to avoid jerk when leaving the section.
+// ThatsTheTechEyrie2 – CSS sticky wrapper on desktop; static layout on mobile.
 "use client";
 
 import { useRef, useLayoutEffect, useState, useEffect } from "react";
@@ -11,27 +10,15 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Animation runs only while section is pinned
 const SCROLL_DISTANCE = "85vh";
 
-export default function ThatsTheTechEyrie2({ theme = "light" }) {
-  const wrapperRef = useRef(null);
-  const sectionRef = useRef(null);
-  const firstPartRef = useRef(null);
-  const secondPartRef = useRef(null);
-  const techEyrieTextRef = useRef(null);
-  const thatsTheTextRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
+const lightColors = { background: "#F9F7F0" };
 
-  const lightColors = {
-    background: "#F9F7F0",
-  };
-
-  const bgStyle =
-    theme === "dark"
-      ? {
-          backgroundColor: "#162d24",
-          backgroundImage: `
+function getBgStyle(theme) {
+  return theme === "dark"
+    ? {
+        backgroundColor: "#162d24",
+        backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
           radial-gradient(
             ellipse at 80% 60%,
@@ -40,30 +27,147 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
             #162d24 100%
           )
         `,
-          backgroundBlendMode: "overlay, normal",
-        }
-      : { backgroundColor: lightColors.background };
+        backgroundBlendMode: "overlay, normal",
+      }
+    : { backgroundColor: lightColors.background };
+}
 
-  const noiseOverlayStyle = {
-    backgroundImage: `
-      repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.03) 1px, rgba(0, 0, 0, 0.03) 2px),
-      repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0, 0, 0, 0.03) 1px, rgba(0, 0, 0, 0.03) 2px),
-      repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.015) 2px, rgba(0, 0, 0, 0.015) 4px)
-    `,
-  };
+const noiseOverlayStyle = {
+  backgroundImage: `
+    repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.03) 1px, rgba(0, 0, 0, 0.03) 2px),
+    repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0, 0, 0, 0.03) 1px, rgba(0, 0, 0, 0.03) 2px),
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.015) 2px, rgba(0, 0, 0, 0.015) 4px)
+  `,
+};
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+function SectionOverlays({ theme }) {
+  if (theme !== "dark") return null;
+  return (
+    <>
+      <div
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={noiseOverlayStyle}
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-28 sm:h-36 pointer-events-none z-[2]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(22,45,36,0.7) 0%, rgba(22,45,36,0) 100%)",
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-28 sm:h-32 pointer-events-none z-[2]"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(0,81,96,0.45) 0%, rgba(0,81,96,0) 100%)",
+        }}
+      />
+    </>
+  );
+}
+
+function MobileTechEyrieSection({ theme }) {
+  const bgStyle = getBgStyle(theme);
+  const textPrimary = theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]";
+  const textBody = theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]";
+  const divider = theme === "dark" ? "border-white/10" : "border-black/10";
+
+  return (
+    <div className="relative w-full max-w-full min-w-0 overflow-x-clip">
+      <section
+        className="relative overflow-hidden transition-colors duration-500"
+        style={bgStyle}
+      >
+        <SectionOverlays theme={theme} />
+
+        <div className="relative z-10 w-full min-w-0">
+          {/* Phase 1 */}
+          <div className="mx-auto w-full min-w-0 max-w-[1800px] px-4 sm:px-6">
+            <div className="py-14 sm:py-20 text-center">
+              <div className="mb-4 sm:mb-6">
+                <span
+                  className={`font-playfair italic font-semibold text-[26px] sm:text-[32px] transition-colors duration-500 ${textPrimary}`}
+                >
+                  That&apos;s the
+                </span>
+              </div>
+              <h2
+                className={`font-italiana font-light text-[44px] sm:text-[56px] leading-[0.95] tracking-[0.01em] break-words transition-colors duration-500 ${textPrimary}`}
+              >
+                Tech Eyrie
+              </h2>
+            </div>
+          </div>
+
+          <div className={`mx-4 sm:mx-6 border-t ${divider}`} />
+
+          {/* Phase 2 */}
+          <div className="mx-auto w-full min-w-0 max-w-[1800px] px-4 sm:px-6">
+            <div className="py-14 sm:py-20">
+              <h2 className="leading-[1.05] tracking-[0.01em] text-center sm:text-left">
+                <div
+                  className={`font-italiana font-light text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                >
+                  <span className="inline-block">TE</span> Build What
+                </div>
+                <div
+                  className={`font-playfair italic font-semibold text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                >
+                  Others Can&apos;t
+                </div>
+                <div
+                  className={`font-playfair italic font-semibold text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                >
+                  See Yet
+                </div>
+              </h2>
+
+              <div className="mt-8 sm:mt-10 space-y-5 max-w-[600px] mx-auto sm:mx-0">
+                <p
+                  className={`font-merriweather font-light text-[14px] sm:text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                >
+                  In the fast moving world where technology becomes complex,
+                  clarity is your biggest success. Here in Tech Eyrie we built
+                  systems that dive through complexity combining AI- driven
+                  automation, data and high- performance platforms into flawless
+                  digital experiences.
+                </p>
+                <p
+                  className={`font-merriweather font-light text-[14px] sm:text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                >
+                  No trends, only intelligent systems that lasts long.
+                </p>
+                <div className="pt-2 flex justify-center sm:justify-start">
+                  <Link
+                    href="/about"
+                    className="group inline-flex items-center justify-center rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
+                    style={{ backgroundColor: "#12685b" }}
+                  >
+                    <span className="font-merriweather text-[13px] sm:text-[14px] font-semibold tracking-wide text-white">
+                      Learn More About Us
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function DesktopTechEyrieSection({ theme }) {
+  const wrapperRef = useRef(null);
+  const sectionRef = useRef(null);
+  const firstPartRef = useRef(null);
+  const secondPartRef = useRef(null);
+  const techEyrieTextRef = useRef(null);
+  const thatsTheTextRef = useRef(null);
+
+  const bgStyle = getBgStyle(theme);
 
   useLayoutEffect(() => {
-    if (isMobile) return;
-
     const wrapper = wrapperRef.current;
     const section = sectionRef.current;
     const firstPart = firstPartRef.current;
@@ -149,7 +253,6 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
         if (!section || !secondPart || !teContainer) return;
         const targetTE = secondPart.querySelector(".target-te-position");
         if (!targetTE) return;
-        // Hide first to avoid flash during reparent
         gsap.set(teContainer, { opacity: 0, visibility: "hidden" });
         const targetRect = targetTE.getBoundingClientRect();
         const sectionRect = section.getBoundingClientRect();
@@ -191,7 +294,6 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
         document.body.appendChild(teContainer);
       };
 
-      // No pin – trigger on wrapper, scrub over same distance; section is CSS sticky
       const mainTl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapper,
@@ -207,11 +309,7 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
       });
 
       mainTl
-        .to(
-          thatsTheText,
-          { opacity: 0, y: -30, duration: 0.1, ease: "power2.out" },
-          0
-        )
+        .to(thatsTheText, { opacity: 0, y: -30, duration: 0.1, ease: "power2.out" }, 0)
         .to(
           [...Array.from(techSpans).slice(1), ...Array.from(eyrieSpans).slice(1)],
           {
@@ -225,20 +323,12 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
         )
         .to(
           tChar,
-          {
-            x: () => getGapToClose().tMove,
-            duration: 0.2,
-            ease: "power2.inOut",
-          },
+          { x: () => getGapToClose().tMove, duration: 0.2, ease: "power2.inOut" },
           0.15
         )
         .to(
           eChar,
-          {
-            x: () => getGapToClose().eMove,
-            duration: 0.2,
-            ease: "power2.inOut",
-          },
+          { x: () => getGapToClose().eMove, duration: 0.2, ease: "power2.inOut" },
           0.15
         )
         .to({}, { duration: 0.1 }, 0.35)
@@ -261,11 +351,7 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
           0.45
         )
         .set([tChar, eChar], { opacity: 0 }, 0.45)
-        .to(
-          secondPart,
-          { opacity: 1, duration: 0.15, ease: "power2.out" },
-          0.8
-        )
+        .to(secondPart, { opacity: 1, duration: 0.15, ease: "power2.out" }, 0.8)
         .to(firstPart, { opacity: 0, duration: 0.15, ease: "power2.in" }, 0.8)
         .to(
           teContainer,
@@ -339,133 +425,35 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
     }, section);
 
     return () => ctx.revert();
-  }, [theme, isMobile]);
+  }, [theme]);
 
-  useLayoutEffect(() => {
-    if (!isMobile) return;
-
-    const ctx = gsap.context(() => {
-      gsap.set([thatsTheTextRef.current, techEyrieTextRef.current], {
-        opacity: 0,
-        y: 30,
-      });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: firstPartRef.current,
-          start: "top 70%",
-          once: true,
-        },
-      });
-      tl.to(thatsTheTextRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      }).to(
-        techEyrieTextRef.current,
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
-        "-=0.5"
-      );
-      gsap.set([".build-title-line", ".build-description", ".build-cta"], {
-        opacity: 0,
-        y: 40,
-      });
-      const buildTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: secondPartRef.current,
-          start: "top 65%",
-          once: true,
-        },
-      });
-      buildTl
-        .to(".build-title-line", {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.15,
-        })
-        .to(
-          ".build-description",
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.1,
-          },
-          "-=0.5"
-        )
-        .to(
-          ".build-cta",
-          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.3"
-        );
-    });
-
-    return () => ctx.revert();
-  }, [isMobile]);
+  const textPrimary = theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]";
+  const textBody = theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]";
 
   return (
-    <div
-      ref={wrapperRef}
-      className="relative"
-      style={{
-        height: isMobile ? "auto" : "185vh",
-      }}
-    >
+    <div ref={wrapperRef} className="relative" style={{ height: "185vh" }}>
       <section
         ref={sectionRef}
-        className="relative overflow-hidden transition-colors duration-500 lg:sticky lg:top-0 lg:h-screen"
-        style={{ ...bgStyle, minHeight: isMobile ? "auto" : "100vh" }}
+        className="relative overflow-hidden transition-colors duration-500 sticky top-0 h-screen"
+        style={{ ...bgStyle, minHeight: "100vh" }}
       >
-        {theme === "dark" && (
-          <>
-            <div
-              className="absolute inset-0 pointer-events-none z-[1]"
-              style={noiseOverlayStyle}
-            />
-            {/* Softer dark-green blend at top edge */}
-            <div
-              className="absolute inset-x-0 top-0 h-28 sm:h-36 md:h-44 pointer-events-none z-[2]"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(22,45,36,0.7) 0%, rgba(22,45,36,0) 100%)",
-              }}
-            />
-            {/* Very soft teal at the bottom so the join color matches Airvoir but stays light */}
-            <div
-              className="absolute inset-x-0 bottom-0 h-28 sm:h-32 md:h-40 pointer-events-none z-[2]"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(0,81,96,0.45) 0%, rgba(0,81,96,0) 100%)",
-              }}
-            />
-          </>
-        )}
+        <SectionOverlays theme={theme} />
 
         <div className="relative z-10">
-          <div
-            ref={firstPartRef}
-            className="lg:absolute lg:inset-0 lg:w-full lg:h-full"
-          >
+          <div ref={firstPartRef} className="absolute inset-0 w-full h-full">
             <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
-              <div className="py-32 sm:py-40 md:py-48 lg:py-0 text-center min-h-screen flex items-center justify-center">
+              <div className="py-0 text-center min-h-screen flex items-center justify-center">
                 <div>
                   <div ref={thatsTheTextRef} className="mb-4 sm:mb-6 md:mb-8">
                     <span
-                      className={`font-playfair italic font-semibold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px] transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                      }`}
+                      className={`font-playfair italic font-semibold text-[48px] xl:text-[52px] transition-colors duration-500 ${textPrimary}`}
                     >
-                      That's the
+                      That&apos;s the
                     </span>
                   </div>
                   <div ref={techEyrieTextRef} className="relative">
                     <h2
-                      className={`font-italiana font-light text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                      }`}
+                      className={`font-italiana font-light text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 ${textPrimary}`}
                     >
                       <span className="tech-word">Tech</span>{" "}
                       <span className="eyrie-word">Eyrie</span>
@@ -478,16 +466,14 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
 
           <div
             ref={secondPartRef}
-            className="lg:absolute lg:inset-0 lg:w-full lg:h-full lg:opacity-0"
+            className="absolute inset-0 w-full h-full opacity-0"
           >
             <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 h-full">
-              <div className="py-20 sm:py-24 md:py-32 lg:py-0 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
-                <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+              <div className="py-0 min-h-screen flex flex-col justify-center">
+                <div className="mb-24">
                   <h2 className="leading-[1.05] tracking-[0.01em]">
                     <div
-                      className={`build-title-line font-italiana font-light tracking-[0.01em] text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                      }`}
+                      className={`build-title-line font-italiana font-light tracking-[0.01em] text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
                     >
                       <span className="target-te-position inline-block opacity-0">
                         TE
@@ -495,49 +481,41 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
                       Build What
                     </div>
                     <div
-                      className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                      }`}
+                      className={`build-title-line font-playfair italic font-semibold text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
                     >
-                      Others Can't
+                      Others Can&apos;t
                     </div>
                     <div
-                      className={`build-title-line font-playfair italic font-semibold text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#f3f3f3]" : "text-[#111111]"
-                      }`}
+                      className={`build-title-line font-playfair italic font-semibold text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
                     >
                       See Yet
                     </div>
                   </h2>
                 </div>
-                <div className="grid lg:grid-cols-[45%_55%] lg:-mt-40">
-                  <div></div>
+                <div className="grid grid-cols-[45%_55%] -mt-40">
+                  <div />
                   <div className="space-y-6 max-w-[600px]">
                     <p
-                      className={`build-description font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                      }`}
+                      className={`build-description font-merriweather font-light text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
                     >
-                    In the fast moving world where technology becomes complex, clarity is your biggest success. Here in Tech Eyrie we built systems that dive through complexity combining AI- driven automation, data and high- performance platforms into flawless digital experiences.
-
-
+                      In the fast moving world where technology becomes complex,
+                      clarity is your biggest success. Here in Tech Eyrie we built
+                      systems that dive through complexity combining AI- driven
+                      automation, data and high- performance platforms into flawless
+                      digital experiences.
                     </p>
                     <p
-                      className={`build-description font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] leading-relaxed transition-colors duration-500 ${
-                        theme === "dark" ? "text-[#d0d0d0]" : "text-[#212121]"
-                      }`}
+                      className={`build-description font-merriweather font-light text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
                     >
-                   No trends, only intelligent systems that lasts long.
-
-
+                      No trends, only intelligent systems that lasts long.
                     </p>
                     <div className="build-cta pt-2">
                       <Link
                         href="/about"
-                        className="group inline-flex items-center justify-center self-start rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-2 sm:mt-3"
+                        className="group inline-flex items-center justify-center self-start rounded-full px-6 py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-3"
                         style={{ backgroundColor: "#12685b" }}
                       >
-                        <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
+                        <span className="font-merriweather text-[15px] font-semibold tracking-wide text-white">
                           Learn More About Us
                         </span>
                       </Link>
@@ -551,4 +529,31 @@ export default function ThatsTheTechEyrie2({ theme = "light" }) {
       </section>
     </div>
   );
+}
+
+export default function ThatsTheTechEyrie2({ theme = "light" }) {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(min-width: 1024px)").matches
+      : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => {
+      setIsDesktop(mq.matches);
+      if (!mq.matches) {
+        document.querySelectorAll(".te-floating-container").forEach((el) => el.remove());
+      }
+    };
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  if (!isDesktop) {
+    return <MobileTechEyrieSection theme={theme} />;
+  }
+
+  return <DesktopTechEyrieSection theme={theme} />;
 }

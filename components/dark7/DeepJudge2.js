@@ -3,14 +3,33 @@
 import React, { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 // Register usage
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function DeepJudgeAnimation({ theme }) {
+const FEATURE_CARDS = [
+  { title: "Discovery", desc: "Understanding your workflow, challenges and ambitions to elevate your business. We go beyond the surface level to analyse what you really need." },
+  { title: "Architecture", desc: "We design flexible and secure systems to align with your operations. No one size fits all, only precision-built foundation." },
+  { title: "Engineering", desc: "Building AI powered platforms, workflow automation tools and custom digital systems using modern technology." },
+  { title: "Integration", desc: "Everything works together seamlessly by connecting your data, tools and teams into one unified intelligent system." },
+  { title: "Evolution", desc: "We ensure your system adapts, scales and improves as the business grows, with continuous refinement and long-term performance." },
+];
+
+const CIRCLE_ITEMS = [
+  { text: "Artificial Intelligence", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
+  { text: "Automation", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" },
+  { text: "ERP", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fe569ae8d17d933a3c60_DeepJudge%20Frame%20634185%20(2).svg" },
+  { text: "Cloud API's", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
+  { text: "Web", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" },
+  { text: "Email", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fe569ae8d17d933a3c60_DeepJudge%20Frame%20634185%20(2).svg" },
+  { text: "Data", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
+  { text: "Deep Search", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" },
+];
+
+export default function DeepJudge2({ theme }) {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
 
@@ -52,14 +71,10 @@ export default function DeepJudgeAnimation({ theme }) {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-      mm.add({
-        isDesktop: "(min-width: 810px)",
-        isTablet: "(min-width: 630px) and (max-width: 809px)",
-        isMobile: "(max-width: 629px)",
-      }, (context) => {
-        let { isDesktop, isTablet, isMobile } = context.conditions;
+      mm.add("(min-width: 1024px)", () => {
+        if (!wrapperRef.current) return;
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -68,64 +83,26 @@ export default function DeepJudgeAnimation({ theme }) {
             end: "+=4000",
             scrub: 1,
             pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
         });
 
-        // =========================================
-        // INITIAL SETUP - INCREASED SPACING
-        // =========================================
         const calculatePosition = (i) => {
-             let x = 0;
-             let y = 0;
-
-             if (isDesktop) {
-                const isTop = i < 4;
-                const colIndex = i % 4; 
-                const spread = 280;
-                const xOffset = -420 + (colIndex * spread);
-                const yBase = isTop ? -300 : 280;
-                const isOuter = colIndex === 0 || colIndex === 3;
-                const push = 120;
-                let yOffset = yBase;
-                if (isTop) {
-                    if (isOuter) yOffset += push; 
-                } else {
-                    if (isOuter) yOffset -= push; 
-                }
-                x = xOffset;
-                y = yOffset;
-            } else if (isTablet) {
-                const angleDeg = (i * (360 / 8)) - 90; 
-                const angleRad = (angleDeg * Math.PI) / 180;
-                const rx = 180;
-                const ry = 450;
-                x = Math.cos(angleRad) * rx;
-                y = Math.sin(angleRad) * ry;
-                
-                if (i === 2) {
-                    x = 260;
-                    y = -200;
-                } else if (i === 6) {
-                    x = -260;
-                    y = -200;
-                }
-            } else {
-                const angleDeg = (i * (360 / 8)) - 90; 
-                const angleRad = (angleDeg * Math.PI) / 180;
-                const rx = 140;
-                const ry = 400;
-                x = Math.cos(angleRad) * rx;
-                y = Math.sin(angleRad) * ry;
-                
-                if (i === 2) {
-                    x = 220;
-                    y = -160;
-                } else if (i === 6) {
-                    x = -220;
-                    y = -160;
-                }
-            }
-            return { x, y };
+          const isTop = i < 4;
+          const colIndex = i % 4;
+          const spread = 280;
+          const xOffset = -420 + colIndex * spread;
+          const yBase = isTop ? -300 : 280;
+          const isOuter = colIndex === 0 || colIndex === 3;
+          const push = 120;
+          let yOffset = yBase;
+          if (isTop) {
+            if (isOuter) yOffset += push;
+          } else {
+            if (isOuter) yOffset -= push;
+          }
+          return { x: xOffset, y: yOffset };
         };
 
         // Apply Initial Positions
@@ -176,14 +153,14 @@ export default function DeepJudgeAnimation({ theme }) {
         // STAGE 2: ORB MORPHS TO FIELD
         // =========================================
         
-        const fieldWidth = isDesktop ? "600px" : "85vw";
+        const fieldWidth = "600px";
         const fieldHeight = 64;
-        const pillRadius = fieldHeight / 2; // 32px — keep px-only, never %
+        const pillRadius = fieldHeight / 2;
         const dotSize = 20;
-        const dotRadius = dotSize / 2; // 10px circle
-        const headingY = isDesktop ? -120 : -220; 
-        const descriptionY = isDesktop ? -120 : -90;
-        const fieldY = isDesktop ? 140 : 100;
+        const dotRadius = dotSize / 2;
+        const headingY = -120;
+        const descriptionY = -120;
+        const fieldY = 140;
 
         tl.fromTo(heading2Ref.current, 
             { opacity: 0, y: 50 },
@@ -251,10 +228,10 @@ export default function DeepJudgeAnimation({ theme }) {
         // STAGE 4: DOT EXPLODES TO TALLER CARDS WITH HEADING & DESCRIPTION
         // =========================================
         
-        const cardWidth = isDesktop ? "280px" : (isTablet ? "260px" : "85vw"); 
-        const cardHeight = isDesktop ? "320px" : (isTablet ? "300px" : "280px");
-        const heading3Y = isDesktop ? -200 : -320;
-        const description3Y = isDesktop ? -200 : -200;
+        const cardWidth = "280px";
+        const cardHeight = "320px";
+        const heading3Y = -200;
+        const description3Y = -200;
 
         tl.fromTo(heading3Ref.current,
             { opacity: 0, y: 50 },
@@ -281,27 +258,10 @@ export default function DeepJudgeAnimation({ theme }) {
             backgroundColor: isDark ? "rgba(23, 23, 23, 0.95)" : "rgba(255, 255, 255, 0.95)",
             scale: 1,
             left: (i) => {
-                if(isMobile) {
-                    return "50%";
-                }
-                if(isTablet) {
-                    return (i % 2 === 0) ? "30%" : "70%";
-                }
                 const positions = ["15%", "32.5%", "50%", "67.5%", "85%"];
                 return positions[i];
             },
-            top: (i) => {
-                if(isMobile) {
-                    const startTop = 20; 
-                    return `${startTop + (i * 16)}%`; 
-                }
-                if(isTablet) {
-                    const row = Math.floor(i / 2);
-                    const startTop = 35;
-                    return `${startTop + (row * 28)}%`;
-                }
-                return "65%";
-            },
+            top: () => "65%",
             xPercent: -50,
             yPercent: -50,
             duration: 1.5,
@@ -310,23 +270,12 @@ export default function DeepJudgeAnimation({ theme }) {
         }, "stage4+=0.2");
         
         tl.to(".card-content", { opacity: 1, duration: 0.5 }, "stage4+=1");
-
       });
     }, containerRef);
     return () => ctx.revert();
   }, [isDark]);
 
-  // Circle Items Data with barcode URLs
-  const circleItems = [
-     { text: "Artificial Intelligence", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
-     { text: "Automation", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" },
-     { text: "ERP", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fe569ae8d17d933a3c60_DeepJudge%20Frame%20634185%20(2).svg" },
-     { text: "Cloud API's", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
-     { text: "Web", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" },
-     { text: "Email", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fe569ae8d17d933a3c60_DeepJudge%20Frame%20634185%20(2).svg" },
-     { text: "Data", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8f96866dde7aebec6949e_DeepJudge%20Frame%20634185.svg" },
-     { text: "Deep Search", barcode: "https://cdn.prod.website-files.com/67bdd03200678df04ba07593/67f8fd519a08abfc193a45b1_DeepJudge%20Frame%20634185%20(1).svg" }
-  ];
+  const circleItems = CIRCLE_ITEMS;
 
   const bgStyle = theme === "dark"
     ? {
@@ -348,7 +297,7 @@ export default function DeepJudgeAnimation({ theme }) {
     <main
       ref={containerRef}
       style={bgStyle}
-      className={`relative min-h-screen overflow-x-hidden transition-colors duration-500`}
+      className="relative min-h-screen overflow-x-hidden transition-colors duration-500 isolate"
     >
       {/* Global dark-page blend at this block’s edges */}
       {theme === "dark" && (
@@ -369,7 +318,11 @@ export default function DeepJudgeAnimation({ theme }) {
           />
         </>
       )}
-      <div ref={wrapperRef} className="h-screen w-full relative flex items-center justify-center overflow-hidden">
+      {/* Desktop scroll animation — always mounted so ScrollTrigger pin initializes correctly */}
+      <div
+        ref={wrapperRef}
+        className="relative z-10 hidden h-screen w-full items-center justify-center overflow-hidden lg:flex"
+      >
         {/* === HEADINGS === (FAQ scale: 32→40→48→56→64→72→80, font-italiana / playfair, #f3f3f3 / #a0a0a0 / #d0d0d0) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[25] px-4 sm:px-6">
           <div className="text-center">
@@ -463,13 +416,7 @@ export default function DeepJudgeAnimation({ theme }) {
             </div>
 
             {/* GROUP 3: TALLER VERTICAL CARDS - Card Titles 4xl */}
-            {[
-               { title: "Discovery", desc: "Understanding your workflow, challenges and ambitions to elevate your business. We go beyond the surface level to analyse what you really need. " },
-               { title: "Architecture", desc: "We design flexible and secure systems to align with your operations, No one size fits all, only precision- built foundation. " },
-               { title: "Engineering", desc: "Building AI powered platforms, best workflow automation tools (medium) and custom digital systems using high and modern technology. " },
-               { title: "Integration", desc: "Everything works together seamlessly by connecting your data, tools and teams into one unified intelligent system." },
-               { title: "Evolution", desc: "We ensure your system adapts, scales and improves as the business grows, with continuous refinement and long-term performance. " }
-            ].map((card, i) => (
+            {FEATURE_CARDS.map((card, i) => (
                 <div 
                     key={i}
                     className={`feature-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${cardBg} shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden backdrop-blur-sm z-20 transition-colors duration-500 border`}
@@ -488,6 +435,102 @@ export default function DeepJudgeAnimation({ theme }) {
         </div>
 
       </div>
+
+      {/* Mobile / tablet static layout */}
+      <section className="relative z-10 w-full px-4 sm:px-6 md:px-8 py-14 sm:py-20 md:py-24 lg:hidden">
+          <div className="mx-auto flex max-w-2xl flex-col gap-16 sm:gap-20 md:gap-24 lg:max-w-3xl">
+            {/* Phase 1 */}
+            <div className="space-y-8 sm:space-y-10">
+              <div className="text-center">
+                <h2 className={`font-italiana font-light text-[26px] sm:text-[32px] md:text-[38px] ${textColor} tracking-[0.01em] leading-[1.12]`}>
+                  <span className="font-normal">
+                    Your business runs on
+                    <br />
+                    systems and data
+                  </span>
+                  <br />
+                  <span className="font-playfair italic font-semibold">
+                    But they&apos;re fragmented,
+                    <br />
+                    manual, and under-utilized
+                  </span>
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+                {circleItems.map((item) => (
+                  <div
+                    key={item.text}
+                    className={`flex flex-col items-center justify-center gap-1.5 rounded-xl border px-2 py-3 sm:px-3 sm:py-4 ${circleBlobColor}`}
+                    style={circleBlobStyle}
+                  >
+                    <span className={`text-[9px] sm:text-[10px] font-bold ${subTextColor} text-center leading-tight uppercase tracking-wide`}>
+                      {item.text}
+                    </span>
+                    <img src={item.barcode} alt="" className="w-10 h-4 sm:w-12 sm:h-5 object-contain opacity-80" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Phase 2 */}
+            <div className={`space-y-6 sm:space-y-8 border-t pt-14 sm:pt-16 md:pt-20 text-center ${isDark ? "border-white/10" : "border-black/10"}`}>
+              <h2 className={`font-italiana font-light text-[24px] sm:text-[30px] md:text-[36px] ${textColor} tracking-[0.01em] leading-[1.15]`}>
+                <span className="font-normal">Design systems that work the<br className="hidden sm:block" /> way your </span>
+                <span className="font-playfair italic font-semibold">business works</span>
+              </h2>
+              <p className={`font-merriweather text-[14px] sm:text-[15px] ${subtitleColor} leading-relaxed px-1`}>
+                Design systems that align with the way your business works. No templates, no assumptions — just systems built around you. Tech Eyrie tailors AI-powered platforms connecting data, processes and teams into one flexible foundation.
+              </p>
+              <div className="mx-auto flex h-12 sm:h-14 w-full max-w-md items-center rounded-full bg-white px-4 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
+                <Search className="mr-3 shrink-0 text-[#a0a0a0] w-5 h-5" aria-hidden="true" />
+                <span className="font-merriweather text-[13px] sm:text-[14px] text-[#a0a0a0] truncate text-left">
+                  Ask anything about your data...
+                </span>
+              </div>
+            </div>
+
+            {/* Phase 3 */}
+            <div className={`space-y-10 sm:space-y-12 border-t pt-14 sm:pt-16 md:pt-20 ${isDark ? "border-white/10" : "border-black/10"}`}>
+              <div className="text-center space-y-4 sm:space-y-5">
+                <h2 className={`font-italiana font-light text-[24px] sm:text-[30px] md:text-[36px] ${textColor} tracking-[0.01em] leading-[1.15]`}>
+                  <span className="font-normal">We don&apos;t jump straight into </span>
+                  <span className="font-playfair italic font-semibold">building.</span>
+                </h2>
+                <p className={`font-merriweather text-[14px] sm:text-[15px] ${subtitleColor} leading-relaxed px-1`}>
+                  Understanding, designing and evolving your business — powered by AI, automation and modern technology.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:gap-4">
+                {FEATURE_CARDS.map((card, i) => (
+                  <article
+                    key={card.title}
+                    className={`rounded-2xl border p-5 sm:p-6 ${cardBg} shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-sm`}
+                    style={cardBgStyle}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl font-bold text-lg ${badgeBg}`}
+                        style={badgeBgStyle}
+                      >
+                        {i + 1}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h3 className={`font-italiana font-light text-[20px] sm:text-[22px] ${cardTitle} mb-2 sm:mb-3`}>
+                          {card.title}
+                        </h3>
+                        <p className={`font-merriweather text-[14px] sm:text-[15px] leading-relaxed ${cardDesc}`}>
+                          {card.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
     </main>
   );
 }

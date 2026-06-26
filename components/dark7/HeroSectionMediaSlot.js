@@ -198,6 +198,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   }, []);
 
   useEffect(() => {
+    if (!isDesktop) return;
     if (isInHeroSection && !isScrolling) {
       autoRotateIntervalRef.current = setInterval(() => {
         setActiveCard((prev) => (prev + 1) % mediaAssets.length);
@@ -211,13 +212,14 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
     return () => {
       if (autoRotateIntervalRef.current) clearInterval(autoRotateIntervalRef.current);
     };
-  }, [mediaAssets.length, isInHeroSection, isScrolling]);
+  }, [mediaAssets.length, isInHeroSection, isScrolling, isDesktop]);
 
   useEffect(() => {
     setCardTriangles({});
   }, [activeCard]);
 
   useEffect(() => {
+    if (!isDesktop) return;
     if (heroCardsRef.current.length === 0) return;
     heroCardsRef.current.forEach((card, index) => {
       if (!card) return;
@@ -438,6 +440,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
   );
 
   useEffect(() => {
+    if (!isDesktop) return;
     if (autoTriangleIntervalRef.current) clearInterval(autoTriangleIntervalRef.current);
     if (!isInHeroSection || isScrolling) return;
     const activeCardElement = heroCardsRef.current[activeCard];
@@ -451,7 +454,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
       }
     }, 200);
     return () => { if (autoTriangleIntervalRef.current) clearInterval(autoTriangleIntervalRef.current); };
-  }, [createTriangleForCard, isInHeroSection, isScrolling, activeCard]);
+  }, [createTriangleForCard, isInHeroSection, isScrolling, activeCard, isDesktop]);
 
   // --- AUTO TRIANGLES for HOVERED HERO CARD when in PORTFOLIO SECTION (desktop) ---
   useEffect(() => {
@@ -713,7 +716,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 </h1>
               </div>
 
-              <div className="hero-body max-w-full lg:max-w-[640px] pt-20">
+              <div className="hero-body max-w-full lg:max-w-[640px] pt-8 sm:pt-12 lg:pt-20">
                 <p className={`mb-9 font-playfair text-[17px] md:text-[25px] font-normal leading-relaxed ${theme === "dark" ? "text-[#f3f3f3]" : "text-[#212121]"}`}>
                   {/* We build, optimize and scale marketing engines that generate pipeline and improve marketing ROI. */}
 
@@ -744,8 +747,8 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
             </div>
           </div>
 
-          {/* DESKTOP CARDS */}
-          {isDesktop ? (
+          {/* DESKTOP / LAPTOP ONLY — stacked hero cards + scroll morph */}
+          {isDesktop && (
             <div
               className="flex justify-end items-end mb-0 pr-48 lg:pr-56 xl:pr-64 2xl:pr-72"
               style={{ transform: "translateY(-95%)", height: 120, overflow: "visible" }}
@@ -821,71 +824,14 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
 
               </div>
             </div>
-          ) : (
-            <div className="flex justify-center items-center mt-8 mb-0">
-              <div ref={heroCardsContainerRef} className="w-[140px] sm:w-[180px]">
-                <div className="relative w-full aspect-[3/4]" style={{ perspective: "1000px" }}>
-                  {mediaAssets.map((asset, index) => (
-                    <div
-                      key={index}
-                      ref={(el) => { if (el) heroCardsRef.current[index] = el; }}
-                      className="absolute w-full h-full cursor-pointer shadow-lg rounded-xl overflow-hidden"
-                      style={{ zIndex: 50 - index, transform: `translateX(${index * 30}px) scale(${1 - index * 0.05})` }}
-                      onClick={() => handleCardClick(index)}
-                    >
-                      <div className="card-inner-content relative w-full h-full overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 z-10">
-                          {asset.type === "image" ? (
-                            <Image src={asset.src} alt={asset.alt} fill className="object-cover rounded-xl" />
-                          ) : (
-                            <video src={asset.src} muted loop playsInline autoPlay className="w-full h-full object-cover rounded-xl" />
-                          )}
-                        </div>
-                        <div className="card-overlay absolute inset-0 z-15 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none">
-                          <div className="absolute bottom-3 left-3 right-3">
-                            <h3 className="text-white text-[11px] font-bold mb-1">{asset.title}</h3>
-                            <p className="text-white/80 text-[9px]">{asset.subtitle}</p>
-                          </div>
-                        </div>
-                        {index === activeCard && cardTriangles[index] && (
-                          <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-xl">
-                            {cardTriangles[index].map((triangle) => <TriangleSVG key={triangle.id} triangle={triangle} />)}
-                          </div>
-                        )}
-                        <div
-                          className={`absolute bottom-0 left-0 right-0 z-20 transition-all duration-300 pointer-events-none overflow-visible ${!isScrolling ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
-                          style={{ height: "22%" }}
-                        >
-                          <svg className="absolute bottom-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                            <path d="M 0 100 L 46 15 A 5 5 0 0 1 54 15 L 100 100 Z" fill="#74f5a1" />
-                          </svg>
-                          <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center">
-                            <h3
-                              className="hero-pyramid-label font-medium text-[8px] mb-0.5"
-                            >
-                              {asset.title}
-                            </h3>
-                            <p
-                              className="hero-pyramid-label text-[7px] font-medium"
-                            >
-                              {asset.metric}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           )}
         </div>
 
         <div
-          className={`absolute z-20 ${
+          className={`z-20 ${
             isDesktop
-              ? "left-1/2 -translate-x-1/2 top-[calc(50%+21rem)]"
-              : "left-1/2 -translate-x-1/2 top-[calc(50%+8rem)]"
+              ? "absolute left-1/2 -translate-x-1/2 top-[calc(50%+21rem)]"
+              : "relative flex justify-center mt-10 mb-4"
           }`}
         >
           <button onClick={scrollToPortfolio} className="flex flex-col gap-[-2px] cursor-pointer group hover:scale-110 transition-transform duration-300" aria-label="Scroll to next section">
