@@ -1,0 +1,535 @@
+/* components/dark77/MainPage.css — warm forest + cream luxury (/dark77 only) */
+
+.dark77-page {
+  --lux-bg-deep:        #152820;
+  --lux-bg-base:        #1e3a2f;
+  --lux-bg-surface:     #234a3a;
+  --lux-bg-elevated:    #2a5544;
+  --lux-cream:          #F8F3E8;
+  --lux-cream-warm:     #F5EFE3;
+  --lux-sage:           #7AAB88;
+  --lux-sage-light:     #9BC4A6;
+  --lux-champagne:      #F0E6D4;
+  --lux-gold:           #D4B876;
+  --lux-text:           #FFFCF7;
+  --lux-text-secondary: #F0E8DC;
+  --lux-text-on-cream:  #152820;
+  --lux-cta:            #2d5244;
+  --lux-cta-hover:      #3a6b58;
+
+  min-height: 100vh;
+  background-color: var(--lux-bg-base);
+}
+
+.dark77-page ::selection {
+  background-color: rgba(212, 184, 118, 0.4);
+  color: var(--lux-text);
+}
+
+.dark77-page,
+.dark77-page * {
+  color: var(--lux-text-secondary) !important;
+}
+
+/* Heading hierarchy — bright cream + champagne accents */
+.dark77-page main h1.font-italiana,
+.dark77-page main h2.font-italiana,
+.dark77-page main h3.font-italiana {
+  color: var(--lux-text) !important;
+}
+
+.dark77-page main .font-playfair {
+  color: var(--lux-champagne) !important;
+}
+
+/* Cream sections */
+.dark77-page .lux-cream-section,
+.dark77-page .lux-cream-section * {
+  color: var(--lux-text-on-cream) !important;
+}
+
+.dark77-page .real-problem-section,
+.dark77-page .real-problem-section * {
+  color: #152820 !important;
+}
+
+.dark77-page .cards-services-cream-band {
+  background: linear-gradient(
+    180deg,
+    rgba(250, 244, 234, 0.1) 0%,
+    rgba(248, 243, 232, 0.22) 50%,
+    rgba(250, 244, 234, 0.1) 100%
+  );
+  border-top: 1px solid rgba(248, 243, 232, 0.2);
+  border-bottom: 1px solid rgba(212, 184, 118, 0.18);
+}
+
+.dark77-page .testimonials-lux-section,
+.dark77-page .testimonials-lux-section h1,
+.dark77-page .testimonials-lux-section h1 * {
+  color: var(--lux-text-on-cream) !important;
+}
+
+.dark77-page .testimonials-lux-section .testimonial-lux-card,
+.dark77-page .testimonials-lux-section .testimonial-lux-card * {
+  color: var(--lux-text-on-cream) !important;
+}
+
+.dark77-page .testimonial-lux-card {
+  border: 1px solid rgba(212, 184, 118, 0.28) !important;
+  box-shadow:
+    0 24px 60px rgba(21, 40, 32, 0.12),
+    0 0 0 1px rgba(255, 252, 247, 0.6) inset,
+    0 8px 32px rgba(212, 184, 118, 0.1) !important;
+}
+
+.dark77-page .lux-cta-pill {
+  background-color: var(--lux-cta) !important;
+  color: var(--lux-cream) !important;
+  border: 1px solid rgba(248, 243, 232, 0.2) !important;
+}
+
+.dark77-page .lux-cta-pill:hover {
+  background-color: var(--lux-cta-hover) !important;
+}
+
+.dark77-page .lux-cta-cream {
+  background-color: var(--lux-cream) !important;
+  color: var(--lux-text-on-cream) !important;
+  border: 1px solid rgba(201, 169, 98, 0.35) !important;
+}
+
+/* Allow black text on hero pyramid labels */
+.dark77-page .hero-pyramid-label {
+  color: #000000 !important;
+}
+
+/* Strategy carousel: teal pills need white chevrons (beat universal beige) */
+.dark77-page .strategy-carousel-nav:not(:disabled) {
+  color: #ffffff !important;
+}
+.dark77-page .strategy-carousel-nav:not(:disabled) svg {
+  color: #ffffff !important;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  background-color: var(--lux-bg-base);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 46, 0.92) 0%,
+    rgba(58, 107, 88, 0.55) 42%,
+    rgba(42, 85, 68, 0.72) 68%,
+    rgba(30, 58, 46, 0.95) 100%
+  );
+}
+
+.section-dark {
+  background-color: var(--lux-bg-base);
+}
+
+/* ── WELLNESS IMAGE PANEL ── */
+.wellness-panel {
+  background-color: #101e27; /* --c-dark-blue */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hide scrollbar for a cleaner "slider-less" look */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Contact page: form fields vs .dark77-page universal text rule */
+.dark77-page .contact-input {
+  color: #f5e8d1 !important;
+}
+.dark77-page .contact-input::placeholder {
+  color: rgba(163, 154, 136, 0.55) !important;
+}
+/* Submit CTA: RealProblemSection pill — beat .dark77-page universal text */
+.dark77-page .contact-submit,
+.dark77-page .contact-submit * {
+  color: #ffffff !important;
+}
+
+.dark77-page .faqs-cta-link,
+.dark77-page .faqs-cta-link *,
+.dark77-page .privacy-cta-link,
+.dark77-page .privacy-cta-link *,
+.dark77-page .terms-cta-link,
+.dark77-page .terms-cta-link *,
+.dark77-page .testimonials-cta-link,
+.dark77-page .testimonials-cta-link * {
+  color: #ffffff !important;
+}
+
+/* Contact page: same stacks as dark7 (Merriweather UI, Italiana display, Playfair italic accents) */
+.dark77-page.contact-route,
+.dark77-page.contact-route main,
+.dark77-page.contact-route main input,
+.dark77-page.contact-route main textarea,
+.dark77-page.contact-route main button,
+.dark77-page.contact-route main label {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.contact-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* FAQs page: same base stacks as contact / dark7 main */
+.dark77-page.faqs-route,
+.dark77-page.faqs-route main,
+.dark77-page.faqs-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.faqs-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* About page: dark7 luxury stacks + beat universal beige */
+.dark77-page.about-route,
+.dark77-page.about-route main,
+.dark77-page.about-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.about-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+  color: #f3f3f3 !important;
+}
+.dark77-page.about-route main .font-playfair {
+  color: #e8e4dc !important;
+}
+.dark77-page.about-route main p,
+.dark77-page.about-route main .font-merriweather:not(.about-lux-cta) {
+  color: #c8c2ad !important;
+}
+.dark77-page.about-route main strong {
+  color: #f3f3f3 !important;
+}
+.dark77-page.about-route main .about-lux-label {
+  color: #a8a498 !important;
+}
+.dark77-page.about-route main a.about-lux-link {
+  color: #e8e4dc !important;
+  border-color: rgba(232, 228, 220, 0.45) !important;
+}
+.dark77-page.about-route main a.about-lux-link:hover {
+  color: #E8DCC8 !important;
+  border-color: rgba(116, 245, 161, 0.5) !important;
+}
+.dark77-page.about-route main a.about-lux-btn {
+  color: #ffffff !important;
+  background-color: #2d5244 !important;
+}
+.dark77-page.about-route main a.about-lux-btn:hover {
+  background-color: #3a6654 !important;
+}
+
+/* Expertise (/expertise) — Services1 under dark7 */
+.dark77-page.expertise-route,
+.dark77-page.expertise-route main,
+.dark77-page.expertise-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.expertise-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Newsletter */
+.dark77-page.newsletter-route,
+.dark77-page.newsletter-route main,
+.dark77-page.newsletter-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.newsletter-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Newsletter: intended palette (beats .dark77-page universal beige) */
+.dark77-page.newsletter-route main .nl-cream {
+  color: #f3f3f3 !important;
+}
+.dark77-page.newsletter-route main .nl-e8 {
+  color: #e8e4dc !important;
+}
+.dark77-page.newsletter-route main .nl-c8 {
+  color: #c8c2ad !important;
+}
+.dark77-page.newsletter-route main .nl-a8 {
+  color: #a8a498 !important;
+}
+.dark77-page.newsletter-route main .nl-e0 {
+  color: #FAF8F4 !important;
+}
+.dark77-page.newsletter-route main .nl-mint {
+  color: #E8DCC8 !important;
+}
+.dark77-page.newsletter-route main section.talk-expert-dark7 h2.font-italiana {
+  color: #f3f3f3 !important;
+}
+.dark77-page.newsletter-route main section.talk-expert-dark7 h2.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark77-page.newsletter-route main .nl-danger {
+  color: #e57373 !important;
+}
+
+/* Case studies listing + detail */
+.dark77-page.case-studies-route,
+.dark77-page.case-studies-route main,
+.dark77-page.case-studies-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.case-studies-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Privacy policy: same stacks as FAQs / dark7 */
+.dark77-page.privacy-route,
+.dark77-page.privacy-route main,
+.dark77-page.privacy-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.privacy-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark77-page.testimonials-route,
+.dark77-page.testimonials-route main,
+.dark77-page.testimonials-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.testimonials-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark77-page.testimonials-route .testimonials-page-heading,
+.dark77-page.testimonials-route .testimonials-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark77-page.testimonials-route .testimonials-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark77-page.testimonials-route .testimonials-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark77-page.testimonials-route .testimonials-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark77-page.testimonials-route .testimonials-filter-idle {
+  color: #e8e4dc !important;
+}
+.dark77-page.testimonials-route .testimonials-filter-active {
+  color: #000000 !important;
+}
+
+.dark77-page.testimonials-route .testimonials-star {
+  color: #E8DCC8 !important;
+  fill: #E8DCC8 !important;
+}
+
+.dark77-page.terms-route,
+.dark77-page.terms-route main,
+.dark77-page.terms-route main button {
+  font-family: Merriweather, Georgia, "Times New Roman", serif;
+}
+.dark77-page.terms-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark77-page.terms-route .terms-page-heading,
+.dark77-page.terms-route .terms-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark77-page.terms-route .terms-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark77-page.terms-route .terms-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark77-page.terms-route .terms-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark77-page.terms-route .terms-toc-btn:not(.terms-toc-btn-active):hover .lucide {
+  stroke: #b8a88a !important;
+}
+
+.dark77-page.privacy-route .privacy-page-heading,
+.dark77-page.privacy-route .privacy-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark77-page.privacy-route .privacy-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+
+.dark77-page.privacy-route .privacy-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark77-page.privacy-route .privacy-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+/* Inactive TOC Lucide: hover olive (active row keeps black stroke from color prop) */
+.dark77-page.privacy-route .privacy-toc-btn:not(.privacy-toc-btn-active):hover .lucide {
+  stroke: #b8a88a !important;
+}
+
+/* FAQs: headings + luxury hero beat universal beige where needed */
+.dark77-page.faqs-route .faq-page-heading,
+.dark77-page.faqs-route .faq-page-heading .faq-page-title-line {
+  color: #f3f3f3 !important;
+}
+.dark77-page.faqs-route .faq-page-heading .faq-page-title-line.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark77-page.faqs-route .faq-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+
+/* FAQs luxury: slow mesh + card polish */
+@keyframes faqs-luxury-mesh {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    opacity: 0.55;
+    transform: translate(1.5%, -1.5%) scale(1.02);
+  }
+  66% {
+    opacity: 0.48;
+    transform: translate(-1%, 1%) scale(1.01);
+  }
+}
+
+@keyframes faqs-luxury-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.dark77-page.faqs-route .faqs-luxury-mesh,
+.dark77-page.privacy-route .faqs-luxury-mesh,
+.dark77-page.testimonials-route .faqs-luxury-mesh,
+.dark77-page.terms-route .faqs-luxury-mesh {
+  animation: faqs-luxury-mesh 22s ease-in-out infinite;
+}
+
+.dark77-page.faqs-route .faqs-luxury-hero-frame,
+.dark77-page.privacy-route .faqs-luxury-hero-frame,
+.dark77-page.testimonials-route .faqs-luxury-hero-frame,
+.dark77-page.terms-route .faqs-luxury-hero-frame {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 187, 168, 0) 0%,
+    rgba(201, 187, 168, 0.35) 50%,
+    rgba(201, 187, 168, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: faqs-luxury-shimmer 8s linear infinite;
+}
+
+.dark77-page.faqs-route .faqs-lux-card,
+.dark77-page.privacy-route .faqs-lux-card,
+.dark77-page.testimonials-route .faqs-lux-card,
+.dark77-page.terms-route .faqs-lux-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 32px 64px -16px rgba(0, 0, 0, 0.45);
+}
+
+.dark77-page.faqs-route .faqs-lux-card.is-open {
+  box-shadow:
+    0 1px 0 0 rgba(116, 245, 161, 0.12) inset,
+    0 0 0 1px rgba(116, 245, 161, 0.2),
+    0 40px 80px -20px rgba(0, 0, 0, 0.5);
+}
+
+.dark77-page.faqs-route .faqs-lux-cta-panel,
+.dark77-page.privacy-route .faqs-lux-cta-panel,
+.dark77-page.testimonials-route .faqs-lux-cta-panel,
+.dark77-page.terms-route .faqs-lux-cta-panel {
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 32, 0.95) 0%,
+    rgba(10, 24, 20, 0.98) 50%,
+    rgba(8, 18, 14, 1) 100%
+  );
+  box-shadow: 0 1px 0 0 rgba(201, 187, 168, 0.15) inset;
+}
+
