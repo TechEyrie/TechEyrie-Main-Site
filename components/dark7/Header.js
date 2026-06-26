@@ -155,8 +155,32 @@ function ContactPopup({ isOpen, onClose, type }) {
   );
 }
 
+const MOBILE_SERVICE_LINKS = [...SERVICES_ROW_1, ...SERVICES_ROW_2];
+
+function ChevronIcon({ open, color }) {
+  return (
+    <svg
+      width="10"
+      height="6"
+      viewBox="0 0 10 6"
+      aria-hidden="true"
+      className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    >
+      <path
+        d="M1 1L5 5L9 1"
+        fill="none"
+        stroke={color}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Header({ theme = "light" }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
   const dropdownTimeoutRef = useRef(null);
@@ -178,24 +202,41 @@ export default function Header({ theme = "light" }) {
   const smileRef = useRef(null);
   const faceContainerRef = useRef(null);
 
-  // Hide header on scroll
+  const closeMobileMenu = useCallback(() => {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+  }, []);
+
+  // Hide header on scroll (desktop/tablet only — keep header visible when mobile menu is open)
   useEffect(() => {
     const handleScroll = () => {
+      if (mobileOpen) return;
+
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY < lastScrollY || currentScrollY < 10) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
         setActiveDropdown(null);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, mobileOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
 
   const handleMouseEnter = (label) => {
     if (dropdownTimeoutRef.current) {
@@ -300,7 +341,7 @@ export default function Header({ theme = "light" }) {
     const faceContainer = faceContainerRef.current;
     const faceIcon = faceIconRef.current;
 
-    if (!btn || !overlay || !faceIcon) return;
+    if (!btn || !overlay) return;
 
     gsap.set(overlay, {
       scaleY: 0,
@@ -522,32 +563,43 @@ export default function Header({ theme = "light" }) {
         type="quote"
       />
 
-      <header 
-        className="fixed left-0 right-0 top-2 z-50 antialiased md:top-3 transition-transform duration-300"
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 w-full max-w-full min-w-0 antialiased transition-transform duration-300 lg:overflow-x-clip ${
+          mobileOpen ? "flex h-dvh max-h-dvh flex-col overflow-hidden lg:block lg:h-auto lg:max-h-none" : ""
+        }`}
         style={{
-          transform: isVisible ? 'translateY(0)' : 'translateY(-150%)'
+          transform: isVisible || mobileOpen ? "translateY(0)" : "translateY(-150%)",
+          backgroundColor:
+            mobileOpen && theme === "dark"
+              ? "#162d24"
+              : mobileOpen
+                ? lightColors.background
+                : "transparent",
         }}
       >
-        <div className="flex items-center justify-between px-4 md:px-8 gap-3">
-          
-          {/* Logo - Left Side */}
-          <Link href="/dark" className="flex flex-shrink-0 items-center">
-            <div className="relative flex h-[75px] w-auto md:h-[86px] items-center justify-center">
+        {/* Top bar */}
+        <div
+          className={`mx-auto flex w-full min-w-0 max-w-[1800px] shrink-0 items-center justify-between gap-3 px-5 py-3.5 sm:px-6 lg:px-8 lg:py-3 ${
+            mobileOpen ? "border-b border-white/10 lg:border-b-0" : ""
+          }`}
+        >
+          <Link href="/dark7" className="flex min-w-0 shrink-0 items-center">
+            <div className="relative flex h-12 w-auto sm:h-[52px] lg:h-[86px] items-center justify-center">
               <Image
                 src="/logo/techeyrie_logo.png"
                 alt="TechEyrie Logo"
                 width={172}
                 height={172}
-                className="h-full w-auto object-contain"
+                className="h-full w-auto max-w-[148px] sm:max-w-[168px] lg:max-w-none object-contain"
                 priority
               />
             </div>
           </Link>
 
-          {/* Header with Navigation - Right Side */}
-          <div className="flex items-center gap-3">
+          {/* Desktop nav + CTAs */}
+          <div className="hidden min-w-0 items-center gap-3 lg:flex">
             <div
-              className="flex items-center justify-between gap-2 rounded-[14px] px-3 shadow-[0_10px_30px_rgba(0,0,0,0.15)] md:gap-4 md:px-5 lg:px-6 h-[45px]"
+              className="flex h-[45px] items-center justify-between gap-2 rounded-[14px] px-5 lg:px-6 shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
               style={{
                 backgroundColor: headerBg,
                 border:
@@ -557,7 +609,7 @@ export default function Header({ theme = "light" }) {
               }}
             >
               {/* Desktop NAV */}
-              <nav className="hidden items-center gap-1 lg:flex lg:gap-1 h-full">
+              <nav className="flex items-center gap-1 h-full">
                 {navItems.map((item) => (
                   <div
                     key={item.label}
@@ -647,7 +699,7 @@ export default function Header({ theme = "light" }) {
               </nav>
 
               {/* Desktop CTA */}
-              <div className="hidden flex-shrink-0 items-center gap-3 lg:flex h-full">
+              <div className="flex flex-shrink-0 items-center gap-3 h-full">
                 {/* Talk to us Button */}
                 <button onClick={() => setContactPopupOpen(true)} className="group flex items-center gap-2 cursor-pointer">
                   <span
@@ -701,68 +753,22 @@ export default function Header({ theme = "light" }) {
                   </span>
                 </button>
               </div>
-
-              {/* Mobile hamburger */}
-              <button
-                type="button"
-                onClick={() => setMobileOpen((o) => !o)}
-                aria-label="Toggle navigation"
-                aria-expanded={mobileOpen}
-                className="mobile-menu-btn ml-auto flex h-10 w-10 items-center justify-center rounded-[8px] border transition-colors lg:hidden"
-                style={{
-                  borderColor:
-                    theme === "dark"
-                      ? "rgba(255, 255, 255, 0.15)"
-                      : "rgba(0, 0, 0, 0.1)",
-                  backgroundColor: theme === "dark" ? "#2A2A2A" : headerBg,
-                  color: textColor,
-                }}
-              >
-                <span className="sr-only">Open navigation</span>
-                <div className="relative h-4 w-5">
-                  <span
-                    className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
-                      mobileOpen
-                        ? "top-1/2 translate-y-[-50%] rotate-45"
-                        : "top-0"
-                    }`}
-                    style={{ backgroundColor: textColor }}
-                  />
-                  <span
-                    className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
-                      mobileOpen ? "opacity-0" : "top-1/2 -translate-y-1/2"
-                    }`}
-                    style={{ backgroundColor: textColor }}
-                  />
-                  <span
-                    className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
-                      mobileOpen
-                        ? "top-1/2 translate-y-[-50%] -rotate-45"
-                        : "bottom-0"
-                    }`}
-                    style={{ backgroundColor: textColor }}
-                  />
-                </div>
-              </button>
             </div>
 
-            {/* Get a Quote Button */}
-            <button 
+            <button
               ref={getQuoteBtnRef}
               onClick={() => setQuotePopupOpen(true)}
-              className="get-quote-btn group hidden lg:flex items-center gap-2 px-5 rounded-[14px] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.15)] flex-shrink-0 h-[45px]"
+              className="get-quote-btn group flex items-center gap-2 px-5 rounded-[14px] transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.15)] flex-shrink-0 h-[45px]"
               style={{
                 backgroundColor: headerBg,
                 border: theme === "dark" ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
               }}
             >
-              {/* Animated overlay */}
               <div
                 ref={getQuoteOverlayRef}
                 className="get-quote-overlay"
                 style={{ backgroundColor: headerBg }}
               />
-              
               <div className="get-quote-btn-content">
                 <span
                   className="font-merriweather text-[14px] tracking-tight"
@@ -770,45 +776,184 @@ export default function Header({ theme = "light" }) {
                 >
                   Get a quote
                 </span>
-                
-                {/* Smiling Face Icon (temporarily disabled)
-                <div 
-                  ref={faceIconRef}
-                  className="flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
-                  style={{ backgroundColor: "#4285F4" }}
-                >
-                  <svg
-                    ref={faceContainerRef}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ transformOrigin: "12px 12px" }}
-                  >
-                    <circle cx="12" cy="12" r="11" fill="#FFFFFF" />
-                    <circle ref={leftEyeRef} cx="9" cy="10" r="1.8" fill="#4285F4" style={{ transformOrigin: "9px 10px" }} />
-                    <circle ref={rightEyeRef} cx="15" cy="10" r="1.8" fill="#4285F4" style={{ transformOrigin: "15px 10px" }} />
-                    <circle cx="9.5" cy="9.5" r="0.6" fill="#FFFFFF" />
-                    <circle cx="15.5" cy="9.5" r="0.6" fill="#FFFFFF" />
-                    <path
-                      ref={smileRef}
-                      d="M8 15.5C8 15.5 9.5 18 12 18C14.5 18 16 15.5 16 15.5"
-                      stroke="#4285F4"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ transformOrigin: "12px 16.75px" }}
-                    />
-                    <ellipse cx="7" cy="13" rx="1.5" ry="1" fill="#FFB6C1" opacity="0.6" />
-                    <ellipse cx="17" cy="13" rx="1.5" ry="1" fill="#FFB6C1" opacity="0.6" />
-                  </svg>
-                </div>
-                */}
               </div>
             </button>
           </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setMobileOpen((o) => {
+                if (o) setMobileExpanded(null);
+                return !o;
+              });
+            }}
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={mobileOpen}
+            className="mobile-menu-btn flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] border transition-colors lg:hidden"
+            style={{
+              borderColor:
+                theme === "dark"
+                  ? "rgba(255, 255, 255, 0.12)"
+                  : "rgba(0, 0, 0, 0.1)",
+              backgroundColor: theme === "dark" ? "#1A1A1A" : headerBg,
+              color: textColor,
+            }}
+          >
+            <div className="relative h-4 w-5">
+              <span
+                className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
+                  mobileOpen ? "top-1/2 translate-y-[-50%] rotate-45" : "top-0"
+                }`}
+                style={{ backgroundColor: textColor }}
+              />
+              <span
+                className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
+                  mobileOpen ? "opacity-0" : "top-1/2 -translate-y-1/2"
+                }`}
+                style={{ backgroundColor: textColor }}
+              />
+              <span
+                className={`absolute left-0 h-[2px] w-full rounded transition-all duration-300 ${
+                  mobileOpen ? "top-1/2 translate-y-[-50%] -rotate-45" : "bottom-0"
+                }`}
+                style={{ backgroundColor: textColor }}
+              />
+            </div>
+          </button>
         </div>
+
+        {mobileOpen && (
+          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-5 pb-10 pt-4 sm:px-6 lg:hidden">
+            <nav>
+              {navItems.map((item) => {
+                const isExpanded = mobileExpanded === item.label;
+
+                if (item.hasDropdown) {
+                  const subLinks =
+                    item.label === "Services"
+                      ? MOBILE_SERVICE_LINKS
+                      : EXPERTISE_ITEMS;
+
+                  return (
+                    <div
+                      key={item.label}
+                      className={`border-b ${theme === "dark" ? "border-white/10" : "border-black/10"}`}
+                    >
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between py-4 text-left font-italiana text-[26px] leading-none tracking-tight transition-colors sm:text-[28px]"
+                        style={{ color: mobilePanelText }}
+                        onClick={() =>
+                          setMobileExpanded(isExpanded ? null : item.label)
+                        }
+                      >
+                        <span>{item.label}</span>
+                        <ChevronIcon open={isExpanded} color={mobilePanelText} />
+                      </button>
+
+                      {isExpanded && (
+                        <div className="space-y-1 pb-4 pl-1">
+                          {item.href && (
+                            <Link
+                              href={item.href}
+                              className="block py-2 font-merriweather text-[14px] font-semibold"
+                              style={{ color: theme === "dark" ? "#74F5A1" : lightColors.primary }}
+                              onClick={closeMobileMenu}
+                            >
+                              View all {item.label}
+                            </Link>
+                          )}
+                          {subLinks.map((link) => (
+                            <Link
+                              key={link.id}
+                              href={link.href}
+                              className="block py-2 font-merriweather text-[14px] leading-snug"
+                              style={{ color: cardDesc }}
+                              onClick={closeMobileMenu}
+                            >
+                              {link.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`flex items-center border-b py-4 font-italiana text-[26px] leading-none tracking-tight transition-colors sm:text-[28px] ${theme === "dark" ? "border-white/10" : "border-black/10"}`}
+                    style={{ color: mobilePanelText }}
+                    onClick={closeMobileMenu}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="mt-auto space-y-3 pt-8">
+              <button
+                type="button"
+                onClick={() => {
+                  setContactPopupOpen(true);
+                  closeMobileMenu();
+                }}
+                className="flex w-full items-center justify-between rounded-[12px] px-4 py-3.5 font-merriweather text-[15px] font-semibold"
+                style={{
+                  color: mobilePanelText,
+                  backgroundColor: theme === "dark" ? "#1A1A1A" : lightColors.background,
+                  border: `1px solid ${mobileBorder}`,
+                }}
+              >
+                <span>Talk to us</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-[4px] bg-[#74F5A1]">
+                  <svg width="11" height="11" viewBox="0 0 14 14" aria-hidden="true">
+                    <path
+                      d="M1 13L13 1M13 1H5M13 1V9"
+                      fill="none"
+                      stroke="#111111"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setQuotePopupOpen(true);
+                  closeMobileMenu();
+                }}
+                className="flex w-full items-center justify-between rounded-[12px] px-4 py-3.5 font-merriweather text-[15px] font-semibold"
+                style={{
+                  color: "#ffffff",
+                  backgroundColor: "#12685b",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <span>Get a quote</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-[4px] bg-[#74F5A1]">
+                  <svg width="11" height="11" viewBox="0 0 14 14" aria-hidden="true">
+                    <path
+                      d="M1 13L13 1M13 1H5M13 1V9"
+                      fill="none"
+                      stroke="#111111"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* MEGA MENU DROPDOWN - Services - KEPT ORIGINAL WITH WIDTH EXPANSION */}
         <div
@@ -1147,110 +1292,6 @@ export default function Header({ theme = "light" }) {
           </div>
         </div>
 
-        {/* MOBILE PANEL - KEPT ORIGINAL */}
-        {mobileOpen && (
-          <div
-            className="fixed inset-x-4 top-[54px] z-40 max-h-[calc(100vh-80px)] overflow-y-auto rounded-[14px] border p-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)] lg:hidden md:top-[58px]"
-            style={{
-              backgroundColor: mobilePanelBg,
-              borderColor: mobileBorder,
-            }}
-          >
-            <nav className="space-y-1">
-              {navItems.map((item) => (
-                <div key={item.label}>
-                  {item.href ? (
-                    <Link
-                      href={item.href}
-                      className="flex items-center justify-between rounded-[8px] px-1 py-2 text-left font-[Helvetica_Now_Text,Arial,sans-serif] text-[22px] tracking-tight transition-colors hover:bg-[rgba(255,255,255,0.1)]"
-                      style={{ color: mobilePanelText }}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <span>{item.label}</span>
-                    </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      className="flex items-center justify-between rounded-[8px] px-1 py-2 text-left font-[Helvetica_Now_Text,Arial,sans-serif] text-[22px] tracking-tight transition-colors hover:bg-[rgba(255,255,255,0.1)]"
-                      style={{ color: mobilePanelText }}
-                    >
-                      <span>{item.label}</span>
-                    </button>
-                  )}
-                </div>
-              ))}
-            </nav>
-
-            <div className="mt-6 space-y-3 border-t pt-4" style={{ borderColor: mobileBorder }}>
-              {/* Talk to us Button */}
-              <button
-                onClick={() => {
-                  setContactPopupOpen(true);
-                  setMobileOpen(false);
-                }}
-                className={`group inline-flex w-full items-center justify-between rounded-[10px] px-4 py-3 font-[Helvetica_Now_Text,Arial,sans-serif] text-[21px] font-semibold tracking-tight cursor-pointer ${
-                  theme === "dark" ? "bg-[#2A2A2A]" : "bg-[#F9F7F0]"
-                } transition-transform duration-300 ease-out hover:scale-[1.02]`}
-                style={{ 
-                  color: theme === "dark" ? darkColors.text : lightColors.text,
-                  border: theme === "dark" ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.06)"
-                }}
-              >
-                <span>Talk to us</span>
-                <span
-                  className="flex h-7 w-7 items-center justify-center rounded-[4px] bg-[#74F5A1] transition-transform duration-300 group-hover:scale-110"
-                >
-                  <svg width="11" height="11" viewBox="0 0 14 14" aria-hidden="true">
-                    <path
-                      d="M1 13L13 1M13 1H5M13 1V9"
-                      fill="none"
-                      stroke="#111111"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </button>
-
-              {/* Get a Quote Button */}
-              <button
-                onClick={() => {
-                  setQuotePopupOpen(true);
-                  setMobileOpen(false);
-                }}
-                className="group inline-flex w-full items-center justify-between rounded-[10px] px-4 py-3 font-[Helvetica_Now_Text,Arial,sans-serif] text-[21px] font-semibold tracking-tight cursor-pointer transition-transform duration-300 ease-out hover:scale-[1.02]"
-                style={{ 
-                  backgroundColor: "#FFFFFF",
-                  color: "#111111",
-                  border: "1px solid rgba(0, 0, 0, 0.1)"
-                }}
-              >
-                <span>Get a quote</span>
-                <span
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#4285F4] transition-transform duration-300 group-hover:scale-110"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="11" fill="#FFFFFF" />
-                    <circle cx="9" cy="10" r="1.8" fill="#4285F4" />
-                    <circle cx="15" cy="10" r="1.8" fill="#4285F4" />
-                    <circle cx="9.5" cy="9.5" r="0.6" fill="#FFFFFF" />
-                    <circle cx="15.5" cy="9.5" r="0.6" fill="#FFFFFF" />
-                    <path
-                      d="M8 15.5C8 15.5 9.5 18 12 18C14.5 18 16 15.5 16 15.5"
-                      stroke="#4285F4"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <ellipse cx="7" cy="13" rx="1.5" ry="1" fill="#FFB6C1" opacity="0.6" />
-                    <ellipse cx="17" cy="13" rx="1.5" ry="1" fill="#FFB6C1" opacity="0.6" />
-                  </svg>
-                </span>
-              </button>
-            </div>
-          </div>
-        )}
       </header>
     </>
   );
