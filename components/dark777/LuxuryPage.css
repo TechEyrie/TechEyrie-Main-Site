@@ -1,0 +1,94 @@
+/* /dark777 — page-wide luxury styling (colors only) */
+
+.dark777-luxury-page {
+  --lux-gold: #d4af37;
+  --lux-gold-light: #e8c97a;
+  --lux-gold-mid: #c9a24d;
+  --lux-gold-deep: #a8842f;
+  --lux-champagne: #e8dcc8;
+  --lux-cream: #f0e6d0;
+  --lux-forest: #162d24;
+  --lux-cta-text: #0a0f0d;
+}
+
+/* Cream band → warm champagne luxury */
+.dark777-luxury-page .real-problem-section {
+  background-color: var(--lux-cream) !important;
+  background-image: linear-gradient(
+    165deg,
+    #f8f0e2 0%,
+    var(--lux-cream) 42%,
+    #e8dcc8 100%
+  ) !important;
+}
+
+.dark777-luxury-page .real-problem-section .dark777-luxury-gem {
+  box-shadow:
+    0 0 10px rgba(212, 175, 95, 0.5),
+    0 0 20px rgba(212, 175, 95, 0.18);
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a24d 45%, #a8842f 100%) !important;
+}
+
+/*
+ * Gold CTA buttons — near-black text (beats .dark2-page * beige !important)
+ * Use class .dark777-gold-cta on the button/link element.
+ */
+.dark2-page.dark777-luxury-page .dark777-gold-cta,
+.dark2-page.dark777-luxury-page .dark777-gold-cta *,
+.dark2-page.dark777-luxury-page .dark777-gold-cta svg,
+.dark777-luxury-page .dark777-gold-cta,
+.dark777-luxury-page .dark777-gold-cta *,
+.dark777-luxury-page .dark777-gold-cta svg {
+  color: var(--lux-cta-text) !important;
+  -webkit-text-fill-color: var(--lux-cta-text) !important;
+  fill: var(--lux-cta-text) !important;
+  stroke: var(--lux-cta-text) !important;
+}
+
+.dark2-page.dark777-luxury-page .dark777-gold-cta,
+.dark777-luxury-page .dark777-gold-cta {
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a24d 48%, #a8842f 100%) !important;
+  border: 1px solid rgba(10, 15, 13, 0.22) !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 95, 0.25);
+}
+
+/* Legacy aliases */
+.dark2-page.dark777-luxury-page .contact-submit,
+.dark2-page.dark777-luxury-page .contact-submit *,
+.dark2-page.dark777-luxury-page .dark777-luxury-pill-cta,
+.dark2-page.dark777-luxury-page .dark777-luxury-pill-cta * {
+  color: var(--lux-cta-text) !important;
+  -webkit-text-fill-color: var(--lux-cta-text) !important;
+}
+
+/* Icon chips → gold gem */
+.dark777-luxury-page .bg-\[\#d4af37\] {
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a24d 45%, #a8842f 100%) !important;
+}
+
+/* Subtle gold atmosphere on dark section edges */
+.dark777-luxury-page main,
+.dark777-luxury-page .hero-problem-services-combined {
+  box-shadow: inset 0 1px 0 rgba(212, 175, 95, 0.06);
+}
+
+/* Footer link accents */
+.dark777-luxury-page .dark5-footer a:hover,
+.dark777-luxury-page .dark5-footer-social:hover {
+  color: var(--lux-gold-light) !important;
+}
+
+.dark777-luxury-page .testimonials-section-dark {
+  box-shadow: inset 0 1px 0 rgba(212, 175, 95, 0.08);
+}
+
+.dark777-luxury-page .faq-section-dark [class*="border-[#d4af37]"],
+.dark777-luxury-page .blog-section-dark .new-engen-text {
+  text-shadow: 0 0 40px rgba(212, 175, 95, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark777-luxury-page .dark777-gold-cta {
+    transition: none;
+  }
+}

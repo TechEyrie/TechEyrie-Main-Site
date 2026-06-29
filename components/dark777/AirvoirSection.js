@@ -5,6 +5,7 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { dark7MainSurfaceStyle } from "./dark7PageSurface";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,12 +14,7 @@ if (typeof window !== "undefined") {
 const lightColors = { background: "#F9F7F0" };
 
 function getBgStyle(theme) {
-  return theme === "dark"
-    ? {
-        background:
-          "radial-gradient(ellipse at 15% 20%, #005160 0%, #1b4732 45%, #162d24 100%)",
-      }
-    : { backgroundColor: lightColors.background };
+  return theme === "dark" ? dark7MainSurfaceStyle : { backgroundColor: lightColors.background };
 }
 
 const noiseOverlayStyle = {
@@ -59,11 +55,10 @@ function BookFlightButton({ label = "Book your flight" }) {
   return (
     <button
       type="button"
-      className="group inline-flex max-w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
-      style={{ backgroundColor: "#12685b" }}
+      className="dark777-gold-cta group inline-flex max-w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
     >
       <svg
-        className="h-5 w-5 shrink-0 text-white"
+        className="h-5 w-5 shrink-0"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -75,7 +70,7 @@ function BookFlightButton({ label = "Book your flight" }) {
           d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
         />
       </svg>
-      <span className="font-merriweather text-[13px] sm:text-[14px] font-semibold tracking-wide text-white">
+      <span className="font-merriweather text-[13px] sm:text-[14px] font-bold tracking-wide">
         {label}
       </span>
     </button>

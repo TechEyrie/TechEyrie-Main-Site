@@ -1,0 +1,128 @@
+/* /dark777 — luxury hero accents (scoped) */
+
+.dark777-luxury-hero {
+  position: relative;
+}
+
+.dark777-luxury-hero-section {
+  min-height: 88vh;
+}
+
+.dark777-gold-pearls-layer {
+  z-index: 7;
+}
+
+.dark777-gold-pearls-canvas {
+  opacity: 1;
+}
+
+.dark777-luxury-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 90% 55% at 78% 12%, rgba(212, 175, 95, 0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 45% at 12% 88%, rgba(0, 81, 96, 0.28) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(22, 45, 36, 0.2) 0%, transparent 28%, transparent 72%, rgba(22, 45, 36, 0.35) 100%);
+}
+
+.dark777-luxury-hero .luxury-hero-vignette,
+.dark777-luxury-hero-section .luxury-hero-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.28);
+}
+
+.dark777-luxury-badge {
+  position: relative;
+  padding-left: 0.15rem;
+}
+
+.dark777-luxury-badge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.65rem;
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212, 175, 95, 0.9), rgba(212, 175, 95, 0));
+}
+
+.dark777-luxury-badge-gem {
+  box-shadow:
+    0 0 12px rgba(212, 175, 95, 0.55),
+    0 0 24px rgba(212, 175, 95, 0.2);
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a24d 45%, #a8842f 100%) !important;
+}
+
+.dark777-hero-gold-word {
+  background: linear-gradient(
+    105deg,
+    #f8edd4 0%,
+    #d4af37 28%,
+    #fff8e8 48%,
+    #c9a24d 72%,
+    #f0dfa0 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dark777-gold-shimmer 8s ease-in-out infinite;
+}
+
+@keyframes dark777-gold-shimmer {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.dark777-luxury-hero .hero-main-title-line {
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.25);
+}
+
+.dark777-luxury-cta {
+  border: 1px solid rgba(212, 175, 95, 0.22);
+  background: linear-gradient(
+    135deg,
+    rgba(22, 45, 36, 0.85) 0%,
+    rgba(27, 71, 50, 0.65) 100%
+  );
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark777-hero-gold-word {
+    animation: none;
+    background: #d4af37;
+    -webkit-text-fill-color: #d4af37;
+  }
+}
+
+/* Beat .dark2-page universal beige on luxury hero accents */
+.dark2-page .dark777-luxury-badge .font-merriweather {
+  color: #e8dcc8 !important;
+}
+
+.dark2-page .dark777-hero-gold-word {
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.dark2-page.dark777-luxury-page .dark777-luxury-cta,
+.dark2-page.dark777-luxury-page .dark777-luxury-cta * {
+  color: #f3f3f3 !important;
+}
+
+.dark2-page.dark777-luxury-page .dark777-luxury-cta .font-merriweather {
+  color: #f3f3f3 !important;
+}
