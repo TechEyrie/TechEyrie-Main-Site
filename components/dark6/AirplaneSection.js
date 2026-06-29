@@ -39,7 +39,7 @@ export default function AirplaneHero({ theme = "dark" }) {
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/airplane-bg.jpg"
+          src="/airplane_bg.png"
           alt="Airplane"
           fill
           priority

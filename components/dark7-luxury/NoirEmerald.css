@@ -1,0 +1,66 @@
+/* /dark7-luxury — Noir Emerald color overrides only */
+
+.dark7-luxury-page {
+  --noir-forest-deep: #0f2219;
+  --noir-forest-mid: #162d24;
+  --noir-forest-lift: #1e3d30;
+  --noir-emerald-glow: #2a5c48;
+  --noir-silver-bright: #e8e4dc;
+  --noir-silver-mid: #c8c4bc;
+  --noir-silver-muted: #b8b4ac;
+  --noir-midnight: #0a2e32;
+  --noir-cream: #eceae6;
+  --noir-accent: #c8c4bc;
+}
+
+.dark7-luxury-page.dark2-page {
+  background-color: #0f2219 !important;
+  background-image:
+    radial-gradient(ellipse 85% 50% at 88% 0%, rgba(42, 92, 72, 0.15) 0%, transparent 52%),
+    linear-gradient(168deg, #0a0a0a 0%, #0f2219 42%, #0f2219 100%) !important;
+}
+
+.dark7-luxury-page.dark2-page,
+.dark7-luxury-page.dark2-page * {
+  color: var(--noir-silver-bright) !important;
+}
+
+.dark7-luxury-page .real-problem-section,
+.dark7-luxury-page .real-problem-section * {
+  color: #0a0a0a !important;
+}
+
+.dark7-luxury-page .real-problem-section {
+  background-color: var(--noir-cream) !important;
+  background-image: linear-gradient(
+    168deg,
+    #f4f3f0 0%,
+    var(--noir-cream) 45%,
+    #dddcd6 100%
+  ) !important;
+}
+
+.dark7-luxury-page .dark7-luxury-gem {
+  background: linear-gradient(135deg, #e8e4dc 0%, #c8c4bc 45%, #6e7872 100%) !important;
+}
+
+.dark7-luxury-page .dark7-luxury-cta,
+.dark7-luxury-page .dark7-luxury-pill-cta,
+.dark7-luxury-page .contact-submit.dark7-luxury-pill-cta {
+  background: linear-gradient(135deg, #1e3d30 0%, #0f2219 55%, #0a0a0a 100%) !important;
+  border: 1px solid rgba(200, 196, 188, 0.32) !important;
+}
+
+.dark7-luxury-page .dark7-luxury-cta,
+.dark7-luxury-page .dark7-luxury-cta *,
+.dark7-luxury-page .dark7-luxury-pill-cta,
+.dark7-luxury-page .dark7-luxury-pill-cta *,
+.dark7-luxury-page .contact-submit.dark7-luxury-pill-cta,
+.dark7-luxury-page .contact-submit.dark7-luxury-pill-cta * {
+  color: var(--noir-silver-bright) !important;
+}
+
+.dark7-luxury-page .dark5-footer a:hover,
+.dark7-luxury-page .dark5-footer-social:hover {
+  color: var(--noir-silver-mid) !important;
+}

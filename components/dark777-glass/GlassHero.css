@@ -1,0 +1,489 @@
+/* /dark777-glass — integrated champagne crystal hero */
+
+.dark777-glass-page .hero-problem-services-combined.glass-hero-combined {
+  /* surface comes from glass7MainSurfaceStyle inline — no override fight */
+}
+
+/* Disable legacy luxury hero wash on glass shell */
+.dark777-glass-page .glass-hero-a.dark777-luxury-hero::before {
+  content: none !important;
+  display: none !important;
+}
+
+.glass-prisms-layer {
+  z-index: 7;
+}
+
+.glass-hero-atmosphere-inner {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 125% 68% at 68% 92%, rgba(38, 60, 39, 0.32) 0%, transparent 82%),
+    radial-gradient(ellipse 110% 65% at 74% 8%, rgba(212, 175, 95, 0.14) 0%, transparent 54%),
+    radial-gradient(ellipse 85% 55% at 12% 55%, rgba(200, 225, 245, 0.07) 0%, transparent 52%);
+}
+
+.glass-hero-media-a .dark777-hero-gold-word {
+  filter: drop-shadow(0 2px 16px rgba(212, 175, 95, 0.35));
+}
+
+.glass-portfolio-section {
+  background: transparent;
+}
+
+.glass-portfolio-bottom-fade {
+  background: linear-gradient(
+    to top,
+    rgba(240, 230, 210, 0.14) 0%,
+    rgba(22, 45, 36, 0.08) 35%,
+    rgba(22, 45, 36, 0) 100%
+  );
+}
+
+.glass-portfolio-card-a {
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+.glass-portfolio-card-a img,
+.glass-portfolio-card-a video {
+  opacity: 0.84;
+}
+
+.glass-city-pill {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dark777-glass-page .glass-cta-a,
+.dark777-glass-page .glass-cta-a *,
+.dark777-glass1-page .glass-cta-c,
+.dark777-glass1-page .glass-cta-c * {
+  color: #f3f3f3 !important;
+}
+
+/* Direction C — integrated page (/dark777-glass1) */
+.dark777-glass1-page .hero-problem-services-combined.glass-hero-combined-c {
+  /* surface from glass7LiquidSurfaceStyle inline */
+}
+
+.dark777-glass1-page .glass-hero-c.dark777-luxury-hero::before {
+  content: none !important;
+  display: none !important;
+}
+
+.glass-splinters-layer {
+  z-index: 7;
+}
+
+.glass-hero-c-atmosphere-inner {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 70% at 55% 88%, rgba(0, 100, 120, 0.22) 0%, transparent 78%),
+    radial-gradient(ellipse 100% 60% at 78% 12%, rgba(212, 175, 95, 0.16) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 50% at 20% 40%, rgba(22, 80, 60, 0.18) 0%, transparent 55%);
+}
+
+.glass-hero-media-c .dark777-hero-gold-word {
+  filter: drop-shadow(0 4px 14px rgba(212, 175, 95, 0.4));
+}
+
+.glass-portfolio-bottom-fade-c {
+  background: linear-gradient(
+    to top,
+    rgba(212, 175, 95, 0.1) 0%,
+    rgba(0, 100, 120, 0.08) 30%,
+    rgba(12, 24, 20, 0) 100%
+  );
+}
+
+.glass-portfolio-card-c {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  box-shadow:
+    0 14px 42px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(212, 175, 95, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+.glass-city-pill-c {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 95, 0.25);
+  box-shadow:
+    0 0 20px rgba(0, 130, 150, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.dark777-glass-showcase {
+  background: #0e1a16;
+}
+
+.glass-hero-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.glass-hero-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Direction A — Champagne Crystal ── */
+.glass-hero-a {
+  background:
+    radial-gradient(ellipse 80% 50% at 85% 15%, rgba(212, 175, 95, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 10% 80%, rgba(180, 210, 230, 0.12) 0%, transparent 50%),
+    linear-gradient(165deg, #142820 0%, #162d24 45%, #101e27 100%);
+}
+
+.glass-hero-a-orb-warm {
+  position: absolute;
+  left: 68%;
+  top: 22%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 95, 0.35) 0%,
+    rgba(212, 175, 95, 0.12) 35%,
+    transparent 68%
+  );
+  filter: blur(22px);
+  mix-blend-mode: screen;
+}
+
+.glass-hero-a-orb-cool {
+  position: absolute;
+  left: 18%;
+  top: 55%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle,
+    rgba(200, 225, 245, 0.2) 0%,
+    rgba(120, 180, 200, 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(28px);
+  mix-blend-mode: screen;
+}
+
+/* Frosted content panel — Direction A */
+.glass-hero-frosted-panel {
+  position: relative;
+  padding: 1.75rem 1.5rem 2rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(28px) saturate(1.4);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(212, 175, 95, 0.08);
+}
+
+.glass-hero-frosted-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Glass cards — Direction A */
+.glass-hero-card-a {
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.glass-hero-card-a .card-inner-content img,
+.glass-hero-card-a .card-inner-content video {
+  opacity: 0.82;
+}
+
+.glass-hero-card-a .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(22, 45, 36, 0.75) 0%,
+    rgba(22, 45, 36, 0.15) 50%,
+    transparent 100%
+  ) !important;
+}
+
+/* Glass CTA — Direction A */
+.glass-cta-a {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 95, 0.45) !important;
+  box-shadow:
+    0 0 24px rgba(212, 175, 95, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.65rem 1.25rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-cta-a:hover {
+  border-color: rgba(232, 201, 122, 0.7) !important;
+  box-shadow: 0 0 32px rgba(212, 175, 95, 0.28);
+}
+
+.glass-cta-a-icon {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(212, 175, 95, 0.5) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Cut-glass badge gem — A */
+.glass-badge-gem-a {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(232, 201, 122, 0.8) 40%,
+    rgba(168, 132, 47, 0.9) 100%
+  ) !important;
+  box-shadow:
+    0 0 14px rgba(212, 175, 95, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  border-radius: 0 !important;
+}
+
+/* ── Direction C — Liquid Light ── */
+.glass-hero-c {
+  background: #0c1814;
+}
+
+.glass-hero-c-mesh {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 30%, rgba(0, 130, 150, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 75% 25%, rgba(212, 175, 95, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 55% 75%, rgba(22, 80, 60, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 90% 60%, rgba(180, 140, 255, 0.12) 0%, transparent 50%);
+  animation: glass-mesh-drift 18s ease-in-out infinite alternate;
+  filter: blur(40px);
+}
+
+@keyframes glass-mesh-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3%, -2%) scale(1.04);
+  }
+  66% {
+    transform: translate(-2%, 3%) scale(0.98);
+  }
+  100% {
+    transform: translate(2%, 1%) scale(1.02);
+  }
+}
+
+.glass-hero-c-specular {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.06) 48%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.05) 52%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: glass-specular-sweep 7s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+@keyframes glass-specular-sweep {
+  0%,
+  100% {
+    background-position: 120% 0;
+  }
+  50% {
+    background-position: -20% 0;
+  }
+}
+
+.glass-hero-c-orb {
+  position: absolute;
+  left: 60%;
+  top: 30%;
+  width: 580px;
+  height: 580px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 95, 0.4) 0%,
+    rgba(0, 100, 120, 0.25) 30%,
+    rgba(22, 45, 36, 0) 65%
+  );
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  animation: glass-orb-pulse 6s ease-in-out infinite;
+}
+
+@keyframes glass-orb-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Glass cards — Direction C */
+.glass-hero-card-c {
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 175, 95, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.glass-hero-card-c .card-inner-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(212, 175, 95, 0.08) 100%
+  );
+  border-radius: inherit;
+}
+
+.glass-hero-card-c .card-inner-content img,
+.glass-hero-card-c .card-inner-content video {
+  opacity: 0.78;
+}
+
+/* Glass CTA — Direction C */
+.glass-cta-c {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+}
+
+.glass-cta-c::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  animation: glass-cta-shine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glass-cta-shine {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.glass-cta-c-icon {
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a24d 100%) !important;
+  box-shadow: 0 0 20px rgba(212, 175, 95, 0.4) !important;
+}
+
+/* Profit word — glass reflection under C */
+.glass-hero-c .dark777-hero-gold-word {
+  filter: drop-shadow(0 4px 12px rgba(212, 175, 95, 0.3));
+}
+
+@media (max-width: 1023px) {
+  .glass-hero-frosted-panel {
+    padding: 1.25rem 1rem 1.5rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-hero-c-mesh,
+  .glass-hero-c-specular,
+  .glass-hero-c-orb,
+  .glass-cta-c::after {
+    animation: none;
+  }
+}

@@ -549,7 +549,7 @@ export default function AirplaneHero({ theme = "dark" }) {
       style={{ cursor: "crosshair" }}
     >
       <div className="absolute inset-0 z-0">
-        <Image src="/airplane-bg.jpg" alt="Airplane" fill priority
+        <Image src="/airplane_bg.png" alt="Airplane" fill priority
           className="object-cover object-center opacity-80" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#162d24] via-black/60 to-[#162d24]" />
       </div>
