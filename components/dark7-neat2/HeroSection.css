@@ -1,0 +1,308 @@
+/* components/HeroSection.css - Update the dark mode section */
+
+/* === HERO SECTION BASE === */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 8rem;
+  padding-bottom: 7rem;
+  transition: background-color 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-top: 10rem;
+  }
+}
+
+/* Light mode background */
+.hero-section-light {
+  background-color: #EFEFEF;
+}
+
+/* Dark mode background with concrete texture */
+.hero-section-dark {
+  background-color: #2b2b2b;
+  background-image: 
+    /* Fine grain texture */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+    /* Subtle gradient for depth */
+    radial-gradient(ellipse at top left, rgba(60, 60, 60, 0.3), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(50, 50, 50, 0.2), transparent 50%);
+  background-blend-mode: overlay, normal, normal;
+}
+
+/* Enhanced noise overlay for concrete effect */
+.hero-noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+  background-image: 
+    /* Canvas/concrete texture pattern */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.03) 1px,
+      rgba(0, 0, 0, 0.03) 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.03) 1px,
+      rgba(0, 0, 0, 0.03) 2px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px
+    );
+}
+
+.hero-section-dark .hero-noise-overlay {
+  opacity: 1;
+}
+
+/* === TEXT COLORS === */
+.hero-section-light .hero-text {
+  color: #212121;
+}
+
+.hero-section-dark .hero-text {
+  color: #f3f3f3;
+}
+
+.hero-section-light .hero-text-muted {
+  color: #7A7A7A;
+}
+
+.hero-section-dark .hero-text-muted {
+  color: #a0a0a0;
+}
+
+/* === CARD STYLING === */
+.hero-section-light .hero-card {
+  background: #ffffff;
+}
+
+.hero-section-dark .hero-card {
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* === DIVIDER === */
+.hero-section-light .hero-divider {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hero-section-dark .hero-divider {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === FELLIX ITALIC FONT === */
+.font-fellix-italic {
+  font-family: 'Fellix', 'Helvetica Now Text', Helvetica, Arial, sans-serif;
+  font-style: italic;
+}
+
+/* === ELECTRIC GLITCH EFFECT ON HEADINGS === */
+.hero-title-glitch {
+  position: relative;
+  display: inline-block;
+  font-family: 'Fellix', 'Helvetica Now Text', Helvetica, Arial, sans-serif;
+  animation: glitch-skew 3s infinite linear alternate-reverse;
+}
+
+.hero-title-glitch-light {
+  color: #111111;
+}
+
+.hero-title-glitch-dark {
+  color: #f3f3f3;
+}
+
+/* Before pseudo-element for electric effect */
+.hero-title-glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  text-shadow: -2px 0 #74F5A1;
+  clip: rect(44px, 450px, 56px, 0);
+}
+
+.hero-title-glitch-light::before {
+  animation: glitch-anim-light 2s infinite linear alternate-reverse;
+}
+
+.hero-title-glitch-dark::before {
+  animation: glitch-anim-dark 2s infinite linear alternate-reverse;
+}
+
+/* After pseudo-element for secondary electric effect */
+.hero-title-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  text-shadow: -2px 0 #4DD97F, 2px 2px #3BC972;
+  clip: rect(44px, 450px, 56px, 0);
+}
+
+.hero-title-glitch-light::after {
+  animation: glitch-anim2-light 2.5s infinite linear alternate-reverse;
+}
+
+.hero-title-glitch-dark::after {
+  animation: glitch-anim2-dark 2.5s infinite linear alternate-reverse;
+}
+
+/* Keep all the keyframe animations from before - they remain the same */
+@keyframes glitch-anim-light {
+  0% { clip: rect(61px, 9999px, 71px, 0); transform: skew(0.18deg); }
+  5% { clip: rect(12px, 9999px, 85px, 0); transform: skew(0.84deg); }
+  10% { clip: rect(94px, 9999px, 32px, 0); transform: skew(0.23deg); }
+  15% { clip: rect(5px, 9999px, 68px, 0); transform: skew(0.91deg); }
+  20% { clip: rect(78px, 9999px, 15px, 0); transform: skew(0.45deg); }
+  25% { clip: rect(33px, 9999px, 99px, 0); transform: skew(0.67deg); }
+  30% { clip: rect(51px, 9999px, 41px, 0); transform: skew(0.29deg); }
+  35% { clip: rect(19px, 9999px, 73px, 0); transform: skew(0.56deg); }
+  40% { clip: rect(87px, 9999px, 24px, 0); transform: skew(0.78deg); }
+  45% { clip: rect(42px, 9999px, 66px, 0); transform: skew(0.33deg); }
+  50% { clip: rect(9px, 9999px, 91px, 0); transform: skew(0.62deg); }
+  55% { clip: rect(74px, 9999px, 28px, 0); transform: skew(0.88deg); }
+  60% { clip: rect(36px, 9999px, 59px, 0); transform: skew(0.41deg); }
+  65% { clip: rect(63px, 9999px, 18px, 0); transform: skew(0.72deg); }
+  70% { clip: rect(21px, 9999px, 84px, 0); transform: skew(0.25deg); }
+  75% { clip: rect(96px, 9999px, 47px, 0); transform: skew(0.59deg); }
+  80% { clip: rect(54px, 9999px, 13px, 0); transform: skew(0.86deg); }
+  85% { clip: rect(7px, 9999px, 76px, 0); transform: skew(0.37deg); }
+  90% { clip: rect(81px, 9999px, 39px, 0); transform: skew(0.64deg); }
+  95% { clip: rect(48px, 9999px, 92px, 0); transform: skew(0.52deg); }
+  100% { clip: rect(26px, 9999px, 55px, 0); transform: skew(0.74deg); }
+}
+
+@keyframes glitch-anim2-light {
+  0% { clip: rect(33px, 9999px, 89px, 0); transform: skew(0.54deg); }
+  5% { clip: rect(71px, 9999px, 18px, 0); transform: skew(0.82deg); }
+  10% { clip: rect(9px, 9999px, 64px, 0); transform: skew(0.36deg); }
+  15% { clip: rect(87px, 9999px, 42px, 0); transform: skew(0.69deg); }
+  20% { clip: rect(24px, 9999px, 97px, 0); transform: skew(0.47deg); }
+  25% { clip: rect(56px, 9999px, 11px, 0); transform: skew(0.91deg); }
+  30% { clip: rect(14px, 9999px, 78px, 0); transform: skew(0.28deg); }
+  35% { clip: rect(93px, 9999px, 35px, 0); transform: skew(0.63deg); }
+  40% { clip: rect(49px, 9999px, 72px, 0); transform: skew(0.51deg); }
+  45% { clip: rect(6px, 9999px, 86px, 0); transform: skew(0.76deg); }
+  50% { clip: rect(68px, 9999px, 21px, 0); transform: skew(0.39deg); }
+  55% { clip: rect(38px, 9999px, 95px, 0); transform: skew(0.67deg); }
+  60% { clip: rect(82px, 9999px, 29px, 0); transform: skew(0.44deg); }
+  65% { clip: rect(17px, 9999px, 61px, 0); transform: skew(0.85deg); }
+  70% { clip: rect(76px, 9999px, 44px, 0); transform: skew(0.32deg); }
+  75% { clip: rect(52px, 9999px, 8px, 0); transform: skew(0.73deg); }
+  80% { clip: rect(3px, 9999px, 69px, 0); transform: skew(0.58deg); }
+  85% { clip: rect(91px, 9999px, 26px, 0); transform: skew(0.46deg); }
+  90% { clip: rect(47px, 9999px, 83px, 0); transform: skew(0.79deg); }
+  95% { clip: rect(19px, 9999px, 54px, 0); transform: skew(0.61deg); }
+  100% { clip: rect(74px, 9999px, 16px, 0); transform: skew(0.88deg); }
+}
+
+@keyframes glitch-anim-dark {
+  0% { clip: rect(58px, 9999px, 74px, 0); transform: skew(0.21deg); }
+  5% { clip: rect(16px, 9999px, 88px, 0); transform: skew(0.77deg); }
+  10% { clip: rect(91px, 9999px, 29px, 0); transform: skew(0.39deg); }
+  15% { clip: rect(8px, 9999px, 65px, 0); transform: skew(0.84deg); }
+  20% { clip: rect(73px, 9999px, 12px, 0); transform: skew(0.52deg); }
+  25% { clip: rect(37px, 9999px, 96px, 0); transform: skew(0.68deg); }
+  30% { clip: rect(54px, 9999px, 43px, 0); transform: skew(0.31deg); }
+  35% { clip: rect(22px, 9999px, 79px, 0); transform: skew(0.59deg); }
+  40% { clip: rect(85px, 9999px, 27px, 0); transform: skew(0.72deg); }
+  45% { clip: rect(41px, 9999px, 63px, 0); transform: skew(0.38deg); }
+  50% { clip: rect(11px, 9999px, 94px, 0); transform: skew(0.66deg); }
+  55% { clip: rect(77px, 9999px, 31px, 0); transform: skew(0.81deg); }
+  60% { clip: rect(34px, 9999px, 57px, 0); transform: skew(0.48deg); }
+  65% { clip: rect(66px, 9999px, 19px, 0); transform: skew(0.75deg); }
+  70% { clip: rect(23px, 9999px, 82px, 0); transform: skew(0.29deg); }
+  75% { clip: rect(98px, 9999px, 45px, 0); transform: skew(0.56deg); }
+  80% { clip: rect(52px, 9999px, 14px, 0); transform: skew(0.89deg); }
+  85% { clip: rect(5px, 9999px, 71px, 0); transform: skew(0.42deg); }
+  90% { clip: rect(84px, 9999px, 36px, 0); transform: skew(0.61deg); }
+  95% { clip: rect(46px, 9999px, 89px, 0); transform: skew(0.53deg); }
+  100% { clip: rect(28px, 9999px, 59px, 0); transform: skew(0.78deg); }
+}
+
+@keyframes glitch-anim2-dark {
+  0% { clip: rect(36px, 9999px, 92px, 0); transform: skew(0.49deg); }
+  5% { clip: rect(69px, 9999px, 15px, 0); transform: skew(0.86deg); }
+  10% { clip: rect(7px, 9999px, 68px, 0); transform: skew(0.33deg); }
+  15% { clip: rect(84px, 9999px, 39px, 0); transform: skew(0.71deg); }
+  20% { clip: rect(27px, 9999px, 94px, 0); transform: skew(0.44deg); }
+  25% { clip: rect(59px, 9999px, 13px, 0); transform: skew(0.87deg); }
+  30% { clip: rect(18px, 9999px, 76px, 0); transform: skew(0.26deg); }
+  35% { clip: rect(96px, 9999px, 32px, 0); transform: skew(0.64deg); }
+  40% { clip: rect(45px, 9999px, 69px, 0); transform: skew(0.57deg); }
+  45% { clip: rect(4px, 9999px, 83px, 0); transform: skew(0.79deg); }
+  50% { clip: rect(72px, 9999px, 24px, 0); transform: skew(0.37deg); }
+  55% { clip: rect(31px, 9999px, 91px, 0); transform: skew(0.69deg); }
+  60% { clip: rect(88px, 9999px, 26px, 0); transform: skew(0.41deg); }
+  65% { clip: rect(14px, 9999px, 64px, 0); transform: skew(0.82deg); }
+  70% { clip: rect(79px, 9999px, 48px, 0); transform: skew(0.35deg); }
+  75% { clip: rect(55px, 9999px, 6px, 0); transform: skew(0.76deg); }
+  80% { clip: rect(2px, 9999px, 67px, 0); transform: skew(0.54deg); }
+  85% { clip: rect(93px, 9999px, 22px, 0); transform: skew(0.43deg); }
+  90% { clip: rect(49px, 9999px, 81px, 0); transform: skew(0.73deg); }
+  95% { clip: rect(16px, 9999px, 56px, 0); transform: skew(0.62deg); }
+  100% { clip: rect(78px, 9999px, 19px, 0); transform: skew(0.84deg); }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg, 0deg); }
+  25% { transform: skew(0.3deg, 0.2deg); }
+  50% { transform: skew(-0.2deg, 0.1deg); }
+  75% { transform: skew(0.1deg, -0.3deg); }
+  100% { transform: skew(0deg, 0deg); }
+}
+
+/* Triangle fade animation */
+@keyframes triangle-fade {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+.animate-triangle-fade {
+  animation: triangle-fade 1.05s ease-out forwards;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-glitch,
+  .hero-title-glitch::before,
+  .hero-title-glitch::after {
+    animation: none !important;
+  }
+  
+  .animate-triangle-fade {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
