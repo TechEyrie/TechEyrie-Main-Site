@@ -37,7 +37,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false, kicker =
       className={`relative overflow-hidden min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[900px] ${!isDark ? 'bg-[#FF6B5A]' : isDark && dark7 ? '' : 'bg-[#1a1a1a]'}`}
       style={isDark && dark7 ? services1ListingDarkSurface : undefined}
     >
-      <div className="relative mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-52 pb-12 sm:pb-16 md:pb-20 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex flex-col sm:flex-row sm:justify-between sm:items-stretch gap-8 sm:gap-0">
+      <div className="relative z-20 mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 pt-24 sm:pt-32 md:pt-40 lg:pt-48 xl:pt-52 pb-12 sm:pb-16 md:pb-20 min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex flex-col sm:flex-row sm:justify-between sm:items-stretch gap-8 sm:gap-0">
         
         {/* Left Side - Services Label + Heading */}
         <div 
@@ -82,7 +82,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false, kicker =
       </div>
 
       {/* Paper Plane 1 - Flying in middle */}
-      <div className="absolute top-[140px] sm:top-[160px] md:top-[180px] lg:top-[200px] left-[38%] sm:left-[42%] md:left-[46%] lg:left-[45%] w-[60px] h-[45px] sm:w-[80px] sm:h-[60px] md:w-[100px] md:h-[75px] lg:w-[120px] lg:h-[90px] pointer-events-none hidden sm:block z-10">
+      <div className="absolute top-[140px] sm:top-[160px] md:top-[180px] lg:top-[200px] left-[38%] sm:left-[42%] md:left-[46%] lg:left-[45%] w-[60px] h-[45px] sm:w-[80px] sm:h-[60px] md:w-[100px] md:h-[75px] lg:w-[120px] lg:h-[90px] pointer-events-none hidden sm:block z-[1]">
         <svg viewBox="0 0 120 90" fill="none" className="w-full h-full">
           <path 
             d="M 10 45 L 110 10 L 100 45 L 110 80 L 10 45 Z M 100 45 L 40 45" 
@@ -95,7 +95,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false, kicker =
       </div>
 
       {/* Paper Plane 2 - Small one near left character */}
-      <div className="absolute bottom-[200px] sm:bottom-[240px] md:bottom-[280px] lg:bottom-[320px] left-[120px] sm:left-[150px] md:left-[180px] lg:left-[240px] xl:left-[320px] w-[45px] h-[35px] sm:w-[60px] sm:h-[45px] md:w-[75px] md:h-[55px] pointer-events-none hidden md:block z-10 opacity-80 rotate-[-15deg]">
+      <div className="absolute bottom-[200px] sm:bottom-[240px] md:bottom-[280px] lg:bottom-[320px] left-[120px] sm:left-[150px] md:left-[180px] lg:left-[240px] xl:left-[320px] w-[45px] h-[35px] sm:w-[60px] sm:h-[45px] md:w-[75px] md:h-[55px] pointer-events-none hidden md:block z-[1] opacity-80 rotate-[-15deg]">
         <svg viewBox="0 0 75 55" fill="none" className="w-full h-full">
           <path 
             d="M 5 27 L 70 5 L 65 27 L 70 50 L 5 27 Z M 65 27 L 25 27" 
@@ -108,7 +108,7 @@ export default function Services1Hero({ theme = 'light', dark7 = false, kicker =
       </div>
 
       {/* Decorative wavy line - Top Right */}
-      <div className="absolute top-[100px] sm:top-[120px] md:top-[140px] right-[8%] sm:right-[12%] md:right-[16%] lg:right-[22%] w-[80px] h-[28px] sm:w-[100px] sm:h-[35px] md:w-[130px] md:h-[45px] pointer-events-none hidden sm:block z-10">
+      <div className="absolute top-[100px] sm:top-[120px] md:top-[140px] right-[8%] sm:right-[12%] md:right-[16%] lg:right-[22%] w-[80px] h-[28px] sm:w-[100px] sm:h-[35px] md:w-[130px] md:h-[45px] pointer-events-none hidden sm:block z-[1]">
         <svg viewBox="0 0 130 45" fill="none" className="w-full h-full">
           <path 
             d="M 10 22 Q 35 12, 60 22 T 110 22" 
@@ -120,18 +120,6 @@ export default function Services1Hero({ theme = 'light', dark7 = false, kicker =
         </svg>
       </div>
 
-      {/* Decorative squiggle - Yellow accent */}
-      <div className="absolute top-[240px] sm:top-[280px] md:top-[320px] lg:top-[380px] right-[80px] sm:right-[100px] md:right-[130px] lg:right-[170px] xl:right-[210px] 2xl:right-[250px] w-[30px] h-[45px] sm:w-[40px] sm:h-[60px] md:w-[50px] md:h-[75px] pointer-events-none hidden sm:block z-10">
-        <svg viewBox="0 0 50 75" fill="none" className="w-full h-full">
-          <path 
-            d="M 25 10 Q 32 30, 25 42 T 25 65" 
-            stroke={isDark && dark7 ? '#a7b431' : '#FFD93D'} 
-            strokeWidth="5" 
-            fill="none"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
     </section>
   );
 }

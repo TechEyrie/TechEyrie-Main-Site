@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSectionMediaSlot from "./HeroSectionMediaSlot";
 import RealProblemSection from "./RealProblemSection";
 import NewServicesSection from "./NewServicesSection";
+import NeatHeroBackground from "./NeatHeroBackground";
+import { neat3GradientConfig } from "./neatGradientConfig";
 import { dark7MainSurfaceStyle } from "./dark7PageSurface";
 import HeroVersion2 from './HeroVersion2';
 if (typeof window !== "undefined") {
@@ -229,9 +231,13 @@ export default function HeroProblemServicesCombined({ theme = "light" }) {
         )}
 
         {/* 1) Hero glow orb with moving left/right ripple */}
-        <div ref={heroWrapRef} className="relative">
+        <div ref={heroWrapRef} className="relative overflow-hidden">
           {theme === "dark" && (
             <>
+              <NeatHeroBackground
+                containerRef={heroWrapRef}
+                config={neat3GradientConfig}
+              />
               <div
                 ref={heroNoiseRef}
                 className="absolute inset-0 pointer-events-none z-[1]"

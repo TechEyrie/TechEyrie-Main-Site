@@ -40,6 +40,35 @@ body {
   color: #000000 !important;
 }
 
+/* CardsServicesSection cream cards: black text beats universal beige */
+.dark2-page .dark7-services-light-card,
+.dark2-page .dark7-services-light-card h3,
+.dark2-page .dark7-services-light-card p {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-services-light-card button,
+.dark2-page .dark7-services-light-card button *,
+.dark2-page .dark7-services-light-card button svg {
+  color: #ffffff !important;
+}
+
+/* Get a Quote modal: black text on white panel */
+.dark2-page .dark7-quote-popup,
+.dark2-page .dark7-quote-popup * {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-quote-popup input::placeholder,
+.dark2-page .dark7-quote-popup textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark2-page .dark7-quote-popup button[type="submit"],
+.dark2-page .dark7-quote-popup button[type="submit"] * {
+  color: #ffffff !important;
+}
+
 /* Allow black text on hero pyramid labels */
 .dark2-page .hero-pyramid-label {
   color: #000000 !important;

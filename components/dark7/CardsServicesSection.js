@@ -30,8 +30,8 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       description:
         "It's not only about existence, it is all about influence. We design well-crafted, goal-driven social media systems that connect you to high-value audiences and turn engagement into meaningful brand momentum.",
       tags: [],
-      bgColor: "#ffffff",
-      textColor: "#111111",
+      bgColor: theme === "dark" ? "#f5e8d1" : "#ffffff",
+      textColor: "#000000",
       buttonBg: "#111111",
       buttonText: "#ffffff",
       isLightCard: true,
@@ -64,8 +64,8 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       description:
         "We turn attention into action. Here at Tech Eyrie we create data-driven advertisement campaigns, real-time monitoring and clear strategies which will deliver meaningful business outcomes and sustained performance.",
       tags: [],
-      bgColor: "#ffffff",
-      textColor: "#111111",
+      bgColor: theme === "dark" ? "#f5e8d1" : "#ffffff",
+      textColor: "#000000",
       buttonBg: "#111111",
       buttonText: "#ffffff",
       isLightCard: true,
@@ -173,7 +173,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
               key={service.id}
               ref={(el) => (cardsRef.current[index] = el)}
               onMouseEnter={() => handleCardHover(index)}
-              className="relative rounded-[20px] overflow-hidden cursor-pointer"
+              className={`relative rounded-[20px] overflow-hidden cursor-pointer${
+                service.isLightCard && theme === "dark" ? " dark7-services-light-card" : ""
+              }`}
               style={{
                 backgroundColor: service.bgColor,
                 flex: index === activeCard ? 1.5 : 0.7,

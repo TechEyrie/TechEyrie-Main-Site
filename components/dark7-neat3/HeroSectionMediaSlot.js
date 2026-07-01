@@ -619,7 +619,7 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
       className="relative w-full"
       style={
         theme === "dark" && sharedBackground
-          ? dark7MainSurfaceStyle
+          ? { background: "transparent", backgroundColor: "transparent" }
           : sharedBackground
             ? { background: "transparent", backgroundColor: "transparent" }
             : bgStyle
@@ -666,17 +666,16 @@ export default function HeroSectionMediaSlot({ theme = "light", sharedBackground
                 "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
             }}
           >
-            {/* Base: solid #162D24 */}
+            {/* Neat gradient shows through — no solid hero fill */}
             <div
               className="absolute inset-0"
-              style={{ backgroundColor: "#162D24" }}
+              style={{ backgroundColor: "transparent" }}
             />
-            {/* Glow: #263C27, bottom center, slightly to the right */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 135% 65% at 62% 96%, #263C27 0%, rgba(38,60,39,0.98) 30%, rgba(22,45,36,0.0) 88%)",
+                  "radial-gradient(ellipse 135% 65% at 62% 96%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 30%, rgba(22,45,36,0) 88%)",
               }}
             />
           </div>

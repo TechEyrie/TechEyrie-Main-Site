@@ -85,7 +85,7 @@ function ContactPopup({ isOpen, onClose, type }) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
+      <div className="dark7-quote-popup bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
