@@ -13,7 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { dark7MainSurfaceStyle } from "../dark7/dark7PageSurface";
-import EagleScrollScene from "./EagleScrollScene";
+import EagleScrollScene from "../dark7-three1/EagleScrollScene";
 import "./HeroSectionMediaSlot.css";
 
 if (typeof window !== "undefined") {
@@ -396,8 +396,8 @@ export default function HeroSectionMediaSlot({
 
       <section
         ref={heroSectionRef}
-        className={`dark7-three2-hero relative overflow-x-hidden${
-          theme === "dark" ? " dark7-three2-hero-eagle" : ""
+        className={`dark7-three3-hero relative overflow-x-hidden${
+          theme === "dark" ? " dark7-three3-hero-eagle" : ""
         }`}
       >
         <div
@@ -405,11 +405,35 @@ export default function HeroSectionMediaSlot({
           className="relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-hidden pt-28 md:pt-32"
         >
           {theme === "dark" && (
-            // Eagle 3D scene — position is controlled in:
-            // components/dark7-three1/EagleScrollScene.js (search "EAGLE POSITION")
+            <div
+              className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+              aria-hidden
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.94) 56%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.28) 78%, rgba(0,0,0,0.08) 90%, transparent 100%)",
+              }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{ backgroundColor: "#162D24" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 135% 65% at 62% 96%, #263C27 0%, rgba(38,60,39,0.98) 30%, rgba(22,45,36,0.0) 88%)",
+                }}
+              />
+            </div>
+          )}
+
+          {theme === "dark" && (
             <EagleScrollScene
               backgroundOnly
               pinTargetRef={heroPinRef}
+              embeddedScrollId="dark7-three3-eagle-hero"
               onScrollProgress={
                 prefersReducedMotion ? undefined : handleEagleScrollProgress
               }
@@ -425,7 +449,7 @@ export default function HeroSectionMediaSlot({
 
           <div
             ref={heroContentRef}
-            className="dark7-three2-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
+            className="dark7-three3-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
           >
           <div className="flex justify-center pt-4 md:pt-8">
             <div className="hero-badge flex items-center gap-3">
@@ -447,7 +471,7 @@ export default function HeroSectionMediaSlot({
           <div className="flex flex-1 flex-col items-center justify-end pb-24 text-center md:pb-28">
             <div
               ref={titleContainerRef}
-              className="dark7-three2-hero-title mx-auto w-full max-w-[1200px]"
+              className="dark7-three3-hero-title mx-auto w-full max-w-[1200px]"
             >
               <h1 className="font-italiana tracking-[-0.03em]">
                 <span

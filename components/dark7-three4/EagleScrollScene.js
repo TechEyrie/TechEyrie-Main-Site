@@ -104,6 +104,8 @@ export default function EagleScrollScene({
   backgroundOnly = false,
   pinTargetRef = null,
   onScrollProgress = null,
+  embeddedScrollId = "dark7-three4-eagle-hero",
+  embeddedScrollEnd = "+=1200",
 }) {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
@@ -127,15 +129,15 @@ export default function EagleScrollScene({
     let scrollTween = null;
     let birdObject = null;
     let birdMixer = null;
+    let wingAction = null;
     let scrollActions = [];
     let scrollProgress = 0;
-    // ── EAGLE POSITION (dark7-three2 / three3 / three4 hero) ──────────────────
-    // X = left/right in the 3D scene. More negative → further LEFT on screen.
-    // More positive → further RIGHT. Tweak `x` here for the resting pose at scroll 0.
+    // ── EAGLE POSITION (dark7-three4) ─────────────────────────────────────────
+    // X = left/right. Y = up/down — increase end Y to fly further upward on scroll.
     let baseBird = {
-      x: -0.5, // ← MAIN left/right at page load (try -1.2 left, -0.2 right)
-      y: 0.05, // up/down at rest
-      z: 0, // depth (toward/away from camera)
+      x: -0.5,
+      y: 0.05,
+      z: 0,
       scale: 1,
       rotZ: 0,
     };
@@ -321,19 +323,30 @@ export default function EagleScrollScene({
 
       // Eagle path while scrolling. First number = start X, second = end X at full scroll.
       // Example: lerp(-0.2, -6, …) starts more to the RIGHT than lerp(-0.5, -6, …).
+      // Fly upward and out of frame; wing speed ramps with scroll below.
       baseBird = {
-        x: THREE.MathUtils.lerp(-0.5, -1, scrollProgress), // ← start X , end X (fly-out)
-        y: THREE.MathUtils.lerp(0.05, 0.5, scrollProgress),
-        z: THREE.MathUtils.lerp(0, 0.8, scrollProgress),
-        scale: THREE.MathUtils.lerp(1, 2.8, scrollProgress),
-        rotZ: THREE.MathUtils.lerp(0, -0.25, scrollProgress),
+        x: THREE.MathUtils.lerp(-0.5, -1.2, scrollProgress),
+        y: THREE.MathUtils.lerp(0.05, 5.2, scrollProgress),
+        z: THREE.MathUtils.lerp(0, 0.6, scrollProgress),
+        scale: THREE.MathUtils.lerp(1, 2.4, scrollProgress),
+        rotZ: THREE.MathUtils.lerp(0, -0.18, scrollProgress),
       };
+
+      if (wingAction) {
+        wingAction.timeScale = 0.5 + scrollProgress * 1.75;
+      }
 
       applyBirdTransform();
       onScrollProgressRef.current?.(scrollProgress);
 
       if (embeddedScroll && canvas) {
-        canvas.style.visibility = scrollProgress < 0.98 ? "visible" : "hidden";
+        const fadeStart = 0.82;
+        const eagleOpacity =
+          scrollProgress < fadeStart
+            ? 1
+            : 1 - (scrollProgress - fadeStart) / (1 - fadeStart);
+        canvas.style.opacity = String(Math.max(0, eagleOpacity));
+        canvas.style.visibility = scrollProgress >= 0.98 ? "hidden" : "visible";
       }
     }
 
@@ -346,7 +359,7 @@ export default function EagleScrollScene({
       camera.position.set(-0.35, 0.85, 1.15); // ← camera X , Y , Z
       camera.lookAt(0.15, 0.15, 0); // ← lookAt X affects horizontal framing
 
-      ScrollTrigger.getById("dark7-three2-eagle-hero")?.kill();
+      ScrollTrigger.getById(embeddedScrollId)?.kill();
 
       gsapCtx?.revert();
       gsapCtx = gsap.context(() => {
@@ -356,11 +369,11 @@ export default function EagleScrollScene({
           progress: 1,
           ease: "none",
           scrollTrigger: {
-            id: embeddedScroll ? "dark7-three2-eagle-hero" : "eagle-scroll-scene",
+            id: embeddedScroll ? embeddedScrollId : "eagle-scroll-scene",
             trigger: triggerEl,
             ...(embeddedScroll ? { scroller: document.documentElement } : {}),
             start: "top top",
-            end: embeddedScroll ? "+=1200" : "+=8000",
+            end: embeddedScroll ? embeddedScrollEnd : "+=8000",
             scrub: embeddedScroll ? 1.5 : 2.5,
             pin: true,
             pinSpacing: true,
@@ -406,6 +419,7 @@ export default function EagleScrollScene({
           birdMixer = new THREE.AnimationMixer(birdObject);
           const animationSetup = setupBirdAnimations(birdMixer, gltf.animations);
           scrollActions = animationSetup.scrollActions;
+          wingAction = animationSetup.wingAction;
         }
 
         if (backgroundOnly) {
@@ -487,7 +501,7 @@ export default function EagleScrollScene({
       dracoLoader.dispose();
       renderer.dispose();
     };
-  }, [backgroundOnly, pinTargetRef]);
+  }, [backgroundOnly, pinTargetRef, embeddedScrollId, embeddedScrollEnd]);
 
   if (backgroundOnly) {
     return (

@@ -12,7 +12,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { dark7MainSurfaceStyle } from "../dark7/dark7PageSurface";
 import EagleScrollScene from "./EagleScrollScene";
 import "./HeroSectionMediaSlot.css";
 
@@ -145,41 +144,22 @@ export default function HeroSectionMediaSlot({
   }, [currentCityIndex, prefersReducedMotion, rotatingCities]);
 
   const scrollToPortfolio = useCallback(() => {
+    if (typeof window === "undefined") return;
+
+    const eagleTrigger = ScrollTrigger.getById("dark7-three4-eagle-hero");
+    if (eagleTrigger && eagleTrigger.progress < 0.99) {
+      window.scrollTo({
+        top: eagleTrigger.end,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+      return;
+    }
+
     portfolioSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
+      behavior: prefersReducedMotion ? "auto" : "smooth",
       block: "start",
     });
-  }, []);
-
-  const handleEagleScrollProgress = useCallback(
-    (progress) => {
-      const content = heroContentRef.current;
-      if (!content || prefersReducedMotion) return;
-
-      if (progress <= 0.001) {
-        gsap.set(content, { opacity: 1, y: 0 });
-        return;
-      }
-
-      const fade = gsap.utils.clamp(0, 1, (progress - 0.04) / 0.3);
-      gsap.set(content, {
-        opacity: 1 - fade,
-        y: -56 * fade,
-      });
-    },
-    [prefersReducedMotion],
-  );
-
-  useLayoutEffect(() => {
-    const content = heroContentRef.current;
-    if (!content) return;
-
-    gsap.set(content, { opacity: 1, y: 0 });
-
-    return () => {
-      gsap.set(content, { clearProps: "opacity,y" });
-    };
-  }, [theme, prefersReducedMotion]);
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -320,6 +300,15 @@ export default function HeroSectionMediaSlot({
     };
   }, [hoveredCard, createTriangleForPortfolioCard]);
 
+  const lavenderSurfaceStyle = useMemo(
+    () => ({
+      backgroundColor: "#E2DDFB",
+      backgroundImage:
+        "radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.6), transparent 35%), linear-gradient(135deg, #eadff6, #dcdcff, #f4d8e7)",
+    }),
+    [],
+  );
+
   const bgStyle = useMemo(
     () =>
       theme === "dark"
@@ -330,14 +319,6 @@ export default function HeroSectionMediaSlot({
         : { backgroundColor: lightColors.background },
     [theme, lightColors],
   );
-
-  const noiseOverlayStyle = {
-    backgroundImage: `
-      repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 255, 255, 0.03) 1px, rgba(255, 255, 255, 0.03) 2px),
-      repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255, 255, 255, 0.03) 1px, rgba(255, 255, 255, 0.03) 2px),
-      repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px)
-    `,
-  };
 
   const TriangleSVG = ({ triangle }) => (
     <div
@@ -366,38 +347,19 @@ export default function HeroSectionMediaSlot({
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className={`relative w-full overflow-x-hidden${
+        theme === "dark" ? " dark7-three4-hero-eagle" : ""
+      }`}
       style={
-        theme === "dark" && sharedBackground
-          ? dark7MainSurfaceStyle
-          : sharedBackground
-            ? { background: "transparent", backgroundColor: "transparent" }
-            : bgStyle
+        sharedBackground
+          ? { background: "transparent", backgroundColor: "transparent" }
+          : bgStyle
       }
     >
-      {theme === "dark" && !sharedBackground && (
-        <>
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-24 sm:h-28 md:h-32"
-            style={{
-              background:
-                "linear-gradient(to bottom, #162d24 0%, rgba(22,45,36,0) 100%)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 sm:h-40 md:h-48"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
-            }}
-          />
-        </>
-      )}
-
       <section
         ref={heroSectionRef}
-        className={`dark7-three2-hero relative overflow-x-hidden${
-          theme === "dark" ? " dark7-three2-hero-eagle" : ""
+        className={`dark7-three4-hero relative overflow-x-hidden${
+          theme === "dark" ? " dark7-three4-hero-eagle" : ""
         }`}
       >
         <div
@@ -405,27 +367,19 @@ export default function HeroSectionMediaSlot({
           className="relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-hidden pt-28 md:pt-32"
         >
           {theme === "dark" && (
-            // Eagle 3D scene — position is controlled in:
-            // components/dark7-three1/EagleScrollScene.js (search "EAGLE POSITION")
-            <EagleScrollScene
-              backgroundOnly
-              pinTargetRef={heroPinRef}
-              onScrollProgress={
-                prefersReducedMotion ? undefined : handleEagleScrollProgress
-              }
+            <div
+              className="dark7-three4-hero-surface pointer-events-none absolute inset-0 z-0"
+              aria-hidden
             />
           )}
 
-          {theme === "dark" && !sharedBackground && (
-            <div
-              className="pointer-events-none absolute inset-0 z-[1]"
-              style={noiseOverlayStyle}
-            />
+          {theme === "dark" && (
+            <EagleScrollScene backgroundOnly pinTargetRef={heroPinRef} />
           )}
 
           <div
             ref={heroContentRef}
-            className="dark7-three2-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
+            className="dark7-three4-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
           >
           <div className="flex justify-center pt-4 md:pt-8">
             <div className="hero-badge flex items-center gap-3">
@@ -447,7 +401,7 @@ export default function HeroSectionMediaSlot({
           <div className="flex flex-1 flex-col items-center justify-end pb-24 text-center md:pb-28">
             <div
               ref={titleContainerRef}
-              className="dark7-three2-hero-title mx-auto w-full max-w-[1200px]"
+              className="dark7-three4-hero-title mx-auto w-full max-w-[1200px]"
             >
               <h1 className="font-italiana tracking-[-0.03em]">
                 <span
@@ -522,6 +476,7 @@ export default function HeroSectionMediaSlot({
               </Link>
             </div>
           </div>
+          </div>
 
           <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 md:bottom-8">
             <button
@@ -553,40 +508,27 @@ export default function HeroSectionMediaSlot({
             </button>
           </div>
         </div>
-        </div>
       </section>
 
       <section
         ref={portfolioSectionRef}
         id="discover"
-        className="relative w-full overflow-visible py-0"
-        style={{ zIndex: 1 }}
+        className="dark7-three4-mediaslot-portfolio relative w-full overflow-visible py-0"
+        style={
+          theme === "dark"
+            ? lavenderSurfaceStyle
+            : { backgroundColor: lightColors.background }
+        }
       >
-        {theme === "dark" && !sharedBackground && (
-          <>
-            <div
-              className="pointer-events-none absolute inset-0 z-[1]"
-              style={noiseOverlayStyle}
-            />
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 sm:h-40 md:h-48"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(0,81,96,0.9) 0%, rgba(0,81,96,0) 100%)",
-              }}
-            />
-          </>
-        )}
-
-        <div className="relative z-10 mx-auto w-full max-w-[1800px] px-4 pt-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-[1800px] px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8">
           <header className="mb-12 text-center sm:mb-16">
             <p
-              className={`mb-4 font-merriweather text-sm sm:mb-6 sm:text-base md:text-lg ${theme === "dark" ? "text-white/70" : "text-[#1b3d36]/70"}`}
+              className={`mb-4 font-merriweather text-sm sm:mb-6 sm:text-base md:text-lg ${theme === "dark" ? "text-[#1b3d36]/70" : "text-[#1b3d36]/70"}`}
             >
               Our Goal
             </p>
             <h2
-              className={`font-italiana text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
+              className={`font-italiana text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl ${theme === "dark" ? "text-[#1b3d36]" : "text-[#1b3d36]"}`}
             >
               <span className="font-light">Creating impact for businesses in </span>
               <span className="relative -top-[2px] inline-flex min-w-[6ch] items-center justify-center overflow-hidden rounded-xl bg-black px-3 py-1 align-middle text-white">
@@ -711,7 +653,7 @@ export default function HeroSectionMediaSlot({
                               hoveredBottomSection === index
                                 ? "#ffffff"
                                 : theme === "dark"
-                                  ? "#ffffff"
+                                  ? "#1b3d36"
                                   : "#111111",
                           }}
                         >
@@ -727,13 +669,13 @@ export default function HeroSectionMediaSlot({
                                   hoveredBottomSection === index
                                     ? "rgba(255, 255, 255, 0.3)"
                                     : theme === "dark"
-                                      ? "rgba(255, 255, 255, 0.3)"
+                                      ? "rgba(27, 61, 54, 0.3)"
                                       : "rgba(0, 0, 0, 0.2)",
                                 color:
                                   hoveredBottomSection === index
                                     ? "rgba(255, 255, 255, 0.8)"
                                     : theme === "dark"
-                                      ? "rgba(255, 255, 255, 0.8)"
+                                      ? "rgba(27, 61, 54, 0.8)"
                                       : "rgba(0, 0, 0, 0.8)",
                               }}
                             >

@@ -57,47 +57,42 @@ function setupBirdAnimations(mixer, clips) {
 }
 
 function applyBirdMaterial(bird, iceNormal, lightweight = false) {
+  const materials = [];
+
   bird.traverse((child) => {
     if (!child.isMesh) return;
     child.frustumCulled = lightweight;
 
-    if (lightweight) {
-      child.material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color("#009d73"),
-        transparent: true,
-        opacity: 0.82,
-        roughness: 0.22,
-        metalness: 0.12,
-        normalMap: iceNormal,
-        normalScale: new THREE.Vector2(0.02, 0.02),
-        side: THREE.FrontSide,
-      });
-      return;
-    }
-
-    child.frustumCulled = false;
-
-    child.material = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color("#009d73"),
+    const material = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color("#0b9a68"),
+      emissive: new THREE.Color("#5fe08d"),
+      emissiveIntensity: lightweight ? 0.1 : 0.14,
       transparent: true,
-      opacity: 0.78,
-      roughness: 0.18,
-      metalness: 0.05,
-      transmission: 0.25,
-      thickness: 0.4,
-      ior: 1.35,
+      opacity: lightweight ? 0.84 : 0.78,
+      roughness: lightweight ? 0.14 : 0.18,
+      metalness: lightweight ? 0.14 : 0.05,
+      transmission: lightweight ? 0.36 : 0.25,
+      thickness: lightweight ? 0.52 : 0.4,
+      ior: 1.42,
       normalMap: iceNormal,
-      normalScale: new THREE.Vector2(0.025, 0.025),
+      normalScale: new THREE.Vector2(lightweight ? 0.028 : 0.025, lightweight ? 0.028 : 0.025),
       clearcoat: 1,
-      clearcoatRoughness: 0.08,
-      iridescence: 0.8,
-      iridescenceIOR: 1.25,
-      iridescenceThicknessRange: [80, 320],
-      envMapIntensity: 3.2,
-      side: THREE.DoubleSide,
+      clearcoatRoughness: lightweight ? 0.06 : 0.08,
+      iridescence: 1,
+      iridescenceIOR: 1.28,
+      iridescenceThicknessRange: lightweight ? [140, 520] : [80, 320],
+      envMapIntensity: lightweight ? 2.8 : 3.2,
+      attenuationColor: new THREE.Color("#74f5a1"),
+      attenuationDistance: 1.15,
+      side: lightweight ? THREE.FrontSide : THREE.DoubleSide,
       depthWrite: false,
     });
+
+    child.material = material;
+    materials.push(material);
   });
+
+  return materials;
 }
 
 export default function EagleScrollScene({
@@ -127,6 +122,8 @@ export default function EagleScrollScene({
     let scrollTween = null;
     let birdObject = null;
     let birdMixer = null;
+    let wingAction = null;
+    let birdMaterials = [];
     let scrollActions = [];
     let scrollProgress = 0;
     // ── EAGLE POSITION (dark7-three2 / three3 / three4 hero) ──────────────────
@@ -174,6 +171,9 @@ export default function EagleScrollScene({
     keyLight.position.set(3, 5, 6);
     scene.add(keyLight);
 
+    let fillLight = null;
+    let rimLight = null;
+
     if (!backgroundOnly) {
       const greenLight = new THREE.PointLight(0x00c878, 9, 60);
       greenLight.position.set(4, 2, 4);
@@ -187,8 +187,26 @@ export default function EagleScrollScene({
       blueShadow.position.set(-4, 1, 5);
       scene.add(blueShadow);
     } else {
-      const fillLight = new THREE.HemisphereLight(0xeaf8ff, 0x1a3d2e, 0.9);
+      // Sky (top) = darker green, ground (bottom) = lighter mint — like reference purple gradient.
+      fillLight = new THREE.HemisphereLight(0x0a3d2e, 0xdafce9, 1.1);
       scene.add(fillLight);
+
+      rimLight = new THREE.PointLight(0xb8ffd9, 3.5, 48);
+      rimLight.position.set(5.8, 1.8, 4.2);
+      scene.add(rimLight);
+    }
+
+    let bottomLight = null;
+    let topShadeLight = null;
+
+    if (backgroundOnly) {
+      bottomLight = new THREE.DirectionalLight(0xc9ffe2, 1.35);
+      bottomLight.position.set(0.4, -7, 2.5);
+      scene.add(bottomLight);
+
+      topShadeLight = new THREE.DirectionalLight(0x062a1f, 0.55);
+      topShadeLight.position.set(-0.5, 8, 1.5);
+      scene.add(topShadeLight);
     }
 
     const dracoLoader = new DRACOLoader();
@@ -203,6 +221,16 @@ export default function EagleScrollScene({
     iceNormal.wrapS = THREE.RepeatWrapping;
     iceNormal.wrapT = THREE.RepeatWrapping;
 
+    new RGBELoader().load(HDR_ENV, (hdr) => {
+      if (disposed) {
+        hdr.dispose();
+        return;
+      }
+      hdr.mapping = THREE.EquirectangularReflectionMapping;
+      scene.environment = hdr;
+      texturesToDispose.push(hdr);
+    });
+
     if (!backgroundOnly) {
       const iceMap = textureLoader.load(ICE_MAP);
       const iceRoughness = textureLoader.load(ICE_ROUGHNESS);
@@ -213,16 +241,6 @@ export default function EagleScrollScene({
       iceRoughness.wrapT = THREE.RepeatWrapping;
       iceMap.repeat.set(1, 1);
       iceRoughness.repeat.set(1, 1);
-
-      new RGBELoader().load(HDR_ENV, (hdr) => {
-        if (disposed) {
-          hdr.dispose();
-          return;
-        }
-        hdr.mapping = THREE.EquirectangularReflectionMapping;
-        scene.environment = hdr;
-        texturesToDispose.push(hdr);
-      });
     }
 
     function getLayoutTarget() {
@@ -308,6 +326,84 @@ export default function EagleScrollScene({
       birdObject.rotation.x = -mouse.y * 0.1 * hoverAmount;
     }
 
+    // ── SCROLL WING LOOK (green crystalline / noomo-style) ───────────────────
+    // Driven by scrollProgress 0→1. Increase end values for stronger bloom/saturation.
+    function applyScrollMaterialEffects(t) {
+      const bloom = Math.pow(THREE.MathUtils.clamp(t, 0, 1), 0.82);
+
+      renderer.toneMappingExposure = THREE.MathUtils.lerp(1.22, 1.85, bloom);
+      keyLight.intensity = THREE.MathUtils.lerp(2.8, 5.6, bloom);
+
+      if (fillLight) {
+        fillLight.intensity = THREE.MathUtils.lerp(1.1, 1.85, bloom);
+        // Top hemisphere: darker forest green
+        fillLight.color.setHSL(
+          0.38,
+          THREE.MathUtils.lerp(0.52, 0.45, bloom),
+          THREE.MathUtils.lerp(0.16, 0.24, bloom),
+        );
+        // Bottom hemisphere: lighter mint / near-white green
+        fillLight.groundColor.setHSL(
+          0.44,
+          THREE.MathUtils.lerp(0.32, 0.18, bloom),
+          THREE.MathUtils.lerp(0.84, 0.97, bloom),
+        );
+      }
+
+      if (bottomLight) {
+        bottomLight.intensity = THREE.MathUtils.lerp(1.35, 2.6, bloom);
+        bottomLight.color.setHSL(0.44, 0.28, THREE.MathUtils.lerp(0.88, 0.98, bloom));
+      }
+
+      if (topShadeLight) {
+        topShadeLight.intensity = THREE.MathUtils.lerp(0.55, 0.28, bloom);
+      }
+
+      if (rimLight) {
+        rimLight.intensity = THREE.MathUtils.lerp(2.8, 13, bloom);
+        rimLight.color.setHSL(
+          0.43,
+          THREE.MathUtils.lerp(0.42, 0.1, bloom),
+          THREE.MathUtils.lerp(0.72, 1, bloom),
+        );
+      }
+
+      birdMaterials.forEach((mat) => {
+        // Base feather tint: darker emerald overall, brighter as scroll blooms
+        mat.color.setHSL(
+          THREE.MathUtils.lerp(0.37, 0.44, bloom),
+          THREE.MathUtils.lerp(0.72, 0.34, bloom),
+          THREE.MathUtils.lerp(0.32, 0.72, bloom),
+        );
+        // Emissive biased lighter (bottom highlights / edge glow)
+        mat.emissive.setHSL(
+          0.44,
+          THREE.MathUtils.lerp(0.48, 0.12, bloom),
+          THREE.MathUtils.lerp(0.22, 0.96, bloom),
+        );
+        mat.emissiveIntensity = THREE.MathUtils.lerp(0.1, 1.2, bloom);
+        mat.opacity = THREE.MathUtils.lerp(0.82, 0.95, bloom);
+        mat.transmission = THREE.MathUtils.lerp(0.34, 0.7, bloom);
+        mat.roughness = THREE.MathUtils.lerp(0.14, 0.025, bloom);
+        mat.metalness = THREE.MathUtils.lerp(0.12, 0.4, bloom);
+        mat.iridescence = THREE.MathUtils.lerp(0.85, 1, bloom);
+        mat.iridescenceIOR = THREE.MathUtils.lerp(1.24, 1.58, bloom);
+        mat.envMapIntensity = THREE.MathUtils.lerp(2.4, 6.8, bloom);
+        mat.clearcoatRoughness = THREE.MathUtils.lerp(0.06, 0.012, bloom);
+      });
+
+      if (wingAction) {
+        wingAction.timeScale = THREE.MathUtils.lerp(0.45, 1.4, bloom);
+      }
+
+      if (embeddedScroll && canvas) {
+        const saturate = THREE.MathUtils.lerp(1, 1.28, bloom);
+        const brightness = THREE.MathUtils.lerp(1, 1.2, bloom);
+        const contrast = THREE.MathUtils.lerp(1, 1.06, bloom);
+        canvas.style.filter = `saturate(${saturate}) brightness(${brightness}) contrast(${contrast})`;
+      }
+    }
+
     function applyScrollProgress(p) {
       scrollProgress = THREE.MathUtils.clamp(p, 0, 1);
 
@@ -323,13 +419,14 @@ export default function EagleScrollScene({
       // Example: lerp(-0.2, -6, …) starts more to the RIGHT than lerp(-0.5, -6, …).
       baseBird = {
         x: THREE.MathUtils.lerp(-0.5, -1, scrollProgress), // ← start X , end X (fly-out)
-        y: THREE.MathUtils.lerp(0.05, 0.5, scrollProgress),
-        z: THREE.MathUtils.lerp(0, 0.8, scrollProgress),
+        y: THREE.MathUtils.lerp(0.05, 1.5, scrollProgress),
+        z: THREE.MathUtils.lerp(0, -2.8, scrollProgress),
         scale: THREE.MathUtils.lerp(1, 2.8, scrollProgress),
-        rotZ: THREE.MathUtils.lerp(0, -0.25, scrollProgress),
+        rotZ: THREE.MathUtils.lerp(0, 0, scrollProgress),
       };
 
       applyBirdTransform();
+      applyScrollMaterialEffects(scrollProgress);
       onScrollProgressRef.current?.(scrollProgress);
 
       if (embeddedScroll && canvas) {
@@ -399,13 +496,14 @@ export default function EagleScrollScene({
         if (disposed) return;
 
         birdObject = gltf.scene;
-        applyBirdMaterial(birdObject, iceNormal, backgroundOnly);
+        birdMaterials = applyBirdMaterial(birdObject, iceNormal, backgroundOnly);
         scene.add(birdObject);
 
         if (gltf.animations.length) {
           birdMixer = new THREE.AnimationMixer(birdObject);
           const animationSetup = setupBirdAnimations(birdMixer, gltf.animations);
           scrollActions = animationSetup.scrollActions;
+          wingAction = animationSetup.wingAction;
         }
 
         if (backgroundOnly) {
