@@ -1,0 +1,35 @@
+.dark7-three-hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  isolation: isolate;
+}
+
+.feather-three-mount {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.feather-three-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Soft edge fade so feather blends into page sections below */
+.feather-three-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(22, 45, 36, 0.35) 0%, rgba(22, 45, 36, 0) 18%, rgba(22, 45, 36, 0) 62%, rgba(22, 45, 36, 0.92) 100%),
+    linear-gradient(to right, rgba(22, 45, 36, 0.55) 0%, rgba(22, 45, 36, 0) 42%, rgba(22, 45, 36, 0) 100%);
+  z-index: 2;
+}
+
+.dark7-three-hero .feather-three-hero-content {
+  position: relative;
+  z-index: 10;
+}
