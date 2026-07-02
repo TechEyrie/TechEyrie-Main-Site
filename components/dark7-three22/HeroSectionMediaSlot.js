@@ -396,8 +396,8 @@ export default function HeroSectionMediaSlot({
 
       <section
         ref={heroSectionRef}
-        className={`dark7-three2-hero relative overflow-x-hidden${
-          theme === "dark" ? " dark7-three2-hero-eagle" : ""
+        className={`dark7-three22-hero relative overflow-x-hidden${
+          theme === "dark" ? " dark7-three22-hero-eagle" : ""
         }`}
       >
         <div
@@ -425,7 +425,7 @@ export default function HeroSectionMediaSlot({
 
           <div
             ref={heroContentRef}
-            className="dark7-three2-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
+            className="dark7-three22-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
           >
           <div className="flex justify-center pt-4 md:pt-8">
             <div className="hero-badge flex items-center gap-3">
@@ -447,7 +447,7 @@ export default function HeroSectionMediaSlot({
           <div className="flex flex-1 flex-col items-center justify-end pb-24 text-center md:pb-28">
             <div
               ref={titleContainerRef}
-              className="dark7-three2-hero-title mx-auto w-full max-w-[1200px]"
+              className="dark7-three22-hero-title mx-auto w-full max-w-[1200px]"
             >
               <h1 className="font-italiana tracking-[-0.03em]">
                 <span
