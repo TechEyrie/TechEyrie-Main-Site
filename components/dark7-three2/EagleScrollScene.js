@@ -419,7 +419,7 @@ export default function EagleScrollScene({
       // Example: lerp(-0.2, -6, …) starts more to the RIGHT than lerp(-0.5, -6, …).
       baseBird = {
         x: THREE.MathUtils.lerp(-0.5, -1, scrollProgress), // ← start X , end X (fly-out)
-        y: THREE.MathUtils.lerp(0.05, 1.5, scrollProgress),
+        y: THREE.MathUtils.lerp(0.05, 2.5, scrollProgress),
         z: THREE.MathUtils.lerp(0, -2.8, scrollProgress),
         scale: THREE.MathUtils.lerp(1, 2.8, scrollProgress),
         rotZ: THREE.MathUtils.lerp(0, 0, scrollProgress),
