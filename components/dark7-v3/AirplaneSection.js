@@ -555,7 +555,7 @@ export default function AirplaneHero({ theme = "dark", sharedBackground = false 
   return (
     <section
       ref={sectionRef}
-      className="dark7-v2-airplane-hero relative min-h-screen w-full flex flex-col justify-between overflow-hidden"
+      className="dark7-v3-airplane-hero relative min-h-screen w-full flex flex-col justify-between overflow-hidden"
       style={{ cursor: "crosshair", ...surfaceStyle }}
     >
       {theme === "dark" && !sharedBackground && (

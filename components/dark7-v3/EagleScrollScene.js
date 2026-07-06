@@ -8,11 +8,11 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  dark7V2ScrollTrigger,
-  getDark7V2ScrollTop,
-  refreshDark7V2ScrollTriggers,
+  dark7V3ScrollTrigger,
+  getDark7V3ScrollTop,
+  refreshDark7V3ScrollTriggers,
   notifyHeroPinReady,
-  DARK7_V2_HERO_PIN_ID,
+  DARK7_V3_HERO_PIN_ID,
 } from "./lenisScrollTrigger";
 import "./EagleScrollScene.css";
 
@@ -59,6 +59,127 @@ const WING_PALETTE = [
   },
 ];
 
+// Soft matte sage on outer ~35% of each wing feather (not glass/crystal)
+const WING_TIP_SOFT_COLOR = "#6db589";
+const WING_TIP_ZONE_START = 0.62; // smoothstep begins here → full soft at 100% along feather
+const WING_TIP_BLEND_STRENGTH = 0.97;
+
+function isWingFeatherMesh(mesh) {
+  const name = (mesh.name || "").toLowerCase();
+  if (/^b_body|^b_head|^b_neck|^bone/i.test(name)) return false;
+  if (/wing|feather/.test(name)) return true;
+
+  if (!mesh.geometry) return false;
+  mesh.geometry.computeBoundingBox();
+  const bbox = mesh.geometry.boundingBox;
+  if (!bbox) return false;
+
+  const size = bbox.getSize(new THREE.Vector3());
+  const minDim = Math.min(size.x, size.y, size.z);
+  const maxDim = Math.max(size.x, size.y, size.z);
+  return maxDim / (minDim + 1e-5) > 2.2;
+}
+
+function computeFeatherTipAxis(mesh, birdOrigin) {
+  mesh.geometry.computeBoundingBox();
+  const bbox = mesh.geometry.boundingBox;
+  if (!bbox) return null;
+
+  const size = bbox.getSize(new THREE.Vector3());
+  const dims = [size.x, size.y, size.z];
+  const axisIdx = dims.indexOf(Math.max(...dims));
+  const span = dims[axisIdx];
+  if (span < 0.012) return null;
+
+  const minVal = [bbox.min.x, bbox.min.y, bbox.min.z][axisIdx];
+  const maxVal = [bbox.max.x, bbox.max.y, bbox.max.z][axisIdx];
+  const center = new THREE.Vector3();
+  bbox.getCenter(center);
+
+  const worldDistAt = (val) => {
+    const local = center.clone();
+    if (axisIdx === 0) local.x = val;
+    else if (axisIdx === 1) local.y = val;
+    else local.z = val;
+    return local.applyMatrix4(mesh.matrixWorld).distanceToSquared(birdOrigin);
+  };
+
+  const tipIsMin = worldDistAt(minVal) > worldDistAt(maxVal);
+  const name = (mesh.name || "").toLowerCase();
+  const isDedicatedTip = /_end_|tip_end|feathers_tip/.test(name);
+  const softStart = isDedicatedTip ? 0.42 : WING_TIP_ZONE_START;
+
+  return {
+    axisIdx,
+    rootVal: tipIsMin ? maxVal : minVal,
+    tipVal: tipIsMin ? minVal : maxVal,
+    softStart,
+  };
+}
+
+function applyWingTipSoftBlend(material, mesh, birdOrigin, lightweight) {
+  const axis = computeFeatherTipAxis(mesh, birdOrigin);
+  if (!axis) return;
+
+  const uniforms = {
+    uWingRoot: { value: axis.rootVal },
+    uWingTip: { value: axis.tipVal },
+    uWingAxis: { value: axis.axisIdx },
+    uTipSoftStart: { value: axis.softStart },
+    uSoftGreen: { value: new THREE.Color(WING_TIP_SOFT_COLOR) },
+    uTipBlendStrength: { value: lightweight ? 0.92 : WING_TIP_BLEND_STRENGTH },
+  };
+
+  material.userData.wingTipUniforms = uniforms;
+  material.customProgramCacheKey = () =>
+    `wing-tip-${axis.axisIdx}-${axis.rootVal.toFixed(3)}-${axis.tipVal.toFixed(3)}`;
+
+  material.onBeforeCompile = (shader) => {
+    Object.assign(shader.uniforms, uniforms);
+
+    shader.vertexShader = shader.vertexShader
+      .replace(
+        "#include <common>",
+        `#include <common>
+uniform float uWingRoot;
+uniform float uWingTip;
+uniform float uWingAxis;
+uniform float uTipSoftStart;
+varying float vWingTipBlend;`,
+      )
+      .replace(
+        "#include <begin_vertex>",
+        `#include <begin_vertex>
+float wingPos = uWingAxis < 0.5 ? transformed.x : (uWingAxis < 1.5 ? transformed.y : transformed.z);
+float wingSpan = uWingTip - uWingRoot;
+float wingT = wingSpan == 0.0 ? 0.0 : clamp((wingPos - uWingRoot) / wingSpan, 0.0, 1.0);
+vWingTipBlend = smoothstep(uTipSoftStart, 1.0, wingT);`,
+      );
+
+    shader.fragmentShader = shader.fragmentShader
+      .replace(
+        "#include <common>",
+        `#include <common>
+uniform vec3 uSoftGreen;
+uniform float uTipBlendStrength;
+varying float vWingTipBlend;`,
+      )
+      .replace(
+        "#include <tonemapping_fragment>",
+        `{
+  float tip = clamp(vWingTipBlend, 0.0, 1.0);
+  vec3 softFeather = uSoftGreen * (0.96 + 0.04 * tip);
+  gl_FragColor.rgb = mix(gl_FragColor.rgb, softFeather, tip * uTipBlendStrength);
+  gl_FragColor.rgb = mix(gl_FragColor.rgb, softFeather, tip * 0.72);
+  gl_FragColor.a = mix(gl_FragColor.a, 0.99, tip * 0.85);
+}
+#include <tonemapping_fragment>`,
+      );
+  };
+
+  material.needsUpdate = true;
+}
+
 function setupBirdAnimations(mixer, clips) {
   const wingClip =
     clips.find((clip) => /Float_WingPulse|WingPulse/i.test(clip.name)) ||
@@ -100,6 +221,10 @@ function applyBirdMaterial(bird, textures, lightweight = false) {
   const materials = [];
   let meshIndex = 0;
 
+  bird.updateWorldMatrix(true, true);
+  const birdOrigin = new THREE.Vector3();
+  bird.getWorldPosition(birdOrigin);
+
   bird.traverse((child) => {
     if (!child.isMesh) return;
     child.frustumCulled = lightweight;
@@ -140,6 +265,10 @@ function applyBirdMaterial(bird, textures, lightweight = false) {
     material.userData.baseHue = swatch.hue;
     child.material = material;
     materials.push(material);
+
+    if (isWingFeatherMesh(child)) {
+      applyWingTipSoftBlend(material, child, birdOrigin, lightweight);
+    }
   });
 
   return materials;
@@ -180,7 +309,7 @@ export default function EagleScrollScene({
     let birdMaterials = [];
     let scrollActions = [];
     let scrollProgress = 0;
-    // ── EAGLE POSITION (dark7-v2 / three3 / three4 hero) ──────────────────
+    // ── EAGLE POSITION (dark7-v3 / three3 / three4 hero) ──────────────────
     // X = left/right in the 3D scene. More negative → further LEFT on screen.
     // More positive → further RIGHT. Tweak `x` here for the resting pose at scroll 0.
     let baseBird = {
@@ -334,7 +463,7 @@ export default function EagleScrollScene({
     const resizeObserver = new ResizeObserver(() => {
       resize();
       if (scrollEnabled) {
-        refreshDark7V2ScrollTriggers();
+        refreshDark7V3ScrollTriggers();
       }
     });
     resizeObserver.observe(getLayoutTarget());
@@ -503,11 +632,11 @@ export default function EagleScrollScene({
       // Eagle path while scrolling. First number = start X, second = end X at full scroll.
       // Example: lerp(-0.2, -6, …) starts more to the RIGHT than lerp(-0.5, -6, …).
       baseBird = {
-        x: THREE.MathUtils.lerp(-0.5, -1, scrollProgress), // ← start X , end X (fly-out)
-        y: THREE.MathUtils.lerp(0.05, 2.5, scrollProgress),
+        x: THREE.MathUtils.lerp(-0.6, -1, scrollProgress), // ← start X , end X (fly-out)
+        y: THREE.MathUtils.lerp(0.3, 2.5, scrollProgress),
         z: THREE.MathUtils.lerp(0, -2.8, scrollProgress),
         scale: THREE.MathUtils.lerp(1, 2.8, scrollProgress),
-        rotZ: THREE.MathUtils.lerp(0, 0, scrollProgress),
+        rotZ: THREE.MathUtils.lerp(-0.3, 0, scrollProgress),
       };
 
       applyBirdTransform();
@@ -526,12 +655,12 @@ export default function EagleScrollScene({
       if (disposed || scrollReady || !triggerEl) return;
       scrollReady = true;
 
-      // Initial camera for embedded hero (dark7-v2). First value = camera X.
+      // Initial camera for embedded hero (dark7-v3). First value = camera X.
       // More negative → eagle appears more to the RIGHT; less negative → more LEFT.
       camera.position.set(-0.35, 0.85, 1.15); // ← camera X , Y , Z
       camera.lookAt(0.15, 0.15, 0); // ← lookAt X affects horizontal framing
 
-      ScrollTrigger.getById(DARK7_V2_HERO_PIN_ID)?.kill();
+      ScrollTrigger.getById(DARK7_V3_HERO_PIN_ID)?.kill();
 
       gsapCtx?.revert();
       gsapCtx = gsap.context(() => {
@@ -540,8 +669,8 @@ export default function EagleScrollScene({
         scrollTween = gsap.to(state, {
           progress: 1,
           ease: "none",
-          scrollTrigger: dark7V2ScrollTrigger({
-            id: embeddedScroll ? DARK7_V2_HERO_PIN_ID : "eagle-scroll-scene",
+          scrollTrigger: dark7V3ScrollTrigger({
+            id: embeddedScroll ? DARK7_V3_HERO_PIN_ID : "eagle-scroll-scene",
             trigger: triggerEl,
             start: "top top",
             end: embeddedScroll ? "+=500" : "+=8000",
@@ -561,17 +690,17 @@ export default function EagleScrollScene({
       }, triggerEl);
 
       requestAnimationFrame(() => {
-        refreshDark7V2ScrollTriggers();
+        refreshDark7V3ScrollTriggers();
         const progress =
-          getDark7V2ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
+          getDark7V3ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
         applyScrollProgress(progress);
         onScrollProgressRef.current?.(progress <= 0.001 ? 0 : progress);
       });
 
       window.setTimeout(() => {
-        refreshDark7V2ScrollTriggers(true);
+        refreshDark7V3ScrollTriggers(true);
         const progress =
-          getDark7V2ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
+          getDark7V3ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
         applyScrollProgress(progress);
         onScrollProgressRef.current?.(progress <= 0.001 ? 0 : progress);
         if (embeddedScroll) {
@@ -586,8 +715,9 @@ export default function EagleScrollScene({
         if (disposed) return;
 
         birdObject = gltf.scene;
-        birdMaterials = applyBirdMaterial(birdObject, birdTextures, backgroundOnly);
         scene.add(birdObject);
+        birdObject.updateWorldMatrix(true, true);
+        birdMaterials = applyBirdMaterial(birdObject, birdTextures, backgroundOnly);
 
         if (gltf.animations.length) {
           birdMixer = new THREE.AnimationMixer(birdObject);

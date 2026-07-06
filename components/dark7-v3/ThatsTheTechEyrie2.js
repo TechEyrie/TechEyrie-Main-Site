@@ -5,7 +5,7 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { dark7V2ScrollTrigger } from "./lenisScrollTrigger";
+import { dark7V3ScrollTrigger } from "./lenisScrollTrigger";
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
@@ -51,7 +51,7 @@ function MobileTechEyrieSection({ theme }) {
   return (
     <div className="relative w-full max-w-full min-w-0 overflow-x-clip">
       <section
-        className="dark7-v2-tech-eyrie relative overflow-hidden transition-colors duration-500"
+        className="dark7-v3-tech-eyrie relative overflow-hidden transition-colors duration-500"
         style={bgStyle}
       >
         <SectionOverlays />
@@ -271,7 +271,7 @@ function DesktopTechEyrieSection({ theme }) {
       };
 
       const mainTl = gsap.timeline({
-        scrollTrigger: dark7V2ScrollTrigger({
+        scrollTrigger: dark7V3ScrollTrigger({
           trigger: wrapper,
           start: "top top",
           end: `top+=${SCROLL_DISTANCE} top`,
@@ -409,7 +409,7 @@ function DesktopTechEyrieSection({ theme }) {
     <div ref={wrapperRef} className="relative" style={{ height: "185vh" }}>
       <section
         ref={sectionRef}
-        className="dark7-v2-tech-eyrie relative overflow-hidden transition-colors duration-500 sticky top-0 h-screen"
+        className="dark7-v3-tech-eyrie relative overflow-hidden transition-colors duration-500 sticky top-0 h-screen"
         style={{ ...bgStyle, minHeight: "100vh" }}
       >
         <SectionOverlays />

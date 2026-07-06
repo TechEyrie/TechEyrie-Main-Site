@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CardsServicesSection from "./CardsServicesSection";
 import FAQSection from "./FAQSection";
 import BlogsSection from "./BlogSection";
-import { dark7V2ScrollTrigger } from "./lenisScrollTrigger";
+import { dark7V3ScrollTrigger } from "./lenisScrollTrigger";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -60,7 +60,7 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
     });
 
     const st = ScrollTrigger.create(
-      dark7V2ScrollTrigger({
+      dark7V3ScrollTrigger({
         trigger: wrapperRef.current,
         start: "top 85%",
         end: "bottom 15%",

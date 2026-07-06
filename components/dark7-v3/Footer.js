@@ -129,7 +129,7 @@ export default function Footer({ theme = 'light' }) {
       `}</style>
 
       <footer
-        className="dark5-footer dark7-v2-footer pt-3 sm:pt-4 md:pt-5 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6 lg:px-8"
+        className="dark5-footer dark7-v3-footer pt-3 sm:pt-4 md:pt-5 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6 lg:px-8"
         style={footerBgStyle}
       >
         <div

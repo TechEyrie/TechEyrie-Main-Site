@@ -5,7 +5,7 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { dark7V2ScrollTrigger } from "./lenisScrollTrigger";
+import { dark7V3ScrollTrigger } from "./lenisScrollTrigger";
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
@@ -75,7 +75,7 @@ function MobileAirvoirSection({ theme }) {
   return (
     <div className="relative w-full max-w-full min-w-0 overflow-x-clip">
       <section
-        className="dark7-v2-airvoir relative overflow-hidden transition-colors duration-500"
+        className="dark7-v3-airvoir relative overflow-hidden transition-colors duration-500"
         style={bgStyle}
       >
         <SectionOverlays />
@@ -152,7 +152,7 @@ function DesktopAirvoirSection({ theme }) {
       gsap.set(secondHeading, { opacity: 0 });
 
       const mainTl = gsap.timeline({
-        scrollTrigger: dark7V2ScrollTrigger({
+        scrollTrigger: dark7V3ScrollTrigger({
           trigger: section,
           start: "top top",
           end: "+=100%",
@@ -202,7 +202,7 @@ function DesktopAirvoirSection({ theme }) {
   return (
     <section
       ref={sectionRef}
-      className="dark7-v2-airvoir relative overflow-hidden transition-colors duration-500 min-h-screen"
+      className="dark7-v3-airvoir relative overflow-hidden transition-colors duration-500 min-h-screen"
       style={bgStyle}
     >
       <SectionOverlays />

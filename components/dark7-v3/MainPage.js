@@ -19,9 +19,9 @@ import Lenis from "@studio-freight/lenis";
 import "./MainPage.css";
 import HeroProblemServicesCombined from "./HeroProblemServicesCombined";
 import {
-  initDark7V2LenisScroll,
-  destroyDark7V2LenisScroll,
-  refreshDark7V2ScrollTriggers,
+  initDark7V3LenisScroll,
+  destroyDark7V3LenisScroll,
+  refreshDark7V3ScrollTriggers,
 } from "./lenisScrollTrigger";
 
 if (typeof window !== "undefined") {
@@ -66,7 +66,7 @@ const MainPage = () => {
       touchMultiplier: 2,
     });
 
-    initDark7V2LenisScroll(lenis);
+    initDark7V3LenisScroll(lenis);
     lenis.scrollTo(0, { immediate: true });
 
     const onRefresh = () => lenis.resize();
@@ -80,19 +80,19 @@ const MainPage = () => {
     gsap.ticker.lagSmoothing(0);
 
     const refreshTimers = [
-      window.setTimeout(() => refreshDark7V2ScrollTriggers(true), 100),
-      window.setTimeout(() => refreshDark7V2ScrollTriggers(true), 500),
-      window.setTimeout(() => refreshDark7V2ScrollTriggers(true), 1200),
+      window.setTimeout(() => refreshDark7V3ScrollTriggers(true), 100),
+      window.setTimeout(() => refreshDark7V3ScrollTriggers(true), 500),
+      window.setTimeout(() => refreshDark7V3ScrollTriggers(true), 1200),
     ];
 
-    const onLoad = () => refreshDark7V2ScrollTriggers(true);
+    const onLoad = () => refreshDark7V3ScrollTriggers(true);
     window.addEventListener("load", onLoad);
 
     return () => {
       refreshTimers.forEach((timer) => window.clearTimeout(timer));
       window.removeEventListener("load", onLoad);
       ScrollTrigger.removeEventListener("refresh", onRefresh);
-      destroyDark7V2LenisScroll(lenis);
+      destroyDark7V3LenisScroll(lenis);
       lenis.destroy();
       gsap.ticker.remove(raf);
     };

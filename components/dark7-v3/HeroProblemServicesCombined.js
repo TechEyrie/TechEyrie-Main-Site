@@ -7,7 +7,7 @@ import HeroSectionMediaSlot from "./HeroSectionMediaSlot";
 import RealProblemSection from "./RealProblemSection";
 import NewServicesSection from "./NewServicesSection";
 import { dark7MainSurfaceStyle } from "./dark7PageSurface";
-import { dark7V2ScrollTrigger } from "./lenisScrollTrigger";
+import { dark7V3ScrollTrigger } from "./lenisScrollTrigger";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -67,7 +67,7 @@ export default function HeroProblemServicesCombined({ theme = "light" }) {
       if (!triggerEl || !orbEl) return null;
 
       return ScrollTrigger.create(
-        dark7V2ScrollTrigger({
+        dark7V3ScrollTrigger({
           trigger: triggerEl,
           start,
           end,

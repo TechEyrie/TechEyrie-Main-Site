@@ -302,7 +302,7 @@ const BlogsSection = ({ theme = "light", sharedBackground = false }) => {
   return (
     <section 
       ref={sectionRef}
-      className="dark7-v2-blogs relative w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden transition-colors duration-500"
+      className="dark7-v3-blogs relative w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden transition-colors duration-500"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (

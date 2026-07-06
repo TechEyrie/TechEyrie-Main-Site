@@ -41,89 +41,89 @@ body {
 }
 
 /* DeepJudge2 cream surface: dark text on light background */
-.dark2-page .dark7-v2-deep-judge,
-.dark2-page .dark7-v2-deep-judge h1,
-.dark2-page .dark7-v2-deep-judge h2,
-.dark2-page .dark7-v2-deep-judge h3,
-.dark2-page .dark7-v2-deep-judge p,
-.dark2-page .dark7-v2-deep-judge span:not(.deep-judge-light-ui):not(.deep-judge-light-ui *) {
+.dark2-page .dark7-v3-deep-judge,
+.dark2-page .dark7-v3-deep-judge h1,
+.dark2-page .dark7-v3-deep-judge h2,
+.dark2-page .dark7-v3-deep-judge h3,
+.dark2-page .dark7-v3-deep-judge p,
+.dark2-page .dark7-v3-deep-judge span:not(.deep-judge-light-ui):not(.deep-judge-light-ui *) {
   color: #111111 !important;
 }
 
-.dark2-page .dark7-v2-deep-judge .deep-judge-badge-num {
+.dark2-page .dark7-v3-deep-judge .deep-judge-badge-num {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v2-deep-judge .deep-judge-light-ui,
-.dark2-page .dark7-v2-deep-judge .deep-judge-light-ui * {
+.dark2-page .dark7-v3-deep-judge .deep-judge-light-ui,
+.dark2-page .dark7-v3-deep-judge .deep-judge-light-ui * {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v2-new-services .new-services-title-line,
-.dark2-page .dark7-v2-new-services .new-services-title-line *,
-.dark2-page .dark7-v2-new-services .new-services-surface-text {
+.dark2-page .dark7-v3-new-services .new-services-title-line,
+.dark2-page .dark7-v3-new-services .new-services-title-line *,
+.dark2-page .dark7-v3-new-services .new-services-surface-text {
   color: #111111 !important;
 }
 
-.dark2-page .dark7-v2-new-services .new-services-surface-body {
+.dark2-page .dark7-v3-new-services .new-services-surface-body {
   color: #212121 !important;
 }
 
-.dark2-page .dark7-v2-tech-eyrie,
-.dark2-page .dark7-v2-tech-eyrie *:not(.text-white) {
+.dark2-page .dark7-v3-tech-eyrie,
+.dark2-page .dark7-v3-tech-eyrie *:not(.text-white) {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v2-airvoir,
-.dark2-page .dark7-v2-airvoir h1,
-.dark2-page .dark7-v2-airvoir h2,
-.dark2-page .dark7-v2-airvoir p,
-.dark2-page .dark7-v2-airvoir span:not(.text-white) {
+.dark2-page .dark7-v3-airvoir,
+.dark2-page .dark7-v3-airvoir h1,
+.dark2-page .dark7-v3-airvoir h2,
+.dark2-page .dark7-v3-airvoir p,
+.dark2-page .dark7-v3-airvoir span:not(.text-white) {
   color: #111111 !important;
 }
 
-.dark2-page .dark7-v2-testimonials .testimonials-heading {
+.dark2-page .dark7-v3-testimonials .testimonials-heading {
   color: #f3f3f3 !important;
   text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
 }
 
-.dark2-page .dark7-v2-cards-services .cards-services-heading {
+.dark2-page .dark7-v3-cards-services .cards-services-heading {
   color: #f5f1ee !important;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
 }
 
-.dark2-page .dark7-v2-faq,
-.dark2-page .dark7-v2-faq .faq-title-line,
-.dark2-page .dark7-v2-faq .faq-title-line * {
+.dark2-page .dark7-v3-faq,
+.dark2-page .dark7-v3-faq .faq-title-line,
+.dark2-page .dark7-v3-faq .faq-title-line * {
   color: #f3f3f3 !important;
 }
 
-.dark2-page .dark7-v2-blogs,
-.dark2-page .dark7-v2-blogs *:not(.text-white) {
+.dark2-page .dark7-v3-blogs,
+.dark2-page .dark7-v3-blogs *:not(.text-white) {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v2-blogs .new-engen-text {
+.dark2-page .dark7-v3-blogs .new-engen-text {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v2-blogs .blogs-heading,
-.dark2-page .dark7-v2-blogs .blogs-heading .insights-by-text,
-.dark2-page .dark7-v2-blogs .blogs-heading .new-engen-text,
-.dark2-page .dark7-v2-blogs .blogs-heading .char {
+.dark2-page .dark7-v3-blogs .blogs-heading,
+.dark2-page .dark7-v3-blogs .blogs-heading .insights-by-text,
+.dark2-page .dark7-v3-blogs .blogs-heading .new-engen-text,
+.dark2-page .dark7-v3-blogs .blogs-heading .char {
   color: #ffffff !important;
 }
 
-.dark2-page .dark7-v2-blogs .blogs-body {
+.dark2-page .dark7-v3-blogs .blogs-body {
   color: #ffffff !important;
 }
 
-.dark2-page .dark7-v2-airplane-hero .airplane-hero-heading {
+.dark2-page .dark7-v3-airplane-hero .airplane-hero-heading {
   color: #162d24 !important;
   text-shadow: 0 2px 18px rgba(246, 242, 238, 0.45);
 }
 
-.dark2-page .dark7-v2-airplane-hero .airplane-hero-input {
+.dark2-page .dark7-v3-airplane-hero .airplane-hero-input {
   color: #f6f2ee !important;
 }
 

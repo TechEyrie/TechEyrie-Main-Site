@@ -222,7 +222,7 @@ export default function FAQSection({ theme = 'light', sharedBackground = false }
   return (
     <section
       ref={sectionRef}
-      className="dark7-v2-faq relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="dark7-v3-faq relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (

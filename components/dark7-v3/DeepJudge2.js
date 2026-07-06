@@ -3,7 +3,7 @@
 import React, { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { dark7V2ScrollTrigger, refreshDark7V2ScrollTriggers, subscribeAfterHeroPin } from "./lenisScrollTrigger";
+import { dark7V3ScrollTrigger, refreshDark7V3ScrollTriggers, subscribeAfterHeroPin } from "./lenisScrollTrigger";
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
@@ -63,7 +63,7 @@ export default function DeepJudge2({ theme }) {
   };
   
   // Theme Colors (aligned with FAQ: #f3f3f3, #a0a0a0, #d0d0d0)
-  // Light cream surface on dark7-v2 (theme prop stays "dark" for page shell)
+  // Light cream surface on dark7-v3 (theme prop stays "dark" for page shell)
   const textColor = surfaceIsLight ? 'text-slate-900' : isDark ? 'text-[#f3f3f3]' : 'text-slate-900';
   const subtitleColor = surfaceIsLight ? 'text-slate-600' : isDark ? 'text-[#a0a0a0]' : 'text-slate-600';
   const circleBlobColor = surfaceIsLight || !isDark ? '' : 'bg-neutral-800/80 border-neutral-700/50';
@@ -87,11 +87,11 @@ export default function DeepJudge2({ theme }) {
           if (built || !wrapperRef.current) return;
           built = true;
 
-          ScrollTrigger.getById("dark7-v2-deep-judge")?.kill();
+          ScrollTrigger.getById("dark7-v3-deep-judge")?.kill();
 
           const tl = gsap.timeline({
-            scrollTrigger: dark7V2ScrollTrigger({
-              id: "dark7-v2-deep-judge",
+            scrollTrigger: dark7V3ScrollTrigger({
+              id: "dark7-v3-deep-judge",
               trigger: wrapperRef.current,
               start: "top top",
               end: "+=4000",
@@ -284,7 +284,7 @@ export default function DeepJudge2({ theme }) {
         }, "stage4+=0.2");
         
         tl.to(".card-content", { opacity: 1, duration: 0.5 }, "stage4+=1");
-          refreshDark7V2ScrollTriggers(true);
+          refreshDark7V3ScrollTriggers(true);
         };
 
         const unsubHero = subscribeAfterHeroPin(build);
@@ -307,7 +307,7 @@ export default function DeepJudge2({ theme }) {
     <main
       ref={containerRef}
       style={bgStyle}
-      className="dark7-v2-deep-judge relative min-h-screen overflow-x-hidden transition-colors duration-500 isolate"
+      className="dark7-v3-deep-judge relative min-h-screen overflow-x-hidden transition-colors duration-500 isolate"
     >
       <div
         className="pointer-events-none absolute inset-0 z-[1]"

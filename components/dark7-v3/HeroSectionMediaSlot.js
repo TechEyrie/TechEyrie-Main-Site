@@ -61,7 +61,6 @@ export default function HeroSectionMediaSlot({
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [currentCityIndex, setCurrentCityIndex] = useState(0);
   const [outgoingCity, setOutgoingCity] = useState(null);
-  const [activeArrows, setActiveArrows] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
 
   useEffect(() => {
@@ -142,13 +141,6 @@ export default function HeroSectionMediaSlot({
     };
   }, [currentCityIndex, prefersReducedMotion, rotatingCities]);
 
-  const scrollToPortfolio = useCallback(() => {
-    portfolioSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, []);
-
   const openCaseStudy = useCallback(
     (href) => {
       router.push(href);
@@ -166,13 +158,6 @@ export default function HeroSectionMediaSlot({
       gsap.set(content, { clearProps: "opacity,y" });
     };
   }, [theme]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveArrows((prev) => (prev >= 4 ? 0 : prev + 1));
-    }, 400);
-    return () => clearInterval(interval);
-  }, []);
 
   const triggerElectricalAnimation = useCallback(() => {
     const titleLines = document.querySelectorAll(".hero-main-title-line");
@@ -274,8 +259,8 @@ export default function HeroSectionMediaSlot({
 
       <section
         ref={heroSectionRef}
-        className={`dark7-v2-hero relative overflow-x-hidden${
-          theme === "dark" ? " dark7-v2-hero-eagle" : ""
+        className={`dark7-v3-hero relative overflow-x-hidden${
+          theme === "dark" ? " dark7-v3-hero-eagle" : ""
         }`}
         style={theme === "dark" && !sharedBackground ? dark7HeroSurfaceStyle() : undefined}
       >
@@ -294,10 +279,9 @@ export default function HeroSectionMediaSlot({
 
           <div
             ref={heroContentRef}
-            className="dark7-v2-hero-content relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1800px] flex-col px-4 md:px-6 lg:px-10"
+            className="dark7-v3-hero-content relative z-10 flex min-h-[calc(100svh-7rem)] w-full max-w-[1800px] flex-col items-start justify-end pl-4 pr-4 pb-10 text-left sm:pl-5 sm:pb-11 md:pl-6 md:pb-12 lg:pl-8 lg:pb-14"
           >
-          <div className="flex justify-center pt-4 md:pt-8">
-            <div className="hero-badge flex items-center gap-3">
+            <div className="hero-badge mb-2 flex items-center gap-3">
               <span
                 className="inline-flex h-5 w-5 rounded-sm"
                 style={{
@@ -311,16 +295,14 @@ export default function HeroSectionMediaSlot({
                 AI & Automation Partner
               </span>
             </div>
-          </div>
 
-          <div className="flex flex-1 flex-col items-center justify-end pb-24 text-center md:pb-28">
             <div
               ref={titleContainerRef}
-              className="dark7-v2-hero-title mx-auto w-full max-w-[1200px]"
+              className="dark7-v3-hero-title w-full max-w-[920px]"
             >
               <h1 className="font-italiana tracking-[-0.03em]">
                 <span
-                  className={`hero-main-title-line block text-[32px] leading-[1.05] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
+                  className={`hero-main-title-line block text-[32px] leading-[1.08] sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
                 >
                   <span className="font-light">AI Systems </span>
                   <span className="font-playfair text-[0.94em] italic tracking-[0.03em]">
@@ -328,24 +310,21 @@ export default function HeroSectionMediaSlot({
                   </span>
                 </span>
                 <span
-                  className={`hero-main-title-line -mt-[0.2rem] block text-[32px] leading-[1.05] font-light sm:-mt-[0.3rem] sm:text-[42px] md:-mt-[0.4rem] md:text-[58px] lg:-mt-[0.5rem] lg:text-[72px] xl:-mt-[0.6rem] xl:text-[88px] 2xl:-mt-[0.7rem] 2xl:text-[104px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
+                  className={`hero-main-title-line -mt-1 block text-[32px] leading-[1.08] font-light sm:-mt-1.5 sm:text-[42px] md:-mt-2 md:text-[58px] lg:-mt-2.5 lg:text-[72px] xl:-mt-3 xl:text-[88px] 2xl:-mt-3.5 2xl:text-[104px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
                 >
-                  workflows into
-                </span>
-                <span
-                  className={`hero-main-title-line block text-[32px] leading-[1.05] font-light sm:text-[42px] md:text-[58px] lg:text-[72px] xl:text-[88px] 2xl:text-[104px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
-                >
-                  Profit
+                  workflows into Profit
                 </span>
               </h1>
             </div>
 
-            <div className="hero-body mx-auto mt-8 max-w-[640px] px-2 sm:mt-10">
+            <div className="hero-body mt-2 max-w-[560px] md:mt-2.5">
               <p
-                className={`mb-9 font-playfair text-[17px] font-normal leading-relaxed md:text-[25px] ${theme === "dark" ? "text-white/90" : "text-[#1b3d36]"}`}
+                className={`mb-2 font-playfair text-[17px] font-normal leading-snug md:mb-2.5 md:text-[25px] md:leading-snug ${theme === "dark" ? "text-white/90" : "text-[#1b3d36]"}`}
               >
-                Turning leads into loyal customers, we tailor high performance
-                pipeline, ROI and elevate your brand authority.
+                Turning leads into loyal customers, we tailor high performance pipeline,
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>
+                ROI and elevate your brand authority.
               </p>
               <Link
                 href="#discover"
@@ -390,37 +369,6 @@ export default function HeroSectionMediaSlot({
                 </span>
               </Link>
             </div>
-          </div>
-
-          <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 md:bottom-8">
-            <button
-              type="button"
-              onClick={scrollToPortfolio}
-              className="group flex cursor-pointer flex-col gap-[-2px] transition-transform duration-300 hover:scale-110"
-              aria-label="Scroll to portfolio section"
-            >
-              {[0, 1, 2, 3].map((index) => {
-                const isActive = 3 - index < activeArrows;
-                return (
-                  <svg
-                    key={index}
-                    className="-my-0.5 h-4 w-4 transition-colors duration-300 md:h-4 md:w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{ color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)" }}
-                  >
-                    <path
-                      d="M7 10L12 15L17 10"
-                      stroke="currentColor"
-                      strokeWidth="4.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                );
-              })}
-            </button>
-          </div>
         </div>
         </div>
       </section>
@@ -428,19 +376,19 @@ export default function HeroSectionMediaSlot({
       <section
         ref={portfolioSectionRef}
         id="discover"
-        className="dark7-v2-portfolio relative w-full overflow-visible py-0"
+        className="dark7-v3-portfolio relative w-full overflow-visible py-0"
         style={{ zIndex: 1 }}
       >
 
         <div className="relative z-10 mx-auto w-full max-w-[1800px] px-4 pt-4 sm:px-6 lg:px-8">
           <header className="mb-12 text-center sm:mb-16">
             <p
-              className={`dark7-v2-portfolio-eyebrow mb-4 font-merriweather text-sm sm:mb-6 sm:text-base md:text-lg ${theme === "dark" ? "text-white/70" : "text-[#1b3d36]/70"}`}
+              className={`dark7-v3-portfolio-eyebrow mb-4 font-merriweather text-sm sm:mb-6 sm:text-base md:text-lg ${theme === "dark" ? "text-white/70" : "text-[#1b3d36]/70"}`}
             >
               Our Goal
             </p>
-            <h2 className="dark7-v2-portfolio-title font-italiana text-3xl leading-tight text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              <span className="dark7-v2-portfolio-title-lead font-light text-black">
+            <h2 className="dark7-v3-portfolio-title font-italiana text-3xl leading-tight text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              <span className="dark7-v3-portfolio-title-lead font-light text-black">
                 Creating impact for businesses in{" "}
               </span>
               <span className="relative -top-[2px] inline-flex min-w-[6ch] items-center justify-center overflow-hidden rounded-xl bg-black px-3 py-1 align-middle text-white">
@@ -522,7 +470,7 @@ export default function HeroSectionMediaSlot({
                   <div className="relative z-10 flex h-[132px] w-full flex-col justify-center rounded-b-xl transition-colors duration-300 sm:h-[148px]">
                     <div className="flex h-full flex-col justify-center px-4 py-5 sm:px-6 sm:py-6">
                       <h3
-                        className={`dark7-v2-portfolio-card-title mb-2 text-base font-bold transition-colors duration-300 sm:text-lg${
+                        className={`dark7-v3-portfolio-card-title mb-2 text-base font-bold transition-colors duration-300 sm:text-lg${
                           hoveredCard === index ? " is-hovered" : ""
                         }`}
                         style={{
@@ -540,7 +488,7 @@ export default function HeroSectionMediaSlot({
                         {item.buttons.map((button, btnIndex) => (
                           <span
                             key={btnIndex}
-                            className={`dark7-v2-portfolio-card-tag rounded-full border px-3 py-1 text-xs transition-colors duration-300${
+                            className={`dark7-v3-portfolio-card-tag rounded-full border px-3 py-1 text-xs transition-colors duration-300${
                               hoveredCard === index ? " is-hovered" : ""
                             }`}
                             style={{

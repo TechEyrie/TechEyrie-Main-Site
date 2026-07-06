@@ -123,7 +123,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
 
   return (
     <section
-      className="dark7-v2-cards-services relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden transition-colors duration-500"
+      className="dark7-v3-cards-services relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden transition-colors duration-500"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (
