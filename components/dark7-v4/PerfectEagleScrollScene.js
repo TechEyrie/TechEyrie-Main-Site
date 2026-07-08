@@ -1,5 +1,8 @@
 "use client";
 
+// Perfected eagle snapshot — duplicate of EagleScrollScene.js with tuned REST_BIRD / materials.
+// Swap import in HeroSectionMediaSlot: PerfectEagleScrollScene instead of EagleScrollScene.
+
 import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -392,7 +395,7 @@ function applyBirdMaterial(bird, textures, lightweight = false) {
   return materials;
 }
 
-export default function EagleScrollScene({
+export default function PerfectEagleScrollScene({
   backgroundOnly = false,
   pinTargetRef = null,
   onScrollProgress = null,
@@ -862,7 +865,7 @@ export default function EagleScrollScene({
         }
       },
       undefined,
-      (error) => console.error("[EagleScrollScene] v20.glb failed:", error),
+      (error) => console.error("[PerfectEagleScrollScene] v20.glb failed:", error),
     );
 
     const animate = (time) => {

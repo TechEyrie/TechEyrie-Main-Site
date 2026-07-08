@@ -27,6 +27,31 @@ const ICE_NORMAL = "/images/icen.jpg";
 const ICE_ROUGHNESS = "/images/iced.jpg";
 const DRACO_DECODER_PATH = "/draco/gltf/";
 
+// ── Eagle at rest (scroll = 0) — edit these to move / rotate / scale ─────
+// x: more negative = left on screen, more positive = right
+// y: up/down | z: depth | scale: size
+// rotZ: roll (tilt) | rotY: turn left/right | rotX: pitch up/down (radians)
+const REST_BIRD = {
+  x: -0.6,
+  y: 0.3,
+  z: 0,
+  scale: 1,
+  rotZ: -0.3,
+  rotY: 0,
+  rotX: 0,
+};
+
+// Eagle pose at full scroll (fly-out animation end)
+const SCROLL_END_BIRD = {
+  x: -1,
+  y: 2.5,
+  z: -2.8,
+  scale: 2.8,
+  rotZ: 0,
+  rotY: 0,
+  rotX: 0,
+};
+
 // Per-mesh wing palette — emerald, teal, lime, gold-green iridescence
 const WING_PALETTE = [
   {
@@ -520,8 +545,8 @@ export default function EagleScrollScene({
       );
       birdObject.scale.setScalar(baseBird.scale);
       birdObject.rotation.z = baseBird.rotZ + mouse.x * 0.04 * hoverAmount;
-      birdObject.rotation.y = mouse.x * 0.16 * hoverAmount;
-      birdObject.rotation.x = -mouse.y * 0.1 * hoverAmount;
+      birdObject.rotation.y = (baseBird.rotY ?? 0) + mouse.x * 0.16 * hoverAmount;
+      birdObject.rotation.x = (baseBird.rotX ?? 0) - mouse.y * 0.1 * hoverAmount;
     }
 
     // ── SCROLL WING LOOK (multi-tone green / teal / gold crystalline) ─────────
@@ -629,14 +654,14 @@ export default function EagleScrollScene({
       // lookAt X: higher = camera looks more to the right (bird appears more left).
       camera.lookAt(0.20, 0.15, 0);
 
-      // Eagle path while scrolling. First number = start X, second = end X at full scroll.
-      // Example: lerp(-0.2, -6, …) starts more to the RIGHT than lerp(-0.5, -6, …).
       baseBird = {
-        x: THREE.MathUtils.lerp(-0.6, -1, scrollProgress), // ← start X , end X (fly-out)
-        y: THREE.MathUtils.lerp(0.3, 2.5, scrollProgress),
-        z: THREE.MathUtils.lerp(0, -2.8, scrollProgress),
-        scale: THREE.MathUtils.lerp(1, 2.8, scrollProgress),
-        rotZ: THREE.MathUtils.lerp(-0.3, 0, scrollProgress),
+        x: THREE.MathUtils.lerp(REST_BIRD.x, SCROLL_END_BIRD.x, scrollProgress),
+        y: THREE.MathUtils.lerp(REST_BIRD.y, SCROLL_END_BIRD.y, scrollProgress),
+        z: THREE.MathUtils.lerp(REST_BIRD.z, SCROLL_END_BIRD.z, scrollProgress),
+        scale: THREE.MathUtils.lerp(REST_BIRD.scale, SCROLL_END_BIRD.scale, scrollProgress),
+        rotZ: THREE.MathUtils.lerp(REST_BIRD.rotZ, SCROLL_END_BIRD.rotZ, scrollProgress),
+        rotY: THREE.MathUtils.lerp(REST_BIRD.rotY, SCROLL_END_BIRD.rotY, scrollProgress),
+        rotX: THREE.MathUtils.lerp(REST_BIRD.rotX, SCROLL_END_BIRD.rotX, scrollProgress),
       };
 
       applyBirdTransform();
@@ -657,7 +682,7 @@ export default function EagleScrollScene({
 
       // Initial camera for embedded hero (dark7-v3). First value = camera X.
       // More negative → eagle appears more to the RIGHT; less negative → more LEFT.
-      camera.position.set(-0.35, 0.85, 1.15); // ← camera X , Y , Z
+      camera.position.set(-0.35, 0.85, ); // ← camera X , Y , Z
       camera.lookAt(0.15, 0.15, 0); // ← lookAt X affects horizontal framing
 
       ScrollTrigger.getById(DARK7_V3_HERO_PIN_ID)?.kill();

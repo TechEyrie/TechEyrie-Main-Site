@@ -38,25 +38,32 @@
   color: #f8fffb !important;
 }
 
+.dark7-v4-hero-eagle .dark7-v4-hero-pin {
+  isolation: isolate;
+}
+
 .dark7-v4-hero-eagle .hero-main-title-line,
 .dark7-v4-hero-eagle .hero-body p,
 .dark7-v4-hero-eagle .hero-badge span:last-child {
   text-shadow:
-    0 2px 28px rgba(6, 42, 31, 0.42),
-    0 1px 4px rgba(6, 42, 31, 0.28);
+    0 2px 36px rgba(4, 18, 14, 0.72),
+    0 1px 8px rgba(4, 18, 14, 0.55),
+    0 0 1px rgba(4, 18, 14, 0.85);
 }
+
+.dark7-v4-hero-eagle .dark7-v4-hero-content {
+  opacity: 1;
+  position: relative;
+  z-index: 20;
+}
+
+/* Hero/portfolio backgrounds are set inline from dark7PageGradients.js */
 
 @media (min-width: 640px) {
   .dark7-v4-hero-title .hero-main-title-line {
     white-space: nowrap;
   }
 }
-
-.dark7-v4-hero-eagle .dark7-v4-hero-content {
-  opacity: 1;
-}
-
-/* Hero/portfolio backgrounds are set inline from dark7PageGradients.js */
 
 .dark7-v4-portfolio .dark7-v4-portfolio-eyebrow {
   color: rgba(27, 61, 54, 0.72) !important;

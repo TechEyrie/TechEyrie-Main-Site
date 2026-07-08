@@ -683,13 +683,22 @@ export default function HeroSectionMediaSlot({
       >
         <div
           ref={heroPinRef}
-          className="relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-visible pt-32 md:pt-40"
+          className="dark7-v4-hero-pin relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-visible pt-32 md:pt-40"
         >
           {theme === "dark" && (
             <EagleScrollScene backgroundOnly pinTargetRef={heroPinRef} />
           )}
 
-          <div ref={heroContentRef} className="dark7-v4-hero-content relative z-10">
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 z-[5] w-[62%] max-w-[960px]"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(8, 26, 20, 0.78) 0%, rgba(8, 26, 20, 0.42) 48%, transparent 100%)",
+            }}
+            aria-hidden
+          />
+
+          <div ref={heroContentRef} className="dark7-v4-hero-content relative z-20">
             <div className="relative z-10 mx-auto flex min-h-0 max-w-[1800px] flex-col justify-between px-4 pt-12 md:px-6 lg:px-10">
               <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[65%_35%] lg:gap-12 xl:gap-16">
                 <div className="flex flex-col">
