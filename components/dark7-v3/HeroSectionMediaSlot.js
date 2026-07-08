@@ -266,7 +266,7 @@ export default function HeroSectionMediaSlot({
       >
         <div
           ref={heroPinRef}
-          className="relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-hidden pt-28 md:pt-32"
+          className="relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-hidden pt-32 md:pt-40"
         >
           {theme === "dark" && (
             // Eagle 3D scene — position is controlled in:
@@ -279,9 +279,10 @@ export default function HeroSectionMediaSlot({
 
           <div
             ref={heroContentRef}
-            className="dark7-v3-hero-content relative z-10 flex min-h-[calc(100svh-7rem)] w-full max-w-[1800px] flex-col items-start justify-end pl-4 pr-4 pb-10 text-left sm:pl-5 sm:pb-11 md:pl-6 md:pb-12 lg:pl-8 lg:pb-14"
+            className="dark7-v3-hero-content relative z-10 mx-auto flex w-full max-w-[1800px] flex-col px-4 pt-12 md:px-6 lg:px-10"
           >
-            <div className="hero-badge mb-2 flex items-center gap-3">
+            <div className="flex w-full flex-col items-start text-left">
+            <div className="hero-badge mb-16 flex items-center gap-3">
               <span
                 className="inline-flex h-5 w-5 rounded-sm"
                 style={{
@@ -298,7 +299,7 @@ export default function HeroSectionMediaSlot({
 
             <div
               ref={titleContainerRef}
-              className="dark7-v3-hero-title w-full max-w-[920px]"
+              className="dark7-v3-hero-title w-full max-w-full lg:max-w-[1600px] xl:max-w-[1800px]"
             >
               <h1 className="font-italiana tracking-[-0.03em]">
                 <span
@@ -317,57 +318,24 @@ export default function HeroSectionMediaSlot({
               </h1>
             </div>
 
-            <div className="hero-body mt-2 max-w-[560px] md:mt-2.5">
+            <div className="hero-body w-full max-w-full pt-8 sm:pt-12 lg:max-w-[640px] lg:pt-20">
               <p
-                className={`mb-2 font-playfair text-[17px] font-normal leading-snug md:mb-2.5 md:text-[25px] md:leading-snug ${theme === "dark" ? "text-white/90" : "text-[#1b3d36]"}`}
+                className={`mb-2 font-merriweather text-[17px] font-light leading-relaxed md:mb-2.5 md:text-[22px] md:leading-relaxed ${theme === "dark" ? "text-white/85" : "text-[#1b3d36]/90"}`}
               >
-                Turning leads into loyal customers, we tailor high performance pipeline,
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                ROI and elevate your brand authority.
+                Enterprise AI, automation, and custom digital solutions designed to
+                simplify complexity, improve performance, and unlock sustainable growth.
               </p>
               <Link
                 href="#discover"
-                className="group inline-flex items-center justify-center gap-3"
+                className={`inline-flex items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${theme === "dark" ? "text-white/90" : "text-[#1b3d36]/90"}`}
+                style={{
+                  backgroundColor: "#F7F3F033",
+                  borderRadius: "10px",
+                }}
               >
-                <span
-                  className={`font-[Helvetica_Now_Text,Helvetica,Arial,sans-serif] text-[16px] font-bold tracking-tight md:text-[20px] ${theme === "dark" ? "text-white" : "text-[#1b3d36]"}`}
-                >
-                  Discover more
-                </span>
-                <span
-                  className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-[4px] transition-all duration-500 ease-out group-hover:-translate-y-[10px] group-hover:scale-110"
-                  style={{
-                    backgroundColor:
-                      theme === "dark" ? darkColors.primary : lightColors.primary,
-                  }}
-                >
-                  <span className="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:opacity-0">
-                    <svg width="10" height="10" viewBox="0 0 14 14" aria-hidden="true">
-                      <path
-                        d="M7 1V13M7 13L3 9M7 13L11 9"
-                        fill="none"
-                        stroke={theme === "dark" ? "#212121" : "#F9FAF5"}
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span className="absolute inset-0 flex translate-y-[-12px] items-center justify-center opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                      <path
-                        d="M7 1V13M7 13L3 9M7 13L11 9"
-                        fill="none"
-                        stroke={theme === "dark" ? "#212121" : darkColors.primary}
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </span>
+                Explore Our Expertise
               </Link>
+            </div>
             </div>
         </div>
         </div>

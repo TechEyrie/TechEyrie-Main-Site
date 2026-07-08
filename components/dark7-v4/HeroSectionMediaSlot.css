@@ -1,0 +1,88 @@
+@keyframes city-pill-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-110%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes city-pill-slide-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(115%);
+  }
+}
+
+.animate-city-pill-in {
+  animation: city-pill-slide-in 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-city-pill-out {
+  animation: city-pill-slide-out 0.52s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+.dark7-v4-hero-title .hero-main-title-line {
+  white-space: normal;
+}
+
+/* Beat .dark2-page universal beige text (#e0d1b6 !important) */
+.dark2-page .dark7-v4-hero-eagle .dark7-v4-hero-content,
+.dark2-page .dark7-v4-hero-eagle .dark7-v4-hero-content * {
+  color: #f8fffb !important;
+}
+
+.dark7-v4-hero-eagle .hero-main-title-line,
+.dark7-v4-hero-eagle .hero-body p,
+.dark7-v4-hero-eagle .hero-badge span:last-child {
+  text-shadow:
+    0 2px 28px rgba(6, 42, 31, 0.42),
+    0 1px 4px rgba(6, 42, 31, 0.28);
+}
+
+@media (min-width: 640px) {
+  .dark7-v4-hero-title .hero-main-title-line {
+    white-space: nowrap;
+  }
+}
+
+.dark7-v4-hero-eagle .dark7-v4-hero-content {
+  opacity: 1;
+}
+
+/* Hero/portfolio backgrounds are set inline from dark7PageGradients.js */
+
+.dark7-v4-portfolio .dark7-v4-portfolio-eyebrow {
+  color: rgba(27, 61, 54, 0.72) !important;
+}
+
+.dark7-v4-portfolio .dark7-v4-portfolio-title,
+.dark7-v4-portfolio .dark7-v4-portfolio-title-lead {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-city-pill,
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-city-pill * {
+  color: #ffffff !important;
+}
+
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-card-title {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-card-tag {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-card-title.is-hovered,
+.dark2-page .dark7-v4-portfolio .dark7-v4-portfolio-card-tag.is-hovered {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
