@@ -112,7 +112,7 @@ body {
 
 .dark6-page .dark6-testimonials-section .font-merriweather,
 .dark6-page .dark6-testimonials-section .font-merriweather * {
-  font-family: 'Merriweather', serif !important;
+  font-family: var(--font-merriweather), Georgia, serif !important;
 }
 
 /* Body / UI copy: Playfair without italic → sans. Italic pairs stay display serif via rule below. */

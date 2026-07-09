@@ -174,7 +174,7 @@ html {
 .dark2-page.contact-route main textarea,
 .dark2-page.contact-route main button,
 .dark2-page.contact-route main label {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.contact-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -185,7 +185,7 @@ html {
 .dark2-page.faqs-route,
 .dark2-page.faqs-route main,
 .dark2-page.faqs-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.faqs-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -196,7 +196,7 @@ html {
 .dark2-page.about-route,
 .dark2-page.about-route main,
 .dark2-page.about-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.about-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -236,7 +236,7 @@ html {
 .dark2-page.expertise-route,
 .dark2-page.expertise-route main,
 .dark2-page.expertise-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.expertise-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -247,7 +247,7 @@ html {
 .dark2-page.newsletter-route,
 .dark2-page.newsletter-route main,
 .dark2-page.newsletter-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.newsletter-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -287,7 +287,7 @@ html {
 .dark2-page.case-studies-route,
 .dark2-page.case-studies-route main,
 .dark2-page.case-studies-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.case-studies-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -298,7 +298,7 @@ html {
 .dark2-page.privacy-route,
 .dark2-page.privacy-route main,
 .dark2-page.privacy-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.privacy-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -308,7 +308,7 @@ html {
 .dark2-page.testimonials-route,
 .dark2-page.testimonials-route main,
 .dark2-page.testimonials-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.testimonials-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
@@ -344,7 +344,7 @@ html {
 .dark2-page.terms-route,
 .dark2-page.terms-route main,
 .dark2-page.terms-route main button {
-  font-family: Merriweather, Georgia, "Times New Roman", serif;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
 }
 .dark2-page.terms-route main :is(h1, h2, h3) {
   font-family: Italiana, serif;
