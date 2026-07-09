@@ -5,7 +5,7 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { dark7V5ScrollTrigger, subscribeAfterScrollLayout } from "./lenisScrollTrigger";
+import { dark7V5ScrollTrigger } from "./lenisScrollTrigger";
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
@@ -44,9 +44,30 @@ function SectionOverlays() {
   );
 }
 
+function TechEyrieCtaLink({ className = "" }) {
+  const [ctaHovered, setCtaHovered] = useState(false);
+
+  return (
+    <Link
+      href="/about"
+      className={`hero-cta-btn inline-flex cursor-pointer items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${className} ${
+        ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
+      }`}
+      style={{
+        backgroundColor: ctaHovered ? "#162D24" : "#162D2433",
+        borderRadius: "12px",
+      }}
+      onMouseEnter={() => setCtaHovered(true)}
+      onMouseLeave={() => setCtaHovered(false)}
+    >
+      Learn More About Us
+    </Link>
+  );
+}
+
 function MobileTechEyrieSection({ theme }) {
   const bgStyle = getBgStyle(theme);
-  const { textPrimary, textBody, divider } = getSurfaceClasses(theme);
+  const { textPrimary, divider } = getSurfaceClasses(theme);
 
   return (
     <div className="relative w-full max-w-full min-w-0 overflow-x-clip">
@@ -62,13 +83,13 @@ function MobileTechEyrieSection({ theme }) {
             <div className="py-14 sm:py-20 text-center">
               <div className="mb-4 sm:mb-6">
                 <span
-                  className={`font-playfair italic font-semibold text-[26px] sm:text-[32px] transition-colors duration-500 ${textPrimary}`}
+                  className={`tech-eyrie-kicker font-playfair italic font-semibold transition-colors duration-500 ${textPrimary}`}
                 >
                   That&apos;s the
                 </span>
               </div>
               <h2
-                className={`font-italiana font-light text-[44px] sm:text-[56px] leading-[0.95] tracking-[0.01em] break-words transition-colors duration-500 ${textPrimary}`}
+                className={`real-problem-title-line font-italiana font-light leading-[0.95] tracking-[0.01em] break-words transition-colors duration-500 ${textPrimary}`}
               >
                 Tech Eyrie
               </h2>
@@ -82,17 +103,17 @@ function MobileTechEyrieSection({ theme }) {
             <div className="py-14 sm:py-20">
               <h2 className="leading-[1.05] tracking-[0.01em] text-center sm:text-left">
                 <div
-                  className={`font-italiana font-light text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                  className={`real-problem-title-line font-italiana font-light transition-colors duration-500 ${textPrimary}`}
                 >
                   <span className="inline-block">TE</span> Build What
                 </div>
                 <div
-                  className={`font-playfair italic font-semibold text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                  className={`real-problem-title-line font-playfair italic font-light transition-colors duration-500 ${textPrimary}`}
                 >
                   Others Can&apos;t
                 </div>
                 <div
-                  className={`font-playfair italic font-semibold text-[32px] sm:text-[40px] transition-colors duration-500 ${textPrimary}`}
+                  className={`real-problem-title-line font-playfair italic font-light transition-colors duration-500 ${textPrimary}`}
                 >
                   See Yet
                 </div>
@@ -100,7 +121,7 @@ function MobileTechEyrieSection({ theme }) {
 
               <div className="mt-8 sm:mt-10 space-y-5 max-w-[600px] mx-auto sm:mx-0">
                 <p
-                  className={`font-merriweather font-light text-[14px] sm:text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                  className={`build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500`}
                 >
                   In the fast moving world where technology becomes complex,
                   clarity is your biggest success. Here in Tech Eyrie we built
@@ -109,20 +130,12 @@ function MobileTechEyrieSection({ theme }) {
                   digital experiences.
                 </p>
                 <p
-                  className={`font-merriweather font-light text-[14px] sm:text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                  className={`build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500`}
                 >
                   No trends, only intelligent systems that lasts long.
                 </p>
                 <div className="pt-2 flex justify-center sm:justify-start">
-                  <Link
-                    href="/about"
-                    className="group inline-flex items-center justify-center rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
-                    style={{ backgroundColor: "#12685b" }}
-                  >
-                    <span className="font-merriweather text-[13px] sm:text-[14px] font-semibold tracking-wide text-white">
-                      Learn More About Us
-                    </span>
-                  </Link>
+                  <TechEyrieCtaLink className="mt-2 sm:mt-3 self-start" />
                 </div>
               </div>
             </div>
@@ -153,8 +166,6 @@ function DesktopTechEyrieSection({ theme }) {
 
     if (!wrapper || !section || !firstPart || !secondPart || !techEyrieText || !thatsTheText)
       return;
-
-    let unsubLayout = () => {};
 
     const ctx = gsap.context(() => {
       const techWord = techEyrieText.querySelector(".tech-word");
@@ -200,14 +211,7 @@ function DesktopTechEyrieSection({ theme }) {
       const eClone = document.createElement("span");
       tClone.textContent = "T";
       eClone.textContent = "E";
-      tClone.className = techEyrieText
-        .querySelector("h2")
-        .className.replace("text-[56px]", "")
-        .replace("sm:text-[72px]", "")
-        .replace("md:text-[96px]", "")
-        .replace("lg:text-[120px]", "")
-        .replace("xl:text-[140px]", "")
-        .replace("2xl:text-[160px]", "");
+      tClone.className = techEyrieText.querySelector("h2").className;
       eClone.className = tClone.className;
       tClone.style.cssText = "display: inline-block; line-height: 1;";
       eClone.style.cssText = "display: inline-block; line-height: 1;";
@@ -272,26 +276,21 @@ function DesktopTechEyrieSection({ theme }) {
         document.body.appendChild(teContainer);
       };
 
-      const buildScrollAnimation = () => {
-        ScrollTrigger.getById("dark7-v5-tech-eyrie")?.kill();
+      const mainTl = gsap.timeline({
+        scrollTrigger: dark7V5ScrollTrigger({
+          trigger: wrapper,
+          start: "top top",
+          end: `top+=${SCROLL_DISTANCE} top`,
+          scrub: 3,
+          onUpdate: (self) => {
+            const p = self.progress();
+            if (p >= 0.92 && teContainer.parentNode !== section) moveTEToSection();
+            else if (p < 0.92 && teContainer.parentNode === section) moveTEToBody();
+          },
+        }),
+      });
 
-        const mainTl = gsap.timeline({
-          scrollTrigger: dark7V5ScrollTrigger({
-            id: "dark7-v5-tech-eyrie",
-            trigger: wrapper,
-            start: "top top",
-            end: `top+=${SCROLL_DISTANCE} top`,
-            scrub: 3,
-            refreshPriority: -2,
-            onUpdate: (self) => {
-              const p = self.progress();
-              if (p >= 0.92 && teContainer.parentNode !== section) moveTEToSection();
-              else if (p < 0.92 && teContainer.parentNode === section) moveTEToBody();
-            },
-          }),
-        });
-
-        mainTl
+      mainTl
         .to(thatsTheText, { opacity: 0, y: -30, duration: 0.1, ease: "power2.out" }, 0)
         .to(
           [...Array.from(techSpans).slice(1), ...Array.from(eyrieSpans).slice(1)],
@@ -401,22 +400,16 @@ function DesktopTechEyrieSection({ theme }) {
           { opacity: 1, y: 0, duration: 0.04, ease: "power3.out" },
           0.91
         );
-      };
-
-      unsubLayout = subscribeAfterScrollLayout(buildScrollAnimation);
 
       return () => {
         if (teContainer?.parentNode) teContainer.parentNode.removeChild(teContainer);
       };
     }, section);
 
-    return () => {
-      unsubLayout();
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, [theme]);
 
-  const { textPrimary, textBody } = getSurfaceClasses(theme);
+  const { textPrimary } = getSurfaceClasses(theme);
 
   return (
     <div ref={wrapperRef} className="relative" style={{ height: "185vh" }}>
@@ -434,14 +427,14 @@ function DesktopTechEyrieSection({ theme }) {
                 <div>
                   <div ref={thatsTheTextRef} className="mb-4 sm:mb-6 md:mb-8">
                     <span
-                      className={`font-playfair italic font-semibold text-[48px] xl:text-[52px] transition-colors duration-500 ${textPrimary}`}
+                      className={`tech-eyrie-kicker font-playfair italic font-semibold transition-colors duration-500 ${textPrimary}`}
                     >
                       That&apos;s the
                     </span>
                   </div>
                   <div ref={techEyrieTextRef} className="relative">
                     <h2
-                      className={`font-italiana font-light text-[120px] xl:text-[140px] 2xl:text-[160px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 ${textPrimary}`}
+                      className={`real-problem-title-line font-italiana font-light leading-[0.95] tracking-[0.01em] transition-colors duration-500 ${textPrimary}`}
                     >
                       <span className="tech-word">Tech</span>{" "}
                       <span className="eyrie-word">Eyrie</span>
@@ -461,7 +454,7 @@ function DesktopTechEyrieSection({ theme }) {
                 <div className="mb-24">
                   <h2 className="leading-[1.05] tracking-[0.01em]">
                     <div
-                      className={`build-title-line font-italiana font-light tracking-[0.01em] text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
+                      className={`build-title-line real-problem-title-line font-italiana font-light tracking-[0.01em] transition-colors duration-500 ${textPrimary}`}
                     >
                       <span className="target-te-position inline-block opacity-0">
                         TE
@@ -469,12 +462,12 @@ function DesktopTechEyrieSection({ theme }) {
                       Build What
                     </div>
                     <div
-                      className={`build-title-line font-playfair italic font-semibold text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
+                      className={`build-title-line real-problem-title-line font-playfair italic font-light transition-colors duration-500 ${textPrimary}`}
                     >
                       Others Can&apos;t
                     </div>
                     <div
-                      className={`build-title-line font-playfair italic font-semibold text-[72px] xl:text-[84px] 2xl:text-[96px] transition-colors duration-500 ${textPrimary}`}
+                      className={`build-title-line real-problem-title-line font-playfair italic font-light transition-colors duration-500 ${textPrimary}`}
                     >
                       See Yet
                     </div>
@@ -484,7 +477,7 @@ function DesktopTechEyrieSection({ theme }) {
                   <div />
                   <div className="space-y-6 max-w-[600px]">
                     <p
-                      className={`build-description font-merriweather font-light text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                      className="build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500"
                     >
                       In the fast moving world where technology becomes complex,
                       clarity is your biggest success. Here in Tech Eyrie we built
@@ -493,20 +486,12 @@ function DesktopTechEyrieSection({ theme }) {
                       digital experiences.
                     </p>
                     <p
-                      className={`build-description font-merriweather font-light text-[15px] leading-relaxed transition-colors duration-500 ${textBody}`}
+                      className="build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500"
                     >
                       No trends, only intelligent systems that lasts long.
                     </p>
                     <div className="build-cta pt-2">
-                      <Link
-                        href="/about"
-                        className="group inline-flex items-center justify-center self-start rounded-full px-6 py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px] mt-3"
-                        style={{ backgroundColor: "#12685b" }}
-                      >
-                        <span className="font-merriweather text-[15px] font-semibold tracking-wide text-white">
-                          Learn More About Us
-                        </span>
-                      </Link>
+                      <TechEyrieCtaLink className="mt-3 self-start" />
                     </div>
                   </div>
                 </div>

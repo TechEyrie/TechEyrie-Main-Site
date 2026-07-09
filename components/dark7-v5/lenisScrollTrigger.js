@@ -71,7 +71,14 @@ export function initDark7V5LenisScroll(lenis) {
     invalidateOnRefresh: true,
   });
 
-  lenis.on("scroll", ScrollTrigger.update);
+  lenis.on("scroll", () => {
+    ScrollTrigger.update();
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("dark7-v5-scroll", { detail: lenis.scroll }),
+      );
+    }
+  });
 
   requestAnimationFrame(() => {
     applyDark7V5ScrollerProxy(lenis);

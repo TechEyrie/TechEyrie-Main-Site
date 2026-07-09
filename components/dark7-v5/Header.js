@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import QuoteDrawer from "./QuoteDrawer";
+import { getDark7V5ScrollTop } from "./lenisScrollTrigger";
 
 const navItems = [
   { label: "Services", hasDropdown: true, type: "mega", href: "/services1" },
@@ -186,7 +187,8 @@ export default function Header({ theme = "light" }) {
   const [hoveredCard, setHoveredCard] = useState(null);
   const dropdownTimeoutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isCompactNav, setIsCompactNav] = useState(false);
+  const lastScrollYRef = useRef(0);
   const [contactPopupOpen, setContactPopupOpen] = useState(false);
   const [quotePopupOpen, setQuotePopupOpen] = useState(false);
 
@@ -214,26 +216,41 @@ export default function Header({ theme = "light" }) {
     setMobileExpanded(null);
   }, []);
 
-  // Hide header on scroll (desktop/tablet only — keep header visible when mobile menu is open)
+  // Hide header on scroll down; on scroll up show compact nav (no logo) outside hero
   useEffect(() => {
-    const handleScroll = () => {
+    const updateHeaderOnScroll = () => {
       if (mobileOpen) return;
 
-      const currentScrollY = window.scrollY;
+      const currentScrollY = getDark7V5ScrollTop();
+      const lastScrollY = lastScrollYRef.current;
+      const heroEl = document.querySelector(".dark7-v5-hero");
+      const inHero = heroEl
+        ? heroEl.getBoundingClientRect().bottom > 100
+        : currentScrollY < window.innerHeight;
 
       if (currentScrollY < lastScrollY || currentScrollY < 10) {
         setIsVisible(true);
+        setIsCompactNav(!inHero && currentScrollY > 10);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
+        setIsCompactNav(false);
         setActiveDropdown(null);
+      } else if (currentScrollY > 10) {
+        setIsCompactNav(!inHero);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, mobileOpen]);
+    window.addEventListener("dark7-v5-scroll", updateHeaderOnScroll);
+    window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
+    updateHeaderOnScroll();
+
+    return () => {
+      window.removeEventListener("dark7-v5-scroll", updateHeaderOnScroll);
+      window.removeEventListener("scroll", updateHeaderOnScroll);
+    };
+  }, [mobileOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -505,6 +522,16 @@ export default function Header({ theme = "light" }) {
     theme === "dark"
       ? "dark7-v5-header-arrow-btn"
       : "bg-[#74F5A1] group-hover:bg-black";
+  const navPillBg = isCompactNav
+    ? "#162D24"
+    : theme === "dark"
+      ? darkColors.navPillBg
+      : headerBg;
+  const navPillBorder = isCompactNav
+    ? "1px solid rgba(247, 243, 240, 0.12)"
+    : theme === "dark"
+      ? "1px solid rgba(247, 243, 240, 0.12)"
+      : "none";
   const mobilePanelBg = theme === "dark" ? darkColors.background : lightColors.tertiary;
   const mobilePanelText = theme === "dark" ? darkColors.text : lightColors.text;
   const mobileBorder =
@@ -592,6 +619,8 @@ export default function Header({ theme = "light" }) {
 
       <header
         className={`fixed left-0 right-0 top-0 z-50 w-full max-w-full min-w-0 antialiased transition-transform duration-300 lg:overflow-x-clip ${
+          isCompactNav ? "dark7-v5-header--compact" : ""
+        } ${
           mobileOpen ? "flex h-dvh max-h-dvh flex-col overflow-hidden lg:block lg:h-auto lg:max-h-none" : ""
         }`}
         style={{
@@ -606,11 +635,18 @@ export default function Header({ theme = "light" }) {
       >
         {/* Top bar */}
         <div
-          className={`mx-auto flex w-full min-w-0 max-w-[1800px] shrink-0 items-center justify-between gap-3 px-5 py-3.5 sm:px-6 lg:px-8 lg:py-3 ${
-            mobileOpen ? "border-b border-white/10 lg:border-b-0" : ""
-          }`}
+          className={`mx-auto flex w-full min-w-0 max-w-[1800px] shrink-0 items-center gap-3 px-5 py-3.5 sm:px-6 lg:px-8 lg:py-3 ${
+            isCompactNav ? "justify-end" : "justify-between"
+          } ${mobileOpen ? "border-b border-white/10 lg:border-b-0" : ""}`}
         >
-          <Link href="/dark7" className="flex min-w-0 shrink-0 items-center">
+          <Link
+            href="/dark7"
+            className={`flex min-w-0 shrink-0 items-center transition-all duration-300 ${
+              isCompactNav && !mobileOpen
+                ? "pointer-events-none w-0 min-w-0 overflow-hidden opacity-0"
+                : ""
+            }`}
+          >
             <div className="relative flex h-12 w-auto sm:h-[52px] lg:h-[86px] items-center justify-center">
               <Image
                 src="/logo/techeyrie_logo.png"
@@ -628,8 +664,8 @@ export default function Header({ theme = "light" }) {
             <div
               className="dark7-v5-header-nav-pill flex h-[45px] items-center gap-4 rounded-[14px] px-4 lg:px-5 shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
               style={{
-                backgroundColor: theme === "dark" ? darkColors.navPillBg : headerBg,
-                border: theme === "dark" ? "1px solid rgba(247, 243, 240, 0.12)" : "none",
+                backgroundColor: navPillBg,
+                border: navPillBorder,
               }}
             >
               {/* Desktop NAV */}
@@ -783,15 +819,15 @@ export default function Header({ theme = "light" }) {
               onClick={() => setQuotePopupOpen(true)}
               className="dark7-v5-header-quote-btn get-quote-btn group flex h-[45px] flex-shrink-0 items-center gap-2 rounded-[14px] px-5 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
               style={{
-                backgroundColor: theme === "dark" ? darkColors.navPillBg : headerBg,
-                border: theme === "dark" ? "1px solid rgba(247, 243, 240, 0.12)" : "none",
+                backgroundColor: navPillBg,
+                border: navPillBorder,
               }}
             >
               <div
                 ref={getQuoteOverlayRef}
                 className="get-quote-overlay"
                 style={{
-                  backgroundColor: theme === "dark" ? darkColors.navPillBg : headerBg,
+                  backgroundColor: navPillBg,
                 }}
               />
               <div className="get-quote-btn-content">

@@ -41,29 +41,23 @@ function SectionOverlays() {
   );
 }
 
-function BookFlightButton({ label = "Book your flight" }) {
+function AirvoirCtaButton({ label = "Explore Our Expertise", className = "" }) {
+  const [ctaHovered, setCtaHovered] = useState(false);
+
   return (
     <button
       type="button"
-      className="group inline-flex max-w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
-      style={{ backgroundColor: "#12685b" }}
+      className={`hero-cta-btn inline-flex cursor-pointer items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${className} ${
+        ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
+      }`}
+      style={{
+        backgroundColor: ctaHovered ? "#162D24" : "#162D2433",
+        borderRadius: "12px",
+      }}
+      onMouseEnter={() => setCtaHovered(true)}
+      onMouseLeave={() => setCtaHovered(false)}
     >
-      <svg
-        className="h-5 w-5 shrink-0 text-white"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-        />
-      </svg>
-      <span className="font-merriweather text-[13px] sm:text-[14px] font-semibold tracking-wide text-white">
-        {label}
-      </span>
+      {label}
     </button>
   );
 }
@@ -86,18 +80,18 @@ function MobileAirvoirSection({ theme }) {
             <div className="py-14 sm:py-20 text-center">
               <div className="mb-3 sm:mb-4">
                 <span
-                  className={`font-merriweather italic font-semibold text-[14px] sm:text-[16px] transition-colors duration-500 ${textPrimary}`}
+                  className={`airvoir-kicker font-merriweather italic font-semibold transition-colors duration-500 ${textPrimary}`}
                 >
                   Welcome to Tech Eyrie
                 </span>
               </div>
               <h1
-                className={`font-italiana font-light text-[26px] sm:text-[32px] leading-[1.05] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
+                className={`real-problem-title-line font-italiana font-light leading-[1.05] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
               >
                 Every interaction is a journey, resonating digital experiences
                 into meaningful impact.
               </h1>
-              <BookFlightButton label="Book your flight" />
+              <AirvoirCtaButton label="Explore Our Expertise" />
             </div>
           </div>
 
@@ -107,13 +101,13 @@ function MobileAirvoirSection({ theme }) {
           <div className="mx-auto w-full min-w-0 max-w-5xl px-4 sm:px-6">
             <div className="py-14 sm:py-20 text-center">
               <h2
-                className={`font-italiana font-light text-[18px] sm:text-[22px] leading-[1.35] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
+                className={`real-problem-title-line font-italiana font-light leading-[1.1] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
               >
                 Every business needs clarity and understanding, At Tech Eyrie we
                 carefully craft digital systems that would elevate your journey
                 by turning complexity into remarkable journeys.
               </h2>
-              <BookFlightButton label="Book a flight" />
+              <AirvoirCtaButton label="Explore Our Expertise" />
             </div>
           </div>
         </div>
@@ -251,20 +245,20 @@ function DesktopAirvoirSection({ theme }) {
           <div className="text-center max-w-5xl">
             <div className="mb-3 sm:mb-4">
               <span
-                className={`font-merriweather italic font-semibold text-[20px] lg:text-[24px] transition-colors duration-500 ${textPrimary}`}
+                className={`airvoir-kicker font-merriweather italic font-semibold transition-colors duration-500 ${textPrimary}`}
               >
                 Welcome to Tech Eyrie
               </span>
             </div>
 
             <h1
-              className={`font-italiana font-light text-[34px] lg:text-[40px] xl:text-[48px] 2xl:text-[56px] leading-[0.95] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
+              className={`real-problem-title-line font-italiana font-light leading-[0.95] tracking-[0.01em] transition-colors duration-500 mb-6 sm:mb-8 ${textPrimary}`}
             >
               Every interaction is a journey, resonating digital experiences into
               meaningful impact.
             </h1>
 
-            <BookFlightButton label="Book your flight" />
+            <AirvoirCtaButton label="Explore Our Expertise" />
           </div>
         </div>
 
@@ -274,14 +268,14 @@ function DesktopAirvoirSection({ theme }) {
         >
           <div className="text-center max-w-5xl">
             <h2
-              className={`font-italiana font-light text-[22px] lg:text-[26px] xl:text-[30px] 2xl:text-[34px] leading-[1.3] tracking-[0.01em] transition-colors duration-500 mb-5 sm:mb-6 md:mb-8 ${textPrimary}`}
+              className={`real-problem-title-line font-italiana font-light leading-[1.1] tracking-[0.01em] transition-colors duration-500 mb-5 sm:mb-6 md:mb-8 ${textPrimary}`}
             >
               Every business needs clarity and understanding, At Tech Eyrie we
               carefully craft digital systems that would elevate your journey by
               turning complexity into remarkable journeys.
             </h2>
 
-            <BookFlightButton label="Book a flight" />
+            <AirvoirCtaButton label="Explore Our Expertise" />
           </div>
         </div>
       </div>

@@ -9,6 +9,27 @@ import {
   DARK7_GRADIENT_NOISE_STYLE,
 } from "./dark7PageGradients";
 
+function CardCtaButton({ label = "SUBMIT REQUEST" }) {
+  const [ctaHovered, setCtaHovered] = useState(false);
+
+  return (
+    <button
+      type="button"
+      className={`hero-cta-btn cards-services-cta mt-auto inline-flex cursor-pointer items-center justify-center self-start px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${
+        ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
+      }`}
+      style={{
+        backgroundColor: ctaHovered ? "#162D24" : "#CACBC7",
+        borderRadius: "12px",
+      }}
+      onMouseEnter={() => setCtaHovered(true)}
+      onMouseLeave={() => setCtaHovered(false)}
+    >
+      {label}
+    </button>
+  );
+}
+
 export default function ServicesSection({ theme = "light", sharedBackground = false }) {
   const [activeCard, setActiveCard] = useState(0);
   const cardsRef = useRef([]);
@@ -20,12 +41,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       subtitle: "(Search Engine Optimization)",
       description:
         "We research and select the most powerful keywords to elevate visibility for your business, connecting you with a high-intent audience through strategies built for lasting organic growth and measurable results.",
-      tags: ["Keyword Analysis", "Content Optimization"],
-      bgColor: theme === "dark" ? "#1a1a1a" : "#111111",
-      textColor: "#f3f3f3",
-      buttonBg: "#f3f3f3",
-      buttonText: "#111111",
-      isLightCard: false,
+      bgColor: "#162D24",
+      textColor: "#F7F3F0",
+      isDarkCard: true,
     },
     {
       id: 1,
@@ -33,12 +51,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       subtitle: "",
       description:
         "It's not only about existence, it is all about influence. We design well-crafted, goal-driven social media systems that connect you to high-value audiences and turn engagement into meaningful brand momentum.",
-      tags: [],
-      bgColor: theme === "dark" ? "#f5e8d1" : "#ffffff",
-      textColor: "#000000",
-      buttonBg: "#111111",
-      buttonText: "#ffffff",
-      isLightCard: true,
+      bgColor: "#F7F3F0",
+      textColor: "#162D24",
+      isDarkCard: false,
     },
     {
       id: 2,
@@ -50,12 +65,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       subtitle: "",
       description:
         "At Tech Eyrie we tailor content strategies, persuasive sales copy and promote digital presence turning technology into stories that repel to the right audience and drive measurable growth.",
-      tags: [],
-      bgColor: theme === "dark" ? "#1a1a1a" : "#E5E5E5",
-      textColor: theme === "dark" ? "#f3f3f3" : "#111111",
-      buttonBg: "#111111",
-      buttonText: "#f3f3f3",
-      isLightCard: false,
+      bgColor: "#162D24",
+      textColor: "#F7F3F0",
+      isDarkCard: true,
     },
     {
       id: 3,
@@ -67,12 +79,9 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
       subtitle: "",
       description:
         "We turn attention into action. Here at Tech Eyrie we create data-driven advertisement campaigns, real-time monitoring and clear strategies which will deliver meaningful business outcomes and sustained performance.",
-      tags: [],
-      bgColor: theme === "dark" ? "#f5e8d1" : "#ffffff",
-      textColor: "#000000",
-      buttonBg: "#111111",
-      buttonText: "#ffffff",
-      isLightCard: true,
+      bgColor: "#F7F3F0",
+      textColor: "#162D24",
+      isDarkCard: false,
     },
   ];
 
@@ -151,7 +160,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
               ref={(el) => (cardsRef.current[index] = el)}
               onMouseEnter={() => handleCardHover(index)}
               className={`relative rounded-[20px] overflow-hidden cursor-pointer${
-                service.isLightCard && theme === "dark" ? " dark7-services-light-card" : ""
+                service.isDarkCard ? " dark7-services-dark-card" : " dark7-services-light-card"
               }`}
               style={{
                 backgroundColor: service.bgColor,
@@ -161,88 +170,17 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
             >
               {/* Card Content */}
               <div className="relative h-full flex flex-col">
-                {/* Top Section - Tags and Arrow - with padding */}
-                <div className="flex items-start justify-between px-5 sm:px-6 md:px-8 pt-5 sm:pt-6 md:pt-8 pb-3">
-                  <div className="flex flex-wrap gap-2">
-                    {service.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1.5 rounded-full border text-[12px] sm:text-[13px] lg:text-[16px] font-medium font-playfair"
-                        style={{
-                          borderColor: "#E8FF6B",
-                          color: "#E8FF6B",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Arrow Icon - Changes when active */}
-                  <div
-                    className={`rounded-full flex items-center justify-center transition-all duration-300 ${
-                      index === activeCard
-                        ? "w-14 h-14 sm:w-16 sm:h-16"
-                        : "w-10 h-10 sm:w-11 sm:h-11 border-2 border-dashed hover:rotate-45"
-                    }`}
-                    style={{
-                      backgroundColor:
-                        index === activeCard
-                          ? service.isLightCard
-                            ? "#111111"
-                            : "#E8FF6B"
-                          : "transparent",
-                      borderColor:
-                        index === activeCard ? "transparent" : service.textColor,
-                    }}
-                  >
-                    <svg
-                      className={`transition-all duration-300 ${
-                        index === activeCard
-                          ? "w-6 h-6 sm:w-7 sm:h-7"
-                          : "w-4 h-4 sm:w-5 sm:h-5"
-                      }`}
-                      fill="none"
-                      stroke={
-                        index === activeCard
-                          ? service.isLightCard
-                            ? "#ffffff"
-                            : "#111111"
-                          : service.textColor
-                      }
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      {index === activeCard ? (
-                        // Right arrow when active
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 5l7 7-7 7"
-                        />
-                      ) : (
-                        // Diagonal arrow when inactive
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M7 17L17 7M17 7H7M17 7V17"
-                        />
-                      )}
-                    </svg>
+                <div className="relative w-full h-[136px] sm:h-[160px] md:h-[184px] mb-4 pt-5 sm:pt-6 md:pt-8 px-5 sm:px-6 md:px-8">
+                  <div className="relative w-full h-full overflow-hidden rounded-xl">
+                    <Image
+                      src="/horizontal-shit.png"
+                      alt={typeof service.title === "string" ? service.title : "Service"}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
 
-                {/* Image - Full Width - 20% smaller */}
-                <div className="relative w-full h-[136px] sm:h-[160px] md:h-[184px] mb-4">
-                  <Image
-                    src="/horizontal-shit.png"
-                    alt={typeof service.title === 'string' ? service.title : 'Service'}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Text Content - with padding */}
                 <div className="flex-1 flex flex-col px-5 sm:px-6 md:px-8 pb-5 sm:pb-6 md:pb-8">
                   <h3
                     className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2 min-h-[2.4em] leading-[1.1]"
@@ -269,29 +207,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                     {service.description}
                   </p>
 
-                  {/* Button - same style as RealProblemSection (font, color, style) */}
-                  <button
-                    type="button"
-                    className="mt-auto group inline-flex items-center justify-between w-full rounded-full px-5 py-2.5 sm:px-6 sm:py-3 shadow-sm transition-transform duration-300 ease-out hover:scale-[1.05] hover:-translate-y-[1px]"
-                    style={{ backgroundColor: '#12685b' }}
-                  >
-                    <span className="font-merriweather text-[13px] sm:text-[14px] md:text-[15px] font-semibold tracking-wide text-white">
-                      SUBMIT REQUEST
-                    </span>
-                    <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
+                  <CardCtaButton />
                 </div>
               </div>
             </div>

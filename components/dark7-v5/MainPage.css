@@ -79,6 +79,10 @@ body {
   border-color: #000000 !important;
 }
 
+.dark2-page .dark7-v5-deep-judge article.deep-judge-phase3-card {
+  border-radius: 12px !important;
+}
+
 .dark2-page .dark7-v5-deep-judge .deep-judge-phase3-title {
   color: #162D24 !important;
   font-weight: 700 !important;
@@ -152,8 +156,8 @@ body {
 }
 
 .dark2-page .dark7-v5-testimonials .testimonials-heading {
-  color: #f3f3f3 !important;
-  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
+  color: #162D24 !important;
+  text-shadow: none;
 }
 
 .dark2-page .dark7-v5-cards-services .cards-services-heading {
@@ -196,17 +200,32 @@ body {
   color: #f6f2ee !important;
 }
 
-/* CardsServicesSection cream cards: black text beats universal beige */
+/* CardsServicesSection card text beats universal beige */
+.dark2-page .dark7-services-dark-card,
+.dark2-page .dark7-services-dark-card h3,
+.dark2-page .dark7-services-dark-card p {
+  color: #f7f3f0 !important;
+}
+
 .dark2-page .dark7-services-light-card,
 .dark2-page .dark7-services-light-card h3,
 .dark2-page .dark7-services-light-card p {
-  color: #000000 !important;
+  color: #162d24 !important;
 }
 
-.dark2-page .dark7-services-light-card button,
-.dark2-page .dark7-services-light-card button *,
-.dark2-page .dark7-services-light-card button svg {
-  color: #ffffff !important;
+.dark2-page .dark7-services-dark-card .cards-services-cta,
+.dark2-page .dark7-services-light-card .cards-services-cta {
+  color: #162d24 !important;
+}
+
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta {
+  background-color: #cacbc7 !important;
+  color: #162d24 !important;
+}
+
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta:hover {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
 }
 
 /* Get a Quote modal: black text on white panel */
@@ -727,13 +746,9 @@ html {
   }
 }
 
-/* Section headings (not hero, cards, nav, footer) */
+/* Section headings (not hero, cards, nav, footer, tech eyrie, airvoir) */
 .dark7-v5-page .dark7-v5-deep-judge h1,
 .dark7-v5-page .dark7-v5-deep-judge h2,
-.dark7-v5-page .build-title-line,
-.dark7-v5-page .dark7-v5-tech-eyrie h2,
-.dark7-v5-page .dark7-v5-airvoir h1,
-.dark7-v5-page .dark7-v5-airvoir h2,
 .dark7-v5-page .testimonials-heading,
 .dark7-v5-page .cards-services-heading,
 .dark7-v5-page .faq-title-line,
@@ -747,10 +762,6 @@ html {
 @media screen and (max-width: 991px) {
   .dark7-v5-page .dark7-v5-deep-judge h1,
   .dark7-v5-page .dark7-v5-deep-judge h2,
-  .dark7-v5-page .build-title-line,
-  .dark7-v5-page .dark7-v5-tech-eyrie h2,
-  .dark7-v5-page .dark7-v5-airvoir h1,
-  .dark7-v5-page .dark7-v5-airvoir h2,
   .dark7-v5-page .testimonials-heading,
   .dark7-v5-page .cards-services-heading,
   .dark7-v5-page .faq-title-line,
@@ -763,10 +774,6 @@ html {
 @media screen and (max-width: 767px) {
   .dark7-v5-page .dark7-v5-deep-judge h1,
   .dark7-v5-page .dark7-v5-deep-judge h2,
-  .dark7-v5-page .build-title-line,
-  .dark7-v5-page .dark7-v5-tech-eyrie h2,
-  .dark7-v5-page .dark7-v5-airvoir h1,
-  .dark7-v5-page .dark7-v5-airvoir h2,
   .dark7-v5-page .testimonials-heading,
   .dark7-v5-page .cards-services-heading,
   .dark7-v5-page .faq-title-line,
@@ -821,6 +828,34 @@ html {
   }
 }
 
+/* Tech Eyrie / Airvoir — kicker; headings use .real-problem-title-line */
+.dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
+.dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.dark7-v5-page .dark7-v5-tech-eyrie .target-te-position {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  font-weight: inherit !important;
+}
+
+@media (min-width: 640px) {
+  .dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+    font-size: 1.125rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+    font-size: 1.5rem !important;
+  }
+}
+
 /* New Services — match Real Problem heading scale */
 .dark7-v5-page .new-services-title-line {
   font-size: 3.5em !important;
@@ -850,10 +885,9 @@ html {
 /* Section descriptions / body copy */
 .dark7-v5-page .real-problem-section p.leading-relaxed,
 .dark7-v5-page .real-problem-section .real-problem-description,
+.dark7-v5-page .dark7-v5-tech-eyrie .build-description,
 .dark7-v5-page .new-services-surface-body,
 .dark7-v5-page .dark7-v5-deep-judge p.leading-relaxed:not(.deep-judge-phase3-body),
-.dark7-v5-page .build-description,
-.dark7-v5-page .dark7-v5-tech-eyrie p.leading-relaxed,
 .dark7-v5-page .blogs-body,
 .dark7-v5-page .dark7-v5-faq > div > p.max-w-3xl,
 .dark7-v5-page .dark7-v5-cards-services p.leading-relaxed,
@@ -863,7 +897,8 @@ html {
 }
 
 .dark7-v5-page .real-problem-section p.leading-relaxed,
-.dark7-v5-page .real-problem-section .real-problem-description {
+.dark7-v5-page .real-problem-section .real-problem-description,
+.dark7-v5-page .dark7-v5-tech-eyrie .build-description {
   font-weight: 300 !important;
   font-synthesis: none;
   letter-spacing: 0.02em !important;
@@ -888,8 +923,31 @@ html {
   color: #162D24 !important;
 }
 
+.dark2-page.dark7-v5-page .dark7-v5-tech-eyrie .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+}
+
+.dark2-page.dark7-v5-page .dark7-v5-airvoir .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+}
+
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .hero-cta-btn,
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+}
+
 .dark2-page.dark7-v5-page .dark7-v5-hero .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .real-problem-section .hero-cta-btn:hover {
+.dark2-page.dark7-v5-page .real-problem-section .hero-cta-btn:hover,
+.dark2-page.dark7-v5-page .dark7-v5-tech-eyrie .hero-cta-btn:hover,
+.dark2-page.dark7-v5-page .dark7-v5-airvoir .hero-cta-btn:hover,
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .hero-cta-btn:hover,
+.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
@@ -932,6 +990,12 @@ html {
   font-synthesis: none;
   font-size: 13px !important;
   letter-spacing: 0.04em !important;
+}
+
+.dark2-page.dark7-v5-page header.dark7-v5-header--compact .dark7-v5-header-nav-pill,
+.dark2-page.dark7-v5-page header.dark7-v5-header--compact .dark7-v5-header-quote-btn,
+.dark2-page.dark7-v5-page header.dark7-v5-header--compact .get-quote-overlay {
+  background-color: #162d24 !important;
 }
 
 .dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill,

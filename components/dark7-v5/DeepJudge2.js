@@ -26,9 +26,9 @@ const FEATURE_CARDS = [
 const PHASE3_CARD = {
   background: "#F7F3F0",
   border: "#000000",
-  radius: "25%",
-  width: "272px",
-  height: "360px",
+  width: 272,
+  height: 360,
+  borderRadius: "12px",
 };
 
 const PHASE1_BOX = {
@@ -277,6 +277,8 @@ export default function DeepJudge2({ theme }) {
         
         const cardWidth = PHASE3_CARD.width;
         const cardHeight = PHASE3_CARD.height;
+        const cardBorderRadius = PHASE3_CARD.borderRadius;
+        const cardCircleRadius = Math.max(cardWidth, cardHeight) / 2;
         const heading3Y = -200;
         const description3Y = -200;
 
@@ -295,13 +297,13 @@ export default function DeepJudge2({ theme }) {
         tl.to(centerOrbRef.current, { width: 30, height: 30, ...orbCenter, duration: 0.2 }, "stage4");
 
         const cards = gsap.utils.toArray(".feature-card");
-        tl.set(cards, { opacity: 1, scale: 0.2 }, "stage4+=0.1")
+        tl.set(cards, { opacity: 1, scale: 0.2, borderRadius: `${cardCircleRadius}px` }, "stage4+=0.1")
           .to(centerOrbRef.current, { opacity: 0, duration: 0.1 }, "stage4+=0.2"); 
         
         tl.to(cards, {
             width: cardWidth,
             height: cardHeight,
-            borderRadius: PHASE3_CARD.radius,
+            borderRadius: cardBorderRadius,
             backgroundColor: PHASE3_CARD.background,
             borderColor: PHASE3_CARD.border,
             scale: 1,
@@ -316,6 +318,8 @@ export default function DeepJudge2({ theme }) {
             stagger: 0.1,
             ease: "expo.out"
         }, "stage4+=0.2");
+
+        tl.set(cards, { borderRadius: cardBorderRadius }, "stage4+=1.7");
         
         tl.to(".card-content", { opacity: 1, duration: 0.5 }, "stage4+=1");
           refreshDark7V5ScrollTriggers(true);
@@ -452,7 +456,7 @@ export default function DeepJudge2({ theme }) {
             {FEATURE_CARDS.map((card, i) => (
                 <div 
                     key={i}
-                    className="feature-card deep-judge-phase3-card absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden border border-black transition-colors duration-500"
+                    className="feature-card deep-judge-phase3-card absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl border border-black transition-colors duration-500"
                     style={{
                       width: "0px",
                       height: "0px",
@@ -545,7 +549,11 @@ export default function DeepJudge2({ theme }) {
                 {FEATURE_CARDS.map((card, i) => (
                   <article
                     key={card.title}
-                    className="deep-judge-phase3-card min-w-[260px] shrink-0 snap-start rounded-[25%] border border-black bg-[#F7F3F0] p-7 sm:min-w-[272px] sm:p-8"
+                    className="deep-judge-phase3-card min-w-[260px] shrink-0 snap-start rounded-xl border border-black bg-[#F7F3F0] p-7 sm:min-w-[272px] sm:p-8"
+                    style={{
+                      borderRadius: PHASE3_CARD.borderRadius,
+                      minHeight: "360px",
+                    }}
                   >
                     <Phase3CardBody card={card} index={i} />
                   </article>
