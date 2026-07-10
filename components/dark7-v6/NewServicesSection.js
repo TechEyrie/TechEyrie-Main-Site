@@ -722,7 +722,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
     <>
       <section
         ref={sectionRef}
-        className="dark7-v6-new-services relative overflow-hidden pt-12 sm:pt-16 md:pt-24 lg:pt-40 pb-12 sm:pb-16 md:pb-24 lg:pb-40 bg-transition"
+        className="dark7-v6-new-services relative overflow-hidden py-0 bg-transition"
         style={
           theme === "dark" || !sharedBackground
             ? bgStyle
@@ -764,7 +764,7 @@ export default function NewServicesSection({ theme = "light", sharedBackground =
           {/* Title */}
           <div className="grid lg:grid-cols-[25%_1fr] gap-8 lg:gap-40 mb-8">
             <div className="hidden lg:block" />
-            <div ref={titleContainerRef} className="lg:-mt-16 xl:-mt-16 2xl:-mt-16">
+            <div ref={titleContainerRef}>
               <h2 className="leading-[1.08] sm:leading-[1.05] tracking-[0.01em]">
                 <div className={`new-services-fade new-services-title-line text-transition ${headingColor}`}>
                   <span className="font-italiana font-light tracking-[0.01em]">Business Systems Built</span>

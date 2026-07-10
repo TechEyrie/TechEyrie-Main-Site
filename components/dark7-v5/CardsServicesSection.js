@@ -168,7 +168,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
               key={service.id}
               ref={(el) => (cardsRef.current[index] = el)}
               onMouseEnter={() => handleCardHover(index)}
-              className={`cards-services-card relative rounded-[20px] overflow-hidden cursor-pointer${
+              className={`relative rounded-[20px] overflow-hidden cursor-pointer${
                 service.isDarkCard ? " dark7-services-dark-card" : " dark7-services-light-card"
               }`}
               style={{
@@ -192,11 +192,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
 
                 <div className="flex-1 flex flex-col px-5 sm:px-6 md:px-8 pb-5 sm:pb-6 md:pb-8">
                   <h3
-                    className={`cards-services-card-title font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2 min-h-[2.4em] leading-[1.1] ${
-                      service.isDarkCard
-                        ? "cards-services-dark-title font-merriweather"
-                        : "font-italiana"
-                    }`}
+                    className="font-italiana font-light text-[29px] sm:text-[34px] md:text-[38px] lg:text-[45px] tracking-[0.01em] mb-2 min-h-[2.4em] leading-[1.1]"
                     style={{ color: service.textColor }}
                   >
                     {service.title}
@@ -204,7 +200,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
 
                   {service.subtitle ? (
                     <p
-                      className="cards-services-card-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] mb-3 min-h-[1.25rem]"
+                      className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] mb-3 min-h-[1.25rem]"
                       style={{ color: service.textColor }}
                     >
                       {service.subtitle}
@@ -214,7 +210,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                   )}
 
                   <p
-                    className="cards-services-card-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-5 min-h-[5.5rem] sm:min-h-[5rem] md:min-h-[4.75rem] lg:min-h-[4.5rem]"
+                    className="font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-5 min-h-[5.5rem] sm:min-h-[5rem] md:min-h-[4.75rem] lg:min-h-[4.5rem]"
                     style={{ color: service.textColor }}
                   >
                     {service.description}

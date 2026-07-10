@@ -13,10 +13,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function clamp01(v) {
-  return Math.max(0, Math.min(1, v));
-}
-
 export default function InfoSectionsCombined({ theme = "light", sharedBackground = false }) {
   const wrapperRef = useRef(null);
   const noiseRef = useRef(null);
@@ -26,11 +22,8 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
 
   const orbDefs = useMemo(
     () => [
-      // Starts near center-bottom and drifts right.
       { left: "50%", top: "78%", size: 460, dir: 1, amp: 980, center: 0.14, width: 0.22 },
-      // Drifts left.
       { left: "50%", top: "80%", size: 430, dir: -1, amp: 480, center: 0.52, width: 0.24 },
-      // Higher glow for variety.
       { left: "72%", top: "62%", size: 420, dir: -1, amp: 260, center: 0.78, width: 0.20 },
     ],
     [],
@@ -50,7 +43,6 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
     if (theme !== "dark") return;
     if (sharedBackground) return;
 
-    // Initialize visibility.
     gsap.set(gradientRef.current, { opacity: 0 });
     gsap.set(noiseRef.current, { opacity: 0.06 });
 
@@ -66,47 +58,42 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
         end: "bottom 15%",
         scrub: 0.65,
         onUpdate: (self) => {
-        const p = self.progress; // 0..1
+          const p = self.progress;
 
-        const midGlow = Math.pow(Math.sin(p * Math.PI), 0.65);
+          const midGlow = Math.pow(Math.sin(p * Math.PI), 0.65);
 
-        // Animated gradient sweep.
-        gsap.set(gradientRef.current, {
-          opacity: 0.06 + midGlow * 0.85,
-          rotateZ: p * 680,
-          // Move circle from center to right off-screen.
-          x: p * 900,
-          filter: `blur(${Math.max(16, 28 - midGlow * 10)}px)`,
-        });
-
-        // Moving noise (so it doesn't look static).
-        gsap.set(noiseRef.current, {
-          x: (p * 2 - 1) * 70,
-          y: Math.cos(p * Math.PI * 2) * 18,
-          opacity: 0.04 + midGlow * 0.08,
-        });
-
-        // Soft circle glows: radial blob that drifts left/right across scroll.
-        orbDefs.forEach((def, i) => {
-          const el = orbRefs.current[i];
-          if (!el) return;
-
-          const t = (p - def.center) / Math.max(0.0001, def.width);
-          const pulse = Math.exp(-t * t * 5.0); // 0..1
-
-          // Continuous drift (DeepJudge2-like), opacity only emphasized by pulse.
-          const xShift = def.dir * def.amp * p;
-          const yShift = Math.sin(p * Math.PI * 2 + i * 1.6) * 14;
-
-          gsap.set(el, {
-            opacity: 0.02 + pulse * 0.55,
-            x: xShift,
-            y: yShift,
-            scale: 0.92 + pulse * 0.35,
-            filter: `blur(${18 - pulse * 7}px)`,
+          gsap.set(gradientRef.current, {
+            opacity: 0.06 + midGlow * 0.85,
+            rotateZ: p * 680,
+            x: p * 900,
+            filter: `blur(${Math.max(16, 28 - midGlow * 10)}px)`,
           });
-        });
-      },
+
+          gsap.set(noiseRef.current, {
+            x: (p * 2 - 1) * 70,
+            y: Math.cos(p * Math.PI * 2) * 18,
+            opacity: 0.04 + midGlow * 0.08,
+          });
+
+          orbDefs.forEach((def, i) => {
+            const el = orbRefs.current[i];
+            if (!el) return;
+
+            const t = (p - def.center) / Math.max(0.0001, def.width);
+            const pulse = Math.exp(-t * t * 5.0);
+
+            const xShift = def.dir * def.amp * p;
+            const yShift = Math.sin(p * Math.PI * 2 + i * 1.6) * 14;
+
+            gsap.set(el, {
+              opacity: 0.02 + pulse * 0.55,
+              x: xShift,
+              y: yShift,
+              scale: 0.92 + pulse * 0.35,
+              filter: `blur(${18 - pulse * 7}px)`,
+            });
+          });
+        },
       }),
     );
 
@@ -190,7 +177,6 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
             />
           ))}
 
-          {/* Blend into neighbors so seams don't look harsh */}
           <div
             className="absolute inset-x-0 top-0 h-24 pointer-events-none z-[4]"
             style={{
@@ -216,4 +202,3 @@ export default function InfoSectionsCombined({ theme = "light", sharedBackground
     </div>
   );
 }
-

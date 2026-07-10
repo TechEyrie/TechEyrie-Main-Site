@@ -538,6 +538,27 @@ export const DARK7_GRADIENTS = {
   ]),
 };
 
+/** Radial glow overlay for DeepJudge — separate layer; does not modify DARK7_GRADIENTS.deepJudge. */
+export const DARK7_DEEP_JUDGE_RADIAL_STYLE = {
+  backgroundImage: `radial-gradient(
+    ellipse 105% 78% at 52% 66%,
+    rgba(148, 108, 58, 0.72) 0%,
+    rgba(168, 124, 72, 0.52) 28%,
+    rgba(188, 148, 96, 0.32) 48%,
+    transparent 72%
+  )`,
+  mixBlendMode: "multiply",
+  opacity: 0.9,
+  /* Only fade the last strip so the seam stays clean (v5) without killing the glow. */
+  maskImage: "linear-gradient(to bottom, #000 0%, #000 82%, transparent 96%)",
+  WebkitMaskImage: "linear-gradient(to bottom, #000 0%, #000 82%, transparent 96%)",
+};
+
+/** Bottom seam — keeps DeepJudge exit at #f5f1ee over radial only; linear gradient unchanged. */
+export const DARK7_DEEP_JUDGE_BOTTOM_BLEND_STYLE = {
+  background: "linear-gradient(to top, #f5f1ee 0%, rgba(245, 241, 238, 0) 72%)",
+};
+
 export function dark7CardsServicesBgStyle() {
   return {
     backgroundColor: "#ac9063",

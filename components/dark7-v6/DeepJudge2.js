@@ -7,6 +7,8 @@ import { Dark7V6ScrollTrigger, refreshDark7V6ScrollTriggers, subscribeAfterScrol
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
+  DARK7_DEEP_JUDGE_RADIAL_STYLE,
+  DARK7_DEEP_JUDGE_BOTTOM_BLEND_STYLE,
 } from "./dark7PageGradients";
 import { Search } from "lucide-react";
 
@@ -348,8 +350,18 @@ export default function DeepJudge2({ theme }) {
       className="dark7-v6-deep-judge relative min-h-screen overflow-x-hidden transition-colors duration-500 isolate"
     >
       <div
+        className="pointer-events-none absolute inset-0 z-[0]"
+        style={DARK7_DEEP_JUDGE_RADIAL_STYLE}
+        aria-hidden="true"
+      />
+      <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={DARK7_GRADIENT_NOISE_STYLE}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-20 sm:h-24 md:h-28"
+        style={DARK7_DEEP_JUDGE_BOTTOM_BLEND_STYLE}
         aria-hidden="true"
       />
       {/* Desktop scroll animation — always mounted so ScrollTrigger pin initializes correctly */}

@@ -1,5 +1,4 @@
-﻿// components/ServicesSection.jsx
-"use client";
+﻿"use client";
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
@@ -85,7 +84,6 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
     },
   ];
 
-  // Add will-change on mount for better performance
   useEffect(() => {
     cardsRef.current.forEach((card) => {
       if (card) {
@@ -161,7 +159,6 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
           </h2>
         </div>
 
-        {/* Cards Container - 20% smaller (480px) */}
         <div className="flex flex-col lg:flex-row gap-3 md:gap-5 min-h-[480px]">
           {services.map((service, index) => (
             <div
@@ -177,7 +174,6 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                 transition: "none",
               }}
             >
-              {/* Card Content */}
               <div className="relative h-full flex flex-col">
                 <div className="relative w-full h-[136px] sm:h-[160px] md:h-[184px] mb-4 pt-5 sm:pt-6 md:pt-8 px-5 sm:px-6 md:px-8">
                   <div className="relative w-full h-full overflow-hidden rounded-xl">

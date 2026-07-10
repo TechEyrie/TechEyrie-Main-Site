@@ -772,7 +772,7 @@ export default function HeroSectionMediaSlot({
                   ref={titleContainerRef}
                   className="dark7-v6-hero-title max-w-full lg:max-w-[1600px] xl:max-w-[1800px]"
                 >
-                  <div className="hero-badge mb-10 flex items-center gap-2 sm:mb-12 sm:gap-3 md:mb-14">
+                  <div className="hero-badge mb-12 flex items-center gap-2 sm:mb-14 sm:gap-3 md:mb-16">
                     <Image
                       src="/feather-heading.png"
                       alt=""
@@ -974,7 +974,7 @@ export default function HeroSectionMediaSlot({
       <section
         ref={portfolioSectionRef}
         id="discover"
-        className="dark7-v6-portfolio relative z-20 w-full overflow-visible py-0"
+        className="dark7-v6-portfolio relative z-20 w-full overflow-visible py-0 pb-0"
       >
         <div className="relative z-10 mx-auto w-full max-w-[1800px] px-4 sm:px-6 lg:px-8">
           <header className="mb-12 text-center sm:mb-16">

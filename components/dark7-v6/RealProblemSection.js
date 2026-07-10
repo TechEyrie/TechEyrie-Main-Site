@@ -175,7 +175,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
 
       <section
         ref={containerRef}
-        className="real-problem-section relative z-[1] overflow-hidden py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 2xl:py-24 bg-transition"
+        className="real-problem-section relative z-[1] overflow-hidden py-0 bg-transition"
         style={sharedBackground ? { background: "transparent", backgroundColor: "transparent" } : bgStyle}
       >
         {/* Noise texture overlay */}

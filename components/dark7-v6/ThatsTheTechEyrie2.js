@@ -119,7 +119,7 @@ function MobileTechEyrieSection({ theme }) {
                 </div>
               </h2>
 
-              <div className="mt-8 sm:mt-10 space-y-5 max-w-[600px] mx-auto sm:mx-0">
+              <div className="mt-6 sm:mt-8 space-y-5 max-w-3xl sm:max-w-4xl mx-auto sm:mx-0">
                 <p
                   className={`build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500`}
                 >
@@ -473,9 +473,9 @@ function DesktopTechEyrieSection({ theme }) {
                     </div>
                   </h2>
                 </div>
-                <div className="grid grid-cols-[45%_55%] -mt-40">
+                <div className="grid grid-cols-[38%_62%] -mt-48">
                   <div />
-                  <div className="space-y-6 max-w-[600px]">
+                  <div className="space-y-6 max-w-full pr-4 xl:pr-8">
                     <p
                       className="build-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#162D24] transition-colors duration-500"
                     >
