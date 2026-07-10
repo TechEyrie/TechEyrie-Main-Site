@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { dark7MainSurfaceStyle } from "../dark7/dark7PageSurface";
 
 export default function NewsletterSection({ theme = "light" }) {
@@ -12,6 +12,14 @@ export default function NewsletterSection({ theme = "light" }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prefilledEmail = params.get("email");
+    if (prefilledEmail) {
+      setFormData((prev) => ({ ...prev, email: prefilledEmail }));
+    }
+  }, []);
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 

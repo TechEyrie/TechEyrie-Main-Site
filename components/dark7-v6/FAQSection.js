@@ -1,4 +1,4 @@
-// components/FAQSection.jsx
+﻿// components/FAQSection.jsx
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
@@ -223,7 +223,7 @@ export default function FAQSection({ theme = 'light', sharedBackground = false }
   return (
     <section
       ref={sectionRef}
-      className="dark7-v5-faq relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="dark7-v6-faq relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (
@@ -244,7 +244,7 @@ export default function FAQSection({ theme = 'light', sharedBackground = false }
             className="faq-section-feather h-5 w-auto shrink-0 sm:h-6 md:h-7"
             aria-hidden
           />
-          <span className="faq-section-eyebrow dark7-v5-section-eyebrow font-playfair font-normal text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.16em] uppercase text-[#F7F3F0]">
+          <span className="faq-section-eyebrow dark7-v6-section-eyebrow font-playfair font-normal text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.16em] uppercase text-[#F7F3F0]">
             FAQ
           </span>
         </div>

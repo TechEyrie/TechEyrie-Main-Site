@@ -1,5 +1,5 @@
-/**
- * Smooth multi-stop gradients + anti-banding noise for dark7-v5 page surfaces.
+﻿/**
+ * Smooth multi-stop gradients + anti-banding noise for dark7-v6 page surfaces.
  */
 
 function hexToRgb(hex) {

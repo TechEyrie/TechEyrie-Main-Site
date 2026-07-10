@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
@@ -322,7 +322,7 @@ const BlogsSection = ({ theme = "light", sharedBackground = false }) => {
   return (
     <section 
       ref={sectionRef}
-      className="dark7-v5-blogs relative w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden transition-colors duration-500"
+      className="dark7-v6-blogs relative w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden transition-colors duration-500"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (

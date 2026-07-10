@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
@@ -9,8 +9,8 @@ import {
   DARK7_GRADIENT_NOISE_STYLE,
 } from "./dark7PageGradients";
 import {
-  dark7V5ScrollTrigger,
-  refreshDark7V5ScrollTriggers,
+  Dark7V6ScrollTrigger,
+  refreshDark7V6ScrollTriggers,
   subscribeAfterScrollLayout,
 } from "./lenisScrollTrigger";
 
@@ -115,11 +115,11 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
     gsap.set(heading, { opacity: 1 });
 
     const unsubLayout = subscribeAfterScrollLayout(() => {
-      ScrollTrigger.getById("dark7-v5-testimonials-heading-opacity")?.kill();
+      ScrollTrigger.getById("dark7-v6-testimonials-heading-opacity")?.kill();
 
       headingTrigger = ScrollTrigger.create(
-        dark7V5ScrollTrigger({
-          id: "dark7-v5-testimonials-heading-opacity",
+        Dark7V6ScrollTrigger({
+          id: "dark7-v6-testimonials-heading-opacity",
           trigger: cards,
           start: "top center",
           end: "bottom center",
@@ -132,13 +132,13 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
         }),
       );
 
-      refreshDark7V5ScrollTriggers(true);
+      refreshDark7V6ScrollTriggers(true);
     });
 
     return () => {
       unsubLayout();
       headingTrigger?.kill();
-      ScrollTrigger.getById("dark7-v5-testimonials-heading-opacity")?.kill();
+      ScrollTrigger.getById("dark7-v6-testimonials-heading-opacity")?.kill();
       gsap.set(heading, { clearProps: "opacity" });
     };
   }, []);
@@ -146,7 +146,7 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
   return (
     <div
       ref={sectionRef}
-      className={`dark7-v5-testimonials relative min-h-[150vh] -mb-px ${textColor} selection:bg-indigo-500/30 transition-colors duration-500`}
+      className={`dark7-v6-testimonials relative min-h-[150vh] -mb-px ${textColor} selection:bg-indigo-500/30 transition-colors duration-500`}
       style={bgColorStyle}
     >
         {isDark && sharedBackground && (

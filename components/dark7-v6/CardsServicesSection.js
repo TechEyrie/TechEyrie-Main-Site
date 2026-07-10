@@ -1,4 +1,4 @@
-// components/ServicesSection.jsx
+﻿// components/ServicesSection.jsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
@@ -132,7 +132,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
 
   return (
     <section
-      className="dark7-v5-cards-services relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden transition-colors duration-500"
+      className="dark7-v6-cards-services relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden transition-colors duration-500"
       style={bgStyle}
     >
       {theme === "dark" && !sharedBackground && (

@@ -1,4 +1,4 @@
-/* components/MainPage.css */
+﻿/* components/MainPage.css */
 
 :root {
   /* ── BASE COLORS ── */
@@ -50,125 +50,125 @@ body {
 }
 
 /* DeepJudge2 cream surface: dark text on light background */
-.dark2-page .dark7-v5-deep-judge,
-.dark2-page .dark7-v5-deep-judge h1,
-.dark2-page .dark7-v5-deep-judge h2,
-.dark2-page .dark7-v5-deep-judge h3,
-.dark2-page .dark7-v5-deep-judge p,
-.dark2-page .dark7-v5-deep-judge span:not(.deep-judge-light-ui):not(.deep-judge-light-ui *):not(.deep-judge-phase3-badge-num):not(.deep-judge-phase1-box-label):not(:is(.deep-judge-phase2-text *)):not(:is(.deep-judge-phase3-text *)) {
+.dark2-page .dark7-v6-deep-judge,
+.dark2-page .dark7-v6-deep-judge h1,
+.dark2-page .dark7-v6-deep-judge h2,
+.dark2-page .dark7-v6-deep-judge h3,
+.dark2-page .dark7-v6-deep-judge p,
+.dark2-page .dark7-v6-deep-judge span:not(.deep-judge-light-ui):not(.deep-judge-light-ui *):not(.deep-judge-phase3-badge-num):not(.deep-judge-phase1-box-label):not(:is(.deep-judge-phase2-text *)):not(:is(.deep-judge-phase3-text *)) {
   color: #111111 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-badge-num {
+.dark2-page .dark7-v6-deep-judge .deep-judge-badge-num {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-search-field {
+.dark2-page .dark7-v6-deep-judge .deep-judge-search-field {
   background-color: #F7F3F0 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-search-field,
-.dark2-page .dark7-v5-deep-judge .deep-judge-search-field *,
-.dark2-page .dark7-v5-deep-judge .deep-judge-light-ui,
-.dark2-page .dark7-v5-deep-judge .deep-judge-light-ui * {
+.dark2-page .dark7-v6-deep-judge .deep-judge-search-field,
+.dark2-page .dark7-v6-deep-judge .deep-judge-search-field *,
+.dark2-page .dark7-v6-deep-judge .deep-judge-light-ui,
+.dark2-page .dark7-v6-deep-judge .deep-judge-light-ui * {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase3-card {
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase3-card {
   background-color: #F7F3F0 !important;
   border-color: #000000 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge article.deep-judge-phase3-card {
+.dark2-page .dark7-v6-deep-judge article.deep-judge-phase3-card {
   border-radius: 12px !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase3-title {
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase3-title {
   color: #162D24 !important;
   font-weight: 700 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase3-body {
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase3-body {
   color: #162D24 !important;
   font-weight: 400 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge h1.deep-judge-phase2-text,
-.dark2-page .dark7-v5-deep-judge h1.deep-judge-phase2-text span,
-.dark2-page .dark7-v5-deep-judge h2.deep-judge-phase2-text,
-.dark2-page .dark7-v5-deep-judge h2.deep-judge-phase2-text span,
-.dark2-page .dark7-v5-deep-judge p.deep-judge-phase2-text,
-.dark2-page .dark7-v5-deep-judge h1.deep-judge-phase3-text,
-.dark2-page .dark7-v5-deep-judge h1.deep-judge-phase3-text span,
-.dark2-page .dark7-v5-deep-judge h2.deep-judge-phase3-text,
-.dark2-page .dark7-v5-deep-judge h2.deep-judge-phase3-text span,
-.dark2-page .dark7-v5-deep-judge p.deep-judge-phase3-text,
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase2-text span,
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase3-text span {
+.dark2-page .dark7-v6-deep-judge h1.deep-judge-phase2-text,
+.dark2-page .dark7-v6-deep-judge h1.deep-judge-phase2-text span,
+.dark2-page .dark7-v6-deep-judge h2.deep-judge-phase2-text,
+.dark2-page .dark7-v6-deep-judge h2.deep-judge-phase2-text span,
+.dark2-page .dark7-v6-deep-judge p.deep-judge-phase2-text,
+.dark2-page .dark7-v6-deep-judge h1.deep-judge-phase3-text,
+.dark2-page .dark7-v6-deep-judge h1.deep-judge-phase3-text span,
+.dark2-page .dark7-v6-deep-judge h2.deep-judge-phase3-text,
+.dark2-page .dark7-v6-deep-judge h2.deep-judge-phase3-text span,
+.dark2-page .dark7-v6-deep-judge p.deep-judge-phase3-text,
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase2-text span,
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase3-text span {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase3-badge-num {
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase3-badge-num {
   color: #ffffff !important;
 }
 
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase1-heading,
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase1-heading * {
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase1-heading,
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase1-heading * {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-deep-judge span.deep-judge-phase1-box-label,
-.dark2-page .dark7-v5-deep-judge .deep-judge-phase1-box-label {
+.dark2-page .dark7-v6-deep-judge span.deep-judge-phase1-box-label,
+.dark2-page .dark7-v6-deep-judge .deep-judge-phase1-box-label {
   color: #F7F3F0 !important;
 }
 
-.dark2-page .dark7-v5-new-services .new-services-title-line,
-.dark2-page .dark7-v5-new-services .new-services-title-line *,
-.dark2-page .dark7-v5-new-services .new-services-surface-text,
-.dark2-page .dark7-v5-new-services .dark7-v5-section-eyebrow {
+.dark2-page .dark7-v6-new-services .new-services-title-line,
+.dark2-page .dark7-v6-new-services .new-services-title-line *,
+.dark2-page .dark7-v6-new-services .new-services-surface-text,
+.dark2-page .dark7-v6-new-services .dark7-v6-section-eyebrow {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-new-services .new-services-surface-body {
+.dark2-page .dark7-v6-new-services .new-services-surface-body {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-new-services .new-services-card {
+.dark2-page .dark7-v6-new-services .new-services-card {
   background-color: #F2F0EC40 !important;
 }
 
-.dark2-page .dark7-v5-new-services .new-services-card-title,
-.dark2-page .dark7-v5-new-services .new-services-card-body {
+.dark2-page .dark7-v6-new-services .new-services-card-title,
+.dark2-page .dark7-v6-new-services .new-services-card-body {
   color: #162D24 !important;
 }
 
-.dark2-page .dark7-v5-tech-eyrie,
-.dark2-page .dark7-v5-tech-eyrie *:not(.text-white) {
+.dark2-page .dark7-v6-tech-eyrie,
+.dark2-page .dark7-v6-tech-eyrie *:not(.text-white) {
   color: #000000 !important;
 }
 
-.dark2-page .dark7-v5-airvoir,
-.dark2-page .dark7-v5-airvoir h1,
-.dark2-page .dark7-v5-airvoir h2,
-.dark2-page .dark7-v5-airvoir p,
-.dark2-page .dark7-v5-airvoir span:not(.text-white) {
+.dark2-page .dark7-v6-airvoir,
+.dark2-page .dark7-v6-airvoir h1,
+.dark2-page .dark7-v6-airvoir h2,
+.dark2-page .dark7-v6-airvoir p,
+.dark2-page .dark7-v6-airvoir span:not(.text-white) {
   color: #111111 !important;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-heading,
-.dark2-page .dark7-v5-testimonials .testimonials-heading .real-problem-title-line {
+.dark2-page .dark7-v6-testimonials .testimonials-heading,
+.dark2-page .dark7-v6-testimonials .testimonials-heading .real-problem-title-line {
   color: #162D24 !important;
   text-shadow: none;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-card {
+.dark2-page .dark7-v6-testimonials .testimonials-card {
   background-color: #162d24 !important;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-card,
-.dark2-page .dark7-v5-testimonials .testimonials-card-text,
-.dark2-page .dark7-v5-testimonials .testimonials-card p,
-.dark2-page .dark7-v5-testimonials .testimonials-card blockquote {
+.dark2-page .dark7-v6-testimonials .testimonials-card,
+.dark2-page .dark7-v6-testimonials .testimonials-card-text,
+.dark2-page .dark7-v6-testimonials .testimonials-card p,
+.dark2-page .dark7-v6-testimonials .testimonials-card blockquote {
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
   font-style: normal !important;
@@ -178,21 +178,21 @@ body {
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-arrow-btn {
+.dark2-page .dark7-v6-testimonials .testimonials-arrow-btn {
   background-color: #f7f3f033 !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-arrow-btn:hover {
+.dark2-page .dark7-v6-testimonials .testimonials-arrow-btn:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-testimonials .testimonials-arrow-btn svg {
+.dark2-page .dark7-v6-testimonials .testimonials-arrow-btn svg {
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-cards-services .cards-services-heading {
+.dark2-page .dark7-v6-cards-services .cards-services-heading {
   color: #f5f1ee !important;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
   font-weight: 300 !important;
@@ -201,83 +201,83 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark2-page .dark7-v5-cards-services .cards-services-card,
-.dark2-page .dark7-v5-cards-services .cards-services-card-title,
-.dark2-page .dark7-v5-cards-services .cards-services-card-text,
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card h3,
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card p,
-.dark2-page .dark7-v5-cards-services .dark7-services-light-card h3,
-.dark2-page .dark7-v5-cards-services .dark7-services-light-card p {
+.dark2-page .dark7-v6-cards-services .cards-services-card,
+.dark2-page .dark7-v6-cards-services .cards-services-card-title,
+.dark2-page .dark7-v6-cards-services .cards-services-card-text,
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card h3,
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card p,
+.dark2-page .dark7-v6-cards-services .dark7-services-light-card h3,
+.dark2-page .dark7-v6-cards-services .dark7-services-light-card p {
   font-weight: 300 !important;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark2-page .dark7-v5-cards-services .cards-services-card-text {
+.dark2-page .dark7-v6-cards-services .cards-services-card-text {
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
 }
 
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card .cards-services-card-title,
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card .cards-services-card-text,
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card h3,
-.dark2-page .dark7-v5-cards-services .dark7-services-dark-card p {
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card .cards-services-card-title,
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card .cards-services-card-text,
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card h3,
+.dark2-page .dark7-v6-cards-services .dark7-services-dark-card p {
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
   font-style: normal !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-cards-services .cards-services-feather {
+.dark2-page .dark7-v6-cards-services .cards-services-feather {
   filter: brightness(0) invert(1);
 }
 
-.dark2-page .dark7-v5-faq .faq-section-feather {
+.dark2-page .dark7-v6-faq .faq-section-feather {
   filter: brightness(0) invert(1);
 }
 
-.dark2-page .dark7-v5-faq .faq-section-eyebrow,
-.dark2-page .dark7-v5-faq .faq-title-line,
-.dark2-page .dark7-v5-faq .faq-title-line *,
-.dark2-page .dark7-v5-faq .faq-section-description,
-.dark2-page .dark7-v5-faq .faq-question-text,
-.dark2-page .dark7-v5-faq .faq-answer-text {
+.dark2-page .dark7-v6-faq .faq-section-eyebrow,
+.dark2-page .dark7-v6-faq .faq-title-line,
+.dark2-page .dark7-v6-faq .faq-title-line *,
+.dark2-page .dark7-v6-faq .faq-section-description,
+.dark2-page .dark7-v6-faq .faq-question-text,
+.dark2-page .dark7-v6-faq .faq-answer-text {
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-faq .faq-item {
+.dark2-page .dark7-v6-faq .faq-item {
   background-color: rgba(247, 243, 240, 0.15) !important;
   border-color: rgba(247, 243, 240, 0.2) !important;
 }
 
-.dark2-page .dark7-v5-faq .faq-plus-icon {
+.dark2-page .dark7-v6-faq .faq-plus-icon {
   background-color: #162d24 !important;
 }
 
-.dark2-page .dark7-v5-faq .faq-plus-icon line {
+.dark2-page .dark7-v6-faq .faq-plus-icon line {
   stroke: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-blogs,
-.dark2-page .dark7-v5-blogs *:not(.text-white):not(.real-problem-description):not(.blogs-section-description):not(.blogs-heading):not(.insights-by-text):not(.new-engen-text):not(.real-problem-title-line):not(.char):not(.hero-cta-btn):not(.blogs-cta-btn) {
+.dark2-page .dark7-v6-blogs,
+.dark2-page .dark7-v6-blogs *:not(.text-white):not(.real-problem-description):not(.blogs-section-description):not(.blogs-heading):not(.insights-by-text):not(.new-engen-text):not(.real-problem-title-line):not(.char):not(.hero-cta-btn):not(.blogs-cta-btn) {
   color: #000000 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-heading,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-heading .insights-by-text,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-heading .new-engen-text,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-heading .real-problem-title-line,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-heading .char,
-.dark2-page .dark7-v5-blogs .blogs-heading,
-.dark2-page .dark7-v5-blogs .blogs-heading .insights-by-text,
-.dark2-page .dark7-v5-blogs .blogs-heading .new-engen-text,
-.dark2-page .dark7-v5-blogs .blogs-heading .real-problem-title-line,
-.dark2-page .dark7-v5-blogs .blogs-heading .char {
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-heading,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-heading .insights-by-text,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-heading .new-engen-text,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-heading .real-problem-title-line,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-heading .char,
+.dark2-page .dark7-v6-blogs .blogs-heading,
+.dark2-page .dark7-v6-blogs .blogs-heading .insights-by-text,
+.dark2-page .dark7-v6-blogs .blogs-heading .new-engen-text,
+.dark2-page .dark7-v6-blogs .blogs-heading .real-problem-title-line,
+.dark2-page .dark7-v6-blogs .blogs-heading .char {
   color: #f7f3f0 !important;
 }
 
-.dark2-page .dark7-v5-blogs .blogs-section-description,
-.dark2-page .dark7-v5-blogs .real-problem-description {
+.dark2-page .dark7-v6-blogs .blogs-section-description,
+.dark2-page .dark7-v6-blogs .real-problem-description {
   color: #f7f3f0 !important;
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
@@ -289,24 +289,24 @@ body {
   line-height: 1.5 !important;
 }
 
-.dark2-page .dark7-v5-airplane-hero .airplane-hero-heading,
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero .airplane-hero-heading,
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero h1.airplane-hero-heading {
+.dark2-page .dark7-v6-airplane-hero .airplane-hero-heading,
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero .airplane-hero-heading,
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero h1.airplane-hero-heading {
   color: #162d24 !important;
   text-shadow: none;
 }
 
-.dark2-page .dark7-v5-airplane-hero .airplane-hero-input {
+.dark2-page .dark7-v6-airplane-hero .airplane-hero-input {
   color: #f6f2ee !important;
 }
 
-.dark2-page .dark7-v5-airplane-hero .airplane-enroll-label,
-.dark2-page .dark7-v5-airplane-hero .airplane-enroll-input-label {
+.dark2-page .dark7-v6-airplane-hero .airplane-enroll-label,
+.dark2-page .dark7-v6-airplane-hero .airplane-enroll-input-label {
   color: #f7f3f0 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero .hero-cta-btn,
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero .airplane-cta-btn {
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero .hero-cta-btn,
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero .airplane-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #f7f3f0 !important;
@@ -314,8 +314,8 @@ body {
   border-radius: 12px !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-airplane-hero .airplane-cta-btn:hover {
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-airplane-hero .airplane-cta-btn:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
@@ -332,12 +332,12 @@ body {
   color: #162d24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta {
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .cards-services-cta {
   background-color: #cacbc7 !important;
   color: #162d24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta:hover {
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .cards-services-cta:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
@@ -360,7 +360,7 @@ body {
 
 /* Hero pyramid labels on card overlays */
 .dark2-page .hero-pyramid-label,
-.dark2-page.dark7-v5-page .dark7-v5-hero .hero-pyramid-label {
+.dark2-page.dark7-v6-page .dark7-v6-hero .hero-pyramid-label {
   color: #162d24 !important;
 }
 
@@ -794,78 +794,78 @@ html {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   dark7-v5 — Dapper-style fluid em typography (page-scoped only)
+   dark7-v6 — Dapper-style fluid em typography (page-scoped only)
    Hero headings: 5em | Section headings: 4em | Descriptions: 1.375em
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.dark7-v5-page {
-  --dark7-v5-size-unit: 16;
-  --dark7-v5-container-ideal: 1920;
-  --dark7-v5-container-min: 992px;
-  --dark7-v5-container-max: 1920px;
-  --dark7-v5-container: clamp(
-    var(--dark7-v5-container-min),
+.dark7-v6-page {
+  --dark7-v6-size-unit: 16;
+  --dark7-v6-container-ideal: 1920;
+  --dark7-v6-container-min: 992px;
+  --dark7-v6-container-max: 1920px;
+  --dark7-v6-container: clamp(
+    var(--dark7-v6-container-min),
     100vw,
-    var(--dark7-v5-container-max)
+    var(--dark7-v6-container-max)
   );
   font-size: calc(
-    var(--dark7-v5-container) /
-      (var(--dark7-v5-container-ideal) / var(--dark7-v5-size-unit))
+    var(--dark7-v6-container) /
+      (var(--dark7-v6-container-ideal) / var(--dark7-v6-size-unit))
   );
 }
 
 @media screen and (max-width: 991px) {
-  .dark7-v5-page {
-    --dark7-v5-container-ideal: 834;
-    --dark7-v5-container-min: 768px;
-    --dark7-v5-container-max: 991px;
+  .dark7-v6-page {
+    --dark7-v6-container-ideal: 834;
+    --dark7-v6-container-min: 768px;
+    --dark7-v6-container-max: 991px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .dark7-v5-page {
-    --dark7-v5-container-ideal: 460;
-    --dark7-v5-container-min: 480px;
-    --dark7-v5-container-max: 767px;
+  .dark7-v6-page {
+    --dark7-v6-container-ideal: 460;
+    --dark7-v6-container-min: 480px;
+    --dark7-v6-container-max: 767px;
   }
 }
 
 @media screen and (max-width: 479px) {
-  .dark7-v5-page {
-    --dark7-v5-container-min: 320px;
-    --dark7-v5-container-max: 479px;
+  .dark7-v6-page {
+    --dark7-v6-container-min: 320px;
+    --dark7-v6-container-max: 479px;
   }
 }
 
 /* Hero main title — "Designed for / companies that / refuse ordinary" */
-.dark2-page.dark7-v5-page .dark7-v5-hero .hero-main-title-line,
-.dark7-v5-page .dark7-v5-hero .hero-main-title-line {
+.dark2-page.dark7-v6-page .dark7-v6-hero .hero-main-title-line,
+.dark7-v6-page .dark7-v6-hero .hero-main-title-line {
   font-size: 5em !important;
   line-height: 1.05 !important;
   letter-spacing: 0.03em !important;
 }
 
 @media screen and (max-width: 991px) {
-  .dark2-page.dark7-v5-page .dark7-v5-hero .hero-main-title-line,
-  .dark7-v5-page .dark7-v5-hero .hero-main-title-line {
+  .dark2-page.dark7-v6-page .dark7-v6-hero .hero-main-title-line,
+  .dark7-v6-page .dark7-v6-hero .hero-main-title-line {
     font-size: 4em !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .dark2-page.dark7-v5-page .dark7-v5-hero .hero-main-title-line,
-  .dark7-v5-page .dark7-v5-hero .hero-main-title-line {
+  .dark2-page.dark7-v6-page .dark7-v6-hero .hero-main-title-line,
+  .dark7-v6-page .dark7-v6-hero .hero-main-title-line {
     font-size: 3em !important;
     white-space: normal !important;
   }
 }
 
 /* Section headings (not hero, cards, nav, footer, tech eyrie, airvoir, testimonials) */
-.dark7-v5-page .dark7-v5-deep-judge h1,
-.dark7-v5-page .dark7-v5-deep-judge h2,
-.dark7-v5-page .cards-services-heading,
-.dark7-v5-page .faq-title-line,
-.dark7-v5-page .airplane-hero-heading {
+.dark7-v6-page .dark7-v6-deep-judge h1,
+.dark7-v6-page .dark7-v6-deep-judge h2,
+.dark7-v6-page .cards-services-heading,
+.dark7-v6-page .faq-title-line,
+.dark7-v6-page .airplane-hero-heading {
   font-size: 4em !important;
   line-height: 1.08 !important;
   letter-spacing: -0.02em !important;
@@ -873,52 +873,52 @@ html {
 }
 
 @media screen and (max-width: 991px) {
-  .dark7-v5-page .dark7-v5-deep-judge h1,
-  .dark7-v5-page .dark7-v5-deep-judge h2,
-  .dark7-v5-page .cards-services-heading,
-  .dark7-v5-page .faq-title-line,
-  .dark7-v5-page .airplane-hero-heading {
+  .dark7-v6-page .dark7-v6-deep-judge h1,
+  .dark7-v6-page .dark7-v6-deep-judge h2,
+  .dark7-v6-page .cards-services-heading,
+  .dark7-v6-page .faq-title-line,
+  .dark7-v6-page .airplane-hero-heading {
     font-size: 3.25em !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .dark7-v5-page .dark7-v5-deep-judge h1,
-  .dark7-v5-page .dark7-v5-deep-judge h2,
-  .dark7-v5-page .cards-services-heading,
-  .dark7-v5-page .faq-title-line,
-  .dark7-v5-page .airplane-hero-heading {
+  .dark7-v6-page .dark7-v6-deep-judge h1,
+  .dark7-v6-page .dark7-v6-deep-judge h2,
+  .dark7-v6-page .cards-services-heading,
+  .dark7-v6-page .faq-title-line,
+  .dark7-v6-page .airplane-hero-heading {
     font-size: 2.5em !important;
   }
 }
 
 /* Shared section eyebrow — "The real problem is", "Our services", etc. */
-.dark7-v5-page .dark7-v5-section-eyebrow {
+.dark7-v6-page .dark7-v6-section-eyebrow {
   font-size: 1rem !important;
   line-height: 1.5 !important;
   letter-spacing: normal !important;
 }
 
 @media (min-width: 640px) {
-  .dark7-v5-page .dark7-v5-section-eyebrow {
+  .dark7-v6-page .dark7-v6-section-eyebrow {
     font-size: 1.125rem !important;
   }
 }
 
 @media (min-width: 768px) {
-  .dark7-v5-page .dark7-v5-section-eyebrow {
+  .dark7-v6-page .dark7-v6-section-eyebrow {
     font-size: 1.25rem !important;
   }
 }
 
 @media (min-width: 1024px) {
-  .dark7-v5-page .dark7-v5-section-eyebrow {
+  .dark7-v6-page .dark7-v6-section-eyebrow {
     font-size: 1.5rem !important;
   }
 }
 
 /* Real Problem — smaller, lighter headings than other section titles */
-.dark7-v5-page .real-problem-title-line {
+.dark7-v6-page .real-problem-title-line {
   font-size: 3.5em !important;
   font-weight: 300 !important;
   line-height: 1.1 !important;
@@ -926,25 +926,25 @@ html {
 }
 
 @media screen and (max-width: 991px) {
-  .dark7-v5-page .real-problem-title-line {
+  .dark7-v6-page .real-problem-title-line {
     font-size: 2.25em !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .dark7-v5-page .real-problem-title-line {
+  .dark7-v6-page .real-problem-title-line {
     font-size: 1.85em !important;
   }
 }
 
 /* Tech Eyrie / Airvoir — kicker; headings use .real-problem-title-line */
-.dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
-.dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+.dark7-v6-page .dark7-v6-tech-eyrie .tech-eyrie-kicker,
+.dark7-v6-page .dark7-v6-airvoir .airvoir-kicker {
   font-size: 1rem !important;
   line-height: 1.5 !important;
 }
 
-.dark7-v5-page .dark7-v5-tech-eyrie .target-te-position {
+.dark7-v6-page .dark7-v6-tech-eyrie .target-te-position {
   font-size: inherit !important;
   line-height: inherit !important;
   letter-spacing: inherit !important;
@@ -952,21 +952,21 @@ html {
 }
 
 @media (min-width: 640px) {
-  .dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
-  .dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+  .dark7-v6-page .dark7-v6-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v6-page .dark7-v6-airvoir .airvoir-kicker {
     font-size: 1.125rem !important;
   }
 }
 
 @media (min-width: 768px) {
-  .dark7-v5-page .dark7-v5-tech-eyrie .tech-eyrie-kicker,
-  .dark7-v5-page .dark7-v5-airvoir .airvoir-kicker {
+  .dark7-v6-page .dark7-v6-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v6-page .dark7-v6-airvoir .airvoir-kicker {
     font-size: 1.5rem !important;
   }
 }
 
 /* New Services — match Real Problem heading scale */
-.dark7-v5-page .new-services-title-line {
+.dark7-v6-page .new-services-title-line {
   font-size: 3.5em !important;
   font-weight: 300 !important;
   line-height: 1.1 !important;
@@ -974,184 +974,196 @@ html {
 }
 
 @media screen and (max-width: 991px) {
-  .dark7-v5-page .new-services-title-line {
+  .dark7-v6-page .new-services-title-line {
     font-size: 2.25em !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .dark7-v5-page .new-services-title-line {
+  .dark7-v6-page .new-services-title-line {
     font-size: 1.85em !important;
   }
 }
 
-.dark7-v5-page .dark7-v5-new-services .new-services-surface-body {
+.dark7-v6-page .dark7-v6-new-services .new-services-surface-body {
   font-weight: 300 !important;
   font-synthesis: none;
   letter-spacing: 0.02em !important;
 }
 
 /* Section descriptions / body copy */
-.dark7-v5-page .real-problem-section p.leading-relaxed,
-.dark7-v5-page .real-problem-section .real-problem-description,
-.dark7-v5-page .dark7-v5-tech-eyrie .build-description,
-.dark7-v5-page .new-services-surface-body,
-.dark7-v5-page .dark7-v5-deep-judge p.leading-relaxed:not(.deep-judge-phase3-body),
-.dark7-v5-page .dark7-v5-blogs .blogs-section-description,
-.dark7-v5-page .dark7-v5-blogs .real-problem-description,
-.dark7-v5-page .dark7-v5-faq > div > p.max-w-3xl,
-.dark7-v5-page .dark7-v5-cards-services p.leading-relaxed,
-.dark7-v5-page .dark7-v5-cards-services .cards-services-card-text,
-.dark7-v5-page .dark7-v5-section-desc {
+.dark7-v6-page .real-problem-section p.leading-relaxed,
+.dark7-v6-page .real-problem-section .real-problem-description,
+.dark7-v6-page .dark7-v6-tech-eyrie .build-description,
+.dark7-v6-page .new-services-surface-body,
+.dark7-v6-page .dark7-v6-deep-judge p.leading-relaxed:not(.deep-judge-phase3-body),
+.dark7-v6-page .dark7-v6-blogs .blogs-section-description,
+.dark7-v6-page .dark7-v6-blogs .real-problem-description,
+.dark7-v6-page .dark7-v6-faq > div > p.max-w-3xl,
+.dark7-v6-page .dark7-v6-cards-services p.leading-relaxed,
+.dark7-v6-page .dark7-v6-cards-services .cards-services-card-text,
+.dark7-v6-page .dark7-v6-section-desc {
   font-size: 1.375em !important;
   line-height: 1.5 !important;
   font-weight: 300 !important;
 }
 
-.dark7-v5-page .real-problem-section p.leading-relaxed,
-.dark7-v5-page .real-problem-section .real-problem-description,
-.dark7-v5-page .dark7-v5-tech-eyrie .build-description,
-.dark7-v5-page .dark7-v5-blogs .blogs-section-description,
-.dark7-v5-page .dark7-v5-blogs .real-problem-description {
+.dark7-v6-page .real-problem-section p.leading-relaxed,
+.dark7-v6-page .real-problem-section .real-problem-description,
+.dark7-v6-page .dark7-v6-tech-eyrie .build-description,
+.dark7-v6-page .dark7-v6-blogs .blogs-section-description,
+.dark7-v6-page .dark7-v6-blogs .real-problem-description {
   font-weight: 300 !important;
   font-synthesis: none;
   letter-spacing: 0.02em !important;
 }
 
-.dark7-v5-page .dark7-v5-hero .hero-body > p.hero-description {
-  font-size: 1em !important;
+.dark7-v6-page .dark7-v6-hero .hero-body > p.hero-description {
+  font-size: 1.0625rem !important;
   font-weight: 300 !important;
   line-height: 1.5 !important;
   letter-spacing: 0.02em !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-hero .hero-cta-btn {
+@media (min-width: 768px) {
+  .dark7-v6-page .dark7-v6-hero .hero-body > p.hero-description {
+    font-size: 1.125rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dark7-v6-page .dark7-v6-hero .hero-body > p.hero-description {
+    font-size: 1.1875rem !important;
+  }
+}
+
+.dark2-page.dark7-v6-page .dark7-v6-hero .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page.dark7-v5-page .real-problem-section .hero-cta-btn {
+.dark2-page.dark7-v6-page .real-problem-section .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-tech-eyrie .hero-cta-btn {
+.dark2-page.dark7-v6-page .dark7-v6-tech-eyrie .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-blogs .hero-cta-btn,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-cta-btn {
+.dark2-page.dark7-v6-page .dark7-v6-blogs .hero-cta-btn,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-airvoir .hero-cta-btn {
+.dark2-page.dark7-v6-page .dark7-v6-airvoir .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .hero-cta-btn,
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta {
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .hero-cta-btn,
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .cards-services-cta {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-blogs .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-cta-btn:hover {
+.dark2-page.dark7-v6-page .dark7-v6-blogs .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-cta-btn:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-hero .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .real-problem-section .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-tech-eyrie .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-airvoir .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-blogs .blogs-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .hero-cta-btn:hover,
-.dark2-page.dark7-v5-page .dark7-v5-cards-services .cards-services-cta:hover {
+.dark2-page.dark7-v6-page .dark7-v6-hero .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .real-problem-section .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-tech-eyrie .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-airvoir .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-blogs .blogs-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .hero-cta-btn:hover,
+.dark2-page.dark7-v6-page .dark7-v6-cards-services .cards-services-cta:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
 
-.dark7-v5-page .dark5-footer p.leading-relaxed {
+.dark7-v6-page .dark5-footer p.leading-relaxed {
   font-size: revert !important;
   line-height: revert !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer .dark5-footer-text,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer .dark5-footer-subtext,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer p,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer span,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer a.footer-link-underline {
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer .dark5-footer-text,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer .dark5-footer-subtext,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer p,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer span,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer a.footer-link-underline {
   color: #f7f3f0 !important;
   font-weight: 300 !important;
   font-synthesis: none;
   letter-spacing: 0.03em !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer .footer-section-label,
-.dark2-page.dark7-v5-page .dark7-v5-footer .footer-item-heading,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer h3,
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer h4.footer-item-heading {
+.dark2-page.dark7-v6-page .dark7-v6-footer .footer-section-label,
+.dark2-page.dark7-v6-page .dark7-v6-footer .footer-item-heading,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer h3,
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer h4.footer-item-heading {
   color: #f7f3f0 !important;
   font-weight: 400 !important;
   letter-spacing: 0.04em !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer .footer-section-label {
+.dark2-page.dark7-v6-page .dark7-v6-footer .footer-section-label {
   letter-spacing: 0.12em !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer .social-icon-animate {
+.dark2-page.dark7-v6-page .dark7-v6-footer .social-icon-animate {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer .dark5-footer-card {
+.dark2-page.dark7-v6-page .dark7-v6-footer .dark5-footer-card {
   background-color: rgba(247, 243, 240, 0.2) !important;
   border-color: rgba(247, 243, 240, 0.2) !important;
 }
 
-.dark2-page.dark7-v5-page .dark7-v5-footer.dark5-footer {
+.dark2-page.dark7-v6-page .dark7-v6-footer.dark5-footer {
   background-color: #132419 !important;
 }
 
 /* Keep UI chrome, labels, and card micro-copy at sensible sizes */
-.dark7-v5-page .hero-badge span,
-.dark7-v5-page .deep-judge-phase3-title,
-.dark7-v5-page .deep-judge-phase3-body,
-.dark7-v5-page .dark7-v5-portfolio-card-title,
-.dark7-v5-page .dark7-v5-portfolio-card-tag,
-.dark7-v5-page .new-services-card-title,
-.dark7-v5-page .new-services-card-body,
-.dark7-v5-page .dark5-footer,
-.dark7-v5-page .dark5-footer * {
+.dark7-v6-page .hero-badge span,
+.dark7-v6-page .deep-judge-phase3-title,
+.dark7-v6-page .deep-judge-phase3-body,
+.dark7-v6-page .dark7-v6-portfolio-card-title,
+.dark7-v6-page .dark7-v6-portfolio-card-tag,
+.dark7-v6-page .new-services-card-title,
+.dark7-v6-page .new-services-card-body,
+.dark7-v6-page .dark5-footer,
+.dark7-v6-page .dark5-footer * {
   font-size: revert !important;
 }
 
-.dark7-v5-page .deep-judge-phase3-body {
+.dark7-v6-page .deep-judge-phase3-body {
   font-size: 1em !important;
 }
 
-.dark7-v5-page .new-services-card-body {
+.dark7-v6-page .new-services-card-body {
   font-size: 1em !important;
 }
 
 /* Header nav — beat .dark2-page beige text override */
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill .dark7-v5-header-nav-link,
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill .dark7-v5-header-nav-link span,
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill button.dark7-v5-header-nav-link span,
-.dark2-page.dark7-v5-page header .dark7-v5-header-quote-btn,
-.dark2-page.dark7-v5-page header .dark7-v5-header-quote-btn span {
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill .dark7-v6-header-nav-link,
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill .dark7-v6-header-nav-link span,
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill button.dark7-v6-header-nav-link span,
+.dark2-page.dark7-v6-page header .dark7-v6-header-quote-btn,
+.dark2-page.dark7-v6-page header .dark7-v6-header-quote-btn span {
   color: #F7F3F0 !important;
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
@@ -1160,55 +1172,55 @@ html {
   letter-spacing: 0.04em !important;
 }
 
-.dark2-page.dark7-v5-page header.dark7-v5-header--compact .dark7-v5-header-nav-pill,
-.dark2-page.dark7-v5-page header.dark7-v5-header--compact .dark7-v5-header-quote-btn,
-.dark2-page.dark7-v5-page header.dark7-v5-header--compact .get-quote-overlay {
+.dark2-page.dark7-v6-page header.dark7-v6-header--compact .dark7-v6-header-nav-pill,
+.dark2-page.dark7-v6-page header.dark7-v6-header--compact .dark7-v6-header-quote-btn,
+.dark2-page.dark7-v6-page header.dark7-v6-header--compact .get-quote-overlay {
   background-color: #162d24 !important;
 }
 
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill,
-.dark2-page.dark7-v5-page header .dark7-v5-header-quote-btn,
-.dark2-page.dark7-v5-page header .get-quote-overlay {
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill,
+.dark2-page.dark7-v6-page header .dark7-v6-header-quote-btn,
+.dark2-page.dark7-v6-page header .get-quote-overlay {
   border-radius: 14px !important;
 }
 
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill {
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill {
   display: flex;
   align-items: center;
 }
 
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill nav,
-.dark2-page.dark7-v5-page header .dark7-v5-header-nav-pill .dark7-v5-header-nav-link {
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill nav,
+.dark2-page.dark7-v6-page header .dark7-v6-header-nav-pill .dark7-v6-header-nav-link {
   height: 100%;
   display: inline-flex;
   align-items: center;
 }
 
 /* Header dropdown panel + cards */
-.dark2-page.dark7-v5-page header [data-dropdown] > div > div {
+.dark2-page.dark7-v6-page header [data-dropdown] > div > div {
   background-color: #162d24 !important;
   border-color: rgba(247, 243, 240, 0.12) !important;
 }
 
-.dark2-page.dark7-v5-page header .dropdown-card {
+.dark2-page.dark7-v6-page header .dropdown-card {
   background-color: #f7f3f026 !important;
   border-color: rgba(247, 243, 240, 0.12) !important;
 }
 
-.dark2-page.dark7-v5-page header .dropdown-card h3,
-.dark2-page.dark7-v5-page header .dropdown-card p {
+.dark2-page.dark7-v6-page header .dropdown-card h3,
+.dark2-page.dark7-v6-page header .dropdown-card p {
   color: #f7f3f0 !important;
 }
 
-.dark2-page.dark7-v5-page header .dropdown-card p {
+.dark2-page.dark7-v6-page header .dropdown-card p {
   opacity: 0.75;
 }
 
-.dark2-page.dark7-v5-page header .dark7-v5-header-arrow-btn {
+.dark2-page.dark7-v6-page header .dark7-v6-header-arrow-btn {
   background-color: #162d24 !important;
 }
 
-.dark2-page.dark7-v5-page header .group:hover .dark7-v5-header-arrow-btn,
-.dark2-page.dark7-v5-page header .dropdown-card:hover .dark7-v5-header-arrow-btn {
+.dark2-page.dark7-v6-page header .group:hover .dark7-v6-header-arrow-btn,
+.dark2-page.dark7-v6-page header .dropdown-card:hover .dark7-v6-header-arrow-btn {
   background-color: #f7f3f0 !important;
 }

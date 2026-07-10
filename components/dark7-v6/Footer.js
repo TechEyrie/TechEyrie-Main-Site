@@ -1,4 +1,4 @@
-// components/Footer.jsx — essential links variant (full multi-column nav backup: Footer.backup.js)
+﻿// components/Footer.jsx — essential links variant (full multi-column nav backup: Footer.backup.js)
 'use client';
 
 import Link from 'next/link';
@@ -59,43 +59,43 @@ export default function Footer({ theme = 'light' }) {
   return (
     <>
       <style jsx global>{`
-        .dark7-v5-footer.dark5-footer {
+        .dark7-v6-footer.dark5-footer {
           background-color: #132419 !important;
           background-image: ${DARK7_GRADIENTS.footer} !important;
           background-repeat: no-repeat !important;
           background-size: 100% 100% !important;
         }
 
-        .dark7-v5-footer .dark5-footer-card {
+        .dark7-v6-footer .dark5-footer-card {
           background-color: rgba(247, 243, 240, 0.2) !important;
           border-color: rgba(247, 243, 240, 0.2) !important;
         }
 
-        .dark7-v5-footer .dark5-footer-text,
-        .dark7-v5-footer .dark5-footer-subtext,
-        .dark7-v5-footer .footer-link-underline,
-        .dark7-v5-footer .footer-link-underline:hover,
-        .dark7-v5-footer p,
-        .dark7-v5-footer span,
-        .dark7-v5-footer a:not(.social-icon-animate) {
+        .dark7-v6-footer .dark5-footer-text,
+        .dark7-v6-footer .dark5-footer-subtext,
+        .dark7-v6-footer .footer-link-underline,
+        .dark7-v6-footer .footer-link-underline:hover,
+        .dark7-v6-footer p,
+        .dark7-v6-footer span,
+        .dark7-v6-footer a:not(.social-icon-animate) {
           color: #f7f3f0 !important;
           font-weight: 300 !important;
           letter-spacing: 0.03em !important;
         }
 
-        .dark7-v5-footer .footer-section-label,
-        .dark7-v5-footer .footer-item-heading,
-        .dark7-v5-footer h3,
-        .dark7-v5-footer h4.footer-item-heading {
+        .dark7-v6-footer .footer-section-label,
+        .dark7-v6-footer .footer-item-heading,
+        .dark7-v6-footer h3,
+        .dark7-v6-footer h4.footer-item-heading {
           font-weight: 400 !important;
           letter-spacing: 0.04em !important;
         }
 
-        .dark7-v5-footer .footer-section-label {
+        .dark7-v6-footer .footer-section-label {
           letter-spacing: 0.12em !important;
         }
 
-        .dark7-v5-footer .dark5-footer-border {
+        .dark7-v6-footer .dark5-footer-border {
           border-color: rgba(247, 243, 240, 0.2) !important;
         }
 
@@ -132,7 +132,7 @@ export default function Footer({ theme = 'light' }) {
           padding-bottom: 2px;
         }
 
-        .dark7-v5-footer .footer-link-underline::after {
+        .dark7-v6-footer .footer-link-underline::after {
           background-color: #f7f3f0;
         }
 
@@ -162,12 +162,12 @@ export default function Footer({ theme = 'light' }) {
           color: #c8c2ad !important;
         }
 
-        .dark7-v5-footer .social-icon-animate {
+        .dark7-v6-footer .social-icon-animate {
           background-color: #162d24 !important;
           color: #f7f3f0 !important;
         }
 
-        .dark7-v5-footer .social-icon-animate:hover {
+        .dark7-v6-footer .social-icon-animate:hover {
           box-shadow: 0 8px 25px rgba(22, 45, 36, 0.45);
         }
 
@@ -191,7 +191,7 @@ export default function Footer({ theme = 'light' }) {
       `}</style>
 
       <footer
-        className={`dark5-footer dark7-v5-footer relative overflow-hidden pt-3 sm:pt-4 md:pt-5 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6 lg:px-8 ${
+        className={`dark5-footer dark7-v6-footer relative overflow-hidden pt-3 sm:pt-4 md:pt-5 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6 lg:px-8 ${
           theme === 'dark' ? '-mt-px' : ''
         }`}
         style={footerBgStyle}
