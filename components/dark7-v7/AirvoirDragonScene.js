@@ -10,31 +10,71 @@ import {
   V20_HDR_ENV,
   V20_FEATHER_NORMAL,
   V20_DRACO_DECODER_PATH,
-  WING_PALETTE,
+  DRAGON_EPIC_PALETTE,
   applyDragonMaterial,
   setupDragonAnimations,
   updateDragonFeatherUniforms,
 } from "./v20DragonMaterial";
 import "./AirvoirDragonScene.css";
 
+/**
+ * Airvoir bird tuning — edit these values, then hard-refresh `/dark7-v7`.
+ * File: components/dark7-v7/AirvoirDragonScene.js
+ *
+ * FLIGHT_START = pose at the beginning of the scroll flight
+ * FLIGHT_END   = pose at the end of the scroll flight
+ * (Everything between start/end lerps as you scroll.)
+ *
+ * Units are in 3D scene space (not px). Positive directions noted per axis.
+ */
 const FLIGHT_START = {
-  x: -5.2,
-  y: -0.05,
-  z: 0,
-  scale: 0.52,
-  rotY: Math.PI * 0.5,
-  rotZ: -0.08,
-  rotX: 0.04,
+  // Position — left / right on screen (negative = left, positive = right)
+  x: -4.6,
+  // Position — up / down (positive = higher, negative = lower)
+  y: -0.08,
+  // Position — toward / away from camera (positive = closer to you, negative = farther)
+  z: 0.35,
+  // Overall size of the bird (1 = model default; higher = bigger)
+  scale: 1.18,
+  // Yaw — turn left / right around vertical axis (radians). π*0.5 ≈ side view; higher ≈ more “from the right”
+  rotY: Math.PI * 0.72,
+  // Roll — tilt / bank wings (negative = tip one way, positive = the other)
+  rotZ: 1.5,
+  // Pitch — nose up / down (positive = nose up / more top of bird facing camera)
+  rotX: 0.18,
 };
 
 const FLIGHT_END = {
-  x: 5.2,
-  y: 0.02,
-  z: 0,
-  scale: 0.72,
-  rotY: Math.PI * 0.5,
-  rotZ: 0.06,
-  rotX: -0.02,
+  // Position — left / right on screen (negative = left, positive = right)
+  x: 5.8,
+  // Position — up / down (positive = higher, negative = lower)
+  y: 0.06,
+  // Position — toward / away from camera (positive = closer to you, negative = farther)
+  z: 0.15,
+  // Overall size of the bird at end of flight (higher = bigger)
+  scale: 1.18,
+  // Yaw — turn left / right (radians). Match or shift from start for a turning arc
+  rotY: Math.PI * 0.68,
+  // Roll — bank / wing tilt at end
+  rotZ: 1.5,
+  // Pitch — nose up / down at end
+  rotX: 0.08,
+};
+
+/** Camera — where you look FROM (separate from bird pose above) */
+const CAMERA = {
+  // Lens zoom feel (lower = zoomed in / less wide; higher = wider FOV)
+  fov: 28,
+  // Camera position X — negative = stand left of scene, positive = stand right
+  x: 1.4,
+  // Camera position Y — higher = more bird’s-eye / looking down
+  y: 0.85,
+  // Camera position Z — higher = farther back from the bird
+  z: 6.6,
+  // Point the camera looks at (world coords)
+  lookAtX: 0.3,
+  lookAtY: 0.05,
+  lookAtZ: 0,
 };
 
 export default function AirvoirDragonScene({ progressRef, className = "" }) {
@@ -57,9 +97,9 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
     const clock = new THREE.Clock();
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
-    camera.position.set(0, 0.15, 7.2);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(CAMERA.fov, 1, 0.1, 100);
+    camera.position.set(CAMERA.x, CAMERA.y, CAMERA.z);
+    camera.lookAt(CAMERA.lookAtX, CAMERA.lookAtY, CAMERA.lookAtZ);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -70,24 +110,25 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.08;
+    renderer.toneMappingExposure = 1.05;
     renderer.setClearColor(0x000000, 0);
 
-    scene.add(new THREE.AmbientLight(0xb8dcc8, 1.4));
+    // Luxury emerald glass lighting
+    scene.add(new THREE.AmbientLight(0x8eccb0, 0.75));
 
-    const keyLight = new THREE.DirectionalLight(0xd8f0e4, 2.8);
-    keyLight.position.set(2.2, 6, 4.5);
+    const keyLight = new THREE.DirectionalLight(0xf0fff6, 2.8);
+    keyLight.position.set(3.4, 5.5, 3.2);
     scene.add(keyLight);
 
-    const greenLight = new THREE.PointLight(0x00c878, 6, 60);
-    greenLight.position.set(4, 2, 4);
-    scene.add(greenLight);
-
-    const fillLight = new THREE.HemisphereLight(0x3a8060, 0x021008, 0.95);
+    const fillLight = new THREE.HemisphereLight(0x6ab898, 0x0a2018, 1.05);
     scene.add(fillLight);
 
-    const rimLight = new THREE.PointLight(0x88c8a0, 2.2, 48);
-    rimLight.position.set(5.8, 2.4, 4.2);
+    const jadeLight = new THREE.PointLight(0x2cff9a, 4.2, 48);
+    jadeLight.position.set(-2.2, 1.2, 3.6);
+    scene.add(jadeLight);
+
+    const rimLight = new THREE.PointLight(0xa8ffe0, 3.4, 52);
+    rimLight.position.set(5.2, 2.8, -2.4);
     scene.add(rimLight);
 
     const dracoLoader = new DRACOLoader();
@@ -100,7 +141,8 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
     texturesToDispose.push(featherNormal);
     featherNormal.wrapS = THREE.RepeatWrapping;
     featherNormal.wrapT = THREE.RepeatWrapping;
-    featherNormal.repeat.set(2.4, 2.4);
+    featherNormal.repeat.set(7.5, 7.5);
+    featherNormal.anisotropy = 8;
 
     new RGBELoader().load(V20_HDR_ENV, (hdr) => {
       if (disposed) {
@@ -155,29 +197,38 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
       }
 
       const bloom = Math.pow(t, 0.75);
-      renderer.toneMappingExposure = THREE.MathUtils.lerp(1.0, 1.16, bloom);
+      renderer.toneMappingExposure = THREE.MathUtils.lerp(1.02, 1.18, bloom);
       keyLight.intensity = THREE.MathUtils.lerp(2.4, 3.2, bloom);
+      jadeLight.intensity = THREE.MathUtils.lerp(3.4, 5.0, bloom);
 
       dragonMaterials.forEach((mat, index) => {
-        const swatch = mat.userData.swatch ?? WING_PALETTE[index % WING_PALETTE.length];
+        const swatch =
+          mat.userData.swatch ?? DRAGON_EPIC_PALETTE[index % DRAGON_EPIC_PALETTE.length];
         const baseHue = mat.userData.baseHue ?? swatch.hue;
-        const hueDrift = bloom * 0.03 * (index % 2 === 0 ? 1 : -1);
 
+        // Rich emerald glass — saturated green, never charcoal
         mat.color.setHSL(
-          baseHue + hueDrift,
-          THREE.MathUtils.lerp(0.62, 0.54, bloom),
-          THREE.MathUtils.lerp(0.24, 0.32, bloom),
+          baseHue,
+          THREE.MathUtils.lerp(0.62, 0.72, bloom),
+          THREE.MathUtils.lerp(0.2, 0.28, bloom),
         );
         mat.emissive.setHSL(
-          baseHue + 0.03,
-          THREE.MathUtils.lerp(0.42, 0.3, bloom),
-          THREE.MathUtils.lerp(0.08, 0.18, bloom),
+          baseHue,
+          THREE.MathUtils.lerp(0.5, 0.62, bloom),
+          THREE.MathUtils.lerp(0.12, 0.2, bloom),
         );
-        mat.emissiveIntensity = THREE.MathUtils.lerp(0.06, 0.2, bloom);
+        mat.emissiveIntensity = THREE.MathUtils.lerp(0.14, 0.28, bloom);
+        mat.metalness = THREE.MathUtils.lerp(0.08, 0.2, bloom);
+        mat.roughness = THREE.MathUtils.lerp(0.32, 0.16, bloom);
+        if ("clearcoat" in mat) {
+          mat.clearcoat = THREE.MathUtils.lerp(0.75, 1.0, bloom);
+          mat.clearcoatRoughness = THREE.MathUtils.lerp(0.16, 0.06, bloom);
+          mat.envMapIntensity = THREE.MathUtils.lerp(1.2, 1.85, bloom);
+        }
 
         const featherUniforms = mat.userData.featherUniforms;
         if (featherUniforms) {
-          featherUniforms.uIriStrength.value = THREE.MathUtils.lerp(0.3, 0.52, bloom);
+          featherUniforms.uIriStrength.value = THREE.MathUtils.lerp(0.38, 0.58, bloom);
         }
       });
     }
@@ -190,7 +241,9 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
         dragonObject = gltf.scene;
         scene.add(dragonObject);
         dragonObject.updateWorldMatrix(true, true);
-        dragonMaterials = applyDragonMaterial(dragonObject, { featherNormal }, false);
+        dragonMaterials = applyDragonMaterial(dragonObject, { featherNormal }, {
+          look: "epic",
+        });
 
         if (gltf.animations.length) {
           dragonMixer = new THREE.AnimationMixer(dragonObject);

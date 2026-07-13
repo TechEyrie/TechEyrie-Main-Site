@@ -51,7 +51,7 @@ function AirvoirCtaButton({ label = "Explore Our Expertise", className = "" }) {
         ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
       }`}
       style={{
-        backgroundColor: ctaHovered ? "#162D24" : "transparent",
+        backgroundColor: ctaHovered ? "#162D24" : "rgba(22, 45, 36, 0.1)",
         borderRadius: "12px",
       }}
       onMouseEnter={() => setCtaHovered(true)}
@@ -133,44 +133,45 @@ function DesktopAirvoirSection({ theme }) {
     if (!section || !firstHeading || !secondHeading) return;
 
     let unsubLayout = () => {};
+    let built = false;
 
     const ctx = gsap.context(() => {
       const build = () => {
+        // Build once — re-killing the pin mid-scroll is what ejects you permanently.
+        if (built) return;
+        built = true;
+
         gsap.set(firstHeading, { opacity: 1 });
         gsap.set(secondHeading, { opacity: 0 });
-        dragonProgressRef.current = 0;
 
         ScrollTrigger.getById("dark7-v7-airvoir")?.kill();
 
-        const flightState = { progress: 0 };
         const mainTl = gsap.timeline({
           scrollTrigger: Dark7V7ScrollTrigger({
             id: "dark7-v7-airvoir",
             trigger: section,
             start: "top top",
-            end: "+=100%",
-            scrub: 1,
+            end: "+=140%",
+            scrub: 0.6,
             pin: true,
             pinSpacing: true,
+            pinType: "transform",
             anticipatePin: 1,
+            // Keep measured start/end — hard remeasure mid-pause dumps the pin.
+            invalidateOnRefresh: false,
             refreshPriority: -1,
+            onUpdate: (self) => {
+              dragonProgressRef.current = self.progress;
+            },
+            onRefresh: (self) => {
+              dragonProgressRef.current = self.progress;
+              mainTl.progress(self.progress);
+            },
           }),
         });
 
-        const eagleDuration = 2.8;
+        // Timeline only drives headings; dragon uses ScrollTrigger.progress above.
         mainTl
-          .to(
-            flightState,
-            {
-              progress: 1,
-              duration: eagleDuration,
-              ease: "none",
-              onUpdate: () => {
-                dragonProgressRef.current = flightState.progress;
-              },
-            },
-            0,
-          )
           .to(
             firstHeading,
             {
@@ -178,7 +179,7 @@ function DesktopAirvoirSection({ theme }) {
               duration: 0.2,
               ease: "power2.in",
             },
-            eagleDuration * 0.4,
+            0.4,
           )
           .to(
             secondHeading,
@@ -187,8 +188,9 @@ function DesktopAirvoirSection({ theme }) {
               duration: 0.3,
               ease: "power2.out",
             },
-            eagleDuration * 0.45,
-          );
+            0.45,
+          )
+          .to({}, { duration: 0.25 }, 0.75);
       };
 
       unsubLayout = subscribeAfterScrollLayout(build);
@@ -196,6 +198,7 @@ function DesktopAirvoirSection({ theme }) {
 
     return () => {
       unsubLayout();
+      built = false;
       ctx.revert();
     };
   }, [theme]);
@@ -209,13 +212,10 @@ function DesktopAirvoirSection({ theme }) {
       <SectionOverlays />
 
       <div className="relative z-10 w-full h-screen flex items-center justify-center">
-        <div className="pointer-events-none absolute inset-0 z-[100] w-full h-full">
-          <AirvoirDragonScene progressRef={dragonProgressRef} className="w-full h-full" />
-        </div>
-
+        {/* Text sits under the eagle; CTA still clickable via pointer-events-none on the 3D layer */}
         <div
           ref={firstHeadingRef}
-          className="absolute inset-0 flex items-center justify-center z-[110] px-4 sm:px-6 md:px-8"
+          className="absolute inset-0 flex items-center justify-center z-[10] px-4 sm:px-6 md:px-8"
         >
           <div className="text-center max-w-5xl">
             <div className="mb-3 sm:mb-4">
@@ -239,7 +239,7 @@ function DesktopAirvoirSection({ theme }) {
 
         <div
           ref={secondHeadingRef}
-          className="absolute inset-0 flex items-center justify-center z-[110] px-4 sm:px-6 md:px-8 lg:px-12"
+          className="absolute inset-0 flex items-center justify-center z-[10] px-4 sm:px-6 md:px-8 lg:px-12"
         >
           <div className="text-center max-w-5xl">
             <h2
@@ -252,6 +252,10 @@ function DesktopAirvoirSection({ theme }) {
 
             <AirvoirCtaButton label="Explore Our Expertise" />
           </div>
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 z-[120] w-full h-full">
+          <AirvoirDragonScene progressRef={dragonProgressRef} className="w-full h-full" />
         </div>
       </div>
     </section>

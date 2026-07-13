@@ -23,6 +23,8 @@ import {
   initDark7V7LenisScroll,
   destroyDark7V7LenisScroll,
   refreshDark7V7ScrollTriggers,
+  markDark7V7ScrollLayoutSettled,
+  hasActiveDark7V7Pin,
 } from "./lenisScrollTrigger";
 
 if (typeof window !== "undefined") {
@@ -70,8 +72,19 @@ const MainPage = () => {
     initDark7V7LenisScroll(lenis);
     lenis.scrollTo(0, { immediate: true });
 
-    const onRefresh = () => lenis.resize();
+    const onRefresh = () => {
+      // Resizing Lenis while a pin is active remaps the scroll range and ejects Airvoir.
+      if (hasActiveDark7V7Pin() || lenis.isScrolling) return;
+      lenis.resize();
+    };
     ScrollTrigger.addEventListener("refresh", onRefresh);
+
+    const onWindowResize = () => {
+      if (hasActiveDark7V7Pin() || lenis.isScrolling) return;
+      lenis.resize();
+      refreshDark7V7ScrollTriggers(false);
+    };
+    window.addEventListener("resize", onWindowResize);
 
     const raf = (time) => {
       lenis.raf(time * 1000);
@@ -83,15 +96,23 @@ const MainPage = () => {
     const refreshTimers = [
       window.setTimeout(() => refreshDark7V7ScrollTriggers(true), 100),
       window.setTimeout(() => refreshDark7V7ScrollTriggers(true), 500),
-      window.setTimeout(() => refreshDark7V7ScrollTriggers(true), 1200),
+      window.setTimeout(() => {
+        refreshDark7V7ScrollTriggers(true);
+        // After late layout settles, later hard refreshes become pin-safe.
+        markDark7V7ScrollLayoutSettled();
+      }, 1200),
     ];
 
-    const onLoad = () => refreshDark7V7ScrollTriggers(true);
+    const onLoad = () => {
+      refreshDark7V7ScrollTriggers(true);
+      markDark7V7ScrollLayoutSettled();
+    };
     window.addEventListener("load", onLoad);
 
     return () => {
       refreshTimers.forEach((timer) => window.clearTimeout(timer));
       window.removeEventListener("load", onLoad);
+      window.removeEventListener("resize", onWindowResize);
       ScrollTrigger.removeEventListener("refresh", onRefresh);
       destroyDark7V7LenisScroll(lenis);
       lenis.destroy();

@@ -17,24 +17,64 @@ import {
 } from "./v20DragonMaterial";
 import "./AirvoirDragonScene.css";
 
+/**
+ * Airvoir bird tuning — edit these values, then hard-refresh the page.
+ * File: components/dark7-v6/AirvoirDragonScene.js
+ *
+ * FLIGHT_START = pose at the beginning of the scroll flight
+ * FLIGHT_END   = pose at the end of the scroll flight
+ * (Everything between start/end lerps as you scroll.)
+ *
+ * Units are in 3D scene space (not px). Positive directions noted per axis.
+ */
 const FLIGHT_START = {
+  // Position — left / right on screen (negative = left, positive = right)
   x: -5.2,
+  // Position — up / down (positive = higher, negative = lower)
   y: -0.05,
+  // Position — toward / away from camera (positive = closer to you, negative = farther)
   z: 0,
-  scale: 0.52,
+  // Overall size of the bird (1 = model default; higher = bigger)
+  scale: 0.1,
+  // Yaw — turn left / right around vertical axis (radians). Math.PI * 0.5 ≈ side view; higher ≈ more "from the right"
   rotY: Math.PI * 0.5,
+  // Roll — tilt / bank wings (negative = tip one way, positive = the other)
   rotZ: -0.08,
+  // Pitch — nose up / down (positive = nose up / more top of bird facing camera)
   rotX: 0.04,
 };
 
 const FLIGHT_END = {
+  // Position — left / right on screen (negative = left, positive = right)
   x: 5.2,
+  // Position — up / down (positive = higher, negative = lower)
   y: 0.02,
+  // Position — toward / away from camera (positive = closer to you, negative = farther)
   z: 0,
+  // Overall size of the bird at end of flight (higher = bigger)
   scale: 0.72,
+  // Yaw — turn left / right (radians). Match or shift from start for a turning arc
   rotY: Math.PI * 0.5,
+  // Roll — bank / wing tilt at end
   rotZ: 0.06,
+  // Pitch — nose up / down at end
   rotX: -0.02,
+};
+
+/** Camera — where you look FROM (separate from bird pose above) */
+const CAMERA = {
+  // Lens zoom feel (lower = zoomed in / less wide; higher = wider FOV)
+  fov: 28,
+  // Camera position X — negative = stand left of scene, positive = stand right
+  x: 0,
+  // Camera position Y — higher = more bird's-eye / looking down
+  y: 0.15,
+  // Camera position Z — higher = farther back from the bird
+  z: 7.2,
+  // Point the camera looks at (world coords)
+  lookAtX: 0,
+  lookAtY: 0,
+  lookAtZ: 0,
 };
 
 export default function AirvoirDragonScene({ progressRef, className = "" }) {
@@ -57,9 +97,9 @@ export default function AirvoirDragonScene({ progressRef, className = "" }) {
     const clock = new THREE.Clock();
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
-    camera.position.set(0, 0.15, 7.2);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(CAMERA.fov, 1, 0.1, 100);
+    camera.position.set(CAMERA.x, CAMERA.y, CAMERA.z);
+    camera.lookAt(CAMERA.lookAtX, CAMERA.lookAtY, CAMERA.lookAtZ);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,

@@ -60,10 +60,68 @@ export const WING_PALETTE = [
   },
 ];
 
+/** Luxury emerald / jade glass dragon for Airvoir */
+export const DRAGON_EPIC_PALETTE = [
+  {
+    hue: 0.38,
+    color: "#0a4a32",
+    shadow: "#021810",
+    deepForest: "#01120c",
+    highlight: "#3ecf8a",
+    mint: "#6ae0a8",
+    emissive: "#0c5a38",
+    tip: "#1a6a48",
+    iriPink: "#a8e0c8",
+    iriPurple: "#68c8b0",
+    iriGold: "#d4f0c0",
+  },
+  {
+    hue: 0.42,
+    color: "#085040",
+    shadow: "#021a16",
+    deepForest: "#011412",
+    highlight: "#34c8a8",
+    mint: "#58d8bc",
+    emissive: "#0a5848",
+    tip: "#187860",
+    iriPink: "#90d8c8",
+    iriPurple: "#58b8b0",
+    iriGold: "#c8ecd0",
+  },
+  {
+    hue: 0.34,
+    color: "#0c5230",
+    shadow: "#031a12",
+    deepForest: "#02120c",
+    highlight: "#48d878",
+    mint: "#72e898",
+    emissive: "#0e6038",
+    tip: "#1e7448",
+    iriPink: "#b0e8c0",
+    iriPurple: "#78c898",
+    iriGold: "#e0f4b8",
+  },
+  {
+    hue: 0.4,
+    color: "#0a4838",
+    shadow: "#021612",
+    deepForest: "#01100e",
+    highlight: "#2cbc90",
+    mint: "#50d0a8",
+    emissive: "#0c5640",
+    tip: "#166a50",
+    iriPink: "#98dcc8",
+    iriPurple: "#60b8a0",
+    iriGold: "#d0ecc8",
+  },
+];
+
 const FEATHER_PAINT_STRENGTH = 0.97;
 const FEATHER_IRI_STRENGTH = 0.34;
+const EPIC_IRI_STRENGTH = 0.48;
 const WING_TIP_ZONE_START = 0.56;
 const WING_TIP_BLEND_STRENGTH = 0.82;
+const EPIC_TIP_BLEND_STRENGTH = 0.78;
 
 function isWingFeatherMesh(mesh) {
   const name = (mesh.name || "").toLowerCase();
@@ -126,8 +184,21 @@ function applyFeatherSurfaceShader(
   lightweight,
   isWing,
   meshSeed = 0,
+  epic = false,
 ) {
   const axis = isWing ? computeFeatherTipAxis(mesh, birdOrigin) : null;
+  const tipBlend = epic
+    ? EPIC_TIP_BLEND_STRENGTH
+    : axis
+      ? lightweight
+        ? 0.72
+        : WING_TIP_BLEND_STRENGTH
+      : 0;
+  const iriStrength = epic
+    ? EPIC_IRI_STRENGTH
+    : lightweight
+      ? 0.28
+      : FEATHER_IRI_STRENGTH;
 
   const uniforms = {
     uBaseColor: { value: new THREE.Color(swatch.color) },
@@ -141,18 +212,19 @@ function applyFeatherSurfaceShader(
     uIriGold: { value: new THREE.Color(swatch.iriGold) },
     uBirdOrigin: { value: birdOrigin.clone() },
     uMeshSeed: { value: meshSeed },
-    uPaintStrength: { value: FEATHER_PAINT_STRENGTH },
-    uIriStrength: { value: lightweight ? 0.28 : FEATHER_IRI_STRENGTH },
-    uTipBlendStrength: { value: axis ? (lightweight ? 0.72 : WING_TIP_BLEND_STRENGTH) : 0 },
+    uPaintStrength: { value: epic ? 0.99 : FEATHER_PAINT_STRENGTH },
+    uIriStrength: { value: iriStrength },
+    uTipBlendStrength: { value: axis ? tipBlend : 0 },
     uWingRoot: { value: axis?.rootVal ?? 0 },
     uWingTip: { value: axis?.tipVal ?? 1 },
     uWingAxis: { value: axis?.axisIdx ?? 0 },
     uTipSoftStart: { value: axis?.softStart ?? 1 },
+    uEpicMode: { value: epic ? 1 : 0 },
   };
 
   material.userData.featherUniforms = uniforms;
   material.customProgramCacheKey = () =>
-    `feather-paint-v3-${isWing ? 1 : 0}-${axis?.axisIdx ?? "b"}`;
+    `feather-paint-v4-${epic ? "epic" : "std"}-${isWing ? 1 : 0}-${axis?.axisIdx ?? "b"}`;
 
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
@@ -206,6 +278,7 @@ uniform float uMeshSeed;
 uniform float uPaintStrength;
 uniform float uIriStrength;
 uniform float uTipBlendStrength;
+uniform float uEpicMode;
 varying vec3 vFeatherWorldPos;
 varying vec3 vFeatherNormal;
 varying float vWingTipBlend;`,
@@ -216,31 +289,46 @@ varying float vWingTipBlend;`,
   vec3 viewDir = normalize(cameraPosition - vFeatherWorldPos);
   vec3 n = normalize(vFeatherNormal);
   float facing = clamp(dot(n, viewDir), 0.0, 1.0);
-  float cavity = pow(1.0 - facing, 2.4);
+  float cavity = pow(1.0 - facing, mix(2.4, 1.85, uEpicMode));
 
   vec3 lightDir = normalize(vec3(0.32, 1.0, 0.22));
   float ndl = clamp(dot(n, lightDir) * 0.5 + 0.5, 0.0, 1.0);
-  float flatShade = floor(ndl * 5.0) / 5.0;
+  float flatShade = mix(floor(ndl * 5.0) / 5.0, smoothstep(0.12, 0.92, ndl), uEpicMode);
 
   float relHeight = clamp((vFeatherWorldPos.y - uBirdOrigin.y + 0.12) / 1.65, 0.0, 1.0);
   vec3 heightTint = mix(uDeepForest, uBaseColor, smoothstep(0.0, 0.38, relHeight));
   heightTint = mix(heightTint, mix(uBaseColor, uMintColor, 0.55), smoothstep(0.35, 0.78, relHeight));
-  heightTint = mix(heightTint, uMintColor, smoothstep(0.72, 1.0, relHeight) * 0.32);
+  heightTint = mix(heightTint, uMintColor, smoothstep(0.72, 1.0, relHeight) * mix(0.32, 0.14, uEpicMode));
 
-  vec3 feather = mix(heightTint, uShadowColor, cavity * 0.78);
-  feather = mix(feather, uHighlightColor, flatShade * 0.3);
-  feather = mix(feather, uMintColor, pow(max(relHeight, 0.0), 1.8) * 0.06);
+  vec3 feather = mix(heightTint, uShadowColor, cavity * mix(0.78, 0.92, uEpicMode));
+  feather = mix(feather, uHighlightColor, flatShade * mix(0.3, 0.42, uEpicMode));
+  feather = mix(feather, uMintColor, pow(max(relHeight, 0.0), 1.8) * mix(0.06, 0.03, uEpicMode));
 
+  // Feather / scale micro-structure
   float barbA = sin(dot(vFeatherWorldPos, vec3(42.0 + uMeshSeed, 56.0, 31.0))) * 0.5 + 0.5;
   float barbB = sin(dot(vFeatherWorldPos, vec3(24.0, 19.0 + uMeshSeed, 67.0))) * 0.5 + 0.5;
   float barb = mix(barbA, barbB, 0.45);
+
+  // Epic: armored scale rows + hard wing vanes
+  float scaleCell = sin(vFeatherWorldPos.x * mix(18.0, 42.0, uEpicMode) + uMeshSeed)
+                  * sin(vFeatherWorldPos.y * mix(14.0, 36.0, uEpicMode) - uMeshSeed * 0.7);
+  float scaleMask = smoothstep(0.15, 0.85, scaleCell * 0.5 + 0.5);
+  float vane = abs(sin(dot(vFeatherWorldPos.xy, vec2(28.0, 9.0)) + uMeshSeed));
+  vane = pow(1.0 - vane, mix(1.0, 3.2, uEpicMode));
+
   feather *= 0.91 + 0.09 * barb;
+  feather = mix(feather, feather * 0.72, scaleMask * 0.55 * uEpicMode);
+  feather = mix(feather, uShadowColor, vane * 0.35 * uEpicMode);
 
   float grain = fract(sin(dot(vFeatherWorldPos.xz, vec2(12.9898, 78.233) + uMeshSeed)) * 43758.5453);
   feather *= 0.96 + 0.04 * grain;
 
-  float edgePaint = pow(1.0 - facing, 3.2);
-  feather = mix(feather, uMintColor * 0.82, edgePaint * 0.05);
+  float edgePaint = pow(1.0 - facing, mix(3.2, 2.2, uEpicMode));
+  feather = mix(feather, uMintColor * 0.82, edgePaint * mix(0.05, 0.02, uEpicMode));
+
+  // Specular-ish rim for hard wing silhouette
+  float rim = pow(1.0 - facing, mix(2.8, 3.6, uEpicMode));
+  feather = mix(feather, uHighlightColor, rim * mix(0.0, 0.28, uEpicMode));
 
   float iriT = facing + sin(vFeatherWorldPos.y * 6.8 + vFeatherWorldPos.x * 4.2 + uMeshSeed) * 0.1;
   float iriW = smoothstep(0.42, 0.92, iriT);
@@ -249,7 +337,13 @@ varying float vWingTipBlend;`,
   feather = mix(feather, iri, iriW * uIriStrength);
 
   float tip = clamp(vWingTipBlend, 0.0, 1.0);
-  feather = mix(feather, uTipColor, tip * uTipBlendStrength);
+  // Epic tips: glassy emerald edge (not charcoal)
+  vec3 tipPaint = mix(uTipColor, mix(uTipColor, uHighlightColor, 0.45), uEpicMode);
+  feather = mix(feather, tipPaint, tip * uTipBlendStrength);
+
+  // Extra glassy Fresnel sheen in epic mode
+  float glassFresnel = pow(1.0 - facing, 2.6);
+  feather = mix(feather, mix(uHighlightColor, uIriGold, 0.35), glassFresnel * 0.42 * uEpicMode);
 
   gl_FragColor.rgb = mix(gl_FragColor.rgb, feather, uPaintStrength);
 }
@@ -296,7 +390,15 @@ export function setupDragonAnimations(mixer, clips) {
   };
 }
 
-export function applyDragonMaterial(bird, textures, lightweight = false) {
+export function applyDragonMaterial(bird, textures, lightweightOrOptions = false) {
+  const options =
+    typeof lightweightOrOptions === "boolean"
+      ? { lightweight: lightweightOrOptions, look: "default" }
+      : { lightweight: false, look: "default", ...lightweightOrOptions };
+
+  const { lightweight, look } = options;
+  const epic = look === "epic";
+  const palette = epic ? DRAGON_EPIC_PALETTE : WING_PALETTE;
   const { featherNormal } = textures;
   const materials = [];
   let meshIndex = 0;
@@ -309,26 +411,47 @@ export function applyDragonMaterial(bird, textures, lightweight = false) {
     if (!child.isMesh) return;
     child.frustumCulled = lightweight;
 
-    const swatch = WING_PALETTE[meshIndex % WING_PALETTE.length];
+    const swatch = palette[meshIndex % palette.length];
     const isWing = isWingFeatherMesh(child);
     meshIndex += 1;
 
-    const material = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(swatch.color),
-      emissive: new THREE.Color(swatch.emissive),
-      emissiveIntensity: lightweight ? 0.06 : 0.08,
-      normalMap: featherNormal,
-      normalScale: new THREE.Vector2(0.028, 0.028),
-      roughness: lightweight ? 0.94 : 0.92,
-      metalness: 0.0,
-      flatShading: true,
-      envMapIntensity: lightweight ? 0.1 : 0.14,
-      side: lightweight ? THREE.FrontSide : THREE.DoubleSide,
-      depthWrite: true,
-    });
+    const material = epic
+      ? new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color(swatch.color),
+          emissive: new THREE.Color(swatch.emissive),
+          emissiveIntensity: 0.18,
+          normalMap: featherNormal,
+          normalScale: new THREE.Vector2(isWing ? 0.95 : 0.55, isWing ? 0.95 : 0.55),
+          roughness: isWing ? 0.22 : 0.34,
+          metalness: isWing ? 0.18 : 0.08,
+          clearcoat: isWing ? 1.0 : 0.72,
+          clearcoatRoughness: isWing ? 0.08 : 0.18,
+          reflectivity: 0.9,
+          sheen: 0.45,
+          sheenRoughness: 0.35,
+          sheenColor: new THREE.Color(swatch.mint),
+          flatShading: false,
+          envMapIntensity: isWing ? 1.65 : 1.15,
+          side: THREE.DoubleSide,
+          depthWrite: true,
+        })
+      : new THREE.MeshStandardMaterial({
+          color: new THREE.Color(swatch.color),
+          emissive: new THREE.Color(swatch.emissive),
+          emissiveIntensity: lightweight ? 0.06 : 0.08,
+          normalMap: featherNormal,
+          normalScale: new THREE.Vector2(0.028, 0.028),
+          roughness: lightweight ? 0.94 : 0.92,
+          metalness: 0.0,
+          flatShading: true,
+          envMapIntensity: lightweight ? 0.1 : 0.14,
+          side: lightweight ? THREE.FrontSide : THREE.DoubleSide,
+          depthWrite: true,
+        });
 
     material.userData.baseHue = swatch.hue;
     material.userData.swatch = swatch;
+    material.userData.epic = epic;
     child.material = material;
     materials.push(material);
 
@@ -340,6 +463,7 @@ export function applyDragonMaterial(bird, textures, lightweight = false) {
       lightweight,
       isWing,
       meshIndex * 0.173,
+      epic,
     );
   });
 

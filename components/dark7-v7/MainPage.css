@@ -1089,14 +1089,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: transparent !important;
+  background-color: rgba(22, 45, 36, 0.1) !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-tech-eyrie .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: transparent !important;
+  background-color: rgba(22, 45, 36, 0.1) !important;
   letter-spacing: 0.06em !important;
 }
 
@@ -1105,12 +1105,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
+  background-color: rgba(22, 45, 36, 0.1) !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-airvoir .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
+  background-color: rgba(22, 45, 36, 0.1) !important;
   letter-spacing: 0.06em !important;
 }
 

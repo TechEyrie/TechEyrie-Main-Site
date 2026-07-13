@@ -6,6 +6,7 @@ export const DARK7_V7_SCROLLER =
 
 let lenisInstance = null;
 let removeRefreshInitListener = null;
+let layoutSettled = false;
 
 export function getDark7V7ScrollTop() {
   if (lenisInstance) return lenisInstance.scroll;
@@ -13,6 +14,13 @@ export function getDark7V7ScrollTop() {
     return ScrollTrigger.getScrollFunc(DARK7_V7_SCROLLER)?.() ?? window.scrollY;
   }
   return window.scrollY;
+}
+
+/** True when any pinned ScrollTrigger is currently active. */
+export function hasActiveDark7V7Pin() {
+  return ScrollTrigger.getAll().some(
+    (st) => st.isActive && Boolean(st.vars?.pin || st.pin),
+  );
 }
 
 /** Merge dark7-v7 scroll defaults into a ScrollTrigger config object. */
@@ -37,7 +45,13 @@ function applyDark7V7ScrollerProxy(lenis) {
   ScrollTrigger.scrollerProxy(DARK7_V7_SCROLLER, {
     scrollTop(value) {
       if (arguments.length) {
-        lenis.scrollTo(value, { immediate: true });
+        const next = Number(value);
+        if (!Number.isFinite(next)) return lenis.scroll;
+        // No-op sets: avoid yanking Lenis while it settles mid-pin.
+        if (Math.abs(next - lenis.scroll) < 0.75) return lenis.scroll;
+        // During coast/settle, ignore external jumps — they unpin Airvoir.
+        if (lenis.isScrolling) return lenis.scroll;
+        lenis.scrollTo(next, { immediate: true, force: true });
       }
       return lenis.scroll;
     },
@@ -57,6 +71,7 @@ export function initDark7V7LenisScroll(lenis) {
   if (typeof window === "undefined" || !DARK7_V7_SCROLLER) return;
 
   lenisInstance = lenis;
+  layoutSettled = false;
 
   applyDark7V7ScrollerProxy(lenis);
 
@@ -69,6 +84,11 @@ export function initDark7V7LenisScroll(lenis) {
   ScrollTrigger.defaults({
     scroller: DARK7_V7_SCROLLER,
     invalidateOnRefresh: true,
+  });
+
+  // Avoid observer-driven refreshes remapping pins while the user pauses mid-section.
+  ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
   });
 
   lenis.on("scroll", () => {
@@ -88,6 +108,7 @@ export function initDark7V7LenisScroll(lenis) {
 
 export function destroyDark7V7LenisScroll(lenis) {
   lenisInstance = null;
+  layoutSettled = false;
   removeRefreshInitListener?.();
   removeRefreshInitListener = null;
 
@@ -98,12 +119,30 @@ export function destroyDark7V7LenisScroll(lenis) {
     scroller: undefined,
     invalidateOnRefresh: false,
   });
+  ScrollTrigger.config({
+    autoRefreshEvents: "resize,visibilitychange,DOMContentLoaded,load",
+  });
 }
 
+/**
+ * Refresh ScrollTriggers. When a pin is active (user paused mid-Airvoir etc.),
+ * skip hard refreshes that remape start/end and kick Lenis out of the pin range.
+ */
 export function refreshDark7V7ScrollTriggers(hard = true) {
   if (typeof window === "undefined") return;
+
+  if (hard && layoutSettled && hasActiveDark7V7Pin()) {
+    ScrollTrigger.update();
+    return;
+  }
+
   ScrollTrigger.refresh(hard);
   ScrollTrigger.sort();
+}
+
+/** Call after late layout timers so later hard refreshes stay pin-safe. */
+export function markDark7V7ScrollLayoutSettled() {
+  layoutSettled = true;
 }
 
 export const DARK7_V7_SCROLL_LAYOUT_READY_EVENT = "dark7-v7-scroll-layout-ready";
@@ -133,7 +172,7 @@ export function subscribeAfterScrollLayout(callback) {
 
   const run = () => {
     if (cancelled) return;
-    refreshDark7V7ScrollTriggers(true);
+    // Create first, then refresh — pre-refresh while killing pins mid-rebuild is unsafe.
     callback();
     requestAnimationFrame(() => {
       if (!cancelled) refreshDark7V7ScrollTriggers(true);

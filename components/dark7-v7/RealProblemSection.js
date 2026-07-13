@@ -276,7 +276,7 @@ export default function RealProblemSection({ theme = "light", sharedBackground =
                       : "text-[#162D24]"
                 }`}
                 style={{
-                  backgroundColor: ctaHovered ? "#162D24" : "transparent",
+                  backgroundColor: ctaHovered ? "#162D24" : "rgba(22, 45, 36, 0.1)",
                   borderRadius: "12px",
                 }}
                 onMouseEnter={() => setCtaHovered(true)}

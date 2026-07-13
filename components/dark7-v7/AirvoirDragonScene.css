@@ -1,7 +1,7 @@
 .airvoir-dragon-stage {
   position: absolute;
   inset: 0;
-  z-index: 100;
+  z-index: 120;
   pointer-events: none;
 }
 
