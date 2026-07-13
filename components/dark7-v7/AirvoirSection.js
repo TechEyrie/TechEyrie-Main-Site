@@ -1,10 +1,10 @@
-﻿// components/AirvoirSection.jsx
+// components/AirvoirSection.jsx
 "use client";
 
 import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Dark7V6ScrollTrigger, subscribeAfterScrollLayout } from "./lenisScrollTrigger";
+import { Dark7V7ScrollTrigger, subscribeAfterScrollLayout } from "./lenisScrollTrigger";
 import {
   DARK7_GRADIENTS,
   DARK7_GRADIENT_NOISE_STYLE,
@@ -47,11 +47,11 @@ function AirvoirCtaButton({ label = "Explore Our Expertise", className = "" }) {
   return (
     <button
       type="button"
-      className={`hero-cta-btn inline-flex cursor-pointer items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${className} ${
+      className={`hero-cta-btn inline-flex cursor-pointer items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-[0.06em] transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${className} ${
         ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
       }`}
       style={{
-        backgroundColor: ctaHovered ? "#162D24" : "#162D2433",
+        backgroundColor: ctaHovered ? "#162D24" : "transparent",
         borderRadius: "12px",
       }}
       onMouseEnter={() => setCtaHovered(true)}
@@ -67,9 +67,9 @@ function MobileAirvoirSection({ theme }) {
   const { textPrimary, divider } = getSurfaceClasses(theme);
 
   return (
-    <div className="relative w-full max-w-full min-w-0 overflow-x-clip">
+    <div className="relative w-full max-w-full min-w-0 overflow-x-clip -mt-px">
       <section
-        className="dark7-v6-airvoir relative overflow-hidden transition-colors duration-500"
+        className="dark7-v7-airvoir relative overflow-hidden transition-colors duration-500"
         style={bgStyle}
       >
         <SectionOverlays />
@@ -140,12 +140,12 @@ function DesktopAirvoirSection({ theme }) {
         gsap.set(secondHeading, { opacity: 0 });
         dragonProgressRef.current = 0;
 
-        ScrollTrigger.getById("dark7-v6-airvoir")?.kill();
+        ScrollTrigger.getById("dark7-v7-airvoir")?.kill();
 
         const flightState = { progress: 0 };
         const mainTl = gsap.timeline({
-          scrollTrigger: Dark7V6ScrollTrigger({
-            id: "dark7-v6-airvoir",
+          scrollTrigger: Dark7V7ScrollTrigger({
+            id: "dark7-v7-airvoir",
             trigger: section,
             start: "top top",
             end: "+=100%",
@@ -203,19 +203,19 @@ function DesktopAirvoirSection({ theme }) {
   return (
     <section
       ref={sectionRef}
-      className="dark7-v6-airvoir relative overflow-hidden transition-colors duration-500 min-h-screen"
+      className="dark7-v7-airvoir relative -mt-px overflow-hidden transition-colors duration-500 min-h-screen"
       style={bgStyle}
     >
       <SectionOverlays />
 
       <div className="relative z-10 w-full h-screen flex items-center justify-center">
-        <div className="absolute inset-0 z-[100] w-full h-full">
+        <div className="pointer-events-none absolute inset-0 z-[100] w-full h-full">
           <AirvoirDragonScene progressRef={dragonProgressRef} className="w-full h-full" />
         </div>
 
         <div
           ref={firstHeadingRef}
-          className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 md:px-8"
+          className="absolute inset-0 flex items-center justify-center z-[110] px-4 sm:px-6 md:px-8"
         >
           <div className="text-center max-w-5xl">
             <div className="mb-3 sm:mb-4">
@@ -239,7 +239,7 @@ function DesktopAirvoirSection({ theme }) {
 
         <div
           ref={secondHeadingRef}
-          className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 md:px-8 lg:px-12"
+          className="absolute inset-0 flex items-center justify-center z-[110] px-4 sm:px-6 md:px-8 lg:px-12"
         >
           <div className="text-center max-w-5xl">
             <h2
