@@ -360,8 +360,7 @@ const BlogsSection = ({ theme = "light", sharedBackground = false }) => {
 
           <div className="mx-auto max-w-3xl text-center">
             <p
-              className="blogs-section-description real-problem-description font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#F7F3F0]"
-              style={{ color: "#F7F3F0" }}
+              className="blogs-section-description font-merriweather font-light leading-snug tracking-[0.02em] text-[#F7F3F0]"
             >
             Our insights are built on research, data driven and designed to elevate the strategic growth of your business. 
 

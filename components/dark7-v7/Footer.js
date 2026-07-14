@@ -74,23 +74,13 @@ export default function Footer({ theme = 'light' }) {
         }
 
         .dark7-v7-footer .dark5-footer-text,
-        .dark7-v7-footer .dark5-footer-subtext,
-        .dark7-v7-footer .footer-link-underline,
-        .dark7-v7-footer .footer-link-underline:hover,
+        .dark7-v7-footer .dark5-footer-subtext:not(.blogs-section-description),
+        .dark7-v7-footer .footer-link-underline:not(.blogs-section-description),
+        .dark7-v7-footer .footer-link-underline:not(.blogs-section-description):hover,
         .dark7-v7-footer p,
         .dark7-v7-footer span,
-        .dark7-v7-footer a:not(.social-icon-animate) {
+        .dark7-v7-footer a:not(.social-icon-animate):not(.blogs-section-description) {
           color: #f7f3f0 !important;
-          font-weight: 300 !important;
-          letter-spacing: 0.03em !important;
-        }
-
-        .dark7-v7-footer .footer-section-label,
-        .dark7-v7-footer .footer-item-heading,
-        .dark7-v7-footer h3,
-        .dark7-v7-footer h4.footer-item-heading {
-          font-weight: 400 !important;
-          letter-spacing: 0.04em !important;
         }
 
         .dark7-v7-footer .footer-section-label {
@@ -115,7 +105,7 @@ export default function Footer({ theme = 'light' }) {
           color: #e0d1b6 !important;
         }
 
-        .dark5-footer-subtext {
+        .dark5-footer-subtext:not(.blogs-section-description) {
           color: #c8c2ad !important;
         }
 
@@ -159,8 +149,8 @@ export default function Footer({ theme = 'light' }) {
           transform: scaleX(1);
         }
 
-        .dark5-footer .footer-link-underline,
-        .dark5-footer .footer-link-underline:hover {
+        .dark5-footer .footer-link-underline:not(.blogs-section-description),
+        .dark5-footer .footer-link-underline:not(.blogs-section-description):hover {
           color: #c8c2ad !important;
         }
 
@@ -218,7 +208,7 @@ export default function Footer({ theme = 'light' }) {
           >
             <div className="space-y-4 sm:space-y-5 sm:col-span-2 md:col-span-3 lg:col-span-3">
               <h3
-                className="footer-section-label dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-normal tracking-[0.12em] uppercase"
+                className="footer-section-label dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-light tracking-[0.12em] uppercase"
                 style={{ color: textColor }}
               >
                 Studios &amp; contact
@@ -226,7 +216,7 @@ export default function Footer({ theme = 'light' }) {
               <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                 <div className="space-y-1 sm:space-y-1.5">
                   <p
-                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-normal tracking-[0.04em]"
+                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-light tracking-[0.04em]"
                     style={{ color: textColor }}
                   >
                     Dapper Lisbon
@@ -240,7 +230,7 @@ export default function Footer({ theme = 'light' }) {
 
                 <div className="space-y-1 sm:space-y-1.5">
                   <p
-                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-normal tracking-[0.04em]"
+                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-light tracking-[0.04em]"
                     style={{ color: textColor }}
                   >
                     Dapper Rotterdam
@@ -254,7 +244,7 @@ export default function Footer({ theme = 'light' }) {
 
                 <div className="space-y-1 sm:space-y-1.5 sm:col-span-2 md:col-span-1">
                   <p
-                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-normal tracking-[0.04em]"
+                    className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-light tracking-[0.04em]"
                     style={{ color: textColor }}
                   >
                     Contact Tycho
@@ -281,7 +271,7 @@ export default function Footer({ theme = 'light' }) {
 
             <div className="space-y-5 sm:space-y-6 sm:col-span-2 md:col-span-3 lg:col-span-4 lg:pl-4 xl:pl-8 lg:border-l" style={{ borderColor }}>
               <h3
-                className="footer-section-label dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-normal tracking-[0.12em] uppercase"
+                className="footer-section-label dark5-footer-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] font-light tracking-[0.12em] uppercase"
                 style={{ color: textColor }}
               >
                 Essential links
@@ -290,7 +280,7 @@ export default function Footer({ theme = 'light' }) {
                 {ESSENTIAL_LINK_GROUPS.map((group) => (
                   <div key={group.title} className="space-y-2 sm:space-y-2.5">
                     <h4
-                      className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] font-normal tracking-[0.04em]"
+                      className="footer-item-heading font-merriweather text-[11px] sm:text-[12px] font-light tracking-[0.04em]"
                       style={{ color: textColor }}
                     >
                       {group.title}
@@ -352,7 +342,7 @@ function FooterLink({ href, children, theme = 'light' }) {
   return (
     <Link
       href={href}
-      className="dark5-footer-subtext footer-link-underline block font-merriweather text-[11px] sm:text-[11px] md:text-[12px] font-light tracking-[0.03em] transition-colors whitespace-nowrap"
+      className="blogs-section-description footer-link-underline dark7-v7-footer-menu-link block font-merriweather font-light leading-snug tracking-normal transition-colors whitespace-nowrap"
       style={{ color: textColor }}
     >
       {children}

@@ -147,7 +147,7 @@ body {
 
 .dark2-page .dark7-v7-tech-eyrie,
 .dark2-page .dark7-v7-tech-eyrie *:not(.text-white) {
-  color: #000000 !important;
+  color: #162D24 !important;
 }
 
 .dark2-page .dark7-v7-airvoir,
@@ -155,7 +155,7 @@ body {
 .dark2-page .dark7-v7-airvoir h2,
 .dark2-page .dark7-v7-airvoir p,
 .dark2-page .dark7-v7-airvoir span:not(.text-white) {
-  color: #111111 !important;
+  color: #162D24 !important;
 }
 
 .dark2-page .dark7-v7-testimonials .testimonials-heading,
@@ -215,6 +215,7 @@ body {
 .dark2-page .dark7-v7-cards-services .cards-services-card,
 .dark2-page .dark7-v7-cards-services .cards-services-card-title,
 .dark2-page .dark7-v7-cards-services .cards-services-card-text,
+.dark2-page .dark7-v7-cards-services .cards-services-card-description,
 .dark2-page .dark7-v7-cards-services .dark7-services-dark-card h3,
 .dark2-page .dark7-v7-cards-services .dark7-services-dark-card p,
 .dark2-page .dark7-v7-cards-services .dark7-services-light-card h3,
@@ -225,14 +226,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark2-page .dark7-v7-cards-services .cards-services-card-text {
+.dark2-page .dark7-v7-cards-services .cards-services-card-text,
+.dark2-page .dark7-v7-cards-services .cards-services-card-description {
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
 }
 
 .dark2-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-card-title,
 .dark2-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-card-text,
 .dark2-page .dark7-v7-cards-services .dark7-services-dark-card h3,
-.dark2-page .dark7-v7-cards-services .dark7-services-dark-card p {
+.dark2-page .dark7-v7-cards-services .dark7-services-dark-card p:not(.cards-services-card-description) {
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
   font-style: normal !important;
@@ -250,7 +252,6 @@ body {
 .dark2-page .dark7-v7-faq .faq-section-eyebrow,
 .dark2-page .dark7-v7-faq .faq-title-line,
 .dark2-page .dark7-v7-faq .faq-title-line *,
-.dark2-page .dark7-v7-faq .faq-section-description,
 .dark2-page .dark7-v7-faq .faq-question-text,
 .dark2-page .dark7-v7-faq .faq-answer-text {
   color: #f7f3f0 !important;
@@ -288,29 +289,49 @@ body {
 }
 
 .dark2-page .dark7-v7-blogs .blogs-section-description,
-.dark2-page .dark7-v7-blogs .real-problem-description {
-  color: #f7f3f0 !important;
+.dark2-page .dark7-v7-faq .faq-section-description {
+  color: rgba(247, 243, 240, 0.88) !important;
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
   font-style: normal !important;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem !important;
+  line-height: 1.35 !important;
   letter-spacing: 0.02em !important;
-  line-height: 1.5 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
 }
 
-.dark2-page .dark7-v7-faq .faq-section-description,
-.dark2-page .dark7-v7-faq .real-problem-description {
-  color: #f7f3f0 !important;
+.dark2-page .dark7-v7-footer .blogs-section-description,
+.dark2-page .dark7-v7-footer a.dark7-v7-footer-menu-link {
+  color: rgba(247, 243, 240, 0.88) !important;
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
   font-style: normal !important;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.02em !important;
-  line-height: 1.5 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .dark2-page .dark7-v7-blogs .blogs-section-description,
+  .dark2-page .dark7-v7-faq .faq-section-description {
+    font-size: 1.125rem !important;
+  }
+
+  .dark2-page .dark7-v7-footer .blogs-section-description,
+  .dark2-page .dark7-v7-footer a.dark7-v7-footer-menu-link {
+    font-size: 0.9375rem !important;
+  }
 }
 
 .dark2-page .dark7-v7-airplane-hero .airplane-hero-heading,
@@ -325,8 +346,10 @@ body {
 }
 
 .dark2-page .dark7-v7-airplane-hero .airplane-enroll-label,
-.dark2-page .dark7-v7-airplane-hero .airplane-enroll-input-label {
+.dark2-page .dark7-v7-airplane-hero .airplane-enroll-input-label,
+.dark2-page .dark7-v7-airplane-hero .airplane-enroll-email-hint {
   color: #f7f3f0 !important;
+  opacity: 1 !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-airplane-hero .hero-cta-btn,
@@ -347,7 +370,8 @@ body {
 /* CardsServicesSection card text beats universal beige */
 .dark2-page .dark7-services-light-card,
 .dark2-page .dark7-services-light-card h3,
-.dark2-page .dark7-services-light-card p {
+.dark2-page .dark7-services-light-card p,
+.dark2-page .dark7-services-light-card .cards-services-card-description {
   color: #162d24 !important;
 }
 
@@ -356,12 +380,30 @@ body {
   color: #162d24 !important;
 }
 
-.dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta {
-  background-color: #cacbc7 !important;
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta,
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta,
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-cta {
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
   color: #162d24 !important;
+  border-radius: 12px !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  letter-spacing: -0.025em !important;
+  line-height: normal !important;
 }
 
-.dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta:hover {
+@media (min-width: 768px) {
+  .dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta,
+  .dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta,
+  .dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-cta {
+    font-size: 18px !important;
+  }
+}
+
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta:hover,
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta:hover,
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-cta:hover {
   background-color: #162d24 !important;
   color: #f7f3f0 !important;
 }
@@ -1038,23 +1080,93 @@ html {
 .dark7-v7-page .dark7-v7-tech-eyrie .build-description,
 .dark7-v7-page .new-services-surface-body,
 .dark7-v7-page .dark7-v7-deep-judge p.leading-relaxed:not(.deep-judge-phase3-body),
-.dark7-v7-page .dark7-v7-blogs .blogs-section-description,
-.dark7-v7-page .dark7-v7-blogs .real-problem-description,
-.dark7-v7-page .dark7-v7-faq > div > p.max-w-3xl,
-.dark7-v7-page .dark7-v7-cards-services p.leading-relaxed,
-.dark7-v7-page .dark7-v7-cards-services .cards-services-card-text,
 .dark7-v7-page .dark7-v7-section-desc {
   font-size: 1.375em !important;
   line-height: 1.5 !important;
   font-weight: 300 !important;
 }
 
+/* CardsServices + FAQ + Blog section descriptions (shared type) */
+.dark7-v7-page .dark7-v7-cards-services .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-light-card p.cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-dark-card p.cards-services-card-description,
+.dark7-v7-page .dark7-v7-faq .faq-section-description,
+.dark2-page .dark7-v7-faq .faq-section-description,
+.dark7-v7-page .dark7-v7-blogs .blogs-section-description,
+.dark2-page .dark7-v7-blogs .blogs-section-description {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 1rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.dark7-v7-page .dark7-v7-footer .blogs-section-description,
+.dark2-page .dark7-v7-footer .blogs-section-description,
+.dark7-v7-page .dark7-v7-footer a.dark7-v7-footer-menu-link,
+.dark2-page .dark7-v7-footer a.dark7-v7-footer-menu-link {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 0.875rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .dark7-v7-page .dark7-v7-cards-services .cards-services-card-description,
+  .dark2-page .dark7-v7-cards-services .cards-services-card-description,
+  .dark2-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-card-description,
+  .dark2-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-card-description,
+  .dark7-v7-page .dark7-v7-faq .faq-section-description,
+  .dark2-page .dark7-v7-faq .faq-section-description,
+  .dark7-v7-page .dark7-v7-blogs .blogs-section-description,
+  .dark2-page .dark7-v7-blogs .blogs-section-description {
+    font-size: 1.125rem !important;
+  }
+
+  .dark7-v7-page .dark7-v7-footer .blogs-section-description,
+  .dark2-page .dark7-v7-footer .blogs-section-description,
+  .dark7-v7-page .dark7-v7-footer a.dark7-v7-footer-menu-link,
+  .dark2-page .dark7-v7-footer a.dark7-v7-footer-menu-link {
+    font-size: 0.9375rem !important;
+  }
+}
+
+.dark2-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-light-card p.cards-services-card-description {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-card-description,
+.dark2-page .dark7-v7-cards-services .dark7-services-dark-card p.cards-services-card-description,
+.dark2-page .dark7-v7-faq .faq-section-description,
+.dark2-page .dark7-v7-blogs .blogs-section-description,
+.dark2-page .dark7-v7-footer .blogs-section-description,
+.dark2-page .dark7-v7-footer a.dark7-v7-footer-menu-link {
+  /* Same #F7F3F0 hue; slight alpha counters light-on-dark weight bloom */
+  color: rgba(247, 243, 240, 0.88) !important;
+}
+
 .dark7-v7-page .real-problem-section p.leading-relaxed,
 .dark7-v7-page .real-problem-section .real-problem-description,
-.dark7-v7-page .dark7-v7-tech-eyrie .build-description,
-.dark7-v7-page .dark7-v7-blogs .blogs-section-description,
-.dark7-v7-page .dark7-v7-blogs .real-problem-description,
-.dark7-v7-page .dark7-v7-faq .faq-section-description {
+.dark7-v7-page .dark7-v7-tech-eyrie .build-description {
   font-weight: 300 !important;
   font-synthesis: none;
   letter-spacing: 0.02em !important;
@@ -1089,14 +1201,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: rgba(22, 45, 36, 0.1) !important;
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-tech-eyrie .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: rgba(22, 45, 36, 0.1) !important;
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
   letter-spacing: 0.06em !important;
 }
 
@@ -1105,14 +1217,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: rgba(22, 45, 36, 0.1) !important;
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-airvoir .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: rgba(22, 45, 36, 0.1) !important;
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
   letter-spacing: 0.06em !important;
 }
 
@@ -1125,6 +1237,7 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
+  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-blogs .hero-cta-btn:hover,
@@ -1152,14 +1265,11 @@ html {
 
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer,
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer .dark5-footer-text,
-.dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer .dark5-footer-subtext,
+.dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer .dark5-footer-subtext:not(.blogs-section-description),
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer p,
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer span,
-.dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer a.footer-link-underline {
+.dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer a.footer-link-underline:not(.blogs-section-description) {
   color: #f7f3f0 !important;
-  font-weight: 300 !important;
-  font-synthesis: none;
-  letter-spacing: 0.03em !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-footer .footer-section-label,
@@ -1167,7 +1277,6 @@ html {
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer h3,
 .dark2-page.dark7-v7-page .dark7-v7-footer.dark5-footer h4.footer-item-heading {
   color: #f7f3f0 !important;
-  font-weight: 400 !important;
   letter-spacing: 0.04em !important;
 }
 
@@ -1190,7 +1299,8 @@ html {
   background-color: #4c7363 !important;
 }
 
-/* Keep UI chrome, labels, and card micro-copy at sensible sizes */
+/* Keep UI chrome, labels, and card micro-copy at sensible sizes.
+   Exclude footer menu links so they keep Blog description type. */
 .dark7-v7-page .hero-badge span,
 .dark7-v7-page .deep-judge-phase3-title,
 .dark7-v7-page .deep-judge-phase3-body,
@@ -1198,8 +1308,7 @@ html {
 .dark7-v7-page .dark7-v7-portfolio-card-tag,
 .dark7-v7-page .new-services-card-title,
 .dark7-v7-page .new-services-card-body,
-.dark7-v7-page .dark5-footer,
-.dark7-v7-page .dark5-footer * {
+.dark7-v7-page .dark5-footer *:not(.blogs-section-description):not(.dark7-v7-footer-menu-link) {
   font-size: revert !important;
 }
 

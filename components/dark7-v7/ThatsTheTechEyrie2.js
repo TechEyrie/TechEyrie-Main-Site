@@ -25,12 +25,11 @@ function getBgStyle(theme) {
     : { backgroundColor: lightColors.background };
 }
 
-function getSurfaceClasses(theme) {
-  const onLightSurface = theme === "dark";
+function getSurfaceClasses() {
   return {
-    textPrimary: onLightSurface ? "text-black" : "text-black",
-    textBody: onLightSurface ? "text-black" : "text-black",
-    divider: onLightSurface ? "border-black/10" : "border-black/10",
+    textPrimary: "text-[#162D24]",
+    textBody: "text-[#162D24]",
+    divider: "border-black/10",
   };
 }
 

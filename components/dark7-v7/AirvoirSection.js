@@ -24,10 +24,9 @@ function getBgStyle(theme) {
 }
 
 function getSurfaceClasses(theme) {
-  const onLightSurface = theme === "dark";
   return {
-    textPrimary: onLightSurface ? "text-[#111111]" : "text-[#111111]",
-    divider: onLightSurface ? "border-black/10" : "border-black/10",
+    textPrimary: "text-[#162D24]",
+    divider: "border-black/10",
   };
 }
 

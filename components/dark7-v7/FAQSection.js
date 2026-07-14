@@ -259,7 +259,7 @@ export default function FAQSection({ theme = 'light', sharedBackground = false }
           </span>
         </h2>
 
-        <p className="faq-section-description real-problem-description mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 max-w-3xl text-center font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] font-light leading-relaxed text-[#F7F3F0]">
+        <p className="faq-section-description font-merriweather font-light leading-snug tracking-[0.02em] mx-auto mb-10 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 max-w-3xl text-center text-[#F7F3F0]">
         Are you curious about what we do? We’ve got you covered. Check out the most FAQs to unleash what Tech Eyrie can do to make your business grow and shine.
         </p>
 

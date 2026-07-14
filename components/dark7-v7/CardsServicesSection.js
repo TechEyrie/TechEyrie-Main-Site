@@ -10,6 +10,9 @@ import {
 
 function CardCtaButton({ label = "Submit Request" }) {
   const [ctaHovered, setCtaHovered] = useState(false);
+  // Opaque 10% green-on-cream (same look as rgba(22,45,36,0.1) on light cards).
+  // True transparency blends away on dark-green cards 1 & 3.
+  const idleBg = "color-mix(in srgb, #162D24 10%, #F7F3F0)";
 
   return (
     <button
@@ -18,7 +21,7 @@ function CardCtaButton({ label = "Submit Request" }) {
         ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
       }`}
       style={{
-        backgroundColor: ctaHovered ? "#162D24" : "#CACBC7",
+        backgroundColor: ctaHovered ? "#162D24" : idleBg,
         borderRadius: "12px",
       }}
       onMouseEnter={() => setCtaHovered(true)}
@@ -209,10 +212,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                     <div className="mb-3 min-h-[1.25rem]" aria-hidden="true" />
                   )}
 
-                  <p
-                    className="cards-services-card-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-5 min-h-[5.5rem] sm:min-h-[5rem] md:min-h-[4.75rem] lg:min-h-[4.5rem]"
-                    style={{ color: service.textColor }}
-                  >
+                  <p className="cards-services-card-description font-merriweather font-light leading-snug tracking-[0.02em] mb-5 min-h-[5.5rem] sm:min-h-[5rem] md:min-h-[4.75rem] lg:min-h-[4.5rem]">
                     {service.description}
                   </p>
 

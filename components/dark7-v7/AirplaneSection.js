@@ -149,7 +149,7 @@ export default function AirplaneHero({ theme = "dark", sharedBackground = false 
                   htmlFor="airplane-enroll-email"
                   className="airplane-enroll-input-label block w-full cursor-text"
                 >
-                  <span className="mb-1 block font-merriweather text-[12px] sm:text-[13px] md:text-[14px] font-light text-[#F7F3F0]/80">
+                  <span className="airplane-enroll-email-hint mb-1 block font-merriweather text-[12px] sm:text-[13px] md:text-[14px] font-light text-[#F7F3F0]">
                     Enter your email
                   </span>
                   <input
