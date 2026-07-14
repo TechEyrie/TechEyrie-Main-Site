@@ -21,13 +21,13 @@ function AirplaneCtaButton({
   const [ctaHovered, setCtaHovered] = useState(false);
 
   const sharedClassName = `hero-cta-btn airplane-cta-btn group inline-flex cursor-pointer items-center justify-center px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${
-    ctaHovered ? "text-[#F7F3F0]" : "text-[#F7F3F0]"
+    ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
   } ${className}`;
 
   const sharedStyle = {
-    backgroundColor: ctaHovered ? "#162D24" : "#F7F3F033",
+    backgroundColor: ctaHovered ? "#162D24" : "#F0EDEA",
     borderRadius: "12px",
-    color: ctaHovered ? "#F7F3F0" : "#F7F3F0",
+    color: ctaHovered ? "#F7F3F0" : "#162D24",
   };
 
   if (href) {

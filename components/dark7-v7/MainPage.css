@@ -356,8 +356,8 @@ body {
 .dark2-page.dark7-v7-page .dark7-v7-airplane-hero .airplane-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
-  color: #f7f3f0 !important;
-  background-color: #f7f3f033 !important;
+  color: #162d24 !important;
+  background-color: #f0edea !important;
   border-radius: 12px !important;
 }
 
@@ -375,16 +375,29 @@ body {
   color: #162d24 !important;
 }
 
-.dark2-page .dark7-services-dark-card .cards-services-cta,
 .dark2-page .dark7-services-light-card .cards-services-cta {
   color: #162d24 !important;
 }
 
+.dark2-page .dark7-services-dark-card .cards-services-cta {
+  color: #f7f3f0 !important;
+}
+
 .dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta,
-.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta,
 .dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-cta {
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #f1eeec !important;
   color: #162d24 !important;
+  border-radius: 12px !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  letter-spacing: -0.025em !important;
+  line-height: normal !important;
+}
+
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta {
+  background-color: #102820 !important;
+  color: #f7f3f0 !important;
   border-radius: 12px !important;
   font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
   font-weight: 300 !important;
@@ -1201,14 +1214,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #efecea !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-tech-eyrie .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #efecea !important;
   letter-spacing: 0.06em !important;
 }
 
@@ -1217,14 +1230,14 @@ html {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #f0edea !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-airvoir .hero-cta-btn {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #efecea !important;
   letter-spacing: 0.06em !important;
 }
 
@@ -1233,11 +1246,18 @@ html {
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-cards-services .hero-cta-btn,
-.dark2-page.dark7-v7-page .dark7-v7-cards-services .cards-services-cta {
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-light-card .cards-services-cta {
   cursor: pointer !important;
   pointer-events: auto !important;
   color: #162D24 !important;
-  background-color: color-mix(in srgb, #162d24 10%, #f7f3f0) !important;
+  background-color: #f1eeec !important;
+}
+
+.dark2-page.dark7-v7-page .dark7-v7-cards-services .dark7-services-dark-card .cards-services-cta {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #f7f3f0 !important;
+  background-color: #102820 !important;
 }
 
 .dark2-page.dark7-v7-page .dark7-v7-blogs .hero-cta-btn:hover,

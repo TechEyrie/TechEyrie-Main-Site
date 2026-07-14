@@ -8,21 +8,22 @@ import {
   DARK7_GRADIENT_NOISE_STYLE,
 } from "./dark7PageGradients";
 
-function CardCtaButton({ label = "Submit Request" }) {
+function CardCtaButton({ label = "Submit Request", isDarkCard = false }) {
   const [ctaHovered, setCtaHovered] = useState(false);
-  // Opaque 10% green-on-cream (same look as rgba(22,45,36,0.1) on light cards).
-  // True transparency blends away on dark-green cards 1 & 3.
-  const idleBg = "color-mix(in srgb, #162D24 10%, #F7F3F0)";
+  // Card surface −6/−5/−4 RGB (same step as Real Problem #F5F1EE → #EFECEA)
+  const idleBg = isDarkCard ? "#102820" : "#F1EEEC";
+  const idleText = isDarkCard ? "#F7F3F0" : "#162D24";
 
   return (
     <button
       type="button"
       className={`hero-cta-btn cards-services-cta mt-auto inline-flex cursor-pointer items-center justify-center self-start px-5 py-2.5 font-merriweather text-[16px] font-light tracking-tight transition-colors duration-300 md:px-6 md:py-3 md:text-[18px] ${
-        ctaHovered ? "text-[#F7F3F0]" : "text-[#162D24]"
+        ctaHovered ? "text-[#F7F3F0]" : isDarkCard ? "text-[#F7F3F0]" : "text-[#162D24]"
       }`}
       style={{
         backgroundColor: ctaHovered ? "#162D24" : idleBg,
         borderRadius: "12px",
+        color: ctaHovered ? "#F7F3F0" : idleText,
       }}
       onMouseEnter={() => setCtaHovered(true)}
       onMouseLeave={() => setCtaHovered(false)}
@@ -216,7 +217,7 @@ export default function ServicesSection({ theme = "light", sharedBackground = fa
                     {service.description}
                   </p>
 
-                  <CardCtaButton />
+                  <CardCtaButton isDarkCard={service.isDarkCard} />
                 </div>
               </div>
             </div>
