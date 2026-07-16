@@ -19,8 +19,8 @@ import {
 } from "./dark7PageGradients";
 import EagleScrollScene from "./EagleScrollScene";
 import {
-  Dark7V8ScrollTrigger,
-  DARK7_V8_HERO_PIN_ID,
+  Dark7V10ScrollTrigger,
+  DARK7_V10_HERO_PIN_ID,
   notifyScrollLayoutReady,
 } from "./lenisScrollTrigger";
 import "./HeroSectionMediaSlot.css";
@@ -393,7 +393,7 @@ export default function HeroSectionMediaSlot({
 
         // Eagle pin scrolls the hero section top negative while cards stay put.
         // Only treat as "sliding away" after the pin ends (morph begins).
-        const eagleTrigger = ScrollTrigger.getById(DARK7_V8_HERO_PIN_ID);
+        const eagleTrigger = ScrollTrigger.getById(DARK7_V10_HERO_PIN_ID);
         const isPinned = Boolean(eagleTrigger?.isActive);
         const pinRect = heroPinRef.current?.getBoundingClientRect();
         const cardsStillInHero =
@@ -402,11 +402,11 @@ export default function HeroSectionMediaSlot({
       } catch (_) {}
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("dark7-v8-scroll", handleScroll);
+    window.addEventListener("dark7-v10-scroll", handleScroll);
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("dark7-v8-scroll", handleScroll);
+      window.removeEventListener("dark7-v10-scroll", handleScroll);
     };
   }, []);
 
@@ -629,7 +629,7 @@ export default function HeroSectionMediaSlot({
       if (!heroContainer) return;
 
       // Hold cards still while the eagle pin / wing scroll animation runs (same as dark7-v4)
-      const eagleTrigger = ScrollTrigger.getById(DARK7_V8_HERO_PIN_ID);
+      const eagleTrigger = ScrollTrigger.getById(DARK7_V10_HERO_PIN_ID);
       const isPinned = eagleTrigger?.isActive;
       const pinRect = heroPinRef.current?.getBoundingClientRect();
       const isBeforePin = !pinRect || pinRect.top >= -2;
@@ -688,8 +688,8 @@ export default function HeroSectionMediaSlot({
     const ctx = gsap.context(() => {
       morphTimer = window.setTimeout(() => {
         ScrollTrigger.create(
-          Dark7V8ScrollTrigger({
-            id: "dark7-v8-hero-morph",
+          Dark7V10ScrollTrigger({
+            id: "dark7-v10-hero-morph",
             trigger: heroSectionRef.current,
             start: "top top",
             end: "bottom top",
@@ -826,14 +826,14 @@ export default function HeroSectionMediaSlot({
       {/* ═══════════════ HERO SECTION ═══════════════ */}
       <section
         ref={heroSectionRef}
-        className={`dark7-v8-hero relative z-30 overflow-visible pb-0${
-          theme === "dark" ? " dark7-v8-hero-dark" : ""
+        className={`dark7-v10-hero relative z-30 overflow-visible pb-0${
+          theme === "dark" ? " dark7-v10-hero-dark" : ""
         }`}
         style={theme === "dark" && !sharedBackground ? dark7HeroSurfaceStyle() : undefined}
       >
         <div
           ref={heroPinRef}
-          className="dark7-v8-hero-pin relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-visible"
+          className="dark7-v10-hero-pin relative z-[1] h-[100svh] min-h-[100svh] w-full overflow-visible"
         >
           {theme === "dark" && (
             <>
@@ -841,9 +841,9 @@ export default function HeroSectionMediaSlot({
               <div
                 className="pointer-events-none absolute inset-0 z-[5]"
                 style={{
-                  // Ends on solid #8EAC85 so hero bottom matches case study top (same seam as v7)
+                  // Minimal veil — electric Noomo wing must stay vivid; seam still #8EAC85
                   background:
-                    "linear-gradient(180deg, rgba(22, 45, 36, 0.52) 0%, rgba(22, 45, 36, 0.34) 38%, rgba(61, 86, 68, 0.28) 64%, rgba(142, 172, 133, 0.72) 88%, #8EAC85 100%)",
+                    "linear-gradient(180deg, rgba(22, 45, 36, 0.08) 0%, rgba(22, 45, 36, 0.02) 38%, rgba(61, 86, 68, 0.06) 68%, rgba(142, 172, 133, 0.42) 90%, #8EAC85 100%)",
                 }}
                 aria-hidden
               />
@@ -851,13 +851,13 @@ export default function HeroSectionMediaSlot({
           )}
           <div
             ref={heroContentRef}
-            className="dark7-v8-hero-content absolute inset-0 z-20 flex flex-col pt-36 md:pt-44 lg:pt-48"
+            className="dark7-v10-hero-content absolute inset-0 z-20 flex flex-col pt-36 md:pt-44 lg:pt-48"
           >
             <div className="relative z-10 mx-auto flex h-full w-full max-w-[1800px] flex-col px-4 md:px-6 lg:px-10">
               <div className="hero-left-column flex min-h-0 flex-col pt-10 md:pt-12 lg:flex-1 lg:h-full lg:max-w-[900px] lg:grid lg:grid-rows-[auto_minmax(0,0.28fr)_auto_1fr_auto]">
                 <div
                   ref={titleContainerRef}
-                  className="dark7-v8-hero-title max-w-full lg:max-w-[1600px] xl:max-w-[1800px]"
+                  className="dark7-v10-hero-title max-w-full lg:max-w-[1600px] xl:max-w-[1800px]"
                 >
                   <h1 className="mb-0 font-italiana">
                     <span
@@ -1032,12 +1032,12 @@ export default function HeroSectionMediaSlot({
       <section
         ref={portfolioSectionRef}
         id="discover"
-        className="dark7-v8-portfolio relative z-20 w-full overflow-visible py-0 pb-0"
+        className="dark7-v10-portfolio relative z-20 w-full overflow-visible py-0 pb-0"
       >
         <div className="relative z-10 mx-auto w-full max-w-[1800px] px-4 sm:px-6 lg:px-8">
           <header className="mb-12 text-center sm:mb-16">
             <p
-              className={`dark7-v8-portfolio-eyebrow mb-4 flex items-center justify-center gap-2 font-playfair text-base sm:mb-6 sm:gap-3 sm:text-lg md:text-xl lg:text-2xl ${
+              className={`dark7-v10-portfolio-eyebrow mb-4 flex items-center justify-center gap-2 font-playfair text-base sm:mb-6 sm:gap-3 sm:text-lg md:text-xl lg:text-2xl ${
                 theme === "dark" ? "text-[#F7F3F0]/90" : "text-[#162D24]/90"
               }`}
             >
@@ -1051,11 +1051,11 @@ export default function HeroSectionMediaSlot({
               />
               Our Case Study
             </p>
-            <h2 className="dark7-v8-portfolio-title font-italiana text-3xl leading-tight text-[#162D24] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              <span className="dark7-v8-portfolio-title-lead font-light text-[#162D24]">
+            <h2 className="dark7-v10-portfolio-title font-italiana text-3xl leading-tight text-[#162D24] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              <span className="dark7-v10-portfolio-title-lead font-light text-[#162D24]">
                 Creating impact for businesses in{" "}
               </span>
-              <span className="dark7-v8-portfolio-city-pill relative -top-[2px] inline-flex min-w-[6ch] items-center justify-center overflow-hidden rounded-xl bg-[#1D322740] px-3 py-1 align-middle text-[#F7F3F0]">
+              <span className="dark7-v10-portfolio-city-pill relative -top-[2px] inline-flex min-w-[6ch] items-center justify-center overflow-hidden rounded-xl bg-[#1D322740] px-3 py-1 align-middle text-[#F7F3F0]">
                 {outgoingCity && !prefersReducedMotion && (
                   <span className="animate-city-pill-out absolute inset-0 flex -translate-y-[1px] items-center justify-center font-playfair font-semibold italic">
                     {outgoingCity}
@@ -1078,7 +1078,7 @@ export default function HeroSectionMediaSlot({
             {mediaAssets.map((item, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div
-                  className={`dark7-v8-portfolio-card relative flex flex-col w-full ${
+                  className={`dark7-v10-portfolio-card relative flex flex-col w-full ${
                     hoveredBottomSection === index ? "is-hovered" : ""
                   }`}
                   style={{ width: isDesktop ? `${portfolioCardWidth}px` : "85%" }}
@@ -1191,7 +1191,7 @@ export default function HeroSectionMediaSlot({
                   >
                     <Link href={item.link} className="block h-full">
                       <div className="px-4 sm:px-6 py-5 sm:py-6 flex flex-col justify-center h-full">
-                        <h3 className="dark7-v8-portfolio-card-title font-merriweather font-light leading-snug tracking-tight mb-2 transition-colors duration-300">
+                        <h3 className="dark7-v10-portfolio-card-title font-merriweather font-light leading-snug tracking-tight mb-2 transition-colors duration-300">
                           {item.title}
                         </h3>
                         <div className="flex flex-wrap gap-2">
@@ -1202,7 +1202,7 @@ export default function HeroSectionMediaSlot({
                             return (
                             <span
                               key={btnIndex}
-                              className={`dark7-v8-portfolio-card-tag font-merriweather border rounded-full transition-colors duration-300 ${
+                              className={`dark7-v10-portfolio-card-tag font-merriweather border rounded-full transition-colors duration-300 ${
                                 isSmall ? "is-small px-2 py-0.5" : "px-2.5 py-0.5"
                               }`}
                             >

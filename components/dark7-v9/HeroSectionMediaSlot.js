@@ -1089,7 +1089,7 @@ export default function HeroSectionMediaSlot({
                   <div
                     className="absolute inset-0 rounded-3xl pointer-events-none"
                     style={{
-                      backgroundColor: "#015b4f",
+                      backgroundColor: "#162D24",
                       zIndex: 0,
                       opacity: hoveredBottomSection === index ? 1 : 0,
                       transform:
