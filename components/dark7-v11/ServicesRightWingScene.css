@@ -1,0 +1,66 @@
+/*
+ * Layer / mask tuning (screen space, not 3D).
+ * Bird position / rotation / size → edit REST / EXIT / CAMERA in ServicesRightWingScene.js
+ *
+ * Mask %: raise the solid #000 range to show more wing into the content;
+ * lower it to hide the wing sooner before the text column.
+ */
+.services-right-wing-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.services-right-wing-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  pointer-events: none;
+  opacity: 1;
+  filter: saturate(1.18) brightness(1.02) contrast(1.08);
+  /* Soft fade into content — solid on left, transparent toward text */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.35) 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.35) 92%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .services-right-wing-stage,
+  .services-right-wing-canvas {
+    min-height: 320px;
+  }
+
+  .services-right-wing-canvas {
+    opacity: 0.7;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 0.7) 70%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 0.7) 70%,
+      transparent 100%
+    );
+  }
+}
