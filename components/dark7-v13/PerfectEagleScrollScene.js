@@ -1,5 +1,8 @@
 "use client";
 
+// Perfected eagle snapshot — duplicate of EagleScrollScene.js with tuned REST_BIRD / materials.
+// Swap import in HeroSectionMediaSlot: PerfectEagleScrollScene instead of EagleScrollScene.
+
 import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -8,11 +11,11 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Dark7V12ScrollTrigger,
-  getDark7V12ScrollTop,
-  refreshDark7V12ScrollTriggers,
+  Dark7V13ScrollTrigger,
+  getDark7V13ScrollTop,
+  refreshDark7V13ScrollTriggers,
   notifyHeroPinReady,
-  DARK7_V12_HERO_PIN_ID,
+  DARK7_V13_HERO_PIN_ID,
 } from "./lenisScrollTrigger";
 import "./EagleScrollScene.css";
 
@@ -20,10 +23,10 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export const BIRD_MESH = "/models/v20.glb";
-export const HDR_ENV = "/models/wooden_studio_19_1k.hdr";
-export const FEATHER_NORMAL = "/images/icen.jpg";
-export const DRACO_DECODER_PATH = "/draco/gltf/";
+const BIRD_MESH = "/models/v20.glb";
+const HDR_ENV = "/models/wooden_studio_19_1k.hdr";
+const FEATHER_NORMAL = "/images/icen.jpg";
+const DRACO_DECODER_PATH = "/draco/gltf/";
 
 // ── Eagle at rest (scroll = 0) — edit these to move / rotate / scale ─────
 // x: more negative = left on screen, more positive = right
@@ -50,66 +53,66 @@ const SCROLL_END_BIRD = {
   rotX: 0,
 };
 
-// Noomo glass — darker overall emerald body, lit ridges still catch light
+// Per-mesh feather palette — dark forest body with muted emerald highlights
 const WING_PALETTE = [
   {
-    hue: 0.36,
-    color: "#069448",
-    shadow: "#022818",
-    deepForest: "#011810",
-    highlight: "#4ad878",
-    mint: "#2eb888",
-    emissive: "#0a7840",
-    tip: "#88c8d8",
-    iriPink: "#68c8b8",
-    iriPurple: "#289888",
-    iriGold: "#c87828",
-  },
-  {
-    hue: 0.4,
-    color: "#068858",
-    shadow: "#022420",
-    deepForest: "#011614",
-    highlight: "#3cc8a0",
-    mint: "#38b8a0",
-    emissive: "#0a7050",
-    tip: "#90d0e0",
-    iriPink: "#58c0b8",
-    iriPurple: "#208880",
-    iriGold: "#c06820",
-  },
-  {
-    hue: 0.32,
-    color: "#0a9840",
-    shadow: "#032814",
-    deepForest: "#01180c",
-    highlight: "#58d068",
-    mint: "#38b070",
-    emissive: "#0e7838",
-    tip: "#98d0d8",
-    iriPink: "#70c8a0",
-    iriPurple: "#308868",
-    iriGold: "#c88828",
-  },
-  {
     hue: 0.38,
-    color: "#068c50",
-    shadow: "#022818",
-    deepForest: "#011610",
-    highlight: "#48c888",
-    mint: "#30b090",
-    emissive: "#0c7450",
-    tip: "#80c0d0",
-    iriPink: "#60c0b0",
-    iriPurple: "#248878",
-    iriGold: "#c87820",
+    color: "#0c6a44",
+    shadow: "#031a10",
+    deepForest: "#021008",
+    highlight: "#2a9a68",
+    mint: "#5a9878",
+    emissive: "#0f6848",
+    tip: "#6aaa88",
+    iriPink: "#d8a0b8",
+    iriPurple: "#a890c8",
+    iriGold: "#d8cc88",
+  },
+  {
+    hue: 0.46,
+    color: "#0a6258",
+    shadow: "#022824",
+    deepForest: "#011816",
+    highlight: "#2a9890",
+    mint: "#549088",
+    emissive: "#0f5a54",
+    tip: "#68a098",
+    iriPink: "#d0a0b8",
+    iriPurple: "#9888c0",
+    iriGold: "#d4c880",
+  },
+  {
+    hue: 0.34,
+    color: "#126832",
+    shadow: "#052818",
+    deepForest: "#02140c",
+    highlight: "#38a058",
+    mint: "#5ca070",
+    emissive: "#1a6838",
+    tip: "#72a880",
+    iriPink: "#d8a0b0",
+    iriPurple: "#a890b8",
+    iriGold: "#d8c878",
+  },
+  {
+    hue: 0.40,
+    color: "#1e6230",
+    shadow: "#0a2818",
+    deepForest: "#06180e",
+    highlight: "#4a9858",
+    mint: "#689868",
+    emissive: "#285830",
+    tip: "#7aa878",
+    iriPink: "#d098a8",
+    iriPurple: "#a080a8",
+    iriGold: "#ccc070",
   },
 ];
 
-const FEATHER_PAINT_STRENGTH = 0.78;
-const FEATHER_IRI_STRENGTH = 0.48;
-const WING_TIP_ZONE_START = 0.42;
-const WING_TIP_BLEND_STRENGTH = 0.65;
+const FEATHER_PAINT_STRENGTH = 0.97;
+const FEATHER_IRI_STRENGTH = 0.34;
+const WING_TIP_ZONE_START = 0.56;
+const WING_TIP_BLEND_STRENGTH = 0.82;
 
 function isWingFeatherMesh(mesh) {
   const name = (mesh.name || "").toLowerCase();
@@ -175,7 +178,7 @@ function applyFeatherSurfaceShader(
 ) {
   const axis = isWing ? computeFeatherTipAxis(mesh, birdOrigin) : null;
 
-    const uniforms = {
+  const uniforms = {
     uBaseColor: { value: new THREE.Color(swatch.color) },
     uShadowColor: { value: new THREE.Color(swatch.shadow) },
     uDeepForest: { value: new THREE.Color(swatch.deepForest) },
@@ -188,8 +191,8 @@ function applyFeatherSurfaceShader(
     uBirdOrigin: { value: birdOrigin.clone() },
     uMeshSeed: { value: meshSeed },
     uPaintStrength: { value: FEATHER_PAINT_STRENGTH },
-    uIriStrength: { value: FEATHER_IRI_STRENGTH },
-    uTipBlendStrength: { value: axis ? WING_TIP_BLEND_STRENGTH : 0 },
+    uIriStrength: { value: lightweight ? 0.28 : FEATHER_IRI_STRENGTH },
+    uTipBlendStrength: { value: axis ? (lightweight ? 0.72 : WING_TIP_BLEND_STRENGTH) : 0 },
     uWingRoot: { value: axis?.rootVal ?? 0 },
     uWingTip: { value: axis?.tipVal ?? 1 },
     uWingAxis: { value: axis?.axisIdx ?? 0 },
@@ -198,7 +201,7 @@ function applyFeatherSurfaceShader(
 
   material.userData.featherUniforms = uniforms;
   material.customProgramCacheKey = () =>
-    `feather-paint-noomo-detail-v5-${isWing ? 1 : 0}-${axis?.axisIdx ?? "b"}`;
+    `feather-paint-v3-${isWing ? 1 : 0}-${axis?.axisIdx ?? "b"}`;
 
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
@@ -212,9 +215,7 @@ uniform float uWingTip;
 uniform float uWingAxis;
 uniform float uTipSoftStart;
 varying vec3 vFeatherWorldPos;
-varying vec3 vFeatherLocalPos;
 varying vec3 vFeatherNormal;
-varying vec2 vFeatherUv;
 varying float vWingTipBlend;`,
       )
       .replace(
@@ -225,8 +226,6 @@ vFeatherNormal = normalize(normalMatrix * objectNormal);`,
       .replace(
         "#include <begin_vertex>",
         `#include <begin_vertex>
-vFeatherLocalPos = transformed;
-vFeatherUv = uv;
 float wingPos = uWingAxis < 0.5 ? transformed.x : (uWingAxis < 1.5 ? transformed.y : transformed.z);
 float wingSpan = uWingTip - uWingRoot;
 float wingT = wingSpan == 0.0 ? 0.0 : clamp((wingPos - uWingRoot) / wingSpan, 0.0, 1.0);
@@ -257,24 +256,8 @@ uniform float uPaintStrength;
 uniform float uIriStrength;
 uniform float uTipBlendStrength;
 varying vec3 vFeatherWorldPos;
-varying vec3 vFeatherLocalPos;
 varying vec3 vFeatherNormal;
-varying vec2 vFeatherUv;
-varying float vWingTipBlend;
-
-float hash21(vec2 p) {
-  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-}
-float noise21(vec2 p) {
-  vec2 i = floor(p);
-  vec2 f = fract(p);
-  float a = hash21(i);
-  float b = hash21(i + vec2(1.0, 0.0));
-  float c = hash21(i + vec2(0.0, 1.0));
-  float d = hash21(i + vec2(1.0, 1.0));
-  vec2 u = f * f * (3.0 - 2.0 * f);
-  return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
-}`,
+varying float vWingTipBlend;`,
       )
       .replace(
         "#include <tonemapping_fragment>",
@@ -282,71 +265,41 @@ float noise21(vec2 p) {
   vec3 viewDir = normalize(cameraPosition - vFeatherWorldPos);
   vec3 n = normalize(vFeatherNormal);
   float facing = clamp(dot(n, viewDir), 0.0, 1.0);
-  float fresnel = pow(1.0 - facing, 2.2);
-  float cavity = pow(1.0 - facing, 1.55);
+  float cavity = pow(1.0 - facing, 2.4);
 
-  vec3 lightDir = normalize(vec3(0.25, 1.05, 0.35));
+  vec3 lightDir = normalize(vec3(0.32, 1.0, 0.22));
   float ndl = clamp(dot(n, lightDir) * 0.5 + 0.5, 0.0, 1.0);
-  // Hard crystal facets — keep shard edges readable
-  float facet = floor(ndl * 6.0) / 6.0;
+  float flatShade = floor(ndl * 5.0) / 5.0;
 
   float relHeight = clamp((vFeatherWorldPos.y - uBirdOrigin.y + 0.12) / 1.65, 0.0, 1.0);
-  vec3 heightTint = mix(uDeepForest, uBaseColor, smoothstep(0.0, 0.35, relHeight));
-  heightTint = mix(heightTint, mix(uBaseColor, uHighlightColor, 0.28), smoothstep(0.3, 0.75, relHeight));
-  heightTint = mix(heightTint, uMintColor, smoothstep(0.7, 1.0, relHeight) * 0.18);
+  vec3 heightTint = mix(uDeepForest, uBaseColor, smoothstep(0.0, 0.38, relHeight));
+  heightTint = mix(heightTint, mix(uBaseColor, uMintColor, 0.55), smoothstep(0.35, 0.78, relHeight));
+  heightTint = mix(heightTint, uMintColor, smoothstep(0.72, 1.0, relHeight) * 0.32);
 
-  vec3 feather = mix(heightTint, uShadowColor, cavity * 0.48);
-  feather = mix(feather, uHighlightColor, facet * 0.38);
+  vec3 feather = mix(heightTint, uShadowColor, cavity * 0.78);
+  feather = mix(feather, uHighlightColor, flatShade * 0.3);
+  feather = mix(feather, uMintColor, pow(max(relHeight, 0.0), 1.8) * 0.06);
 
-  // ── DETAIL: rachis + barb fibers along each feather shard (Noomo stroke texture)
-  vec2 fiberUv = vFeatherLocalPos.xy * vec2(48.0, 14.0) + uMeshSeed * 3.1;
-  fiberUv += vFeatherUv * vec2(22.0, 9.0);
-  float rachis = abs(sin(fiberUv.x * 1.15 + noise21(fiberUv * 0.35) * 1.8));
-  rachis = pow(1.0 - rachis, 4.2);
-  float barbLines = abs(sin(fiberUv.y * 9.5 + fiberUv.x * 0.55 + uMeshSeed));
-  barbLines = pow(1.0 - barbLines, 2.6);
-  float crossBarb = abs(sin(fiberUv.x * 3.4 - fiberUv.y * 2.1));
-  crossBarb = pow(1.0 - crossBarb, 3.0);
+  float barbA = sin(dot(vFeatherWorldPos, vec3(42.0 + uMeshSeed, 56.0, 31.0))) * 0.5 + 0.5;
+  float barbB = sin(dot(vFeatherWorldPos, vec3(24.0, 19.0 + uMeshSeed, 67.0))) * 0.5 + 0.5;
+  float barb = mix(barbA, barbB, 0.45);
+  feather *= 0.91 + 0.09 * barb;
 
-  // Fine hair / ice grain
-  float micro = noise21(fiberUv * 6.5 + uMeshSeed);
-  float micro2 = noise21(fiberUv * 18.0 - uMeshSeed * 2.0);
-  float grain = mix(micro, micro2, 0.45);
+  float grain = fract(sin(dot(vFeatherWorldPos.xz, vec2(12.9898, 78.233) + uMeshSeed)) * 43758.5453);
+  feather *= 0.96 + 0.04 * grain;
 
-  // Layered shard cells (overlapping glass plates)
-  float cell = noise21(vFeatherLocalPos.xz * 11.0 + uMeshSeed);
-  float cellEdge = smoothstep(0.42, 0.58, cell) * (1.0 - smoothstep(0.58, 0.74, cell));
+  float edgePaint = pow(1.0 - facing, 3.2);
+  feather = mix(feather, uMintColor * 0.82, edgePaint * 0.05);
 
-  // Carve fibers into color — deeper dark-green grooves so lit ridges feel brighter
-  feather = mix(feather, uDeepForest, rachis * 0.72);
-  feather = mix(feather, uShadowColor, barbLines * 0.58);
-  feather = mix(feather, uHighlightColor, crossBarb * 0.28 * (1.0 - cavity));
-  feather = mix(feather, uMintColor, grain * 0.18);
-  feather *= 0.78 + 0.32 * grain;
-  feather = mix(feather, uDeepForest, cellEdge * 0.48);
-
-  // Amber / gold only in fiber grooves (not flat glow wash)
-  float amberMask = rachis * (0.4 + 0.6 * cavity) * smoothstep(0.35, 0.85, grain);
-  amberMask += barbLines * 0.25 * cavity;
-  feather = mix(feather, uIriGold, amberMask * 0.55);
-
-  // Teal / cyan iridescence along ridges only
-  float iriT = facing + sin(vFeatherWorldPos.y * 7.0 + vFeatherWorldPos.x * 4.8 + uMeshSeed) * 0.12;
-  float iriW = smoothstep(0.35, 0.9, iriT) * (0.35 + 0.65 * crossBarb);
-  vec3 iri = mix(uIriPurple, uIriPink, smoothstep(0.15, 0.8, sin(fiberUv.x + uMeshSeed)));
-  iri = mix(iri, uIriGold, smoothstep(0.55, 1.0, iriT) * 0.3);
-  feather = mix(feather, iri, iriW * uIriStrength * 0.85);
-
-  // Glass rim keeps cyan catchlight but doesn't flatten body detail
-  vec3 rimCol = mix(uTipColor, uMintColor, 0.4);
-  feather = mix(feather, rimCol, fresnel * 0.42 * (0.5 + 0.5 * rachis));
+  float iriT = facing + sin(vFeatherWorldPos.y * 6.8 + vFeatherWorldPos.x * 4.2 + uMeshSeed) * 0.1;
+  float iriW = smoothstep(0.42, 0.92, iriT);
+  vec3 iri = mix(uIriPurple, uIriPink, smoothstep(0.2, 0.75, sin(vFeatherWorldPos.x * 4.8 + uMeshSeed)));
+  iri = mix(iri, uIriGold, smoothstep(0.55, 1.0, iriT) * 0.55);
+  feather = mix(feather, iri, iriW * uIriStrength);
 
   float tip = clamp(vWingTipBlend, 0.0, 1.0);
-  vec3 tipGlass = mix(uMintColor, uTipColor, 0.55);
-  tipGlass = mix(tipGlass, uHighlightColor, grain * 0.25);
-  feather = mix(feather, tipGlass, tip * uTipBlendStrength * 0.7);
+  feather = mix(feather, uTipColor, tip * uTipBlendStrength);
 
-  // Keep lit normal-map detail from the base material (don't overwrite 100%)
   gl_FragColor.rgb = mix(gl_FragColor.rgb, feather, uPaintStrength);
 }
 #include <tonemapping_fragment>`,
@@ -356,7 +309,7 @@ float noise21(vec2 p) {
   material.needsUpdate = true;
 }
 
-export function setupBirdAnimations(mixer, clips) {
+function setupBirdAnimations(mixer, clips) {
   const wingClip =
     clips.find((clip) => /Float_WingPulse|WingPulse/i.test(clip.name)) ||
     clips.find((clip) => /wing|float/i.test(clip.name)) ||
@@ -392,7 +345,7 @@ export function setupBirdAnimations(mixer, clips) {
   };
 }
 
-export function applyBirdMaterial(bird, textures, lightweight = false) {
+function applyBirdMaterial(bird, textures, lightweight = false) {
   const { featherNormal } = textures;
   const materials = [];
   let meshIndex = 0;
@@ -409,27 +362,17 @@ export function applyBirdMaterial(bird, textures, lightweight = false) {
     const isWing = isWingFeatherMesh(child);
     meshIndex += 1;
 
-    // Textured glass — strong normals + moderate roughness so fibers read (not flat glow)
-    const material = new THREE.MeshPhysicalMaterial({
+    const material = new THREE.MeshStandardMaterial({
       color: new THREE.Color(swatch.color),
       emissive: new THREE.Color(swatch.emissive),
-      emissiveIntensity: isWing ? 0.1 : 0.06,
+      emissiveIntensity: lightweight ? 0.06 : 0.08,
       normalMap: featherNormal,
-      normalScale: new THREE.Vector2(isWing ? 3.4 : 1.6, isWing ? 3.4 : 1.6),
-      roughness: isWing ? 0.42 : 0.55,
-      metalness: isWing ? 0.04 : 0.02,
-      clearcoat: isWing ? 0.55 : 0.3,
-      clearcoatRoughness: isWing ? 0.22 : 0.35,
-      reflectivity: 0.7,
-      sheen: 0.35,
-      sheenRoughness: 0.45,
-      sheenColor: new THREE.Color(swatch.mint),
-      transparent: false,
-      opacity: 1,
-      transmission: 0,
+      normalScale: new THREE.Vector2(0.028, 0.028),
+      roughness: lightweight ? 0.94 : 0.92,
+      metalness: 0.0,
       flatShading: true,
-      envMapIntensity: isWing ? 1.15 : 0.7,
-      side: THREE.DoubleSide,
+      envMapIntensity: lightweight ? 0.1 : 0.14,
+      side: lightweight ? THREE.FrontSide : THREE.DoubleSide,
       depthWrite: true,
     });
 
@@ -452,43 +395,7 @@ export function applyBirdMaterial(bird, textures, lightweight = false) {
   return materials;
 }
 
-/** Lock materials to the hero Noomo glass look (same palette / paint as EagleScrollScene). */
-export function applyHeroBirdMaterialLook(materials, bloom = 0) {
-  const t = THREE.MathUtils.clamp(bloom, 0, 1);
-  materials.forEach((mat, index) => {
-    const swatch = mat.userData.swatch ?? WING_PALETTE[index % WING_PALETTE.length];
-    const featherUniforms = mat.userData.featherUniforms;
-
-    mat.color.set(swatch.color);
-    mat.emissive.set(swatch.emissive);
-    mat.emissiveIntensity = THREE.MathUtils.lerp(0.09, 0.16, t);
-    mat.roughness = THREE.MathUtils.lerp(0.44, 0.34, t);
-    mat.metalness = THREE.MathUtils.lerp(0.03, 0.06, t);
-    if ("clearcoat" in mat) {
-      mat.clearcoat = THREE.MathUtils.lerp(0.5, 0.7, t);
-      mat.clearcoatRoughness = THREE.MathUtils.lerp(0.24, 0.16, t);
-      mat.envMapIntensity = THREE.MathUtils.lerp(1.05, 1.35, t);
-      if ("sheen" in mat) {
-        mat.sheen = THREE.MathUtils.lerp(0.3, 0.45, t);
-        mat.sheenRoughness = THREE.MathUtils.lerp(0.48, 0.36, t);
-        if (mat.sheenColor) mat.sheenColor.set(swatch.mint);
-      }
-    }
-
-    if (featherUniforms) {
-      if (featherUniforms.uBaseColor) featherUniforms.uBaseColor.value.set(swatch.color);
-      if (featherUniforms.uHighlightColor) {
-        featherUniforms.uHighlightColor.value.set(swatch.highlight);
-      }
-      if (featherUniforms.uMintColor) featherUniforms.uMintColor.value.set(swatch.mint);
-      if (featherUniforms.uIriGold) featherUniforms.uIriGold.value.set(swatch.iriGold);
-      featherUniforms.uIriStrength.value = THREE.MathUtils.lerp(0.42, 0.58, t);
-      featherUniforms.uPaintStrength.value = FEATHER_PAINT_STRENGTH;
-    }
-  });
-}
-
-export default function EagleScrollScene({
+export default function PerfectEagleScrollScene({
   backgroundOnly = false,
   pinTargetRef = null,
   onScrollProgress = null,
@@ -542,26 +449,25 @@ export default function EagleScrollScene({
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: true,
+      antialias: !backgroundOnly,
       alpha: true,
-      powerPreference: backgroundOnly ? "high-performance" : "high-performance",
+      powerPreference: backgroundOnly ? "default" : "high-performance",
     });
     renderer.setPixelRatio(
-      Math.min(window.devicePixelRatio, backgroundOnly ? 1.75 : 2),
+      Math.min(window.devicePixelRatio, backgroundOnly ? 1 : 2),
     );
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = backgroundOnly ? 0.98 : 0.96;
+    renderer.toneMappingExposure = 0.96;
 
-    scene.add(new THREE.AmbientLight(0xa8dcc0, backgroundOnly ? 1.0 : 1.8));
+    scene.add(new THREE.AmbientLight(0xb8dcc8, backgroundOnly ? 1.15 : 1.8));
 
-    const keyLight = new THREE.DirectionalLight(0xe8f8f0, backgroundOnly ? 2.1 : 3.6);
+    const keyLight = new THREE.DirectionalLight(0xd8f0e4, backgroundOnly ? 1.9 : 3.6);
     keyLight.position.set(2.2, 6, 4.5);
     scene.add(keyLight);
 
     let fillLight = null;
     let rimLight = null;
-    let jadeLight = null;
 
     if (!backgroundOnly) {
       const greenLight = new THREE.PointLight(0x00c878, 9, 60);
@@ -576,27 +482,23 @@ export default function EagleScrollScene({
       blueShadow.position.set(-4, 1, 5);
       scene.add(blueShadow);
     } else {
-      // Noomo glass wing lighting — electric lime + cyan rim + amber core
-      fillLight = new THREE.HemisphereLight(0x70ffb0, 0x042010, 1.35);
+      // Sky (top) = darker green, ground (bottom) = lighter mint — like reference purple gradient.
+      fillLight = new THREE.HemisphereLight(0x3a8060, 0x021008, 1.05);
       scene.add(fillLight);
 
-      jadeLight = new THREE.PointLight(0x00ff78, 4.2, 56);
-      jadeLight.position.set(4.2, 2.2, 4.2);
-      scene.add(jadeLight);
-
-      rimLight = new THREE.PointLight(0xb8ffff, 2.8, 52);
-      rimLight.position.set(5.8, 2.8, 3.6);
+      rimLight = new THREE.PointLight(0x88c8a0, 1.8, 48);
+      rimLight.position.set(5.8, 2.4, 4.2);
       scene.add(rimLight);
 
-      const cyanRim = new THREE.PointLight(0x40f0ff, 2.2, 46);
-      cyanRim.position.set(-5.0, 1.4, 3.4);
-      scene.add(cyanRim);
+      const pinkRim = new THREE.PointLight(0xf0a8d0, 0.9, 42);
+      pinkRim.position.set(-5.2, 0.6, 3.8);
+      scene.add(pinkRim);
 
-      const amberFill = new THREE.PointLight(0xff9020, 1.8, 40);
-      amberFill.position.set(1.8, -1.2, 3.8);
-      scene.add(amberFill);
+      const purpleRim = new THREE.PointLight(0xb090e0, 0.7, 38);
+      purpleRim.position.set(-2.8, 2.4, 2.6);
+      scene.add(purpleRim);
 
-      const mintTop = new THREE.DirectionalLight(0xa0ffd0, 1.0);
+      const mintTop = new THREE.DirectionalLight(0x6aaa88, 0.75);
       mintTop.position.set(0.2, 9, 2);
       scene.add(mintTop);
     }
@@ -608,25 +510,25 @@ export default function EagleScrollScene({
     let limeAccent = null;
 
     if (backgroundOnly) {
-      bottomLight = new THREE.DirectionalLight(0x78e8b0, 0.95);
+      bottomLight = new THREE.DirectionalLight(0x5a9870, 0.65);
       bottomLight.position.set(0.4, -7, 2.5);
       scene.add(bottomLight);
 
-      topShadeLight = new THREE.DirectionalLight(0x041a10, 0.35);
+      topShadeLight = new THREE.DirectionalLight(0x010a06, 0.72);
       topShadeLight.position.set(-0.5, 8, 1.5);
       scene.add(topShadeLight);
 
-      limeAccent = new THREE.PointLight(0x40ff80, 2.8, 48);
-      limeAccent.position.set(0.2, 3.2, 2.2);
-      scene.add(limeAccent);
+      tealAccent = new THREE.PointLight(0x3a9890, 1.1, 40);
+      tealAccent.position.set(-4.2, 0.4, 3.2);
+      scene.add(tealAccent);
 
-      goldAccent = new THREE.PointLight(0xff9a20, 1.8, 38);
+      goldAccent = new THREE.PointLight(0xc8b868, 0.85, 34);
       goldAccent.position.set(2.4, -1.4, 4.1);
       scene.add(goldAccent);
 
-      tealAccent = new THREE.PointLight(0x30f0e0, 2.2, 44);
-      tealAccent.position.set(-4.2, 0.4, 3.2);
-      scene.add(tealAccent);
+      limeAccent = new THREE.PointLight(0x68a878, 1.6, 42);
+      limeAccent.position.set(0.2, 3.2, 2.2);
+      scene.add(limeAccent);
     }
 
     const dracoLoader = new DRACOLoader();
@@ -640,8 +542,7 @@ export default function EagleScrollScene({
     texturesToDispose.push(featherNormal);
     featherNormal.wrapS = THREE.RepeatWrapping;
     featherNormal.wrapT = THREE.RepeatWrapping;
-    featherNormal.repeat.set(7.5, 7.5);
-    featherNormal.anisotropy = backgroundOnly ? 16 : 4;
+    featherNormal.repeat.set(2.4, 2.4);
 
     const birdTextures = { featherNormal };
 
@@ -677,7 +578,7 @@ export default function EagleScrollScene({
     const resizeObserver = new ResizeObserver(() => {
       resize();
       if (scrollEnabled) {
-        refreshDark7V12ScrollTriggers();
+        refreshDark7V13ScrollTriggers();
       }
     });
     resizeObserver.observe(getLayoutTarget());
@@ -751,108 +652,82 @@ export default function EagleScrollScene({
       updateFeatherUniforms();
     }
 
-    // ── SCROLL WING LOOK (Noomo crystalline glass bloom) ───
+    // ── SCROLL WING LOOK (matte paper-feather + subtle iridescent bloom) ───
     function applyScrollMaterialEffects(t) {
       const bloom = Math.pow(THREE.MathUtils.clamp(t, 0, 1), 0.82);
-      const heroGlass = backgroundOnly;
 
-      renderer.toneMappingExposure = THREE.MathUtils.lerp(
-        heroGlass ? 0.96 : 0.94,
-        heroGlass ? 1.08 : 1.18,
-        bloom,
-      );
-      keyLight.intensity = THREE.MathUtils.lerp(
-        heroGlass ? 2.0 : 1.9,
-        heroGlass ? 2.6 : 3.2,
-        bloom,
-      );
+      renderer.toneMappingExposure = THREE.MathUtils.lerp(0.94, 1.18, bloom);
+      keyLight.intensity = THREE.MathUtils.lerp(1.9, 3.2, bloom);
 
       if (fillLight) {
-        fillLight.intensity = THREE.MathUtils.lerp(
-          heroGlass ? 1.1 : 1.05,
-          heroGlass ? 1.35 : 1.3,
-          bloom,
-        );
+        fillLight.intensity = THREE.MathUtils.lerp(1.05, 1.3, bloom);
         fillLight.color.setHSL(
-          0.38,
-          THREE.MathUtils.lerp(0.62, 0.52, bloom),
-          THREE.MathUtils.lerp(0.42, 0.5, bloom),
+          0.4,
+          THREE.MathUtils.lerp(0.48, 0.4, bloom),
+          THREE.MathUtils.lerp(0.34, 0.42, bloom),
         );
         fillLight.groundColor.setHSL(
-          0.36,
-          THREE.MathUtils.lerp(0.55, 0.45, bloom),
-          THREE.MathUtils.lerp(0.05, 0.08, bloom),
+          0.38,
+          THREE.MathUtils.lerp(0.58, 0.48, bloom),
+          THREE.MathUtils.lerp(0.06, 0.1, bloom),
         );
-      }
-
-      if (jadeLight) {
-        jadeLight.intensity = THREE.MathUtils.lerp(3.8, 5.5, bloom);
       }
 
       if (bottomLight) {
-        bottomLight.intensity = THREE.MathUtils.lerp(
-          heroGlass ? 0.9 : 0.85,
-          heroGlass ? 1.35 : 1.4,
-          bloom,
-        );
+        bottomLight.intensity = THREE.MathUtils.lerp(0.85, 1.4, bloom);
       }
 
       if (topShadeLight) {
-        topShadeLight.intensity = THREE.MathUtils.lerp(0.35, 0.22, bloom);
+        topShadeLight.intensity = THREE.MathUtils.lerp(0.62, 0.38, bloom);
       }
 
       if (tealAccent) {
-        tealAccent.intensity = THREE.MathUtils.lerp(2.2, 3.6, bloom);
+        tealAccent.intensity = THREE.MathUtils.lerp(1.2, 2.8, bloom);
       }
 
       if (goldAccent) {
-        goldAccent.intensity = THREE.MathUtils.lerp(1.6, 2.8, bloom);
+        goldAccent.intensity = THREE.MathUtils.lerp(0.9, 2.4, bloom);
       }
 
       if (limeAccent) {
-        limeAccent.intensity = THREE.MathUtils.lerp(2.8, 4.4, bloom);
+        limeAccent.intensity = THREE.MathUtils.lerp(2.0, 3.6, bloom);
       }
 
       if (rimLight) {
-        rimLight.intensity = THREE.MathUtils.lerp(
-          heroGlass ? 3.0 : 2.0,
-          heroGlass ? 4.2 : 4.8,
-          bloom,
-        );
+        rimLight.intensity = THREE.MathUtils.lerp(2.0, 4.8, bloom);
       }
 
       birdMaterials.forEach((mat, index) => {
         const swatch = mat.userData.swatch ?? WING_PALETTE[index % WING_PALETTE.length];
+        const baseHue = mat.userData.baseHue ?? swatch.hue;
+        const hueDrift = bloom * 0.04 * (index % 2 === 0 ? 1 : -1);
         const featherUniforms = mat.userData.featherUniforms;
 
-        // Lock Noomo swatches — keep texture readable (low emissive, mid roughness)
-        mat.color.set(swatch.color);
-        mat.emissive.set(swatch.emissive);
-        mat.emissiveIntensity = THREE.MathUtils.lerp(
-          heroGlass ? 0.09 : 0.08,
-          heroGlass ? 0.16 : 0.14,
-          bloom,
+        mat.color.setHSL(
+          baseHue + hueDrift,
+          THREE.MathUtils.lerp(0.62, 0.52, bloom),
+          THREE.MathUtils.lerp(0.24, 0.34, bloom),
         );
-        mat.roughness = THREE.MathUtils.lerp(0.44, 0.34, bloom);
-        mat.metalness = THREE.MathUtils.lerp(0.03, 0.06, bloom);
-        if ("clearcoat" in mat) {
-          mat.clearcoat = THREE.MathUtils.lerp(0.5, 0.7, bloom);
-          mat.clearcoatRoughness = THREE.MathUtils.lerp(0.24, 0.16, bloom);
-          mat.envMapIntensity = THREE.MathUtils.lerp(1.05, 1.35, bloom);
-          if ("sheen" in mat) {
-            mat.sheen = THREE.MathUtils.lerp(0.3, 0.45, bloom);
-            mat.sheenRoughness = THREE.MathUtils.lerp(0.48, 0.36, bloom);
-            if (mat.sheenColor) mat.sheenColor.set(swatch.mint);
-          }
-        }
+        mat.emissive.setHSL(
+          baseHue + 0.03,
+          THREE.MathUtils.lerp(0.42, 0.28, bloom),
+          THREE.MathUtils.lerp(0.08, 0.2, bloom),
+        );
+        mat.emissiveIntensity = THREE.MathUtils.lerp(0.05, 0.22, bloom);
+        mat.roughness = THREE.MathUtils.lerp(0.92, 0.86, bloom);
+        mat.envMapIntensity = THREE.MathUtils.lerp(0.12, 0.22, bloom);
 
         if (featherUniforms) {
-          if (featherUniforms.uBaseColor) featherUniforms.uBaseColor.value.set(swatch.color);
-          if (featherUniforms.uHighlightColor) featherUniforms.uHighlightColor.value.set(swatch.highlight);
-          if (featherUniforms.uMintColor) featherUniforms.uMintColor.value.set(swatch.mint);
-          if (featherUniforms.uIriGold) featherUniforms.uIriGold.value.set(swatch.iriGold);
-          featherUniforms.uIriStrength.value = THREE.MathUtils.lerp(0.42, 0.58, bloom);
-          featherUniforms.uPaintStrength.value = 0.78;
+          featherUniforms.uIriStrength.value = THREE.MathUtils.lerp(
+            0.3,
+            0.58,
+            bloom,
+          );
+          featherUniforms.uPaintStrength.value = THREE.MathUtils.lerp(
+            0.95,
+            0.99,
+            bloom,
+          );
         }
       });
 
@@ -861,9 +736,9 @@ export default function EagleScrollScene({
       }
 
       if (embeddedScroll && canvas) {
-        const saturate = THREE.MathUtils.lerp(1.12, 1.2, bloom);
-        const brightness = THREE.MathUtils.lerp(0.94, 0.98, bloom);
-        const contrast = THREE.MathUtils.lerp(1.12, 1.18, bloom);
+        const saturate = THREE.MathUtils.lerp(1.04, 1.16, bloom);
+        const brightness = THREE.MathUtils.lerp(0.96, 1.04, bloom);
+        const contrast = THREE.MathUtils.lerp(1.03, 1.1, bloom);
         canvas.style.filter = `saturate(${saturate}) brightness(${brightness}) contrast(${contrast})`;
       }
     }
@@ -905,12 +780,12 @@ export default function EagleScrollScene({
       if (disposed || scrollReady || !triggerEl) return;
       scrollReady = true;
 
-      // Initial camera for embedded hero (dark7-v12). First value = camera X.
+      // Initial camera for embedded hero (dark7-v13). First value = camera X.
       // More negative → eagle appears more to the RIGHT; less negative → more LEFT.
       camera.position.set(-0.35, 0.85, 1.15); // ← camera X , Y , Z
       camera.lookAt(0.15, 0.15, 0); // ← lookAt X affects horizontal framing
 
-      ScrollTrigger.getById(DARK7_V12_HERO_PIN_ID)?.kill();
+      ScrollTrigger.getById(DARK7_V13_HERO_PIN_ID)?.kill();
 
       gsapCtx?.revert();
       gsapCtx = gsap.context(() => {
@@ -919,8 +794,8 @@ export default function EagleScrollScene({
         scrollTween = gsap.to(state, {
           progress: 1,
           ease: "none",
-          scrollTrigger: Dark7V12ScrollTrigger({
-            id: embeddedScroll ? DARK7_V12_HERO_PIN_ID : "eagle-scroll-scene",
+          scrollTrigger: Dark7V13ScrollTrigger({
+            id: embeddedScroll ? DARK7_V13_HERO_PIN_ID : "eagle-scroll-scene",
             trigger: triggerEl,
             start: "top top",
             end: embeddedScroll ? "+=500" : "+=8000",
@@ -940,17 +815,17 @@ export default function EagleScrollScene({
       }, triggerEl);
 
       requestAnimationFrame(() => {
-        refreshDark7V12ScrollTriggers();
+        refreshDark7V13ScrollTriggers();
         const progress =
-          getDark7V12ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
+          getDark7V13ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
         applyScrollProgress(progress);
         onScrollProgressRef.current?.(progress <= 0.001 ? 0 : progress);
       });
 
       window.setTimeout(() => {
-        refreshDark7V12ScrollTriggers(true);
+        refreshDark7V13ScrollTriggers(true);
         const progress =
-          getDark7V12ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
+          getDark7V13ScrollTop() < 8 ? 0 : (scrollTween?.scrollTrigger?.progress ?? 0);
         applyScrollProgress(progress);
         onScrollProgressRef.current?.(progress <= 0.001 ? 0 : progress);
         if (embeddedScroll) {
@@ -990,7 +865,7 @@ export default function EagleScrollScene({
         }
       },
       undefined,
-      (error) => console.error("[EagleScrollScene] v20.glb failed:", error),
+      (error) => console.error("[PerfectEagleScrollScene] v20.glb failed:", error),
     );
 
     const animate = (time) => {

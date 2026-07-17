@@ -8,8 +8,8 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Dark7V12ScrollTrigger,
-  refreshDark7V12ScrollTriggers,
+  Dark7V14ScrollTrigger,
+  refreshDark7V14ScrollTriggers,
 } from "./lenisScrollTrigger";
 import {
   BIRD_MESH,
@@ -26,13 +26,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const SERVICES_WING_ID = "dark7-v12-services-right-wing";
+const SERVICES_WING_ID = "dark7-v14-services-right-wing";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  * SERVICES LEFT-WING TUNING (v12 — inverse of v11)
- * File: components/dark7-v12/ServicesRightWingScene.js
- * Page: /dark7-v12  →  New Services section (left side)
+ * File: components/dark7-v14/ServicesRightWingScene.js
+ * Page: /dark7-v14  →  New Services section (left side)
  *
  * Edit numbers below, save, then hard-refresh the page.
  *
@@ -330,7 +330,7 @@ export default function ServicesRightWingScene({ sectionRef, className = "" }) {
         gsap.to(state, {
           progress: 1,
           ease: "none",
-          scrollTrigger: Dark7V12ScrollTrigger({
+          scrollTrigger: Dark7V14ScrollTrigger({
             id: SERVICES_WING_ID,
             trigger: section,
             start: SCROLL.triggerStart,
@@ -344,8 +344,8 @@ export default function ServicesRightWingScene({ sectionRef, className = "" }) {
         applyScrollProgress(0);
       }, section);
 
-      requestAnimationFrame(() => refreshDark7V12ScrollTriggers());
-      window.setTimeout(() => refreshDark7V12ScrollTriggers(true), 400);
+      requestAnimationFrame(() => refreshDark7V14ScrollTriggers());
+      window.setTimeout(() => refreshDark7V14ScrollTriggers(true), 400);
     }
 
     gltfLoader.load(

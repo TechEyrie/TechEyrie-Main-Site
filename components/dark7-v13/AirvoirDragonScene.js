@@ -17,8 +17,8 @@ import {
 import "./AirvoirDragonScene.css";
 
 /**
- * Airvoir bird tuning — edit these values, then hard-refresh `/dark7-v12`.
- * File: components/dark7-v12/AirvoirDragonScene.js
+ * Airvoir bird tuning — edit these values, then hard-refresh `/dark7-v13`.
+ * File: components/dark7-v13/AirvoirDragonScene.js
  *
  * Texture matches the hero eagle (EagleScrollScene applyBirdMaterial).
  *
