@@ -1,0 +1,33 @@
+.hero-problem-services-combined {
+  --dark7-v15-section-gap: 134px;
+}
+
+/* Single source of truth for vertical rhythm between hero → portfolio → real problem → services */
+.hero-problem-services-combined .dark7-v15-hero {
+  padding-bottom: 0 !important;
+}
+
+.hero-problem-services-combined .dark7-v15-portfolio,
+.hero-problem-services-combined .real-problem-section,
+.hero-problem-services-combined .dark7-v15-new-services {
+  margin-top: 0 !important;
+  padding-top: var(--dark7-v15-section-gap) !important;
+  padding-bottom: 0 !important;
+}
+
+/* Trailing space after the services block (before DeepJudge) */
+.hero-problem-services-combined .dark7-v15-new-services {
+  padding-bottom: var(--dark7-v15-section-gap) !important;
+}
+
+@media (min-width: 1024px) {
+  .hero-problem-services-combined {
+    --dark7-v15-section-gap: 180px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-problem-services-combined {
+    --dark7-v15-section-gap: 200px;
+  }
+}

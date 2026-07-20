@@ -1,0 +1,1434 @@
+/* components/MainPage.css */
+
+:root {
+  /* ── BASE COLORS ── */
+  --c-dark-green:       #162d24;
+  --c-green:            #1b4732;
+  --c-light-green:      #a7b431;
+  --c-olive:            #758535;
+  --c-dark-blue:        #101e27;
+  --c-blue:             #005160;
+  --c-light-blue:       #67bfda;
+  --c-sky:              #bee5ee;
+  --c-beige:            #e0d1b6;
+  --c-beige-background: #f5e8d1;
+  --c-white:            #ffffff;
+  --c-black:            #030303;
+}
+
+/* ── BODY / DEFAULT SECTIONS ── */
+body {
+  background-color: #f5e8d1; /* warm beige */
+  color: #162d24;
+}
+
+/* Scope dark2 layout + full-page background */
+.dark2-page {
+  min-height: 100vh;
+  background-color: #162d24;
+}
+
+/* Make all text on dark2 page beige */
+.dark2-page,
+.dark2-page * {
+  color: #e0d1b6 !important;
+}
+
+/* RealProblemSection override: force dark green text on cream background */
+.dark2-page .real-problem-section,
+.dark2-page .real-problem-section * {
+  color: #162D24 !important;
+}
+
+.dark2-page .real-problem-section .real-problem-cta,
+.dark2-page .real-problem-section .hero-cta-btn {
+  color: #162D24 !important;
+}
+
+.dark2-page .real-problem-section .hero-cta-btn:hover {
+  color: #F7F3F0 !important;
+}
+
+/* DeepJudge2 cream surface: dark text on light background */
+.dark2-page .dark7-v17-deep-judge,
+.dark2-page .dark7-v17-deep-judge h1,
+.dark2-page .dark7-v17-deep-judge h2,
+.dark2-page .dark7-v17-deep-judge h3,
+.dark2-page .dark7-v17-deep-judge p,
+.dark2-page .dark7-v17-deep-judge span:not(.deep-judge-light-ui):not(.deep-judge-light-ui *):not(.deep-judge-phase3-badge-num):not(.deep-judge-phase1-box-label):not(:is(.deep-judge-phase2-text *)):not(:is(.deep-judge-phase3-text *)) {
+  color: #111111 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-badge-num {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-search-field {
+  background-color: #F7F3F0 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-search-field,
+.dark2-page .dark7-v17-deep-judge .deep-judge-search-field *,
+.dark2-page .dark7-v17-deep-judge .deep-judge-light-ui,
+.dark2-page .dark7-v17-deep-judge .deep-judge-light-ui * {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase3-card {
+  background-color: transparent !important;
+  border-color: #000000 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge article.deep-judge-phase3-card {
+  border-radius: 12px !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase3-title {
+  color: #162D24 !important;
+  font-weight: 700 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase3-body {
+  color: #162D24 !important;
+  font-weight: 400 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge h1.deep-judge-phase2-text,
+.dark2-page .dark7-v17-deep-judge h1.deep-judge-phase2-text span,
+.dark2-page .dark7-v17-deep-judge h2.deep-judge-phase2-text,
+.dark2-page .dark7-v17-deep-judge h2.deep-judge-phase2-text span,
+.dark2-page .dark7-v17-deep-judge p.deep-judge-phase2-text,
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase2-text span {
+  color: #F7F3F0 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge h1.deep-judge-phase3-text,
+.dark2-page .dark7-v17-deep-judge h1.deep-judge-phase3-text span,
+.dark2-page .dark7-v17-deep-judge h2.deep-judge-phase3-text,
+.dark2-page .dark7-v17-deep-judge h2.deep-judge-phase3-text span,
+.dark2-page .dark7-v17-deep-judge p.deep-judge-phase3-text,
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase3-text span {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase3-badge-num {
+  color: #ffffff !important;
+}
+
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase1-heading,
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase1-heading * {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-deep-judge span.deep-judge-phase1-box-label,
+.dark2-page .dark7-v17-deep-judge .deep-judge-phase1-box-label {
+  color: #F7F3F0 !important;
+}
+
+.dark2-page .dark7-v17-new-services .new-services-title-line,
+.dark2-page .dark7-v17-new-services .new-services-title-line *,
+.dark2-page .dark7-v17-new-services .new-services-surface-text,
+.dark2-page .dark7-v17-new-services .dark7-v17-section-eyebrow {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-new-services .new-services-surface-body {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-new-services .new-services-card {
+  background-color: #F2F0EC40 !important;
+}
+
+.dark2-page .dark7-v17-new-services .new-services-card-title,
+.dark2-page .dark7-v17-new-services .new-services-card-body {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-tech-eyrie,
+.dark2-page .dark7-v17-tech-eyrie *:not(.text-white) {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-airvoir,
+.dark2-page .dark7-v17-airvoir h1,
+.dark2-page .dark7-v17-airvoir h2,
+.dark2-page .dark7-v17-airvoir p,
+.dark2-page .dark7-v17-airvoir span:not(.text-white) {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-heading,
+.dark2-page .dark7-v17-testimonials .testimonials-heading .real-problem-title-line {
+  color: #162D24 !important;
+  text-shadow: none;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-card {
+  background-color: #162d24 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-card,
+.dark2-page .dark7-v17-testimonials .testimonials-card-text,
+.dark2-page .dark7-v17-testimonials .testimonials-card p,
+.dark2-page .dark7-v17-testimonials .testimonials-card blockquote {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-arrow-btn {
+  background-color: #162d24 !important;
+  border: 1px solid #f7f3f0 !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-arrow-btn:hover {
+  background-color: #f7f3f0 !important;
+  border-color: #f7f3f0 !important;
+  color: #162d24 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-arrow-btn svg {
+  color: #f7f3f0 !important;
+  stroke: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-testimonials .testimonials-arrow-btn:hover svg {
+  color: #162d24 !important;
+  stroke: #162d24 !important;
+}
+
+.dark2-page .dark7-v17-cards-services .cards-services-heading {
+  color: #f5f1ee !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
+  font-weight: 300 !important;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark2-page .dark7-v17-cards-services .cards-services-card,
+.dark2-page .dark7-v17-cards-services .cards-services-card-title,
+.dark2-page .dark7-v17-cards-services .cards-services-card-text,
+.dark2-page .dark7-v17-cards-services .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card h3,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card p,
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card h3,
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card p {
+  font-weight: 300 !important;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark2-page .dark7-v17-cards-services .cards-services-card-text,
+.dark2-page .dark7-v17-cards-services .cards-services-card-description {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+}
+
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-card-title,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-card-text,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card h3,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card p:not(.cards-services-card-description) {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-cards-services .cards-services-feather {
+  filter: brightness(0) invert(1);
+}
+
+.dark2-page .dark7-v17-faq .faq-section-feather {
+  filter: brightness(0) invert(1);
+}
+
+.dark2-page .dark7-v17-faq .faq-section-eyebrow,
+.dark2-page .dark7-v17-faq .faq-title-line,
+.dark2-page .dark7-v17-faq .faq-title-line *,
+.dark2-page .dark7-v17-faq .faq-question-text,
+.dark2-page .dark7-v17-faq .faq-answer-text {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-faq .faq-item {
+  background-color: rgba(247, 243, 240, 0.15) !important;
+  border-color: rgba(247, 243, 240, 0.2) !important;
+}
+
+.dark2-page .dark7-v17-faq .faq-plus-icon {
+  background-color: #162d24 !important;
+}
+
+.dark2-page .dark7-v17-faq .faq-plus-icon line {
+  stroke: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-blogs,
+.dark2-page .dark7-v17-blogs *:not(.text-white):not(.real-problem-description):not(.blogs-section-description):not(.blogs-heading):not(.insights-by-text):not(.new-engen-text):not(.real-problem-title-line):not(.char):not(.hero-cta-btn):not(.blogs-cta-btn) {
+  color: #000000 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-heading,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-heading .insights-by-text,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-heading .new-engen-text,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-heading .real-problem-title-line,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-heading .char,
+.dark2-page .dark7-v17-blogs .blogs-heading,
+.dark2-page .dark7-v17-blogs .blogs-heading .insights-by-text,
+.dark2-page .dark7-v17-blogs .blogs-heading .new-engen-text,
+.dark2-page .dark7-v17-blogs .blogs-heading .real-problem-title-line,
+.dark2-page .dark7-v17-blogs .blogs-heading .char {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page .dark7-v17-blogs .blogs-section-description,
+.dark2-page .dark7-v17-faq .faq-section-description {
+  color: rgba(247, 243, 240, 0.88) !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 1rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.dark2-page .dark7-v17-footer .blogs-section-description,
+.dark2-page .dark7-v17-footer a.dark7-v17-footer-menu-link {
+  color: rgba(247, 243, 240, 0.88) !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 0.875rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .dark2-page .dark7-v17-blogs .blogs-section-description,
+  .dark2-page .dark7-v17-faq .faq-section-description {
+    font-size: 1.125rem !important;
+  }
+
+  .dark2-page .dark7-v17-footer .blogs-section-description,
+  .dark2-page .dark7-v17-footer a.dark7-v17-footer-menu-link {
+    font-size: 0.9375rem !important;
+  }
+}
+
+.dark2-page .dark7-v17-airplane-hero .airplane-hero-heading,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-hero-heading,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero h1.airplane-hero-heading {
+  color: #162d24 !important;
+  text-shadow: none;
+}
+
+.dark2-page .dark7-v17-airplane-hero .airplane-hero-input {
+  color: #f6f2ee !important;
+}
+
+.dark2-page .dark7-v17-airplane-hero .airplane-enroll-label,
+.dark2-page .dark7-v17-airplane-hero .airplane-enroll-input-label,
+.dark2-page .dark7-v17-airplane-hero .airplane-enroll-email-hint {
+  color: #f7f3f0 !important;
+  opacity: 1 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162d24 !important;
+  background-color: #f0edea !important;
+  border-radius: 12px !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn svg,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn svg,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn path,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn path {
+  color: #162d24 !important;
+  stroke: #162d24 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn:hover {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn:hover svg,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn:hover svg,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .hero-cta-btn:hover path,
+.dark2-page.dark7-v17-page .dark7-v17-airplane-hero .airplane-cta-btn:hover path {
+  color: #f7f3f0 !important;
+  stroke: #f7f3f0 !important;
+}
+
+/* CardsServicesSection card text beats universal beige */
+.dark2-page .dark7-services-light-card,
+.dark2-page .dark7-services-light-card h3,
+.dark2-page .dark7-services-light-card p,
+.dark2-page .dark7-services-light-card .cards-services-card-description {
+  color: #162d24 !important;
+}
+
+.dark2-page .dark7-services-light-card .cards-services-cta {
+  color: #162d24 !important;
+}
+
+.dark2-page .dark7-services-dark-card .cards-services-cta {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .cards-services-cta,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-cta {
+  background-color: #f1eeec !important;
+  color: #162d24 !important;
+  border-radius: 12px !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  letter-spacing: -0.025em !important;
+  line-height: normal !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-cta {
+  background-color: #102820 !important;
+  color: #f7f3f0 !important;
+  border-radius: 12px !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  letter-spacing: -0.025em !important;
+  line-height: normal !important;
+}
+
+@media (min-width: 768px) {
+  .dark2-page.dark7-v17-page .dark7-v17-cards-services .cards-services-cta,
+  .dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-cta,
+  .dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-cta {
+    font-size: 18px !important;
+  }
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .cards-services-cta:hover,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-cta:hover,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-cta:hover {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
+}
+
+/* Get a Quote modal: black text on white panel */
+.dark2-page .dark7-quote-popup,
+.dark2-page .dark7-quote-popup * {
+  color: #000000 !important;
+}
+
+.dark2-page .dark7-quote-popup input::placeholder,
+.dark2-page .dark7-quote-popup textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark2-page .dark7-quote-popup button[type="submit"],
+.dark2-page .dark7-quote-popup button[type="submit"] * {
+  color: #ffffff !important;
+}
+
+/* Hero pyramid labels on card overlays */
+.dark2-page .hero-pyramid-label,
+.dark2-page.dark7-v17-page .dark7-v17-hero .hero-pyramid-label {
+  color: #162d24 !important;
+}
+
+/* Strategy carousel: teal pills need white chevrons (beat universal beige) */
+.dark2-page .strategy-carousel-nav:not(:disabled) {
+  color: #ffffff !important;
+}
+.dark2-page .strategy-carousel-nav:not(:disabled) svg {
+  color: #ffffff !important;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  background-color: #162d24;
+  background: linear-gradient(
+    135deg,
+    rgba(22, 45, 36, 0.80) 0%,
+    rgba(27, 71, 50, 0.55) 45%,
+    rgba(16, 30, 39, 0.85) 100%
+  );
+}
+
+/* ── DARK SECTIONS (Wellness panel etc.) ── */
+.section-dark {
+  background-color: #162d24; /* --c-dark-green */
+}
+
+/* ── WELLNESS IMAGE PANEL ── */
+.wellness-panel {
+  background-color: #101e27; /* --c-dark-blue */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hide scrollbar for a cleaner "slider-less" look */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Contact page: form fields vs .dark2-page universal text rule */
+.dark2-page .contact-input {
+  color: #f5e8d1 !important;
+}
+.dark2-page .contact-input::placeholder {
+  color: rgba(163, 154, 136, 0.55) !important;
+}
+/* Submit CTA: RealProblemSection pill — beat .dark2-page universal text */
+.dark2-page .contact-submit,
+.dark2-page .contact-submit * {
+  color: #ffffff !important;
+}
+
+.dark2-page .faqs-cta-link,
+.dark2-page .faqs-cta-link *,
+.dark2-page .privacy-cta-link,
+.dark2-page .privacy-cta-link *,
+.dark2-page .terms-cta-link,
+.dark2-page .terms-cta-link *,
+.dark2-page .testimonials-cta-link,
+.dark2-page .testimonials-cta-link * {
+  color: #ffffff !important;
+}
+
+/* Contact page: same stacks as dark7 (Merriweather UI, Italiana display, Playfair italic accents) */
+.dark2-page.contact-route,
+.dark2-page.contact-route main,
+.dark2-page.contact-route main input,
+.dark2-page.contact-route main textarea,
+.dark2-page.contact-route main button,
+.dark2-page.contact-route main label {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.contact-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* FAQs page: same base stacks as contact / dark7 main */
+.dark2-page.faqs-route,
+.dark2-page.faqs-route main,
+.dark2-page.faqs-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.faqs-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* About page: dark7 luxury stacks + beat universal beige */
+.dark2-page.about-route,
+.dark2-page.about-route main,
+.dark2-page.about-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.about-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+  color: #f3f3f3 !important;
+}
+.dark2-page.about-route main .font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.about-route main p,
+.dark2-page.about-route main .font-merriweather:not(.about-lux-cta) {
+  color: #c8c2ad !important;
+}
+.dark2-page.about-route main strong {
+  color: #f3f3f3 !important;
+}
+.dark2-page.about-route main .about-lux-label {
+  color: #a8a498 !important;
+}
+.dark2-page.about-route main a.about-lux-link {
+  color: #e8e4dc !important;
+  border-color: rgba(232, 228, 220, 0.45) !important;
+}
+.dark2-page.about-route main a.about-lux-link:hover {
+  color: #74f5a1 !important;
+  border-color: rgba(116, 245, 161, 0.5) !important;
+}
+.dark2-page.about-route main a.about-lux-btn {
+  color: #ffffff !important;
+  background-color: #12685b !important;
+}
+.dark2-page.about-route main a.about-lux-btn:hover {
+  background-color: #0d5248 !important;
+}
+
+/* Expertise (/expertise) — Services1 under dark7 */
+.dark2-page.expertise-route,
+.dark2-page.expertise-route main,
+.dark2-page.expertise-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.expertise-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Newsletter */
+.dark2-page.newsletter-route,
+.dark2-page.newsletter-route main,
+.dark2-page.newsletter-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.newsletter-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Newsletter: intended palette (beats .dark2-page universal beige) */
+.dark2-page.newsletter-route main .nl-cream {
+  color: #f3f3f3 !important;
+}
+.dark2-page.newsletter-route main .nl-e8 {
+  color: #e8e4dc !important;
+}
+.dark2-page.newsletter-route main .nl-c8 {
+  color: #c8c2ad !important;
+}
+.dark2-page.newsletter-route main .nl-a8 {
+  color: #a8a498 !important;
+}
+.dark2-page.newsletter-route main .nl-e0 {
+  color: #e0d1b6 !important;
+}
+.dark2-page.newsletter-route main .nl-mint {
+  color: #74f5a1 !important;
+}
+.dark2-page.newsletter-route main section.talk-expert-dark7 h2.font-italiana {
+  color: #f3f3f3 !important;
+}
+.dark2-page.newsletter-route main section.talk-expert-dark7 h2.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.newsletter-route main .nl-danger {
+  color: #e57373 !important;
+}
+
+/* Case studies listing + detail */
+.dark2-page.case-studies-route,
+.dark2-page.case-studies-route main,
+.dark2-page.case-studies-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.case-studies-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+/* Privacy policy: same stacks as FAQs / dark7 */
+.dark2-page.privacy-route,
+.dark2-page.privacy-route main,
+.dark2-page.privacy-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.privacy-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.testimonials-route,
+.dark2-page.testimonials-route main,
+.dark2-page.testimonials-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.testimonials-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.testimonials-route .testimonials-page-heading,
+.dark2-page.testimonials-route .testimonials-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.testimonials-route .testimonials-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.testimonials-route .testimonials-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.testimonials-route .testimonials-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.testimonials-route .testimonials-filter-idle {
+  color: #e8e4dc !important;
+}
+.dark2-page.testimonials-route .testimonials-filter-active {
+  color: #000000 !important;
+}
+
+.dark2-page.testimonials-route .testimonials-star {
+  color: #74f5a1 !important;
+  fill: #74f5a1 !important;
+}
+
+.dark2-page.terms-route,
+.dark2-page.terms-route main,
+.dark2-page.terms-route main button {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+.dark2-page.terms-route main :is(h1, h2, h3) {
+  font-family: Italiana, serif;
+  font-weight: 400;
+}
+
+.dark2-page.terms-route .terms-page-heading,
+.dark2-page.terms-route .terms-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.terms-route .terms-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.terms-route .terms-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.terms-route .terms-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.terms-route .terms-toc-btn:not(.terms-toc-btn-active):hover .lucide {
+  stroke: #a7b431 !important;
+}
+
+.dark2-page.privacy-route .privacy-page-heading,
+.dark2-page.privacy-route .privacy-page-heading > span {
+  color: #f3f3f3 !important;
+}
+.dark2-page.privacy-route .privacy-page-heading > span.font-playfair {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.privacy-route .privacy-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+.dark2-page.privacy-route .privacy-page-title-line.font-playfair .char {
+  color: #e8e4dc !important;
+}
+
+/* Inactive TOC Lucide: hover olive (active row keeps black stroke from color prop) */
+.dark2-page.privacy-route .privacy-toc-btn:not(.privacy-toc-btn-active):hover .lucide {
+  stroke: #a7b431 !important;
+}
+
+/* FAQs: headings + luxury hero beat universal beige where needed */
+.dark2-page.faqs-route .faq-page-heading,
+.dark2-page.faqs-route .faq-page-heading .faq-page-title-line {
+  color: #f3f3f3 !important;
+}
+.dark2-page.faqs-route .faq-page-heading .faq-page-title-line.font-playfair {
+  color: #e8e4dc !important;
+}
+.dark2-page.faqs-route .faq-page-title-line .char {
+  color: #f3f3f3 !important;
+}
+
+/* FAQs luxury: slow mesh + card polish */
+@keyframes faqs-luxury-mesh {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    opacity: 0.55;
+    transform: translate(1.5%, -1.5%) scale(1.02);
+  }
+  66% {
+    opacity: 0.48;
+    transform: translate(-1%, 1%) scale(1.01);
+  }
+}
+
+@keyframes faqs-luxury-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.dark2-page.faqs-route .faqs-luxury-mesh,
+.dark2-page.privacy-route .faqs-luxury-mesh,
+.dark2-page.testimonials-route .faqs-luxury-mesh,
+.dark2-page.terms-route .faqs-luxury-mesh {
+  animation: faqs-luxury-mesh 22s ease-in-out infinite;
+}
+
+.dark2-page.faqs-route .faqs-luxury-hero-frame,
+.dark2-page.privacy-route .faqs-luxury-hero-frame,
+.dark2-page.testimonials-route .faqs-luxury-hero-frame,
+.dark2-page.terms-route .faqs-luxury-hero-frame {
+  background: linear-gradient(
+    90deg,
+    rgba(167, 180, 49, 0) 0%,
+    rgba(167, 180, 49, 0.35) 50%,
+    rgba(167, 180, 49, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: faqs-luxury-shimmer 8s linear infinite;
+}
+
+.dark2-page.faqs-route .faqs-lux-card,
+.dark2-page.privacy-route .faqs-lux-card,
+.dark2-page.testimonials-route .faqs-lux-card,
+.dark2-page.terms-route .faqs-lux-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 32px 64px -16px rgba(0, 0, 0, 0.45);
+}
+
+.dark2-page.faqs-route .faqs-lux-card.is-open {
+  box-shadow:
+    0 1px 0 0 rgba(116, 245, 161, 0.12) inset,
+    0 0 0 1px rgba(116, 245, 161, 0.2),
+    0 40px 80px -20px rgba(0, 0, 0, 0.5);
+}
+
+.dark2-page.faqs-route .faqs-lux-cta-panel,
+.dark2-page.privacy-route .faqs-lux-cta-panel,
+.dark2-page.testimonials-route .faqs-lux-cta-panel,
+.dark2-page.terms-route .faqs-lux-cta-panel {
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 32, 0.95) 0%,
+    rgba(10, 24, 20, 0.98) 50%,
+    rgba(8, 18, 14, 1) 100%
+  );
+  box-shadow: 0 1px 0 0 rgba(167, 180, 49, 0.15) inset;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   dark7-v17 — Dapper-style fluid em typography (page-scoped only)
+   Hero headings: 5em | Section headings: 4em | Descriptions: 1.375em
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dark7-v17-page {
+  --dark7-v17-size-unit: 16;
+  --dark7-v17-container-ideal: 1920;
+  --dark7-v17-container-min: 992px;
+  --dark7-v17-container-max: 1920px;
+  --dark7-v17-container: clamp(
+    var(--dark7-v17-container-min),
+    100vw,
+    var(--dark7-v17-container-max)
+  );
+  font-size: calc(
+    var(--dark7-v17-container) /
+      (var(--dark7-v17-container-ideal) / var(--dark7-v17-size-unit))
+  );
+}
+
+@media screen and (max-width: 991px) {
+  .dark7-v17-page {
+    --dark7-v17-container-ideal: 834;
+    --dark7-v17-container-min: 768px;
+    --dark7-v17-container-max: 991px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark7-v17-page {
+    --dark7-v17-container-ideal: 460;
+    --dark7-v17-container-min: 480px;
+    --dark7-v17-container-max: 767px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .dark7-v17-page {
+    --dark7-v17-container-min: 320px;
+    --dark7-v17-container-max: 479px;
+  }
+}
+
+/* Hero main title — "Designed for / companies that / refuse ordinary" */
+.dark2-page.dark7-v17-page .dark7-v17-hero .hero-main-title-line,
+.dark7-v17-page .dark7-v17-hero .hero-main-title-line {
+  font-size: 5em !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.03em !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dark2-page.dark7-v17-page .dark7-v17-hero .hero-main-title-line,
+  .dark7-v17-page .dark7-v17-hero .hero-main-title-line {
+    font-size: 4em !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark2-page.dark7-v17-page .dark7-v17-hero .hero-main-title-line,
+  .dark7-v17-page .dark7-v17-hero .hero-main-title-line {
+    font-size: 3em !important;
+    white-space: normal !important;
+  }
+}
+
+/* Section headings (not hero, cards, nav, footer, tech eyrie, airvoir, testimonials) */
+.dark7-v17-page .dark7-v17-deep-judge h1,
+.dark7-v17-page .dark7-v17-deep-judge h2,
+.dark7-v17-page .cards-services-heading,
+.dark7-v17-page .faq-title-line,
+.dark7-v17-page .airplane-hero-heading {
+  font-size: 4em !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  font-weight: 300 !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dark7-v17-page .dark7-v17-deep-judge h1,
+  .dark7-v17-page .dark7-v17-deep-judge h2,
+  .dark7-v17-page .cards-services-heading,
+  .dark7-v17-page .faq-title-line,
+  .dark7-v17-page .airplane-hero-heading {
+    font-size: 3.25em !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark7-v17-page .dark7-v17-deep-judge h1,
+  .dark7-v17-page .dark7-v17-deep-judge h2,
+  .dark7-v17-page .cards-services-heading,
+  .dark7-v17-page .faq-title-line,
+  .dark7-v17-page .airplane-hero-heading {
+    font-size: 2.5em !important;
+  }
+}
+
+/* Shared section eyebrow — "The real problem is", "Our services", etc. */
+.dark7-v17-page .dark7-v17-section-eyebrow {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+}
+
+@media (min-width: 640px) {
+  .dark7-v17-page .dark7-v17-section-eyebrow {
+    font-size: 1.125rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .dark7-v17-page .dark7-v17-section-eyebrow {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dark7-v17-page .dark7-v17-section-eyebrow {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Real Problem — section title scale */
+.dark7-v17-page .real-problem-title-line {
+  font-size: 4em !important;
+  font-weight: 300 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.01em !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dark7-v17-page .real-problem-title-line {
+    font-size: 2.25em !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark7-v17-page .real-problem-title-line {
+    font-size: 1.85em !important;
+  }
+}
+
+/* Tech Eyrie — larger than shared section titles (matches hero scale) */
+.dark7-v17-page .dark7-v17-tech-eyrie .real-problem-title-line {
+  font-size: 5em !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dark7-v17-page .dark7-v17-tech-eyrie .real-problem-title-line {
+    font-size: 4em !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark7-v17-page .dark7-v17-tech-eyrie .real-problem-title-line {
+    font-size: 3em !important;
+  }
+}
+
+/* Tech Eyrie / Airvoir — kicker; headings use .real-problem-title-line */
+.dark7-v17-page .dark7-v17-tech-eyrie .tech-eyrie-kicker,
+.dark7-v17-page .dark7-v17-airvoir .airvoir-kicker {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.dark7-v17-page .dark7-v17-tech-eyrie .target-te-position {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  font-weight: inherit !important;
+}
+
+@media (min-width: 640px) {
+  .dark7-v17-page .dark7-v17-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v17-page .dark7-v17-airvoir .airvoir-kicker {
+    font-size: 1.125rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .dark7-v17-page .dark7-v17-tech-eyrie .tech-eyrie-kicker,
+  .dark7-v17-page .dark7-v17-airvoir .airvoir-kicker {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* New Services — match Real Problem heading scale */
+.dark7-v17-page .new-services-title-line {
+  font-size: 4em !important;
+  font-weight: 300 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.01em !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dark7-v17-page .new-services-title-line {
+    font-size: 2.25em !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .dark7-v17-page .new-services-title-line {
+    font-size: 1.85em !important;
+  }
+}
+
+.dark7-v17-page .dark7-v17-new-services .new-services-surface-body {
+  font-weight: 300 !important;
+  font-synthesis: none;
+  letter-spacing: 0.02em !important;
+}
+
+/* Section descriptions / body copy */
+.dark7-v17-page .real-problem-section p.leading-relaxed,
+.dark7-v17-page .real-problem-section .real-problem-description,
+.dark7-v17-page .dark7-v17-tech-eyrie .build-description,
+.dark7-v17-page .new-services-surface-body,
+.dark7-v17-page .dark7-v17-deep-judge p.leading-relaxed:not(.deep-judge-phase3-body),
+.dark7-v17-page .dark7-v17-section-desc {
+  font-size: 1.375em !important;
+  line-height: 1.5 !important;
+  font-weight: 300 !important;
+}
+
+/* CardsServices + FAQ + Blog section descriptions (shared type) */
+.dark7-v17-page .dark7-v17-cards-services .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card p.cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card p.cards-services-card-description,
+.dark7-v17-page .dark7-v17-faq .faq-section-description,
+.dark2-page .dark7-v17-faq .faq-section-description,
+.dark7-v17-page .dark7-v17-blogs .blogs-section-description,
+.dark2-page .dark7-v17-blogs .blogs-section-description {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 1rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.dark7-v17-page .dark7-v17-footer .blogs-section-description,
+.dark2-page .dark7-v17-footer .blogs-section-description,
+.dark7-v17-page .dark7-v17-footer a.dark7-v17-footer-menu-link,
+.dark2-page .dark7-v17-footer a.dark7-v17-footer-menu-link {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 0.875rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .dark7-v17-page .dark7-v17-cards-services .cards-services-card-description,
+  .dark2-page .dark7-v17-cards-services .cards-services-card-description,
+  .dark2-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-card-description,
+  .dark2-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-card-description,
+  .dark7-v17-page .dark7-v17-faq .faq-section-description,
+  .dark2-page .dark7-v17-faq .faq-section-description,
+  .dark7-v17-page .dark7-v17-blogs .blogs-section-description,
+  .dark2-page .dark7-v17-blogs .blogs-section-description {
+    font-size: 1.125rem !important;
+  }
+
+  .dark7-v17-page .dark7-v17-footer .blogs-section-description,
+  .dark2-page .dark7-v17-footer .blogs-section-description,
+  .dark7-v17-page .dark7-v17-footer a.dark7-v17-footer-menu-link,
+  .dark2-page .dark7-v17-footer a.dark7-v17-footer-menu-link {
+    font-size: 0.9375rem !important;
+  }
+}
+
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-light-card p.cards-services-card-description {
+  color: #162D24 !important;
+}
+
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-card-description,
+.dark2-page .dark7-v17-cards-services .dark7-services-dark-card p.cards-services-card-description,
+.dark2-page .dark7-v17-faq .faq-section-description,
+.dark2-page .dark7-v17-blogs .blogs-section-description,
+.dark2-page .dark7-v17-footer .blogs-section-description,
+.dark2-page .dark7-v17-footer a.dark7-v17-footer-menu-link {
+  /* Same #F7F3F0 hue; slight alpha counters light-on-dark weight bloom */
+  color: rgba(247, 243, 240, 0.88) !important;
+}
+
+.dark7-v17-page .real-problem-section p.leading-relaxed,
+.dark7-v17-page .real-problem-section .real-problem-description,
+.dark7-v17-page .dark7-v17-tech-eyrie .build-description {
+  font-weight: 300 !important;
+  font-synthesis: none;
+  letter-spacing: 0.02em !important;
+}
+
+.dark7-v17-page .dark7-v17-hero .hero-body > p.hero-description {
+  font-size: 1.0625rem !important;
+  font-weight: 300 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.02em !important;
+}
+
+@media (min-width: 768px) {
+  .dark7-v17-page .dark7-v17-hero .hero-body > p.hero-description {
+    font-size: 1.125rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dark7-v17-page .dark7-v17-hero .hero-body > p.hero-description {
+    font-size: 1.1875rem !important;
+  }
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-hero .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .real-problem-section .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+  background-color: #efecea !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-tech-eyrie .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+  background-color: #efecea !important;
+  letter-spacing: 0.06em !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-blogs .hero-cta-btn,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+  background-color: #f0edea !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airvoir .hero-cta-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+  background-color: #efecea !important;
+  letter-spacing: 0.06em !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-airvoir .hero-cta-btn:hover {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .hero-cta-btn,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-light-card .cards-services-cta {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #162D24 !important;
+  background-color: #f1eeec !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .dark7-services-dark-card .cards-services-cta {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  color: #f7f3f0 !important;
+  background-color: #102820 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-blogs .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-cta-btn:hover {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-hero .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .real-problem-section .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-tech-eyrie .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-airvoir .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-blogs .blogs-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .hero-cta-btn:hover,
+.dark2-page.dark7-v17-page .dark7-v17-cards-services .cards-services-cta:hover {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
+}
+
+.dark7-v17-page .dark5-footer p.leading-relaxed {
+  font-size: revert !important;
+  line-height: revert !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer .dark5-footer-text,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer .dark5-footer-subtext:not(.blogs-section-description),
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer p,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer span,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer a.footer-link-underline:not(.blogs-section-description) {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer .footer-section-label,
+.dark2-page.dark7-v17-page .dark7-v17-footer .footer-item-heading,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer h3,
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer h4.footer-item-heading {
+  color: #f7f3f0 !important;
+  letter-spacing: 0.04em !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer .footer-section-label {
+  letter-spacing: 0.12em !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer .social-icon-animate {
+  background-color: #162d24 !important;
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer .dark5-footer-card {
+  background-color: transparent !important;
+  border-color: rgba(247, 243, 240, 0.2) !important;
+  box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.35) !important;
+}
+
+.dark2-page.dark7-v17-page .dark7-v17-footer.dark5-footer {
+  background-color: #4c7363 !important;
+}
+
+/* Keep UI chrome, labels, and card micro-copy at sensible sizes.
+   Exclude footer menu links so they keep Blog description type. */
+.dark7-v17-page .hero-badge span,
+.dark7-v17-page .deep-judge-phase3-title,
+.dark7-v17-page .deep-judge-phase3-body,
+.dark7-v17-page .dark7-v17-portfolio-card-title,
+.dark7-v17-page .dark7-v17-portfolio-card-tag,
+.dark7-v17-page .new-services-card-title,
+.dark7-v17-page .new-services-card-body,
+.dark7-v17-page .dark5-footer *:not(.blogs-section-description):not(.dark7-v17-footer-menu-link) {
+  font-size: revert !important;
+}
+
+.dark7-v17-page .deep-judge-phase3-body {
+  font-size: 1em !important;
+}
+
+.dark7-v17-page .new-services-card-body {
+  font-size: 1em !important;
+}
+
+/* Header nav — beat .dark2-page beige text override */
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill .dark7-v17-header-nav-link,
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill .dark7-v17-header-nav-link span,
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill button.dark7-v17-header-nav-link span,
+.dark2-page.dark7-v17-page header .dark7-v17-header-quote-btn,
+.dark2-page.dark7-v17-page header .dark7-v17-header-quote-btn span {
+  color: #F7F3F0 !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-synthesis: none;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+}
+
+.dark2-page.dark7-v17-page header.dark7-v17-header--compact .dark7-v17-header-nav-pill,
+.dark2-page.dark7-v17-page header.dark7-v17-header--compact .dark7-v17-header-quote-btn,
+.dark2-page.dark7-v17-page header.dark7-v17-header--compact .get-quote-overlay {
+  background-color: #162d24 !important;
+}
+
+.dark2-page.dark7-v17-page header:not(.dark7-v17-header--compact) .dark7-v17-header-nav-pill,
+.dark2-page.dark7-v17-page header:not(.dark7-v17-header--compact) .dark7-v17-header-quote-btn,
+.dark2-page.dark7-v17-page header:not(.dark7-v17-header--compact) .get-quote-overlay {
+  background-color: rgb(247 243 240 / 6%) !important;
+}
+
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill,
+.dark2-page.dark7-v17-page header .dark7-v17-header-quote-btn,
+.dark2-page.dark7-v17-page header .get-quote-overlay {
+  border-radius: 14px !important;
+}
+
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill {
+  display: flex;
+  align-items: center;
+}
+
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill nav,
+.dark2-page.dark7-v17-page header .dark7-v17-header-nav-pill .dark7-v17-header-nav-link {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Header dropdown panel + cards */
+.dark2-page.dark7-v17-page header [data-dropdown] > div > div {
+  background-color: #162d24 !important;
+  border-color: rgba(247, 243, 240, 0.12) !important;
+}
+
+.dark2-page.dark7-v17-page header .dropdown-card {
+  background-color: rgb(247 243 240 / 6%) !important;
+  border-color: rgba(247, 243, 240, 0.12) !important;
+}
+
+.dark2-page.dark7-v17-page header .dropdown-card:hover {
+  background-color: rgb(247 243 240 / 16%) !important;
+}
+
+.dark2-page.dark7-v17-page header .dropdown-card h3,
+.dark2-page.dark7-v17-page header .dropdown-card p {
+  color: #f7f3f0 !important;
+}
+
+.dark2-page.dark7-v17-page header .dropdown-card p {
+  opacity: 0.75;
+}
+
+.dark2-page.dark7-v17-page header .dark7-v17-header-arrow-btn {
+  background-color: #162d24 !important;
+}
+
+.dark2-page.dark7-v17-page header .group:hover .dark7-v17-header-arrow-btn,
+.dark2-page.dark7-v17-page header .dropdown-card:hover .dark7-v17-header-arrow-btn {
+  background-color: #f7f3f0 !important;
+}
