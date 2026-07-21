@@ -356,7 +356,7 @@ function computeFeatherTipAxis(mesh, birdOrigin) {
   const center = new THREE.Vector3();
   bbox.getCenter(center);
   const acrossCenter = [center.x, center.y, center.z][acrossIdx];
-  const halfWidth = Math.max(acrossSpan * 0.5, 0.008);
+  const halfWidth = Math.max(acrossSpan * 0.5, 0.035);
 
   const worldDistAt = (val) => {
     const local = center.clone();
@@ -421,7 +421,7 @@ function applyFeatherSurfaceShader(
 
   material.userData.featherUniforms = uniforms;
   material.customProgramCacheKey = () =>
-    `feather-leaf-veins-10-v25-${isWing ? 1 : 0}-${heroWingLook ? 1 : 0}-${axis?.axisIdx ?? "b"}-${axis?.acrossIdx ?? "a"}`;
+    `feather-leaf-veins-aa-v25c-${isWing ? 1 : 0}-${heroWingLook ? 1 : 0}-${axis?.axisIdx ?? "b"}-${axis?.acrossIdx ?? "a"}`;
 
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
@@ -512,17 +512,22 @@ float featherFbm(vec2 p) {
   }
   return v;
 }
-// Soft ridge from a repeating vein phase (0 at vein center)
+// Soft ridge with screen-space AA (kills moiré on distant / upper leaves)
 float featherVeinRidge(float phase, float width) {
   float d = abs(fract(phase) - 0.5);
-  return 1.0 - smoothstep(0.0, max(width, 0.001), d);
+  float fw = fwidth(phase);
+  float w = max(width, fw * 1.6);
+  // Fade out when frequency exceeds what a pixel can resolve
+  float fade = 1.0 - smoothstep(0.09, 0.32, fw);
+  return (1.0 - smoothstep(0.0, w, d)) * fade;
 }
 // Soft longitudinal fiber (fills between diagonal veins)
 float featherFiber(float across, float along, float density, float wobble) {
   float w = featherFbm(vec2(along * 1.8, across * 0.9)) * wobble;
   float phase = across * density + w;
   float s = 0.5 + 0.5 * sin(phase * 6.2831853);
-  return pow(s, 2.8);
+  float aa = max(0.15, fwidth(phase) * 2.0);
+  return smoothstep(aa, 1.0, pow(s, 2.4));
 }`,
       )
       .replace(
@@ -546,6 +551,8 @@ float featherFiber(float across, float along, float density, float wobble) {
     float acrossN = (acrossVal - uAcrossCenter) / max(uLeafHalfWidth, 0.008);
     acrossN += (featherNoise(vec2(along * 3.5, uMeshSeed)) - 0.5) * 0.05;
     acrossN += (featherNoise(vec2(along * 9.0 + leafId, uMeshSeed * 1.3)) - 0.5) * 0.02;
+    // Clamp — tiny/top leaves were exploding UV → moiré / tearing
+    acrossN = clamp(acrossN, -1.35, 1.35);
     float away = abs(acrossN);
     float side = sign(acrossN + 1e-5);
 
@@ -573,43 +580,47 @@ float featherFiber(float across, float along, float density, float wobble) {
     float midribCore = 1.0 - smoothstep(0.0, 0.024, away);
     float midribHalo = 1.0 - smoothstep(0.0, 0.13, away);
     float midEdge = abs(away - 0.042);
-    float midHighlight = (1.0 - smoothstep(0.0, 0.016, midEdge))
+    float midHighlight = (1.0 - smoothstep(0.0, max(0.018, fwidth(away) * 2.5), midEdge))
                        * smoothstep(0.012, 0.045, away)
                        * (1.0 - smoothstep(0.07, 0.13, away));
 
-    // DIAGONAL VEIN HIERARCHY (both sides)
-    float slant = mix(2.9, 4.2, leafId);
-    float veinDensity = mix(12.0, 18.0, leafId2);
-    float scatter = (featherNoise(vec2(along * 6.0 + uMeshSeed, side * 2.0)) - 0.5) * 0.45;
-    float scatter2 = (featherNoise(vec2(floor(along * veinDensity + 0.5), uMeshSeed + side)) - 0.5) * 0.3;
+    // DIAGONAL VEIN HIERARCHY (both sides) — densities capped to avoid AA failure
+    float slant = mix(2.9, 4.0, leafId);
+    float veinDensity = mix(10.0, 14.0, leafId2);
+    float scatter = (featherNoise(vec2(along * 4.0 + uMeshSeed, side * 2.0)) - 0.5) * 0.35;
+    // Soft scatter only — floor() caused hard banding on upper leaves
+    float scatter2 = (featherNoise(vec2(along * veinDensity * 0.35, uMeshSeed + side)) - 0.5) * 0.25;
 
     float veinPhase = along * veinDensity - away * (slant + scatter) + uMeshSeed * 3.0 + side * 0.28 + scatter2;
     float veinLane = floor(veinPhase);
     float laneU = fract(veinPhase);
-    float diag = featherVeinRidge(veinPhase, mix(0.06, 0.09, leafId3));
+    float diag = featherVeinRidge(veinPhase, mix(0.07, 0.1, leafId3));
     diag *= smoothstep(0.015, 0.07, away) * (1.0 - smoothstep(0.78, 1.2, away));
 
-    float diag2Phase = along * veinDensity * 2.2 - away * slant * 1.22 + leafId2 * 4.0 + scatter * 0.4;
-    float diag2 = featherVeinRidge(diag2Phase, 0.048);
+    float diag2Phase = along * veinDensity * 1.85 - away * slant * 1.18 + leafId2 * 4.0 + scatter * 0.35;
+    float diag2 = featherVeinRidge(diag2Phase, 0.055);
     diag2 *= smoothstep(0.025, 0.09, away) * (1.0 - smoothstep(0.82, 1.25, away));
 
-    float diag3Phase = along * veinDensity * 3.8 - away * slant * 1.35 + leafId3 * 6.0;
-    float diag3 = featherVeinRidge(diag3Phase, 0.038);
+    float diag3Phase = along * veinDensity * 2.9 - away * slant * 1.28 + leafId3 * 6.0;
+    float diag3 = featherVeinRidge(diag3Phase, 0.045);
     diag3 *= smoothstep(0.03, 0.1, away) * (1.0 - smoothstep(0.85, 1.3, away));
 
-    float capPhase = along * veinDensity * 6.2 - away * slant * 1.5 + uMeshSeed * 5.0 + scatter2;
-    float diagCap = featherVeinRidge(capPhase, 0.03);
+    // Capillaries — softer / lower freq (was 6.2× → moiré on tips)
+    float capPhase = along * veinDensity * 3.8 - away * slant * 1.4 + uMeshSeed * 5.0 + scatter2;
+    float diagCap = featherVeinRidge(capPhase, 0.04);
     diagCap *= smoothstep(0.04, 0.12, away) * (1.0 - smoothstep(0.88, 1.35, away));
 
-    float forkPhase = along * veinDensity * 1.35 - away * slant * 0.9 + leafId * 7.0 + side * 0.5;
-    float forkGate = step(0.55, featherHash(vec2(floor(forkPhase), uMeshSeed + side)));
-    float diagFork = featherVeinRidge(forkPhase + scatter * 0.2, 0.055) * forkGate;
+    float forkPhase = along * veinDensity * 1.25 - away * slant * 0.9 + leafId * 7.0 + side * 0.5;
+    float forkGate = smoothstep(0.45, 0.65, featherHash(vec2(floor(forkPhase), uMeshSeed + side)));
+    float diagFork = featherVeinRidge(forkPhase + scatter * 0.2, 0.06) * forkGate;
     diagFork *= smoothstep(0.04, 0.12, away) * (1.0 - smoothstep(0.7, 1.1, away));
 
     // RICH PATCH GRADIENTS between diagonals
-    float lanePick = featherHash(vec2(veinLane, uMeshSeed * 2.5 + side));
-    float lanePick2 = featherHash(vec2(veinLane * 1.7, leafId * 7.0));
-    float lanePick3 = featherHash(vec2(veinLane * 0.4 + side, leafId3 * 5.0));
+    // Stabilize lane colors when phase aliases (upper-leaf tearing)
+    float laneAA = 1.0 - smoothstep(0.06, 0.22, fwidth(veinPhase));
+    float lanePick = mix(0.5, featherHash(vec2(veinLane, uMeshSeed * 2.5 + side)), laneAA);
+    float lanePick2 = mix(0.5, featherHash(vec2(veinLane * 1.7, leafId * 7.0)), laneAA);
+    float lanePick3 = mix(0.5, featherHash(vec2(veinLane * 0.4 + side, leafId3 * 5.0)), laneAA);
 
     vec3 patchRoot = mix(cPatchDark, cDeep, 0.4 + lanePick * 0.5);
     vec3 patchMid = mix(cMoss, cBody, lanePick2);
@@ -628,16 +639,16 @@ float featherFiber(float across, float along, float density, float wobble) {
     patchCol = mix(patchCol, cPatchDark, (1.0 - belly) * 0.5);
     patchCol = mix(patchCol, mix(cLite, cSap, 0.3), radial * t * 0.38);
 
-    float mott = featherFbm(vec2(along * 8.0 + veinLane, acrossN * 5.0 + uMeshSeed));
-    patchCol = mix(patchCol, mix(cMoss, cBody, mott), 0.14 * belly);
+    float mott = featherFbm(vec2(along * 5.0, acrossN * 3.5 + uMeshSeed));
+    patchCol = mix(patchCol, mix(cMoss, cBody, mott), 0.12 * belly * laneAA);
 
     float panelMask = (1.0 - diag * 0.95) * (1.0 - midrib * 0.72) * (1.0 - diagFork * 0.45);
     feather = mix(feather, patchCol, panelMask * 0.9);
 
     float altLane = step(0.5, fract(veinLane * 0.5));
     float altLane2 = step(0.5, fract(veinLane * 0.25));
-    feather = mix(feather, cDeep, altLane * panelMask * 0.26 * (1.0 - t * 0.35));
-    feather = mix(feather, cMoss, altLane2 * panelMask * 0.12 * t);
+    feather = mix(feather, cDeep, altLane * panelMask * 0.26 * (1.0 - t * 0.35) * laneAA);
+    feather = mix(feather, cMoss, altLane2 * panelMask * 0.12 * t * laneAA);
 
     // Paint midrib + diagonals (high contrast, raised look)
     feather = mix(feather, cVein, midribHalo * 0.42);
@@ -651,21 +662,19 @@ float featherFiber(float across, float along, float density, float wobble) {
     feather = mix(feather, mix(cMid, cBody, 0.35), diag3 * 0.28 * (0.35 + t));
     feather = mix(feather, mix(cBody, cLite, 0.3), diagCap * 0.16 * t);
 
-    // Thin lit edge on primary diagonals
+    // Thin lit edge on primary diagonals (AA-safe)
     float diagEdge = abs(fract(veinPhase) - 0.5);
-    float diagLit = (1.0 - smoothstep(0.02, 0.055, diagEdge)) * diag * 0.45;
-    feather = mix(feather, mix(cLite, cSap, 0.4), diagLit * 0.22 * t);
+    float diagLit = (1.0 - smoothstep(0.0, max(0.04, fwidth(veinPhase) * 1.5), diagEdge)) * diag * 0.4;
+    feather = mix(feather, mix(cLite, cSap, 0.4), diagLit * 0.18 * t);
 
-    // Lamina fibers FOLLOWING diagonal slant (between veins only)
-    float fiberAlong = along * mix(22.0, 34.0, leafId) - away * mix(8.0, 12.0, leafId2);
-    float fiber = featherVeinRidge(fiberAlong + scatter * 0.5, 0.1);
-    float fiber2 = featherVeinRidge(fiberAlong * 2.4 + leafId3, 0.08);
-    float fiber3 = featherVeinRidge(fiberAlong * 4.5 + uMeshSeed, 0.06);
+    // Lamina fibers — lower freq so upper leaves stay clean
+    float fiberAlong = along * mix(12.0, 18.0, leafId) - away * mix(5.0, 8.0, leafId2);
+    float fiber = featherVeinRidge(fiberAlong + scatter * 0.4, 0.12);
+    float fiber2 = featherVeinRidge(fiberAlong * 1.7 + leafId3, 0.1);
     float fiberMask = panelMask * smoothstep(0.02, 0.08, away);
-    feather = mix(feather, mix(cBody, cLite, 0.45), fiber * 0.14 * t * fiberMask);
-    feather = mix(feather, mix(cLite, cSap, 0.3), fiber2 * 0.1 * t * fiberMask);
-    feather = mix(feather, cDeep, (1.0 - fiber) * 0.07 * (1.0 - t) * fiberMask);
-    feather = mix(feather, mix(cTip, cSap, 0.35), fiber3 * 0.07 * tip * fiberMask);
+    feather = mix(feather, mix(cBody, cLite, 0.45), fiber * 0.12 * t * fiberMask);
+    feather = mix(feather, mix(cLite, cSap, 0.3), fiber2 * 0.08 * t * fiberMask);
+    feather = mix(feather, cDeep, (1.0 - fiber) * 0.06 * (1.0 - t) * fiberMask);
 
     float edge = smoothstep(0.18, 0.88, away);
     feather = mix(feather, mix(cLite, cTip, 0.35), edge * 0.18 * t);
@@ -787,7 +796,7 @@ export function applyBirdMaterial(bird, textures, lightweightOrOptions = false) 
       emissiveIntensity: useHeroWingLook ? (isBottom ? 0.1 : 0.07) : isWing ? 0.0 : 0.004,
       normalMap: useHeroWingLook ? featherNormal : featherNormal,
       normalScale: useHeroWingLook
-        ? new THREE.Vector2(2.0, 2.0)
+        ? new THREE.Vector2(1.35, 1.35)
         : new THREE.Vector2(isWing ? 0.35 : 0.32, isWing ? 0.35 : 0.32),
       roughness: useHeroWingLook ? 0.44 : isWing ? 0.97 : 0.92,
       metalness: useHeroWingLook ? 0.02 : 0.0,
