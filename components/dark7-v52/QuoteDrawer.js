@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import PhoneCountryField from "../quote/PhoneCountryField";
+import { lockBackgroundScroll } from "../quote/lockBackgroundScroll";
 import "./QuoteDrawer.css";
 
 const INITIAL_FORM = {
@@ -103,15 +105,8 @@ export default function QuoteDrawer({ open, onClose }) {
   }, [open]);
 
   useEffect(() => {
-    if (!open) {
-      document.body.style.overflow = "";
-      return undefined;
-    }
-
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    if (!open) return undefined;
+    return lockBackgroundScroll();
   }, [open]);
 
   useEffect(() => {
@@ -198,7 +193,16 @@ export default function QuoteDrawer({ open, onClose }) {
         aria-hidden={!open}
       />
 
-      <div ref={drawerRef} className="quote-drawer-panel" role="dialog" aria-modal="true" aria-label="Get a quote">
+      <div
+        ref={drawerRef}
+        className="quote-drawer-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Get a quote"
+        data-lenis-prevent
+        data-lenis-prevent-touch
+        data-lenis-prevent-wheel
+      >
         <div className="quote-drawer-glow" aria-hidden="true" />
 
         <div className="quote-scroll-inner">
@@ -353,15 +357,13 @@ export default function QuoteDrawer({ open, onClose }) {
                   </div>
                   <div>
                     <label style={labelStyle}>Phone</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="+44 7700 900000"
+                    <PhoneCountryField
+                      key={open ? "open" : "closed"}
                       value={form.phone}
-                      onChange={handleChange("phone")}
+                      onChange={(full) => setForm((current) => ({ ...current, phone: full }))}
+                      focused={focused === "phone"}
                       onFocus={() => setFocused("phone")}
                       onBlur={() => setFocused(null)}
-                      style={fieldStyle("phone", focused, errors)}
                     />
                   </div>
                 </div>

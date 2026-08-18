@@ -1,0 +1,250 @@
+.quote-phone-field {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: 46px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.quote-phone-field.is-focused {
+  background: rgba(200, 240, 74, 0.05);
+  border-color: rgba(200, 240, 74, 0.35);
+}
+
+.quote-phone-field.is-error {
+  border-color: rgba(255, 90, 70, 0.55);
+}
+
+.quote-phone-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 10px 0 12px;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #f8f8f4;
+  cursor: pointer;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.quote-phone-trigger:hover,
+.quote-phone-trigger:focus-visible {
+  background: rgba(200, 240, 74, 0.08);
+  outline: none;
+}
+
+.quote-phone-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 15px;
+  flex-shrink: 0;
+  line-height: 1;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.quote-phone-flag-img {
+  display: block;
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.quote-phone-flag-fallback {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.quote-phone-dial {
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.quote-phone-chevron {
+  color: rgba(255, 255, 255, 0.45);
+  transition: transform 0.2s ease;
+}
+
+.quote-phone-chevron.is-open {
+  transform: rotate(180deg);
+  color: #c8f04a;
+}
+
+.quote-phone-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 13px 14px 13px 12px;
+  color: #f8f8f4;
+  font-size: 0.875rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  outline: none;
+  caret-color: #c8f04a;
+}
+
+.quote-phone-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.quote-phone-menu {
+  position: fixed;
+  z-index: 10080;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(200, 240, 74, 0.16);
+  background: #1a352c;
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.quote-phone-search-wrap {
+  flex-shrink: 0;
+  padding: 10px 10px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.quote-phone-search {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 9px 11px;
+  color: #f8f8f4;
+  font-size: 0.8125rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 300;
+  outline: none;
+  caret-color: #c8f04a;
+}
+
+.quote-phone-search:focus {
+  border-color: rgba(200, 240, 74, 0.35);
+}
+
+.quote-phone-search::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.quote-phone-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 240, 74, 0.25) transparent;
+}
+
+html.quote-scroll-locked,
+html.quote-scroll-locked body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+.quote-drawer-panel,
+.quote-scroll-inner {
+  overscroll-behavior: contain;
+}
+
+.quote-phone-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #f8f8f4;
+  cursor: pointer;
+  text-align: left;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.quote-phone-option:hover,
+.quote-phone-option.is-selected {
+  background: rgba(200, 240, 74, 0.1);
+}
+
+.quote-phone-option-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.quote-phone-option-dial {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quote-phone-option.is-selected .quote-phone-option-dial {
+  color: #c8f04a;
+}
+
+.quote-phone-empty {
+  padding: 16px 10px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.78rem;
+  font-family: Inter, Arial, sans-serif;
+  text-align: center;
+}
+
+.quote-phone-group-label {
+  padding: 8px 10px 4px;
+  color: rgba(200, 240, 74, 0.7);
+  font-size: 0.625rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.quote-form-row-2 > div:has(.quote-phone-field) {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .quote-phone-input {
+    font-size: 16px;
+  }
+
+  .quote-phone-search {
+    font-size: 16px;
+  }
+}

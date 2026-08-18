@@ -71,6 +71,7 @@ export function initDark7V57LenisScroll(lenis) {
   if (typeof window === "undefined" || !DARK7_V57_SCROLLER) return;
 
   lenisInstance = lenis;
+  if (typeof window !== "undefined") window.__techeyrieLenis = lenis;
   layoutSettled = false;
 
   applyDark7V57ScrollerProxy(lenis);
@@ -107,6 +108,9 @@ export function initDark7V57LenisScroll(lenis) {
 }
 
 export function destroyDark7V57LenisScroll(lenis) {
+  if (typeof window !== "undefined" && window.__techeyrieLenis === lenis) {
+    window.__techeyrieLenis = null;
+  }
   lenisInstance = null;
   layoutSettled = false;
   removeRefreshInitListener?.();
