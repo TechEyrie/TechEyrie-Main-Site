@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Header from "../../../components/dark7/Header";
+import Header from "../../../components/dark7-v52/Header";
 import Services2Hero from "../../../components/services2/Services2Hero";
 import Services2Industries from "../../../components/services2/Services2Industries";
 import Services2Approach from "../../../components/services2/Services2Approach";

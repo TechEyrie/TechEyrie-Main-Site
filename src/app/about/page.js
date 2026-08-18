@@ -11,7 +11,7 @@ import Backing from "../../../components/about/Backing";
 import AdvisoryBoard from "../../../components/about/AdvisoryBoard";
 import JoinTeam from "../../../components/about/JoinTeam";
 import YardFuture from "../../../components/about/YardFuture";
-import Header from "../../../components/dark7/Header";
+import Header from "../../../components/dark7-v52/Header";
 import Footer from "../../../components/dark7/Footer";
 import "../../../components/dark7/MainPage.css";
 

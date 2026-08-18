@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Header from '../../../components/dark/Header';
+import Header from '../../../components/dark7-v52/Header';
 import BlogSection from '../../../components/blog/BlogHero';
 import BlogNewsletter from '../../../components/blog/BlogNewsletter';
 import BlogTalkToExpert from '../../../components/blog/BlogTalkToExpert';

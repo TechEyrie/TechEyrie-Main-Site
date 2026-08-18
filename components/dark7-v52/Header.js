@@ -6,6 +6,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import QuoteDrawer from "./QuoteDrawer";
 import { getDark7V52ScrollTop } from "./lenisScrollTrigger";
+import "./Header.css";
 
 const navItems = [
   { label: "Services", hasDropdown: true, type: "mega", href: "/services1" },
@@ -625,7 +626,9 @@ export default function Header({ theme = "light" }) {
       <QuoteDrawer open={quotePopupOpen} onClose={() => setQuotePopupOpen(false)} />
 
       <header
-        className={`fixed left-0 right-0 top-0 z-[80] w-full max-w-full min-w-0 overflow-visible antialiased transition-transform duration-300 ${
+        className={`dark7-v52-site-header ${
+          theme === "dark" ? "dark7-v52-site-header--dark" : "dark7-v52-site-header--light"
+        } fixed left-0 right-0 top-0 z-[80] w-full max-w-full min-w-0 overflow-visible antialiased transition-transform duration-300 ${
           isCompactNav ? "dark7-v52-header--compact" : ""
         } ${
           mobileOpen ? "flex h-dvh max-h-dvh flex-col overflow-hidden lg:block lg:h-auto lg:max-h-none lg:overflow-visible" : ""

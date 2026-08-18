@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Calculator, Check, ArrowRight, Mail, Bot, Globe, Sparkles, Smartphone, Code, Cloud, Database, Shield } from "lucide-react";
-import Header from "../../../components/dark/Header";
-import Footer from "../../../components/dark/Footer";
-import "../../../components/dark/MainPage.css";
+import Header from "../../../components/dark7-v52/Header";
+import Footer from "../../../components/dark7-v52/Footer";
+import "../../../components/dark7-v52/MainPage.css";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -309,7 +308,7 @@ const SERVICES = [
 ];
 
 export default function PricingCalculatorPage() {
-  const [theme, setTheme] = useState("light");
+  const theme = "dark";
   const [selectedService, setSelectedService] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [duration, setDuration] = useState(3); // months
@@ -326,17 +325,8 @@ export default function PricingCalculatorPage() {
   const resultRef = useRef(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute("data-theme", "dark");
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -459,66 +449,19 @@ export default function PricingCalculatorPage() {
   // Removed animation that was causing opacity issues
   // The card will update normally without animation interference
 
-  const isDark = theme === "dark";
+  const isDark = true;
 
   return (
     <div
       style={{ position: "relative", zIndex: 1 }}
       data-theme={theme}
-      className={isDark ? "bg-[#0a0a0a]" : "bg-white"}
+      className="dark2-page dark7-v52-page calculator-route relative z-[1] min-h-screen font-merriweather"
     >
-      {/* Theme Toggle Button */}
-      <button
-        className="theme-toggle-btn"
-        onClick={toggleTheme}
-        aria-label="Toggle theme"
-      >
-        {theme === "light" ? (
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-              fill="currentColor"
-            />
-          </svg>
-        ) : (
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 2v2m0 12v2M4.22 4.22l1.42 1.42m8.72 8.72l1.42 1.42M2 10h2m12 0h2M4.22 15.78l1.42-1.42m8.72-8.72l1.42-1.42"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <circle
-              cx="10"
-              cy="10"
-              r="3"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-            />
-          </svg>
-        )}
-      </button>
-
       <Header theme={theme} />
 
       <main
         ref={containerRef}
-        className={`relative min-h-screen py-20 md:py-24 ${
-          isDark ? "text-white" : "text-black"
-        }`}
+        className="relative min-h-screen py-24 md:py-28 text-[#F7F3F0]"
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -553,28 +496,12 @@ export default function PricingCalculatorPage() {
               ref={titleRef}
               className="flex items-center justify-center gap-4 mb-8"
             >
-              <Calculator
-                className={`w-10 h-10 md:w-12 md:h-12 ${
-                  isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                }`}
-              />
-              <h1
-                className="text-5xl md:text-6xl lg:text-7xl font-bold"
-                style={{
-                  fontFamily: "Fellix, -apple-system, sans-serif",
-                }}
-              >
+              <Calculator className="pricing-accent w-10 h-10 md:w-12 md:h-12" />
+              <h1 className="font-italiana font-light text-[2.25rem] md:text-[3.25rem] lg:text-[4.5rem] leading-[1.05] tracking-[-0.02em] text-[#F7F3F0]">
                 Pricing Calculator
               </h1>
             </div>
-            <p
-              className={`text-xl md:text-2xl max-w-3xl mx-auto ${
-                isDark ? "text-gray-300" : "text-gray-600"
-              }`}
-              style={{
-                fontFamily: "Helvetica Now Text, Helvetica, Arial, sans-serif",
-              }}
-            >
+            <p className="font-merriweather font-light text-base md:text-lg lg:text-xl max-w-3xl mx-auto text-[#F7F3F0]/80">
               Calculate your custom pricing based on your needs and requirements
             </p>
           </div>
@@ -584,18 +511,13 @@ export default function PricingCalculatorPage() {
             <div ref={calculatorRef} className="lg:col-span-2 space-y-8">
               {/* Service Selection */}
               <div
-                className={`p-8 rounded-[8px] border ${
+                className={`p-8 rounded-[14px] border ${
                   isDark
                     ? "bg-black/40 border-white/10"
                     : "bg-white/80 border-black/10"
                 }`}
               >
-                <h2
-                  className="text-2xl md:text-3xl font-bold mb-6"
-                  style={{
-                    fontFamily: "Fellix, -apple-system, sans-serif",
-                  }}
-                >
+                <h2 className="font-italiana font-light text-[1.75rem] md:text-[2.25rem] leading-tight mb-6 text-[#F7F3F0]">
                   Select Service
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -606,7 +528,7 @@ export default function PricingCalculatorPage() {
                       <button
                         key={service.id}
                         onClick={() => handleServiceSelect(service.id)}
-                        className={`p-6 rounded-[8px] border text-left transition-all ${
+                        className={`p-6 rounded-[14px] border text-left transition-all ${
                           isSelected
                             ? isDark
                               ? "bg-[#74F5A1]/20 border-[#74F5A1]/50"
@@ -620,9 +542,7 @@ export default function PricingCalculatorPage() {
                           <div
                             className={`p-3 rounded-[6px] ${
                               isSelected
-                                ? isDark
-                                  ? "bg-[#74F5A1]/20 text-[#74F5A1]"
-                                  : "bg-[#3BC972]/20 text-[#3BC972]"
+                                ? "pricing-accent bg-[#74F5A1]/20"
                                 : isDark
                                 ? "bg-white/5 text-gray-400"
                                 : "bg-black/5 text-gray-500"
@@ -631,13 +551,7 @@ export default function PricingCalculatorPage() {
                             <Icon className="w-6 h-6" />
                           </div>
                           <div className="flex-1">
-                            <h3
-                              className="font-semibold text-lg mb-1"
-                              style={{
-                                fontFamily:
-                                  "Helvetica Now Text, Helvetica, Arial, sans-serif",
-                              }}
-                            >
+                            <h3 className="font-merriweather font-light text-lg mb-1 tracking-[0.02em]">
                               {service.name}
                             </h3>
                             <p
@@ -649,11 +563,7 @@ export default function PricingCalculatorPage() {
                             </p>
                           </div>
                           {isSelected && (
-                            <Check
-                              className={`w-5 h-5 ${
-                                isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                              }`}
-                            />
+                            <Check className="pricing-accent w-5 h-5" />
                           )}
                         </div>
                       </button>
@@ -665,18 +575,13 @@ export default function PricingCalculatorPage() {
               {/* Option Selection */}
               {selectedService && (
                 <div
-                  className={`p-8 rounded-[8px] border ${
+                  className={`p-8 rounded-[14px] border ${
                     isDark
                       ? "bg-black/40 border-white/10"
                       : "bg-white/80 border-black/10"
                   }`}
                 >
-                  <h2
-                    className="text-2xl md:text-3xl font-bold mb-6"
-                    style={{
-                      fontFamily: "Fellix, -apple-system, sans-serif",
-                    }}
-                  >
+                  <h2 className="font-italiana font-light text-[1.75rem] md:text-[2.25rem] leading-tight mb-6 text-[#F7F3F0]">
                     Choose Plan
                   </h2>
                   <div className="grid gap-4">
@@ -687,7 +592,7 @@ export default function PricingCalculatorPage() {
                           <button
                             key={option.label}
                             onClick={() => setSelectedOption(option.label)}
-                            className={`p-6 rounded-[8px] border text-left transition-all ${
+                            className={`p-6 rounded-[14px] border text-left transition-all ${
                               isSelected
                                 ? isDark
                                   ? "bg-[#74F5A1]/20 border-[#74F5A1]/50"
@@ -698,23 +603,11 @@ export default function PricingCalculatorPage() {
                             }`}
                           >
                             <div className="flex items-center justify-between mb-3">
-                              <h3
-                                className="font-semibold text-lg"
-                                style={{
-                                  fontFamily:
-                                    "Helvetica Now Text, Helvetica, Arial, sans-serif",
-                                }}
-                              >
+                              <h3 className="font-merriweather font-light text-lg tracking-[0.02em]">
                                 {option.label}
                               </h3>
                               {isSelected && (
-                                <Check
-                                  className={`w-5 h-5 ${
-                                    isDark
-                                      ? "text-[#74F5A1]"
-                                      : "text-[#3BC972]"
-                                  }`}
-                                />
+                                <Check className="pricing-accent w-5 h-5" />
                               )}
                             </div>
                             <ul className="space-y-2">
@@ -725,13 +618,7 @@ export default function PricingCalculatorPage() {
                                     isDark ? "text-gray-300" : "text-gray-600"
                                   }`}
                                 >
-                                  <Check
-                                    className={`w-4 h-4 ${
-                                      isDark
-                                        ? "text-[#74F5A1]"
-                                        : "text-[#3BC972]"
-                                    }`}
-                                  />
+                                  <Check className="pricing-accent w-4 h-4" />
                                   {feature}
                                 </li>
                               ))}
@@ -747,18 +634,13 @@ export default function PricingCalculatorPage() {
               {/* Duration Selection */}
               {selectedService && selectedOption && (
                 <div
-                  className={`p-8 rounded-[8px] border ${
+                  className={`p-8 rounded-[14px] border ${
                     isDark
                       ? "bg-black/40 border-white/10"
                       : "bg-white/80 border-black/10"
                   }`}
                 >
-                  <h2
-                    className="text-2xl md:text-3xl font-bold mb-6"
-                    style={{
-                      fontFamily: "Fellix, -apple-system, sans-serif",
-                    }}
-                  >
+                  <h2 className="font-italiana font-light text-[1.75rem] md:text-[2.25rem] leading-tight mb-6 text-[#F7F3F0]">
                     Contract Duration
                   </h2>
                   <div className="flex items-center gap-4">
@@ -785,9 +667,7 @@ export default function PricingCalculatorPage() {
                     />
                     <div className="flex items-center gap-2">
                       <span
-                        className={`text-2xl font-bold w-16 text-center ${
-                          isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                        }`}
+                        className="pricing-accent font-italiana font-light text-2xl w-16 text-center"
                       >
                         {duration}
                       </span>
@@ -795,11 +675,7 @@ export default function PricingCalculatorPage() {
                     </div>
                   </div>
                   {totals.discount > 0 && totals.discountAmount > 0 && (
-                    <p
-                      className={`mt-4 text-sm ${
-                        isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                      }`}
-                    >
+                    <p className="pricing-accent mt-4 text-sm font-merriweather font-light">
                       🎉 {totals.discount}% discount for {duration} month commitment
                     </p>
                   )}
@@ -809,18 +685,13 @@ export default function PricingCalculatorPage() {
               {/* Add-ons */}
               {selectedService && selectedOption && (
                 <div
-                  className={`p-8 rounded-[8px] border ${
+                  className={`p-8 rounded-[14px] border ${
                     isDark
                       ? "bg-black/40 border-white/10"
                       : "bg-white/80 border-black/10"
                   }`}
                 >
-                  <h2
-                    className="text-2xl md:text-3xl font-bold mb-6"
-                    style={{
-                      fontFamily: "Fellix, -apple-system, sans-serif",
-                    }}
-                  >
+                  <h2 className="font-italiana font-light text-[1.75rem] md:text-[2.25rem] leading-tight mb-6 text-[#F7F3F0]">
                     Add-ons (Optional)
                   </h2>
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -834,7 +705,7 @@ export default function PricingCalculatorPage() {
                       return (
                       <label
                         key={addon.id}
-                        className={`flex items-center justify-between p-4 rounded-[8px] border cursor-pointer transition-all ${
+                        className={`flex items-center justify-between p-4 rounded-[14px] border cursor-pointer transition-all ${
                           addOns[addon.id]
                             ? isDark
                               ? "bg-[#74F5A1]/20 border-[#74F5A1]/50"
@@ -861,13 +732,7 @@ export default function PricingCalculatorPage() {
                               ? isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
                               : isDark ? "text-gray-400" : "text-gray-500"
                           }`} />
-                          <span
-                            className="font-medium"
-                            style={{
-                              fontFamily:
-                                "Helvetica Now Text, Helvetica, Arial, sans-serif",
-                            }}
-                          >
+                          <span className="font-merriweather font-light">
                             {addon.label}
                           </span>
                         </div>
@@ -890,18 +755,13 @@ export default function PricingCalculatorPage() {
             <div className="sticky top-28 self-start h-fit z-20">
               <div
                 ref={resultRef}
-                className={`p-8 rounded-[8px] border ${
+                className={`p-8 rounded-[14px] border ${
                   isDark
                     ? "bg-black/40 border-white/10"
                     : "bg-white/80 border-black/10"
                 }`}
               >
-                <h2
-                  className="text-2xl md:text-3xl font-bold mb-6"
-                  style={{
-                    fontFamily: "Fellix, -apple-system, sans-serif",
-                  }}
-                >
+                <h2 className="font-italiana font-light text-[1.75rem] md:text-[2.25rem] leading-tight mb-6 text-[#F7F3F0]">
                   Price Summary
                 </h2>
 
@@ -999,29 +859,17 @@ export default function PricingCalculatorPage() {
                         </div>
                         {totals.discount > 0 && totals.discountAmount > 0 && (
                           <div className="flex justify-between text-sm mb-2">
-                            <span
-                              className={
-                                isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                              }
-                            >
+                            <span className="pricing-accent">
                               Discount ({totals.discount}%)
                             </span>
-                            <span
-                              className={
-                                isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                              }
-                            >
+                            <span className="pricing-accent">
                               -${totals.discountAmount.toLocaleString()}
                             </span>
                           </div>
                         )}
-                        <div className="flex justify-between text-2xl font-bold mt-4 pt-4 border-t">
+                        <div className="flex justify-between font-italiana font-light text-2xl mt-4 pt-4 border-t border-[#F7F3F0]/20">
                           <span>Total</span>
-                          <span
-                            className={
-                              isDark ? "text-[#74F5A1]" : "text-[#3BC972]"
-                            }
-                          >
+                          <span className="pricing-accent">
                             ${totals.total.toLocaleString()}
                           </span>
                         </div>
@@ -1030,14 +878,7 @@ export default function PricingCalculatorPage() {
 
                     <a
                       href="mailto:hello@dapper.agency?subject=Pricing Inquiry"
-                      className={`group flex items-center justify-center gap-3 w-full px-6 py-4 rounded-[4px] font-semibold transition-all duration-300 ${
-                        isDark
-                          ? "bg-[#74F5A1] text-black hover:bg-[#5FE08D] hover:scale-105"
-                          : "bg-[#3BC972] text-white hover:bg-[#2FA85F] hover:scale-105"
-                      }`}
-                      style={{
-                        fontFamily: "Helvetica Now Text, Helvetica, Arial, sans-serif",
-                      }}
+                      className="pricing-cta group flex items-center justify-center gap-3 w-full px-6 py-4 rounded-full font-merriweather font-light tracking-[0.04em] transition-all duration-300 bg-[#F7F3F0] hover:bg-[#74F5A1]"
                     >
                       <Mail className="w-5 h-5" />
                       <span>Get Started</span>

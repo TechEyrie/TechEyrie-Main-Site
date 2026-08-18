@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Header from "../../../components/dark7/Header";
+import Header from "../../../components/dark7-v52/Header";
 import Footer from "../../../components/dark7/Footer";
 import Services1Hero from "../../../components/services1/Services1Hero";
 import Services1MainServices from "../../../components/services1/Services1MainServices";

@@ -586,6 +586,30 @@ html {
   font-weight: 400;
 }
 
+/* Pricing calculator: v52 stacks + cream surface */
+.dark2-page.calculator-route,
+.dark2-page.calculator-route main,
+.dark2-page.calculator-route main button,
+.dark2-page.calculator-route main label,
+.dark2-page.calculator-route main input {
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif;
+}
+
+.dark2-page.calculator-route main :is(h1, h2) {
+  font-family: Italiana, serif !important;
+  font-weight: 400 !important;
+}
+
+.dark2-page.calculator-route .pricing-accent,
+.dark2-page.calculator-route .pricing-accent * {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.calculator-route .pricing-cta,
+.dark2-page.calculator-route .pricing-cta * {
+  color: #162d24 !important;
+}
+
 /* FAQs page: same base stacks as contact / dark7 main */
 .dark2-page.faqs-route,
 .dark2-page.faqs-route main,

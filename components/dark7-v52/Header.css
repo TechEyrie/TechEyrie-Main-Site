@@ -1,0 +1,78 @@
+/* Header look from /dark7-v52 — beats .dark2-page * beige on dark pages */
+.dark2-page header.dark7-v52-site-header--dark .dark7-v52-header-nav-pill .dark7-v52-header-nav-link,
+.dark2-page header.dark7-v52-site-header--dark .dark7-v52-header-nav-pill .dark7-v52-header-nav-link span,
+.dark2-page header.dark7-v52-site-header--dark .dark7-v52-header-nav-pill button.dark7-v52-header-nav-link span,
+.dark2-page header.dark7-v52-site-header--dark .dark7-v52-header-quote-btn,
+.dark2-page header.dark7-v52-site-header--dark .dark7-v52-header-quote-btn span,
+header.dark7-v52-site-header--dark .dark7-v52-header-nav-pill .dark7-v52-header-nav-link,
+header.dark7-v52-site-header--dark .dark7-v52-header-nav-pill .dark7-v52-header-nav-link span,
+header.dark7-v52-site-header--dark .dark7-v52-header-quote-btn,
+header.dark7-v52-site-header--dark .dark7-v52-header-quote-btn span {
+  color: #f7f3f0 !important;
+  font-family: var(--font-merriweather), Georgia, "Times New Roman", serif !important;
+  font-weight: 300 !important;
+  font-synthesis: none;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+}
+
+header.dark7-v52-site-header.dark7-v52-header--compact .dark7-v52-header-nav-pill,
+header.dark7-v52-site-header.dark7-v52-header--compact .dark7-v52-header-quote-btn,
+header.dark7-v52-site-header.dark7-v52-header--compact .get-quote-overlay {
+  background-color: #162d24 !important;
+}
+
+header.dark7-v52-site-header--dark:not(.dark7-v52-header--compact) .dark7-v52-header-nav-pill,
+header.dark7-v52-site-header--dark:not(.dark7-v52-header--compact) .dark7-v52-header-quote-btn {
+  background-color: rgb(247 243 240 / 6%) !important;
+}
+
+header.dark7-v52-site-header .dark7-v52-header-nav-pill,
+header.dark7-v52-site-header .dark7-v52-header-quote-btn,
+header.dark7-v52-site-header .get-quote-overlay {
+  border-radius: 14px !important;
+}
+
+header.dark7-v52-site-header .dark7-v52-header-nav-pill {
+  display: flex;
+  align-items: center;
+}
+
+header.dark7-v52-site-header .dark7-v52-header-nav-pill nav,
+header.dark7-v52-site-header .dark7-v52-header-nav-pill .dark7-v52-header-nav-link {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+header.dark7-v52-site-header--dark [data-dropdown] > div > div {
+  background-color: #162d24 !important;
+  border-color: rgba(247, 243, 240, 0.12) !important;
+}
+
+header.dark7-v52-site-header--dark .dropdown-card {
+  background-color: rgb(247 243 240 / 6%) !important;
+  border-color: rgba(247, 243, 240, 0.12) !important;
+}
+
+header.dark7-v52-site-header--dark .dropdown-card:hover {
+  background-color: rgb(247 243 240 / 16%) !important;
+}
+
+header.dark7-v52-site-header--dark .dropdown-card h3,
+header.dark7-v52-site-header--dark .dropdown-card p {
+  color: #f7f3f0 !important;
+}
+
+header.dark7-v52-site-header--dark .dropdown-card p {
+  opacity: 0.75;
+}
+
+header.dark7-v52-site-header--dark .dark7-v52-header-arrow-btn {
+  background-color: #162d24 !important;
+}
+
+header.dark7-v52-site-header--dark .group:hover .dark7-v52-header-arrow-btn,
+header.dark7-v52-site-header--dark .dropdown-card:hover .dark7-v52-header-arrow-btn {
+  background-color: #f7f3f0 !important;
+}

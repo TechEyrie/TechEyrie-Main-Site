@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Header from "../../../components/dark7/Header";
+import Header from "../../../components/dark7-v52/Header";
 import Footer from "../../../components/dark7/Footer";
 import IndustriesListingHero from "../../../components/industries/IndustriesListingHero";
 import IndustriesShowcaseFlow from "../../../components/industries/IndustriesShowcaseFlow";

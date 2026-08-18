@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/all";
-import Header from "../../../components/dark7/Header";
+import Header from "../../../components/dark7-v52/Header";
 import Footer from "../../../components/dark7/Footer";
 import MainSection from "../../../components/main-contact/MainSection";
 import StrategyCallSection from "../../../components/main-contact/StrategyCallSection";

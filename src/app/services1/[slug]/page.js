@@ -1,6 +1,6 @@
 "use client";
 import React, { use } from 'react';
-import Header from '../../../../components/dark7/Header';
+import Header from '../../../../components/dark7-v52/Header';
 import Services1DetailTemplate from '../../../../components/services1Detail/Services1DetailTemplate';
 import Footer from '../../../../components/dark7/Footer';
 import '../../../../components/dark7/MainPage.css';
