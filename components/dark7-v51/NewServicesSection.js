@@ -428,7 +428,7 @@ export default function NewServicesSection({ theme = "dark", sharedBackground = 
                         }`}
                       >
                         <p
-                          className={`new-services-card-body font-merriweather font-normal leading-relaxed text-[#162D24] text-transition ${
+                          className={`new-services-card-body font-merriweather font-light leading-relaxed text-[#162D24] text-transition ${
                             isDesktop
                               ? "max-w-full sm:max-w-[350px] md:max-w-[450px] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] leading-snug transition-all duration-500 ease-out"
                               : "text-[14px] sm:text-[15px] leading-relaxed"

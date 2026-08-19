@@ -54,7 +54,7 @@ function Phase3CardBody({ card, index }) {
       <h3 className="deep-judge-phase3-title mb-3 font-merriweather text-[20px] font-bold leading-snug text-[#162D24] sm:text-[22px]">
         {card.title}
       </h3>
-      <p className="deep-judge-phase3-body font-merriweather text-[14px] font-normal leading-[1.55] text-[#162D24] sm:text-[15px]">
+      <p className="deep-judge-phase3-body font-merriweather font-light text-[14px] leading-[1.55] text-[#162D24] sm:text-[15px]">
         {card.desc}
       </p>
     </>
@@ -392,7 +392,7 @@ export default function DeepJudge2({ theme }) {
               <span className="font-normal">Design systems that work the<br />way your </span>
               <span className="font-playfair italic font-semibold">business works</span>
             </h1>
-            <p ref={description2Ref} className="deep-judge-phase2-text font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] text-[#F7F3F0] opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12">
+            <p ref={description2Ref} className="dj-phase2-desc deep-judge-phase2-text opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12">
             Design systems that align with the way your business works. No templates, No assumptions, just systems built around you. Tech Eyrie we tailor AI- powered platforms connecting data, processes and teams into one flexible foundation. No Complexity, No clatter, just a system thoughtfully designed for clarity, speed and growth. 
 
             </p>
@@ -404,7 +404,7 @@ export default function DeepJudge2({ theme }) {
               <span className="font-normal">We don't jump straight into </span>
               <span className="font-playfair italic font-semibold">building.</span>
             </h1>
-            <p ref={description3Ref} className="deep-judge-phase3-text font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] text-[#162D24] opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12">
+            <p ref={description3Ref} className="deep-judge-phase3-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] text-[#162D24] opacity-0 max-w-3xl px-6 leading-relaxed transition-colors duration-500 z-[26] text-center mt-8 sm:mt-10 md:mt-12">
             Understanding designing and Evolving your business - powered by AI, automation and modern technology.
 
             </p>
@@ -534,7 +534,7 @@ export default function DeepJudge2({ theme }) {
                 <span className="font-normal">Design systems that work the<br className="hidden sm:block" /> way your </span>
                 <span className="font-playfair italic font-semibold">business works</span>
               </h2>
-              <p className="deep-judge-phase2-text font-merriweather text-[14px] sm:text-[15px] text-[#F7F3F0] leading-relaxed px-1">
+              <p className="dj-phase2-desc deep-judge-phase2-text px-1">
                 Design systems that align with the way your business works. No templates, no assumptions — just systems built around you. Tech Eyrie tailors AI-powered platforms connecting data, processes and teams into one flexible foundation.
               </p>
               <div className="deep-judge-search-field mx-auto flex h-12 sm:h-14 w-full max-w-md items-center rounded-full px-4 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.18)]" style={{ backgroundColor: SEARCH_FIELD.background }}>
@@ -552,7 +552,7 @@ export default function DeepJudge2({ theme }) {
                   <span className="font-normal">We don&apos;t jump straight into </span>
                   <span className="font-playfair italic font-semibold">building.</span>
                 </h2>
-                <p className="deep-judge-phase3-text font-merriweather text-[14px] sm:text-[15px] text-[#162D24] leading-relaxed px-1">
+                <p className="deep-judge-phase3-text font-merriweather font-light text-[14px] sm:text-[15px] text-[#162D24] leading-relaxed px-1">
                   Understanding, designing and evolving your business — powered by AI, automation and modern technology.
                 </p>
               </div>

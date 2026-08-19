@@ -90,7 +90,7 @@ body {
 
 .dark2-page .dark7-v51-deep-judge .deep-judge-phase3-body {
   color: #162D24 !important;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
 }
 
 .dark2-page .dark7-v51-deep-judge h1.deep-judge-phase2-text,
@@ -100,6 +100,10 @@ body {
 .dark2-page .dark7-v51-deep-judge p.deep-judge-phase2-text,
 .dark2-page .dark7-v51-deep-judge .deep-judge-phase2-text span {
   color: #F7F3F0 !important;
+  font-weight: 300 !important;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dark2-page .dark7-v51-deep-judge h1.deep-judge-phase3-text,
@@ -109,6 +113,10 @@ body {
 .dark2-page .dark7-v51-deep-judge p.deep-judge-phase3-text,
 .dark2-page .dark7-v51-deep-judge .deep-judge-phase3-text span {
   color: #162D24 !important;
+  font-weight: 300 !important;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dark2-page .dark7-v51-deep-judge .deep-judge-phase3-badge-num {
@@ -143,6 +151,7 @@ body {
 .dark2-page .dark7-v51-new-services .new-services-card-title,
 .dark2-page .dark7-v51-new-services .new-services-card-body {
   color: #162D24 !important;
+  font-weight: 300 !important;
 }
 
 .dark2-page .dark7-v51-tech-eyrie,

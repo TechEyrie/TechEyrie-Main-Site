@@ -205,10 +205,10 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
                         style={cardBgStyle}
                     >
                         <div className="mb-4 sm:mb-6 md:mb-8">
-                            <p className="testimonials-card-text font-merriweather text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.2em] uppercase text-[#F7F3F0]">{t.company}</p>
+                            <p className="testimonials-card-text font-merriweather font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.2em] uppercase text-[#F7F3F0]">{t.company}</p>
                         </div>
 
-                        <blockquote className="testimonials-card-text font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12 text-[#F7F3F0]">
+                        <blockquote className="testimonials-card-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[15px] leading-relaxed mb-8 sm:mb-10 md:mb-12 text-[#F7F3F0]">
                             "{t.content}"
                         </blockquote>
 
@@ -220,7 +220,7 @@ export default function TestimonialsSection({ theme, sharedBackground = false })
                                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover grayscale"
                                 />
                                 <div>
-                                    <p className="testimonials-card-text font-merriweather text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] text-[#F7F3F0]">{t.name}</p>
+                                    <p className="testimonials-card-text font-merriweather font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] text-[#F7F3F0]">{t.name}</p>
                                     <p className="testimonials-card-text testimonials-card-role font-merriweather text-[12px] sm:text-[13px] md:text-[14px] text-[#F7F3F0]">{t.role}</p>
                                 </div>
                             </div>
