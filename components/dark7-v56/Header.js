@@ -223,7 +223,9 @@ export default function Header({ theme = "light" }) {
 
       const currentScrollY = getDark7V56ScrollTop();
       const lastScrollY = lastScrollYRef.current;
-      const heroEl = document.querySelector(".dark7-v56-hero");
+      const heroEl =
+        document.querySelector(".dark7-v56-hero") ||
+        document.querySelector(".hero-problem-services-combined");
       const inHero = heroEl
         ? heroEl.getBoundingClientRect().bottom > 100
         : currentScrollY < window.innerHeight;

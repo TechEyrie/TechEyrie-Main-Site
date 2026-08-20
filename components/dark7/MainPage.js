@@ -2,7 +2,7 @@
 // components/MainPage.jsx
 import React, { useState, useEffect } from 'react';
 import HeroSection from './HeroSection';
-import Header from './Header';
+import Header from '../dark7-v56/Header';
 import StatsSection from './StatsSection';
 import ServicesSection from './ServicesSection';
 import DemandSection from './DemandGen';
