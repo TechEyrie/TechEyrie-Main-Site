@@ -1,0 +1,44 @@
+/* /about — thin description rendering only (no font-size changes) */
+.dark2-page.about-route .about-desc {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Continuous page bed — sections float on one surface */
+.dark2-page.about-route .about-page-root {
+  background-color: #162d24;
+}
+
+/* Kill hard section cut-lines (keep inner card/grid borders) */
+.dark2-page.about-route .about-page-root > section {
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Soft color dissolve at section edges (background layer only) */
+.dark2-page.about-route .about-seam-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark2-page.about-route .about-seam-fade--top {
+  top: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(180deg, #162d24 0%, rgba(22, 45, 36, 0.72) 42%, rgba(22, 45, 36, 0) 100%);
+}
+
+.dark2-page.about-route .about-seam-fade--bottom {
+  bottom: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(0deg, #162d24 0%, rgba(22, 45, 36, 0.72) 42%, rgba(22, 45, 36, 0) 100%);
+}

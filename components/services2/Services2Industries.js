@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
+import { Services1SeamFades } from '../services1/Services1SeamFades';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -249,16 +249,17 @@ export default function IndustriesGrid({ theme = 'light', dark7 = false }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 transition-colors duration-500"
+      className={`relative w-full py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 transition-colors duration-500 ${isDark && dark7 ? 's1-section-shell' : ''}`}
       style={
         isDark && dark7
-          ? services1ListingDarkSurface
+          ? undefined
           : isDark
             ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
             : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
       }
     >
-      <div className="max-w-[1800px] mx-auto">
+      {isDark && dark7 && <Services1SeamFades />}
+      <div className="relative z-[1] max-w-[1800px] mx-auto">
         {/* Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 items-start">
           {industries.map((industry, index) => (
@@ -311,7 +312,7 @@ export default function IndustriesGrid({ theme = 'light', dark7 = false }) {
                 <h3 className="font-italiana text-white text-[22px] sm:text-[24px] md:text-[26px] lg:text-[30px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
                   {industry.title}
                 </h3>
-                <p className="mt-3 max-h-0 overflow-hidden opacity-0 translate-y-2 transition-all duration-500 ease-out group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0 font-merriweather text-[13px] md:text-[14px] leading-relaxed text-white/90 pr-1">
+                <p className="s2-industry-desc mt-3 max-h-0 overflow-hidden opacity-0 translate-y-2 transition-all duration-500 ease-out group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0 font-merriweather text-[13px] md:text-[14px] leading-relaxed text-white/90 pr-1">
                   {industry.description}
                 </p>
               </div>

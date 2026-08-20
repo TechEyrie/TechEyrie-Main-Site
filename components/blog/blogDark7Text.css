@@ -1,0 +1,144 @@
+/* /blog — thin description rendering only (no font-size changes) */
+.dark2-page.blog-route .blog-desc {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Continuous green page bed — match other dark7 routes */
+.dark2-page.blog-route .blog-page-root {
+  background-color: #162d24;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse at 60% 45%,
+      rgba(117, 133, 53, 0.45) 0%,
+      rgba(27, 71, 50, 0.35) 42%,
+      rgba(22, 45, 36, 0.96) 100%
+    );
+  background-blend-mode: overlay, normal;
+}
+
+/* Section shells sit on the continuous bed */
+.dark2-page.blog-route .blog-section-shell {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Newsletter card: elevated surface on green page */
+.dark2-page.blog-route .blog-newsletter-card {
+  background-color: #122a21 !important;
+  border: 1px solid rgba(224, 209, 182, 0.18) !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-title,
+.dark2-page.blog-route .blog-newsletter-title * {
+  color: #f7f3f0 !important;
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-label {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-req {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-input {
+  color: #f7f3f0 !important;
+  background-color: #0a1a14 !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-input::placeholder {
+  color: rgba(247, 243, 240, 0.4) !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-submit {
+  background-color: #74f5a1 !important;
+  color: #162d24 !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-submit * {
+  color: #162d24 !important;
+  background-color: transparent !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-submit:hover {
+  background-color: #5fe08d !important;
+  color: #162d24 !important;
+}
+
+.dark2-page.blog-route .blog-newsletter-success {
+  color: #74f5a1 !important;
+}
+
+/* Category pills — beat .dark2-page * beige override */
+.dark2-page.blog-route .blog-filter-active {
+  background-color: #74f5a1 !important;
+  color: #162d24 !important;
+}
+.dark2-page.blog-route .blog-filter-idle {
+  background-color: rgba(247, 243, 240, 0.08) !important;
+  color: #e8e4dc !important;
+  border: 1px solid rgba(224, 209, 182, 0.18) !important;
+}
+.dark2-page.blog-route .blog-filter-idle:hover {
+  background-color: rgba(247, 243, 240, 0.14) !important;
+  border-color: rgba(116, 245, 161, 0.35) !important;
+}
+
+/* Mint badges on cards also need dark text */
+.dark2-page.blog-route .blog-cat-badge {
+  background-color: #74f5a1 !important;
+  color: #162d24 !important;
+}
+
+/* Dark content panel (featured left card) */
+.dark2-page.blog-route .blog-card-dark,
+.dark2-page.blog-route .blog-card-dark * {
+  color: #e8e4dc !important;
+}
+.dark2-page.blog-route .blog-card-dark .blog-card-title {
+  color: #f7f3f0 !important;
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+}
+.dark2-page.blog-route .blog-card-dark .blog-card-meta-muted {
+  color: rgba(224, 209, 182, 0.65) !important;
+  font-weight: 300 !important;
+}
+.dark2-page.blog-route .blog-card-dark .blog-card-avatar {
+  color: #74f5a1 !important;
+}
+.dark2-page.blog-route .blog-card-dark .blog-cat-badge {
+  background-color: #74f5a1 !important;
+  color: #162d24 !important;
+}
+
+/* White overlay cards — beat beige override for contrast */
+.dark2-page.blog-route .blog-card-light,
+.dark2-page.blog-route .blog-card-light * {
+  color: #162d24 !important;
+}
+.dark2-page.blog-route .blog-card-light .blog-card-title {
+  color: #111111 !important;
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+}
+.dark2-page.blog-route .blog-card-light .blog-card-meta-muted {
+  color: #666666 !important;
+  font-weight: 300 !important;
+}
+.dark2-page.blog-route .blog-card-light .blog-card-avatar {
+  color: #12685b !important;
+}
+.dark2-page.blog-route .blog-card-light .blog-cat-badge {
+  background-color: #74f5a1 !important;
+  color: #162d24 !important;
+}

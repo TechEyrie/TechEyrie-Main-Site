@@ -25,11 +25,9 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
     : safeBlogPosts.filter(post => post?.category === activeCategory);
 
   useEffect(() => {
-    // Refresh ScrollTrigger on mount
     ScrollTrigger.refresh();
-    
+
     if (titleRef.current) {
-      // Set initial opacity to ensure visibility
       gsap.set(titleRef.current, { opacity: 1 });
       gsap.from(titleRef.current, {
         opacity: 0,
@@ -37,21 +35,17 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
         duration: 0.8,
         ease: 'power3.out',
         onComplete: () => {
-          gsap.set(titleRef.current, { opacity: 1 });
-        }
+          if (titleRef.current) gsap.set(titleRef.current, { opacity: 1 });
+        },
       });
     }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
   }, []);
 
   return (
     <>
       {/* Blog Hero Section */}
       <section 
-        className={`relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 ${isDark ? 'bg-[#0a0a0a]' : 'bg-[#F5F5F5]'}`}
+        className={`blog-section-shell relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 ${isDark ? '' : 'bg-[#F5F5F5]'}`}
       >
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="mb-6 sm:mb-8 flex justify-center">
@@ -71,7 +65,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
           
           <div className="mt-8 sm:mt-10 md:mt-12 mb-4 sm:mb-6 text-center">
             <span 
-              className={`font-merriweather text-[14px] ${isDark ? 'text-white/70' : 'text-[#666666]'}`}
+              className={`blog-desc font-merriweather text-[14px] ${isDark ? 'text-white/80' : 'text-[#666666]'}`}
             >
               Choose a category:
             </span>
@@ -82,11 +76,11 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`font-merriweather text-[13px] font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
+                className={`blog-filter-btn font-merriweather text-[13px] font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-[#74F5A1] text-[#0a0a0a] shadow-lg shadow-[#74F5A1]/20'
+                    ? 'blog-filter-active bg-[#74F5A1] text-[#162d24] shadow-lg shadow-[#74F5A1]/20'
                     : isDark
-                    ? 'bg-white/10 text-white/80 hover:bg-white/15'
+                    ? 'blog-filter-idle bg-white/10 text-[#e8e4dc] hover:bg-white/15'
                     : 'bg-white text-[#666666] hover:bg-[#111111] hover:text-white'
                 }`}
               >
@@ -99,14 +93,14 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
 
       {/* Cards Section */}
       <section
-        className={`relative py-12 sm:py-16 md:py-20 lg:py-24 ${isDark ? 'bg-[#0a0a0a]' : 'bg-[#F5F5F5]'}`}
+        className={`blog-section-shell relative py-12 sm:py-16 md:py-20 lg:py-24 ${isDark ? '' : 'bg-[#F5F5F5]'}`}
       >
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 md:px-8 lg:px-12">
           
           {/* No Posts Message */}
           {filteredPosts.length === 0 && (
             <div className="text-center py-16 sm:py-20 md:py-24">
-              <p className={`font-merriweather text-[14px] ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
+              <p className={`blog-desc font-merriweather text-[14px] ${isDark ? 'text-white/80' : 'text-gray-600'}`}>
                 No blog posts found in this category.
               </p>
             </div>
@@ -147,24 +141,24 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                       </div>
 
                       {/* RIGHT COLUMN - Content */}
-                      <div className="relative w-full md:w-1/2 bg-[#2a2a2a] p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-between gap-4 sm:gap-6">
+                      <div className="blog-card-dark relative w-full md:w-1/2 bg-[#2a2a2a] p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col justify-between gap-4 sm:gap-6">
                         
                         {/* Top - Category Badge */}
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="blog-cat-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#162d24]">
                             {filteredPosts[0].category || 'Blog'}
                           </span>
                         </div>
 
                         {/* Middle - Title */}
-                        <h2 className="font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] text-white transition-colors duration-300 group-hover:text-[#74F5A1]">
+                        <h2 className="blog-card-title font-italiana font-light text-[24px] sm:text-[32px] md:text-[40px] lg:text-[56px] leading-[1.1] text-white transition-colors duration-300 group-hover:text-[#74F5A1]">
                           {filteredPosts[0].title}
                         </h2>
 
                         {/* Bottom - Author Info */}
                         <div className="flex items-center gap-3 sm:gap-4">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
+                            <span className="blog-card-avatar font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {filteredPosts[0].author?.charAt(0) || 'A'}
                             </span>
                           </div>
@@ -173,7 +167,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                             <span className="font-merriweather text-[14px] text-white">
                               {filteredPosts[0].author || 'Author'}
                             </span>
-                            <span className="font-merriweather text-[14px] text-white/60">
+                            <span className="blog-card-meta-muted blog-desc font-merriweather text-[14px] text-white/70">
                               {filteredPosts[0].readTime || '5 min read'}
                             </span>
                           </div>
@@ -211,24 +205,24 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
 
                     {/* White Content Box Overlay */}
                     <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
+                      <div className="blog-card-light bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                         
                         {/* Category */}
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="blog-cat-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#162d24]">
                             {filteredPosts[1].category || 'Blog'}
                           </span>
                         </div>
 
                         {/* Title */}
-                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="blog-card-title font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {filteredPosts[1].title}
                         </h2>
 
                         {/* Meta Info */}
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
+                            <span className="blog-card-avatar font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {filteredPosts[1].author?.charAt(0) || 'A'}
                             </span>
                           </div>
@@ -236,7 +230,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                             <span className="font-merriweather text-[14px] text-[#111111]">
                               {filteredPosts[1].author || 'Author'}
                             </span>
-                            <span className="font-merriweather text-[14px] text-[#666666]">
+                            <span className="blog-card-meta-muted blog-desc font-merriweather text-[14px] text-[#666666]">
                               {filteredPosts[1].readTime || '5 min read'}
                             </span>
                           </div>
@@ -275,18 +269,18 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                       </div>
                     )}
                     <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
+                      <div className="blog-card-light bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="blog-cat-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#162d24]">
                             {post.category || 'Blog'}
                           </span>
                         </div>
-                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="blog-card-title font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {post.title}
                         </h2>
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
+                            <span className="blog-card-avatar font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {post.author?.charAt(0) || 'A'}
                             </span>
                           </div>
@@ -294,7 +288,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                             <span className="font-merriweather text-[14px] text-[#111111]">
                               {post.author || 'Author'}
                             </span>
-                            <span className="font-merriweather text-[14px] text-[#666666]">
+                            <span className="blog-card-meta-muted blog-desc font-merriweather text-[14px] text-[#666666]">
                               {post.readTime || '5 min read'}
                             </span>
                           </div>
@@ -332,18 +326,18 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                       </div>
                     )}
                     <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end">
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
+                      <div className="blog-card-light bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex flex-col justify-between gap-4">
                         <div>
-                          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#0a0a0a]">
+                          <span className="blog-cat-badge inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-merriweather text-[13px] font-semibold uppercase tracking-wider bg-[#74F5A1] text-[#162d24]">
                             {post.category || 'Blog'}
                           </span>
                         </div>
-                        <h2 className="font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
+                        <h2 className="blog-card-title font-italiana font-light text-[18px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.2] text-[#111111] transition-colors duration-300 group-hover:text-[#111111]/80">
                           {post.title}
                         </h2>
                         <div className="flex items-center gap-2 sm:gap-3">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-[#74F5A1]/20 flex items-center justify-center">
-                            <span className="font-merriweather text-[14px] font-semibold text-[#74F5A1]">
+                            <span className="blog-card-avatar font-merriweather text-[14px] font-semibold text-[#74F5A1]">
                               {post.author?.charAt(0) || 'A'}
                             </span>
                           </div>
@@ -351,7 +345,7 @@ export default function BlogSection({ theme = 'light', blogPosts = [] }) {
                             <span className="font-merriweather text-[14px] text-[#111111]">
                               {post.author || 'Author'}
                             </span>
-                            <span className="font-merriweather text-[14px] text-[#666666]">
+                            <span className="blog-card-meta-muted blog-desc font-merriweather text-[14px] text-[#666666]">
                               {post.readTime || '5 min read'}
                             </span>
                           </div>

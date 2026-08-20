@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services1ListingDarkSurface } from "../services1/services1ListingSurfaces";
+import { IndustriesSeamFades } from "./IndustriesSeamFades";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,14 +63,15 @@ export default function IndustriesPageFAQs({ theme = "dark" }) {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16"
-      style={isDark ? services1ListingDarkSurface : { background: "#f5e8d1" }}
+      className="ind-section-shell relative px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-16"
+      style={isDark ? undefined : { background: "#f5e8d1" }}
     >
-      <div className="max-w-[900px] mx-auto">
+      {isDark && <IndustriesSeamFades />}
+      <div className="relative z-[1] mx-auto max-w-[900px]">
         <h2 className="font-italiana text-[36px] md:text-[52px] leading-tight mb-3 text-[#f3f3f3]">
           FAQs
         </h2>
-        <p className="font-merriweather text-[14px] md:text-[16px] text-[#e0d1b6]/85 mb-10">
+        <p className="ind-desc font-merriweather font-light text-[14px] md:text-[16px] text-[#e0d1b6]/85 mb-10">
           Practical questions teams ask before commissioning sector-focused web and SEO work.
         </p>
         <div className="space-y-3">
@@ -101,7 +102,7 @@ export default function IndustriesPageFAQs({ theme = "dark" }) {
                   }}
                 >
                   <div ref={(el) => (contentRefs.current[idx] = el)}>
-                    <p className="px-5 pb-5 font-merriweather text-[14px] leading-[1.8] text-[#e0d1b6]/88">
+                    <p className="ind-faq-answer px-5 pb-5 font-merriweather font-light text-[14px] leading-[1.8] text-[#e0d1b6]/88">
                       {faq.a}
                     </p>
                   </div>

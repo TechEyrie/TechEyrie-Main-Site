@@ -6,7 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { industriesCatalog } from "./industriesData";
-import { services1ListingDarkSurface } from "../services1/services1ListingSurfaces";
+import { IndustriesSeamFades } from "./IndustriesSeamFades";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,13 +39,14 @@ export default function IndustriesShowcaseFlow({ theme = "dark" }) {
   return (
     <section
       ref={rootRef}
-      className="relative py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16 overflow-hidden"
-      style={isDark ? services1ListingDarkSurface : { background: "#f5e8d1" }}
+      className="ind-section-shell relative overflow-hidden px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-16 lg:py-24"
+      style={isDark ? undefined : { background: "#f5e8d1" }}
     >
-      <div className="absolute -top-20 right-0 w-[360px] h-[360px] rounded-full bg-[#74F5A1]/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 -left-20 w-[320px] h-[320px] rounded-full bg-[#67bfda]/10 blur-3xl pointer-events-none" />
+      {isDark && <IndustriesSeamFades />}
+      <div className="pointer-events-none absolute -top-20 right-0 h-[360px] w-[360px] rounded-full bg-[#74F5A1]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-[320px] w-[320px] rounded-full bg-[#67bfda]/10 blur-3xl" />
 
-      <div className="max-w-[1700px] mx-auto">
+      <div className="relative z-[1] mx-auto max-w-[1700px]">
         <div className="ind-show-block mb-12 md:mb-14 lg:mb-16">
           <p className="font-merriweather text-[12px] uppercase tracking-[0.2em] text-[#74F5A1] mb-4">
             Flagship Experiences
@@ -87,10 +88,10 @@ export default function IndustriesShowcaseFlow({ theme = "dark" }) {
                   <h3 className="relative font-italiana text-[34px] md:text-[46px] lg:text-[56px] leading-[1.02] text-[#f3f3f3] mb-3">
                     {item.name}
                   </h3>
-                  <p className="relative font-playfair text-[18px] md:text-[22px] leading-relaxed text-[#74F5A1] mb-4">
+                  <p className="ind-desc relative font-playfair font-light text-[18px] md:text-[22px] leading-relaxed text-[#74F5A1] mb-4">
                     {item.pageTitle}
                   </p>
-                  <p className="relative font-merriweather text-[14px] md:text-[16px] leading-[1.85] text-[#e0d1b6]/88 mb-6">
+                  <p className="ind-desc relative font-merriweather font-light text-[14px] md:text-[16px] leading-[1.85] text-[#e0d1b6]/88 mb-6">
                     {item.teaser}
                   </p>
                   <div className="relative flex flex-wrap gap-2 mb-7">

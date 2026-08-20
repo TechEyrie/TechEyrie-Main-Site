@@ -73,7 +73,7 @@ export default function Services2Hero({
   return (
     <section 
       ref={sectionRef}
-      className="relative overflow-hidden min-h-[90vh] flex items-center justify-start"
+      className={`relative overflow-hidden min-h-[90vh] flex items-center justify-start ${isDark && dark7 ? 's1-section-shell' : ''}`}
     >
       {/* Background Image */}
       <div 
@@ -103,6 +103,17 @@ export default function Services2Hero({
               : 'linear-gradient(to bottom, rgba(200, 60, 40, 0.4) 0%, rgba(220, 80, 50, 0.35) 50%, rgba(200, 60, 40, 0.4) 100%), linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%)'
         }}
       />
+
+      {/* Dissolve hero into continuous page bed */}
+      {isDark && dark7 && (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[clamp(96px,18vw,200px)]"
+          style={{
+            background: "linear-gradient(0deg, #162d24 0%, rgba(22,45,36,0.85) 40%, rgba(22,45,36,0) 100%)",
+          }}
+          aria-hidden
+        />
+      )}
 
       {/* Content Container - Same layout as Services1: left heading, right description at bottom */}
       <div className="relative z-10 w-full min-h-[90vh] flex flex-col sm:flex-row sm:justify-between sm:items-stretch gap-8 sm:gap-0 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 py-24 md:py-32 lg:py-36">

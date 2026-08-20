@@ -77,7 +77,7 @@ const Leaders = ({ theme = "light" }) => {
         {/* Subtitles */}
         <div className="max-w-2xl mx-auto space-y-12 mb-32">
           <MaskedReveal delay={0.2}>
-            <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+            <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
             Driven by innovation, refined execution, and industry insight, shaping the future of 
 High-Value Brands
 
@@ -85,7 +85,7 @@ High-Value Brands
           </MaskedReveal>
 
           <MaskedReveal delay={0.3}>
-            <p className={`font-merriweather text-[14px] ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+            <p className={`about-desc font-merriweather font-light text-[14px] ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
             Meet the Mater minds behind the strategies 
 
             </p>
@@ -148,7 +148,7 @@ High-Value Brands
                    <h3 className={`font-italiana text-[24px] md:text-[28px] font-light ${isDark ? 'text-[#f3f3f3]' : 'text-[#032219]'}`}>
                       {leader.name}
                    </h3>
-                   <p className={`font-merriweather text-[14px] font-medium ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
+                   <p className={`about-desc font-merriweather font-light text-[14px] ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
                       {leader.title}
                    </p>
                 </div>

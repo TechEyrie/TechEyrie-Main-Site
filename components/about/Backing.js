@@ -40,7 +40,7 @@ const Backing = ({ theme = "light" }) => {
             {/* Description */}
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
-                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+                <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
                 Prominent leaders found Tech Eyrie and our ability to deliver AI-driven high-impact solutions, this strategic alignment, a commitment to building platforms to redefine your business and chose to partner in shaping the future of logistics.
 
                 </p>

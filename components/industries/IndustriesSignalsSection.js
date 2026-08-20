@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services1ListingDarkSurface } from "../services1/services1ListingSurfaces";
+import { IndustriesSeamFades } from "./IndustriesSeamFades";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,10 +60,11 @@ export default function IndustriesSignalsSection({ theme = "dark" }) {
   return (
     <section
       ref={ref}
-      className="relative py-16 md:py-20 lg:py-24 px-6 sm:px-8 md:px-12 lg:px-16"
-      style={isDark ? services1ListingDarkSurface : { background: "#eef6f3" }}
+      className="ind-section-shell relative px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-16 lg:py-24"
+      style={isDark ? undefined : { background: "#eef6f3" }}
     >
-      <div className="max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,560px)_minmax(0,760px)] lg:justify-between gap-10 lg:gap-x-16 xl:gap-x-24 items-start">
+      {isDark && <IndustriesSeamFades />}
+      <div className="relative z-[1] mx-auto grid max-w-[1700px] grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,560px)_minmax(0,760px)] lg:justify-between lg:gap-x-16 xl:gap-x-24">
         <div className="w-full max-w-none lg:max-w-[560px]">
           <p className="font-merriweather text-[12px] uppercase tracking-[0.2em] text-[#74F5A1] mb-4">
             Why sector page matters
@@ -71,12 +72,12 @@ export default function IndustriesSignalsSection({ theme = "dark" }) {
           <h2 className="font-italiana text-[36px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-[0.98] mb-6">
             {isDark ? <span className="text-[#f3f3f3]">Signals buyers look for</span> : <span className="text-[#111]">Signals buyers look for</span>}
           </h2>
-          <p className={`font-merriweather text-[15px] md:text-[17px] leading-[1.85] ${isDark ? "text-[#e0d1b6]/90" : "text-[#3f3a34]"}`}>
+          <p className={`ind-desc font-merriweather font-light text-[15px] md:text-[17px] leading-[1.85] ${isDark ? "text-[#e0d1b6]/90" : "text-[#3f3a34]"}`}>
             A general service page won&rsquo;t attract confidence—a buyer searching for{" "}
             <span className="text-[#74F5A1] font-semibold">insurance broker website</span> or{" "}
             <span className="text-[#67bfda] font-semibold">clinic SEO</span> might need you to understand their workflow, compliance, and sales processes before they even scroll or continue.
           </p>
-          <ul className={`mt-6 space-y-3 font-merriweather text-[14px] md:text-[15px] leading-snug ${isDark ? "text-[#e0d1b6]/88" : "text-[#3f3a34]"}`}>
+          <ul className={`ind-desc mt-6 space-y-3 font-merriweather font-light text-[14px] md:text-[15px] leading-snug ${isDark ? "text-[#e0d1b6]/88" : "text-[#3f3a34]"}`}>
             <li className="flex gap-3">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#74F5A1]" />
               Proof and sector language above the fold—no general filter, just reliability.
@@ -123,7 +124,7 @@ export default function IndustriesSignalsSection({ theme = "dark" }) {
                 {s.stat}
               </p>
               <p className="font-italiana text-[22px] md:text-[26px] mt-2 mb-2">{s.label}</p>
-              <p className={`font-merriweather text-[14px] md:text-[15px] leading-relaxed ${isDark ? "text-white/82" : "text-[#4a453f]"}`}>
+              <p className={`ind-desc font-merriweather font-light text-[14px] md:text-[15px] leading-relaxed ${isDark ? "text-white/82" : "text-[#4a453f]"}`}>
                 {s.detail}
               </p>
             </div>

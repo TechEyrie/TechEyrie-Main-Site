@@ -14,6 +14,7 @@ import YardFuture from "../../../components/about/YardFuture";
 import Header from "../../../components/dark7-v52/Header";
 import Footer from "../../../components/dark7/Footer";
 import "../../../components/dark7/MainPage.css";
+import "../../../components/about/aboutDark7Text.css";
 
 export default function AboutPage() {
   const theme = "dark";

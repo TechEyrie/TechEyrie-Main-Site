@@ -6,7 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { industriesCatalog, industryClusters } from "./industriesData";
-import { services1ListingDarkSurface } from "../services1/services1ListingSurfaces";
+import { IndustriesSeamFades } from "./IndustriesSeamFades";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,10 +68,11 @@ export default function IndustriesListingMosaic({ theme = "dark" }) {
     <section
       id="industries-grid"
       ref={sectionRef}
-      className="relative py-16 md:py-20 lg:py-28 px-6 sm:px-8 md:px-12 lg:px-16 transition-colors duration-500"
-      style={isDark ? services1ListingDarkSurface : { background: "#f5e8d1" }}
+      className="ind-section-shell relative px-6 py-16 transition-colors duration-500 sm:px-8 md:px-12 md:py-20 lg:px-16 lg:py-28"
+      style={isDark ? undefined : { background: "#f5e8d1" }}
     >
-      <div className="max-w-[1700px] mx-auto">
+      {isDark && <IndustriesSeamFades />}
+      <div className="relative z-[1] mx-auto max-w-[1700px]">
         <div ref={headerRef} className="mb-12 md:mb-16 lg:mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div className="max-w-3xl">
             <p className="font-merriweather text-[12px] md:text-[13px] uppercase tracking-[0.2em] text-[#74F5A1] mb-4">
@@ -89,7 +90,7 @@ export default function IndustriesListingMosaic({ theme = "dark" }) {
             </h2>
           </div>
           <p
-            className={`font-merriweather text-[14px] md:text-[16px] leading-relaxed max-w-md lg:text-right shrink-0 ${
+            className={`ind-desc font-merriweather font-light text-[14px] md:text-[16px] leading-relaxed max-w-md lg:text-right shrink-0 ${
               isDark ? "text-[#e0d1b6]/90" : "text-[#3f3a34]"
             }`}
           >
@@ -140,10 +141,10 @@ export default function IndustriesListingMosaic({ theme = "dark" }) {
                   <h3 className="font-italiana text-[30px] sm:text-[34px] md:text-[38px] leading-[1.04] text-white mb-2">
                     {industry.name}
                   </h3>
-                  <p className="font-merriweather text-[14px] md:text-[15px] leading-relaxed text-[#f4f3ee]/92 line-clamp-2 md:line-clamp-3 mb-3">
+                  <p className="ind-desc font-merriweather font-light text-[14px] md:text-[15px] leading-relaxed text-[#f4f3ee]/92 line-clamp-2 md:line-clamp-3 mb-3">
                     {industry.pageTitle}
                   </p>
-                  <p className="font-merriweather text-[13px] md:text-[14px] leading-relaxed text-[#dbe5df]/88 line-clamp-2 opacity-95 group-hover:opacity-100 transition-opacity mb-5">
+                  <p className="ind-desc font-merriweather font-light text-[13px] md:text-[14px] leading-relaxed text-[#dbe5df]/88 line-clamp-2 opacity-95 group-hover:opacity-100 transition-opacity mb-5">
                     {industry.teaser}
                   </p>
                   <div className="flex flex-wrap gap-2">

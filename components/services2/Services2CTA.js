@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
+import { Services1SeamFades } from '../services1/Services1SeamFades';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,16 +32,17 @@ export default function VideoSection({ theme = 'light', dark7 = false }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-16 md:py-20 lg:py-24 transition-colors duration-500"
+      className={`relative py-16 md:py-20 lg:py-24 transition-colors duration-500 ${isDark && dark7 ? 's1-section-shell' : ''}`}
       style={
         isDark && dark7
-          ? services1ListingDarkSurface
+          ? undefined
           : isDark
             ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
             : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
       }
     >
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+      {isDark && dark7 && <Services1SeamFades />}
+      <div className="relative z-[1] max-w-[1200px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         {/* Video Container */}
         <div 
           ref={videoRef}

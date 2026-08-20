@@ -63,7 +63,7 @@ const AdvisoryBoard = ({ theme = "light" }) => {
             {/* Description */}
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
-                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+                <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
                 Tech Eyrie isn't a dealer, it is a strategic partner of transformation and reinvention. We work with industrial leaders to transform chaos to clarity, intelligence and control.
                 </p>
               </MaskedReveal>
@@ -130,7 +130,7 @@ const AdvisoryBoard = ({ theme = "light" }) => {
                    <h3 className={`font-italiana text-[24px] md:text-[28px] font-light ${isDark ? 'text-[#f3f3f3]' : 'text-[#032219]'}`}>
                       {advisor.name}
                    </h3>
-                   <p className={`font-merriweather text-[14px] font-medium px-4 ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
+                   <p className={`about-desc font-merriweather font-light text-[14px] px-4 ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
                       {advisor.title}
                    </p>
                 </div>

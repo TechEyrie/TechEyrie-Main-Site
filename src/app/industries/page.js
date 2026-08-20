@@ -21,17 +21,19 @@ export default function IndustriesPage() {
 
   return (
     <div
-      className="dark2-page bg-[#162d24]"
+      className="dark2-page industries-route bg-[#162d24]"
       style={{ position: "relative", zIndex: 1 }}
       data-theme={theme}
     >
       <Header theme={theme} />
-      <IndustriesListingHero theme={theme} />
-      <IndustriesShowcaseFlow theme={theme} />
-      <IndustriesListingMosaic theme={theme} />
-      <IndustriesSignalsSection theme={theme} />
-      <IndustriesPageFAQs theme={theme} />
-      <IndustriesPageCTA theme={theme} />
+      <main className="relative industries-page-root">
+        <IndustriesListingHero theme={theme} />
+        <IndustriesShowcaseFlow theme={theme} />
+        <IndustriesListingMosaic theme={theme} />
+        <IndustriesSignalsSection theme={theme} />
+        <IndustriesPageFAQs theme={theme} />
+        <IndustriesPageCTA theme={theme} />
+      </main>
       <Footer theme={theme} />
     </div>
   );

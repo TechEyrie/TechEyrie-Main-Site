@@ -26,7 +26,7 @@ const Values = ({ theme = "light" }) => {
           {/* Left Column */}
           <div className="space-y-8 md:space-y-12">
             <MaskedReveal delay={0.1}>
-              <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+              <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
                 Every day, billions <strong className={`font-semibold ${isDark ? 'text-[#f3f3f3]' : 'text-black'}`}>billions of business takes place through a chain</strong>, yet inefficiency remains the same, outdated processes, spreadsheets and clipboards, resulting in obstructions and inefficiency which luxury clients reject.
 
               </p>
@@ -39,7 +39,7 @@ const Values = ({ theme = "light" }) => {
                 </h3>
               </MaskedReveal>
               <MaskedReveal delay={0.3}>
-                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+                <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
                   {/* We are building the industry's first <strong className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>AI-native, Computer Vision-powered Yard Operating System (YOS)</strong> — designed to digitize, automate, and optimize yard operations end to end.
                    */}
                    At Tech Eyrie, we are not just operators but strategic advisors. Our AI native, computer powered Yard Operating system is tailored for accuracy, smooth and unmatched operation. 
@@ -53,14 +53,14 @@ const Values = ({ theme = "light" }) => {
           {/* Right Column */}
           <div className="space-y-8 md:space-y-12">
             <MaskedReveal delay={0.2}>
-              <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+              <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
               But here in Tech Eyrie we transform complexity into strategic advantage, connecting data and workflow into a single ecosystem, delivering control and visibility over every operation. From gate operations, inventory to analytics, our solutions are tailored for precision, efficiency at ROI scale. By doing so, we lower the cost and unlock premium competitive advantage for high-value brands. Because the luxury B2B world is all about operational excellence. 
 
               </p>
             </MaskedReveal>
 
             <MaskedReveal delay={0.3}>
-              <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+              <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
               We craft solutions to elevate your business with confidence, automates, terminal digitizes, and YOS end-to-end transforming complexity into an intelligent and flawless system.
                 {/* With backing from leading investors and partnerships with several of the top 10 logistics companies, Terminal is <strong className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>building with the industry, for the industry</strong> — setting the new standard for yard technology. */}
               </p>

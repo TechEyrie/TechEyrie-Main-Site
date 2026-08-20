@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { services1ListingDarkSurface } from '../services1/services1ListingSurfaces';
+import { Services1SeamFades } from '../services1/Services1SeamFades';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,19 +87,20 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full transition-colors duration-500"
+      className={`relative w-full transition-colors duration-500 ${isDark && dark7 ? 's1-section-shell' : ''}`}
       style={
         isDark && dark7
-          ? services1ListingDarkSurface
+          ? undefined
           : isDark
             ? { background: 'linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)' }
             : { background: 'linear-gradient(to bottom, #e8ddd3 0%, #d4c4b8 100%)' }
       }
     >
+      {isDark && dark7 && <Services1SeamFades />}
       {/* Video/Hero Section */}
       <div 
         ref={videoSectionRef}
-        className="relative mx-12 sm:mx-16 md:mx-24 lg:mx-32 xl:mx-40 pt-16 md:pt-20 lg:pt-24"
+        className="relative z-[1] mx-12 sm:mx-16 md:mx-24 lg:mx-32 xl:mx-40 pt-16 md:pt-20 lg:pt-24"
       >
         <div 
           className="relative w-full h-[500px] md:h-[600px] lg:h-[680px] rounded-3xl overflow-hidden"
@@ -144,7 +145,7 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
               </h2>
               <p
                 ref={subheadingRef}
-                className="font-playfair text-[17px] md:text-[20px] font-normal text-white/90 leading-[1.5]"
+                className="s2-approach-desc font-playfair text-[17px] md:text-[20px] font-light text-white/90 leading-[1.5]"
               >
                 We don’t deliver results, we engineer reality
 
@@ -188,7 +189,7 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
       {/* Text Section */}
       <div 
         ref={textSectionRef}
-        className="relative px-6 sm:px-8 md:px-12 lg:px-20 xl:px-32 py-20 md:py-28 lg:py-36"
+        className="relative z-[1] px-6 sm:px-8 md:px-12 lg:px-20 xl:px-32 py-20 md:py-28 lg:py-36"
       >
         <div className="max-w-[1400px] mx-auto">
           {/* Main Text */}

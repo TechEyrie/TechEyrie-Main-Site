@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services1ListingDarkSurface } from "../services1/services1ListingSurfaces";
+import { IndustriesSeamFades } from "./IndustriesSeamFades";
 import { industriesCatalog } from "./industriesData";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -107,9 +107,10 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
   return (
     <section
       ref={rootRef}
-      className="relative py-16 md:py-20 pb-28 md:pb-32 px-6 sm:px-8 md:px-12 lg:px-16 overflow-hidden"
-      style={isDark ? services1ListingDarkSurface : { background: "#eef6f3" }}
+      className="ind-section-shell relative overflow-hidden px-6 py-16 pb-28 sm:px-8 md:px-12 md:py-20 md:pb-32 lg:px-16"
+      style={isDark ? undefined : { background: "#eef6f3" }}
     >
+      {isDark && <IndustriesSeamFades />}
       <div
         className="pointer-events-none absolute -top-24 right-[-10%] h-[420px] w-[420px] rounded-full opacity-[0.14]"
         style={{ background: "radial-gradient(circle, #74F5A1 0%, transparent 70%)" }}
@@ -121,7 +122,7 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
         aria-hidden
       />
 
-      <div className="max-w-[1700px] mx-auto relative z-[1]">
+      <div className="relative z-[1] mx-auto max-w-[1700px]">
         <div
           ref={cardRef}
           className="relative rounded-[26px] md:rounded-[32px] overflow-hidden border border-white/[0.12] shadow-[0_40px_100px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.06]"
@@ -137,28 +138,36 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
           />
 
           <div className="relative grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-            {/* Left — mint editorial */}
+            {/* Left — deep forest editorial */}
             <div
               ref={leftRef}
-              className="relative min-h-[280px] lg:min-h-[520px] p-9 md:p-12 lg:p-14 xl:p-16 bg-gradient-to-br from-[#74F5A1] via-[#59df8f] to-[#28b86e] flex flex-col justify-between"
+              className="ind-cta-left relative min-h-[280px] lg:min-h-[520px] p-9 md:p-12 lg:p-14 xl:p-16 bg-gradient-to-br from-[#1b4732] via-[#163a2c] to-[#0f2920] flex flex-col justify-between border-r border-white/[0.06]"
             >
               <div
-                className="absolute inset-0 opacity-[0.18] pointer-events-none mix-blend-multiply"
+                className="absolute inset-0 opacity-[0.22] pointer-events-none"
                 style={{
                   backgroundImage:
                     "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")",
                 }}
                 aria-hidden
               />
+              <div
+                className="absolute inset-0 pointer-events-none opacity-40"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 20% 15%, rgba(116,245,161,0.12), transparent 55%), radial-gradient(ellipse at 85% 90%, rgba(103,191,218,0.08), transparent 50%)",
+                }}
+                aria-hidden
+              />
 
               <div className="relative">
-                <p className="ind-mint-subtext font-merriweather text-[11px] md:text-[12px] uppercase tracking-[0.22em] mb-4">
+                <p className="ind-cta-left-kicker font-merriweather text-[11px] md:text-[12px] uppercase tracking-[0.22em] mb-4 text-[#74F5A1]">
                   Confidential session
                 </p>
-                <h2 className="ind-mint-text font-italiana text-[34px] sm:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.04] max-w-xl">
+                <h2 className="ind-cta-left-title font-italiana text-[34px] sm:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.04] max-w-xl text-[#f7f3f0]">
                   Sector narrative powered by AI and SEO.
                 </h2>
-                <p className="ind-mint-subtext font-playfair text-[16px] md:text-[19px] leading-relaxed mt-5 max-w-lg">
+                <p className="ind-desc font-playfair font-light text-[16px] md:text-[19px] leading-relaxed mt-5 max-w-lg text-[#e0d1b6]/92">
                   Insights (including low-volume terms) on where you compete and what buyers should feel when they land on
                   your page—we respond with concise, data-driven guidance, never a generic pitch.
                 </p>
@@ -171,31 +180,31 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
                   ].map((line) => (
                     <li
                       key={line}
-                      className="ind-mint-subtext font-merriweather text-[13px] md:text-[14px] leading-snug flex gap-3"
+                      className="ind-desc font-merriweather font-light text-[13px] md:text-[14px] leading-snug flex gap-3 text-[#e0d1b6]/88"
                     >
-                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#102b22]/75" aria-hidden />
+                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#74F5A1]" aria-hidden />
                       {line}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="relative mt-10 lg:mt-0 flex flex-wrap gap-x-10 gap-y-6 pt-8 border-t border-[#102b22]/15">
+              <div className="relative mt-10 lg:mt-0 flex flex-wrap gap-x-10 gap-y-6 pt-8 border-t border-white/10">
                 <div>
-                  <p className="ind-mint-text font-italiana text-[32px] md:text-[38px] leading-none">20</p>
-                  <p className="ind-mint-subtext font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2">
+                  <p className="font-italiana text-[32px] md:text-[38px] leading-none text-[#f7f3f0]">20</p>
+                  <p className="font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2 text-[#e0d1b6]/75">
                     Sector routes
                   </p>
                 </div>
                 <div>
-                  <p className="ind-mint-text font-italiana text-[32px] md:text-[38px] leading-none">48h</p>
-                  <p className="ind-mint-subtext font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2">
+                  <p className="font-italiana text-[32px] md:text-[38px] leading-none text-[#f7f3f0]">48h</p>
+                  <p className="font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2 text-[#e0d1b6]/75">
                     First response
                   </p>
                 </div>
                 <div>
-                  <p className="ind-mint-text font-italiana text-[32px] md:text-[38px] leading-none">1:1</p>
-                  <p className="ind-mint-subtext font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2">
+                  <p className="font-italiana text-[32px] md:text-[38px] leading-none text-[#f7f3f0]">1:1</p>
+                  <p className="font-merriweather text-[10px] uppercase tracking-[0.18em] mt-2 text-[#e0d1b6]/75">
                     Director-led review
                   </p>
                 </div>
@@ -231,7 +240,7 @@ export default function IndustriesPageCTA({ theme = "dark" }) {
                   <h3 className="font-italiana text-[28px] md:text-[34px] text-[#f3f3f3] leading-tight">
                     Request received
                   </h3>
-                  <p className="font-merriweather text-[14px] md:text-[15px] text-[#e0d1b6]/85 max-w-sm mt-4 leading-relaxed">
+                  <p className="ind-desc font-merriweather font-light text-[14px] md:text-[15px] text-[#e0d1b6]/85 max-w-sm mt-4 leading-relaxed">
                     If your mail app opened, send the draft and we&apos;ll continue from there. You can also reach us
                     directly at{" "}
                     <a href={`mailto:${BRIEF_EMAIL}`} className="text-[#74F5A1] underline-offset-2 hover:underline">

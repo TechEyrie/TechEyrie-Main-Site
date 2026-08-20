@@ -26,6 +26,17 @@
   color: rgba(8, 27, 21, 0.88) !important;
 }
 
+/* CTA left panel — deep forest (not neon mint) */
+.dark2-page .ind-cta-left .ind-cta-left-kicker {
+  color: #74f5a1 !important;
+}
+.dark2-page .ind-cta-left .ind-cta-left-title {
+  color: #f7f3f0 !important;
+}
+.dark2-page .ind-cta-left .ind-desc {
+  color: rgba(224, 209, 182, 0.92) !important;
+}
+
 /* Hero right float — subtle bob + light sweep */
 @keyframes ind-hero-float-bob {
   0%,
@@ -104,4 +115,59 @@
 .dark2-page .ind-cta-select option {
   background-color: #061410;
   color: #f4f3ee;
+}
+
+/* Thin font rendering for description/body text — weight only, sizes unchanged */
+.dark2-page .ind-hero-lead,
+.dark2-page .ind-desc,
+.dark2-page .ind-faq-answer,
+.dark2-page .ind-mint-subtext {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Continuous page bed — one surface, sections dissolve into it */
+.dark2-page.industries-route .industries-page-root {
+  background-color: #162d24;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse at 60% 45%,
+      rgba(117, 133, 53, 0.45) 0%,
+      rgba(27, 71, 50, 0.35) 42%,
+      rgba(22, 45, 36, 0.96) 100%
+    );
+  background-blend-mode: overlay, normal;
+}
+
+/* Soft color dissolve at section edges */
+.dark2-page.industries-route .ind-seam-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark2-page.industries-route .ind-seam-fade--top {
+  top: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(180deg, #162d24 0%, rgba(22, 45, 36, 0.75) 42%, rgba(22, 45, 36, 0) 100%);
+}
+
+.dark2-page.industries-route .ind-seam-fade--bottom {
+  bottom: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(0deg, #162d24 0%, rgba(22, 45, 36, 0.75) 42%, rgba(22, 45, 36, 0) 100%);
+}
+
+/* Transparent section shells so the continuous bed shows through */
+.dark2-page.industries-route .industries-page-root > section.ind-section-shell {
+  background-color: transparent !important;
+  background-image: none !important;
 }

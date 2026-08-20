@@ -53,7 +53,7 @@ const Investors = ({ theme = "light" }) => {
             {/* Description */}
             <div className="max-w-2xl mx-auto">
               <MaskedReveal delay={0.2}>
-                <p className={`font-merriweather text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
+                <p className={`about-desc font-merriweather font-light text-[14px] leading-relaxed ${isDark ? 'text-[#c8c2ad]' : 'text-gray-600'}`}>
                 Supported by founders, investors and advisors whose vision shapes our industry to deliver a measurable and lasting impression. They empowered us to solve complex issues, create                 intelligent platforms and challenge outdated modules, creating beliefs in future of logistics
 
                 </p>
@@ -121,7 +121,7 @@ const Investors = ({ theme = "light" }) => {
                    <h3 className={`font-italiana text-[24px] md:text-[28px] font-light ${isDark ? 'text-[#f3f3f3]' : 'text-[#032219]'}`}>
                       {investor.name}
                    </h3>
-                   <p className={`font-merriweather text-[14px] font-medium ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
+                   <p className={`about-desc font-merriweather font-light text-[14px] ${isDark ? 'text-[#c8c2ad]' : 'text-gray-500'}`}>
                       {investor.title}
                    </p>
                 </div>

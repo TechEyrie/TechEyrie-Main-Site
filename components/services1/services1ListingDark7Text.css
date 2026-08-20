@@ -9,6 +9,24 @@
   color: #e0d1b6 !important;
 }
 
+/* Thin font rendering for all description/body text */
+.dark2-page .s2-hero-desc,
+.dark2-page .s2-approach-desc,
+.dark2-page .s2-faq-desc,
+.dark2-page .s2-faq-answer,
+.dark2-page .s2-industry-desc,
+.dark2-page .s1-section-intro,
+.dark2-page .s1-card-body,
+.dark2-page .s1-detail-body {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
 .dark2-page .s2-faq-title {
   color: #74f5a1 !important;
 }
@@ -57,4 +75,45 @@
 }
 .dark2-page .s1-cta-btn .s1-cta-icon-wrap svg {
   color: #162d24 !important;
+}
+
+/* Continuous page bed — one surface, sections dissolve into it */
+.dark2-page.services1-route .services1-page-root {
+  background-color: #162d24;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse at 60% 45%,
+      rgba(117, 133, 53, 0.45) 0%,
+      rgba(27, 71, 50, 0.35) 42%,
+      rgba(22, 45, 36, 0.96) 100%
+    );
+  background-blend-mode: overlay, normal;
+}
+
+/* Soft color dissolve at section edges */
+.dark2-page.services1-route .s1-seam-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark2-page.services1-route .s1-seam-fade--top {
+  top: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(180deg, #162d24 0%, rgba(22, 45, 36, 0.75) 42%, rgba(22, 45, 36, 0) 100%);
+}
+
+.dark2-page.services1-route .s1-seam-fade--bottom {
+  bottom: 0;
+  height: clamp(72px, 14vw, 160px);
+  background: linear-gradient(0deg, #162d24 0%, rgba(22, 45, 36, 0.75) 42%, rgba(22, 45, 36, 0) 100%);
+}
+
+/* Transparent section shells so the continuous bed shows through */
+.dark2-page.services1-route .services1-page-root > section.s1-section-shell {
+  background-color: transparent !important;
+  background-image: none !important;
 }

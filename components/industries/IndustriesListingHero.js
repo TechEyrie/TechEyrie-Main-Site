@@ -102,7 +102,7 @@ export default function IndustriesListingHero({ theme = "dark" }) {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative min-h-[90vh] max-w-[100vw] overflow-hidden overflow-x-clip">
+    <section ref={rootRef} className="ind-section-shell relative min-h-[90vh] max-w-[100vw] overflow-hidden overflow-x-clip">
       <div className="absolute inset-0 z-0">
         <Image
           ref={bgRef}
@@ -127,6 +127,16 @@ export default function IndustriesListingHero({ theme = "dark" }) {
         />
         <div className="absolute inset-0 opacity-[0.16] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(116,245,161,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(103,191,218,0.1) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         <div className="absolute inset-0 pointer-events-none opacity-70" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(116,245,161,0.06) 28%, transparent 50%, rgba(103,191,218,0.09) 78%, transparent 100%)" }} />
+        {/* Dissolve hero into continuous page bed */}
+        {isDark && (
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(96px,18vw,200px)]"
+            style={{
+              background: "linear-gradient(0deg, #162d24 0%, rgba(22,45,36,0.85) 40%, rgba(22,45,36,0) 100%)",
+            }}
+            aria-hidden
+          />
+        )}
       </div>
 
       <div className="relative z-[2] px-6 sm:px-10 md:px-14 lg:px-16 pt-28 md:pt-32 pb-14 md:pb-16 overflow-x-clip">
@@ -139,7 +149,7 @@ export default function IndustriesListingHero({ theme = "dark" }) {
             <span className="block">Tailored Strategy</span>
             <span className="block mt-1 text-[#74F5A1]">for every domain</span>
           </h1>
-          <p className="ind-hero-lead font-playfair text-[19px] md:text-[27px] leading-relaxed mt-7 md:mt-8 max-w-2xl">
+          <p className="ind-hero-lead font-playfair font-light text-[19px] md:text-[27px] leading-relaxed mt-7 md:mt-8 max-w-2xl">
             At Tech Eyrie we bind market strategy with deep sector expertise. Every page, every interaction, every keyword
             is designed to align with your audience&apos;s expectations and brand&apos;s standard.
           </p>

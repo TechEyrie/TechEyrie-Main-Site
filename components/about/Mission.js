@@ -12,7 +12,7 @@ const SECTIONS = [
     id: 1,
     number: "01",
     title: "Industry built it, Tech Eyrie Perfected it",
-    text: "We don’t exercise as a startup but as an organized partnership, collaborating with market leaders and providing realistic solutions and challenges. Tech Eyrie, partnering with tech companies such as —---------- to create strategic business insights goals guiding decisions and addressing complex strategies. With Tech Eyrie, every insight, platforms and workflow collaborates with the leaders in providing accuracy, reliability and impacts in the luxury B2B market. ",
+    text: "We don’t operate as a startup, but as an organized partnership—collaborating with market leaders and delivering realistic solutions for real challenges. Tech Eyrie partners with leading technology companies to create strategic business insights that guide decisions and address complex strategies. With Tech Eyrie, every insight, platform, and workflow works with industry leaders to deliver accuracy, reliability, and impact in the luxury B2B market.",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop", // Truck yard placeholder
     layout: "text-left", // Text on left, Image on right
   },
@@ -137,7 +137,7 @@ const MissionSection = ({ theme = "light" }) => {
                 </div>
 
                 <div className="">
-                  <ScrollTextReveal className="font-merriweather text-[14px] leading-relaxed" isDark={isDark}>
+                  <ScrollTextReveal className="about-desc font-merriweather font-light text-[14px] leading-relaxed" isDark={isDark}>
                     {section.text}
                   </ScrollTextReveal>
                 </div>

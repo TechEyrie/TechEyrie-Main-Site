@@ -858,7 +858,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       TECH STACK
                     </h3>
                     <p
-                      className={`font-merriweather text-[14px] ${
+                      className={`cs-desc font-merriweather text-[14px] ${
                         isDark ? "text-[#e8e4dc]" : "text-black"
                       }`}
                     >
@@ -874,7 +874,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                       TIMELINE
                     </h3>
                     <p
-                      className={`font-merriweather text-[14px] ${
+                      className={`cs-desc font-merriweather text-[14px] ${
                         isDark ? "text-[#e8e4dc]" : "text-black"
                       }`}
                     >
@@ -896,7 +896,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                     {project.results?.map((result, resultIndex) => (
                       <p
                         key={resultIndex}
-                        className={`font-merriweather text-[14px] ${
+                        className={`cs-desc font-merriweather text-[14px] ${
                           isDark ? "text-[#c8c2ad]" : "text-black"
                         }`}
                       >
@@ -957,7 +957,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
                             {project.testimonial.name}
                           </h4>
                           <p
-                            className={`font-merriweather text-[13px] md:text-[14px] ${
+                            className={`cs-desc font-merriweather text-[13px] md:text-[14px] ${
                               isDark ? "text-[#a8a498]" : "text-gray-600"
                             }`}
                           >
@@ -968,7 +968,7 @@ export default function CaseStudiesPage({ projects = PROJECTS, theme = "light" }
 
                       {/* Quote */}
                       <p
-                        className={`font-merriweather text-[14px] font-normal leading-relaxed ${
+                        className={`cs-desc font-merriweather text-[14px] font-light leading-relaxed ${
                           isDark ? "text-[#c8c2ad]" : "text-gray-700"
                         }`}
                       >

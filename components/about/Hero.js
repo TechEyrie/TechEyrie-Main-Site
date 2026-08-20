@@ -32,7 +32,7 @@ const Hero = ({ theme = "light" }) => {
 
         <div className="max-w-3xl mx-auto">
           <MaskedReveal delay={0.4}>
-            <p className={`font-playfair text-[17px] md:text-[25px] font-normal leading-[1.4] ${isDark ? 'text-[#e8e4dc]' : 'text-gray-500'} antialiased text-center`}>
+            <p className={`about-desc font-playfair text-[17px] md:text-[25px] font-light leading-[1.4] ${isDark ? 'text-[#e8e4dc]' : 'text-gray-500'} antialiased text-center`}>
             At Tech Eyrie, we don’t just create systems; we transform the way businesses operate. Working with luxury clients, industry leaders, and elite brands requires more than standard solutions. Every project we undertake is crafted with precision, innovation, and strategy, technology designed not just to support your business, but to make it stand out in the market. Redefining industries, turning complexity into clarity and operations into a strategic advantage.
 
 

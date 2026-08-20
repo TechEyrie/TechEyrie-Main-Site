@@ -20,3 +20,14 @@
 .dark2-page.case-studies-route .cs-cta-primary:hover {
   background-color: #0d5248 !important;
 }
+
+/* Thin font rendering for description/body text — weight only, sizes unchanged */
+.dark2-page.case-studies-route .cs-desc {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
