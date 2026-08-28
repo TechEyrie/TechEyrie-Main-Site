@@ -17,7 +17,7 @@ import {
   dark7HeroPortfolioContainerStyle,
   dark7HeroSurfaceStyle,
 } from "./dark7PageGradients";
-import EagleProject2Embed from "./EagleProject2Embed";
+import EagleScrollScene from "./EagleScrollScene";
 import {
   Dark7V60ScrollTrigger,
   DARK7_V60_HERO_PIN_ID,
@@ -846,7 +846,7 @@ export default function HeroSectionMediaSlot({
                 }}
                 aria-hidden
               />
-              <EagleProject2Embed pinTargetRef={heroPinRef} />
+              <EagleScrollScene backgroundOnly pinTargetRef={heroPinRef} />
             </>
           )}
           <div

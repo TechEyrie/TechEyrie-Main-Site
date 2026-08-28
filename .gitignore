@@ -40,6 +40,10 @@ yarn-error.log*
 /eagle-project/
 /public/eagle-project*/
 
+# Local eagle test/debug screenshots
+/eagle-*.png
+/eagle-project-3-*.png
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
