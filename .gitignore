@@ -36,9 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Noomo eagle asset bundles (large; regenerate with npm run setup:eagle-project*)
+# Noomo eagle source scrape (local only; public copies are committed for prod)
 /eagle-project/
-/public/eagle-project*/
+/public/eagle-project-1/
+/public/eagle-project-3/
 
 # Local eagle test/debug screenshots
 /eagle-*.png
