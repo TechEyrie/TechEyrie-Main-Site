@@ -333,7 +333,7 @@ export default function SiteDrawer({ isOpen, selectedItem, onClose, theme = 'lig
 
       {/* Drawer Content */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl h-[85vh] sm:h-[90vh] overflow-hidden transition-transform duration-400 ease-in-out ${
+        className={`cs-drawer fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl h-[85vh] sm:h-[90vh] overflow-hidden transition-transform duration-400 ease-in-out ${
           isDark ? 'bg-[#162d24]' : 'bg-[#E8E8E8]'
         } ${isAnimating ? "translate-y-0" : "translate-y-full"}`}
       >

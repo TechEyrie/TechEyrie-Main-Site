@@ -31,3 +31,31 @@
   -webkit-text-stroke: 0 !important;
   text-shadow: none !important;
 }
+
+/* Case study drawer — same thin Merriweather treatment */
+.dark2-page.case-studies-route .cs-drawer .font-merriweather,
+.dark2-page.case-studies-route .cs-drawer p,
+.dark2-page.case-studies-route .cs-drawer span,
+.dark2-page.case-studies-route .cs-drawer button,
+.dark2-page.case-studies-route .cs-drawer a,
+.dark2-page.case-studies-route .cs-drawer h2,
+.dark2-page.case-studies-route .cs-drawer h3,
+.dark2-page.case-studies-route .cs-drawer h4 {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Visit Site CTA — dark text on yellow (beat beige override) */
+.dark2-page.case-studies-route .cs-drawer .cs-visit-site-btn {
+  background-color: #facc15 !important;
+  color: #111111 !important;
+}
+.dark2-page.case-studies-route .cs-drawer .cs-visit-site-btn:hover {
+  background-color: #eab308 !important;
+  color: #111111 !important;
+}

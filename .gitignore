@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Noomo eagle asset bundles (large; regenerate with npm run setup:eagle-project*)
+/eagle-project/
+/public/eagle-project*/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

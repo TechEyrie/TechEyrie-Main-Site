@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup:eagle-project": "node scripts/setup-eagle-project.mjs",
+    "setup:eagle-project-2": "node scripts/setup-eagle-project-2.mjs",
+    "setup:eagle-project-3": "node scripts/setup-eagle-project-3.mjs"
   },
   "dependencies": {
     "@firecms/neat": "^1.0.1",

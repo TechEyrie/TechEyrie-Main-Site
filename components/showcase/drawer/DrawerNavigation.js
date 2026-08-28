@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 const sections = [
   { id: "highlights", label: "Highlights" },
   { id: "colorPalette", label: "Colors" },
@@ -15,14 +18,21 @@ export default function DrawerNavigation({ activeSection, onSectionClick, theme 
   const isDark = theme === 'dark';
   
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[60] flex items-center justify-center pb-4 sm:pb-6 pointer-events-none">
+    <div className="fixed bottom-0 left-0 right-0 z-[60] flex items-center justify-center pb-4 sm:pb-6 pointer-events-none cs-drawer">
       <div className="bg-[#3E3E3E] rounded-md sm:rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center gap-1 sm:gap-1.5 overflow-x-auto max-w-[calc(100vw-2rem)] sm:max-w-fit mx-auto scrollbar-hide pointer-events-auto backdrop-blur-sm border border-white/10">
-        <div className="min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg flex-shrink-0 border border-gray-600 bg-black mr-1 sm:mr-2">
-          <svg viewBox="0 0 32 32" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" aria-hidden="true">
-            <path d="M7 18C7 11 13 7 19 7V18H7Z" fill="currentColor" className="text-white" />
-            <path d="M19 18C25 18 29 24 29 28H19V18Z" fill="currentColor" className="text-white" />
-          </svg>
-        </div>
+        <Link
+          href="/dark7"
+          className="min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg flex-shrink-0 border border-gray-600 bg-black mr-1 sm:mr-2"
+          aria-label="Tech Eyrie home"
+        >
+          <Image
+            src="/logo/techeyrie_logo.png"
+            alt="Tech Eyrie"
+            width={96}
+            height={40}
+            className="h-6 sm:h-7 md:h-8 w-auto object-contain"
+          />
+        </Link>
         {sections.map((section) => (
           <button
             key={section.id}
@@ -41,7 +51,7 @@ export default function DrawerNavigation({ activeSection, onSectionClick, theme 
             href={visitUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-merriweather min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap transition-all duration-200 flex-shrink-0 border-0 cursor-pointer bg-yellow-400 text-black hover:bg-yellow-500 ml-1 sm:ml-2 no-underline"
+            className="cs-visit-site-btn font-merriweather min-h-10 sm:min-h-12 md:min-h-14 px-2 sm:px-3 md:px-4 flex items-center justify-center rounded-md sm:rounded-lg text-[10px] sm:text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap transition-all duration-200 flex-shrink-0 border-0 cursor-pointer bg-yellow-400 text-[#111111] hover:bg-yellow-500 ml-1 sm:ml-2 no-underline"
           >
             Visit Site
           </a>
@@ -54,4 +64,3 @@ export default function DrawerNavigation({ activeSection, onSectionClick, theme 
     </div>
   );
 }
-
