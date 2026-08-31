@@ -118,6 +118,52 @@ const nextConfig = {
         destination: "/eagle-project/images/loader.gif",
       },
 
+      // eagle-project-4 — full Noomo hero clone (same assets via rewrites below)
+      {
+        source: "/eagle-project-4",
+        destination: "/eagle-project-4/index.html",
+      },
+      {
+        source: "/eagle-project-4/",
+        destination: "/eagle-project-4/index.html",
+      },
+      {
+        source: "/eagle-project-4/models/:path*",
+        destination: "/eagle-project/models/:path*",
+      },
+      {
+        source: "/eagle-project-4/textures/:path*",
+        destination: "/eagle-project/textures/:path*",
+      },
+      {
+        source: "/eagle-project-4/audio/:path*",
+        destination: "/eagle-project/audio/:path*",
+      },
+      {
+        source: "/eagle-project-4/timelines/:path*",
+        destination: "/eagle-project/timelines/:path*",
+      },
+      {
+        source: "/eagle-project-4/libs/:path*",
+        destination: "/eagle-project/libs/:path*",
+      },
+      {
+        source: "/eagle-project-4/images/svg/:path*",
+        destination: "/eagle-project/images/svg/:path*",
+      },
+      {
+        source: "/eagle-project-4/images/text_icons/:path*",
+        destination: "/eagle-project/images/text_icons/:path*",
+      },
+      {
+        source: "/eagle-project-4/images/loader.gif",
+        destination: "/eagle-project/images/loader.gif",
+      },
+      {
+        source: "/eagle-project-4/images/menu_back.jpg",
+        destination: "/eagle-project/images/menu_back.jpg",
+      },
+
       // Original absolute asset roots → isolated public/eagle-project tree
       { source: "/_nuxt/:path*", destination: "/eagle-project/_nuxt/:path*" },
       {
