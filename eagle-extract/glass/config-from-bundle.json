@@ -1,0 +1,186 @@
+{
+  "Glass.resetDistances": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "randomize": false,
+    "timelinePath": "Glass_distResetX.position.x"
+  },
+  "Glass.distancesFactor": {
+    "min": 0,
+    "max": 50,
+    "value": 1,
+    "randomize": false,
+    "timelinePath": "Glass_distResetX.position.y"
+  },
+  "Glass.iorStart": {
+    "min": 1,
+    "max": 2,
+    "value": 1,
+    "default": 1.2,
+    "randomize": true,
+    "timelinePath": "Glass_iorVDeltaXshift.position.x"
+  },
+  "Glass.iorDelta": {
+    "min": 0,
+    "max": 5,
+    "value": 0,
+    "default": 0.3,
+    "randomize": true,
+    "timelinePath": "Glass_iorVDeltaXshift.position.y"
+  },
+  "Glass.uvShiftFactor": {
+    "min": 1,
+    "max": 50,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 1,
+    "maxRandom": 5,
+    "timelinePath": "Glass_iorVDeltaXshift.position.z"
+  },
+  "Glass.envReflection": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "default": 1,
+    "randomize": true,
+    "timelinePath": "Glass_reflectionVIri.position.x"
+  },
+  "Glass.envRefraction": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "randomize": true,
+    "timelinePath": "Glass_refractionVIri.position.x"
+  },
+  "Glass.reflectionIridescence": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "randomize": true,
+    "timelinePath": "Glass_reflectionVIri.position.y"
+  },
+  "Glass.refractionIridescence": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "randomize": true,
+    "timelinePath": "Glass_refractionVIri.position.y"
+  },
+  "Glass.convexityFactor": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "default": 1,
+    "randomize": true,
+    "timelinePath": "Glass_convexConcavePeaks.position.x"
+  },
+  "Glass.concavityFactor": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "default": 1,
+    "randomize": true,
+    "timelinePath": "Glass_convexConcavePeaks.position.y"
+  },
+  "Glass.peaksFactor": {
+    "min": 0,
+    "max": 3,
+    "value": 1,
+    "default": 1,
+    "randomize": true,
+    "timelinePath": "Glass_convexConcavePeaks.position.z"
+  },
+  "Glass.fringeCurve": {
+    "min": 0,
+    "max": 5,
+    "value": 5,
+    "randomize": true,
+    "timelinePath": "Glass_fringeCurveMix.position.x"
+  },
+  "Glass.fringeMix": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "default": 1,
+    "randomize": true,
+    "timelinePath": "Glass_fringeCurveMix.position.y"
+  },
+  "Glass.colorBoost": {
+    "min": 0,
+    "max": 3,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 1,
+    "maxRandom": 2,
+    "timelinePath": "Glass_colorBoostFactorCurve.position.x"
+  },
+  "Glass.colorFactor": {
+    "min": 0,
+    "max": 3,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 0.5,
+    "maxRandom": 1.5,
+    "timelinePath": "Glass_colorBoostFactorCurve.position.y"
+  },
+  "Glass.colorCurve": {
+    "min": 0.001,
+    "max": 2,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 0.9,
+    "maxRandom": 1.111,
+    "timelinePath": "Glass_colorBoostFactorCurve.position.z"
+  },
+  "Glass.colorCurveR": {
+    "min": 0.001,
+    "max": 2,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 0.9,
+    "maxRandom": 1.111,
+    "timelinePath": "Glass_colorCurveRGB.position.x"
+  },
+  "Glass.colorCurveG": {
+    "min": 0.001,
+    "max": 2,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 0.9,
+    "maxRandom": 1.111,
+    "timelinePath": "Glass_colorCurveRGB.position.y"
+  },
+  "Glass.colorCurveB": {
+    "min": 0.001,
+    "max": 2,
+    "value": 1,
+    "randomize": true,
+    "minRandom": 0.9,
+    "maxRandom": 1.111,
+    "timelinePath": "Glass_colorCurveRGB.position.z"
+  },
+  "Glass.maxColorValue": {
+    "min": 1,
+    "max": 100,
+    "value": 25,
+    "randomize": true,
+    "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.x"
+  },
+  "Glass.decayFactor": {
+    "min": 0,
+    "max": 10000,
+    "value": 0,
+    "default": 20,
+    "randomize": true,
+    "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.y"
+  },
+  "Glass.useTransmittance": {
+    "min": 0,
+    "max": 1,
+    "value": 0,
+    "default": 1,
+    "randomize": false,
+    "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.z"
+  }
+}

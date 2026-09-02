@@ -1,0 +1,636 @@
+{
+  "generatedAt": "2026-09-02T12:03:06.555Z",
+  "sourceProject": "public/eagle-project",
+  "bundleSource": "public/eagle-project/_nuxt/CbdjwYMp.js",
+  "bundleSha256": "2caef88748846551eec2bd4aebe243e7ab69bbe9682df1027c9fbcbba6b41211",
+  "bundleSizeBytes": 1607668,
+  "assets": [
+    {
+      "dest": "assets/models/v20.glb",
+      "source": "public/eagle-project/models/v20.glb",
+      "sha256": "15937ca06ea0003b5d1ef9d649d93de15fbc20faaf75e1467706ff9ce6e28764",
+      "destSha256": "15937ca06ea0003b5d1ef9d649d93de15fbc20faaf75e1467706ff9ce6e28764",
+      "bytes": 4354860,
+      "ok": true
+    },
+    {
+      "dest": "assets/models/feather.glb",
+      "source": "public/eagle-project/models/feather.glb",
+      "sha256": "82ce3ea662c906b4003e107c400136464575816808088dafe10c93e5f012f03c",
+      "destSha256": "82ce3ea662c906b4003e107c400136464575816808088dafe10c93e5f012f03c",
+      "bytes": 6652,
+      "ok": true
+    },
+    {
+      "dest": "assets/timelines/cam.glb",
+      "source": "public/eagle-project/timelines/cam.glb",
+      "sha256": "e0e9ce478037546af76732ed870d65aec3c16781acf93047a5822733201c66dd",
+      "destSha256": "e0e9ce478037546af76732ed870d65aec3c16781acf93047a5822733201c66dd",
+      "bytes": 235160,
+      "ok": true
+    },
+    {
+      "dest": "assets/timelines/cam-mob.glb",
+      "source": "public/eagle-project/timelines/cam-mob.glb",
+      "sha256": "1d37f6d7844087755b655ff64cb082d60f9d1c159f58e52962dfaf0359e2be84",
+      "destSha256": "1d37f6d7844087755b655ff64cb082d60f9d1c159f58e52962dfaf0359e2be84",
+      "bytes": 219844,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/icen.jpg",
+      "source": "public/eagle-project/textures/icen.jpg",
+      "sha256": "ac5115d5ac937ceacf21995b162cdc5096debf040f112b57745aa22c1af8ffc6",
+      "destSha256": "ac5115d5ac937ceacf21995b162cdc5096debf040f112b57745aa22c1af8ffc6",
+      "bytes": 182423,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/LDR_RG01_0.png",
+      "source": "public/eagle-project/textures/LDR_RG01_0.png",
+      "sha256": "d2651bc877facb2ed36bee6f3cbbc84affc69fcb5d4846166ef25401207b3e60",
+      "destSha256": "d2651bc877facb2ed36bee6f3cbbc84affc69fcb5d4846166ef25401207b3e60",
+      "bytes": 17354,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/noises.jpg",
+      "source": "public/eagle-project/textures/noises.jpg",
+      "sha256": "224d603977e5289f1ae626fa9b428f85658c0a5d8f7dbdb7cfb193759ab771c6",
+      "destSha256": "224d603977e5289f1ae626fa9b428f85658c0a5d8f7dbdb7cfb193759ab771c6",
+      "bytes": 20857,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/mountains.png",
+      "source": "public/eagle-project/textures/mountains.png",
+      "sha256": "ff6ef3ecdc41444220c7fbbc839594584b4fab5c85702c8a0a9da8ff57faff72",
+      "destSha256": "ff6ef3ecdc41444220c7fbbc839594584b4fab5c85702c8a0a9da8ff57faff72",
+      "bytes": 55420,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/waves.jpg",
+      "source": "public/eagle-project/textures/waves.jpg",
+      "sha256": "e57755007672a715bfb9ae6a81dacf729892bed7aceb4f2817fdae50e7915079",
+      "destSha256": "e57755007672a715bfb9ae6a81dacf729892bed7aceb4f2817fdae50e7915079",
+      "bytes": 156890,
+      "ok": true
+    },
+    {
+      "dest": "assets/textures/wooden_studio_19_1k.hdr",
+      "source": "public/eagle-project/textures/wooden_studio_19_1k.hdr",
+      "sha256": "d35c2f2b051d66310625d7459a54ade51e5b742c0b7a1c2491a1d7832a0f2a9f",
+      "destSha256": "d35c2f2b051d66310625d7459a54ade51e5b742c0b7a1c2491a1d7832a0f2a9f",
+      "bytes": 1517608,
+      "ok": true
+    }
+  ],
+  "bundle": {
+    "dest": "bundle/CbdjwYMp.js",
+    "source": "public/eagle-project/_nuxt/CbdjwYMp.js",
+    "sha256": "2caef88748846551eec2bd4aebe243e7ab69bbe9682df1027c9fbcbba6b41211",
+    "destSha256": "2caef88748846551eec2bd4aebe243e7ab69bbe9682df1027c9fbcbba6b41211",
+    "bytes": 1607668,
+    "ok": true
+  },
+  "patches": [
+    {
+      "dest": "patches/patch-eagle-teal.mjs",
+      "source": "scripts/patch-eagle-teal.mjs",
+      "sha256": "963cd4d8887b84e2bd821a0da976902bd49ca8bb357d413bdb8d58839fef8cac",
+      "destSha256": "963cd4d8887b84e2bd821a0da976902bd49ca8bb357d413bdb8d58839fef8cac",
+      "bytes": 3177,
+      "ok": true
+    },
+    {
+      "dest": "patches/patch-eagle-2-isolated.mjs",
+      "source": "scripts/patch-eagle-2-isolated.mjs",
+      "sha256": "d4351bf84dfdd98bba9c9834ee61fd3f55819207c61fefe9045398fa567a2f54",
+      "destSha256": "d4351bf84dfdd98bba9c9834ee61fd3f55819207c61fefe9045398fa567a2f54",
+      "bytes": 3575,
+      "ok": true
+    }
+  ],
+  "shaders": [
+    {
+      "file": "shaders/glass-back-vertex.glsl",
+      "bundleVar": "y1",
+      "sha256": "32cbf691b536f85696a1441c355d5dbb7b5566b65bc308c3ec78e4a4500dcaa8",
+      "destSha256": "32cbf691b536f85696a1441c355d5dbb7b5566b65bc308c3ec78e4a4500dcaa8",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "174e7bdf7b8a2054a2ae5cbecb6cf2769e7b54bcde3a3d7203caa7996e5bfec9",
+      "matchesDocsNativeEagle": false,
+      "lines": 47
+    },
+    {
+      "file": "shaders/glass-back-fragment-dispersion.glsl",
+      "bundleVar": "b1",
+      "sha256": "5e41443696382891a2b0998a6a38d2af931e52aff4d0ec73196105701de46066",
+      "destSha256": "5e41443696382891a2b0998a6a38d2af931e52aff4d0ec73196105701de46066",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "65413b1402b97f0578918e45600f2a4c4e17c0b25c4b86fa22dd6bed77109477",
+      "matchesDocsNativeEagle": false,
+      "lines": 182
+    },
+    {
+      "file": "shaders/glass-back-fragment-simple.glsl",
+      "bundleVar": "_1",
+      "sha256": "902be9dfab0f0398869e423a410c4d09e6ac9ac7db73a7563a23d8a365824a3d",
+      "destSha256": "902be9dfab0f0398869e423a410c4d09e6ac9ac7db73a7563a23d8a365824a3d",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "20ee685d87001804be5c487ef0e554587b2b57682e139e1d813110c7651baffe",
+      "matchesDocsNativeEagle": false,
+      "lines": 289
+    },
+    {
+      "file": "shaders/glass-front-vertex.glsl",
+      "bundleVar": "w1",
+      "sha256": "fd46b2dd83c9a17034c5307b84ed7bfd4fc2b8d35e5cacd8de30264d1945874b",
+      "destSha256": "fd46b2dd83c9a17034c5307b84ed7bfd4fc2b8d35e5cacd8de30264d1945874b",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "db68451d772c3a4184915573f08c3215d9a2f10861697b2aec5486e4a6892e91",
+      "matchesDocsNativeEagle": false,
+      "lines": 41
+    },
+    {
+      "file": "shaders/glass-front-fragment-dispersion.glsl",
+      "bundleVar": "x1",
+      "sha256": "05118300c5a96cbe5819ae08c0cb3857400dce4a076ec55d3e4b495e64b0993d",
+      "destSha256": "05118300c5a96cbe5819ae08c0cb3857400dce4a076ec55d3e4b495e64b0993d",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "87249d6bbed67df768e9529a00c746d460992e9e3330802e5f99617af35e1a9d",
+      "matchesDocsNativeEagle": false,
+      "lines": 231
+    },
+    {
+      "file": "shaders/glass-front-fragment-simple.glsl",
+      "bundleVar": "qte",
+      "sha256": "864374794d1d4aadcb2852a7cabf31e0318f59a8bdbafa4826b9b891a91104b4",
+      "destSha256": "864374794d1d4aadcb2852a7cabf31e0318f59a8bdbafa4826b9b891a91104b4",
+      "matchesExtract": true,
+      "docsNativeEagleSha256": "b9b5fafc1d8097f2d1048144ad90e756000fa0c407c7e148202b047cccd28571",
+      "matchesDocsNativeEagle": false,
+      "lines": 359
+    }
+  ],
+  "glass": {
+    "colors": {
+      "patched": {
+        "color": "#12c48a",
+        "peaksColor": "#6ee7b7",
+        "fringeColor": "#047857"
+      },
+      "originalNoomo": {
+        "color": "#ffffff",
+        "peaksColor": "#ffffff",
+        "fringeColor": "#b0b0b0"
+      },
+      "patchScript": "patches/patch-eagle-teal.mjs"
+    },
+    "defaults": {
+      "resetDistances": 0,
+      "distancesFactor": 1,
+      "iorStart": 1.2,
+      "iorDelta": 0.3,
+      "uvShiftFactor": 1,
+      "envReflection": 1,
+      "envRefraction": 0,
+      "reflectionIridescence": 0,
+      "refractionIridescence": 0,
+      "convexityFactor": 1,
+      "concavityFactor": 1,
+      "peaksFactor": 1,
+      "fringeCurve": 5,
+      "fringeMix": 1,
+      "colorBoost": 1,
+      "colorFactor": 1,
+      "colorCurve": 1,
+      "colorCurveR": 1,
+      "colorCurveG": 1,
+      "colorCurveB": 1,
+      "maxColorValue": 25,
+      "decayFactor": 20,
+      "useTransmittance": 1
+    },
+    "configFromBundle": {
+      "Glass.resetDistances": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "randomize": false,
+        "timelinePath": "Glass_distResetX.position.x"
+      },
+      "Glass.distancesFactor": {
+        "min": 0,
+        "max": 50,
+        "value": 1,
+        "randomize": false,
+        "timelinePath": "Glass_distResetX.position.y"
+      },
+      "Glass.iorStart": {
+        "min": 1,
+        "max": 2,
+        "value": 1,
+        "default": 1.2,
+        "randomize": true,
+        "timelinePath": "Glass_iorVDeltaXshift.position.x"
+      },
+      "Glass.iorDelta": {
+        "min": 0,
+        "max": 5,
+        "value": 0,
+        "default": 0.3,
+        "randomize": true,
+        "timelinePath": "Glass_iorVDeltaXshift.position.y"
+      },
+      "Glass.uvShiftFactor": {
+        "min": 1,
+        "max": 50,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 1,
+        "maxRandom": 5,
+        "timelinePath": "Glass_iorVDeltaXshift.position.z"
+      },
+      "Glass.envReflection": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "default": 1,
+        "randomize": true,
+        "timelinePath": "Glass_reflectionVIri.position.x"
+      },
+      "Glass.envRefraction": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "randomize": true,
+        "timelinePath": "Glass_refractionVIri.position.x"
+      },
+      "Glass.reflectionIridescence": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "randomize": true,
+        "timelinePath": "Glass_reflectionVIri.position.y"
+      },
+      "Glass.refractionIridescence": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "randomize": true,
+        "timelinePath": "Glass_refractionVIri.position.y"
+      },
+      "Glass.convexityFactor": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "default": 1,
+        "randomize": true,
+        "timelinePath": "Glass_convexConcavePeaks.position.x"
+      },
+      "Glass.concavityFactor": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "default": 1,
+        "randomize": true,
+        "timelinePath": "Glass_convexConcavePeaks.position.y"
+      },
+      "Glass.peaksFactor": {
+        "min": 0,
+        "max": 3,
+        "value": 1,
+        "default": 1,
+        "randomize": true,
+        "timelinePath": "Glass_convexConcavePeaks.position.z"
+      },
+      "Glass.fringeCurve": {
+        "min": 0,
+        "max": 5,
+        "value": 5,
+        "randomize": true,
+        "timelinePath": "Glass_fringeCurveMix.position.x"
+      },
+      "Glass.fringeMix": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "default": 1,
+        "randomize": true,
+        "timelinePath": "Glass_fringeCurveMix.position.y"
+      },
+      "Glass.colorBoost": {
+        "min": 0,
+        "max": 3,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 1,
+        "maxRandom": 2,
+        "timelinePath": "Glass_colorBoostFactorCurve.position.x"
+      },
+      "Glass.colorFactor": {
+        "min": 0,
+        "max": 3,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 0.5,
+        "maxRandom": 1.5,
+        "timelinePath": "Glass_colorBoostFactorCurve.position.y"
+      },
+      "Glass.colorCurve": {
+        "min": 0.001,
+        "max": 2,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 0.9,
+        "maxRandom": 1.111,
+        "timelinePath": "Glass_colorBoostFactorCurve.position.z"
+      },
+      "Glass.colorCurveR": {
+        "min": 0.001,
+        "max": 2,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 0.9,
+        "maxRandom": 1.111,
+        "timelinePath": "Glass_colorCurveRGB.position.x"
+      },
+      "Glass.colorCurveG": {
+        "min": 0.001,
+        "max": 2,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 0.9,
+        "maxRandom": 1.111,
+        "timelinePath": "Glass_colorCurveRGB.position.y"
+      },
+      "Glass.colorCurveB": {
+        "min": 0.001,
+        "max": 2,
+        "value": 1,
+        "randomize": true,
+        "minRandom": 0.9,
+        "maxRandom": 1.111,
+        "timelinePath": "Glass_colorCurveRGB.position.z"
+      },
+      "Glass.maxColorValue": {
+        "min": 1,
+        "max": 100,
+        "value": 25,
+        "randomize": true,
+        "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.x"
+      },
+      "Glass.decayFactor": {
+        "min": 0,
+        "max": 10000,
+        "value": 0,
+        "default": 20,
+        "randomize": true,
+        "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.y"
+      },
+      "Glass.useTransmittance": {
+        "min": 0,
+        "max": 1,
+        "value": 0,
+        "default": 1,
+        "randomize": false,
+        "timelinePath": "Glass_colorMaxvalDecayUsetransmittance.position.z"
+      }
+    },
+    "uniformNames": [
+      "color",
+      "colorBoost",
+      "colorCurve",
+      "colorCurveB",
+      "colorCurveG",
+      "colorCurveR",
+      "colorFactor",
+      "concavityFactor",
+      "convexityFactor",
+      "decayFactor",
+      "distancesFactor",
+      "envReflection",
+      "envRefraction",
+      "fringeColor",
+      "fringeCurve",
+      "fringeMix",
+      "iorDelta",
+      "iorStart",
+      "maxColorValue",
+      "peaksColor",
+      "peaksFactor",
+      "reflectionIridescence",
+      "refractionIridescence",
+      "resetDistances",
+      "useTransmittance",
+      "uvShiftFactor"
+    ],
+    "postUniformNames": [
+      "backMap",
+      "map"
+    ],
+    "sampleCounts": {
+      "lowFrontSamplesCount": 5,
+      "frontSamplesCount": 12,
+      "backSamplesCount": 5,
+      "hyperSamplesCount": 16
+    },
+    "meshNames": [
+      "back",
+      "body",
+      "neck-bottom",
+      "neck-top",
+      "tail-bottom",
+      "tail-center",
+      "tail-top",
+      "trail",
+      "wing-left-bottom",
+      "wing-left-center-bottom",
+      "wing-left-center-top",
+      "wing-left-pole",
+      "wing-left-top",
+      "wing-right-bottom",
+      "wing-right-center-bottom",
+      "wing-right-center-top",
+      "wing-right-pole",
+      "wing-right-top"
+    ],
+    "animationClips": [
+      "Idle_MainPose_flying",
+      "Float_WingPulse",
+      "Wing_CloseUp",
+      "Idle_MainPose_gliding"
+    ]
+  },
+  "pipeline": {
+    "dualPass": [
+      "Pass 1: scene without glass → sceneRT (Post.map)",
+      "Pass 2: GlassBack samples sceneRT → backRT (Post.backMap)",
+      "Pass 3: GlassFront samples backRT → screen/finalRT"
+    ],
+    "perMeshRender": "backRT pass with backMaterial, then sceneRT pass with frontMaterial (nk render hook)",
+    "postStack": [
+      "input texture",
+      "UnrealBloomPass",
+      "SMAAPass",
+      "LinearTosRGB / OutputPass"
+    ],
+    "compositing": {
+      "webglClearLavender": {
+        "hex": "#E5DEF9",
+        "int": 15064825
+      },
+      "webglClearEagle2": {
+        "hex": "#162d24",
+        "int": 1453348
+      },
+      "cssStage": "#ffffff",
+      "canvasBlendMode": "darken",
+      "clearAlphaProduction": 0
+    }
+  },
+  "bundleSnippets": {
+    "colorTriplet": {
+      "color": "#12c48a",
+      "peaksColor": "#6ee7b7",
+      "fringeColor": "#047857"
+    },
+    "backgrounds": {
+      "lavender": true,
+      "eagle2Dark": false,
+      "whiteFallback": false
+    },
+    "eagle2Patches": {
+      "spotsHidden": false,
+      "mountainsHidden": false,
+      "fireHidden": false
+    },
+    "bloom": {
+      "threshold": 1,
+      "power": 0.16666666666666666,
+      "radius": 0.6666666666666666,
+      "foundInBundle": true
+    },
+    "sampleCounts": {
+      "lowFrontSamplesCount": 5,
+      "frontSamplesCount": 12,
+      "backSamplesCount": 5,
+      "hyperSamplesCount": 16
+    },
+    "meshNames": [
+      "back",
+      "body",
+      "neck-bottom",
+      "neck-top",
+      "tail-bottom",
+      "tail-center",
+      "tail-top",
+      "trail",
+      "wing-left-bottom",
+      "wing-left-center-bottom",
+      "wing-left-center-top",
+      "wing-left-pole",
+      "wing-left-top",
+      "wing-right-bottom",
+      "wing-right-center-bottom",
+      "wing-right-center-top",
+      "wing-right-pole",
+      "wing-right-top"
+    ],
+    "glassUniforms": [
+      "color",
+      "colorBoost",
+      "colorCurve",
+      "colorCurveB",
+      "colorCurveG",
+      "colorCurveR",
+      "colorFactor",
+      "concavityFactor",
+      "convexityFactor",
+      "decayFactor",
+      "distancesFactor",
+      "envReflection",
+      "envRefraction",
+      "fringeColor",
+      "fringeCurve",
+      "fringeMix",
+      "iorDelta",
+      "iorStart",
+      "maxColorValue",
+      "peaksColor",
+      "peaksFactor",
+      "reflectionIridescence",
+      "refractionIridescence",
+      "resetDistances",
+      "useTransmittance",
+      "uvShiftFactor"
+    ],
+    "postUniforms": [
+      "backMap",
+      "map"
+    ],
+    "assetsManagerKeys": [
+      "bird",
+      "blueNoise",
+      "env",
+      "fairy",
+      "feather",
+      "featherTrail",
+      "ice",
+      "iceDisplace",
+      "iceNormal",
+      "logo",
+      "mountains",
+      "noises",
+      "waves"
+    ],
+    "camera": {
+      "fov": 25,
+      "near": 0.1,
+      "far": 500
+    },
+    "glassAnimationClips": [
+      "Idle_MainPose_flying",
+      "Float_WingPulse",
+      "Wing_CloseUp",
+      "Idle_MainPose_gliding"
+    ],
+    "keyClasses": {
+      "prepareGlassMesh": "nk()",
+      "glassFront": "tk",
+      "glassBack": "ek",
+      "renderPipeline": "nn",
+      "layerController": "Mn",
+      "glassSorter": "Jte",
+      "glassSupport": "as",
+      "phoenixAnimation": "ene",
+      "spots": "Ste",
+      "mountains": "yte",
+      "reflector": "wA",
+      "bloom": "Bte"
+    }
+  },
+  "publicSync": {
+    "root": "public/eagle-extract",
+    "urlPrefix": "/eagle-extract",
+    "files": [
+      "MANIFEST.json",
+      "VALIDATION.json",
+      "glass/colors.json",
+      "glass/defaults.json",
+      "glass/mesh-names.json",
+      "assets/models/v20.glb",
+      "assets/models/feather.glb",
+      "assets/timelines/cam.glb",
+      "assets/timelines/cam-mob.glb",
+      "assets/textures/icen.jpg",
+      "assets/textures/LDR_RG01_0.png",
+      "assets/textures/noises.jpg",
+      "assets/textures/mountains.png",
+      "assets/textures/waves.jpg",
+      "assets/textures/wooden_studio_19_1k.hdr"
+    ]
+  }
+}

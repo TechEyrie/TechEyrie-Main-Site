@@ -1,0 +1,34 @@
+{
+  "glass": [
+    "color",
+    "colorBoost",
+    "colorCurve",
+    "colorCurveB",
+    "colorCurveG",
+    "colorCurveR",
+    "colorFactor",
+    "concavityFactor",
+    "convexityFactor",
+    "decayFactor",
+    "distancesFactor",
+    "envReflection",
+    "envRefraction",
+    "fringeColor",
+    "fringeCurve",
+    "fringeMix",
+    "iorDelta",
+    "iorStart",
+    "maxColorValue",
+    "peaksColor",
+    "peaksFactor",
+    "reflectionIridescence",
+    "refractionIridescence",
+    "resetDistances",
+    "useTransmittance",
+    "uvShiftFactor"
+  ],
+  "post": [
+    "backMap",
+    "map"
+  ]
+}

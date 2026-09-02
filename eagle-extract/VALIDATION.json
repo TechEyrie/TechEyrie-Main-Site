@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-09-02T12:03:06.560Z",
+  "mode": "extract-and-validate",
+  "allAssetsMatch": true,
+  "allShadersMatch": true,
+  "allShadersMatchDocs": false,
+  "checks": [
+    {
+      "id": "shader-glass-back-vertex.glsl",
+      "ok": true,
+      "detail": "47 lines"
+    },
+    {
+      "id": "shader-glass-back-fragment-dispersion.glsl",
+      "ok": true,
+      "detail": "182 lines"
+    },
+    {
+      "id": "shader-glass-back-fragment-simple.glsl",
+      "ok": true,
+      "detail": "289 lines"
+    },
+    {
+      "id": "shader-glass-front-vertex.glsl",
+      "ok": true,
+      "detail": "41 lines"
+    },
+    {
+      "id": "shader-glass-front-fragment-dispersion.glsl",
+      "ok": true,
+      "detail": "231 lines"
+    },
+    {
+      "id": "shader-glass-front-fragment-simple.glsl",
+      "ok": true,
+      "detail": "359 lines"
+    },
+    {
+      "id": "teal-color-triplet-in-bundle",
+      "ok": true,
+      "detail": {
+        "color": "#12c48a",
+        "peaksColor": "#6ee7b7",
+        "fringeColor": "#047857"
+      }
+    }
+  ],
+  "failures": [],
+  "pass": true,
+  "publicSyncMatch": true,
+  "publicSync": [
+    {
+      "rel": "MANIFEST.json",
+      "ok": true,
+      "bytes": 18516
+    },
+    {
+      "rel": "VALIDATION.json",
+      "ok": true,
+      "bytes": 1082
+    },
+    {
+      "rel": "glass/colors.json",
+      "ok": true,
+      "bytes": 261
+    },
+    {
+      "rel": "glass/defaults.json",
+      "ok": true,
+      "bytes": 506
+    },
+    {
+      "rel": "glass/mesh-names.json",
+      "ok": true,
+      "bytes": 349
+    },
+    {
+      "rel": "assets/models/v20.glb",
+      "ok": true,
+      "bytes": 4354860
+    },
+    {
+      "rel": "assets/models/feather.glb",
+      "ok": true,
+      "bytes": 6652
+    },
+    {
+      "rel": "assets/timelines/cam.glb",
+      "ok": true,
+      "bytes": 235160
+    },
+    {
+      "rel": "assets/timelines/cam-mob.glb",
+      "ok": true,
+      "bytes": 219844
+    },
+    {
+      "rel": "assets/textures/icen.jpg",
+      "ok": true,
+      "bytes": 182423
+    },
+    {
+      "rel": "assets/textures/LDR_RG01_0.png",
+      "ok": true,
+      "bytes": 17354
+    },
+    {
+      "rel": "assets/textures/noises.jpg",
+      "ok": true,
+      "bytes": 20857
+    },
+    {
+      "rel": "assets/textures/mountains.png",
+      "ok": true,
+      "bytes": 55420
+    },
+    {
+      "rel": "assets/textures/waves.jpg",
+      "ok": true,
+      "bytes": 156890
+    },
+    {
+      "rel": "assets/textures/wooden_studio_19_1k.hdr",
+      "ok": true,
+      "bytes": 1517608
+    }
+  ]
+}

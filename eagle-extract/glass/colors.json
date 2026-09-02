@@ -1,0 +1,13 @@
+{
+  "patched": {
+    "color": "#12c48a",
+    "peaksColor": "#6ee7b7",
+    "fringeColor": "#047857"
+  },
+  "originalNoomo": {
+    "color": "#ffffff",
+    "peaksColor": "#ffffff",
+    "fringeColor": "#b0b0b0"
+  },
+  "patchScript": "patches/patch-eagle-teal.mjs"
+}

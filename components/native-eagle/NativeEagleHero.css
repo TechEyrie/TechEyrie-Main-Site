@@ -1,0 +1,84 @@
+.native-eagle-page {
+  position: relative;
+  min-height: 100vh;
+  background: #e8d4f0;
+}
+
+.native-eagle-page--fill {
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.native-eagle-hero-pin {
+  position: relative;
+  width: 100%;
+}
+
+.native-eagle-page--fill .native-eagle-hero-pin {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.native-eagle-canvas-host {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.native-eagle-page--fill .native-eagle-canvas-host {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.native-eagle-canvas-host canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.native-eagle-hud {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fdebfd;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.native-eagle-hud p {
+  margin: 0;
+}
+
+.native-eagle-status {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  color: #2b2438;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(160deg, rgba(229, 222, 249, 0.92), rgba(247, 236, 255, 0.88));
+  pointer-events: none;
+}
+
+.native-eagle-status--error {
+  color: #7a1f2b;
+  background: linear-gradient(160deg, rgba(255, 236, 238, 0.95), rgba(255, 248, 248, 0.9));
+}

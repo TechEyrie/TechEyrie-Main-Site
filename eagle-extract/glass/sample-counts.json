@@ -1,0 +1,6 @@
+{
+  "lowFrontSamplesCount": 5,
+  "frontSamplesCount": 12,
+  "backSamplesCount": 5,
+  "hyperSamplesCount": 16
+}

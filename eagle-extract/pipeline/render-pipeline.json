@@ -1,0 +1,27 @@
+{
+  "dualPass": [
+    "Pass 1: scene without glass → sceneRT (Post.map)",
+    "Pass 2: GlassBack samples sceneRT → backRT (Post.backMap)",
+    "Pass 3: GlassFront samples backRT → screen/finalRT"
+  ],
+  "perMeshRender": "backRT pass with backMaterial, then sceneRT pass with frontMaterial (nk render hook)",
+  "postStack": [
+    "input texture",
+    "UnrealBloomPass",
+    "SMAAPass",
+    "LinearTosRGB / OutputPass"
+  ],
+  "compositing": {
+    "webglClearLavender": {
+      "hex": "#E5DEF9",
+      "int": 15064825
+    },
+    "webglClearEagle2": {
+      "hex": "#162d24",
+      "int": 1453348
+    },
+    "cssStage": "#ffffff",
+    "canvasBlendMode": "darken",
+    "clearAlphaProduction": 0
+  }
+}

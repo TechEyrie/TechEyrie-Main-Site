@@ -10,7 +10,21 @@
     "setup:eagle-project": "node scripts/setup-eagle-project.mjs",
     "setup:eagle-project-2": "node scripts/setup-eagle-project-2.mjs",
     "setup:eagle-project-3": "node scripts/setup-eagle-project-3.mjs",
-    "setup:eagle-project-4": "node scripts/setup-eagle-project-4.mjs"
+    "setup:eagle-project-4": "node scripts/setup-eagle-project-4.mjs",
+    "validate:phase0": "node scripts/phase0-validate.mjs",
+    "validate:phase1": "node scripts/phase1-validate.mjs",
+    "validate:phase2": "node scripts/phase2-validate.mjs",
+    "validate:phase3": "node scripts/phase3-validate.mjs",
+    "validate:phase4": "node scripts/phase4-validate.mjs",
+    "validate:phase5": "node scripts/phase5-validate.mjs",
+    "validate:phase6": "node scripts/phase6-validate.mjs",
+    "validate:phase7": "node scripts/phase7-validate.mjs",
+    "validate:phase8": "node scripts/phase8-validate.mjs",
+    "validate:phase9": "node scripts/phase9-validate.mjs",
+    "validate:phase10": "node scripts/phase10-validate.mjs",
+    "extract:eagle": "node scripts/extract-eagle-reference.mjs",
+    "validate:eagle-extract": "node scripts/extract-eagle-reference.mjs --validate",
+    "generate:glass-shaders": "node scripts/generate-glass-back-shaders.mjs && node scripts/generate-glass-front-shaders.mjs"
   },
   "dependencies": {
     "@firecms/neat": "^1.0.1",
