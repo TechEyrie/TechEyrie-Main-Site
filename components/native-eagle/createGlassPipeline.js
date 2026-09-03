@@ -32,6 +32,10 @@ export function createGlassPipeline({
   glassUniformOverrides = null,
   glassColorOpts = null,
   refractionSpotLayer = null,
+  /** Keep a solid color for refraction RTs, then drop it on the final pass. */
+  transparentFinal = false,
+  refractionBackground = null,
+  refractionBackgroundIntensity = 1,
 } = {}) {
   const glassMeshes = [];
   birdRoot.traverse((obj) => {
@@ -117,7 +121,23 @@ export function createGlassPipeline({
       camera.layers.enable(spotLayer);
     }
 
+    const prevClear = new THREE.Color();
+    renderer.getClearColor(prevClear);
+    const prevAlpha = renderer.getClearAlpha();
+    const savedBg = scene.background;
+    const savedBgIntensity = scene.backgroundIntensity;
+
     // Pass 1 — scene without glass → sceneRT (Post.map)
+    if (refractionBackground) {
+      scene.background = refractionBackground;
+      if (scene.backgroundIntensity != null) {
+        scene.backgroundIntensity = refractionBackgroundIntensity;
+      }
+    }
+    renderer.setClearColor(
+      scene.background?.isColor ? scene.background : 0x000000,
+      scene.background?.isColor ? 1 : 1,
+    );
     setGlassVisible(false);
     renderer.setRenderTarget(sceneRT);
     renderer.clear();
@@ -145,10 +165,19 @@ export function createGlassPipeline({
     // Pass 3 — full scene + glass fronts → finalRT or screen
     setGlassVisible(true);
     applyFrontMaterials();
+    if (transparentFinal) {
+      scene.background = null;
+      renderer.setClearColor(0x000000, 0);
+    }
     renderer.setRenderTarget(outputToFinalRT ? finalRT : null);
     renderer.clear();
     renderer.render(scene, camera);
     renderer.setRenderTarget(null);
+    scene.background = savedBg;
+    if (scene.backgroundIntensity != null) {
+      scene.backgroundIntensity = savedBgIntensity;
+    }
+    renderer.setClearColor(prevClear, prevAlpha);
   }
 
   function dispose() {

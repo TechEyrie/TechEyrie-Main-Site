@@ -36,8 +36,50 @@ export const EAGLE2_GLASS_UNIFORM_OVERRIDES = {
   maxColorValue: 18,
 };
 
-/** @deprecated use dev timeline nodes + EAGLE2 defaults */
-export const EAGLE_EXTRACT_GLASS_OVERRIDES = null;
+/**
+ * Reference eagle-project-2 crystalHovers[0] — the exact hero glass state.
+ * Extracted from the reference bundle (CbdjwYMp.js crystalHovers array).
+ * Used by eagle-extract-test3 for ditto-copy parity.
+ */
+export const EAGLE2_CRYSTAL_HOVER_0_OVERRIDES = {
+  resetDistances: 0.33,
+  distancesFactor: 22.22,
+  iorStart: 1.3,
+  iorDelta: 0.33,
+  uvShiftFactor: 1.8,
+  envReflection: 0.22,
+  envRefraction: 0.72,
+  reflectionIridescence: 0.16,
+  refractionIridescence: 0.95,
+  convexityFactor: 0.72,
+  concavityFactor: 0.52,
+  peaksFactor: 0.84,
+  fringeCurve: 3.23,
+  fringeMix: 0.83,
+  colorBoost: 0.04,
+  colorFactor: 2.58,
+  colorCurve: 1.37,
+  colorCurveR: 1,
+  colorCurveG: 1.11,
+  colorCurveB: 1.11,
+  maxColorValue: 50,
+  decayFactor: 250,
+};
+
+/**
+ * eagle-extract-test3 — keep hero timeline geometry, lift luminance to match
+ * the reference embed's bright teal glass without crystal-hover distances.
+ */
+export const TEST3_GLASS_OVERRIDES = {
+  colorFactor: 1.55,
+  colorBoost: 1.15,
+  envRefraction: 0.88,
+  uvShiftFactor: 1.85,
+  refractionIridescence: 0.45,
+  colorCurve: 0.92,
+  colorCurveG: 0.9,
+  colorCurveB: 0.88,
+};
 
 export const GLASS_FRINGE_COLOR_HEX = "#047857";
 

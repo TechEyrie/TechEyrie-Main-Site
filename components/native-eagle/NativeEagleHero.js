@@ -40,6 +40,8 @@ export default function NativeEagleHero({
   assetPaths = null,
   /** Glass color triplet { color, peaksColor, fringeColor } */
   glassColors = null,
+  /** Explicit glass uniform overrides object — overrides auto eagle2 overrides. */
+  glassUniformOverrides = null,
 }) {
   const pinRef = useRef(null);
   const canvasHostRef = useRef(null);
@@ -92,6 +94,7 @@ export default function NativeEagleHero({
       assetPaths,
       glassColors,
       glassDispersion,
+      glassUniformOverrides,
     })
       .then((api) => {
         if (cancelled || ac.signal.aborted) {
@@ -156,6 +159,7 @@ export default function NativeEagleHero({
     assetPaths,
     glassColors,
     glassDispersion,
+    glassUniformOverrides,
   ]);
 
   useEffect(() => {

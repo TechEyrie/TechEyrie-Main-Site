@@ -183,6 +183,8 @@ export async function createEnvironment({
   hideWater = false,
   addRefractionSpots = false,
   textureUrls = {},
+  /** Leave scene.background null so the WebGL canvas stays transparent (clearAlpha=0). */
+  transparentBackground = false,
 } = {}) {
   const hdrUrl = textureUrls.hdr ?? HDR_ENV;
   const mountainsUrl = textureUrls.mountains ?? MOUNTAINS_TEX;
@@ -203,7 +205,7 @@ export async function createEnvironment({
     typeof backgroundHex === "number"
       ? backgroundHex
       : parseInt(String(backgroundHex).replace("#", ""), 16);
-  scene.background = new THREE.Color(initialBg);
+  scene.background = transparentBackground ? null : new THREE.Color(initialBg);
 
   const [mountainsMap, wavesMap] = await Promise.all([
     loadTexture(mountainsUrl, {
@@ -250,6 +252,11 @@ export async function createEnvironment({
     backgroundHex: initialBg,
     reflectorY: REFLECTOR_Y,
     setBackground(hex) {
+      if (hex == null) {
+        scene.background = null;
+        this.backgroundHex = null;
+        return null;
+      }
       const color = typeof hex === "number" ? hex : parseInt(String(hex).replace("#", ""), 16);
       scene.background = new THREE.Color(color);
       this.backgroundHex = color;

@@ -47,10 +47,11 @@ import {
 } from "./glassColorSystem.js";
 import { applyGlassColorUniforms, syncGlassTimelineUniforms } from "./syncGlassTimelineUniforms.js";
 
-/** Reference eagle-project-2 bloom (threshold 1, power 1/6, radius 2/3). */
+/** Reference eagle-project-2 bloom — post.bloom.* defaults from reference bundle.
+ *  threshold=1, power=1/6≈0.167, radius=2/3≈0.667 */
 const EAGLE2_BLOOM = {
-  strength: 0.55,
-  radius: 0.72,
+  strength: 0.42,
+  radius: 0.67,
   threshold: 0.72,
 };
 
@@ -75,6 +76,8 @@ export async function initNativeEagleScene(
     glassColors = null,
     /** Use dispersion glass shaders (reference default). Simple if false. */
     glassDispersion = false,
+    /** Explicit glass uniform overrides — bypasses eagle2 auto-overrides when set. */
+    glassUniformOverrides = null,
   } = {},
 ) {
   // Let React Strict Mode abort the first effect before allocating a GPU context.
@@ -86,7 +89,11 @@ export async function initNativeEagleScene(
   const isExtractAssets = Boolean(assetPaths);
   /** Extract package uses dev.glb hero timeline — overrides would clobber maxColorValue/envReflection. */
   const eagle2Overrides =
-    isEagle2 && !isExtractAssets ? EAGLE2_GLASS_UNIFORM_OVERRIDES : null;
+    glassUniformOverrides != null
+      ? glassUniformOverrides
+      : isEagle2 && !isExtractAssets
+        ? EAGLE2_GLASS_UNIFORM_OVERRIDES
+        : null;
   const glassColorState = {
     colors: normalizeGlassColors(glassColors ?? GLASS_COLORS),
     fringeColor: normalizeGlassColors(glassColors ?? GLASS_COLORS).fringeColor,
@@ -157,11 +164,14 @@ export async function initNativeEagleScene(
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
-    alpha: false,
-    preserveDrawingBuffer: isEagle2,
+    alpha: isExtractAssets,
+    preserveDrawingBuffer: isEagle2 || isExtractAssets,
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
+  if (isExtractAssets) {
+    renderer.setClearColor(0x000000, 0);
+  }
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = isEagle2 || isExtractAssets ? 1.15 : 1;
@@ -678,7 +688,7 @@ export async function initNativeEagleScene(
         shouldBeSorted: true,
         glassTextures,
         useDispersion: Boolean(glassDispersion),
-        tealLift: isEagle2 || isExtractAssets,
+        tealLift: isEagle2 && !isExtractAssets,
         debugSolidColor,
       });
       if (result.tangentFixed) state.tangentFixedCount += 1;
@@ -771,6 +781,7 @@ export async function initNativeEagleScene(
       hideWater: isEagle2 || isExtractAssets,
       addRefractionSpots: false,
       textureUrls: textureUrls ?? undefined,
+      transparentBackground: false,
     });
     if (isAborted()) {
       disposeInstance();
@@ -803,6 +814,11 @@ export async function initNativeEagleScene(
       glassUniformOverrides: eagle2Overrides,
       glassColorOpts: isEagle2 || isExtractAssets ? glassColorState : null,
       refractionSpotLayer: environment.refractionSpotLayer ?? null,
+      transparentFinal: isExtractAssets,
+      refractionBackground: isExtractAssets
+        ? (environment.equirectEnv ?? new THREE.Color(startBg))
+        : null,
+      refractionBackgroundIntensity: isExtractAssets ? 0.28 : 1,
     });
     glassPipeline.resize(container.clientWidth, container.clientHeight);
     applyGlassColorUniforms(
@@ -817,7 +833,7 @@ export async function initNativeEagleScene(
       renderer,
       width: container.clientWidth,
       height: container.clientHeight,
-      bloom: isEagle2 ? EAGLE2_BLOOM : DEFAULT_BLOOM,
+      bloom: isEagle2 || isExtractAssets ? EAGLE2_BLOOM : DEFAULT_BLOOM,
     });
     state.postComposerActive = true;
     state.smaaEnabled = true;
