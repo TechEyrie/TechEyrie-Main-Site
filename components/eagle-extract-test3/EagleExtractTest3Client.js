@@ -220,7 +220,7 @@ export default function EagleExtractTest3Client() {
         <div>
           <h1>Eagle Extract — Parity Refinement (test3)</h1>
           <p>
-            Ditto-copy parity: transparent final pass over white, HDR refraction at 0.28
+            Visual parity target: transparent final pass over white, HDR refraction at 0.28
             intensity, timeline glass + brightness/chroma lift (colorFactor 1.55,
             colorBoost 1.15, envRefraction 0.88).
           </p>
@@ -238,7 +238,7 @@ export default function EagleExtractTest3Client() {
         <h2>Parity compare — reference vs native</h2>
         <p className="eagle-extract-test3__hint">
           Reference loads <code>{EAGLE2_REFERENCE_SRC}</code> on a white stage (clearAlpha=0,
-          transparent canvas). Native uses alpha=true + transparent background for ditto-copy match.
+          transparent canvas). Native uses alpha=true + transparent background for matching compositing.
         </p>
 
         <div className="eagle-extract-test3__parity-toolbar">
