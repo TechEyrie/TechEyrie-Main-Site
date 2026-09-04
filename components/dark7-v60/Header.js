@@ -6,6 +6,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import QuoteDrawer from "./QuoteDrawer";
 import { getDark7V60ScrollTop } from "./lenisScrollTrigger";
+import { validateQuoteForm } from "../../src/lib/quoteForm.js";
 
 const navItems = [
   { label: "Services", hasDropdown: true, type: "mega", href: "/services1" },
@@ -83,14 +84,79 @@ const EXPERTISE_ITEMS = [
 
 // Contact Form Popup Component
 function ContactPopup({ isOpen, onClose, type }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle");
+  const [serverError, setServerError] = useState("");
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setName("");
+    setEmail("");
+    setMessage("");
+    setWebsite("");
+    setErrors({});
+    setStatus("idle");
+    setServerError("");
+  }, [isOpen, type]);
+
   if (!isOpen) return null;
+
+  const fieldClass = (hasError) =>
+    `w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px] ${
+      hasError ? "border-red-500" : "border-gray-300"
+    }`;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setServerError("");
+    setStatus("submitting");
+
+    const validated = validateQuoteForm({ type, name, email, message, website });
+    if (!validated.ok) {
+      setErrors(validated.errors);
+      setStatus("idle");
+      return;
+    }
+
+    setErrors({});
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(validated.data),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
+        if (data.errors) setErrors(data.errors);
+        setServerError(data.error || "Failed to send message. Please try again.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
+      setServerError("Network error. Please try again.");
+      setStatus("error");
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
       <div className="dark7-quote-popup bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative">
         <button
+          type="button"
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
+          aria-label="Close"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
@@ -111,47 +177,106 @@ function ContactPopup({ isOpen, onClose, type }) {
             : "Tell us about your requirements"}
         </p>
 
-        <form className="space-y-4">
-          <div>
-            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
-              placeholder="Your name"
-            />
+        {status === "success" ? (
+          <div className="space-y-4">
+            <p className="font-merriweather text-[14px] text-[#013825]">
+              Thanks — your message was sent. We&apos;ll get back to you soon.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors"
+            >
+              Close
+            </button>
           </div>
+        ) : (
+          <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+            <div
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
+            >
+              <label>
+                Website
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </label>
+            </div>
 
-          <div>
-            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
-              placeholder="your@email.com"
-            />
-          </div>
+            <div>
+              <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={fieldClass(Boolean(errors.name))}
+                placeholder="Your name"
+                disabled={status === "submitting"}
+              />
+              {errors.name ? (
+                <p className="mt-1 font-merriweather text-[12px] text-red-600">{errors.name}</p>
+              ) : null}
+            </div>
 
-          <div>
-            <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
-              Message
-            </label>
-            <textarea
-              rows="4"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-merriweather text-[14px]"
-              placeholder="Tell us about your project..."
-            />
-          </div>
+            <div>
+              <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={fieldClass(Boolean(errors.email))}
+                placeholder="your@email.com"
+                disabled={status === "submitting"}
+              />
+              {errors.email ? (
+                <p className="mt-1 font-merriweather text-[12px] text-red-600">{errors.email}</p>
+              ) : null}
+            </div>
 
-          <button
-            type="submit"
-            className="w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors"
-          >
-            Submit
-          </button>
-        </form>
+            <div>
+              <label className="block font-merriweather text-[13px] font-semibold tracking-[0.16em] uppercase text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows="4"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className={fieldClass(Boolean(errors.message))}
+                placeholder="Tell us about your project..."
+                disabled={status === "submitting"}
+              />
+              {errors.message ? (
+                <p className="mt-1 font-merriweather text-[12px] text-red-600">{errors.message}</p>
+              ) : null}
+            </div>
+
+            {serverError ? (
+              <p className="font-merriweather text-[13px] text-red-600">{serverError}</p>
+            ) : null}
+
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {status === "submitting" ? "Sending…" : "Submit"}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

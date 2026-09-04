@@ -13,15 +13,18 @@ const INITIAL_FORM = {
   phone: "",
   company: "",
   project: "",
+  website: "",
 };
 
 function validateForm(form) {
   const errors = {};
   if (!form.fullName.trim()) errors.fullName = "Required";
+  else if (form.fullName.trim().length < 2) errors.fullName = "Name must be at least 2 characters";
   if (!form.email.trim()) errors.email = "Required";
   else if (!/\S+@\S+\.\S+/.test(form.email)) errors.email = "Invalid email address";
   if (!form.company.trim()) errors.company = "Required";
   if (!form.project.trim()) errors.project = "Required";
+  else if (form.project.trim().length < 10) errors.project = "Please provide a bit more detail";
   return errors;
 }
 
@@ -84,6 +87,8 @@ export default function QuoteDrawer({ open, onClose }) {
   const [focused, setFocused] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   useEffect(() => {
     setMounted(true);
@@ -95,6 +100,8 @@ export default function QuoteDrawer({ open, onClose }) {
         setForm(INITIAL_FORM);
         setErrors({});
         setSubmitted(false);
+        setSubmitting(false);
+        setServerError("");
         setFocused(null);
       }, 500);
       return () => clearTimeout(timer);
@@ -176,15 +183,54 @@ export default function QuoteDrawer({ open, onClose }) {
     [errors],
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setServerError("");
     const nextErrors = validateForm(form);
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
       return;
     }
     setErrors({});
-    setSubmitted(true);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "quote",
+          name: form.fullName.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || undefined,
+          company: form.company.trim(),
+          message: form.project.trim(),
+          website: form.website,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
+        if (data.errors) {
+          const mapped = {};
+          if (data.errors.name) mapped.fullName = data.errors.name;
+          if (data.errors.email) mapped.email = data.errors.email;
+          if (data.errors.company) mapped.company = data.errors.company;
+          if (data.errors.message) mapped.project = data.errors.message;
+          if (data.errors.phone) mapped.phone = data.errors.phone;
+          setErrors(mapped);
+        }
+        setServerError(data.error || "Failed to send message. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setSubmitting(false);
+    } catch {
+      setServerError("Network error. Please try again.");
+      setSubmitting(false);
+    }
   };
 
   if (!mounted) return null;
@@ -317,6 +363,22 @@ export default function QuoteDrawer({ open, onClose }) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                <div
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
+                >
+                  <label>
+                    Website
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={handleChange("website")}
+                    />
+                  </label>
+                </div>
+
                 <div>
                   <label style={labelStyle}>
                     Full name <span style={{ color: "#c8f04a" }}>*</span>
@@ -399,8 +461,11 @@ export default function QuoteDrawer({ open, onClose }) {
                   {errors.project && <span style={errorStyle}>{errors.project}</span>}
                 </div>
 
+                {serverError ? <span style={errorStyle}>{serverError}</span> : null}
+
                 <button
                   type="submit"
+                  disabled={submitting}
                   style={{
                     marginTop: "6px",
                     width: "100%",
@@ -414,7 +479,8 @@ export default function QuoteDrawer({ open, onClose }) {
                     fontFamily: "Inter, Arial, sans-serif",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    cursor: "pointer",
+                    cursor: submitting ? "not-allowed" : "pointer",
+                    opacity: submitting ? 0.7 : 1,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -423,6 +489,7 @@ export default function QuoteDrawer({ open, onClose }) {
                     boxShadow: "0 4px 20px rgba(200,240,74,0.2)",
                   }}
                   onMouseEnter={(event) => {
+                    if (submitting) return;
                     event.currentTarget.style.background = "#d8ff5a";
                     event.currentTarget.style.transform = "translateY(-2px)";
                     event.currentTarget.style.boxShadow = "0 8px 28px rgba(200,240,74,0.32)";
@@ -433,13 +500,16 @@ export default function QuoteDrawer({ open, onClose }) {
                     event.currentTarget.style.boxShadow = "0 4px 20px rgba(200,240,74,0.2)";
                   }}
                   onMouseDown={(event) => {
+                    if (submitting) return;
                     event.currentTarget.style.transform = "translateY(1px)";
                   }}
                   onMouseUp={(event) => {
+                    if (submitting) return;
                     event.currentTarget.style.transform = "translateY(-2px)";
                   }}
                 >
-                  Send message
+                  {submitting ? "Sending…" : "Send message"}
+                  {!submitting ? (
                   <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                     <path
                       d="M3 9h12M11 5l4 4-4 4"
@@ -449,6 +519,7 @@ export default function QuoteDrawer({ open, onClose }) {
                       strokeLinejoin="round"
                     />
                   </svg>
+                  ) : null}
                 </button>
 
                 <p

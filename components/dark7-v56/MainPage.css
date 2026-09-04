@@ -458,7 +458,9 @@ body {
 }
 
 .dark2-page .dark7-quote-popup button[type="submit"],
-.dark2-page .dark7-quote-popup button[type="submit"] * {
+.dark2-page .dark7-quote-popup button[type="submit"] *,
+.dark2-page .dark7-quote-popup .dark7-quote-primary-btn,
+.dark2-page .dark7-quote-popup .dark7-quote-primary-btn * {
   color: #ffffff !important;
 }
 
