@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { dark7MainSurfaceStyle } from "../dark7/dark7PageSurface";
 import { getExpertiseDetailData } from "./expertiseDetailData";
-import "../services1Detail/services1DetailCta.css";
 import "./expertiseDetailText.css";
 
 if (typeof window !== "undefined") {
@@ -85,7 +84,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
   if (!data) return null;
 
   const cardTheme = isDark
-    ? "bg-[#17382e]/80 border border-[#74F5A1]/20 text-[#f3f3f3]"
+    ? "bg-[#122a21]/90 border border-[#e0d1b6]/15 text-[#e0d1b6]"
     : "bg-white border border-[#d8d3c8] text-[#222]";
 
   return (
@@ -120,7 +119,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
               <h1 className="exp-light font-italiana tracking-[-0.03em] leading-[1.02] text-[34px] sm:text-[44px] md:text-[58px] lg:text-[72px] xl:text-[88px]">
                 {data.title}
               </h1>
-              <h2 className="exp-mint font-playfair italic text-[22px] md:text-[30px] leading-[1.35] mt-7">
+              <h2 className="exp-light font-playfair italic text-[22px] md:text-[30px] leading-[1.35] mt-7">
                 {data.headline}
               </h2>
               <p className="exp-light font-playfair text-[17px] md:text-[24px] leading-relaxed mt-6 max-w-3xl">
@@ -130,7 +129,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                 {data.keywords.map((kw) => (
                   <span
                     key={kw}
-                    className="exp-chip font-merriweather text-[11px] md:text-[12px] px-3 py-1.5 rounded-full border border-[#74F5A1]/35 bg-[#0d241d]/65"
+                    className="exp-chip font-merriweather text-[11px] md:text-[12px] px-3 py-1.5 rounded-full border border-[#e0d1b6]/25 bg-[#162d24]/65"
                   >
                     {kw}
                   </span>
@@ -150,7 +149,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
 
             <div className="d7-reveal relative h-[340px] md:h-[460px] rounded-[20px] overflow-hidden shadow-2xl">
               <Image src={data.heroImage} alt={data.title} fill className="object-cover" unoptimized />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d251d]/85 via-[#0d251d]/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#162d24]/85 via-[#162d24]/10 to-transparent" />
             </div>
           </div>
         </div>
@@ -160,11 +159,11 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
         <div className="max-w-[1700px] mx-auto grid lg:grid-cols-2 gap-6">
           <article className={`d7-reveal rounded-2xl p-7 md:p-9 ${cardTheme}`}>
             <h3 className="font-italiana text-[34px] md:text-[48px] leading-tight mb-4">Problem Statement</h3>
-            <p className={`font-merriweather text-[15px] md:text-[16px] leading-[1.9] ${isDark ? "text-white/85" : "text-[#3f3a34]"}`}>{data.problemStatement}</p>
+            <p className={`font-merriweather text-[15px] md:text-[16px] leading-[1.9] ${isDark ? "exp-body" : "text-[#3f3a34]"}`}>{data.problemStatement}</p>
           </article>
           <article className={`d7-reveal rounded-2xl p-7 md:p-9 ${cardTheme}`}>
             <h3 className="font-italiana text-[34px] md:text-[48px] leading-tight mb-4">What We Do</h3>
-            <p className={`font-merriweather text-[15px] md:text-[16px] leading-[1.9] ${isDark ? "text-white/85" : "text-[#3f3a34]"}`}>{data.whatWeDo}</p>
+            <p className={`font-merriweather text-[15px] md:text-[16px] leading-[1.9] ${isDark ? "exp-body" : "text-[#3f3a34]"}`}>{data.whatWeDo}</p>
           </article>
         </div>
       </section>
@@ -183,18 +182,18 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                 key={item}
                 className={`d7-reveal group relative rounded-3xl p-8 md:p-10 lg:p-12 min-h-[180px] md:min-h-[200px] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(116,245,161,0.24)] ${cardTheme}`}
               >
-                <div className="absolute top-0 left-0 h-1 md:h-[5px] w-full bg-gradient-to-r from-[#74F5A1] via-[#9dffbe] to-transparent opacity-90" />
+                <div className="absolute top-0 left-0 h-1 md:h-[5px] w-full bg-gradient-to-r from-[#74F5A1] via-[#5FE08D] to-transparent opacity-90" />
                 <div className="absolute -right-16 -top-16 h-40 w-40 md:h-48 md:w-48 rounded-full bg-[#74F5A1]/10 blur-3xl group-hover:bg-[#74F5A1]/28 transition-all duration-300" />
 
                 <div className="flex flex-col sm:flex-row sm:items-start gap-6 md:gap-8">
                   <div className="relative shrink-0">
-                    <div className="inline-flex h-14 w-14 md:h-[4.25rem] md:w-[4.25rem] lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-[#0a1e18] border-[3px] border-[#74F5A1] exp-mint-soft font-extrabold text-xl md:text-2xl lg:text-3xl shadow-[0_0_28px_rgba(116,245,161,0.4)]">
+                    <div className="inline-flex h-14 w-14 md:h-[4.25rem] md:w-[4.25rem] lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-[#101e27] border-[3px] border-[#e0d1b6] exp-light font-extrabold text-xl md:text-2xl lg:text-3xl">
                       {String(idx + 1).padStart(2, "0")}
                     </div>
-                    <div className="absolute -inset-1.5 rounded-2xl border border-[#74F5A1]/35 pointer-events-none" />
+                    <div className="absolute -inset-1.5 rounded-2xl border border-[#e0d1b6]/25 pointer-events-none" />
                   </div>
 
-                  <p className={`font-merriweather text-[17px] md:text-[19px] lg:text-[21px] leading-[1.75] md:leading-[1.8] ${isDark ? "text-white/92" : "text-[#2d2a26]"}`}>
+                  <p className={`font-merriweather text-[17px] md:text-[19px] lg:text-[21px] leading-[1.75] md:leading-[1.8] ${isDark ? "exp-body" : "text-[#2d2a26]"}`}>
                     {item}
                   </p>
                 </div>
@@ -208,7 +207,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
         <div className="max-w-[1700px] mx-auto">
           <div className="d7-reveal mb-12 md:mb-16 flex items-end justify-between gap-4">
             <h3 className={`font-italiana text-[42px] md:text-[72px] lg:text-[86px] leading-[0.95] exp-light`}>Our Process</h3>
-            <p className={`hidden md:block font-merriweather text-[14px] lg:text-[16px] max-w-[360px] text-right ${isDark ? "text-white/75" : "text-[#3f3a34]"}`}>
+            <p className={`hidden md:block font-merriweather text-[14px] lg:text-[16px] max-w-[360px] text-right ${isDark ? "exp-muted" : "text-[#3f3a34]"}`}>
               A clear execution path from strategy to measurable outcomes.
             </p>
           </div>
@@ -222,15 +221,15 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                   key={step.step}
                   className={`d7-reveal relative rounded-3xl p-7 lg:p-8 pt-6 min-h-[320px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_22px_48px_rgba(116,245,161,0.22)] ${cardTheme}`}
                 >
-                  <div className="absolute top-0 left-0 right-0 h-[4px] rounded-t-3xl bg-gradient-to-r from-[#74F5A1] via-[#9dffbe] to-transparent" />
+                  <div className="absolute top-0 left-0 right-0 h-[4px] rounded-t-3xl bg-gradient-to-r from-[#74F5A1] via-[#5FE08D] to-transparent" />
                   <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#74F5A1]/12 blur-2xl" />
 
-                  <div className="w-[68px] h-[68px] rounded-full bg-[#0a1e18] border-[3px] border-[#74F5A1] exp-mint-soft text-[24px] font-extrabold flex items-center justify-center mb-5 shadow-[0_0_24px_rgba(116,245,161,0.35)]">
+                  <div className="w-[68px] h-[68px] rounded-full bg-[#101e27] border-[3px] border-[#e0d1b6] exp-light text-[24px] font-extrabold flex items-center justify-center mb-5">
                     {step.step}
                   </div>
                   <p className="font-merriweather text-[12px] tracking-[0.17em] uppercase exp-mint mb-3">Phase {step.step}</p>
                   <h4 className="font-italiana text-[34px] lg:text-[40px] mb-3 leading-[1.02]">{step.title}</h4>
-                  <p className={`font-merriweather text-[15px] lg:text-[16px] leading-[1.85] ${isDark ? "text-white/88" : "text-[#4a453f]"}`}>{step.description}</p>
+                  <p className={`font-merriweather text-[15px] lg:text-[16px] leading-[1.85] ${isDark ? "exp-body" : "text-[#4a453f]"}`}>{step.description}</p>
                 </div>
               ))}
             </div>
@@ -240,10 +239,10 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
             <div className="absolute left-[14px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-[#74F5A1] via-[#74F5A1]/50 to-[#74F5A1]/10" />
             {data.process.map((step) => (
               <div key={step.step} className={`d7-reveal relative rounded-2xl p-5 mb-4 ${cardTheme}`}>
-                <div className="absolute -left-[30px] top-6 w-5 h-5 rounded-full bg-[#0a1e18] border-2 border-[#74F5A1]" />
+                <div className="absolute -left-[30px] top-6 w-5 h-5 rounded-full bg-[#101e27] border-2 border-[#e0d1b6]" />
                 <p className="font-merriweather text-xs tracking-[0.16em] uppercase exp-mint mb-2">Step {step.step}</p>
                 <h4 className="font-italiana text-[30px] mb-2 leading-tight">{step.title}</h4>
-                <p className={`font-merriweather text-[14px] leading-[1.8] ${isDark ? "text-white/85" : "text-[#4a453f]"}`}>{step.description}</p>
+                <p className={`font-merriweather text-[14px] leading-[1.8] ${isDark ? "exp-body" : "text-[#4a453f]"}`}>{step.description}</p>
               </div>
             ))}
           </div>
@@ -262,7 +261,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                 Technologies &amp; Tools
               </h3>
             </div>
-            <p className={`font-merriweather text-[15px] md:text-[17px] leading-relaxed max-w-xl lg:text-right ${isDark ? "text-white/78" : "text-[#3f3a34]"}`}>
+            <p className={`font-merriweather text-[15px] md:text-[17px] leading-relaxed max-w-xl lg:text-right ${isDark ? "exp-muted" : "text-[#3f3a34]"}`}>
               {data.techIntro ||
                 "The production stack we use to build, launch, and operate systems that hold up under real load."}
             </p>
@@ -271,7 +270,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
           <div
             className={`d7-reveal rounded-[28px] md:rounded-[36px] border p-6 md:p-10 lg:p-12 relative overflow-hidden ${
               isDark
-                ? "border-[#74F5A1]/25 bg-[#0c1f19]/75 shadow-[0_0_0_1px_rgba(116,245,161,0.06),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                ? "border-[#e0d1b6]/20 bg-[#162d24]/75 shadow-[0_0_0_1px_rgba(116,245,161,0.06),inset_0_1px_0_rgba(255,255,255,0.04)]"
                 : "border-[#1f614d]/15 bg-white/80 shadow-lg"
             }`}
           >
@@ -303,16 +302,16 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                             key={tech.name}
                             className={`d7-reveal group relative rounded-2xl md:rounded-3xl p-5 md:p-7 min-h-[140px] md:min-h-[168px] flex flex-col items-center justify-center text-center gap-3 md:gap-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_48px_rgba(116,245,161,0.2)] ${cardTheme}`}
                           >
-                            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl md:rounded-t-3xl bg-gradient-to-r from-[#74F5A1] via-[#9dffbe] to-transparent opacity-80" />
+                            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl md:rounded-t-3xl bg-gradient-to-r from-[#74F5A1] via-[#5FE08D] to-transparent opacity-80" />
                             <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#74F5A1]/10 blur-2xl group-hover:bg-[#74F5A1]/22 transition-all duration-300" />
                             <div
                               className={`relative w-[72px] h-[72px] md:w-[88px] md:h-[88px] rounded-2xl flex items-center justify-center ring-2 ring-[#74F5A1]/25 shadow-[0_8px_32px_rgba(0,0,0,0.2)] ${
-                                isDark ? "bg-[#0a1814]/90" : "bg-[#f8f5ef]"
+                                isDark ? "bg-[#122a21]/90" : "bg-[#f8f5ef]"
                               }`}
                             >
-                              <Image src={tech.logo} alt={tech.name} width={44} height={44} className="object-contain" unoptimized />
+                              <Image src={tech.logo} alt={tech.name} width={44} height={44} className="exp-tech-logo object-contain" unoptimized />
                             </div>
-                            <span className={`font-merriweather text-[15px] md:text-[17px] font-semibold ${isDark ? "text-white" : "text-[#1a1a1a]"}`}>
+                            <span className={`font-merriweather text-[15px] md:text-[17px] font-semibold ${isDark ? "exp-light" : "text-[#1a1a1a]"}`}>
                               {tech.name}
                             </span>
                             <span className={`text-[10px] md:text-[11px] uppercase tracking-[0.14em] ${isDark ? "exp-mint" : "text-[#245241]"}`}>
@@ -337,12 +336,12 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                               <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#005160]/15 blur-2xl group-hover:bg-[#005160]/28 transition-all duration-300" />
                               <div
                                 className={`relative w-[72px] h-[72px] md:w-[88px] md:h-[88px] rounded-2xl flex items-center justify-center ring-2 ring-[#005160]/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] ${
-                                  isDark ? "bg-[#0a1418]/90" : "bg-[#eef6f8]"
+                                  isDark ? "bg-[#101e27]/90" : "bg-[#eef6f8]"
                                 }`}
                               >
-                                <Image src={tech.logo} alt={tech.name} width={44} height={44} className="object-contain" unoptimized />
+                                <Image src={tech.logo} alt={tech.name} width={44} height={44} className="exp-tech-logo object-contain" unoptimized />
                               </div>
-                              <span className={`font-merriweather text-[15px] md:text-[17px] font-semibold ${isDark ? "text-white" : "text-[#1a1a1a]"}`}>
+                              <span className={`font-merriweather text-[15px] md:text-[17px] font-semibold ${isDark ? "exp-light" : "text-[#1a1a1a]"}`}>
                                 {tech.name}
                               </span>
                               <span className={`text-[10px] md:text-[11px] uppercase tracking-[0.14em] ${isDark ? "exp-teal" : "text-[#005160]"}`}>
@@ -367,16 +366,16 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
             <h3 className={`font-italiana text-[42px] md:text-[72px] lg:text-[84px] leading-[0.95] exp-light`}>
               Who We Build For
             </h3>
-            <p className={`font-merriweather text-[14px] md:text-[16px] max-w-[520px] md:text-right ${isDark ? "text-white/78" : "text-[#4a443d]"}`}>
+            <p className={`font-merriweather text-[14px] md:text-[16px] max-w-[520px] md:text-right ${isDark ? "exp-muted" : "text-[#4a443d]"}`}>
               Teams with high stakes, complex workflows, and a need for reliable execution.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-[58%_42%] gap-6 md:gap-8">
             <article className={`d7-reveal relative rounded-3xl p-8 md:p-10 lg:p-12 overflow-hidden flex flex-col min-h-0 ${cardTheme}`}>
-              <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#74F5A1] via-[#9dffbe] to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#74F5A1] via-[#5FE08D] to-transparent" />
               <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#74F5A1]/12 blur-3xl" />
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a1814]/55 to-transparent pointer-events-none" aria-hidden />
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#122a21]/55 to-transparent pointer-events-none" aria-hidden />
 
               <p className="font-merriweather text-[11px] md:text-[12px] uppercase tracking-[0.2em] exp-mint mb-4">
                 Primary personas
@@ -384,10 +383,10 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
               <ul className="space-y-5 md:space-y-6">
                 {data.audience.map((item, i) => (
                   <li key={item} className="flex gap-4 md:gap-5 items-start">
-                    <span className="mt-1 inline-flex h-8 w-8 md:h-10 md:w-10 shrink-0 rounded-full items-center justify-center border-2 border-[#74F5A1] exp-mint-soft font-bold text-sm md:text-base">
+                    <span className="mt-1 inline-flex h-8 w-8 md:h-10 md:w-10 shrink-0 rounded-full items-center justify-center border-2 border-[#e0d1b6] exp-light font-bold text-sm md:text-base">
                       {i + 1}
                     </span>
-                    <p className={`font-merriweather text-[16px] md:text-[19px] leading-[1.75] ${isDark ? "text-white/92" : "text-[#332f2a]"}`}>
+                    <p className={`font-merriweather text-[16px] md:text-[19px] leading-[1.75] ${isDark ? "exp-body" : "text-[#332f2a]"}`}>
                       {item}
                     </p>
                   </li>
@@ -409,10 +408,10 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                       "You are ready for weekly checkpoints, clear milestones, and measurable acceptance criteria.",
                     ].map((line) => (
                       <li key={line} className="flex gap-3 items-start">
-                        <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[#74F5A1]/20 border border-[#74F5A1]/60 flex items-center justify-center exp-mint text-xs font-bold">
+                        <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[#e0d1b6]/15 border border-[#e0d1b6]/50 flex items-center justify-center exp-light text-xs font-bold">
                           ✓
                         </span>
-                        <span className={`font-merriweather text-[14px] md:text-[16px] leading-[1.7] ${isDark ? "text-white/88" : "text-[#3a3630]"}`}>
+                        <span className={`font-merriweather text-[14px] md:text-[16px] leading-[1.7] ${isDark ? "exp-body" : "text-[#3a3630]"}`}>
                           {line}
                         </span>
                       </li>
@@ -428,7 +427,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                     {["Discovery sprint", "Architecture review", "MVP build", "Scale & hardening", "Ongoing support"].map((tag) => (
                       <span
                         key={tag}
-                        className={`font-merriweather text-[12px] md:text-[13px] px-3 py-1.5 rounded-full border ${isDark ? "border-[#74F5A1]/35 text-white/90 bg-[#0d241d]/60" : "border-[#245241]/25 text-[#1a2e26] bg-[#f4efe5]"}`}
+                        className={`font-merriweather text-[12px] md:text-[13px] px-3 py-1.5 rounded-full border ${isDark ? "border-[#e0d1b6]/25 exp-body bg-[#162d24]/60" : "border-[#245241]/25 text-[#1a2e26] bg-[#f4efe5]"}`}
                       >
                         {tag}
                       </span>
@@ -436,7 +435,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                   </div>
                 </div>
 
-                <div className={`rounded-2xl p-4 md:p-5 mt-auto border ${isDark ? "border-[#74F5A1]/20 bg-[#0d241d]/55" : "border-[#d8d1c4] bg-[#faf7f1]"}`}>
+                <div className={`rounded-2xl p-4 md:p-5 mt-auto border ${isDark ? "border-[#e0d1b6]/15 bg-[#162d24]/55" : "border-[#d8d1c4] bg-[#faf7f1]"}`}>
                   <p className={`font-playfair italic text-[15px] md:text-[17px] leading-relaxed ${isDark ? "text-[#e8e4dc]" : "text-[#2c2824]"}`}>
                     &ldquo;If your team is tired of restarting projects, we align on outcomes first — then ship the system that holds up in production.&rdquo;
                   </p>
@@ -450,19 +449,19 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
             <article className={`d7-reveal relative rounded-3xl p-8 md:p-10 overflow-hidden ${cardTheme}`}>
               <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,rgba(116,245,161,0.16),transparent_55%)]" />
               <h4 className="font-italiana text-[38px] md:text-[54px] leading-[0.95] mb-3">Impact Snapshot</h4>
-              <p className={`font-merriweather text-[14px] md:text-[15px] mb-6 ${isDark ? "text-white/80" : "text-[#514b44]"}`}>
+              <p className={`font-merriweather text-[14px] md:text-[15px] mb-6 ${isDark ? "exp-muted" : "text-[#514b44]"}`}>
                 Outcomes seen across recent delivery engagements.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
                 {data.stats.map((stat, idx) => (
-                  <div key={stat} className={`rounded-2xl p-5 md:p-6 border ${isDark ? "bg-[#0d241d]/70 border-[#74F5A1]/25" : "bg-[#f4efe5] border-[#d8d1c4]"}`}>
+                  <div key={stat} className={`rounded-2xl p-5 md:p-6 border ${isDark ? "bg-[#162d24]/70 border-[#e0d1b6]/20" : "bg-[#f4efe5] border-[#d8d1c4]"}`}>
                     <p className="font-merriweather text-[30px] md:text-[36px] font-extrabold tracking-tight exp-mint leading-none">
                       {stat.split(" ").slice(0, 1).join("")}
                     </p>
-                    <p className={`font-merriweather text-[12px] md:text-[13px] uppercase tracking-[0.14em] mt-2 ${isDark ? "text-white/75" : "text-[#5a544c]"}`}>
+                    <p className={`font-merriweather text-[12px] md:text-[13px] uppercase tracking-[0.14em] mt-2 ${isDark ? "exp-muted" : "text-[#5a544c]"}`}>
                       Metric {idx + 1}
                     </p>
-                    <p className={`font-merriweather text-[14px] md:text-[15px] mt-2 leading-[1.55] ${isDark ? "text-white/90" : "text-[#3f3a34]"}`}>
+                    <p className={`font-merriweather text-[14px] md:text-[15px] mt-2 leading-[1.55] ${isDark ? "exp-body" : "text-[#3f3a34]"}`}>
                       {stat.split(" ").slice(1).join(" ")}
                     </p>
                   </div>
@@ -477,7 +476,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
         <div className="max-w-[1700px] mx-auto">
           <div className="d7-reveal mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h3 className={`font-italiana text-[40px] md:text-[64px] leading-[0.95] exp-light`}>Case Studies</h3>
-            <p className={`font-merriweather text-[14px] md:text-[16px] max-w-[520px] md:text-right ${isDark ? "text-white/78" : "text-[#4a443d]"}`}>
+            <p className={`font-merriweather text-[14px] md:text-[16px] max-w-[520px] md:text-right ${isDark ? "exp-muted" : "text-[#4a443d]"}`}>
               Featured delivery outcomes from real-world implementations.
             </p>
           </div>
@@ -486,18 +485,18 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
             <article className={`d7-reveal relative rounded-3xl overflow-hidden min-h-[360px] md:min-h-[520px] ${cardTheme}`}>
               <Image src={data.caseStudies[0].image} alt={data.caseStudies[0].title} fill className="object-cover" unoptimized />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
-              <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0a1e18]/85 border border-[#74F5A1]/40">
+              <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#101e27]/85 border border-[#e0d1b6]/25">
                 <span className="w-2 h-2 rounded-full bg-[#74F5A1]" />
-                <span className="font-merriweather text-[11px] uppercase tracking-[0.14em] text-[#b9ffd0]">Featured Project</span>
+                <span className="font-merriweather text-[11px] uppercase tracking-[0.14em] exp-light">Featured Project</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
                 <p className="inline-block mb-4 font-merriweather text-[12px] md:text-[13px] uppercase tracking-[0.16em] exp-mint">
                   {data.caseStudies[0].outcome}
                 </p>
-                <h4 className="font-italiana text-[34px] md:text-[48px] leading-[1.02] text-white mb-3">
+                <h4 className="font-italiana text-[34px] md:text-[48px] leading-[1.02] exp-light mb-3">
                   {data.caseStudies[0].title}
                 </h4>
-                <p className="font-merriweather text-[14px] md:text-[16px] leading-[1.8] text-white/90 max-w-[620px]">
+                <p className="font-merriweather text-[14px] md:text-[16px] leading-[1.8] exp-body max-w-[620px]">
                   {data.caseStudies[0].summary}
                 </p>
               </div>
@@ -505,7 +504,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
 
             <div className="grid gap-5">
               {data.caseStudies.slice(1).map((item) => (
-                <article key={item.title} className={`d7-reveal rounded-2xl overflow-hidden border ${isDark ? "bg-[#0d241d]/75 border-[#74F5A1]/20" : "bg-[#f7f2e8] border-[#d8d1c4]"}`}>
+                <article key={item.title} className={`d7-reveal rounded-2xl overflow-hidden border ${isDark ? "bg-[#162d24]/75 border-[#e0d1b6]/15" : "bg-[#f7f2e8] border-[#d8d1c4]"}`}>
                   <div className="grid sm:grid-cols-[42%_58%] min-h-[220px]">
                     <div className="relative min-h-[220px]">
                       <Image src={item.image} alt={item.title} fill className="object-cover" unoptimized />
@@ -513,8 +512,8 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                     </div>
                     <div className="p-5 md:p-6 flex flex-col">
                       <p className="font-merriweather text-[11px] uppercase tracking-[0.14em] exp-mint mb-3">{item.outcome}</p>
-                      <h4 className={`font-italiana text-[28px] leading-[1.02] mb-2 ${isDark ? "text-white" : "text-[#1e1a17]"}`}>{item.title}</h4>
-                      <p className={`font-merriweather text-[14px] leading-[1.75] ${isDark ? "text-white/85" : "text-[#4f4942]"}`}>{item.summary}</p>
+                      <h4 className={`font-italiana text-[28px] leading-[1.02] mb-2 ${isDark ? "exp-light" : "text-[#1e1a17]"}`}>{item.title}</h4>
+                      <p className={`font-merriweather text-[14px] leading-[1.75] ${isDark ? "exp-body" : "text-[#4f4942]"}`}>{item.summary}</p>
                       <span className="mt-auto pt-4 font-merriweather text-[12px] uppercase tracking-[0.14em] exp-mint">View breakdown</span>
                     </div>
                   </div>
@@ -545,7 +544,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                     }}
                   >
                     <div ref={(el) => (faqContentRefs.current[idx] = el)}>
-                      <p className={`px-5 pb-5 font-merriweather text-[14px] leading-[1.8] ${isDark ? "text-white/85" : "text-[#4a453f]"}`}>{faq.a}</p>
+                      <p className={`px-5 pb-5 font-merriweather text-[14px] leading-[1.8] ${isDark ? "exp-body" : "text-[#4a453f]"}`}>{faq.a}</p>
                     </div>
                   </div>
                 </div>
@@ -575,7 +574,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                 </div>
                 <div className="p-5 md:p-6">
                   <p className="font-playfair text-[15px] md:text-[17px] leading-snug exp-mint line-clamp-2">{item.pageTitle}</p>
-                  <p className={`font-merriweather text-[14px] leading-[1.7] mt-2 line-clamp-2 ${isDark ? "text-white/85" : "text-[#4e4942]"}`}>{item.teaser}</p>
+                  <p className={`font-merriweather text-[14px] leading-[1.7] mt-2 line-clamp-2 ${isDark ? "exp-body" : "text-[#4e4942]"}`}>{item.teaser}</p>
                   <span className="inline-block mt-3 exp-teal font-merriweather text-[12px]">Explore expertise →</span>
                 </div>
               </Link>
@@ -592,7 +591,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
                 </div>
                 <div className="p-6 md:p-8 min-h-[120px]">
                   <h4 className="font-italiana text-[26px] leading-tight mb-3">{service.title}</h4>
-                  <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? "text-white/85" : "text-[#4e4942]"}`}>{service.description}</p>
+                  <p className={`font-merriweather text-[14px] leading-[1.7] ${isDark ? "exp-body" : "text-[#4e4942]"}`}>{service.description}</p>
                   <span className="inline-block mt-4 exp-mint font-merriweather text-sm">View Service -&gt;</span>
                 </div>
               </Link>
@@ -602,10 +601,10 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
       </section>
 
       <section className="relative z-10 px-6 md:px-10 lg:px-16 pt-10 pb-20 md:pb-24">
-        <div className="services1-detail-cta-box max-w-[1700px] mx-auto d7-reveal rounded-[24px] md:rounded-[30px] p-8 md:p-12 bg-gradient-to-r from-[#74F5A1] via-[#5FE08D] to-[#3BC972] shadow-[0_28px_80px_rgba(116,245,161,0.28)]">
-          <h3 className="services1-detail-cta-heading font-italiana text-[36px] md:text-[58px] leading-[1.1] max-w-4xl">{data.ctaHeading}</h3>
-          <p className="services1-detail-cta-sub font-playfair text-[18px] md:text-[24px] mt-4 max-w-3xl">{data.ctaSub}</p>
-          <Link href="/contact" className="services1-detail-cta-btn inline-flex mt-7 px-7 py-3 rounded-full bg-[#102b22] font-merriweather text-sm md:text-base cursor-pointer">
+        <div className="expertise-detail-cta-box max-w-[1700px] mx-auto d7-reveal rounded-[24px] md:rounded-[30px] p-8 md:p-12 bg-[#12685b] shadow-[0_28px_80px_rgba(18,104,91,0.28)]">
+          <h3 className="expertise-detail-cta-heading font-italiana text-[36px] md:text-[58px] leading-[1.1] max-w-4xl">{data.ctaHeading}</h3>
+          <p className="expertise-detail-cta-sub font-playfair text-[18px] md:text-[24px] mt-4 max-w-3xl">{data.ctaSub}</p>
+          <Link href="/contact" className="expertise-detail-cta-btn inline-flex mt-7 px-7 py-3 rounded-full bg-[#013825] font-merriweather text-sm md:text-base cursor-pointer transition-colors hover:bg-[#024d33]">
             Book a Free Consultation
           </Link>
         </div>

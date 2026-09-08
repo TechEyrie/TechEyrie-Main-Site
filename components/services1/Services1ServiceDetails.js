@@ -153,9 +153,9 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                       scroll
                       className={`s1-expertise-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 font-merriweather text-[13px] md:text-[14px] font-semibold transition-all duration-300 cursor-pointer ${
                         isDark && dark7
-                          ? "bg-[#74F5A1] hover:bg-[#9dffbe]"
+                          ? "bg-[#12685b] hover:bg-[#0d5248]"
                           : isDark
-                            ? "bg-[#74F5A1] hover:bg-[#9dffbe]"
+                            ? "bg-[#12685b] hover:bg-[#0d5248]"
                             : "bg-[#013825] text-white hover:bg-[#024d33]"
                       }`}
                     >

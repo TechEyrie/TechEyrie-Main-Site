@@ -309,10 +309,10 @@ export default function IndustriesGrid({ theme = 'light', dark7 = false }) {
 
               {/* Title + Hover Description */}
               <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <h3 className="font-italiana text-white text-[22px] sm:text-[24px] md:text-[26px] lg:text-[30px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
+                <h3 className="s2-industry-title font-italiana text-[22px] sm:text-[24px] md:text-[26px] lg:text-[30px] font-light leading-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
                   {industry.title}
                 </h3>
-                <p className="s2-industry-desc mt-3 max-h-0 overflow-hidden opacity-0 translate-y-2 transition-all duration-500 ease-out group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0 font-merriweather text-[13px] md:text-[14px] leading-relaxed text-white/90 pr-1">
+                <p className="s2-industry-desc mt-3 max-h-0 overflow-hidden opacity-0 translate-y-2 transition-all duration-500 ease-out group-hover:max-h-32 group-hover:opacity-100 group-hover:translate-y-0 font-merriweather text-[13px] md:text-[14px] leading-relaxed pr-1">
                   {industry.description}
                 </p>
               </div>

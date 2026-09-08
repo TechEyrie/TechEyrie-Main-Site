@@ -1,13 +1,23 @@
-/* Beat .dark2-page * { color: #e0d1b6 !important } from dark7/MainPage.css */
-.dark2-page .services1-detail-cta-box .services1-detail-cta-heading {
-  color: #020d0a !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+/* Align /services1/[slug] CTA with dark7 palette */
+.dark2-page.services1-detail-route .services1-detail-cta-heading {
+  color: #ffffff !important;
+  text-shadow: none;
 }
 
-.dark2-page .services1-detail-cta-box .services1-detail-cta-sub {
-  color: #063629 !important;
+.dark2-page.services1-detail-route .services1-detail-cta-sub {
+  color: #e0d1b6 !important;
 }
 
-.dark2-page .services1-detail-cta-box .services1-detail-cta-btn {
-  color: #f0fffa !important;
+.dark2-page.services1-detail-route .services1-detail-cta-btn,
+.dark2-page.services1-detail-route .services1-detail-cta-btn * {
+  color: #ffffff !important;
 }
+
+.dark2-page.services1-detail-route .services1-detail-cta-btn {
+  background-color: #013825 !important;
+}
+
+.dark2-page.services1-detail-route .services1-detail-cta-btn:hover {
+  background-color: #024d33 !important;
+}
+

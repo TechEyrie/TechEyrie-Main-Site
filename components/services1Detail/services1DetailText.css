@@ -1,0 +1,32 @@
+/* Align /services1/[slug] text with dark7 — cream only, no mint copy */
+.dark2-page.services1-detail-route .s1d-light,
+.dark2-page.services1-detail-route .s1d-light * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.services1-detail-route .s1d-body,
+.dark2-page.services1-detail-route .s1d-body * {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.services1-detail-route .s1d-muted,
+.dark2-page.services1-detail-route .s1d-muted * {
+  color: #c8c2ad !important;
+}
+
+.dark2-page.services1-detail-route .s1d-mint,
+.dark2-page.services1-detail-route .s1d-mint * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.services1-detail-route .s1d-teal,
+.dark2-page.services1-detail-route .s1d-teal * {
+  color: #e0d1b6 !important;
+}
+
+/* Skillicons / third-party logos bring brand colors — force them into dark7 neutrals */
+.dark2-page.services1-detail-route img.s1d-tech-logo {
+  filter: grayscale(1) brightness(1.25) contrast(1.05);
+  opacity: 0.92;
+}
+

@@ -45,7 +45,7 @@ export async function POST(request) {
     );
   }
 
-  const { type, name, email, message, phone, company } = validated.data;
+  const { type, name, email, message, phone, company, source } = validated.data;
   const meta = QUOTE_FORM_TYPES[type];
   const submittedAt = new Date().toISOString();
 
@@ -56,6 +56,7 @@ export async function POST(request) {
     `Email: ${email}`,
     phone ? `Phone: ${phone}` : null,
     company ? `Company: ${company}` : null,
+    source ? `How they heard about us: ${source}` : null,
     `Type: ${type}`,
     `Submitted: ${submittedAt}`,
     "",
@@ -72,6 +73,7 @@ export async function POST(request) {
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
       ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
+      ${source ? `<p><strong>How they heard about us:</strong> ${escapeHtml(source)}</p>` : ""}
       <p><strong>Type:</strong> ${escapeHtml(type)}</p>
       <p><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
       <p style="margin:16px 0 6px"><strong>Message:</strong></p>

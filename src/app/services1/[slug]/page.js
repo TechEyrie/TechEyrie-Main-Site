@@ -10,7 +10,11 @@ export default function Services2DetailPage({ params }) {
   const theme = 'dark';
 
   return (
-    <div style={{ position: 'relative', zIndex: 1 }} data-theme={theme} className="dark2-page bg-[#162d24]">
+    <div
+      style={{ position: 'relative', zIndex: 1 }}
+      data-theme={theme}
+      className="dark2-page services1-detail-route bg-[#162d24] relative z-[1] min-h-screen overflow-x-hidden font-merriweather selection:bg-[#12685b]/35 selection:text-white"
+    >
       <Header theme={theme} />
       <Services1DetailTemplate slug={resolvedParams?.slug} theme={theme} />
       <Footer theme={theme} />

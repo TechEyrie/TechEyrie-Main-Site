@@ -217,12 +217,12 @@ export default function ApproachSection({ theme = 'light', dark7 = false }) {
                     <g key={i} transform={`rotate(${i * 30})`}>
                       <path
                         d="M 0,-35 Q 5,-25 0,-15 Q -5,-25 0,-35"
-                        fill={isDark ? '#74F5A1' : '#c7006e'}
+                        fill={isDark && dark7 ? '#e0d1b6' : isDark ? '#74F5A1' : '#c7006e'}
                         opacity="0.8"
                       />
                     </g>
                   ))}
-                  <circle cx="0" cy="0" r="8" fill={isDark ? '#74F5A1' : '#c7006e'} />
+                  <circle cx="0" cy="0" r="8" fill={isDark && dark7 ? '#e0d1b6' : isDark ? '#74F5A1' : '#c7006e'} />
                 </g>
               </svg>
             </div>

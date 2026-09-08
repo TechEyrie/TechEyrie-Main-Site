@@ -97,7 +97,7 @@ export default function Services2Hero({
         className="absolute inset-0 z-[1]"
         style={{
           background: isDark && dark7
-            ? 'linear-gradient(135deg, rgba(22,45,36,0.88) 0%, rgba(0,81,96,0.5) 45%, rgba(22,45,36,0.92) 100%), linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 55%, rgba(22,45,36,0.75) 100%), radial-gradient(ellipse 90% 80% at 60% 85%, rgba(142,162,88,0.22) 0%, transparent 55%)'
+            ? 'linear-gradient(135deg, rgba(22,45,36,0.88) 0%, rgba(0,81,96,0.5) 45%, rgba(22,45,36,0.92) 100%), linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 55%, rgba(22,45,36,0.75) 100%), radial-gradient(ellipse 90% 80% at 60% 85%, rgba(167,180,49,0.22) 0%, transparent 55%)'
             : isDark
               ? 'linear-gradient(to bottom, rgba(200, 60, 40, 0.35) 0%, rgba(220, 80, 50, 0.3) 50%, rgba(200, 60, 40, 0.35) 100%), linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.25) 100%)'
               : 'linear-gradient(to bottom, rgba(200, 60, 40, 0.4) 0%, rgba(220, 80, 50, 0.35) 50%, rgba(200, 60, 40, 0.4) 100%), linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%)'

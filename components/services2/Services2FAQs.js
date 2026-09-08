@@ -166,7 +166,7 @@ export default function Services2FAQs({ theme = 'light', dark7 = false }) {
                   >
                     <path
                       d="M16 8V24M8 16H24"
-                      stroke={isDark ? (dark7 ? '#74F5A1' : '#FFFFFF') : '#7b2cbf'}
+                      stroke={isDark ? (dark7 ? '#e0d1b6' : '#FFFFFF') : '#7b2cbf'}
                       strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"

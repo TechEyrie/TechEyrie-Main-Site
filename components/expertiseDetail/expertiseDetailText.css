@@ -1,69 +1,101 @@
-.dark2-page.expertise-route .exp-feat-mint,
-.dark2-page.expertise-route .exp-feat-mint * {
-  color: #74f5a1 !important;
-}
-
-.dark2-page.expertise-route .exp-feat-soft,
-.dark2-page.expertise-route .exp-feat-soft * {
-  color: #9dffbe !important;
-}
-
-.dark2-page.expertise-route .s1-explore-expertise,
-.dark2-page.expertise-route .s1-explore-expertise * {
-  color: #74f5a1 !important;
-}
-
-.dark2-page.expertise-route .s1-explore-expertise:hover,
-.dark2-page.expertise-route .s1-explore-expertise:hover * {
-  color: #9dffbe !important;
-}
-
-.dark2-page.expertise-route .s1-expertise-cta,
-.dark2-page.expertise-route .s1-expertise-cta * {
-  color: #0a1e18 !important;
-}
-
-.dark2-page.expertise-detail-route .exp-mint,
-.dark2-page.expertise-detail-route .exp-mint * {
-  color: #74f5a1 !important;
-}
-
-.dark2-page.expertise-detail-route .exp-mint-soft,
-.dark2-page.expertise-detail-route .exp-mint-soft * {
-  color: #9dffbe !important;
-}
-
-.dark2-page.expertise-detail-route .exp-light,
-.dark2-page.expertise-detail-route .exp-light * {
-  color: #f3f3f3 !important;
-}
-
-.dark2-page.expertise-detail-route .exp-muted,
-.dark2-page.expertise-detail-route .exp-muted * {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.dark2-page.expertise-detail-route .exp-chip {
-  color: #dbe8df !important;
-}
-
-.dark2-page.expertise-detail-route .exp-teal,
-.dark2-page.expertise-detail-route .exp-teal * {
-  color: #67bfda !important;
-}
-
-.dark2-page.expertise-detail-route .exp-breadcrumb a:hover {
-  color: #9dffbe !important;
-}
-
-.dark2-page.expertise-detail-route .exp-faq-icon {
-  color: #74f5a1 !important;
-}
-
-.dark2-page.expertise-detail-route .exp-stat-value {
-  color: #74f5a1 !important;
-}
-
-.dark2-page.expertise-detail-route .exp-card-title {
-  color: #f3f3f3 !important;
-}
+/* Align /expertise with dark7 palette — text stays cream; mint is not used for copy */
+.dark2-page.expertise-route .exp-feat-mint,
+.dark2-page.expertise-route .exp-feat-mint * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-route .exp-feat-soft,
+.dark2-page.expertise-route .exp-feat-soft * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-route .s1-expertise-cta,
+.dark2-page.expertise-route .s1-expertise-cta * {
+  color: #ffffff !important;
+}
+
+.dark2-page.expertise-route .s1-expertise-cta {
+  background-color: #12685b !important;
+}
+
+.dark2-page.expertise-route .s1-expertise-cta:hover {
+  background-color: #0d5248 !important;
+}
+
+/* Never force mint on expertise detail text — match dark7 cream */
+.dark2-page.expertise-detail-route .exp-mint,
+.dark2-page.expertise-detail-route .exp-mint * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-mint-soft,
+.dark2-page.expertise-detail-route .exp-mint-soft * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-light,
+.dark2-page.expertise-detail-route .exp-light * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-body,
+.dark2-page.expertise-detail-route .exp-body * {
+  color: #e8e4dc !important;
+}
+
+.dark2-page.expertise-detail-route .exp-muted,
+.dark2-page.expertise-detail-route .exp-muted * {
+  color: #c8c2ad !important;
+}
+
+.dark2-page.expertise-detail-route .exp-chip {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-teal,
+.dark2-page.expertise-detail-route .exp-teal * {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-breadcrumb a:hover {
+  color: #f3f3f3 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-faq-icon {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-stat-value {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-card-title {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route img.exp-tech-logo {
+  filter: grayscale(1) brightness(1.25) contrast(1.05);
+  opacity: 0.92;
+}
+
+.dark2-page.expertise-detail-route .expertise-detail-cta-heading {
+  color: #ffffff !important;
+}
+
+.dark2-page.expertise-detail-route .expertise-detail-cta-sub {
+  color: #e0d1b6 !important;
+}
+
+.dark2-page.expertise-detail-route .expertise-detail-cta-btn,
+.dark2-page.expertise-detail-route .expertise-detail-cta-btn * {
+  color: #ffffff !important;
+}
+
+.dark2-page.expertise-detail-route .expertise-detail-cta-btn {
+  background-color: #013825 !important;
+}
+
+.dark2-page.expertise-detail-route .expertise-detail-cta-btn:hover {
+  background-color: #024d33 !important;
+}
+

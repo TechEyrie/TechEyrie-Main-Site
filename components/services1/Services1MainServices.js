@@ -19,14 +19,14 @@ export default function Services1MainServices({ theme = 'light', dark7 = false }
           {/* Qualitative Research Card */}
           <div className={`rounded-[16px] md:rounded-[20px] p-8 md:p-10 lg:p-12 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6 md:gap-8 ${
             isDark && dark7
-              ? 'border border-[rgba(116,245,161,0.22)] bg-[rgba(0,0,0,0.22)]'
+              ? 'border border-[#e0d1b6]/15 bg-[#122a21]/90'
               : isDark ? 'bg-[#2a2a2a]' : 'bg-white'
           }`}>
             {/* Icon with GIF */}
             <div className="flex-shrink-0">
               <div className={`relative w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100px] rounded-full flex items-center justify-center overflow-hidden ${
                 isDark && dark7
-                  ? 'bg-gradient-to-br from-[#1a4d38] to-[#5ab88a]'
+                  ? 'bg-gradient-to-br from-[#013825] to-[#74F5A1]'
                   : 'bg-gradient-to-br from-[#FF6B5A] to-[#FF8A7A]'
               }`}>
                 <img
@@ -54,14 +54,14 @@ export default function Services1MainServices({ theme = 'light', dark7 = false }
           {/* Behavioural Analysis Card */}
           <div className={`rounded-[16px] md:rounded-[20px] p-8 md:p-10 lg:p-12 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6 md:gap-8 ${
             isDark && dark7
-              ? 'border border-[rgba(116,245,161,0.22)] bg-[rgba(0,0,0,0.22)]'
+              ? 'border border-[#e0d1b6]/15 bg-[#122a21]/90'
               : isDark ? 'bg-[#2a2a2a]' : 'bg-white'
           }`}>
             {/* Icon with GIF */}
             <div className="flex-shrink-0">
               <div className={`relative w-[80px] h-[80px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100px] rounded-full flex items-center justify-center overflow-hidden ${
                 isDark && dark7
-                  ? 'bg-gradient-to-br from-[#0d5c4a] to-[#74F5A1]'
+                  ? 'bg-gradient-to-br from-[#12685b] to-[#74F5A1]'
                   : 'bg-gradient-to-br from-[#7EC977] to-[#9ED999]'
               }`}>
                 <img

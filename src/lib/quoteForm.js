@@ -6,13 +6,13 @@ export const QUOTE_FORM_TYPES = {
     subject: "New quote request — TechEyrie",
   },
   contact: {
-    label: "Talk to Us",
+    label: "Talk to Us / Contact",
     subject: "New contact request — TechEyrie",
   },
 };
 
 /**
- * Shared client/server validation for Talk to Us + Get a Quote.
+ * Shared client/server validation for Talk to Us, Contact page, + Get a Quote.
  * @returns {{ ok: true, data: object } | { ok: false, errors: Record<string, string> }}
  */
 export function validateQuoteForm(input = {}) {
@@ -20,7 +20,8 @@ export function validateQuoteForm(input = {}) {
   const type = String(input.type || "").trim().toLowerCase();
   const name = String(input.name || "").trim();
   const email = String(input.email || "").trim().toLowerCase();
-  const message = String(input.message || "").trim();
+  const source = String(input.source || "").trim();
+  let message = String(input.message || "").trim();
   const companyName = String(input.companyName || input.company || "").trim();
   const phone = String(input.phone || "").trim();
   const website = String(input.website || "").trim(); // honeypot
@@ -55,10 +56,21 @@ export function validateQuoteForm(input = {}) {
     errors.company = "Company must be 160 characters or fewer.";
   }
 
+  if (source && source.length > 200) {
+    errors.source = "Please keep this under 200 characters.";
+  }
+
+  // Contact page may only fill "how did you hear about us" — build a message if needed.
+  if ((!message || message.length < 10) && source) {
+    message = message
+      ? `${message}\n\nHow they heard about us: ${source}`
+      : `Contact page inquiry.\nHow they heard about us: ${source}`;
+  }
+
   if (!message) {
     errors.message = "Message is required.";
   } else if (message.length < 10) {
-    errors.message = "Message must be at least 10 characters.";
+    errors.message = "Message must be at least 10 characters (or tell us how you heard about us).";
   } else if (message.length > 4000) {
     errors.message = "Message must be 4000 characters or fewer.";
   }
@@ -76,6 +88,7 @@ export function validateQuoteForm(input = {}) {
       message,
       phone: phone || undefined,
       company: companyName || undefined,
+      source: source || undefined,
     },
   };
 }
