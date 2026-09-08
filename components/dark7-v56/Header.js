@@ -61,24 +61,25 @@ const SERVICES_ROW_2 = [
 
 const EXPERTISE_ITEMS = [
   {
-    id: "b2b-saas",
-    title: "B2B SaaS",
+    id: "blockchain",
+    title: "Blockchain",
     description:
-      "Specialized marketing strategies for SaaS companies looking to scale.",
-    href: "/expertise/b2b-saas",
+      "Smart contracts, tokenization, and Web3 infrastructure built for trust and production.",
+    href: "/expertise/blockchain",
   },
   {
-    id: "b2b-service",
-    title: "B2B Service",
-    description: "Drive demand for your professional services business.",
-    href: "/expertise/b2b-service",
+    id: "full-stack",
+    title: "Full Stack",
+    description:
+      "End-to-end product engineering across frontend, APIs, and data layers.",
+    href: "/expertise/full-stack",
   },
   {
-    id: "b2b-hardware",
-    title: "B2B Hardware",
+    id: "cloud-system-integration",
+    title: "Cloud & System Integration",
     description:
-      "Marketing solutions for hardware and equipment manufacturers.",
-    href: "/expertise/b2b-hardware",
+      "Connect CRMs, ERPs, and cloud platforms into reliable real-time operations.",
+    href: "/expertise/cloud-system-integration",
   },
 ];
 

@@ -10,6 +10,7 @@ import Services1ServiceDetails from "../../../components/services1/Services1Serv
 import Services1CTASection from "../../../components/services1/Services1CTASection";
 import "../../../components/dark7/MainPage.css";
 import "../../../components/services1/services1ListingDark7Text.css";
+import "../../../components/expertiseDetail/expertiseDetailText.css";
 
 export default function ExpertisePage() {
   const theme = "dark";

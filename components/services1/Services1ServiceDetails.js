@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { services1ListingDarkSurface } from './services1ListingSurfaces';
@@ -48,21 +49,24 @@ const serviceDetails = [
     title: 'Full-stack Development',
     description: 'At Tech Eyrie, we design the best website creating apps that are secured, flexible and modern from elegant and user-centric to powerful backend architecture. Our approach is not only about building, but ideal for business impact. ',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+    href: '/expertise/full-stack',
   },
   {
     id: 'translation-transcripts',
     title: 'Cloud & System Integration Services',
     description: 'As Cloud and enterprise integration are the backbone of our business we connect CRMs, ERPs, and services into perfect operation reducing friction, boost collaboration and elevate real time data analyst to your organization.',
     imageAlt: 'Professional linguist wearing headphones transcribing focus group recordings at laptop',
-    imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
+    href: '/expertise/cloud-system-integration',
   },
   {
     id: 'analysis-reporting1',
     title: 'Blockchain powered Systems',
     description: 'It is all about trust, value and transparency. We bring practical application across smart contracts, decentralized finance, asset tokenization, and web3 infrastructure across blockchain networks, unlocking complex concepts into measurable values.',
     imageAlt: 'Research analyst holding report folder with insights and recommendations',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+    href: '/expertise/blockchain',
   },
 ];
 
@@ -124,7 +128,16 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                       isDark && dark7 ? 's1-detail-title' : isDark ? 'text-white' : 'text-[#1a1a1a]'
                     }`}
                   >
-                    {service.title}
+                    {service.href ? (
+                      <Link
+                        href={service.href}
+                        className="hover:text-[#74F5A1] transition-colors duration-300 cursor-pointer"
+                      >
+                        {service.title}
+                      </Link>
+                    ) : (
+                      service.title
+                    )}
                   </h3>
                   <p
                     className={`font-merriweather text-[14px] leading-[1.7] ${
@@ -133,6 +146,21 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                   >
                     {service.description}
                   </p>
+                  {service.href ? (
+                    <Link
+                      href={service.href}
+                      className={`s1-expertise-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 font-merriweather text-[13px] md:text-[14px] font-semibold transition-all duration-300 cursor-pointer ${
+                        isDark && dark7
+                          ? "bg-[#74F5A1] hover:bg-[#9dffbe]"
+                          : isDark
+                            ? "bg-[#74F5A1] hover:bg-[#9dffbe]"
+                            : "bg-[#013825] text-white hover:bg-[#024d33]"
+                      }`}
+                    >
+                      Explore this expertise
+                      <span aria-hidden>→</span>
+                    </Link>
+                  ) : null}
                 </div>
 
                 <div
@@ -154,6 +182,11 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                           : 'bg-[#e8e4dc]'
                     }`}
                   >
+                    {service.href ? (
+                      <Link href={service.href} className="absolute inset-0 z-[1] cursor-pointer" aria-label={`Open ${service.title}`}>
+                        <span className="sr-only">{service.title}</span>
+                      </Link>
+                    ) : null}
                     <Image
                       src={service.imageUrl}
                       alt={service.imageAlt}

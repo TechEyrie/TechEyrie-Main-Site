@@ -1,0 +1,69 @@
+.dark2-page.expertise-route .exp-feat-mint,
+.dark2-page.expertise-route .exp-feat-mint * {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.expertise-route .exp-feat-soft,
+.dark2-page.expertise-route .exp-feat-soft * {
+  color: #9dffbe !important;
+}
+
+.dark2-page.expertise-route .s1-explore-expertise,
+.dark2-page.expertise-route .s1-explore-expertise * {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.expertise-route .s1-explore-expertise:hover,
+.dark2-page.expertise-route .s1-explore-expertise:hover * {
+  color: #9dffbe !important;
+}
+
+.dark2-page.expertise-route .s1-expertise-cta,
+.dark2-page.expertise-route .s1-expertise-cta * {
+  color: #0a1e18 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-mint,
+.dark2-page.expertise-detail-route .exp-mint * {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-mint-soft,
+.dark2-page.expertise-detail-route .exp-mint-soft * {
+  color: #9dffbe !important;
+}
+
+.dark2-page.expertise-detail-route .exp-light,
+.dark2-page.expertise-detail-route .exp-light * {
+  color: #f3f3f3 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-muted,
+.dark2-page.expertise-detail-route .exp-muted * {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark2-page.expertise-detail-route .exp-chip {
+  color: #dbe8df !important;
+}
+
+.dark2-page.expertise-detail-route .exp-teal,
+.dark2-page.expertise-detail-route .exp-teal * {
+  color: #67bfda !important;
+}
+
+.dark2-page.expertise-detail-route .exp-breadcrumb a:hover {
+  color: #9dffbe !important;
+}
+
+.dark2-page.expertise-detail-route .exp-faq-icon {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-stat-value {
+  color: #74f5a1 !important;
+}
+
+.dark2-page.expertise-detail-route .exp-card-title {
+  color: #f3f3f3 !important;
+}

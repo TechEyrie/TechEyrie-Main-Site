@@ -248,6 +248,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "skillicons.dev",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "www.datocms-assets.com",
         port: "",
         pathname: "/**",
