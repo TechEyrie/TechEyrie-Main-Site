@@ -131,6 +131,7 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                     {service.href ? (
                       <Link
                         href={service.href}
+                        scroll
                         className="hover:text-[#74F5A1] transition-colors duration-300 cursor-pointer"
                       >
                         {service.title}
@@ -149,6 +150,7 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                   {service.href ? (
                     <Link
                       href={service.href}
+                      scroll
                       className={`s1-expertise-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full px-5 py-2.5 font-merriweather text-[13px] md:text-[14px] font-semibold transition-all duration-300 cursor-pointer ${
                         isDark && dark7
                           ? "bg-[#74F5A1] hover:bg-[#9dffbe]"
@@ -183,7 +185,7 @@ export default function Services1ServiceDetails({ theme = 'light', dark7 = false
                     }`}
                   >
                     {service.href ? (
-                      <Link href={service.href} className="absolute inset-0 z-[1] cursor-pointer" aria-label={`Open ${service.title}`}>
+                      <Link href={service.href} scroll className="absolute inset-0 z-[1] cursor-pointer" aria-label={`Open ${service.title}`}>
                         <span className="sr-only">{service.title}</span>
                       </Link>
                     ) : null}

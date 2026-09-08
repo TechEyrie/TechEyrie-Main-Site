@@ -49,7 +49,12 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
       });
     }, root);
 
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
     return () => ctx.revert();
   }, [slug, data]);
 
@@ -558,6 +563,7 @@ function ExpertiseDetailTemplate({ slug, theme = "dark" }) {
               <Link
                 key={item.slug}
                 href={`/expertise/${item.slug}`}
+                scroll
                 className={`d7-reveal group rounded-xl overflow-hidden block transition-transform duration-300 hover:-translate-y-1 cursor-pointer ${cardTheme}`}
               >
                 <div className="relative h-[220px] md:h-[260px]">
