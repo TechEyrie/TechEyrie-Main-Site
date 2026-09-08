@@ -464,6 +464,16 @@ body {
   color: #ffffff !important;
 }
 
+.dark2-page .dark7-quote-popup button[type="submit"]:not(:disabled),
+.dark2-page .dark7-quote-popup .dark7-quote-primary-btn:not(:disabled) {
+  cursor: pointer !important;
+}
+
+.dark2-page .dark7-quote-popup button[type="submit"]:disabled,
+.dark2-page .dark7-quote-popup .dark7-quote-primary-btn:disabled {
+  cursor: not-allowed !important;
+}
+
 /* Hero pyramid labels on card overlays */
 .dark2-page .hero-pyramid-label,
 .dark2-page.dark7-v56-page .dark7-v56-hero .hero-pyramid-label {

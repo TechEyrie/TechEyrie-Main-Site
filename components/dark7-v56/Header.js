@@ -178,14 +178,34 @@ function ContactPopup({ isOpen, onClose, type }) {
         </p>
 
         {status === "success" ? (
-          <div className="space-y-4">
-            <p className="font-merriweather text-[14px] text-[#013825]">
-              Thanks — your message was sent. We&apos;ll get back to you soon.
-            </p>
+          <div className="space-y-5" role="status" aria-live="polite">
+            <div className="flex flex-col items-center text-center gap-3 pt-2">
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-full"
+                style={{ background: "rgba(1, 56, 37, 0.1)", border: "1px solid rgba(1, 56, 37, 0.25)" }}
+                aria-hidden="true"
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 12l5 5L20 7"
+                    stroke="#013825"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <p className="font-italiana text-[22px] tracking-[-0.02em] text-gray-900">
+                Message sent
+              </p>
+              <p className="font-merriweather text-[14px] text-gray-600 leading-relaxed">
+                Thanks — your message was sent successfully. We&apos;ll get back to you soon.
+              </p>
+            </div>
             <button
               type="button"
               onClick={onClose}
-              className="dark7-quote-primary-btn w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors"
+              className="dark7-quote-primary-btn w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors cursor-pointer"
             >
               Close
             </button>
@@ -271,7 +291,7 @@ function ContactPopup({ isOpen, onClose, type }) {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="dark7-quote-primary-btn w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="dark7-quote-primary-btn w-full bg-[#013825] text-white py-3 rounded-lg font-merriweather text-[14px] font-semibold hover:bg-[#024d33] transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "submitting" ? "Sending…" : "Submit"}
             </button>
